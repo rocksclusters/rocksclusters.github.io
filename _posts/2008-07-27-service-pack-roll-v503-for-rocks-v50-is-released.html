@@ -1,0 +1,49 @@
+---
+layout: post
+title: Service Pack Roll v5.0.3 for Rocks v5.0 is Released
+date: 2008-07-27 09:20:31.000000000 -07:00
+categories: []
+tags: []
+status: publish
+type: post
+published: true
+meta: {}
+author:
+  login: admin
+  email: ppapadopoulos@ucsd.edu
+  display_name: admin
+  first_name: ''
+  last_name: ''
+---
+<p>The Service Pack Roll v5.0.3 for i386 and x86_64 architectures is released.</p>
+<p>This roll includes the following new fix:</p>
+<ul>
+<li>Base Roll - Fix for Dell Virtual Floppy. On Dell machines that have Dell Remote Access Controllers (DRACs), the Dell Virtual Floppy would be recognized by anaconda as a hard disk. This would cause an exception that looks like:
+<p>Traceback (most recent call first):<br />
+  File "/tmp/product/autopart.py", line 1230, in doAutoPartition<br />
+    for f in initial_free[drive]:<br />
+  File "/usr/lib/anaconda/dispatch.py", line 201, in moveStep<br />
+    rc = stepFunc(self.anaconda)<br />
+  File "/usr/lib/anaconda/dispatch.py", line 124, in gotoNext<br />
+    self.moveStep()<br />
+  File "/usr/lib/anaconda/dispatch.py", line 223, in currentStep<br />
+    self.gotoNext()<br />
+  File "/usr/lib/anaconda/iw/release_notes.py", line 86, in resize<br />
+    (step, args) = self.anaconda.dispatch.currentStep()<br />
+  File "/usr/lib/anaconda/iw/release_notes.py", line 51, in __init__<br />
+    self.resize()<br />
+  File "/tmp/product/gui.py", line 1148, in __init__<br />
+    self.rnv = ReleaseNotesViewer(self.anaconda)<br />
+  File "/tmp/product/gui.py", line 977, in run<br />
+    self.icw = InstallControlWindow (self.anaconda)<br />
+  File "/usr/bin/anaconda", line 982, in ?<br />
+    anaconda.intf.run(anaconda)<br />
+KeyError: 'sdb'</p>
+<p>The fix is to filter out hard disks that don't have 'media present' (which is how the Dell Virtual Floppy behaves). </li>
+</ul>
+<p>Additionally, this Service Pack Roll includes all the fixes from the previous Service Pack Rolls.</p>
+<p>This Service Pack Roll can be installed over an existing Service Pack Roll, that is, there is no need to remove a previous Service Pack Roll before installing this one.</p>
+<p>Detailed descriptions of all the fixes can be found <a href="http://www.rocksclusters.org/roll-documentation/service-pack/5.0.3/fixes.html">here</a>.</p>
+<p>This roll can be installed onto a running frontend.</p>
+<p>ISO images for the Service Pack Roll can be found on the <a href="http://www.rocksclusters.org/wordpress/?page_id=82">Downloads</a> page.</p>
+<p>Installation instructions can be found <a href="http://www.rocksclusters.org/roll-documentation/service-pack/5.0.3/">here</a>.</p>

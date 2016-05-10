@@ -1,0 +1,76 @@
+---
+layout: post
+title: Rocks 5.0 (V) Beta is Released
+date: 2008-04-01 12:37:55.000000000 -07:00
+categories: []
+tags: []
+status: publish
+type: post
+published: true
+meta: {}
+author:
+  login: admin
+  email: ppapadopoulos@ucsd.edu
+  display_name: admin
+  first_name: ''
+  last_name: ''
+---
+<p>
+Rocks v5.0 Beta is released for i386 and x86_64 CPU architectures.</p>
+<h2>Downloads</h2>
+<ul>
+<li><a href="ftp://ftp.rocksclusters.org/pub/rocks/beta/5.0/base+bio+condor+ganglia+hpc+java+kernel+os+sge+web-server+xen-01.04.2008-08.46.59.i386.disk1.iso">Jumbo Roll (Base, Bio, Condor, Ganglia, HPC, Java, Kernel, OS disk 1 and 2, SGE, Web Server) i386 (dvd)</a></li>
+<li><a href="ftp://ftp.rocksclusters.org/pub/rocks/beta/5.0/base+bio+condor+ganglia+hpc+java+kernel+os+sge+web-server+xen-01.04.2008-08.54.32.x86_64.disk1.iso">Jumbo Roll (Base, Bio, Condor, Ganglia, HPC, Java, Kernel, OS disk 1 and 2, SGE, Web Server) x86_64 (dvd)</a></li>
+<li><a href="ftp://ftp.rocksclusters.org/pub/rocks/beta/5.0/os-01.04.2008-08.53.58.i386.disk1.iso">OS Jumbo Roll (All 6 OS Rolls) i386 (dvd)</a></li>
+<li><a href="ftp://ftp.rocksclusters.org/pub/rocks/beta/5.0/os-01.04.2008-08.54.45.x86_64.disk1.iso">OS Jumbo Roll (All 7 OS Rolls) x86_64 (dvd)</a></li>
+<li><a href="http://www.rocksclusters.org/ftp-site/pub/rocks/beta/5.0/">Individual Rolls</a></li>
+<li><a href="http://www.rocksclusters.org/ftp-site/pub/rocks/beta/5.0/md5sum.txt">MD5 checksums</a></li>
+</ul>
+<h2> Caveat </h2>
+<p>
+For compute nodes, <b>ALL</b> disks will be repartitioned and reformatted.</p>
+<p>
+To only format the root disk, before you install any compute nodes, execute:</p>
+<ul>
+<li> cd /home/install/site-profiles/5.0/nodes/
+</li>
+<li> wget http://www.rocksclusters.org/ftp-site/pub/rocks/beta/5.0/replace-partition.xml </li>
+<li> cd /home/install </li>
+<li> rocks-dist dist </li>
+</ul>
+<h2> Notes on Some of the New Features </h2>
+<ul>
+<li> Xen Support </li>
+<p>
+If you include the Xen roll, you will now be able to configure Xen images using Rocks.</p>
+<p>
+After you bring up the frontend, you will want to configure a "VM Container". A VM Container is a physical node that hosts Xen VMs. Execute "insert-ethers", then select "VM Container" as the appliance type. Then PXE boot the physical node.</p>
+<p>
+After the VM Container is installed, you can create VMs inside the VM Container. To configure your first VM, on the frontend execute:</p>
+<p>
+# rocks add host vm vm-container-0-0 membership=compute</p>
+<p>
+Where "vm-container-0-0" is the name of the physical VM Container and "membership=compute" associates a compute appliance with the newly added VM. By default, Rocks will assign the name "compute-0-0-0" to the new VM.</p></p>
+<p>
+Then, you'll need to reconfigure and restart all Rocks services by executing:</p>
+<p>
+# rocks sync config</p>
+<p>
+Now, let's install the VM:</p>
+<p>
+# rocks create host vm compute-0-0-0</p>
+<p>
+You can monitor the installation by executing:</p>
+<p>
+# rocks-console compute-0-0-0</p>
+<p>
+After the installation completes, boot the VM by executing:</p>
+<p>
+# rocks start host vm compute-0-0-0</p>
+<p>
+After the VM boots, you will be able to login to the compute VM just like a physical compute node. Also, if you installed SGE, you will be schedule jobs on the compute VM.</p>
+<p>
+To see all the new Rocks VM commands, execute:</p>
+<p>
+# rocks | grep vm</p>
+</ul>

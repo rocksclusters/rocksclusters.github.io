@@ -1,0 +1,33 @@
+---
+layout: default
+---
+
+<section class="bg-dark">
+  <div class="text-center">
+    <h1>{{ page.title }}</h1>
+  </div>
+</section>
+
+<section id="services">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      {% for service in site.[page.short] %}
+        <div class="col-lg-3 col-md-6 text-center">
+          <div class="service-box">
+            <li><a href="{{ service.url }}" title="{{ service.title }}">{{ service.title }}</a> </li>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<hr class="primary">
+<p> <a href="{{ page.url }}"> Back to top </a> </p>

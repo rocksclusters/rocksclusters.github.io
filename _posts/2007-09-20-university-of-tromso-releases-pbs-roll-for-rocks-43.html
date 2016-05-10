@@ -1,0 +1,30 @@
+---
+layout: post
+title: University of Tromso Releases PBS Roll for Rocks 4.3
+date: 2007-09-20 08:55:22.000000000 -07:00
+categories: []
+tags: []
+status: publish
+type: post
+published: true
+meta: {}
+author:
+  login: admin
+  email: ppapadopoulos@ucsd.edu
+  display_name: admin
+  first_name: ''
+  last_name: ''
+---
+<p><i>Roy Dragseth of the HPC Group at the University of Tromso announces:</i></p>
+<p>The long awaited pbs-roll release 4.3.0 is now ready for <a href="ftp://ftp.uit.no/pub/linux/rocks/pbs-roll/4.3.0">download</a>.</p>
+<h2>Release notes</h2>
+<ul>
+<li>Torque upgraded to v2.1.8.</li>
+<li>mpiexec upgraded to v0.82 + mvapich 0.9.9 support patch. mpiexec is now located under /opt/mpiexec to avoid clashing with openmpi.</li>
+<li>maui is upgraded to v3.2.6p19.</li>
+<li>Some system and ulimit parameters have been increased to support larger cluster sizes.</li>
+</ul>
+<p>Upgrading the roll without reinstalling the frontend should work as earlier, see <a href="https://lists.sdsc.edu/pipermail/npaci-rocks-discussion/2006-October/021516.html">Steve Jones's recipe</a>.</p>
+<h2>Future plans</h2></p>
+<p>This will most probably be the last major release under the pbs-roll name. The plan is to rename the roll to torque-roll to better describe what software the roll actually contains.  The name change will be completed with the arrival of the Rocks v5.</p>
+<p>Clusterresources.com, the developers and maintainers of torque and maui, will be involved in future releases. The hope is to establish a closer collaboration to speed up the development of the roll.</p>

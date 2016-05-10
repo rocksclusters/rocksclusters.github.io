@@ -1,0 +1,35 @@
+
+/* colors */
+$white: #fff;
+
+$blue:       #455979;
+$blue-light: lighten($blue, 25%);
+$blue-dark:  darken($blue, 25%);
+
+$orange: #e55909;
+
+.left-image {
+    margin: 0;
+	display: block;
+}
+
+.center-image {
+    margin: 0 auto;
+	display: block;
+}
+
+
+/* meetings table */
+
+.meeting {
+    padding: 0;
+}
+
+.meeting td {
+    padding: 0 15px 0 5px;
+}
+
+.strongword {
+    font-weight: 700;
+    color: $blue;
+}

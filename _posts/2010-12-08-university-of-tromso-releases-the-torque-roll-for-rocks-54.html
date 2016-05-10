@@ -1,0 +1,42 @@
+---
+layout: post
+title: University of Tromso Releases the Torque Roll for Rocks 5.4
+date: 2010-12-08 08:45:47.000000000 -08:00
+categories: []
+tags: []
+status: publish
+type: post
+published: true
+meta: {}
+author:
+  login: admin
+  email: ppapadopoulos@ucsd.edu
+  display_name: admin
+  first_name: ''
+  last_name: ''
+---
+<p><i>Roy Dragseth of the University of Tromso announces:</i></p>
+<p>The torque roll for Rocks 5.4.0 is now ready for download. Get the bits at:</p>
+<p>ftp://ftp.uit.no/pub/linux/rocks/torque-roll/5.4.0</p>
+<p>Most important software included:</p>
+<ul>
+<li>Torque v2.4.11</li>
+<li>Maui v3.2.6p21 </li>
+<li>mpiexec v0.84</li>
+</ul>
+<h2>Maintenance Release</h2>
+<p>This version of the torque roll is a maintenance release. It contains several bug fixes as well as refreshed software.</p>
+<h2>Installation</h2>
+<p>The Rocks way of installing the roll is as usual to reinstall your frontend and compute nodes, but you can also use the chain of commands to install a new roll on an existing frontend (with or without a previous version of the roll):</p>
+<p># rocks add roll /path/to/torque/roll.iso<br />
+# rocks enable roll torque<br />
+# rocks create distro<br />
+# rocks run roll torque | sh<br />
+# reboot</p>
+<p>After the the frontend comes back up you should do the following to populate the node list:</p>
+<p># rocks sync config</p>
+<p>then kickstart all your nodes</p>
+<p># rocks run host /boot/kickstart/cluster-kickstart</p>
+<p>After the nodes are reinstalled they should automatically pop up in the queueing system.</p>
+<h2>Source Code</h2>
+<p>The source code of the roll can  be accessed from a public mercurial repository:  http://devsrc.cc.uit.no/hg/torque/</p>

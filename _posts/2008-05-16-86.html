@@ -1,0 +1,33 @@
+---
+layout: post
+title: University of Tromso Releases the Torque Roll for Rocks 5
+date: 2008-05-16 15:17:05.000000000 -07:00
+categories: []
+tags: []
+status: publish
+type: post
+published: true
+meta: {}
+author:
+  login: admin
+  email: ppapadopoulos@ucsd.edu
+  display_name: admin
+  first_name: ''
+  last_name: ''
+---
+<p><i>Roy Dragseth of the University of Tromso announces:</i></p>
+<p>The torque roll is now ready for download.</p>
+<p>Get it from ftp://ftp.uit.no/pub/linux/rocks/torque-roll/5.0.0/</p>
+<p>It contains the exact same versions of the software that is in pbs-roll v4.3.1:</p>
+<ul>
+<li>Torque v2.3.0 + a cpudetection patch</li>
+<li>Maui v3.2.6p19 + a critical fix for 64bit archs</li>
+<li>mpiexec v0.82</li>
+</ul>
+<p>New stuff:</p>
+<ul>
+<li>compute nodes are now named compute-X-Y instead of compute-X-Y.local</li>
+<li>The roll now has a config file, /etc/torque-roll.conf. The only thing it currently controls is the automatic update of the node list when adding or removing nodes.</li>
+</ul>
+<p>The development has now moved to using Mercurial as the SCM and I hope to establish a public repository to make it easier for people to contribute to this project.  With just a few weeks of experience with Mercurial I must say that I'm impressed with the ease of use and flexibility of this piece of software.</p>
+<p>Comments are greatly appreciated.</p>
