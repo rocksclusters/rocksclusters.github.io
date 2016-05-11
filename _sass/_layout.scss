@@ -2,8 +2,8 @@
  * Site header
  */
 .site-header {
-    border-top: 0px solid $grey-color-dark;
-    border-bottom: 1px solid $grey-color-light;
+    border-top: 1px solid $header-dark;
+    border-bottom: 1px solid $header-dark;
     min-height: 56px;
     background-color: $header-light;
 
@@ -99,14 +99,15 @@
  * Site footer
  */
 .site-footer {
-    border-top: 1px solid $grey-color-light;
-    padding: 10px 0;
+    border-top: 1px solid $header-dark;
+    border-bottom: 1px solid $header-dark;
+    padding: 15px 0;
 	background: $header-light;
 }
 
 .footer-heading {
     font-size: 18px;
-    margin-bottom: $spacing-unit 0;
+    margin-bottom: $spacing-unit / 2 0;
 }
 
 .contact-list,
@@ -124,7 +125,7 @@
 
 .footer-col {
     float: left;
-    margin-bottom: $spacing-unit / 2;
+    margin-bottom: 0;
     padding-left: $spacing-unit / 2;
 }
 
@@ -170,7 +171,7 @@
  * Page content
  */
 .page-content {
-    padding: $spacing-unit 0;
+    padding: $spacing-unit / 2 0;
 }
 
 .page-heading {
@@ -182,7 +183,7 @@
     list-style: none;
 
     > li {
-        margin-bottom: $spacing-unit;
+        margin-bottom: $spacing-unit / 2;
     }
 }
 
@@ -216,7 +217,7 @@
 }
 
 .post-content {
-    margin-bottom: $spacing-unit;
+    margin-bottom: $spacing-unit / 2;
 
     h2 {
         font-size: 32px;
