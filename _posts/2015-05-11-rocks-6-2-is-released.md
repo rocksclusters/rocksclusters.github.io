@@ -2,11 +2,14 @@
 layout: post
 title: Rocks 6.2 is Released
 date: 2015-05-11 11:47:49.000000000 -07:00
-categories: []
+categories: 
+- "new"
+- "2015"
 tags: []
 status: publish
 type: post
 published: true
+imagesrc: /assets/Sidewinder-300x225.png
 
 ---
 

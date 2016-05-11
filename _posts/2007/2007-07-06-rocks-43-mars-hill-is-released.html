@@ -1,0 +1,56 @@
+---
+layout: post
+title: Rocks 4.3 (Mars Hill) is Released
+date: 2007-07-06 17:46:46.000000000 -07:00
+categories:
+- "2007" 
+tags: []
+status: publish
+type: post
+published: true
+meta: {}
+author:
+  login: admin
+  email: ppapadopoulos@ucsd.edu
+  display_name: admin
+  first_name: ''
+  last_name: ''
+---
+<p>
+Rocks v4.3 is released for i386 and x86_64 CPU architectures.</p>
+<h2>New Features</h2>
+<ol>
+<li>Rocks Command Line</li>
+<p>
+Initial release of the Rocks command line which facilitates non-SQL administrative access to the database. All Rocks commands have a regular structure of "rocks &lt;verb&gt; &lt;component&gt;". For example, to list all hosts that have been discovered by the frontend, execute: <b>rocks list host</b>.</p>
+<p>
+All rocks commands can be listed by executing: rocks. Also, help is included with each command. For example, for help on the command <b>rocks add host</b>, execute: <b>rocks add host help</b>.</p>
+<p>
+For an overview of the Rocks commmand line, see <a href="http://www.rocksclusters.org/roll-documentation/base/4.3/commandline.html">Introduction to the Rocks Command Line</a>. The reference for all Rocks commands can be found <a href="http://www.rocksclusters.org/roll-documentation/base/4.3/c229.html">here</a>.</p>
+<li>PXE First</li>
+<p>
+Hosts can now be configured in BIOS with a boot order of CD, PXE, Hard Disk (previous releases of Rocks required: CD, Hard Disk, PXE). In combination with the Rocks command line, node-specific installation parameters are easily supported. For details on PXE First, see <a href="http://www.rocksclusters.org/roll-documentation/base/4.3/boot-order.html">Boot Order and PXE First</a>.</p>
+<p>
+Note: The boot order of (CD, HD, PXE) continues to be supported in Rocks 4.3. That is, existing Rocks clusters can be upgraded without requiring the cluster owner to change any BIOS settings.</p>
+</ol>
+<p><!--more--></p>
+<h2>Enhancements</h2>
+<ul>
+<li>OS: Based on CentOS release 4/update 5 and all updates as of July 4, 2007.</li>
+<li>Base: Anaconda installer updated to v10.1.1.63.</li>
+<li>Base: Performance improvement when building torrent files for the Avalanche Installer.</li>
+<li>Base: Database indirects. More flexibility with Rocks variables.</li>
+<li>Grid: Globus updated to gt4.0.4 with web services.</li>
+<li>Condor: updated to v6.8.5.</li>
+<li>PVFS2: updated to v2.6.3.</li>
+<li>Java: updated to v1.5.0_10.</li>
+<li>Ganglia: updated to v3.0.4.</li>
+<li>HPC: Now using OpenMPI and PVM from RedHat distribution.</li>
+</ul>
+<h2>Bug Fixes</h2>
+<ul>
+<li>Base: Install now supports machines which have more than 26 disk drives.</li>
+<li>Base: 411 clients now atomically update files.</li>
+<li>Condor: Max heap size properly set for java programs on small and large memory machines.</li>
+<li>Condor: All logging written to /var/opt/condor.</li>
+</ul>

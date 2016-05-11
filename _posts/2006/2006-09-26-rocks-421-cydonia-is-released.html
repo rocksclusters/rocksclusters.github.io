@@ -1,0 +1,50 @@
+---
+layout: post
+title: Rocks 4.2.1 (Cydonia) is Released
+date: 2006-09-26 14:24:00.000000000 -07:00
+categories:
+- "2006" 
+tags: []
+status: publish
+type: post
+published: true
+meta: {}
+author:
+  login: admin
+  email: ppapadopoulos@ucsd.edu
+  display_name: admin
+  first_name: ''
+  last_name: ''
+---
+<p>
+Rocks v4.2.1 is released for i386 and x86_64 CPU architectures.</p>
+<p>
+This is a maintenance release to Rocks v4.2 which contains bug fixes and usability enhancements.</p>
+<h2>Bug Fixes</h2>
+<ul>
+<li>Official RHEL 4, CentOS 4 and Scientific Linux 4 CDs can now be substituted for the OS Rolls.</li>
+<li>DNS fix for when a compute node has more than one interface configured and both names have the same "base", for example, 'compute-0-0.local' for eth0 and 'compute-0-0.rocksclusters.org' for eth1. In 4.2, this would cause the DNS server on the frontend to have two entries for 'compute-0-0' each with a different IP address which would cause routing problems. In 4.2.1, only the local entry present for 'compute-0-0'.</li>
+<li>The " character can now be used in root passwords.</li>
+<li>Fields validated in user-input screens. For example, the user is now required to input a two-character country string for the "Certificate Country".</li>
+<li>Viz Roll: tilelayout now orders all nodes based on rack/rank.</li>
+<li>Viz Roll: when a node is removed, it's associated rows in the "videowall" table are now removed.</li>
+<li>All MANPATH settings are removed from profile scripts and put in /etc/man.config.</li>
+<li>insert-ethers with the '--batch' command was slow during a frontend restore. The insert-ethers plugin that was causing the problem was fixed.</li>
+<li>Grid Roll: Globus source was refreshed to 4.0.3 which includes many fixes for local root exploits.</li>
+<li>SGE Roll: duplicate S95sgemaster scripts were removed.</li>
+<li>Restore Roll: the Restore Roll can now be built on RHEL and Scientific Linux based frontends.</li>
+<li>Restore Roll: all user files are now encoded with uuencode. This allows users to specify binary files in their Restore Roll.</li>
+<li>Ganglia Roll: Jobs now are correctly displayed in the running/queued jobs screen.</li>
+<li>If a compute is installed with the Kernel/Boot CD, the CD now ejects "early", that is, you don't have to wait until the end of compute node install in order to get the CD.</li>
+<li>On the frontend, the "alias" settings for the ethernet devices in /etc/modprobe.conf now have the correct driver module name.</li>
+<li>Fixed all csh profile scripts syntax errors</li>
+</ul>
+<h2>Enhancements</h2>
+<ul>
+<li>During Roll selection, the disk id for CD/DVD-based rolls is displayed under the "Selected Rolls".</li>
+<li>During a frontend install, when the user hits the CD/DVD-based Roll button and no rolls have been selected, the installer automatically looks to see if the Kernel Roll in the drive. Before this fix, it was easy for the user to forget to select the required Kernel Roll.</li>
+<li>During a frontend install, the IP settings that are provided on the first text-based screen are used as defaults for the graphical screens.</li>
+<li>Minimum memory requirement for compute nodes has been reduced to 512 MB. The minimum memory required for an i386-based frontend has been reduced to 512 MB, but the mimimum memory required for an x86_64-based frontend is 1 GB.</li>
+<li>Bio Roll: Glimmer source was refreshed.</li>
+<li>Bio Roll: GROMACS v3.3.1 is added and compiled with MPICH support.</li>
+</ul>

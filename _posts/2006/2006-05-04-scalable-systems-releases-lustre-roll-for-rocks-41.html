@@ -1,0 +1,30 @@
+---
+layout: post
+title: Scalable Systems Releases Lustre Roll for Rocks 4.1
+date: 2006-05-04 16:29:48.000000000 -07:00
+categories:
+- "2006" 
+tags: []
+status: publish
+type: post
+published: true
+meta: {}
+author:
+  login: admin
+  email: ppapadopoulos@ucsd.edu
+  display_name: admin
+  first_name: ''
+  last_name: ''
+---
+<p><i>Laurence Liew from Scalable Systems announces:</i></p>
+<p>Scalable Systems is pleased to annouce the availability of the Lustre Roll for Rocks 4.1 (Preview Release).</p>
+<p>The Lustre Roll contains the latest Lustre 1.4.6 version software packaged to work with Rocks 4.1.</p>
+<p>This is a *PREVIEW* release based on V1.4.6. The final and production release which we will support officially will be based on V1.6.</p>
+<p><!--more--></p>
+<p>Note that the Lustre Roll will install Lustre kernel module drivers and a patched kernel (version 2.6.9-34). This means it will void your RHEL support warranty. A patchless client is in the works by CFS though and this would resolve some of the RHEL support issues.</p>
+<p>We are releasing this PREVIEW release to gather feedback on the best configurations for most Rocks/Lustre installations and to work out any bugs or improvements.</p>
+<p>For now, there will be support for only 1 Lustre Meta-data server (MDS). A node can be compute + object storage server (OSS) ie compute-oss, or a node can be an OSS only node ie OSS. This is set via the appliance list during insert-ethers.</p>
+<p>Note that 100% of /state/partition1 of compute-oss or OSS is allocated to Lustre in the current setup.</p>
+<p>The Lustre Roll is released with a dual-licence. FREE for academic and non-commercial use. For commerical use by ISV, OEM, System Integrators, etc, a commercial support license will be required.</p>
+<h3>Download</h3>
+<p>Please contact me (laurence@scalablesys.com) directly for access to the Lustre Roll. The Lustre Roll will not be available via the usual download site for now.</p>
