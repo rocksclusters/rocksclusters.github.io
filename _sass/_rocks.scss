@@ -6,30 +6,48 @@ $blue:       #455979;
 $blue-light: lighten($blue, 25%);
 $blue-dark:  darken($blue, 25%);
 
+$header-light: #adcfff;
+
 $orange: #e55909;
 
 .left-image {
     margin: 0;
-	display: block;
+    display: block;
 }
 
 .center-image {
     margin: 0 auto;
-	display: block;
+    display: block;
 }
 
 
 /* meetings table */
 
-.meeting {
+.post-table {
     padding: 0;
 }
 
-.meeting td {
-    padding: 0 15px 0 5px;
+.post-table td {
+    vertical-align: top;
 }
 
 .strongword {
     font-weight: 700;
     color: $blue;
+}
+
+/* for images */
+.mainimg {
+    width: 100%;
+/*    vertical-align: middle; */
+}
+
+.align-left {
+    float: left;
+/*    width: 50%; */
+    padding: 0 25px 10px 0 ;
+}
+
+.nofloat {
+    float: none;
 }
