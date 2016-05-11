@@ -4,20 +4,36 @@ layout: default
 
 <div class="home">
 
-  <h1 class="page-heading">Posts</h1>
+  <div class="container">
+        {% assign post_last = site.posts | first  %}
+          <h3>
+            <a class="post-link" href="{{ post_last.url | prepend: site.baseurl }}">{{ post_last.title }}</a>
+          </h3>
+        <div class="mainimg">
+          <div class="align-left"><img class="mainimg" src="{{ post_last.imagesrc }}" alt="" /></div>
+          <div class="nofloat;">{{ post_last.content }}</div>
+        </div>
+  </div>
 
-  <ul class="post-list">
+  <hr>
+
+  <h1 class="page-heading">Recent Posts</h1>
+
+  <table class="post-table">
     {% for post in site.posts %}
-      <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        </h2>
-      </li>
+<!-- Use thi to list allposts : if post != post_last  -->
+      {% if post.categories[0] == 'new' %}
+      <tr>
+        <td width="25%"><span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span></td>
+        <td><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></td>
+      </tr>
+      {% endif %}
     {% endfor %}
-  </ul>
+  </table>
 
+  <h1 class="page-heading"><a href="/archive">Older posts</a></h1>
   <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
 
 </div>
+
+
