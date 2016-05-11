@@ -1,0 +1,133 @@
+---
+layout: default
+title: Archive
+---
+
+<h1>Posts {{ page.title }}</h1>
+
+<!--
+<p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+-->
+
+<h3>Latest</h3>
+<ul class="posts">
+    {% for post in site.posts %}
+      {% if post.categories[0] == 'new' %}
+	  <li><span class="post-meta">{{ post.date | date: "%b %-d, %Y" }} &raquo; </span> 
+	  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> </li>
+      {% endif %}
+    {% endfor %}
+</ul>
+
+<!--
+<h3>2015</h3>
+<ul class="posts">
+    {% for post in site.posts %}
+       {% if post.categories[0] == '2015' %}
+	  <li><span class="post-meta">{{ post.date | date: "%b %-d, %Y" }} &raquo; </span> 
+	  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> </li>
+       {% endif %}
+    {% endfor %}
+</ul>
+
+<h3>2014</h3>
+<ul class="posts">
+    {% for post in site.posts %}
+       {% if post.categories[0] == '2014' %}
+	  <li><span class="post-meta">{{ post.date | date: "%b %-d, %Y" }} &raquo; </span> 
+	  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> </li>
+       {% endif %}
+    {% endfor %}
+</ul>
+-->
+
+<h3>2013</h3>
+<ul class="posts">
+    {% for post in site.posts %}
+       {% if post.categories[0] == '2013' %}
+	  <li><span class="post-meta">{{ post.date | date: "%b %-d, %Y" }} &raquo; </span> 
+	  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> </li>
+       {% endif %}
+    {% endfor %}
+</ul>
+
+<h3>2012</h3>
+<ul class="posts">
+    {% for post in site.posts %}
+       {% if post.categories[0] == '2012' %}
+	  <li><span class="post-meta">{{ post.date | date: "%b %-d, %Y" }} &raquo; </span> 
+	  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> </li>
+       {% endif %}
+    {% endfor %}
+</ul>
+
+<h3>2011</h3>
+<ul class="posts">
+    {% for post in site.posts %}
+       {% if post.categories[0] == '2011' %}
+	  <li><span class="post-meta">{{ post.date | date: "%b %-d, %Y" }} &raquo; </span> 
+	  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> </li>
+       {% endif %}
+    {% endfor %}
+</ul>
+
+<h3>2010</h3>
+<ul class="posts">
+    {% for post in site.posts %}
+       {% if post.categories[0] == '2010' %}
+	  <li><span class="post-meta">{{ post.date | date: "%b %-d, %Y" }} &raquo; </span> 
+	  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> </li>
+       {% endif %}
+    {% endfor %}
+</ul>
+
+<h3>2009</h3>
+<ul class="posts">
+    {% for post in site.posts %}
+       {% if post.categories[0] == '2009' %}
+	  <li><span class="post-meta">{{ post.date | date: "%b %-d, %Y" }} &raquo; </span> 
+	  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> </li>
+       {% endif %}
+    {% endfor %}
+</ul>
+
+<h3>2008</h3>
+<ul class="posts">
+    {% for post in site.posts %}
+       {% if post.categories[0] == '2008' %}
+	  <li><span class="post-meta">{{ post.date | date: "%b %-d, %Y" }} &raquo; </span> 
+	  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> </li>
+       {% endif %}
+    {% endfor %}
+</ul>
+
+<h3>2007</h3>
+<ul class="posts">
+    {% for post in site.posts %}
+       {% if post.categories[0] == '2007' %}
+	  <li><span class="post-meta">{{ post.date | date: "%b %-d, %Y" }} &raquo; </span> 
+	  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> </li>
+       {% endif %}
+    {% endfor %}
+</ul>
+
+<h3>2006</h3>
+<ul class="posts">
+    {% for post in site.posts %}
+       {% if post.categories[0] == '2006' %}
+	  <li><span class="post-meta">{{ post.date | date: "%b %-d, %Y" }} &raquo; </span> 
+	  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> </li>
+       {% endif %}
+    {% endfor %}
+</ul>
+
+<h3>2005</h3>
+<ul class="posts">
+    {% for post in site.posts %}
+       {% if post.categories[0] == '2005' %}
+	  <li><span class="post-meta">{{ post.date | date: "%b %-d, %Y" }} &raquo; </span> 
+	  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a> </li>
+       {% endif %}
+    {% endfor %}
+</ul>
+
