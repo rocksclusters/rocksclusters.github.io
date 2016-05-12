@@ -17,20 +17,29 @@ $orange: #e55909;
     display: block;
 }
 
-.center-image {
+.centered {
     margin: 0 auto;
     display: block;
 }
 
 
-/* meetings table */
-
+/* table */
 .post-table {
     padding: 0;
 }
 
 .post-table td {
     vertical-align: top;
+}
+
+.talks-table {
+    width: 70%;
+    padding: 0 0 0 20px ;
+}
+
+.talks-table td {
+    vertical-align: top;
+    padding: 0 15px 0 15px;
 }
 
 .strongword {
@@ -46,8 +55,8 @@ $orange: #e55909;
 
 .align-left {
     float: left;
-/*    width: 50%; */
     padding: 0 25px 10px 0 ;
+/*    width: 50%; */
 }
 
 .nofloat {
