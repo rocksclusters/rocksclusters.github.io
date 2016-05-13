@@ -26,6 +26,8 @@ collections:
       output: true
   support:
       output: true
+  docs:
+      output: true
 
 
 exclude:
