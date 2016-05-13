@@ -1,0 +1,298 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Fixes Included in the Service Pack Roll</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE=" Service Pack Roll: Users Guide "
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE="Adding the Roll to Nodes"
+HREF="installing-nodes.html"><LINK
+REL="NEXT"
+TITLE="Rocks Copyright"
+HREF="rocks-copyright.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="CHAPTER"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Service Pack Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/service-pack.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="installing-nodes.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="rocks-copyright.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="CHAPTER"
+><H1
+><A
+NAME="FIXES"
+></A
+>Chapter 3. Fixes Included in the Service Pack Roll</H1
+><P
+>	Base Roll</P
+><P
+></P
+><UL
+><LI
+><P
+>	In specific configurations, when you run "rocks sync users", you
+	could see the error message:
+	</P
+><P
+>	<SAMP
+CLASS="COMPUTEROUTPUT"
+>	411-alert: error while loading shared libraries: librocks.so: cannot
+	open shared object file: No such file or directory
+	</SAMP
+>
+	</P
+><P
+>	This occurs when 'ldconfig' is not run during the post installation.
+	The fix is to ensure ldconfig is run at the end of an installation
+	for all nodes.
+	</P
+></LI
+><LI
+><P
+>	Fixes to the Rocks Command Line and 411-master program to fully support
+	channel bonding on the frontend.
+	</P
+></LI
+><LI
+><P
+>	When only one alias was specified for a host (with the command:
+	<SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks add host alias</SAMP
+>), the entry
+	in <SAMP
+CLASS="COMPUTEROUTPUT"
+>/var/named/private.domain</SAMP
+> would
+	have the format similar to
+	<SAMP
+CLASS="COMPUTEROUTPUT"
+>compute-1-0 CNAME ('c1-0',)</SAMP
+>.
+	</P
+><P
+>	The fix to the Rocks Command Line now properly outputs
+	<SAMP
+CLASS="COMPUTEROUTPUT"
+>compute-1-0 CNAME c1-0</SAMP
+>.
+	</P
+></LI
+><LI
+><P
+>	Clients were unable to use the Rocks Command Line.
+	This was because a file in /etc/ld.so.conf.d was not installed on
+	the clients that allowed mysql client code to find its libraries.
+	</P
+><P
+>	Clients can now run Rocks Command Line commands.
+	</P
+></LI
+><LI
+><P
+>	The ability to build a "login appliance" was only available when the
+	SGE Roll was supplied.
+	</P
+><P
+>	The login appliance configuration logic has been moved into the Base
+	Roll, so now one can build login appliances on any Rocks clusters.
+	</P
+></LI
+><LI
+><P
+>	Memory leak fixed for gmond.
+	</P
+></LI
+><LI
+><P
+>	Properly report disk partitions into the database for software RAID
+	file systems.
+	</P
+><P
+>	Prior to this fix, software RAID file systems on client nodes would
+	be reformatted on subsequent installations.
+	</P
+></LI
+><LI
+><P
+>	Increase installation speeds for clients with software RAID file
+	systems.
+	</P
+><P
+>	Prior to this fix, if one of the partitions is a software RAID and if
+	the raid is in a "dirty" state, mdadm will try to 'resync' the disks
+	to ensure all the data is protected. On a running system, this is a
+	great thing to do. On an installing system, it slows the install down
+	considerably.
+	</P
+><P
+>	We didn't find a way to disable the 'resync' action for mdadm, but we
+	can extremely throttle back the top rebuild speed by executing:
+	</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>echo 1 &#62; /proc/sys/dev/raid/speed_limit_min
+echo 2 &#62; /proc/sys/dev/raid/speed_limit_max</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+></LI
+></UL
+><P
+>	Kernel Roll</P
+><P
+></P
+><UL
+><LI
+><P
+>	There was a code in rocks-tracker that wasn't properly reconstructing
+	the 'peers' circular list when that list was expanded.
+	This could cause several MD5 checksum errors on installing nodes
+	because an installing node would ask for a peer and the tracker would
+	send stale peer data to the installing node.
+	</P
+></LI
+><LI
+><P
+>	In the case where one had a 64-bit frontend and 32-bit compute nodes,
+	the messages exchanged between the tracker-server and the
+	tracker-clients on installing nodes would be misaligned and installing
+	nodes were incapable of finding (and thus, incapaable of downloading)
+	their packages.
+	</P
+><P
+>	All tracker messages are now properly aligned between 32-bit and 64-bit
+	machines.
+	</P
+></LI
+></UL
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="installing-nodes.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="rocks-copyright.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Adding the Roll to Nodes</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Rocks Copyright</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
