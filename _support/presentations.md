@@ -6,7 +6,7 @@ categories: []
 tags: []
 ---
 
-## Presentations on Rocks and Selected Projects
+### Selected Projects
 
 * April 2011 [Rocks Virtual Clusters, Extended Clusters into Amazon EC2 with Condor][1] 
 
