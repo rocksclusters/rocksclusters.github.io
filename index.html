@@ -2,20 +2,43 @@
 layout: default
 ---
 
+<div class="border">
+   <h1 class="page-heading">About Rocks</h1>
+</div>
+
+<P><span style="strongword">Rocks</span> is an open-source Linux cluster distribution that enables end users to
+easily build computational clusters, grid endpoints and visualization
+tiled-display walls. Hundreds of researchers from around the world have used
+Rocks to deploy their own cluster (see the <a href="/register">Rocks Cluster Register</a>).
+</p>
+<p>
+Since May 2000, the Rocks group has been addressing the difficulties of
+deploying manageable clusters. We have been driven by one goal: make clusters
+easy. By easy we mean easy to deploy, manage, upgrade and scale. We are driven
+by this goal to help deliver the computational power of clusters to a wide
+range of scientific users. It is clear that making stable and manageable
+parallel computing platforms available to a wide range of scientists will aid
+immensely in improving the state of the art in parallel tools.
+See <a href="/support/licensing">Rocks Licensing</a>.
+</p>
+
+<div class="border">
+  <h1 class="page-heading">In the News </h1>
+</div>
 <!--  <div class="container">-->
         {% assign post_last = site.posts | first  %}
           <h3>
             <a class="post-link" href="{{ post_last.url | prepend: site.baseurl }}">{{ post_last.title }}</a>
           </h3>
-        <div class="mainimg">
-          <div class="align-left"><img class="mainimg" src="{{ post_last.imagesrc }}" alt="" /></div>
-          <div class="nofloat;">{{ post_last.content }}</div>
+        <div class="post-container">
+          <div class="post-img"><img class="" src="{{ post_last.imagesrc }}" alt="" /></div>
+          <div class="post-content;">{{ post_last.content }}</div>
         </div>
 <!--  </div>-->
 
-  <hr>
-
+<div class="border">
   <h1 class="page-heading">Recent Posts</h1>
+</div>
 
   <table class="post-table">
     {% for post in site.posts %}
