@@ -18,17 +18,9 @@ author:
   last_name: ''
 ---
 
-Rocks 6.1 is now available for Beta testing.  
-This preview is based upon [CentOS Version 6.3][2] with all updates as 21 October, 2012 applied.
+Rocks 6.1 is now available for Beta testing.   Please see [Downloads][4] page.
 
-1. To get started please download and burn the [kernel iso][4].
-2. Boot your frontend with kernel iso that you just burned
-3. After you type "build" at the boot prompt, select
-   "beta6-x86-64.rocksclusters.org" as your central server
-   <img src="/assets/select-central-beta.png" alt="select central beta" width="25%"/>
-4. The following rolls are available. For your OS roll please select either
-   "os" or "CentOS and Updates-CentOS-6.3"
-   <img src="/assets/show-rolls-beta.png" alt="show rolls beta" width="25%"/>
+This preview is based upon [CentOS Version 6.3][3] with all updates as 21 October, 2012 applied.
 
 Some of the new features/updates of Rocks 6.1:
 
@@ -48,4 +40,4 @@ Some of the new features/updates of Rocks 6.1:
 [1]: http://code.google.com/p/google-authenticator/
 [2]: http://zfsonlinux.org
 [3]: http://lists.centos.org/pipermail/centos-announce/2012-July/018706.html
-[4]: http://beta6-x86-64.rocksclusters.org/isos/kernel-6.1-0.x86_64.disk1.iso
+[4]: /downloads.html
