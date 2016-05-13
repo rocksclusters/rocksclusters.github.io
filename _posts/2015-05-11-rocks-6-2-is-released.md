@@ -9,7 +9,7 @@ tags: []
 status: publish
 type: post
 published: true
-imagesrc: /assets/Sidewinder-300x225.png
+imagesrc: /assets/Sidewinder.png
 
 ---
 
@@ -17,7 +17,7 @@ The latest update of Rocks codename Sidewinder is now released. Sidewinder is
 a 64-bit only release and is based upon CentOS 6.6   The Rocks-supplied OS
 rolls have all updates applied as of May 10, 2015.
 
-Please see the  <a href="/downloads.html">Downloads Page</a> to get started.
+Please see the [Downloads Page][7] to get started.
 
 * [Release notes][1] are available
 * [Support for ZFS][2] has been updated to version 0.6.4.1.
@@ -41,3 +41,4 @@ You can visit Rocks source code [github][6]
 [4]: {{ base }}/perfSONAR/3.4.1/customizing-perfsonar.html#AEN39
 [5]: {{ base }}/base/6.2/reconfigure.html
 [6]: {{ site.github_url }}
+[7]: /downloads.html
