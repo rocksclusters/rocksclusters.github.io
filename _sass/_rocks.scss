@@ -7,10 +7,21 @@ $blue-light: lighten($blue, 25%);
 $blue-dark:  darken($blue, 25%);
 
 $header-light: #cddfff;
+$header-tint: lighten($header-light, 5%);
 $header-medium: #a4b2cc;
 $header-dark: #7b8599;
 
-$orange: #e55909;
+$orange: #e55009;
+$turqoise: #018b93;
+
+$nblue: #0190c4;
+$nblue-light: #02b4f5;
+$nblue-dark: #016c93;
+
+$title-h1: $orange;
+$title-h2: $nblue-dark;
+$title-h3: $nblue;
+
 
 .left-image {
     margin: 0;
@@ -47,18 +58,63 @@ $orange: #e55909;
     color: $blue;
 }
 
-/* for images */
-.mainimg {
-    width: 100%;
+/* for main post */
+.post-container {
+    margin: 20px 20px 0 0; 
+    overflow: hidden;
+}
+
+.post-img {
+    float: left;
+    clear: left;
+    width: 40%;
 /*    vertical-align: middle; */
+}
+
+.post-img img {
+    display: block;
+    width: 90%;
+}
+
+.post-content {
+    float: left;
 }
 
 .align-left {
     float: left;
-    padding: 0 25px 10px 0 ;
-/*    width: 50%; */
+    padding: 0 5px 5px 0 ;
 }
 
-.nofloat {
-    float: none;
+.half {
+    float: left;
+    width: 25%;
+    float: left;
+    padding: 0 25px 10px 0 ;
+}
+
+.border {
+    color: $orange;
+    background-color: #eee;
+    font-weight: 700;
+}
+
+/* headings */
+h1 {
+    font-size: 20px;
+    color: $title-h1;
+    font-weight: 700;
+}
+
+h2 {
+    color: $title-h2;
+    font-weight: 600;
+}
+
+h3 {
+    color: $title-h3;
+    font-weight: 600;
+}
+
+h4 {
+    font-weight: bold;
 }
