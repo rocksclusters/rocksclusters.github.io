@@ -8,12 +8,485 @@ status: publish
 type: page
 published: true
 meta:
-  _edit_last: '1'
-  _wp_page_template: default
-author:
-  login: admin
-  email: ppapadopoulos@ucsd.edu
-  display_name: admin
-  first_name: ''
-  last_name: ''
 ---
+
+<h3>Building a Compute Cluster</h3>
+<p>To build a compute cluster, boot your frontend with the Kernel/Boot Roll. Then supply the Core Roll, Service Pack Roll, OS Roll Disk 1 and OS Roll Disk 2. From the Core Roll, be sure to select the
+Base, and Web Server Rolls (these rolls are required). Feel free to select any or all the optional rolls from the Core Roll (Area51, HPC, Ganglia, Java, SGE and Xen).</p>
+<h3>Building Custom Clusters</h3>
+<p>If you wish to build a custom cluster, you must choose from our a la carte selection, but make sure to download the required Base, Kernel/Boot, Service Pack, Web Server and all of the OS rolls.</p>
+<h3>MD5 Checksums</h3>
+<p>Please double check the <a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/md5sum.txt">MD5 checksums</a> for all the rolls you download.</p>
+<table width="125%">
+<tbody>
+<tr>
+<th width="40%" align="left">Athlon, Pentium, Xeon<br />
+i386</th>
+<td align="right"><img src="/assets/logo-athlon.jpg" alt="" /><img src="/assets/logo-pentium3.jpg" alt="" /><img src="/assets/logo-pentium4.jpg" alt="" /><img src="/assets/logo-xeon.jpg" alt=""
+/></td>
+</tr>
+</tbody>
+</table>
+<table border="1" width="100%" align="center">
+<tbody>
+<tr>
+<th width="50%" align="center">CDs</th>
+<th width="50%" align="center">jumbo (DVD)</th>
+</tr>
+
+<tr>
+<td align="center">Kernel/Boot Roll<br />
+<span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/kernel-5.2-0.i386.disk1.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/kernel-5.2-0.i386.disk1.iso">http</a><br />
+</span></td>
+<td rowspan="4" align="center">Boot, Core, &amp; OS<br />
+Roll<br />
+<span>dvd only</span>
+<span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/area51+base+bio+ganglia+hpc+java+kernel+os+sge+web-server+xen-24.06.2009-06.00.03.i386.disk1.iso">ftp</a>
+</span></td>
+</tr>
+<tr>
+<td align="center">Core Roll<br />
+<span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/area51+base+ganglia+hpc+java+sge+web-server+xen-24.06.2009-10.02.44.i386.disk1.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/area51+base+ganglia+hpc+java+sge+web-server+xen-24.06.2009-10.02.44.i386.disk1.iso">http</a><br />
+</span></td>
+</tr>
+<tr>
+<td align="center">OS Roll &#8211; disk1<br />
+<span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/os-5.2-0.i386.disk1.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/os-5.2-0.i386.disk1.iso">http</a><br />
+</span></td>
+</tr>
+<tr>
+<td align="center">OS Roll &#8211; disk2<br />
+<span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/os-5.2-0.i386.disk2.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/os-5.2-0.i386.disk2.iso">http</a><br />
+</span></td>
+</tr>
+<tr>
+<td colspan="2" align="center">OS Roll &#8211; disk3 [not required]<br />
+<span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/os-5.2-0.i386.disk3.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/os-5.2-0.i386.disk3.iso">http</a><br />
+</span></td>
+</tr>
+<tr>
+<td colspan="2" align="center">OS Roll &#8211; disk4 [not required]<br />
+<span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/os-5.2-0.i386.disk4.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/os-5.2-0.i386.disk4.iso">http</a><br />
+</span></td>
+</tr>
+<tr>
+<td colspan="2" align="center">OS Roll &#8211; disk5 [not required]<br />
+<span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/os-5.2-0.i386.disk5.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/os-5.2-0.i386.disk5.iso">http</a><br />
+</span></td>
+</tr>
+<tr>
+<td colspan="2" align="center">OS Roll &#8211; disk6 [not required]<br />
+<span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/os-5.2-0.i386.disk6.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/os-5.2-0.i386.disk6.iso">http</a><br />
+</span></td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+
+<table width="100%">
+<tbody>
+<tr>
+<th width="40%" align="left">x86_64</th>
+<td align="right"><img src="/assets/logo-xeon.jpg" alt="" /><img src="/assets/logo-opteron.jpg" alt="" /></td>
+</tr>
+</tbody>
+
+</table>
+<table border="1" width="100%" align="center">
+<tbody>
+<tr>
+<th width="50%" align="center">CDs</th>
+<th width="50%" align="center">jumbo (DVD)</th>
+</tr>
+<tr>
+<td align="center">Kernel/Boot Roll<br />
+<span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/kernel-5.2-0.x86_64.disk1.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/kernel-5.2-0.x86_64.disk1.iso">http</a><br />
+</span></td>
+<td rowspan="4" align="center">Boot, Core, &amp; OS<br />
+Roll<br />
+<span>dvd only</span><br />
+<span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/area51+base+bio+ganglia+hpc+java+kernel+os+sge+viz+web-server+xen-24.06.2009-05.59.46.x86_64.disk1.iso">ftp</a>
+</span></td>
+</tr>
+<tr>
+<td align="center">Core Roll<br />
+<span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/area51+base+ganglia+hpc+java+sge+web-server+xen-10.09.2009-16.14.26.x86_64.disk1.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/area51+base+ganglia+hpc+java+sge+web-server+xen-10.09.2009-16.14.26.x86_64.disk1.iso">http</a><br />
+</span></td>
+</tr>
+<tr>
+<td align="center">OS Roll &#8211; disk1<br />
+<span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/os-5.2-0.x86_64.disk1.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/os-5.2-0.x86_64.disk1.iso">http</a><br />
+</span></td>
+</tr>
+<tr>
+<td align="center">OS Roll &#8211; disk2<br />
+<span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/os-5.2-0.x86_64.disk2.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/os-5.2-0.x86_64.disk2.iso">http</a><br />
+</span></td>
+</tr>
+<tr>
+<td colspan="2" align="center">OS Roll &#8211; disk3 [not required]<br />
+<span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/os-5.2-0.x86_64.disk3.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/os-5.2-0.x86_64.disk3.iso">http</a><br />
+</span></td>
+</tr>
+<tr>
+<td colspan="2" align="center">OS Roll &#8211; disk4 [not required]<br />
+<span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/os-5.2-0.x86_64.disk4.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/os-5.2-0.x86_64.disk4.iso">http</a><br />
+</span></td>
+</tr>
+<tr>
+<td colspan="2" align="center">OS Roll &#8211; disk5 [not required]<br />
+<span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/os-5.2-0.x86_64.disk5.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/os-5.2-0.x86_64.disk5.iso">http</a><br />
+</span></td>
+</tr>
+<tr>
+<td colspan="2" align="center">OS Roll &#8211; disk6 [not required]<br />
+<span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/os-5.2-0.x86_64.disk6.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/os-5.2-0.x86_64.disk6.iso">http</a><br />
+</span></td>
+</tr>
+<tr>
+<td colspan="2" align="center">OS Roll &#8211; disk7 [not required]<br />
+<span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/os-5.2-0.x86_64.disk7.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/os-5.2-0.x86_64.disk7.iso">http</a><br />
+</span></td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+
+<table width="100%">
+<tbody>
+<tr>
+<th align="left">a la carte</th>
+</tr>
+</tbody>
+</table>
+
+<table  border="1" width="100%">
+<tbody>
+<tr>
+<th width="20%" align="left">roll name</th>
+<th width="60%" align="center">summary</th>
+<th width="10%" align="center">i386</th>
+<th width="10%" align="center">x86_64</th>
+</tr>
+
+<tr>
+<td>base <strong>(required)</strong></td>
+<td>Rocks Base Roll</td>
+<td align="center"><span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/base-5.2-0.i386.disk1.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/base-5.2-0.i386.disk1.iso">http</a><br />
+</span></td>
+<td align="center"><span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/base-5.2-0.x86_64.disk1.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/base-5.2-0.x86_64.disk1.iso">http</a><br />
+</span></td>
+</tr>
+
+<tr>
+<td>kernel <strong>(required)</strong></td>
+<td>Rocks Bootable Kernel Roll</td>
+<td align="center"><span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/kernel-5.2-0.i386.disk1.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/kernel-5.2-0.i386.disk1.iso">http</a><br />
+</span></td>
+<td align="center"><span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/kernel-5.2-0.x86_64.disk1.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/kernel-5.2-0.x86_64.disk1.iso">http</a><br />
+</span></td>
+</tr>
+
+<tr>
+<td rowspan="8">os  <strong>(required)</strong></td>
+<td colspan="3" >CentOS 5 (you may also use your own Red Hat Enterprise Linux 5 media)</td>
+</tr>
+
+<tr>
+<td>cd 1&nbsp;</td>
+<td align="center" valign="top"><span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/os-5.2-0.i386.disk1.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/os-5.2-0.i386.disk1.iso">http</a><br />
+</span></td>
+<td align="center" valign="top"><span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/os-5.2-0.x86_64.disk1.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/os-5.2-0.x86_64.disk1.iso">http</a><br />
+</span></td>
+</tr>
+
+<tr>
+<td>cd 2&nbsp;</td>
+<td align="center" valign="top"><span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/os-5.2-0.i386.disk2.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/os-5.2-0.i386.disk2.iso">http</a><br />
+</span></td>
+<td align="center" valign="top"><span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/os-5.2-0.x86_64.disk2.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/os-5.2-0.x86_64.disk2.iso">http</a><br />
+</span></td>
+</tr>
+
+<tr>
+<td>cd 3&nbsp;</td>
+<td align="center" valign="top"><span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/os-5.2-0.i386.disk3.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/os-5.2-0.i386.disk3.iso">http</a><br />
+</span></td>
+<td align="center" valign="top"><span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/os-5.2-0.x86_64.disk3.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/os-5.2-0.x86_64.disk3.iso">http</a><br />
+</span></td>
+</tr>
+
+<tr>
+<td>cd 4&nbsp;</td>
+<td align="center" valign="top"><span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/os-5.2-0.i386.disk4.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/os-5.2-0.i386.disk4.iso">http</a><br />
+</span></td>
+<td align="center" valign="top"><span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/os-5.2-0.x86_64.disk4.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/os-5.2-0.x86_64.disk4.iso">http</a><br />
+</span></td>
+</tr>
+
+<tr>
+<td>cd 5&nbsp;</td>
+<td align="center" valign="top"><span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/os-5.2-0.i386.disk5.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/os-5.2-0.i386.disk5.iso">http</a><br />
+</span></td>
+<td align="center" valign="top"><span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/os-5.2-0.x86_64.disk5.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/os-5.2-0.x86_64.disk5.iso">http</a><br />
+</span></td>
+</tr>
+
+<tr>
+<td>cd 6&nbsp;</td>
+<td align="center" valign="top"><span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/os-5.2-0.i386.disk6.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/os-5.2-0.i386.disk6.iso">http</a><br />
+</span></td>
+<td align="center" valign="top"><span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/os-5.2-0.x86_64.disk6.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/os-5.2-0.x86_64.disk6.iso">http</a><br />
+</span></td>
+</tr>
+
+<tr>
+<td>cd 7&nbsp;</td>
+<td></td>
+<td align="center" valign="top"><span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/os-5.2-0.x86_64.disk7.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/os-5.2-0.x86_64.disk7.iso">http</a><br />
+</span></td>
+</tr>
+
+<tr>
+<td>service-pack <strong>(required)</strong></td>
+<td>Service Pack</td>
+<td align="center"><span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/service-pack-5.2.2-1.i386.disk1.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/service-pack-5.2.2-1.i386.disk1.iso">http</a><br />
+</span></td>
+<td align="center"><span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/service-pack-5.2.2-1.x86_64.disk1.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/service-pack-5.2.2-1.x86_64.disk1.iso">http</a><br />
+</span></td>
+</tr>
+
+<tr>
+<td>area51</td>
+<td>System security related services and utilities</td>
+<td align="center"><span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/area51-5.2-0.i386.disk1.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/area51-5.2-0.i386.disk1.iso">http</a><br />
+</span></td>
+<td align="center"><span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/area51-5.2-0.x86_64.disk1.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/area51-5.2-0.x86_64.disk1.iso">http</a><br />
+</span></td>
+</tr>
+
+<tr>
+<td>bio</td>
+<td>Bioinformatics utilities</td>
+<td align="center"><span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/bio-5.2-0.i386.disk1.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/bio-5.2-0.i386.disk1.iso">http</a><br />
+</span></td>
+<td align="center"><span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/bio-5.2-0.x86_64.disk1.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/bio-5.2-0.x86_64.disk1.iso">http</a><br />
+</span></td>
+</tr>
+
+<tr>
+<td>ganglia</td>
+<td>Cluster monitoring system from UCB</td>
+<td align="center"><span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/ganglia-5.2-0.i386.disk1.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/ganglia-5.2-0.i386.disk1.iso">http</a><br />
+</span></td>
+<td align="center"><span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/ganglia-5.2-0.x86_64.disk1.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/ganglia-5.2-0.x86_64.disk1.iso">http</a><br />
+</span></td>
+</tr>
+
+<tr>
+<td>hpc<br />
+<strong> </strong></td>
+<td>Rocks HPC Roll</td>
+<td align="center"><span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/hpc-5.2-0.i386.disk1.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/hpc-5.2-0.i386.disk1.iso">http</a><br />
+</span></td>
+<td align="center"><span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/hpc-5.2-0.x86_64.disk1.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/hpc-5.2-0.x86_64.disk1.iso">http</a><br />
+</span></td>
+</tr>
+
+<tr>
+<td>java</td>
+<td>Sun Java SDK and JVM</td>
+<td align="center"><span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/java-5.2-0.i386.disk1.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/java-5.2-0.i386.disk1.iso">http</a><br />
+</span></td>
+<td align="center"><span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/java-5.2-0.x86_64.disk1.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/java-5.2-0.x86_64.disk1.iso">http</a><br />
+</span></td>
+</tr>
+
+<tr>
+<td>jumpstart</td>
+<td>Adds JumpStart support to configure Solaris client nodes</td>
+<td align="center"></td>
+<td align="center"><span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/jumpstart-5.2.1-0.x86_64.disk1.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/jumpstart-5.2.1-0.x86_64.disk1.iso">http</a><br />
+</span></td>
+</tr>
+
+<tr>
+<td>sge</td>
+<td>Sun Grid Engine job queueing system</td>
+<td align="center"><span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/sge-5.2-0.i386.disk1.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/sge-5.2-0.i386.disk1.iso">http</a><br />
+</span></td>
+<td align="center"><span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/sge-5.2-0.x86_64.disk1.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/sge-5.2-0.x86_64.disk1.iso">http</a><br />
+</span></td>
+</tr>
+
+<tr>
+<td>sun-ct</td>
+<td>Sun HPC ClusterTools 8.2</td>
+<td align="center"><span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/sun-ct-5.2-0.i386.disk1.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/sun-ct-5.2-0.i386.disk1.iso">http</a><br />
+</span></td>
+<td align="center"><span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/sun-ct-5.2-0.x86_64.disk1.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/sun-ct-5.2-0.x86_64.disk1.iso">http</a><br />
+</span></td>
+</tr>
+
+<tr>
+<td>sunstudio12u1</td>
+<td>Sun Studio 12 Update 1 software for Solaris &amp; Linux platforms. C, C++, Fortran compilers, math libraries, and performance analysis tools w/ MPI support</td>
+<td align="center"></td>
+<td align="center"><span>
+<a href="https://cds.sun.com/is-bin/INTERSHOP.enfinity/WFS/CDS-CDS_SMI-Site/en_US/-/USD/ViewProductDetail-Start?ProductRef=SS12U1-R52-G-F@CDS-CDS_SMI">(sun)</a><br />
+</span></td>
+</tr>
+
+<tr>
+<td>torque</td>
+<td>Torque+Maui job queueing system (packaged by HPC Group at University of Tromso, Norway)</td>
+<td align="center"><span>
+<a href="ftp://ftp.uit.no/pub/linux/rocks/torque-roll/5.2.0">(tromso)</a><br />
+</span></td>
+<td align="center"><span>
+<a href="ftp://ftp.uit.no/pub/linux/rocks/torque-roll/5.2.0">(tromso)</a><br />
+</span></td>
+</tr>
+
+<tr>
+<td>viz</td>
+<td>Support for building tiled-display walls</td>
+<td align="center"></td>
+<td align="center"><span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/viz-5.2-0.x86_64.disk1.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/viz-5.2-0.x86_64.disk1.iso">http</a><br />
+</span></td>
+</tr>
+
+<tr>
+<td>web-server</td>
+<td>Rocks Web Server Roll</td>
+<td align="center"><span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/web-server-5.2-0.i386.disk1.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/web-server-5.2-0.i386.disk1.iso">http</a><br />
+</span></td>
+<td align="center"><span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/web-server-5.2-0.x86_64.disk1.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/web-server-5.2-0.x86_64.disk1.iso">http</a><br />
+</span></td>
+</tr>
+
+<tr>
+<td>xen</td>
+<td>Support for building Xen VMs on cluster nodes</td>
+<td align="center"><span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/xen-5.2-0.i386.disk1.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/xen-5.2-0.i386.disk1.iso">http</a><br />
+</span></td>
+<td align="center"><span>
+<a href="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.2/linux/xen-5.2-0.x86_64.disk1.iso">ftp</a>
+<a href="http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-5.2/linux/xen-5.2-0.x86_64.disk1.iso">http</a><br />
+</span></td>
+</tr>
+
+</tbody>
+</table>
