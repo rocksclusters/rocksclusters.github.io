@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Rocks 6.1 (Emerald Boa) Beta
+title: Rocks 6.1 Emerald Boa (beta)
 date: 2012-10-23 13:21:49.000000000 -07:00
 categories: []
 tags: []
