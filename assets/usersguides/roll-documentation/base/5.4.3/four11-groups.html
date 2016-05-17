@@ -1,0 +1,274 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>411 Groups</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="411 Secure Information Service Internals"
+HREF="service-411.html"><LINK
+REL="PREVIOUS"
+TITLE="Structure"
+HREF="x8831.html"><LINK
+REL="NEXT"
+TITLE="Plugins"
+HREF="x8857.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Base</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x8831.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Appendix C. 411 Secure Information Service Internals</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x8857.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="FOUR11-GROUPS"
+>C.3. 411 Groups</A
+></H1
+><P
+>Beginning in Rocks 3.3.0, 411 has the ability to send messages to subsets of the cluster. This facility, called 411 groups, allows us to distribute different files to nodes depending on their type. The group mechanism depends on the client nodes specifying group names in their local 411 configuration file; these are called the client's "registered" groups.</P
+><DIV
+CLASS="WARNING"
+><P
+></P
+><TABLE
+CLASS="WARNING"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/warning.png"
+HSPACE="5"
+ALT="Warning"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>There is no per-group key in 411. The groups mechanism is only a convenience
+feature, without strong security to enforce it. Specifically, a node can
+eavesdrop on messages for a foreign group that it is not a member of.</P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>Group names are multi-level, and resemble file paths. By default, every node is a member of the '/' group (corresponding to the traditional top-level 411 group), and the '/Membership' group, where <EM
+>membership</EM
+> is the node membership in the frontend database, such as "Compute" or "NAS".</P
+><DIV
+CLASS="TIP"
+><P
+></P
+><TABLE
+CLASS="TIP"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/tip.png"
+HSPACE="5"
+ALT="Tip"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>A special Makefile called /var/411/Group.mk is available to help you setup and
+maintain 411 groups. After editing this file to specify which files go to which
+group, run </P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># make -C /var/411 groups
+# make -C /var/411</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><P
+>To activate the 411 group makefile actions.</P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>By default, nodes are members of a group with the same name as their
+<EM
+>Membership</EM
+>. For example compute nodes are automatically a
+member of the group "Compute". A sample <TT
+CLASS="LITERAL"
+>411.conf</TT
+> file with
+several groups looks like: </P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>&#60;!-\- Configuration file for the 411 Information Service -\-&#62;
+&#60;config&#62;
+&#60;master url="http://10.1.1.1:372/411.d/" score="0"/&#62;
+&#60;group&#62;/light/blue&#60;/group&#62;
+&#60;group&#62;Compute&#60;/group&#62;
+&#60;/config&#62;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><P
+>Multi-element group names have a simple inheritance model: specific groups imply more general ones. For example, if you are a member of the group <TT
+CLASS="LITERAL"
+>/compute/light</TT
+>, you will automatically be interested in messages in group "/compute/light" and "/compute". You will not be interested in messages from group "/compute/heavy". In this case "/compute/light" is the specific group, and "/compute" is the more general one.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x8831.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x8857.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Structure</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="service-411.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Plugins</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,268 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Release 3.0.0 - changes from 2.3.2</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Roll: Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Release Notes"
+HREF="release-notes.html"><LINK
+REL="PREVIOUS"
+TITLE="Release 3.1.0 - changes from 3.0.0"
+HREF="x4275.html"><LINK
+REL="NEXT"
+TITLE="Release 2.3.2 - changes from 2.3.1"
+HREF="x4315.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Base Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x4275.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Appendix B. Release Notes</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x4315.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="AEN4286"
+>B.5. Release 3.0.0 - changes from 2.3.2</A
+></H1
+><P
+>	Based on RedHat 7.3 for x86 and RedHat Advanced Workstation 2.1 for
+	ia64 (all packages recompiled from publicly available source).
+	</P
+><P
+>	Enhancement - Includes RedHat updated RPMS (and recompiled
+	SRPMs for ia64), as of September 3 2003.
+	</P
+><P
+>	Enhancement - Includes kernel version 2.4.20-20.7 for x86
+	and version 2.4.18e.37 for ia64.
+	Installation environment includes all drivers from the above kernel
+	packages.
+	</P
+><P
+>	Enhancement - New full-featured DNS server and
+	structured ".local" naming conventions within cluster.
+	</P
+><P
+>	Enhancement - Linpack (<SAMP
+CLASS="COMPUTEROUTPUT"
+>xhpl</SAMP
+>) works
+	out of the box for Pentium IV and Athlon.
+	</P
+><P
+>	Enhancement - Added remove node feature to
+	<SAMP
+CLASS="COMPUTEROUTPUT"
+>insert-ethers</SAMP
+>.
+	</P
+><P
+>	Enhancement - New layout of all MPICH transports.
+	See <SAMP
+CLASS="COMPUTEROUTPUT"
+>/opt/mpich</SAMP
+> on the frontend
+	for the new directory structure.
+	</P
+><P
+>	Enhancement - Add support for 'Rolls'.
+	An x86 Rocks frontend install now requires two CDs: the Rocks Base 
+	CD and the HPC Roll.
+	An ia64 frontend still requires only one DVD.
+	</P
+><P
+>	Enhancement - Added 'Grid' Roll.  This roll includes all
+	packages from NMI R3.1, which includes Globus, the Simple
+	Certificate Authority, and other packages.
+	</P
+><P
+>	Enhancement - High-Performance, fault-tolerant MPD job launcher
+	made available.
+	Automatic MPD ring creation and healing via KAgreement-mpd
+	protocol.
+	(Currently in beta phase for this release)
+	</P
+><P
+>	Enhancement - New 411 Secure Information Service to replace NIS. 
+	(Currently in beta phase for this release)
+	</P
+><P
+>	Enhancement - Latest Ganglia version 2.5.4 including better
+	webfrontend speed and streamlined appearance, and more
+	efficient network and disk metric handling.
+	</P
+><P
+>	Enhancement - New PhpSysInfo page on compute nodes, available along
+	with /proc link on Ganglia host view page.
+	</P
+><P
+>	Enhancement - Ganglia command line tool has new --clustersize and
+	--alive=host options.
+	</P
+><P
+>	Enhancement - Kickstart graph now viewable from frontend web page.
+	</P
+><P
+>	Enhancement - For kickstart graph files, new &#60;file&#62; tags made
+	available,
+	with owner="root.root" and perms="ga+r" attributes. Beta phase of 
+	RCS-based tracking of all config file changes made for post-section 
+	repeatability.
+	</P
+><P
+>	Enhancement - Kickstart graph ordering is explicit.
+	Previously the evaluation order of individual nodes depended
+	on graph weights.  Node dependencies can now be explicitly
+	specified using &#60;order&#62; tags in the graph files.
+	</P
+><P
+>	Bug Fix - UNIX manual pages correctly shown (we extend /etc/man.conf)
+	</P
+><P
+>	Bug Fix - NTP now synchronizes all compute node clocks with the
+	frontend.
+	</P
+><P
+>	Bug Fix - <SAMP
+CLASS="COMPUTEROUTPUT"
+>add-extra-nic</SAMP
+> now
+	supports multiple NICs per compute node.
+	</P
+><P
+>	Bug Fix - Ganglia RRD metric histories are archived on
+	physical disk and restored on startup.
+	</P
+><P
+>	Bug Fix - Includes NCSA's OpenPBS scalability patches.
+	Can now launch PBS jobs that require more than 64 processors.
+	</P
+><P
+>	Bug Fix - USB keyboard works on all ia64 Tiger boxes
+	</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x4275.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x4315.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Release 3.1.0 - changes from 3.0.0</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="release-notes.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Release 2.3.2 - changes from 2.3.1</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

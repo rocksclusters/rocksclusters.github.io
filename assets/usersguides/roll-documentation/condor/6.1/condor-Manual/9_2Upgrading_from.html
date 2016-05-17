@@ -1,0 +1,195 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>9.2 Upgrading from the 7.6 series to the 7.8 series of Condor</TITLE>
+<META NAME="description" CONTENT="9.2 Upgrading from the 7.6 series to the 7.8 series of Condor">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="9_3Stable_Release.html">
+<LINK REL="previous" HREF="9_1Introduction_Condor.html">
+<LINK REL="up" HREF="9_Version_History.html">
+<LINK REL="next" HREF="9_3Stable_Release.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html2603"
+  HREF="9_3Stable_Release.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2597"
+  HREF="9_Version_History.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2591"
+  HREF="9_1Introduction_Condor.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2599"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2601"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2604"
+  HREF="9_3Stable_Release.html">9.3 Stable Release Series</A>
+<B> Up:</B> <A NAME="tex2html2598"
+  HREF="9_Version_History.html">9. Version History and</A>
+<B> Previous:</B> <A NAME="tex2html2592"
+  HREF="9_1Introduction_Condor.html">9.1 Introduction to Condor</A>
+ &nbsp; <B>  <A NAME="tex2html2600"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2602"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION001020000000000000000"></A><A NAME="sec:gotchas"></A>
+<BR>
+9.2 Upgrading from the 7.6 series to the 7.8 series of Condor
+</H1>
+
+<P>
+<A NAME="52763"></A>
+While upgrading from the 7.6 series of Condor to the 7.8 series will bring many
+new features and improvements introduced in the 7.7 series of Condor, it will
+also introduce changes that administrators of sites running from an older
+Condor version should be aware of when planning an upgrade.  Here is a list of
+items that administrators should be aware of.
+
+<P>
+
+<UL>
+<LI>In the grid universe, the Amazon grid-type is gone and has been replaced
+	with the EC2 grid-type.  Also, support for grid-type gt4 (Web Services
+	GRAM) has been removed.
+
+<P>
+</LI>
+<LI>Default job submit options related to file transfers have changed. 
+Across all platforms, defaults are now
+<PRE>
+  should_transfer_files = IF_NEEDED
+  when_to_transfer_output = ON_EXIT
+</PRE>
+See section&nbsp;<A HREF="2_5Submitting_Job.html#sec:file-transfer-if-when">2.5.4</A> for details.
+
+<P>
+</LI>
+<LI>On Linux and Mac OS, common utility code is now contained in a set of
+shared libraries. In the Linux native packages, most of these libraries
+are placed under <TT>/usr/lib[64]/condor</TT> and the RUNPATH attribute is set in
+the binaries to search there for them.
+In the tarball packages, these libraries are placed under <TT>lib</TT> and
+<TT>lib/condor</TT>, and the RUNPATH attribute is set in the binaries to search
+for them under the relative paths <TT>../lib</TT> and <TT>../lib/condor</TT>.
+This means that if you move or copy a Condor binary from a tarball
+package to a different location, you must do one of the following:
+
+<UL>
+<LI>Move or copy the corresponding <TT>lib/</TT> directory with it, or
+</LI>
+<LI>Make a symlink in the new location pointing back to the original <TT>lib/</TT>
+  directory, or
+</LI>
+<LI>Set environment variable <TT>LD_LIBRARY_PATH</TT> to point to the original <TT>lib/</TT> and <TT>lib/condor/</TT>
+  directories
+</LI>
+</UL>
+One of the new shared libraries, <TT>libcondor_utils_7_8_0</TT>, has no <TT>.so</TT>
+versioning. Instead, the Condor version is included in the library name.
+This means that a Condor binary must always be matched with the
+<TT>libcondor_utils</TT> library from the same Condor release.
+
+<P>
+</LI>
+<LI>The <I>condor_hdfs</I> service is no longer included within the Condor
+	release.  Instead, the Condor + HDFS integration previously bundled with
+	version 7.6 is available in version 7.8 as a <I>Contribution Module</I>.
+	Contribution Modules are optional packages that add functionality to
+	Condor, but are provided and maintained outside of the core code base.  See
+	the Condor Wiki at
+	<A NAME="tex2html102"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/wiki?p=ContribModules">https://condor-wiki.cs.wisc.edu/index.cgi/wiki?p=ContribModules</A>.
+
+<P>
+</LI>
+<LI>Previous to version 7.8, by default the <I>condor_master</I> would restart any
+	individual daemon under its control if it notices that the file
+	modification time of the binary for that daemon has changed.  Now the
+	<I>condor_master</I> will only monitor the file modification time of the
+	<I>condor_master</I> binary itself.  See section&nbsp;<A HREF="3_10Pool_Management.html#sec:Pool-Upgrade">3.10.1</A>.  Also,
+	see <TT>MASTER_NEW_BINARY_RESTART</TT> on
+	page&nbsp;<A HREF="3_3Configuration.html#param:MasterNewBinaryRestart"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+</LI>
+<LI>In DAGMan, if you have a PRE and a POST script on a node, the default now
+	is that the POST script is run even if the PRE script failed.   This change
+	could impact unaware workflows such that POST scripts might erroneously
+	report the node as succeeded. You can get the old behavior by setting
+	<TT>DAGMAN_ALWAYS_RUN_POST</TT> to False.  In addition, you can no
+	longer directly submit a rescue DAG file with <I>condor_submit_dag</I> unless
+	<TT>DAGMAN_WRITE_PARTIAL_RESCUE</TT> is set to False (not normally
+	recommended).  See section&nbsp;<A HREF="2_10DAGMan_Applications.html#sec:DAGMan">2.10</A>.
+
+<P>
+</LI>
+<LI>The <TT>KILL</TT> expression cannot be used to grant more time to a job
+	than offered by <TT>MachineMaxVacateTime</TT> <A NAME="52834"></A> <A NAME="52835"></A>. In Condor v7.8 and above, it
+	is anticipated that most sites will simply use a default value of False for
+	<TT>KILL</TT> and set <TT>MachineMaxVacateTime</TT> to control how long
+	to wait.  See page&nbsp;<A HREF="3_3Configuration.html#param:MachineMaxVacateTime"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for more
+	information.
+
+<P>
+</LI>
+</UL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html2603"
+  HREF="9_3Stable_Release.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2597"
+  HREF="9_Version_History.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2591"
+  HREF="9_1Introduction_Condor.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2599"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2601"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2604"
+  HREF="9_3Stable_Release.html">9.3 Stable Release Series</A>
+<B> Up:</B> <A NAME="tex2html2598"
+  HREF="9_Version_History.html">9. Version History and</A>
+<B> Previous:</B> <A NAME="tex2html2592"
+  HREF="9_1Introduction_Condor.html">9.1 Introduction to Condor</A>
+ &nbsp; <B>  <A NAME="tex2html2600"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2602"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

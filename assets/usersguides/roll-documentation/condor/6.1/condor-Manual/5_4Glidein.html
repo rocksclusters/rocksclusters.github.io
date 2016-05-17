@@ -1,0 +1,263 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>5.4 Glidein</TITLE>
+<META NAME="description" CONTENT="5.4 Glidein">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="5_5Dynamic_Deployment.html">
+<LINK REL="previous" HREF="5_3Grid_Universe.html">
+<LINK REL="up" HREF="5_Grid_Computing.html">
+<LINK REL="next" HREF="5_5Dynamic_Deployment.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html2030"
+  HREF="5_5Dynamic_Deployment.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2024"
+  HREF="5_Grid_Computing.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2018"
+  HREF="5_3Grid_Universe.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2026"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2028"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2031"
+  HREF="5_5Dynamic_Deployment.html">5.5 Dynamic Deployment</A>
+<B> Up:</B> <A NAME="tex2html2025"
+  HREF="5_Grid_Computing.html">5. Grid Computing</A>
+<B> Previous:</B> <A NAME="tex2html2019"
+  HREF="5_3Grid_Universe.html">5.3 The Grid Universe</A>
+ &nbsp; <B>  <A NAME="tex2html2027"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2029"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html2032"
+  HREF="5_4Glidein.html#SECTION00641000000000000000">5.4.1 What <I>condor_glidein</I> Does</A>
+<LI><A NAME="tex2html2033"
+  HREF="5_4Glidein.html#SECTION00642000000000000000">5.4.2 Configuration Requirements in the Local Pool</A>
+<LI><A NAME="tex2html2034"
+  HREF="5_4Glidein.html#SECTION00643000000000000000">5.4.3 Running Jobs on the Remote Grid Resource After Glidein </A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00640000000000000000"></A><A NAME="sec:Glidein"></A>
+<A NAME="47750"></A>
+<A NAME="47751"></A>
+<A NAME="47752"></A>
+<A NAME="47753"></A>
+<BR>
+5.4 Glidein
+</H1>
+
+<P>
+Glidein is a mechanism by which one or more grid resources (remote machines)
+temporarily join a local Condor pool. 
+The program <I>condor_glidein</I> is used to add a machine
+to a Condor pool.
+During the period of time when the added resource is
+part of the local pool, the resource is visible 
+to users of the pool.
+But, by default, the resource is only available for
+use by the user
+that added the resource to the pool.
+
+<P>
+After glidein, the user may submit jobs for execution on the
+added resource the same way that all Condor jobs are submitted.
+To force a submitted job to run on the added resource, the
+submit description file could contain a requirement that the job run 
+specifically on the added resource.
+
+<P>
+
+<H2><A NAME="SECTION00641000000000000000">
+5.4.1 What <I>condor_glidein</I> Does</A>
+</H2>
+
+<P>
+<I>condor_glidein</I> works by installing and executing
+necessary Condor daemons and configuration on the remote resource,
+such that the resource reports to and joins the local pool.
+<I>condor_glidein</I> accomplishes two separate tasks towards
+having a remote grid resource join the local Condor pool.
+They are the set up task and the execution task.
+
+<P>
+The set up task generates necessary 
+configuration files and locates proper platform-dependent
+binaries for the Condor daemons.
+A script is also generated that can be used during
+the execution task to invoke the proper Condor daemons.
+These files are copied to the remote resource as necessary.
+The configuration variable <TT>GLIDEIN_SERVER_URLS</TT> <A NAME="47794"></A> <A NAME="47795"></A>
+defines a list of locations from which the necessary
+binaries are obtained.
+Default values cause binaries to be downloaded from the 
+UW site.
+See 
+section&nbsp;<A HREF="3_3Configuration.html#param:GlideinServerURLS">3.3.24</A> 
+on page&nbsp;<A HREF="3_3Configuration.html#param:GlideinServerURLS"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>
+for a full definition of this configuration variable.
+
+<P>
+When the files are correctly in place,
+the execution task starts the Condor daemons.
+<I>condor_glidein</I> does this by submitting a Condor job
+to run under the grid universe.
+The job runs the <I>condor_master</I> on the remote grid resource.
+The <I>condor_master</I> invokes other daemons, which contact
+the local pool's <I>condor_collector</I> to join the pool.
+The Condor daemons exit gracefully when no jobs run on the daemons for a
+preset period of time.
+
+<P>
+Here is an example of how a glidein resource appears, similar to how
+any other machine appears.  The name has a
+slightly different form, in order to handle the possibility of
+multiple instances of glidein daemons inhabiting a multi-processor
+machine.
+
+<P>
+<PRE>
+% condor_status | grep denal
+7591386@denal LINUX       INTEL  Unclaimed  Idle       3.700  24064  0+00:06:35
+</PRE>
+<P>
+
+<H2><A NAME="SECTION00642000000000000000"></A>
+<A NAME="47768"></A>
+<A NAME="47769"></A>
+<BR>
+5.4.2 Configuration Requirements in the Local Pool
+</H2>
+
+<P>
+As remote grid resources join the local pool,
+these resources must report to the local pool's <I>condor_collector</I> daemon.
+Security demands that the local pool's <I>condor_collector</I> 
+list all hosts from which they will accept communication.
+Therefore, all remote grid resources accepted for glidein
+must be given
+<TT>HOSTALLOW_WRITE</TT> <A NAME="47811"></A> <A NAME="47812"></A> permission.
+An expected way to do this is to modify the empty variable
+(within the sample configuration file)
+<TT>GLIDEIN_SITES</TT> to list all remote grid resources
+accepted for glidein.
+The list is a space or comma separated list of hosts.
+This list is then given the proper permissions by an additional
+redefinition of the <TT>HOSTALLOW_WRITE</TT> configuration variable,
+to also include the list of hosts
+as in the following example.
+
+<P>
+<PRE>
+GLIDEIN_SITES = A.example.com, B.example.com, C.example.com
+HOSTALLOW_WRITE = $(HOSTALLOW_WRITE) $(GLIDEIN_SITES)
+</PRE>Recall that for configuration file changes to take effect,
+<I>condor_reconfig</I> must be run.
+
+<P>
+If this configuration change to the security settings on
+the local Condor pool cannot be made,
+an additional Condor pool that utilizes
+personal Condor may be defined.
+The single machine pool
+may coexist with other instances of Condor.
+<I>condor_glidein</I> is executed to have the remote grid
+resources join this personal Condor pool.
+
+<P>
+
+<H2><A NAME="SECTION00643000000000000000">
+5.4.3 Running Jobs on the Remote Grid Resource After Glidein </A>
+</H2>
+
+<P>
+Once the Globus resource has been added to the local Condor
+pool with <I>condor_glidein</I>,
+job(s) may be submitted.
+To force a job to run on the Globus resource,
+specify that Globus resource as a machine requirement
+in the submit description file. 
+Here is an example from within the submit description file
+that forces submission to the Globus resource denali.mcs.anl.gov:
+<PRE>
+      requirements = ( machine == "denali.mcs.anl.gov" ) \
+         &amp;&amp; FileSystemDomain != "" \
+         &amp;&amp; Arch != "" &amp;&amp; OpSys != ""
+</PRE>
+This example requires that the job run only on denali.mcs.anl.gov,
+and it prevents Condor from inserting the file system domain,
+architecture, and operating system attributes as requirements
+in the matchmaking process.
+Condor must be told not to use the submission machine's
+attributes in those cases
+where the Globus resource's attributes
+do not match the submission machine's attributes and your job
+really is capable of running on the target machine.  You
+may want to use Condor's file-transfer capabilities in order
+to copy input and output files back and forth between the submission
+and execution machine.
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html2030"
+  HREF="5_5Dynamic_Deployment.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2024"
+  HREF="5_Grid_Computing.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2018"
+  HREF="5_3Grid_Universe.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2026"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2028"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2031"
+  HREF="5_5Dynamic_Deployment.html">5.5 Dynamic Deployment</A>
+<B> Up:</B> <A NAME="tex2html2025"
+  HREF="5_Grid_Computing.html">5. Grid Computing</A>
+<B> Previous:</B> <A NAME="tex2html2019"
+  HREF="5_3Grid_Universe.html">5.3 The Grid Universe</A>
+ &nbsp; <B>  <A NAME="tex2html2027"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2029"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

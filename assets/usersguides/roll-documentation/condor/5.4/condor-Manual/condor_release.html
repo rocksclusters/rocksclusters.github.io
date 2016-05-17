@@ -1,0 +1,279 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>condor_release</TITLE>
+<META NAME="description" CONTENT="condor_release">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="condor_reschedule.html">
+<LINK REL="previous" HREF="condor_reconfig_schedd.html">
+<LINK REL="up" HREF="9_Command_Reference.html">
+<LINK REL="next" HREF="condor_reschedule.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html3456"
+  HREF="condor_reschedule.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3450"
+  HREF="9_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3444"
+  HREF="condor_reconfig_schedd.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3452"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3454"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3457"
+  HREF="condor_reschedule.html">condor_reschedule</A>
+<B> Up:</B> <A NAME="tex2html3451"
+  HREF="9_Command_Reference.html">9. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3445"
+  HREF="condor_reconfig_schedd.html">condor_reconfig_schedd</A>
+ &nbsp; <B>  <A NAME="tex2html3453"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3455"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html3458"
+  HREF="condor_release.html#SECTION0010321000000000000000">Synopsis</A>
+<LI><A NAME="tex2html3459"
+  HREF="condor_release.html#SECTION0010322000000000000000">Description</A>
+<LI><A NAME="tex2html3460"
+  HREF="condor_release.html#SECTION0010323000000000000000">Options</A>
+<LI><A NAME="tex2html3461"
+  HREF="condor_release.html#SECTION0010324000000000000000">See Also</A>
+<LI><A NAME="tex2html3462"
+  HREF="condor_release.html#SECTION0010325000000000000000">Examples</A>
+<LI><A NAME="tex2html3463"
+  HREF="condor_release.html#SECTION0010326000000000000000">Exit Status</A>
+<LI><A NAME="tex2html3464"
+  HREF="condor_release.html#SECTION0010327000000000000000">Author</A>
+<LI><A NAME="tex2html3465"
+  HREF="condor_release.html#SECTION0010328000000000000000">Copyright</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION0010320000000000000000"></A><A NAME="man-condor-release"></A>
+<BR>
+<I>condor_release</I>
+</H1> release held jobs in the Condor queue
+  
+<P>
+
+<H2><A NAME="SECTION0010321000000000000000">
+Synopsis</A>
+</H2><B><I>condor_release</I></B>
+
+[<B>-help | -version</B>]
+
+<P>
+<B><I>condor_release</I></B>
+
+[<B>-debug</B>]
+
+[<B>-pool </B><I>centralmanagerhostname[:portnumber]</I>
+| <B>-name </B><I>scheddname</I> ]| [<B>-addr  </B><I>"&lt;a.b.c.d:port&gt;"</I>]
+
+<I> cluster... | cluster.process... | user... </I> 
+
+| <B>-constraint </B><I>expression</I> ... 
+
+<P>
+<B><I>condor_release</I></B>
+
+[<B>-debug</B>]
+
+[<B>-pool </B><I>centralmanagerhostname[:portnumber]</I>
+| <B>-name </B><I>scheddname</I> ]| [<B>-addr  </B><I>"&lt;a.b.c.d:port&gt;"</I>]
+
+<B>-all</B>
+
+<P>
+<A NAME="68081"></A>
+<A NAME="68082"></A>
+
+<P>
+
+<H2><A NAME="SECTION0010322000000000000000">
+Description</A>
+</H2>
+
+<P>
+<I>condor_release</I> releases jobs from the Condor job queue that were 
+previously placed in hold state.  
+If the <B>-name</B> option is specified, the named <I>condor_schedd</I> is targeted
+for processing.  
+Otherwise, the local <I>condor_schedd</I> is targeted.
+The jobs to be released are identified by one or more job identifiers, as
+described below.
+For any given job, only the owner of the job or one of the queue super users
+(defined by the <TT>QUEUE_SUPER_USERS</TT> macro) can release the job.
+
+<P>
+
+<H2><A NAME="SECTION0010323000000000000000">
+Options</A>
+</H2>
+  
+<P>
+  <DL>
+<DT><STRONG><B>-help</B></STRONG></DT>
+<DD>Display usage information
+<BR></DD>
+<DT><STRONG><B>-version</B></STRONG></DT>
+<DD>Display version information
+<BR>
+	
+</DD>
+<DT><STRONG><B>-pool </B><I>centralmanagerhostname[:portnumber]</I></STRONG></DT>
+<DD>Specify a pool by giving the
+	central manager's host name and an optional port number
+<BR></DD>
+<DT><STRONG><B>-name </B><I>scheddname</I></STRONG></DT>
+<DD>Send the command to a machine identified by <I>scheddname</I>
+<BR></DD>
+<DT><STRONG><B>-addr </B><I>"&lt;a.b.c.d:port&gt;"</I></STRONG></DT>
+<DD>Send the command
+	to a machine located at <I>"&lt;a.b.c.d:port&gt;"</I>
+<BR>
+	
+</DD>
+<DT><STRONG><B>-debug</B></STRONG></DT>
+<DD>Causes debugging information to be sent to
+<TT>stderr</TT>, based on the value of the configuration variable
+<TT>TOOL_DEBUG</TT>
+<BR>
+	
+</DD>
+<DT><STRONG><I>cluster</I></STRONG></DT>
+<DD>Release all jobs in the specified cluster
+<BR>	
+</DD>
+<DT><STRONG><I>cluster.process</I></STRONG></DT>
+<DD>Release the specific job in the cluster
+<BR>	
+</DD>
+<DT><STRONG><I>user</I></STRONG></DT>
+<DD>Release jobs belonging to specified user
+<BR>	
+</DD>
+<DT><STRONG><B>-constraint </B><I>expression</I></STRONG></DT>
+<DD>Release all jobs which match
+	                the job ClassAd expression constraint
+<BR>        
+</DD>
+<DT><STRONG><I>-all</I></STRONG></DT>
+<DD>Release all the jobs in the queue
+<BR>  
+</DD>
+</DL>
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION0010324000000000000000">
+See Also</A>
+</H2>
+<I>condor_hold</I> (on page&nbsp;<A HREF="condor_hold.html#man-condor-hold"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>)
+
+<P>
+
+<H2><A NAME="SECTION0010325000000000000000">
+Examples</A>
+</H2>
+To release all of the jobs of a user named Mary:
+<PRE>
+% condor_release Mary 
+</PRE>
+<P>
+
+<H2><A NAME="SECTION0010326000000000000000">
+Exit Status</A>
+</H2>
+
+<P>
+<I>condor_release</I> will exit with a status value of 0 (zero) upon success,
+and it will exit with the value 1 (one) upon failure.
+
+<P>
+
+<H2><A NAME="SECTION0010327000000000000000">
+Author</A>
+</H2> Condor Team, University of Wisconsin-Madison
+  
+<H2><A NAME="SECTION0010328000000000000000">
+Copyright</A>
+</H2> 
+  Copyright &#169; 1990-2010 Condor Team, Computer Sciences Department, 
+  University of Wisconsin-Madison, Madison, WI.  All Rights Reserved.  
+	Licensed under the Apache License, Version 2.0.
+
+<P>
+See the <I>Condor Version 7.4.4 Manual</I> or
+	<A NAME="tex2html139"
+  HREF="http://www.condorproject.org/license">http://www.condorproject.org/license</A>
+for
+  additional notices. 
+
+
+  <HR>
+<!--Navigation Panel-->
+<A NAME="tex2html3456"
+  HREF="condor_reschedule.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3450"
+  HREF="9_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3444"
+  HREF="condor_reconfig_schedd.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3452"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3454"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3457"
+  HREF="condor_reschedule.html">condor_reschedule</A>
+<B> Up:</B> <A NAME="tex2html3451"
+  HREF="9_Command_Reference.html">9. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3445"
+  HREF="condor_reconfig_schedd.html">condor_reconfig_schedd</A>
+ &nbsp; <B>  <A NAME="tex2html3453"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3455"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

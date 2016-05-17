@@ -1,0 +1,266 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Release 2.1.1 - changes from 2.1</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Release Notes"
+HREF="release-notes.html"><LINK
+REL="PREVIOUS"
+TITLE="Release 2.1.2 - changes from 2.1.1"
+HREF="x8940.html"><LINK
+REL="NEXT"
+TITLE="Release 2.1 - changes from 2.0.1"
+HREF="x8980.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Base</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x8940.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Appendix B. Release Notes</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x8980.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="AEN8950"
+>B.17. Release 2.1.1 - changes from 2.1</A
+></H1
+><P
+>	The main change in this release is the use of an XML-based
+	<EM
+>kickstart graph</EM
+> to actively manage kickstart files.
+	</P
+><P
+>	Includes support for IA-64 compute nodes.
+	See the 
+	<A
+HREF="../howto/ia64.php"
+TARGET="_top"
+>Installing IA-64 Compute
+	Nodes HOWTO</A
+> for detailed information.
+	</P
+><P
+>	A full X server is now installed on frontend machines.
+	</P
+><P
+>	Added PXE support for kickstarting compute nodes.
+	</P
+><P
+>	All compute nodes now install ATLAS and high-performance Linpack
+	-- some slick software from the
+	<A
+HREF="http://icl.cs.utk.edu/"
+TARGET="_top"
+>Innovative Computing Laboratory</A
+>
+	at the University of Tennessee.
+	</P
+><P
+>	Modified to the PBS server initialization script to dynamically
+	determine the number of CPUs in compute nodes by querying
+	<SAMP
+CLASS="COMPUTEROUTPUT"
+>ganglia</SAMP
+>.
+	</P
+><P
+>	Created a <SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks-pylib</SAMP
+> package that
+	contains all the common code used by Rocks command line utilties that
+	access the MySQL database, thus giving all the tools the same basic
+	functionality and common user-specified flags.
+	</P
+><P
+>	Patched Red Hat's installation tool (anaconda) so the default
+	behavior is to get kickstart files with HTTP (Red Hat's default
+	is NFS).
+	This frees the installation procedure of requiring NFS for
+	<EM
+>any</EM
+> of its functions.
+	</P
+><P
+>	Rewrite of <SAMP
+CLASS="COMPUTEROUTPUT"
+>insert-ethers</SAMP
+> to give it
+	the look and feel of a standard Red Hat installation tool.
+	</P
+><P
+>	Now using Red Hat's <SAMP
+CLASS="COMPUTEROUTPUT"
+>pump</SAMP
+> instead of
+	<SAMP
+CLASS="COMPUTEROUTPUT"
+>dhclient</SAMP
+> for the DHCP client.
+	</P
+><P
+>	Properly create the default PBS configuration file
+	(<SAMP
+CLASS="COMPUTEROUTPUT"
+>/usr/apps/pbs/pbs.default</SAMP
+>) so PBS
+	is now operational "out of the box".
+	</P
+><P
+>	Fixed the annoying, but harmless, message
+	<SAMP
+CLASS="COMPUTEROUTPUT"
+>"socket.error: (101, 'Network is
+	unreachable')"</SAMP
+> that was seen on frontend boots.
+	</P
+><P
+>Fixed the annoying, but harmless, message
+	<SAMP
+CLASS="COMPUTEROUTPUT"
+>"user 0 unknown"</SAMP
+> that was seen on a
+	compute node's first boot after kickstarting.
+	</P
+><P
+>	Fixed the 444 permissions problem on
+	<SAMP
+CLASS="COMPUTEROUTPUT"
+>/usr/man</SAMP
+> and
+	moved all the Rocks man pages into the new home for Linux man pages
+	(<SAMP
+CLASS="COMPUTEROUTPUT"
+>/usr/share/man</SAMP
+>).
+	</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x8940.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x8980.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Release 2.1.2 - changes from 2.1.1</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="release-notes.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Release 2.1 - changes from 2.0.1</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

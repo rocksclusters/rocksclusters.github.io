@@ -1,0 +1,342 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Configuring IPMI interfaces</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE=" Defining and Modifying Networks and Network Interfaces "
+HREF="networking.html"><LINK
+REL="PREVIOUS"
+TITLE="Virtual LANs (VLANs) and Logical VLAN Bridges"
+HREF="x1072.html"><LINK
+REL="NEXT"
+TITLE="Networking Configuration Examples"
+HREF="x1135.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Base</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x1072.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 4. Defining and Modifying Networks and Network Interfaces</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x1135.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="NETWORKING-IPMI"
+>4.5. Configuring IPMI interfaces</A
+></H1
+><P
+>The Intelligent Platform Management Interface (IPMI) is a standardized 
+computer system interface used by system administrators to manage a 
+computer system and monitor its operation. IPMI can be used to remotely 
+power cycle a server, remotely connect to its KVM or serial interface and 
+perform other administrative related functionalities.
+The standard is supported by most hardware vendor (Dell, HP, NEC, Intel, 
+SuperMicro, etc.) and it is found on several server platforms under 
+different name (ILOM, BMC, DRAC, etc.).&#13;</P
+><P
+>&#13;Rocks by default include <A
+HREF="http://openipmi.sourceforge.net/"
+TARGET="_top"
+> 
+openIPMI</A
+> an Open Source command line implementation 
+of the standard on all the nodes and it is possible to create the initial 
+configuration of the devices leveraging Rocks database and Rocks command line.&#13;</P
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="NETWORKING-IPMI-DEVICE"
+>4.5.1. Configuring a IPMI Device</A
+></H2
+><P
+>Rocks uses its data base to keep configuration information regarding the
+various IPMI devices. All interfaces defined in the rocks database named 
+"ipmi" are treated as IPMI devices and not as standard ethernet devices.</P
+><P
+>It is good practice to define a network to allocate all the IPMI devices 
+(although not necessary). IPMI network are sometimes separated from other 
+network for security purposes, other times they can share the existing 
+network infrastructure to save money. The network configuration and design 
+is behind the scope of this tutorial. We simply assume All the nodes are 
+connected to the admin network (10.10.0.0/255.255.0.0) and the frontend 
+has some routing access to it.
+
+In the following example can be used to define the admin network in the 
+rocks DB.</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+> # rocks add network admin subnet=10.10.0.0 netmask=255.255.0.0 mtu=1500</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>To configure a IPMI device on a node called compute-0-0, you should run:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>&#13; # rocks add host interface compute-0-0 ipmi ip=10.10.255.254 name=ipmi-compute-0-0 subnet=admin
+ # rocks set host interface channel compute-0-0 ipmi 1&#13;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>The channel is used to specify which comunication interface should be configured.
+Each IPMI device supports multiple comunication devices (Ethernet/IP, serial ports, etc.) so 
+it is necessary to identify which one is associated with the Ethernet interface to 
+specify it with the rocks set host interface channel command. Different hardware can have 
+different channels for the same type of device.
+To this purpose it is possible to use ipmitool command repeatedly 
+with different channel numbers, untill the Medium info display 
+802 LAN, as in the following example:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>&#13; # ipmitool channel info 1
+Channel 0x1 info:
+ Channel Medium Type     : 802.3 LAN
+ Channel Protocol Type   : IPMB-1.0
+ ...&#13;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>The admin password is set by default to "admin", it is possible 
+to change it using the rocks attribute "ipmi_password".
+In most of the IPMI devices the admin user ID is equal to 1.
+If a device set up in a different way it is possible to set the 
+attribute "ipmi_admin_user_number" and change this default behavior.</P
+><P
+>The command  rocks sync network compute-0-0-0 will create a script on 
+compute-0-0-0 in /etc/sysconfig/ipmi which should be executed manually 
+on the node to finalize the configuration.</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>&#13; # rocks sync host network compute-0-0
+ # ssh compute-0-0
+ # bash /etc/sysconfig/ipmi&#13;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>After this your IPMI interface should be properly configured.
+To validate your configuration you can use the ipmitool command from your frontend 
+(or from the node which has access to the admin network) as shown in the following 
+example:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>ipmitool -H 10.10.255.254 -U ADMIN -P admin power status</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>To power off compute-0-0, execute:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># ipmitool -H 10.10.255.254 -U ADMIN -P admin power off</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>To power compute-0-0 back on, execute:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># ipmitool -H 10.10.255.254 -U ADMIN -P admin power on</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>There are several more management tasks you can perform with ipmitool.
+See the man page for ipmitool for more details.</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x1072.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x1135.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Virtual LANs (VLANs) and Logical VLAN Bridges</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="networking.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Networking Configuration Examples</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

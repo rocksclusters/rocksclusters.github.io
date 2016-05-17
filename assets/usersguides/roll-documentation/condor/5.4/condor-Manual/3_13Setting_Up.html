@@ -1,0 +1,3247 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>3.13 Setting Up for Special
+Environments</TITLE>
+<META NAME="description" CONTENT="3.13 Setting Up for Special
+Environments">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="3_14Java_Support.html">
+<LINK REL="previous" HREF="3_12Quill.html">
+<LINK REL="up" HREF="3_Administrators_Manual.html">
+<LINK REL="next" HREF="3_14Java_Support.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html1365"
+  HREF="3_14Java_Support.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1359"
+  HREF="3_Administrators_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1353"
+  HREF="3_12Quill.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1361"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1363"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1366"
+  HREF="3_14Java_Support.html">3.14 Java Support Installation</A>
+<B> Up:</B> <A NAME="tex2html1360"
+  HREF="3_Administrators_Manual.html">3. Administrators' Manual</A>
+<B> Previous:</B> <A NAME="tex2html1354"
+  HREF="3_12Quill.html">3.12 Quill</A>
+ &nbsp; <B>  <A NAME="tex2html1362"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1364"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html1367"
+  HREF="3_13Setting_Up.html#SECTION004131000000000000000">3.13.1 Using Condor with AFS</A>
+<UL>
+<LI><A NAME="tex2html1368"
+  HREF="3_13Setting_Up.html#SECTION004131100000000000000">3.13.1.1 AFS and Condor for Administrators</A>
+<LI><A NAME="tex2html1369"
+  HREF="3_13Setting_Up.html#SECTION004131200000000000000">3.13.1.2 AFS and Condor for Users</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1370"
+  HREF="3_13Setting_Up.html#SECTION004132000000000000000">3.13.2 Using Condor with the Hadoop File System</A>
+<LI><A NAME="tex2html1371"
+  HREF="3_13Setting_Up.html#SECTION004133000000000000000">3.13.3 Enabling the Transfer of Files Specified by a URL</A>
+<LI><A NAME="tex2html1372"
+  HREF="3_13Setting_Up.html#SECTION004134000000000000000">3.13.4 Configuring Condor for
+Multiple Platforms</A>
+<UL>
+<LI><A NAME="tex2html1373"
+  HREF="3_13Setting_Up.html#SECTION004134100000000000000">3.13.4.1 Utilizing a
+Platform-Specific Configuration File</A>
+<LI><A NAME="tex2html1374"
+  HREF="3_13Setting_Up.html#SECTION004134200000000000000">3.13.4.2 Platform-Specific
+Configuration File Settings</A>
+<LI><A NAME="tex2html1375"
+  HREF="3_13Setting_Up.html#SECTION004134300000000000000">3.13.4.3 Other Uses for
+Platform-Specific Configuration Files</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1376"
+  HREF="3_13Setting_Up.html#SECTION004135000000000000000">3.13.5 Full Installation of
+condor_compile</A>
+<LI><A NAME="tex2html1377"
+  HREF="3_13Setting_Up.html#SECTION004136000000000000000">3.13.6 The <I>condor_kbdd</I></A>
+<LI><A NAME="tex2html1378"
+  HREF="3_13Setting_Up.html#SECTION004137000000000000000">3.13.7 Configuring The CondorView Server</A>
+<UL>
+<LI><A NAME="tex2html1379"
+  HREF="3_13Setting_Up.html#SECTION004137100000000000000">3.13.7.1 Configuring a Machine to be a CondorView Server</A>
+<LI><A NAME="tex2html1380"
+  HREF="3_13Setting_Up.html#SECTION004137200000000000000">3.13.7.2 Configuring a Pool to Report to the CondorView Server</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1381"
+  HREF="3_13Setting_Up.html#SECTION004138000000000000000">3.13.8 Running Condor Jobs within a Virtual Machine</A>
+<UL>
+<LI><A NAME="tex2html1382"
+  HREF="3_13Setting_Up.html#SECTION004138100000000000000">3.13.8.1 Installation and Configuration</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1383"
+  HREF="3_13Setting_Up.html#SECTION004139000000000000000">3.13.9 Configuring The Startd for SMP Machines</A>
+<UL>
+<LI><A NAME="tex2html1384"
+  HREF="3_13Setting_Up.html#SECTION004139100000000000000">3.13.9.1 How Shared Resources are Represented to Condor</A>
+<LI><A NAME="tex2html1385"
+  HREF="3_13Setting_Up.html#SECTION004139200000000000000">3.13.9.2 Dividing System Resources in SMP Machines</A>
+<LI><A NAME="tex2html1386"
+  HREF="3_13Setting_Up.html#SECTION004139300000000000000">3.13.9.3 Defining Slot Types</A>
+<LI><A NAME="tex2html1387"
+  HREF="3_13Setting_Up.html#SECTION004139400000000000000">3.13.9.4 Evenly Divided Resources</A>
+<LI><A NAME="tex2html1388"
+  HREF="3_13Setting_Up.html#SECTION004139500000000000000">3.13.9.5 Configuring Startd Policy for SMP Machines</A>
+<LI><A NAME="tex2html1389"
+  HREF="3_13Setting_Up.html#SECTION004139600000000000000">3.13.9.6 Load Average for SMP Machines</A>
+<LI><A NAME="tex2html1390"
+  HREF="3_13Setting_Up.html#SECTION004139700000000000000">3.13.9.7 Debug logging in the SMP Startd</A>
+<LI><A NAME="tex2html1391"
+  HREF="3_13Setting_Up.html#SECTION004139800000000000000">3.13.9.8 Configuring STARTD_ATTRS on a per-slot basis</A>
+<LI><A NAME="tex2html1392"
+  HREF="3_13Setting_Up.html#SECTION004139900000000000000">3.13.9.9 Dynamic <I>condor_startd</I> Provisioning: Dynamic Slots</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1393"
+  HREF="3_13Setting_Up.html#SECTION0041310000000000000000">3.13.10 Condor's Dedicated Scheduling</A>
+<UL>
+<LI><A NAME="tex2html1394"
+  HREF="3_13Setting_Up.html#SECTION0041310100000000000000">3.13.10.1 Selecting and Setting Up a Dedicated Scheduler</A>
+<LI><A NAME="tex2html1395"
+  HREF="3_13Setting_Up.html#SECTION0041310200000000000000">3.13.10.2 Configuration Examples for Dedicated Resources</A>
+<LI><A NAME="tex2html1396"
+  HREF="3_13Setting_Up.html#SECTION0041310300000000000000">3.13.10.3 Preemption with Dedicated Jobs</A>
+<LI><A NAME="tex2html1397"
+  HREF="3_13Setting_Up.html#SECTION0041310400000000000000">3.13.10.4 Grouping dedicated nodes into parallel scheduling groups</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1398"
+  HREF="3_13Setting_Up.html#SECTION0041311000000000000000">3.13.11 Configuring Condor for Running Backfill Jobs</A>
+<UL>
+<LI><A NAME="tex2html1399"
+  HREF="3_13Setting_Up.html#SECTION0041311100000000000000">3.13.11.1 Overview of Backfill jobs
+in Condor</A>
+<LI><A NAME="tex2html1400"
+  HREF="3_13Setting_Up.html#SECTION0041311200000000000000">3.13.11.2 Defining the Backfill Policy</A>
+<LI><A NAME="tex2html1401"
+  HREF="3_13Setting_Up.html#SECTION0041311300000000000000">3.13.11.3 Overview of the
+ BOINC system</A>
+<LI><A NAME="tex2html1402"
+  HREF="3_13Setting_Up.html#SECTION0041311400000000000000">3.13.11.4 Installing the BOINC client
+software</A>
+<LI><A NAME="tex2html1403"
+  HREF="3_13Setting_Up.html#SECTION0041311500000000000000">3.13.11.5 Configuring the BOINC client
+under Condor</A>
+<LI><A NAME="tex2html1404"
+  HREF="3_13Setting_Up.html#SECTION0041311600000000000000">3.13.11.6 BOINC on Windows</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1405"
+  HREF="3_13Setting_Up.html#SECTION0041312000000000000000">3.13.12 Group ID-Based Process Tracking</A>
+<LI><A NAME="tex2html1406"
+  HREF="3_13Setting_Up.html#SECTION0041313000000000000000">3.13.13 Limiting Resource Usage</A>
+<LI><A NAME="tex2html1407"
+  HREF="3_13Setting_Up.html#SECTION0041314000000000000000">3.13.14 Concurrency Limits</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION004130000000000000000"></A><A NAME="sec:special-environments"></A>
+<BR>
+3.13 Setting Up for Special
+Environments
+</H1> 
+
+<P>
+The following sections describe how to set up Condor for use in
+special environments or configurations.
+
+<P>
+
+<H2><A NAME="SECTION004131000000000000000"></A><A NAME="sec:Condor-AFS"></A>
+<A NAME="33725"></A>
+<BR>
+3.13.1 Using Condor with AFS
+</H2>
+
+<P>
+Configuration variables that allow machines to interact with and
+use a shared file system are given at
+section&nbsp;<A HREF="3_3Configuration.html#sec:Shared-Filesystem-Config-File-Entries">3.3.7</A>.
+
+<P>
+Limitations with AFS occur because
+ Condor does not currently have a way to authenticate itself to AFS.
+This is true of the Condor daemons that would like to authenticate as
+the AFS user <TT>condor</TT>, and of the <I>condor_shadow</I> which would like to
+authenticate as the user who submitted the job it is serving.
+Since neither of these things can happen yet, there are special
+things to do when interacting with AFS.
+Some of this must be done by the administrator(s) installing Condor.
+Other things must be done by Condor users who submit jobs.
+
+<P>
+
+<H3><A NAME="SECTION004131100000000000000"></A><A NAME="sec:Condor-AFS-Admin"></A>
+<BR>
+3.13.1.1 AFS and Condor for Administrators
+</H3>
+
+<P>
+The largest result from the lack of authentication with AFS is that
+the directory defined by the configuration variable <TT>LOCAL_DIR</TT>
+and its subdirectories <TT>log</TT> and <TT>spool</TT> on each machine
+must be either writable to unauthenticated users, or must not be on AFS.
+Making these directories writable a <I>very</I> bad security hole,
+so it is <I>not</I> a viable solution.
+Placing <TT>LOCAL_DIR</TT> onto NFS is acceptable.
+To avoid AFS, place the directory defined for <TT>LOCAL_DIR</TT> on
+a local partition on each machine in the pool.
+This implies running <I>condor_configure</I> to install the release directory and
+configure the pool,
+setting the <TT>LOCAL_DIR</TT> variable to a local partition.
+When that is complete, log into each machine in the pool,
+and run <I>condor_init</I> to set up the local Condor directory.
+
+<P>
+The directory defined by <TT>RELEASE_DIR</TT>,
+which holds all the Condor binaries,
+libraries, and scripts, can be on AFS.
+None of the Condor daemons need to write to these files.
+They only need to read them.
+So, the directory defined by <TT>RELEASE_DIR</TT> only needs to be
+world readable in order to let Condor function.
+This makes it easier to
+upgrade the binaries to a newer version at a later date,
+and means that users can find the Condor tools in a consistent location
+on all the machines in the pool. 
+Also, the Condor configuration files may be placed in a centralized location.
+This is what we do for the UW-Madison's CS department Condor pool,
+and it works quite well.
+
+<P>
+Finally, consider setting up some targeted AFS groups to help 
+users deal with Condor and AFS better.
+This is discussed in the following manual subsection.
+In short, create an AFS group that
+contains all users, authenticated or not,
+but which is restricted to a given host or subnet.
+These should be made as host-based ACLs with AFS,
+but here at UW-Madison, we have had some trouble getting that working.
+Instead, we have a special group for all machines in our department.
+The users here are required to make their output
+directories on AFS writable to any process running on any of our
+machines, instead of any process on any machine with AFS on the
+Internet.
+
+<P>
+
+<H3><A NAME="SECTION004131200000000000000"></A><A NAME="sec:Condor-AFS-Users"></A>
+<BR>
+3.13.1.2 AFS and Condor for Users
+</H3>
+
+<P>
+The <I>condor_shadow</I> daemon runs on the machine where jobs are submitted.
+It performs all file system access on behalf of the jobs.
+Because the <I>condor_shadow</I> daemon is not authenticated to AFS
+as the user who submitted the job, the <I>condor_shadow</I> daemon
+will not normally be able to write any output.
+Therefore the directories in which the job will be creating output files
+will need to be world writable; they need to be writable by
+non-authenticated AFS users.
+In addition, the program's <TT>stdout</TT>, <TT>stderr</TT>, log file,
+and any file the program explicitly opens
+will need to be in a directory that is world-writable.
+
+<P>
+An administrator may be able to set up special AFS groups that can make 
+unauthenticated access to the program's files less scary.
+For example, there is
+supposed to be a way for AFS to grant access to any unauthenticated
+process on a given host. 
+If set up,
+write access need only be granted to unauthenticated processes 
+on the submit machine,
+as opposed to any unauthenticated process on the Internet.
+Similarly,
+unauthenticated read access could be granted only to processes running
+on the submit machine.
+
+<P>
+A solution to this problem is to not use AFS for output files.
+If disk space on the submit machine is available in a partition not on AFS,
+submit the jobs from there.
+While the <I>condor_shadow</I> daemon is not authenticated to AFS,
+it does run with the effective UID of the user who submitted the jobs.
+So, on a local (or NFS) file system,
+the <I>condor_shadow</I> daemon will be able to access the files,
+and no special permissions need be granted to anyone other than the job
+submitter.
+If the Condor daemons are not invoked as root however,
+the <I>condor_shadow</I> daemon will not be able to run with the submitter's
+effective UID, leading to
+a similar problem as with files on AFS.
+
+<H2><A NAME="SECTION004132000000000000000"></A><A NAME="sec:Condor-HDFS"></A>
+<A NAME="33806"></A>
+<BR>
+3.13.2 Using Condor with the Hadoop File System
+</H2>
+
+<P>
+The Hadoop Distributed File System (HDFS) enables the efficient distribution
+of potentially very large sets of data across Data-nodes.
+The mapping of data locations is maintained by an HDFS Name-node.
+The invocation, configuration, and use of an HDFS is integrated with Condor
+<A NAME="33807"></A>
+through the <I>condor_hdfs</I> daemon.
+Condor currently handles the deployment and management of an HDFS.
+
+<P>
+The <I>condor_hdfs</I> daemon uses the Condor configuration to generate
+an HDFS XML configuration and invoke the file system. 
+The file system is both deployed and maintained by Condor, 
+reducing the number of separately administered systems by one.
+Condor configuration variables related to the HDFS are
+in section&nbsp;<A HREF="3_3Configuration.html#sec:HDFS-Config-File-Entries">3.3.23</A>. 
+
+<P>
+Once an HDFS is deployed, input files for a vanilla universe job 
+may be transfered from the HDFS by specifying a URL within the
+job's <B>transfer_input_files</B> command. 
+See section&nbsp;<A HREF="#sec:URL-transfer">3.13.3</A> for the administrative details
+to set up transfers specified by a URL.
+It requires that a plug-in is accessible and defined to handle
+<TT>hdfs</TT> protocol transfers. 
+
+<H2><A NAME="SECTION004133000000000000000"></A><A NAME="sec:URL-transfer"></A>
+<A NAME="33828"></A>
+<A NAME="33829"></A>
+<BR>
+3.13.3 Enabling the Transfer of Files Specified by a URL
+</H2>
+
+<P>
+A vanilla universe's job input files may be specified by a URL,
+causing the execute machine to retrieve the files.
+This differs from the normal file transfer mechanism,
+in which transfers are from the machine where the job is submitted
+to the machine where the job is executed.
+
+<P>
+The transfers are accomplished a <I>plug-in</I>,
+an executable or shell script that handles the task of file transfer.
+More than one plug-in may be specified.
+The plug-ins must be installed and available on every execute machine 
+that may run a job specifying an input file with a URL.
+
+<P>
+URL transfers are enabled by default in the configuration 
+of execute machines.
+Disabling URL transfers is accomplished by setting
+<PRE>
+ENABLE_URL_TRANSFERS = FALSE
+</PRE>
+<P>
+In addition, a comma separated list giving the absolute path and name
+of all available plug-ins is specified as in the example:
+<PRE>
+FILETRANSFER_PLUGINS = /opt/condor/plugins/wget-plugin, \
+                       /opt/condor/plugins/hdfs-plugin, \
+                       /opt/condor/plugins/custom-plugin
+</PRE>
+<P>
+The <I>condor_starter</I> invokes all listed plug-ins to determine their 
+capabilities. Each may handle one or more protocols (scheme names).
+The plug-in's response to invocation identifies which protocols
+it can handle.
+When a URL transfer is specified by a job,
+the <I>condor_starter</I> invokes the proper one to do the transfer.
+If more than one plugin is capable of handling a particular protocol,
+then the last one within the list given by <TT>FILETRANSFER_PLUGINS</TT>
+is used.
+
+<P>
+Condor assumes that all plug-ins will respond in specific
+ways.
+To determine the capabilities of the plug-ins as to which protocols
+they handle,
+the <I>condor_starter</I> daemon invokes each plug-in giving it the
+command line argument <B>-classad</B>.
+In response to invocation with this command line argument,
+the plug-in must respond with an output of three ClassAd attributes. 
+The first two are fixed:
+<PRE>
+PluginVersion = "0.1"
+PluginType = "FileTransfer"
+</PRE>
+<P>
+The third ClassAd attribute is <TT>SupportedMethods</TT>. 
+This attribute is a string containing a comma separated list of the
+protocols that the plug-in handles.
+So, for example:
+<PRE>
+SupportedMethods = "http,ftp,file"
+</PRE>would identify that the three protocols described by <code>http</code>,
+<code>ftp</code>, and <code>ftp</code> are supported.
+These strings will match the protocol specification as given
+within a URL in a <B>transfer_input_files</B> command 
+in a submit description file for a job.
+
+<P>
+When a job specifies a URL transfer,
+the plug-in is invoked, without the command line argument <B>-classad</B>.
+It will instead be given two other command line arguments.
+The first will be the URL of the file to retrieve.
+The second will be the absolute path identifying where to place the
+transferred file.
+The plug-in is expected to do the transfer,
+exiting with status 0 if the transfer was successful, 
+and a non-zero status if the transfer was <I>not</I> successful.
+
+<P>
+Note that this functionality is not limited to a predefined set
+of protocols.
+New ones can be invented.
+As an invented example,
+the <code>zkm</code> transfer type writes random bytes to a file.
+The plug-in that handles <code>zkm</code> transfers would respond to 
+invocation with the <B>-classad</B> command line argument with:
+<PRE>
+PluginVersion = "0.1"
+PluginType = "FileTransfer"
+SupportedMethods = "zkm"
+</PRE>And, then when a job requested that this plug-in be invoked,
+for the invented example:
+<PRE>
+transfer_intput_files = zkm://128/r-data
+</PRE>the plug-in will be invoked with a first command line argument
+of <code>zkm://128/r-data</code> and a second command line argument giving
+the full path along with the file name <TT>r-data</TT> as the location
+for the plug-in to write 128 bytes of random data.
+
+<H2><A NAME="SECTION004134000000000000000"></A><A NAME="sec:Multiple-Platforms"></A>
+<BR>
+3.13.4 Configuring Condor for
+Multiple Platforms
+</H2> 
+
+<P>
+A single, global
+configuration file may be used for all platforms in a Condor pool, with only
+platform-specific settings placed in separate files.  This greatly
+simplifies administration of a heterogeneous pool by allowing
+changes of platform-independent, global settings in one place, instead of
+separately for each platform.  This is made possible by treating the
+<TT>LOCAL_CONFIG_FILE</TT> <A NAME="33973"></A> <A NAME="33974"></A> configuration variable as a
+list of files, instead of a single file.  Of course, this only
+helps when using a shared file system for the machines in the
+pool, so that multiple machines can actually share a single set of
+configuration files.
+
+<P>
+With multiple platforms, put all
+platform-independent settings (the vast majority) into the regular
+<TT>condor_config</TT> file, which would be shared by all platforms.
+This global file would be the one that is found with the
+<TT>CONDOR_CONFIG</TT> environment variable, the user <TT>condor</TT>'s home
+directory, or <TT>/etc/condor/condor_config</TT>.
+
+<P>
+Then set the <TT>LOCAL_CONFIG_FILE</TT> configuration variable from that
+global configuration file to specify both a platform-specific
+configuration file and
+optionally, a local, machine-specific configuration file (this parameter is
+described in section&nbsp;<A HREF="3_3Configuration.html#sec:Condor-wide-Config-File-Entries">3.3.3</A> on
+``Condor-wide Configuration File Entries'').
+
+<P>
+The order of file specification in the
+<TT>LOCAL_CONFIG_FILE</TT> configuration variable is important,
+because settings
+in files at the beginning of the list are overridden if the same
+settings occur in files later within the list.  So, if specifying the
+platform-specific file and then the machine-specific file, settings in
+the machine-specific file would override those in the
+platform-specific file (as is likely desired).  
+
+<P>
+
+<H3><A NAME="SECTION004134100000000000000"></A><A NAME="sec:Specify-Platform-Files"></A>
+<BR>
+3.13.4.1 Utilizing a
+Platform-Specific Configuration File
+</H3> 
+
+<P>
+The name of 
+platform-specific configuration files may be specified by using the
+<TT>ARCH</TT> <A NAME="33984"></A> <A NAME="33985"></A> and <TT>OPSYS</TT> <A NAME="33989"></A> <A NAME="33990"></A> parameters, as are defined
+automatically by Condor.
+For example, for Intel Linux
+machines, and Sparc Solaris 2.6 machines,
+the files ought to be named:
+
+<P>
+<PRE>
+  condor_config.INTEL.LINUX
+  condor_config.SUN4x.SOLARIS26
+</PRE>
+
+<P>
+Then, assuming these three files are in the directory defined by the
+<TT>ETC</TT> configuration macro,
+and machine-specific configuration files are in
+the same directory, named by each machine's host name, the
+<TT>LOCAL_CONFIG_FILE</TT> <A NAME="33995"></A> <A NAME="33996"></A> configuration macro should be:
+
+<P>
+<PRE>
+LOCAL_CONFIG_FILE = $(ETC)/condor_config.$(ARCH).$(OPSYS), \
+                    $(ETC)/$(HOSTNAME).local
+</PRE>
+<P>
+Alternatively, when using AFS, an ``@sys link'' may be used to
+specify the platform-specific configuration file,
+and let AFS resolve this link differently on different systems.
+For example, consider
+a soft link named <TT>condor_config.platform</TT> that points to
+<TT>condor_config.@sys</TT>.  In this case, the files might be named:
+
+<P>
+<PRE>
+  condor_config.i386_linux2
+  condor_config.sun4x_56
+  condor_config.sgi_64
+  condor_config.platform -&gt; condor_config.@sys
+</PRE>
+
+<P>
+and the <TT>LOCAL_CONFIG_FILE</TT> configuration variable would be set to:
+
+<P>
+<PRE>
+LOCAL_CONFIG_FILE = $(ETC)/condor_config.platform, \
+                    $(ETC)/$(HOSTNAME).local
+</PRE>
+<P>
+
+<H3><A NAME="SECTION004134200000000000000"></A><A NAME="sec:Platform-Specific-Settings"></A>
+<BR>
+3.13.4.2 Platform-Specific
+Configuration File Settings
+</H3>
+
+<P>
+The configuration variables that are truly platform-specific are:
+
+<P>
+<DL>
+<DT><STRONG><TT>RELEASE_DIR</TT> <A NAME="34003"></A> <A NAME="34004"></A></STRONG></DT>
+<DD>Full path to to the installed
+  Condor binaries.  While the configuration files may be shared among
+  different platforms, the binaries certainly cannot.  Therefore,
+  maintain separate release directories for each platform
+  in the pool.  See section&nbsp;<A HREF="3_3Configuration.html#sec:Condor-wide-Config-File-Entries">3.3.3</A>
+  on ``Condor-wide Configuration File Entries'' for details.
+
+<P>
+</DD>
+<DT><STRONG><TT>MAIL</TT> <A NAME="34008"></A> <A NAME="34009"></A></STRONG></DT>
+<DD>The full path to the mail program.  See
+  section&nbsp;<A HREF="3_3Configuration.html#sec:Condor-wide-Config-File-Entries">3.3.3</A> on ``Condor-wide
+  Configuration File Entries'' for details.
+
+<P>
+</DD>
+<DT><STRONG><TT>CONSOLE_DEVICES</TT> <A NAME="34013"></A> <A NAME="34014"></A></STRONG></DT>
+<DD>Which devices in <TT>/dev</TT> should be
+  treated as console devices.  See
+  section&nbsp;<A HREF="3_3Configuration.html#sec:Startd-Config-File-Entries">3.3.10</A> on ``condor_startd
+  Configuration File Entries'' for details.
+
+<P>
+</DD>
+<DT><STRONG><TT>DAEMON_LIST</TT> <A NAME="34020"></A> <A NAME="34021"></A></STRONG></DT>
+<DD>Which daemons the <I>condor_master</I> should
+  start up.  The reason this setting is platform-specific is
+  to distinguish the <I>condor_kbdd</I>.
+  It is needed on many Linux and Windows machines,
+  and it is not needed on other platforms.
+  See section&nbsp;<A HREF="3_3Configuration.html#sec:Master-Config-File-Entries">3.3.9</A> on
+  for details.
+
+<P>
+</DD>
+</DL>
+
+<P>
+Reasonable defaults for all of these configuration variables
+will be found in the
+default configuration files inside a given platform's binary distribution
+(except the <TT>RELEASE_DIR</TT>, since 
+the location of the Condor binaries and libraries is installation specific).
+With multiple platforms,
+use one of the <TT>condor_config</TT> files from
+either running <I>condor_configure</I> or from the
+<TT>&lt;release_dir&gt;/etc/examples/condor_config.generic</TT> file,
+take these settings out,
+save them into a platform-specific file,
+and install the resulting platform-independent file as the global
+configuration file.
+Then,
+find the same settings from the configuration files for any other platforms
+to be set up, and put them in their own platform-specific files.
+Finally, set the <TT>LOCAL_CONFIG_FILE</TT> configuration variable
+to point to
+the appropriate platform-specific file, as described above.
+
+<P>
+Not even all of these configuration variables are necessarily
+going to be different.
+For example, if an installed mail program understands the
+<B>-s</B> option in <TT>/usr/local/bin/mail</TT> on all platforms,
+the <TT>MAIL</TT> macro may be set to that in the global configuration
+file, and not define it anywhere else.
+For a pool with only Linux or Windows machines,
+the <TT>DAEMON_LIST</TT> will be the same for each, so there is no
+reason not to put that in the global configuration file.
+
+<P>
+
+<H3><A NAME="SECTION004134300000000000000"></A><A NAME="sec:Other-Uses-for-Platform-Files"></A>
+<BR>
+3.13.4.3 Other Uses for
+Platform-Specific Configuration Files
+</H3> 
+
+<P>
+It is certainly possible that an installation may want other 
+configuration variables to be platform-specific as well.
+Perhaps a different policy is desired for
+one of the platforms.
+Perhaps different people should get the
+e-mail about problems with the different platforms.
+There is nothing hard-coded about any of this.
+What is shared and
+what should not shared is entirely configurable.
+
+<P>
+Since the <TT>LOCAL_CONFIG_FILE</TT> <A NAME="34040"></A> <A NAME="34041"></A> macro can be an arbitrary
+list of files, an installation can even break up the global,
+platform-independent settings into separate files.
+In fact, the global configuration file might
+only contain a definition for <TT>LOCAL_CONFIG_FILE</TT>, and all
+other configuration variables would be placed in separate files.  
+
+<P>
+Different people may be given different permissions to change different
+Condor settings.  For example, if a user is to be able to
+change certain settings, but nothing else, those
+settings may be placed in a file which was early
+in the <TT>LOCAL_CONFIG_FILE</TT> list,
+to give that user write permission on that file, then include all
+the other files after that one.  In this way, if the user was trying to
+change settings she/he should not, they would simply be overridden.  
+
+<P>
+This mechanism is quite flexible and powerful.  For
+very specific configuration needs, they can probably be met by
+using file permissions, the <TT>LOCAL_CONFIG_FILE</TT> configuration
+variable, and imagination.
+
+<H2><A NAME="SECTION004135000000000000000"></A><A NAME="sec:full-condor-compile"></A>
+<BR>
+3.13.5 Full Installation of
+condor_compile
+</H2> 
+
+<P>
+In order to take advantage of two major Condor features: checkpointing
+and remote system calls, users of the Condor system need to relink
+their binaries.  Programs that are not relinked for Condor can run in
+Condor's ``vanilla'' universe just fine, however, they cannot
+checkpoint and migrate, or run on machines without a shared filesystem.
+
+<P>
+To relink your programs with Condor, we provide a special tool,
+<I>condor_compile</I>.  As installed by default, <I>condor_compile</I> works
+with the following commands: <I>gcc</I>, <I>g++</I>, <I>g77</I>,
+<I>cc</I>, <I>acc</I>, <I>c89</I>, <I>CC</I>, <I>f77</I>,
+<I>fort77</I>, <I>ld</I>.  On Solaris and Digital Unix, <I>f90</I> is
+also supported.  See the <I>condor_compile</I>(1) man page for details on
+using <I>condor_compile</I>.
+
+<P>
+However, you can make <I>condor_compile</I> work transparently with all
+commands on your system whatsoever, including <I>make</I>.  
+
+<P>
+The basic idea here is to replace the system linker (<I>ld</I>) with
+the Condor linker.  Then, when a program is to be linked, the condor
+linker figures out whether this binary will be for Condor, or for a
+normal binary.  If it is to be a normal compile, the old <I>ld</I> is
+called.  If this binary is to be linked for condor, the script
+performs the necessary operations in order to prepare a binary that
+can be used with condor.  In order to differentiate between normal
+builds and condor builds, the user simply places 
+<I>condor_compile</I> before their build command, which sets the
+appropriate environment variable that lets the condor linker script
+know it needs to do its magic.
+
+<P>
+In order to perform this full installation of <I>condor_compile</I>, the
+following steps need to be taken:
+
+<P>
+
+<OL>
+<LI>Rename the system linker from ld to ld.real.
+</LI>
+<LI>Copy the condor linker to the location of the previous ld.
+</LI>
+<LI>Set the owner of the linker to root.
+</LI>
+<LI>Set the permissions on the new linker to 755.
+</LI>
+</OL>
+
+<P>
+The actual commands that you must execute depend upon the system that you
+are on.  The location of the system linker (<I>ld</I>), is as follows:
+<PRE>
+	Operating System              Location of ld (ld-path)
+	Linux                         /usr/bin
+	Solaris 2.X                   /usr/ccs/bin
+	OSF/1 (Digital Unix)          /usr/lib/cmplrs/cc
+</PRE>
+
+<P>
+On these platforms, issue the following commands (as root), where
+<I>ld-path</I> is replaced by the path to your system's <I>ld</I>.
+<PRE>
+        mv /[ld-path]/ld /[ld-path]/ld.real
+        cp /usr/local/condor/lib/ld /[ld-path]/ld
+        chown root /[ld-path]/ld
+        chmod 755 /[ld-path]/ld
+</PRE>
+
+<P>
+If you remove Condor from your system latter on, linking will continue
+to work, since the condor linker will always default to compiling
+normal binaries and simply call the real ld.  In the interest of
+simplicity, it is recommended that you reverse the above changes by
+moving your ld.real linker back to it's former position as ld,
+overwriting the condor linker.
+
+<P>
+<U>NOTE</U>: If you ever upgrade your operating system after performing a
+full installation of <I>condor_compile</I>, you will probably have to re-do
+all the steps outlined above.
+Generally speaking, new versions or patches of an operating system
+might replace the system ld binary, which would undo the
+full installation of <I>condor_compile</I>.
+
+<H2><A NAME="SECTION004136000000000000000"></A><A NAME="sec:kbdd"></A>
+<BR>
+3.13.6 The <I>condor_kbdd</I>
+</H2>
+<A NAME="34249"></A>
+<A NAME="34250"></A>
+<A NAME="34216"></A>
+
+<P>
+The Condor keyboard daemon (<I>condor_kbdd</I>) monitors X events on
+machines where the operating system does not provide a way of
+monitoring the idle time of the keyboard or mouse.  On UNIX platforms,
+it is needed to detect USB keyboard activity but otherwise is not
+needed.  On Windows the <I>condor_kbdd</I> is the primary method of
+monitoring both keyboard and mouse idleness.
+
+<P>
+With the move of user sessions out of session 0 on Windows Vista, the
+<I>condor_startd</I> service is no longer able to listen to keyboard and
+mouse events as all services run in session 0. As such, any execute
+node will require <I>condor_kbdd</I> to accurately monitor and report system
+idle time. This is achieved by auto-starting the <I>condor_kbdd</I> whenever
+a user logs into the system. The daemon will run in an invisible
+window and should not be noticeable by the user except for a listing
+in the task manager. When the user logs out, the program is terminated
+by Windows. This change has been made even to pre-Vista Windows
+versions because it adds the capability of monitoring keyboard activity
+from multiple users.
+
+<P>
+To achieve the auto-start with user login, the Condor installer adds a
+<I>condor_kbdd</I> entry to the registry key at
+<code>HKLM\Software\Microsoft\Windows\CurrentVersion\Run</code>. On 64bit versions
+of Vista and higher, the entry is actually placed in
+<code>HKLM\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Run</code>.  In
+instances where the <I>condor_kbdd</I> is unable to connect to the
+<I>condor_startd</I> on Windows XP SP2 or higher, it is likely because an
+exception was not properly added to the Windows firewall.
+
+<P>
+On UNIX, great measures have been taken to make this daemon as robust
+as possible, but the X window system was not designed to facilitate such a
+need, and thus is less then optimal on machines where many users log
+in and out on the console frequently.
+
+<P>
+In order to work with X authority, the system by which X authorizes
+processes to connect to X servers, the <I>condor_kbdd</I> needs to
+run with super user privileges.  Currently, the daemon assumes that X
+uses the <TT>HOME</TT> environment variable in order to locate a file
+named <TT>.Xauthority</TT>, which contains keys necessary to connect to
+an X server.  The keyboard daemon attempts to set this environment
+variable to various users home directories in order to gain a
+connection to the X server and monitor events.  This may fail to work
+on your system, if you are using a non-standard approach.  If the
+keyboard daemon is not allowed to attach to the X server, the state of
+a machine may be incorrectly set to idle when a user is, in fact,
+using the machine.
+
+<P>
+In some environments, the  <I>condor_kbdd</I> will not be able to connect to the X
+server because the user currently logged into the system keeps their
+authentication token for using the X server in a place that no local user on
+the current machine can get to.  
+This may be the case for AFS where
+the user's <TT>.Xauthority</TT> file is in an AFS home directory.
+There may also
+be cases where the  <I>condor_kbdd</I> may not be run with super user privileges
+because of political reasons,
+but it is still desired to be able to monitor X activity.
+In these cases, change the XDM configuration in order to
+start up the <I>condor_kbdd</I> with the permissions of the currently logging in
+user.  Although your situation may differ, if you are running X11R6.3, you
+will probably want to edit the files in <TT>/usr/X11R6/lib/X11/xdm</TT>.
+The <TT>.xsession</TT>
+file should have the keyboard daemon start up at the end,
+and the <TT>.Xreset</TT> file
+should have the keyboard daemon shut down.  
+The <B>-l</B> option can be used to write the daemon's log file to a
+place where the user running the daemon has permission to write a file.  We
+recommend something akin to <TT>$HOME/.kbdd.log</TT>,
+since this is a place where every
+user can write, and it will not get in the way.
+The <B>-pidfile</B> and <B>-k</B>
+options allow
+for easy shut down of the daemon by storing the process id in a file.  
+It will be necessary
+to add lines to the XDM configuration that look something like:
+
+<P>
+<PRE>
+  condor_kbdd -l $HOME/.kbdd.log -pidfile $HOME/.kbdd.pid
+</PRE>
+<P>
+This will start the <I>condor_kbdd</I> as the user who is currently logging in
+and write the log to a file in the directory 
+<TT>$HOME/.kbdd.log/</TT>.  Also, this
+will save the process id of the daemon to <TT>~/.kbdd.pid</TT>, so that when the user
+logs out, XDM can do:
+
+<P>
+<PRE>
+  condor_kbdd -k $HOME/.kbdd.pid
+</PRE>
+<P>
+This will shut down the process recorded in <TT>~/.kbdd.pid</TT> and exit.
+
+<P>
+To see how well the keyboard daemon is working, review
+the log for the daemon and look for successful connections to the X
+server.  If there are none, the <I>condor_kbdd</I>
+is unable to connect to the machine's X server.
+
+<H2><A NAME="SECTION004137000000000000000"></A><A NAME="sec:Contrib-CondorView-Install"></A>
+<BR>
+3.13.7 Configuring The CondorView Server
+</H2>
+
+<P>
+<A NAME="34334"></A>
+The CondorView server is an alternate use of the
+<I>condor_collector</I>
+that logs information on disk, providing a 
+persistent, historical database of pool state.
+This includes machine state, as well as the state of jobs submitted by
+users.
+
+<P>
+An existing <I>condor_collector</I> may act as the
+CondorView collector through configuration.  
+This is the simplest situation, because the only change
+needed is to turn on the logging of historical information.
+The alternative of configuring a new <I>condor_collector</I> to act as the
+CondorView collector is slightly more complicated,
+while it offers the
+advantage that the same CondorView collector may be used
+for several pools as desired, to aggregate information into one place.
+
+<P>
+The following sections describe how to configure a machine to run a
+CondorView server and to configure a pool to send updates to it. 
+
+<P>
+
+<H3><A NAME="SECTION004137100000000000000"></A><A NAME="sec:CondorView-Server-Setup"></A>
+<BR>
+3.13.7.1 Configuring a Machine to be a CondorView Server
+</H3> 
+
+<P>
+<A NAME="34339"></A>
+
+<P>
+To configure the CondorView collector, a few configuration variables
+are added or modified
+for the <I>condor_collector</I> chosen to act
+as the CondorView collector.
+These configuration variables are described in 
+section&nbsp;<A HREF="3_3Configuration.html#sec:Collector-Config-File-Entries">3.3.16</A> on
+page&nbsp;<A HREF="3_3Configuration.html#sec:Collector-Config-File-Entries"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+Here are brief explanations of the entries that must be customized:
+
+<P>
+<DL>
+<DT><STRONG><TT>POOL_HISTORY_DIR</TT> <A NAME="34391"></A> <A NAME="34392"></A></STRONG></DT>
+<DD>The directory where
+historical data will be stored.
+This directory must be writable by whatever user the CondorView
+collector is running as (usually the user <TT>condor</TT>).  
+There is a configurable limit to the maximum space required for all
+the files created by the CondorView server called
+(<TT>POOL_HISTORY_MAX_STORAGE</TT> <A NAME="34397"></A> <A NAME="34398"></A>). 
+
+<P>
+<U>NOTE</U>: This directory should be separate and different from the
+<TT>spool</TT> or <TT>log</TT> directories already set up for
+Condor.
+There are a few problems putting these files into either of those
+directories.
+
+<P>
+</DD>
+<DT><STRONG><TT>KEEP_POOL_HISTORY</TT> <A NAME="34405"></A> <A NAME="34406"></A></STRONG></DT>
+<DD>A boolean value that determines
+if the CondorView collector should store the historical information.
+It is <TT>False</TT> by default, and must be specified as <TT>True</TT> in
+the local configuration file to enable data collection.
+
+<P>
+</DD>
+</DL>
+
+<P>
+Once these settings are in place in the configuration file for the
+CondorView server host, create the directory specified
+in <TT>POOL_HISTORY_DIR</TT> and make it writable by the user the
+CondorView collector is running as.
+This is the same user that owns the <TT>CollectorLog</TT> file in
+the <TT>log</TT> directory. The user is usually <TT>condor</TT>.
+
+<P>
+If using the existing <I>condor_collector</I> as the CondorView collector,
+no further configuration is needed.  
+To run a different
+<I>condor_collector</I> to act as the CondorView collector, configure
+Condor to automatically start it.
+
+<P>
+If using a separate host for the CondorView collector,
+to start it, add the value <TT>COLLECTOR</TT> to
+<TT>DAEMON_LIST</TT>, and restart Condor on that host.
+To run the CondorView collector on the same host as another 
+<I>condor_collector</I>,
+ensure that the two <I>condor_collector</I> daemons use different network ports.
+Here is an example configuration in which the main <I>condor_collector</I> and the
+CondorView collector are started up by the same <I>condor_master</I> daemon on
+the same machine.  In this example, the CondorView collector uses
+port 12345.
+
+<P>
+<PRE>
+  VIEW_SERVER = $(COLLECTOR)
+  VIEW_SERVER_ARGS = -f -p 12345
+  VIEW_SERVER_ENVIRONMENT = "_CONDOR_COLLECTOR_LOG=$(LOG)/ViewServerLog"
+  DAEMON_LIST = MASTER, NEGOTIATOR, COLLECTOR, VIEW_SERVER
+</PRE>
+<P>
+For this change to take effect, restart the
+<I>condor_master</I> on this host.
+This may be accomplished with the <I>condor_restart</I> command,
+if the command is run with
+administrator access to the pool.
+
+<P>
+
+<H3><A NAME="SECTION004137200000000000000"></A><A NAME="sec:CondorView-Pool-Setup"></A>
+<BR>
+3.13.7.2 Configuring a Pool to Report to the CondorView Server
+</H3> 
+
+<P>
+For the CondorView server to function, configure the existing collector to
+forward ClassAd updates to it.
+This configuration is only necessary if 
+the CondorView collector is a different collector from the existing
+<I>condor_collector</I> for the pool.
+All the Condor daemons in the pool send their ClassAd updates to the
+regular <I>condor_collector</I>, which in turn will forward them on to the
+CondorView server.
+
+<P>
+Define the following configuration variable:
+<PRE>
+  CONDOR_VIEW_HOST = full.hostname[:portnumber]
+</PRE>where <code>full.hostname</code> is the full host name of the machine 
+running the CondorView collector.
+The full host name is optionally followed by a colon and
+port number.  This is only necessary if the CondorView
+collector is configured to use a port number other than the default.
+
+<P>
+Place this setting in the configuration file used by the existing 
+<I>condor_collector</I>.
+It is acceptable to place it in the global configuration file.  The
+CondorView collector will ignore this setting (as it should) as it notices
+that it is being asked to forward ClassAds to itself.
+
+<P>
+Once the CondorView server is running with this 
+change, send a
+<I>condor_reconfig</I> command to the main <I>condor_collector</I> for the change to
+take effect, so it will begin forwarding updates.  
+A query to the CondorView collector will verify that it is working.
+A query example:
+
+<P>
+<PRE>
+  condor_status -pool condor.view.host[:portnumber]
+</PRE>
+<H2><A NAME="SECTION004138000000000000000"></A><A NAME="sec:Virtual-Machines"></A>
+<A NAME="34504"></A>
+<BR>
+3.13.8 Running Condor Jobs within a Virtual Machine
+</H2>
+
+<P>
+Condor jobs are formed from executables that are compiled to execute
+on specific platforms.
+This in turn restricts the machines within a Condor pool where
+a job may be executed.
+A Condor job may now be executed on a 
+virtual machine system running VMware, Xen, or KVM.
+This allows Windows executables to run on a Linux machine,
+and Linux executables to run on a Windows machine.
+
+<P>
+In older versions of Condor, other parts of the system were also
+referred to as <I>virtual machines</I>, but in all cases, those are now
+known as <I>slots</I>.
+A virtual machine here describes the environment in which
+the outside operating system (called the host) emulates an inner operating
+system (called the inner virtual machine),
+such that an executable appears to run directly
+on the inner virtual machine.
+In other parts of Condor, a <I>slot</I> (formerly known as
+<I>virtual machine</I>) refers to the multiple CPUs of an SMP
+machine.
+Also, be careful not to confuse the virtual machines discussed here
+with the Java Virtual Machine (JVM) referenced in other parts of this
+manual.
+
+<P>
+Condor has the flexibility to run a job on either the host
+or the inner virtual machine, 
+hence two platforms appear to exist on a single machine.
+Since two platforms are an illusion, Condor understands the illusion, 
+allowing a Condor job to be execute on only
+one at a time.
+
+<P>
+
+<H3><A NAME="SECTION004138100000000000000"></A><A NAME="sec:Virtual-Machines-Configuration"></A>
+<BR>
+3.13.8.1 Installation and Configuration
+</H3>
+
+<P>
+<A NAME="34510"></A>
+Condor must be separately installed, separately configured,
+and separately running on both
+the host and the inner virtual machine.
+
+<P>
+The configuration for the host specifies <TT>VMP_VM_LIST</TT> <A NAME="34533"></A> <A NAME="34534"></A>.
+This specifies host names or IP addresses of all inner virtual machines
+running on this host.
+An example configuration on the host machine:
+
+<P>
+<PRE>
+VMP_VM_LIST = vmware1.domain.com, vmware2.domain.com
+</PRE>
+<P>
+The configuration for each separate inner virtual machine specifies
+<TT>VMP_HOST_MACHINE</TT> <A NAME="34538"></A> <A NAME="34539"></A>.
+This specifies the host for the inner virtual machine.
+An example configuration on an inner virtual machine:
+
+<P>
+<PRE>
+VMP_HOST_MACHINE = host.domain.com
+</PRE>
+<P>
+Given this configuration, as well as communication between
+Condor daemons running on the host and on the inner virtual machine,
+the policy for when jobs may execute is set by Condor.
+While the host is executing a Condor job,
+the <TT>START</TT> policy on the inner virtual machine
+is overridden with <TT>False</TT>,
+so no Condor jobs will be started on the inner virtual machine.
+Conversely, while the inner virtual machine is executing a Condor job,
+the <TT>START</TT> policy on the host
+is overridden with <TT>False</TT>,
+so no Condor jobs will be started on the host.
+
+<P>
+The inner virtual machine is further provided with a new syntax for
+referring to the machine ClassAd attributes of its host.
+Any machine ClassAd attribute with a prefix of the string
+<TT>HOST_</TT> explicitly refers to the host's ClassAd attributes.
+The <TT>START</TT> policy on the inner virtual machine
+ought to use this syntax to avoid starting jobs when its host is
+too busy processing other items.
+An example configuration for <TT>START</TT> on an inner virtual machine:
+
+<P>
+<PRE>
+START = ( (KeyboardIdle &gt; 150 ) &amp;&amp; ( HOST_KeyboardIdle &gt; 150 ) \
+        &amp;&amp; ( LoadAvg &lt;= 0.3 ) &amp;&amp; ( HOST_TotalLoadAvg &lt;= 0.3 ) )
+</PRE>
+<H2><A NAME="SECTION004139000000000000000"></A><A NAME="sec:Configuring-SMP"></A>
+<BR>
+3.13.9 Configuring The Startd for SMP Machines
+</H2>
+
+<P>
+<A NAME="34586"></A>
+This section describes how to configure the <I>condor_startd</I> for SMP
+(Symmetric Multi-Processor) machines.
+Machines with more than one CPU may
+be configured to run more than one job at a time.
+As always, owners of the resources have great flexibility in defining
+the policy under which multiple jobs may run, suspend, vacate, etc.  
+
+<P>
+
+<H3><A NAME="SECTION004139100000000000000"></A><A NAME="sec:How-Resources-Represented"></A>
+<BR>
+3.13.9.1 How Shared Resources are Represented to Condor
+</H3>
+
+<P>
+The way SMP machines are represented to the Condor system is that
+the shared resources are broken up into individual <I>slots</I>.
+Each slot can be matched and claimed by users.
+Each slot is represented by an individual ClassAd
+(see the ClassAd reference, section&nbsp;<A HREF="4_1Condor_s_ClassAd.html#classad-reference">4.1</A>, for
+details). 
+In this way, each SMP machine will appear to the Condor system as
+a collection of separate slots.  
+As an example, an SMP machine named
+vulture.cs.wisc.edu would appear to Condor as the
+multiple machines, named slot1@vulture.cs.wisc.edu,
+slot2@vulture.cs.wisc.edu,
+slot3@vulture.cs.wisc.edu, and so on.
+
+<P>
+The way that the <I>condor_startd</I> breaks up the
+shared system resources into the different slots
+is configurable.
+All shared system resources (like RAM, disk space, swap space, etc.)
+can either be divided evenly among all the slots, with each
+CPU getting its own slot, or you can define your own
+<I>slot types</I>, so that resources can be unevenly
+partitioned.  Regardless of the partitioning scheme used, it is important
+to remember the goal is to create a representative slot
+ClassAd, to be used for matchmaking with jobs.  Condor does not
+directly enforce slot shared resource allocations, and jobs
+are free to oversubscribe to shared resources.
+
+<P>
+Consider an example where two slots are each defined with 50%of
+available RAM.  The resultant ClassAd for each slot will advertise one
+half the available RAM.  Users may submit jobs with RAM requirements
+that match these slots.  However, jobs run on either slot are free to
+consume more than 50%of available RAM.  Condor will not
+directly enforce a RAM utilization limit on either slot.  If a shared
+resource enforcement capability is needed, it is possible to write a
+Startd policy that will evict a job that oversubscribes to shared
+resources, see section <A HREF="#sec:Config-SMP-Policy">3.13.9</A>.
+
+<P>
+The following section gives details on how to configure Condor to
+divide the resources on an SMP machine into separate slots.
+
+<P>
+
+<H3><A NAME="SECTION004139200000000000000"></A><A NAME="sec:SMP-Divide"></A>
+<BR>
+3.13.9.2 Dividing System Resources in SMP Machines
+</H3>
+
+<P>
+This section describes the settings that allow you to define your own
+slot types and to control how many slots of each
+type are reported to Condor.
+
+<P>
+There are two main ways to go about partitioning an SMP machine:
+
+<P>
+<DL>
+<DT><STRONG>Define your own slot types.</STRONG></DT>
+<DD>By defining your own types, you can specify what fraction of shared
+  system resources (CPU, RAM, swap space and disk space) go to each
+  slot.
+  Once you define your own types, you can control how many of each
+  type are reported at any given time.
+
+<P>
+</DD>
+<DT><STRONG>Evenly divide all resources.</STRONG></DT>
+<DD>If you do not define your own types, the <I>condor_startd</I> will
+  automatically	partition your machine into slots for you.
+  It will do so by placing a single CPU in each slot, and evenly dividing
+  all shared resources among the slots.
+  With this default partitioning, you only specify how many
+  slots are reported at a time.
+  By default, all slots are reported to Condor.
+
+<P>
+</DD>
+</DL>
+
+<P>
+The number of each type being
+reported can be changed at run-time, by issuing a reconfiguration
+command to
+the <I>condor_startd</I> daemon (sending a SIGHUP or using <I>condor_reconfig</I>).
+However, the definitions for the types themselves cannot be changed
+with reconfiguration.
+If you change any slot type definitions, you must use <I>condor_restart</I>
+<PRE>
+condor_restart -startd
+</PRE>
+for that change to take effect.
+
+<P>
+
+<H3><A NAME="SECTION004139300000000000000"></A><A NAME="sec:Slot-Type-Define"></A>
+<BR>
+3.13.9.3 Defining Slot Types
+</H3>
+
+<P>
+To define your own slot types, add configuration file
+parameters that list how much of each system resource you want in the
+given slot type.  Do this by defining configuration
+variables of the form
+<TT>SLOT_TYPE_&lt;N&gt;</TT> <A NAME="34778"></A> <A NAME="34779"></A>.
+The <code>&lt;N&gt;</code> represents an integer (for example, 
+<TT>SLOT_TYPE_1</TT>), which specifies the slot type defined.
+Note that there may be multiple slots of each type.  The number created
+is configured with <TT>NUM_SLOTS_TYPE_&lt;N&gt;</TT> as described later in
+this section.
+
+<P>
+A type describes what share of the total system resources a given
+slot has available to it.
+
+<P>
+The type can be defined by:
+
+  <UL>
+<LI>A simple fraction, such as 1/4
+</LI>
+<LI>A simple percentage, such as 25%
+</LI>
+<LI>A comma-separated list of attributes, with a percentage,
+	fraction, numerical value, or <TT>auto</TT> for each one.
+</LI>
+<LI>A comma-separated list including a blanket value that serves
+        as a default for any resources not explicitly specified in the list.
+</LI>
+</UL>
+A simple fraction or percentage causes an allocation
+of the total system resources.
+This includes the number of CPUs.
+A comma-separated list allows a fine-tuning of
+the amounts for specific attributes.
+
+<P>
+The attributes that specify the number of CPUs
+and the total amount of RAM in
+the SMP machine do not change.
+For these attributes, specify either absolute values or
+percentages of the total available amount (or <TT>auto</TT>).  
+For example, in a machine with 128 Mbytes of RAM,
+all the following definitions result in the same allocation amount.
+<PRE>
+mem=64
+mem=1/2
+mem=50%
+mem=auto
+</PRE>
+
+<P>
+Other attributes are dynamic, such as disk space and swap space.
+For these, specify a percentage or fraction of the total
+value that is allocated to each slot, instead of specifying absolute values.
+As the total values of these resources change on your machine, each
+slot will take its fraction of the total and report that as its
+available amount.
+
+<P>
+The disk space allocated to each slot is taken from the disk partition
+containing the slots execute directory (configured with
+<TT>EXECUTE</TT> <A NAME="34787"></A> <A NAME="34788"></A> or <TT>SLOT&lt;N&gt;_EXECUTE</TT> <A NAME="34792"></A> <A NAME="34793"></A>).  If every slot is in a
+different partition, then each one may be defined with up to
+100%for its disk share.  If some slots are in the same
+partition, then their total is not allowed to exceed 100%.
+
+<P>
+The four attribute names are case insensitive when defining slot types.
+The first letter of the attribute name distinguishes between
+the attributes.
+The four attributes, with several examples of acceptable names for
+each are
+
+<UL>
+<LI>Cpus, C, c, cpu 
+</LI>
+<LI>ram, RAM, MEMORY, memory, Mem, R, r, M, m
+</LI>
+<LI>disk, Disk, D, d
+</LI>
+<LI>swap, SWAP, S, s, VirtualMemory, V, v
+</LI>
+</UL>
+
+<P>
+As an example, consider a
+host of 4 CPUs and 256 megs of RAM.
+Here are valid example slot type definitions. 
+Types 1-3 are all equivalent to each other, as are types 4-6.  Note that
+in a real configuration, you would not use all of these slot types together
+because they add up to more than 100%of the various system resources.
+Also note that in a real configuration, you would need to also define
+<TT>NUM_SLOTS_TYPE_&lt;N&gt;</TT> for each slot type.
+
+<P>
+<PRE>
+SLOT_TYPE_1 = cpus=2, ram=128, swap=25%, disk=1/2
+
+SLOT_TYPE_2 = cpus=1/2, memory=128, virt=25%, disk=50%
+
+SLOT_TYPE_3 = c=1/2, m=50%, v=1/4, disk=1/2
+
+SLOT_TYPE_4 = c=25%, m=64, v=1/4, d=25%
+
+SLOT_TYPE_5 = 25%
+
+SLOT_TYPE_6 = 1/4
+</PRE>
+
+<P>
+The default value for each resource share is <TT>auto</TT>.  The share
+may also be explicitly set to <TT>auto</TT>.  All slots with the value
+<TT>auto</TT> for a given type of resource will evenly divide
+whatever remains after subtracting out whatever was explicitly
+allocated in other slot definitions.  For example, if one slot is
+defined to use 10%of the memory and the rest define it as
+<TT>auto</TT> (or leave it undefined), then the rest of the slots will
+evenly divide 90%of the memory between themselves.
+
+<P>
+In both of the following examples, the disk share is set to <TT>auto</TT>,
+cpus is 1, and everything else is 50%:
+
+<P>
+<PRE>
+SLOT_TYPE_1 = cpus=1, ram=1/2, swap=50%
+
+SLOT_TYPE_1 = cpus=1, disk=auto, 50%
+</PRE>
+
+<P>
+The number of slots of each type is set with the
+configuration variable
+<TT>NUM_SLOTS_TYPE_&lt;N&gt;</TT> <A NAME="34803"></A> <A NAME="34804"></A>,
+where N is the type as given in the
+<TT>SLOT_TYPE_&lt;N&gt;</TT>variable.
+
+<P>
+Note that it is possible to set the configuration variables such
+that they specify an impossible configuration.
+If this occurs, the <I>condor_startd</I> daemon fails after writing
+a message to its log attempting to indicate the configuration
+requirements that it could not implement.
+
+<P>
+
+<H3><A NAME="SECTION004139400000000000000"></A><A NAME="sec:Config-Slot-Number"></A>
+<BR>
+3.13.9.4 Evenly Divided Resources
+</H3>
+
+<P>
+If you are not defining your own slot types, then all resources
+are divided equally among the slots.
+The number of slots within the SMP machine is the only attribute
+that needs to be defined.
+Its definition is accomplished by setting the configuration
+variable <TT>NUM_SLOTS</TT> <A NAME="34811"></A> <A NAME="34812"></A> to the
+integer number of slots desired.
+If variable <TT>NUM_SLOTS</TT> is not defined,
+it defaults to the number of CPUs within the SMP machine.
+You cannot use <TT>NUM_SLOTS</TT> to make Condor advertise more
+slots than there are CPUs on the machine.
+To do that, use <TT>NUM_CPUS</TT> <A NAME="34818"></A> <A NAME="34819"></A>.
+
+<P>
+
+<H3><A NAME="SECTION004139500000000000000"></A><A NAME="sec:Config-SMP-Policy"></A>
+<BR>
+3.13.9.5 Configuring Startd Policy for SMP Machines
+</H3>
+
+<P>
+<A NAME="34636"></A>
+Section&nbsp;<A HREF="3_5Policy_Configuration.html#sec:Configuring-Policy">3.5</A> details the Startd
+Policy Configuration.
+This section continues the discussion with respect to SMP machines.
+
+<P>
+Each slot within an SMP machine is treated as an
+independent machine,
+each with its own view of its machine state.
+There is a single set of policy expressions for the SMP machine
+as a whole.
+This policy may consider the slot state(s) in its expressions.
+This makes some policies easy to set, but it makes
+other policies difficult or impossible to set.
+
+<P>
+An easy policy to set
+configures how many of the slots
+notice console or tty activity on the SMP as a whole.
+Slots that are not configured to notice any activity will report
+ConsoleIdle and KeyboardIdle times from when the
+<I>condor_startd</I> daemon was started,
+(plus a configurable number of seconds).
+With this, you can set up a multiple CPU machine with
+the default policy
+settings plus add that the keyboard and console noticed by only one
+slot.
+Assuming a reasonable load average (see
+section&nbsp;<A HREF="#sec:SMP-Load">3.13.9</A> below on ``Load Average for SMP
+Machines''), only the one slot will suspend or vacate its job
+when the owner starts typing at their machine again.
+The rest of the slots could be matched with jobs and leave
+them running, even while the user was interactively using the
+machine. 
+If the default policy is used,
+all slots notice
+tty and console activity
+and
+currently running jobs would suspend or preempt.
+
+<P>
+This example policy is
+controlled with the following configuration variables.
+
+<UL>
+<LI><TT>SLOTS_CONNECTED_TO_CONSOLE</TT> <A NAME="34825"></A> <A NAME="34826"></A>
+</LI>
+<LI><TT>SLOTS_CONNECTED_TO_KEYBOARD</TT> <A NAME="34830"></A> <A NAME="34831"></A>
+</LI>
+<LI><TT>DISCONNECTED_KEYBOARD_IDLE_BOOST</TT> <A NAME="34835"></A> <A NAME="34836"></A>
+</LI>
+</UL>
+
+<P>
+These configuration variables are fully described in
+section&nbsp;<A HREF="3_3Configuration.html#sec:Startd-Config-File-Entries">3.3.10</A> on
+page&nbsp;<A HREF="3_3Configuration.html#sec:Startd-Config-File-Entries"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> which lists all the
+configuration file settings for the <I>condor_startd</I>.
+
+<P>
+The configuration of slots allows each slot to advertise
+its own machine ClassAd.
+Yet, there is only one set of policy expressions for the SMP
+machine as a whole.
+This makes the implementation of certain types of policies impossible.
+While evaluating the state of one slot (within the SMP machine),
+the state of other slots (again within the SMP machine) are not
+available.
+Decisions for one slot cannot be based on what other machines within the SMP
+are doing.
+
+<P>
+Specifically, the evaluation of a slot policy expression works in
+the following way.
+
+<OL>
+<LI>The configuration file specifies policy expressions that are shared among
+all of the slots on the SMP machine.
+</LI>
+<LI>Each slot reads the configuration file and sets up its own machine ClassAd.
+</LI>
+<LI>Each slot is now separate from the others.  It has a
+different state, a different machine ClassAd, and if there is a job
+running, a separate job ad.
+Each slot periodically
+evaluates the policy expressions, changing its own state
+as necessary.
+This occurs independently of the other slots on the machine.
+So, if the <I>condor_startd</I> daemon is evaluating a policy expression
+on a specific slot,
+and the policy expression refers to <TT>ProcID</TT>, <TT>Owner</TT>,
+or any attribute from a job ad,
+it <I>always</I> refers to the ClassAd of the
+job running on the specific slot.
+</LI>
+</OL>
+
+<P>
+To set a different policy for the slots within an SMP machine,
+a (<code>SUSPEND</code>) policy will be of the form
+<PRE>
+SUSPEND = ( (SlotID == 1) &amp;&amp; (PolicyForSlot1) ) || \
+            ( (SlotID == 2) &amp;&amp; (PolicyForSlot2) )
+</PRE>
+where <code>(PolicyForSlot1)</code> and <code>(PolicyForSlot2)</code> are the
+desired expressions for each slot.
+
+<P>
+
+<H3><A NAME="SECTION004139600000000000000"></A><A NAME="sec:SMP-Load"></A>
+<BR>
+3.13.9.6 Load Average for SMP Machines
+</H3>
+
+<P>
+Most operating systems define the load average for an SMP machine as
+the total load on all CPUs.
+For example, if you have a 4-CPU machine with 3 CPU-bound processes
+running at the same time, the load would be 3.0
+In Condor, we maintain this view of the total load average and publish
+it in all resource ClassAds as <TT>TotalLoadAvg</TT>.
+
+<P>
+Condor also provides a per-CPU load average for SMP machines.
+This nicely represents the model that each node on an SMP is a slot,
+separate from the other nodes.
+All of the default, single-CPU policy expressions can be used directly
+on SMP machines, without modification, since the <TT>LoadAvg</TT> and
+<TT>CondorLoadAvg</TT> attributes are the per-slot versions,
+not the total, SMP-wide versions.
+
+<P>
+The per-CPU load average on SMP machines is a Condor invention. 
+No system call exists to ask the operating system for this value.
+Condor already computes the load average generated by Condor on each
+slot.
+It does this by close monitoring of all processes spawned by any of the
+Condor daemons, even ones that are orphaned and then inherited by
+<I>init</I>. 
+This Condor load average per slot is reported as
+the attribute
+<TT>CondorLoadAvg</TT> in all resource ClassAds, and the total Condor
+load average for the entire machine is reported as
+<TT>TotalCondorLoadAvg</TT>. 
+The total, system-wide load average for the entire
+machine  is reported as <TT>TotalLoadAvg</TT>.
+Basically, Condor walks through all the slots and assigns out
+portions of the total load average to each one. 
+First, Condor assigns the known Condor load average to each node that
+is generating load.  
+If there's any load average left in the total system load, it is
+considered an owner load.
+Any slots Condor believes are in the Owner state (like
+ones that have keyboard activity), are the first to get assigned
+this owner load.
+Condor hands out owner load in increments of at most 1.0, so generally
+speaking, no slot has a load average above 1.0.
+If Condor runs out of total load average before it runs out of virtual
+machines, all the remaining machines believe that they have no load average
+at all.
+If, instead, Condor runs out of slots and it still has owner
+load remaining, Condor starts assigning that load to Condor nodes as
+well,
+giving individual nodes with a load average higher than 1.0.
+
+<P>
+
+<H3><A NAME="SECTION004139700000000000000"></A><A NAME="sec:SMP-logging"></A>
+<BR>
+3.13.9.7 Debug logging in the SMP Startd
+</H3>
+
+<P>
+This section describes how the <I>condor_startd</I> daemon
+handles its debugging messages for SMP machines.
+In general, a given log message will either be something that is
+machine-wide (like reporting the total system load average), or it
+will be specific to a given slot.
+Any log entrees specific to a slot have an extra
+header printed out in the entry: <TT>slot#:</TT>.  
+So, for example, here's the output about system resources that are
+being gathered (with <TT>D_FULLDEBUG</TT> and <TT>D_LOAD</TT> turned on) on
+a 2-CPU machine with no Condor activity, and the keyboard connected to
+both slots:
+<PRE>
+11/25 18:15 Swap space: 131064
+11/25 18:15 number of Kbytes available for (/home/condor/execute): 1345063
+11/25 18:15 Looking up RESERVED_DISK parameter
+11/25 18:15 Reserving 5120 Kbytes for file system
+11/25 18:15 Disk space: 1339943
+11/25 18:15 Load avg: 0.340000 0.800000 1.170000
+11/25 18:15 Idle Time: user= 0 , console= 4 seconds
+11/25 18:15 SystemLoad: 0.340   TotalCondorLoad: 0.000  TotalOwnerLoad: 0.340
+11/25 18:15 slot1: Idle time: Keyboard: 0        Console: 4
+11/25 18:15 slot1: SystemLoad: 0.340  CondorLoad: 0.000  OwnerLoad: 0.340
+11/25 18:15 slot2: Idle time: Keyboard: 0        Console: 4
+11/25 18:15 slot2: SystemLoad: 0.000  CondorLoad: 0.000  OwnerLoad: 0.000
+11/25 18:15 slot1: State: Owner           Activity: Idle
+11/25 18:15 slot2: State: Owner           Activity: Idle
+</PRE>
+
+<P>
+If, on the other hand, this machine only had one slot
+connected to the keyboard and console, and the other slot was running a
+job, it might look something like this:
+<PRE>
+11/25 18:19 Load avg: 1.250000 0.910000 1.090000
+11/25 18:19 Idle Time: user= 0 , console= 0 seconds
+11/25 18:19 SystemLoad: 1.250   TotalCondorLoad: 0.996  TotalOwnerLoad: 0.254
+11/25 18:19 slot1: Idle time: Keyboard: 0        Console: 0
+11/25 18:19 slot1: SystemLoad: 0.254  CondorLoad: 0.000  OwnerLoad: 0.254
+11/25 18:19 slot2: Idle time: Keyboard: 1496     Console: 1496
+11/25 18:19 slot2: SystemLoad: 0.996  CondorLoad: 0.996  OwnerLoad: 0.000
+11/25 18:19 slot1: State: Owner           Activity: Idle
+11/25 18:19 slot2: State: Claimed         Activity: Busy
+</PRE>
+
+<P>
+As you can see, shared system resources are printed without the header
+(like total swap space), and slot-specific messages (like the load
+average or state of each slot) get the special header appended.  
+
+<P>
+
+<H3><A NAME="SECTION004139800000000000000"></A><A NAME="sec:SMP-exprs"></A>
+<BR>
+3.13.9.8 Configuring STARTD_ATTRS on a per-slot basis
+</H3>
+
+<P>
+The <TT>STARTD_ATTRS</TT> <A NAME="34859"></A> <A NAME="34860"></A> (and legacy <TT>STARTD_EXPRS</TT>) settings
+can be configured on a per-slot basis.
+The <I>condor_startd</I> daemon builds the list of items to
+advertise by combining the lists in this order:
+
+<OL>
+<LI><TT>STARTD_ATTRS</TT>
+</LI>
+<LI><TT>STARTD_EXPRS</TT>
+</LI>
+<LI><TT>SLOT&lt;N&gt;_STARTD_ATTRS</TT>
+</LI>
+<LI><TT>SLOT&lt;N&gt;_STARTD_EXPRS</TT>
+</LI>
+</OL>
+
+<P>
+For example, consider the following configuration:
+<PRE>
+STARTD_ATTRS = favorite_color, favorite_season
+SLOT1_STARTD_ATTRS = favorite_movie
+SLOT2_STARTD_ATTRS = favorite_song
+</PRE>
+
+<P>
+This will result in the <I>condor_startd</I> ClassAd for
+slot1 defining values for
+<TT>favorite_color</TT>, <TT>favorite_season</TT>,
+and <TT>favorite_movie</TT>.
+slot2 will have values for
+<TT>favorite_color</TT>, <TT>favorite_season</TT>, and <TT>favorite_song</TT>.
+
+<P>
+Attributes themselves in the <TT>STARTD_ATTRS</TT> list
+can also be defined on a per-slot basis.
+Here is another example:
+
+<P>
+<PRE>
+favorite_color = "blue"
+favorite_season = "spring"
+STARTD_ATTRS = favorite_color, favorite_season
+SLOT2_favorite_color = "green"
+SLOT3_favorite_season = "summer"
+</PRE>
+
+<P>
+For this example, the <I>condor_startd</I> ClassAds are
+<DL>
+<DT></DT>
+<DD>slot1:
+<PRE>
+favorite_color = "blue"
+favorite_season = "spring"
+</PRE>
+</DD>
+<DT></DT>
+<DD>slot2:
+<PRE>
+favorite_color = "green"
+favorite_season = "spring"
+</PRE>
+</DD>
+<DT></DT>
+<DD>slot3:
+<PRE>
+favorite_color = "blue"
+favorite_season = "summer"
+</PRE>
+</DD>
+</DL>
+
+<P>
+
+<H3><A NAME="SECTION004139900000000000000"></A><A NAME="sec:SMP-dynamicprovisioning"></A>
+<BR>
+3.13.9.9 Dynamic <I>condor_startd</I> Provisioning: Dynamic Slots
+</H3>
+<A NAME="34761"></A>
+<A NAME="34762"></A>
+<A NAME="34711"></A>
+
+<P>
+<I>Dynamic provisioning</I>,
+also referred to as a partitionable <I>condor_startd</I> or as dynamic slots,
+allows users to mark slots as partitionable. 
+This means that more than one job can occupy a single slot at any one time. 
+Typically, slots have a fixed set of resources,
+including the CPUs, memory and disk space. 
+By partitioning the slot, 
+these resources become more flexible and able to be better utilized.
+
+<P>
+Dynamic provisioning provides powerful configuration
+possibilities, and so should be used with care. 
+Specifically, while preemption occurs for each individual dynamic slot,
+it cannot occur directly for the partitionable slot, 
+or for groups of dynamic slots. 
+For example, for a large number of jobs requiring 1GB of memory,
+a pool might be split up into 1GB dynamic slots. 
+In this instance a job requiring 2GB of memory will be starved
+and unable to run.
+
+<P>
+Here is an example that demonstrates how more than one job
+can be matched to a single slot using dynamic provisioning.
+In this example, slot1 has the following resources:
+<DL>
+<DT></DT>
+<DD>cpu=10
+  
+</DD>
+<DT></DT>
+<DD>memory=10240
+  
+</DD>
+<DT></DT>
+<DD>disk=BIG
+</DD>
+</DL>
+Assume that JobA is allocated to this slot.
+JobA includes the following requirements:
+<DL>
+<DT></DT>
+<DD>cpu=3
+  
+</DD>
+<DT></DT>
+<DD>memory=1024
+  
+</DD>
+<DT></DT>
+<DD>disk=10240 
+</DD>
+</DL>
+The portion of the slot that is utilized is referred to as Slot1.1,
+and after allocation, the slot advertises that it has
+the following resources still available:
+<DL>
+<DT></DT>
+<DD>cpu=7
+  
+</DD>
+<DT></DT>
+<DD>memory=9216
+  
+</DD>
+<DT></DT>
+<DD>disk=BIG-10240
+</DD>
+</DL>
+As each new job is allocated to Slot1,
+it breaks into Slot1.1, Slot1.2, etc., until the entire set of
+available resources have been consumed by jobs.
+
+<P>
+To enable dynamic provisioning, 
+set the <TT>SLOT_TYPE_&lt;N&gt;_PARTITIONABLE</TT> <A NAME="34891"></A> <A NAME="34892"></A> configuration variable 
+to <TT>True</TT>.
+The string <TT>N</TT> within the configuration variable name
+is the slot number.
+
+<P>
+In a pool using dynamic provisioning, 
+jobs can have extra, and desired, resources specified in the submit
+description file:
+<DL>
+<DT></DT>
+<DD>request_cpus
+  
+</DD>
+<DT></DT>
+<DD>request_memory
+  
+</DD>
+<DT></DT>
+<DD>request_disk (in kilobytes)
+</DD>
+</DL>
+
+<P>
+This example shows a portion of the job submit description file
+for use when submitting a job to a pool with dynamic provisioning.
+<PRE>
+universe = vanilla
+
+request_cpus = 3
+request_memory = 1024
+request_disk = 10240
+
+queue
+</PRE>
+
+<P>
+For each type of slot,
+the original, partitionable slot and the new smaller, dynamic slots,
+an attribute is added to identify it.
+The original slot,
+as defined at page&nbsp;<A HREF="10_Appendix_A.html#PartitionableSlot-machine-attribute"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>,
+will have an attribute stating 
+<PRE>
+  PartitionableSlot = True
+</PRE>
+and the dynamic slots will have an attribute, 
+as defined at page&nbsp;<A HREF="10_Appendix_A.html#DynamicSlot-machine-attribute"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>,
+<PRE>
+  DynamicSlot = True
+</PRE>
+These attributes may be used in a <TT>START</TT> expression for 
+the purposes of creating detailed policies.
+
+<P>
+A partitionable slot will always appear as though it is not running a job.
+It will eventually show as having no available resources, 
+which will prevent further matching to new jobs.
+Because it has been effectively broken up into smaller slots,
+these will show as running jobs directly.
+These dynamic slots can also be preempted in the same way as 
+nonpartitioned slots.
+
+<P>
+<A NAME="34746"></A>
+
+<H2><A NAME="SECTION0041310000000000000000"></A><A NAME="sec:Config-Dedicated-Jobs"></A>
+<BR>
+3.13.10 Condor's Dedicated Scheduling
+</H2> 
+
+<P>
+<A NAME="35029"></A>
+<A NAME="35030"></A>
+
+<P>
+Applications that require multiple resources,
+yet must not be preempted, are handled gracefully by Condor.
+Condor combines
+<A NAME="35031"></A>
+<A NAME="35032"></A>
+<I>opportunistic scheduling</I> and <I>dedicated scheduling</I> within
+a single system.
+<I>Opportunistic scheduling</I> involves placing a job on a non-dedicated
+resource under the assumption that the resource may not be
+available for the entire duration of the job.
+<A NAME="35036"></A>
+<A NAME="35037"></A>
+<I>Dedicated scheduling</I> assumes the constant availability of
+resources;
+it is assumed that the job will run to completion,
+without interruption.
+
+<P>
+To support applications needing dedicated resources,
+an administrator 
+configures resources to be dedicated.
+These resources are controlled by a dedicated scheduler, a
+single machine within the pool that runs a <I>condor_schedd</I> daemon.
+There is no limit on the number of dedicated schedulers within
+a Condor pool.
+However, each dedicated resource may only be managed by a single
+dedicated scheduler.
+Running multiple dedicated schedulers within a single pool
+results in a fragmentation of dedicated resources.
+This can create a situation where jobs cannot run, because 
+there are too few resource that may be allocated.
+
+<P>
+After a <I>condor_schedd</I> daemon has been selected as the dedicated scheduler
+for the pool and resources are configured to be
+dedicated, users submit parallel universe jobs (including MPI applications)
+through that <I>condor_schedd</I> daemon.
+When an idle parallel universe job is found in the queue,
+this dedicated scheduler
+performs its own scheduling algorithm to find and claim appropriate
+resources for the job.
+When a resource can no longer be used to serve a job that must
+not be preempted, the resource is allowed to run opportunistic jobs.
+
+<P>
+
+<H3><A NAME="SECTION0041310100000000000000"></A><A NAME="sec:Setup-Dedicated-Scheduler"></A>
+<BR>
+3.13.10.1 Selecting and Setting Up a Dedicated Scheduler
+</H3>
+
+<P>
+We recommend that you select a single machine within a 
+Condor pool to act as the dedicated scheduler.
+This becomes the machine from upon which all users submit their 
+parallel universe jobs.
+The perfect choice for the dedicated scheduler 
+is the single, front-end machine for
+a dedicated cluster of compute nodes.
+For the pool without an obvious choice for a submit machine,
+choose a machine that all users can log into, as well as one
+that is likely to be up and running all the time.
+All of Condor's other resource requirements for a submit machine apply to
+this machine, such as having enough disk space in the spool
+directory to hold jobs. See section&nbsp;<A HREF="3_2Installation.html#sec:Preparing-to-Install">3.2.2</A> on
+page&nbsp;<A HREF="3_2Installation.html#sec:Preparing-to-Install"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for details on these issues. 
+
+<P>
+
+<H3><A NAME="SECTION0041310200000000000000"></A><A NAME="sec:Configure-Dedicated-Resource"></A>
+<BR>
+3.13.10.2 Configuration Examples for Dedicated Resources
+</H3> 
+
+<P>
+Each machine may have its own policy for the execution of jobs.
+This policy is set by configuration.
+Each machine with aspects of its configuration that are dedicated
+identifies the dedicated scheduler.
+And, the ClassAd representing a job to be executed on
+one or more of these dedicated machines includes an identifying attribute.
+An example configuration file with the following various policy settings
+is <TT>/etc/condor_config.local.dedicated.resource</TT>.
+
+<P>
+Each dedicated machine defines the configuration variable
+<TT>DedicatedScheduler</TT> <A NAME="35109"></A> <A NAME="35110"></A>, which identifies
+the dedicated scheduler it is managed by.
+The local configuration file for any dedicated resource contains
+a modified form of
+
+<P>
+<PRE>
+DedicatedScheduler = "DedicatedScheduler@full.host.name"
+STARTD_ATTRS = $(STARTD_ATTRS), DedicatedScheduler
+</PRE>
+
+<P>
+Substitute the host name of the dedicated scheduler
+machine for the string "<code>full.host.name</code>". 
+
+<P>
+If running personal Condor, the name of the scheduler includes
+the user name it was started as, so the configuration appears as:
+
+<P>
+<PRE>
+DedicatedScheduler = "DedicatedScheduler@username@full.host.name"
+STARTD_ATTRS = $(STARTD_ATTRS), DedicatedScheduler
+</PRE>
+
+<P>
+All dedicated resources must have policy expressions which allow for
+jobs to always run, but not be preempted.
+The resource must also be configured to prefer jobs from the dedicated 
+scheduler over all other jobs.
+Therefore, configuration gives
+the dedicated scheduler of choice the highest rank.
+It is worth noting that Condor puts no other requirements on a
+resource for it to be considered dedicated.  
+
+<P>
+Job ClassAds from the dedicated scheduler 
+contain the attribute <TT>Scheduler</TT>.
+The attribute is defined by a string of the form 
+<PRE>
+Scheduler = "DedicatedScheduler@full.host.name"
+</PRE>
+The host name of the dedicated scheduler
+substitutes for the string <code>full.host.name</code>. 
+
+<P>
+Different resources in the pool may have different dedicated policies
+by varying the local configuration.
+
+<P>
+<DL>
+<DT><STRONG>Policy Scenario: Machine Runs Only Jobs That Require Dedicated Resources</STRONG></DT>
+<DD><P>
+One possible scenario for the use of a dedicated resource
+is to only run jobs that require the dedicated resource.
+To enact this policy, the configure with the following expressions:
+
+<P>
+<PRE>
+START     = Scheduler =?= $(DedicatedScheduler)
+SUSPEND   = False
+CONTINUE  = True
+PREEMPT   = False
+KILL      = False
+WANT_SUSPEND   = False
+WANT_VACATE    = False
+RANK      = Scheduler =?= $(DedicatedScheduler)
+</PRE>
+
+<P>
+The <TT>START</TT> <A NAME="35115"></A> <A NAME="35116"></A> expression specifies that a job with the <TT>Scheduler</TT>
+attribute must match the string corresponding
+<TT>DedicatedScheduler</TT> attribute in the machine ClassAd.
+The <TT>RANK</TT> <A NAME="35122"></A> <A NAME="35123"></A> expression specifies that this same job 
+(with the <TT>Scheduler</TT> attribute)
+has the highest rank.
+This prevents other jobs from preempting it based on user priorities.
+The rest of the expressions disable all of the <I>condor_startd</I> daemon's
+regular policies for evicting jobs when keyboard and CPU activity is
+discovered on the machine.
+
+<P>
+</DD>
+<DT><STRONG>Policy Scenario: Run Both Jobs That Do and Do Not Require Dedicated Resources</STRONG></DT>
+<DD><P>
+While the first example works nicely for jobs requiring
+dedicated resources,
+it can 
+lead to poor utilization of the dedicated machines.  
+A more sophisticated strategy allows 
+the machines to run other jobs, when no jobs that
+require dedicated resources exist.
+The machine is
+configured to prefer jobs that require dedicated resources,
+but not prevent others from running.
+
+<P>
+To implement this,
+configure the machine as a dedicated resource (as above)
+modifying only the <TT>START</TT> expression:
+
+<P>
+<PRE>
+START = True
+</PRE>
+
+<P>
+</DD>
+<DT><STRONG>Policy Scenario: Adding Desk-Top Resources To The Mix</STRONG></DT>
+<DD><P>
+A third policy example allows all jobs.
+These desk-top machines use a preexisting <TT>START</TT> expression that
+takes the machine owner's usage into account for some jobs.
+The machine does not preempt jobs that must run on dedicated
+resources,
+while it will preempt other jobs based on a previously set
+policy.
+So, the default pool policy is used for starting and
+stopping jobs, while jobs that require a dedicated resource always start 
+and are not preempted.
+
+<P>
+The <TT>START</TT>, <TT>SUSPEND</TT>, <TT>PREEMPT</TT>, and
+<TT>RANK</TT> policies are set in the global configuration.
+Locally, the configuration is modified to this hybrid policy
+by adding a second case.
+
+<P>
+<PRE>
+SUSPEND    = Scheduler =!= $(DedicatedScheduler) &amp;&amp; ($(SUSPEND))
+PREEMPT    = Scheduler =!= $(DedicatedScheduler) &amp;&amp; ($(PREEMPT))
+RANK_FACTOR    = 1000000
+RANK   = (Scheduler =?= $(DedicatedScheduler) * $(RANK_FACTOR)) \
+               + $(RANK)
+START  = (Scheduler =?= $(DedicatedScheduler)) || ($(START))
+</PRE>
+
+<P>
+Define <TT>RANK_FACTOR</TT> <A NAME="35136"></A> <A NAME="35137"></A> to be a
+larger value than the maximum value possible for the existing rank expression.
+<TT>RANK</TT> <A NAME="35141"></A> <A NAME="35142"></A> is just a floating point value, so there is no harm in
+having a value that is very large. 
+
+<P>
+</DD>
+<DT><STRONG>Policy Scenario: Parallel Scheduling Groups</STRONG></DT>
+<DD><P>
+In some parallel environments, machines are divided into groups, and
+jobs should not cross groups of machines - that is, all the nodes of a parallel
+job should be allocated to machines within the same group.
+The most common example is a pool of machines using infiniband switches.
+Each switch
+might connect 16 machines, and a pool might have 160 machines on 10 switches.
+If the infiniband switches are not routed to each other, each job must run 
+on machines connected to the same switch.  
+
+<P>
+The dedicated scheduler's 
+parallel scheduling groups features supports jobs that must not 
+cross group boundaries.
+Define a group by having each machine within a group
+set the configuration variable 
+<TT>ParallelSchedulingGroup</TT> <A NAME="35146"></A> <A NAME="35147"></A> with a string that is a unique name for
+the group.
+The submit description file for a parallel universe job which
+must not cross group boundaries contains 
+<PRE>
++WantParallelSchedulingGroups = True
+</PRE>
+
+<P>
+The dedicated scheduler enforces the allocation to within a group.
+</DD>
+</DL>
+
+<P>
+
+<H3><A NAME="SECTION0041310300000000000000"></A><A NAME="sec:Configure-Dedicated-Preemption"></A>
+<BR>
+3.13.10.3 Preemption with Dedicated Jobs
+</H3>
+
+<P>
+The dedicated scheduler can optionally preempt running MPI jobs in
+favor of higher priority MPI jobs in its queue.  Note that this is
+different from preemption in non-parallel universes, and MPI jobs cannot
+be preempted either by a machine's user pressing a key or by other means.
+
+<P>
+By default, the dedicated scheduler will never preempt running MPI jobs.
+Two configuration file items control dedicated preemption: 
+<TT>SCHEDD_PREEMPTION_REQUIREMENTS</TT> <A NAME="35151"></A> <A NAME="35152"></A> and <TT>SCHEDD_PREEMPTION_RANK</TT> <A NAME="35156"></A> <A NAME="35157"></A>.
+These have no default value, so if either are not defined, preemption will
+never occur. <TT>SCHEDD_PREEMPTION_REQUIREMENTS</TT> must evaluate to 
+<TT>True</TT>
+for a machine to be a candidate for this kind of preemption.
+If more machines are 
+candidates for preemption than needed to satisfy a higher priority job, the
+machines are sorted by <TT>SCHEDD_PREEMPTION_RANK</TT>, and
+only the highest ranked machines are taken.
+
+<P>
+Note that preempting one node of a running MPI job requires killing
+the entire job on all of its nodes.  So, when preemption happens, it
+may end up freeing more machines than strictly speaking are needed.
+Also, as Condor cannot produce checkpoints for MPI jobs,
+preempted jobs will be re-run, starting again from the beginning.
+Thus, the administrator should be careful when
+enabling dedicated preemption.  The following example shows how to
+enable dedicated preemption.
+
+<P>
+<PRE>
+STARTD_JOB_EXPRS = JobPrio
+SCHEDD_PREEMPTION_REQUIREMENTS = (My.JobPrio &lt; Target.JobPrio)
+SCHEDD_PREEMPTION_RANK = 0.0
+</PRE>
+
+<P>
+In this case, preemption is enabled by the user job priority. If a set
+of machines is running a job at user priority 5, and the user submits
+a new job at user priority 10, the running job will be preempted for
+the new job.  The old job is put back in the queue, and will begin again
+from the beginning when assigned to a new set of machines.
+
+<P>
+
+<H3><A NAME="SECTION0041310400000000000000"></A><A NAME="sec:Configure-Dedicated-Groups"></A>
+<BR>
+3.13.10.4 Grouping dedicated nodes into parallel scheduling groups
+</H3>
+
+<P>
+In some parallel environments, machines are divided into groups, and
+jobs should not cross groups of machines - that is, all the nodes of a parallel
+job should be allocated to machines in the same group.  The most common
+example is a pool of machine using infiniband switches.  Each switch
+might connect 16 machines, and a pool might have 160 machines on 10 switches.
+If the infiniband switches are not routed to each other, each job must run 
+on machines connected to the same switch.  The dedicated scheduler's 
+parallel scheduling groups features supports this operation.
+
+<P>
+Each startd must define which group it belongs to by setting the 
+<TT>ParallelSchedulingGroup</TT> <A NAME="35164"></A> <A NAME="35165"></A> property in the config file, and 
+advertising it into the machine ClassAd.  The value of this property is simply a
+string, which should be the same for all startds in a given group.  The property
+must be advertised in the startd job ad by appending <TT>ParallelSchedulingGroup</TT> <A NAME="35169"></A> <A NAME="35170"></A>
+into the <TT>STARTD_ATTRS</TT> <A NAME="35174"></A> <A NAME="35175"></A> configuration variable.
+Then, parallel jobs which want to be scheduled by group, declare this in their 
+submit file by setting +WantParallelSchedulingGroups=True.
+
+<H2><A NAME="SECTION0041311000000000000000"></A><A NAME="sec:Backfill"></A>
+<BR>
+3.13.11 Configuring Condor for Running Backfill Jobs
+</H2> 
+
+<P>
+<A NAME="35263"></A>
+
+<P>
+Condor can be configured to run
+backfill jobs whenever the <I>condor_startd</I> has no other work to
+perform.
+These jobs are considered the lowest possible priority, but when
+machines would otherwise be idle, the resources can be put to good 
+use.
+
+<P>
+Currently, Condor only supports using the Berkeley Open Infrastructure
+for Network Computing (BOINC) to provide the backfill jobs.
+More information about BOINC is available at
+<A NAME="tex2html57"
+  HREF="http://boinc.berkeley.edu">http://boinc.berkeley.edu</A>.
+
+<P>
+The rest of this section provides an overview of how backfill jobs
+work in Condor, details for configuring the policy for when backfill
+jobs are started or killed, and details on how to configure Condor to
+spawn the BOINC client to perform the work.
+
+<P>
+
+<H3><A NAME="SECTION0041311100000000000000"></A><A NAME="sec:Backfill-Overview"></A>
+<BR>
+3.13.11.1 Overview of Backfill jobs
+in Condor
+</H3>
+
+<P>
+<A NAME="35267"></A>
+
+<P>
+Whenever a resource controlled by Condor is in the Unclaimed/Idle
+state, it is totally idle; neither the interactive user nor a Condor
+job is performing any work.
+Machines in this state can be configured to enter the <I>Backfill</I>
+state, which allows the resource to attempt a background
+computation to keep itself busy until other work arrives (either a 
+user returning to use the machine interactively, or a normal Condor
+job).
+Once a resource enters the Backfill state, the <I>condor_startd</I> will
+attempt to spawn another program, called a <I>backfill client</I>, to
+launch and manage the backfill computation.
+When other work arrives, the <I>condor_startd</I> will kill the backfill
+client and clean up any processes it has spawned, freeing the machine
+resources for the new, higher priority task.
+More details about the different states a Condor resource can enter
+and all of the possible transitions between them are described in
+section&nbsp;<A HREF="3_5Policy_Configuration.html#sec:Configuring-Policy">3.5</A> beginning on
+page&nbsp;<A HREF="3_5Policy_Configuration.html#sec:Configuring-Policy"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>, especially
+sections&nbsp;<A HREF="3_5Policy_Configuration.html#sec:States">3.5.5</A>, <A HREF="3_5Policy_Configuration.html#sec:Activities">3.5.6</A>, and
+<A HREF="3_5Policy_Configuration.html#sec:State-and-Activity-Transitions">3.5.7</A>.
+
+<P>
+At this point, the only backfill system supported by Condor is BOINC. 
+The <I>condor_startd</I> has the ability to start and stop the BOINC client
+program at the appropriate times, but otherwise provides no additional
+services to configure the BOINC computations themselves.
+Future versions of Condor might provide additional functionality to
+make it easier to manage BOINC computations from within Condor.
+For now, the BOINC client must be manually installed and configured
+outside of Condor on each backfill-enabled machine.
+
+<P>
+
+<H3><A NAME="SECTION0041311200000000000000"></A><A NAME="sec:Backfill-Policy"></A>
+<BR>
+3.13.11.2 Defining the Backfill Policy
+</H3>
+
+<P>
+<A NAME="35279"></A>
+
+<P>
+There are a small set of policy expressions that determine if a
+<I>condor_startd</I> will attempt to spawn a backfill client at all, and if so,
+to control the transitions in to and out of the Backfill state.
+This section briefly lists these expressions.
+More detail can be found in
+section&nbsp;<A HREF="3_3Configuration.html#sec:Startd-Config-File-Entries">3.3.10</A> on
+page&nbsp;<A HREF="3_3Configuration.html#sec:Startd-Config-File-Entries"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+<DL>
+<DT><STRONG><TT>ENABLE_BACKFILL</TT> <A NAME="35467"></A> <A NAME="35468"></A></STRONG></DT>
+<DD>A boolean value to determine if any
+  backfill functionality should be used.
+  The default value is <TT>False</TT>.
+
+<P>
+</DD>
+<DT><STRONG><TT>BACKFILL_SYSTEM</TT> <A NAME="35473"></A> <A NAME="35474"></A></STRONG></DT>
+<DD>A string that defines what backfill
+  system to use for spawning and managing backfill computations.
+  Currently, the only supported string is <TT>"BOINC"</TT>.
+
+<P>
+</DD>
+<DT><STRONG><TT>START_BACKFILL</TT> <A NAME="35479"></A> <A NAME="35480"></A></STRONG></DT>
+<DD>A boolean expression to control if a
+  Condor resource should start a backfill client.
+  This expression is only evaluated when the machine is in the Unclaimed/Idle
+  state and the <TT>ENABLE_BACKFILL</TT> expression is <TT>True</TT>.
+
+<P>
+</DD>
+<DT><STRONG><TT>EVICT_BACKFILL</TT> <A NAME="35486"></A> <A NAME="35487"></A></STRONG></DT>
+<DD>A boolean expression that is evaluated
+  whenever a Condor resource is in the Backfill state.
+  A value of <TT>True</TT> indicates the machine should immediately kill the
+  currently running backfill client and any other spawned processes,
+  and return to the Owner state.
+
+<P>
+</DD>
+</DL>
+
+<P>
+The following example shows a possible configuration to enable
+backfill:
+
+<P>
+<PRE>
+# Turn on backfill functionality, and use BOINC
+ENABLE_BACKFILL = TRUE
+BACKFILL_SYSTEM = BOINC
+
+# Spawn a backfill job if we've been Unclaimed for more than 5
+# minutes 
+START_BACKFILL = $(StateTimer) &gt; (5 * $(MINUTE))
+
+# Evict a backfill job if the machine is busy (based on keyboard
+# activity or cpu load)
+EVICT_BACKFILL = $(MachineBusy)
+</PRE>
+<P>
+
+<H3><A NAME="SECTION0041311300000000000000"></A><A NAME="sec:Backfill-BOINC-overview"></A>
+<BR>
+3.13.11.3 Overview of the
+ BOINC system
+</H3>
+
+<P>
+<A NAME="35297"></A>
+
+<P>
+The BOINC system is a distributed computing environment for solving
+large scale scientific problems.
+A detailed explanation of this system is beyond the scope of this
+manual.
+Thorough documentation about BOINC is available at their website:
+<A NAME="tex2html58"
+  HREF="http://boinc.berkeley.edu">http://boinc.berkeley.edu</A>.
+However, a brief overview is provided here for sites interested in
+using BOINC with Condor to manage backfill jobs. 
+
+<P>
+BOINC grew out of the relatively famous SETI@home computation, where
+volunteers installed special client software, in the form of a
+screen saver, that contacted a centralized server to download work
+units.
+Each work unit contained a set of radio telescope data and the
+computation tried to find patterns in the data, a sign of intelligent
+life elsewhere in the universe (hence the name: ``Search for Extra
+Terrestrial Intelligence at home'').
+BOINC is developed by the Space Sciences Lab at the University of
+California, Berkeley, by the same people who created SETI@home.
+However, instead of being tied to the specific radio telescope
+application, BOINC is a generic infrastructure by which many different
+kinds of scientific computations can be solved.
+The current generation of SETI@home now runs on top of BOINC, along
+with various physics, biology, climatology, and other applications.
+
+<P>
+The basic computational model for BOINC and the original SETI@home is
+the same: volunteers install BOINC client software which runs
+whenever the machine would otherwise be idle.
+However, the BOINC installation on any given machine must be
+configured so that it knows what computations to work for (each
+computation is referred to as a <I>project</I> using BOINC's
+terminology), instead of always working on a hard coded computation.
+A given BOINC client can be configured to donate all of its cycles to
+a single project, or to split the cycles between projects so that, on
+average, the desired percentage of the computational power is
+allocated to each project.
+Once the client software (a program called the <I>boinc_client</I>)
+starts running, it attempts to contact a centralized server for
+each project it has been configured to work for.
+The BOINC software downloads the appropriate platform-specific
+application binary and some work units from the central server for
+each project.
+Whenever the client software completes a given work unit, it once
+again attempts to connect to that project's central server to upload
+the results and download more work.
+
+<P>
+BOINC participants must register at the centralized server for each
+project they wish to donate cycles to.
+The process produces a unique identifier so that the work performed by
+a given client can be credited to a specific user.
+BOINC keeps track of the work units completed by each user, so that
+users providing the most cycles get the highest rankings (and
+therefore, bragging rights).
+
+<P>
+Because BOINC already handles the problems of distributing the
+application binaries for each scientific computation, the work units,
+and compiling the results, it is a perfect system for managing
+backfill computations in Condor.
+Many of the applications that run on top of BOINC produce their own
+application-specific checkpoints, so even if the
+<I>boinc_client</I> is killed (for example, when a Condor job arrives
+at a machine, or if the interactive user returns) an entire work unit
+will not necessarily be lost.
+
+<P>
+
+<H3><A NAME="SECTION0041311400000000000000"></A><A NAME="sec:Backfill-BOINC-install"></A>
+<BR>
+3.13.11.4 Installing the BOINC client
+software
+</H3>
+
+<P>
+<A NAME="35303"></A>
+
+<P>
+If a working installation of BOINC currently exists on machines
+where backfill is desired,
+skip the remainder of this section.
+Continue reading with the section titled ``Configuring the BOINC
+client under Condor''.
+
+<P>
+In Condor Version 7.4.4, the BOINC client software that actually
+spawns and manages the backfill computations (the
+<I>boinc_client</I>) must be manually downloaded, installed and
+configured outside of Condor.
+Hopefully in future versions, the Condor package will include the
+<I>boinc_client</I>, and there will be a way to automatically install
+and configure the BOINC software together with Condor.
+
+<P>
+The <I>boinc_client</I> executables can be obtained at one of the
+following locations:
+<DL>
+<DT><STRONG><A NAME="tex2html59"
+  HREF="http://boinc.berkeley.edu/download.php">http://boinc.berkeley.edu/download.php</A></STRONG></DT>
+<DD>This is the official BOINC download site, which provides binaries
+  for MacOS 10.3 or higher, Linux/x86, Solaris/SPARC and Windows/x86.
+  From the download table, use the ``Recommended version'', and use 
+  the ``Core client only (command-line)'' package when available.
+
+<P>
+</DD>
+<DT><STRONG><A NAME="tex2html60"
+  HREF="http://boinc.berkeley.edu/download_other.php">http://boinc.berkeley.edu/download_other.php</A></STRONG></DT>
+<DD>This page contains links to sites that distribute
+  <I>boinc_client</I> binaries for other platforms beyond the
+  officially supported ones.
+</DD>
+</DL>
+
+<P>
+Once the BOINC client software has been downloaded, the
+<I>boinc_client</I> binary should be placed in a location where the
+Condor daemons can use it.
+The path will be specified via a Condor configuration setting,
+<TT>BOINC_Executable</TT> <A NAME="35506"></A> <A NAME="35507"></A>, described below.
+
+<P>
+Additionally, a local directory on each machine should be created
+where the BOINC system can write files it needs.
+This directory must not be shared by multiple instances of the BOINC
+software, just like the <TT>spool</TT> or <TT>execute</TT> directories
+used by Condor.
+This location of this directory is defined using the
+<TT>BOINC_InitialDir</TT> <A NAME="35513"></A> <A NAME="35514"></A> macro, described below.
+The directory must be writable by whatever user the
+<I>boinc_client</I> will run as.
+This user is either the same as the user the Condor daemons are
+running as (if Condor is not running as root), or a user defined via
+the <TT>BOINC_Owner</TT> <A NAME="35519"></A> <A NAME="35520"></A> setting described below.
+
+<P>
+Finally, Condor administrators wishing to use BOINC for backfill jobs
+must create accounts at the various BOINC projects they want to donate
+cycles to.
+The details of this process vary from project to project.
+Beware that this step must be done manually, as the BOINC software
+spawned by Condor (the <I>boinc_client</I>) can not automatically
+register a user at a given project (unlike the more fancy GUI version
+of the BOINC client software which many users run as a screen saver). 
+For example, to configure machines to perform work for the
+Einstein@home project (a physics experiment run by the University of
+Wisconsin at Milwaukee) Condor administrators should go to
+<A NAME="tex2html61"
+  HREF="http://einstein.phys.uwm.edu/create_account_form.php">http://einstein.phys.uwm.edu/create_account_form.php</A>, fill in
+the web form, and generate a new Einstein@home identity.
+This identity takes the form of a project URL (such as
+<A NAME="tex2html62"
+  HREF="http://einstein.phys.uwm.edu">http://einstein.phys.uwm.edu</A>) followed by an <I>account key</I>,
+which is a long string of letters and numbers that is used as a unique
+identifier. 
+This URL and account key will be needed when configuring Condor to use
+BOINC for backfill computations (described in the next section).
+
+<P>
+
+<H3><A NAME="SECTION0041311500000000000000"></A><A NAME="sec:Backfill-BOINC-Condor"></A>
+<BR>
+3.13.11.5 Configuring the BOINC client
+under Condor
+</H3>
+
+<P>
+<A NAME="35324"></A>
+
+<P>
+This section assumes that the BOINC client software has already been
+installed on a given machine, that the BOINC projects to join have
+been selected, and that a unique project account key has been created
+for each project.
+If any of these steps has not been completed, please read the previous
+section titled ``Installing the BOINC client software''
+
+<P>
+Whenever the <I>condor_startd</I> decides to spawn the <I>boinc_client</I>
+to perform backfill computations (when <TT>ENABLE_BACKFILL</TT> <A NAME="35533"></A> <A NAME="35534"></A> is
+<TT>True</TT>, when the resource is in Unclaimed/Idle, and when the
+<TT>START_BACKFILL</TT> <A NAME="35539"></A> <A NAME="35540"></A> expression evaluates to <TT>True</TT>), it will
+spawn a <I>condor_starter</I> to directly launch and monitor the
+<I>boinc_client</I> program.
+This <I>condor_starter</I> is just like the one used to spawn normal Condor
+jobs.
+In fact, the argv[0] of the <I>boinc_client</I> will be renamed to
+``condor_exec'', as described in section&nbsp;<A HREF="2_15Potential_Problems.html#sec:renaming-argv">2.15.1</A> on 
+page&nbsp;<A HREF="2_15Potential_Problems.html#sec:renaming-argv"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+The <I>condor_starter</I> for spawning the <I>boinc_client</I> reads
+values out of the Condor configuration files to define the job it
+should run, as opposed to getting these values from a job classified
+ad in the case of a normal Condor job.
+All of the configuration settings to control things like the path to
+the <I>boinc_client</I> binary to use, the command-line arguments,
+the initial working directory, and so on, are prefixed with the string
+<TT>"BOINC_"</TT>.
+Each possible setting is described below: 
+
+<P>
+Required settings:
+
+<P>
+<DL>
+<DT><STRONG><TT>BOINC_Executable</TT> <A NAME="35557"></A> <A NAME="35558"></A></STRONG></DT>
+<DD><A NAME="param:BoincExecutable"></A> The
+  full path to the <I>boinc_client</I> binary to use.
+
+<P>
+</DD>
+<DT><STRONG><TT>BOINC_InitialDir</TT> <A NAME="35563"></A> <A NAME="35564"></A></STRONG></DT>
+<DD><A NAME="param:BoincInitialDir"></A> The
+  full path to the local directory where BOINC should run.
+
+<P>
+</DD>
+<DT><STRONG><TT>BOINC_Universe</TT> <A NAME="35568"></A> <A NAME="35569"></A></STRONG></DT>
+<DD><A NAME="param:BoincUniverse"></A> The Condor
+  universe used for running the <I>boinc_client</I> program.
+  This <B>must</B> be set to <TT>"vanilla"</TT> for BOINC to work under
+  Condor.
+
+<P>
+</DD>
+<DT><STRONG><TT>BOINC_Owner</TT> <A NAME="35576"></A> <A NAME="35577"></A></STRONG></DT>
+<DD><A NAME="param:BoincOwner"></A> What user the
+  <I>boinc_client</I> program should be run as.
+  This macro is only used if the Condor daemons are running as root.
+  In this case, the <I>condor_starter</I> must be told what user identity
+  to switch to before spawning the <I>boinc_client</I>.
+  This can be any valid user on the local system, but it must have
+  write permission in whatever directory is specified in
+  <TT>BOINC_InitialDir</TT>).
+
+<P>
+</DD>
+</DL>
+
+<P>
+Optional settings:
+
+<P>
+<DL>
+<DT><STRONG><TT>BOINC_Arguments</TT> <A NAME="35586"></A> <A NAME="35587"></A></STRONG></DT>
+<DD><A NAME="param:BoincArguments"></A>  Command-line arguments that should be passed to the
+  <I>boinc_client</I> program.
+  For example, one way to specify the BOINC project to join is to use 
+  the <B>-attach_project</B> argument to specify a project URL and
+  account key.
+  For example:
+
+<P>
+<PRE>
+BOINC_Arguments = --attach_project http://einstein.phys.uwm.edu [account_key]
+</PRE>
+<P>
+</DD>
+<DT><STRONG><TT>BOINC_Environment</TT> <A NAME="35594"></A> <A NAME="35595"></A></STRONG></DT>
+<DD><A NAME="param:BoincEnvironment"></A>  Environment variables that should be set for the
+  <I>boinc_client</I>.
+
+<P>
+</DD>
+<DT><STRONG><TT>BOINC_Output</TT> <A NAME="35600"></A> <A NAME="35601"></A></STRONG></DT>
+<DD><A NAME="param:BoincOutput"></A> Full path to
+  the file where STDOUT from the <I>boinc_client</I> should be
+  written.
+  If this macro is not defined, STDOUT will be discarded.
+
+<P>
+</DD>
+<DT><STRONG><TT>BOINC_Error</TT> <A NAME="35606"></A> <A NAME="35607"></A></STRONG></DT>
+<DD><A NAME="param:BoincError"></A> Full path to
+  the file where STDERR from the <I>boinc_client</I> should be
+  written.
+  If this macro is not defined, STDERR will be discarded.
+
+<P>
+</DD>
+</DL>
+
+<P>
+The following example shows one possible usage of these settings:
+
+<P>
+<PRE>
+# Define a shared macro that can be used to define other settings.
+# This directory must be manually created before attempting to run
+# any backfill jobs.
+BOINC_HOME = $(LOCAL_DIR)/boinc
+
+# Path to the boinc_client to use, and required universe setting
+BOINC_Executable = /usr/local/bin/boinc_client
+BOINC_Universe = vanilla
+
+# What initial working directory should BOINC use?
+BOINC_InitialDir = $(BOINC_HOME)
+
+# Save STDOUT and STDERR
+BOINC_Output = $(BOINC_HOME)/boinc.out
+BOINC_Error = $(BOINC_HOME)/boinc.err
+</PRE>
+<P>
+If the Condor daemons reading this configuration are running as root,
+an additional macro must be defined:
+
+<P>
+<PRE>
+# Specify the user that the boinc_client should run as:
+BOINC_Owner = nobody
+</PRE>
+<P>
+In this case, Condor would spawn the <I>boinc_client</I> as
+``<B>nobody</B>'', so the directory specified in <TT>$(BOINC_HOME)</TT>
+would have to be writable by the ``<B>nobody</B>'' user.
+
+<P>
+A better choice would probably be to create a separate user account
+just for running BOINC jobs, so that the local BOINC installation is
+not writable by other processes running as ``<B>nobody</B>''.
+Alternatively, the <TT>BOINC_Owner</TT> could be set to
+``<B>daemon</B>''. 
+
+<P>
+<B>Attaching to a specific BOINC project</B>
+
+<P>
+There are a few ways to attach a Condor/BOINC installation to a given
+BOINC project:
+
+<UL>
+<LI>The <B>-attach_project</B> argument to the <I>boinc_client</I>
+  program, defined via the <TT>BOINC_Arguments</TT> setting
+  (described above). 
+  The <I>boinc_client</I> will only accept a single
+  <B>-attach_project</B> argument, so this method can only be used to
+  attach to one project.
+
+<P>
+</LI>
+<LI>The <I>boinc_cmd</I> command-line tool can perform various
+  BOINC administrative tasks, including attaching to a BOINC project.
+  Using <I>boinc_cmd</I>, the appropriate argument to use is called
+  <B>-project_attach</B>.
+  Unfortunately, the <I>boinc_client</I> must be running for
+  <I>boinc_cmd</I> to work, so this method can only be used once the
+  Condor resource has entered the Backfill state and has spawned the
+  <I>boinc_client</I>. 
+
+<P>
+</LI>
+<LI>Manually create account files in the local BOINC directory.
+  Upon startup, the <I>boinc_client</I> will scan its local directory
+  (the directory specified with <TT>BOINC_InitialDir</TT> <A NAME="35635"></A> <A NAME="35636"></A>)
+  for files of the form <TT>account_[URL].xml</TT>, for example,
+  <TT>account_einstein.phys.uwm.edu.xml</TT>. 
+  Any files with a name that matches this convention will be read and
+  processed.
+  The contents of the file define the project URL and the
+  authentication key.
+  The format is:
+
+<P>
+<PRE>
+&lt;account&gt;
+  &lt;master_url&gt;[URL]&lt;/master_url&gt;
+  &lt;authenticator&gt;[key]&lt;/authenticator&gt;
+&lt;/account&gt;
+</PRE>
+<P>
+For example: 
+
+<P>
+<PRE>
+&lt;account&gt;
+  &lt;master_url&gt;http://einstein.phys.uwm.edu&lt;/master_url&gt;
+  &lt;authenticator&gt;aaaa1111bbbb2222cccc3333&lt;/authenticator&gt;
+&lt;/account&gt;
+</PRE>
+<P>
+(Of course, the <code>&lt;authenticator&gt;</code> tag would use the real
+authentication key returned when the account was created at a given
+project).
+
+<P>
+These account files can be copied to the local BOINC directory on all
+machines in a Condor pool, so administrators can either distribute
+them manually, or use symbolic links to point to a shared file
+system. 
+
+<P>
+</LI>
+</UL>
+
+<P>
+In the first two cases (using command-line arguments for
+<I>boinc_client</I> or running the <I>boinc_cmd</I> tool), BOINC
+will write out the resulting account file to the local BOINC directory
+on the machine, and then future invocations of the
+<I>boinc_client</I> will already be attached to the appropriate
+project(s).
+More information about participating in multiple BOINC projects can be
+found at <A NAME="tex2html63"
+  HREF="http://boinc.berkeley.edu/multiple_projects.php">http://boinc.berkeley.edu/multiple_projects.php</A>.
+
+<P>
+
+<H3><A NAME="SECTION0041311600000000000000"></A><A NAME="sec:Backfill-BOINC-Windows"></A>
+<BR>
+3.13.11.6 BOINC on Windows
+</H3>
+
+<P>
+The Windows version of BOINC has multiple installation methods.
+The preferred method of installation for use with Condor is the 
+``Shared Installation'' method.
+Using this method gives all users access to the executables.
+During the installation process 
+
+<OL>
+<LI>Deselect the option which makes BOINC the default screen saver
+</LI>
+<LI>Deselect the option which runs BOINC on start-up.
+</LI>
+<LI>Do not launch BOINC at the conclusion of the installation.
+</LI>
+</OL>
+
+<P>
+There are three major differences from the Unix version
+to keep in mind when dealing with the Windows installation:
+
+<P>
+
+<OL>
+<LI>The Windows executables have different names from the Unix versions.  
+The Windows client is called <I>boinc.exe</I>.
+Therefore, the configuration variable <TT>BOINC_Executable</TT> <A NAME="35648"></A> <A NAME="35649"></A> 
+is written:
+
+<P>
+<PRE>
+BOINC_Executable = C:\PROGRA~1\BOINC\boinc.exe
+</PRE>
+<P>
+The Unix administrative tool <I>boinc_cmd</I> 
+is called <I>boinccmd.exe</I> on Windows.
+
+<P>
+</LI>
+<LI>When using BOINC on Windows, the configuration variable
+<TT>BOINC_InitialDir</TT> <A NAME="35655"></A> <A NAME="35656"></A> will not be respected fully.
+To work around this difficulty,
+pass the BOINC home directory directly to the BOINC application
+via the <TT>BOINC_Arguments</TT> <A NAME="35660"></A> <A NAME="35661"></A> configuration variable.
+For Windows, rewrite the argument line as:
+
+<P>
+<PRE>
+BOINC_Arguments = --dir $(BOINC_HOME) \
+          --attach_project http://einstein.phys.uwm.edu [account_key]
+</PRE>
+<P>
+As a consequence of setting the BOINC home directory, some projects may 
+fail with the authentication error:
+<PRE>
+Scheduler request failed: Peer 
+certificate cannot be authenticated 
+with known CA certificates.
+</PRE>
+<P>
+To resolve this issue,
+copy the <TT>ca-bundle.crt</TT> file
+from the BOINC installation directory
+to <TT>$(BOINC_HOME)</TT>.
+This file appears to be project and machine independent,
+and it can therefore be distributed as part of an 
+automated Condor installation.
+
+<P>
+</LI>
+<LI>The <TT>BOINC_Owner</TT> <A NAME="35667"></A> <A NAME="35668"></A> configuration variable behaves differently
+on Windows than it does on Unix.
+Its value may take one of two forms: 
+
+<UL>
+<LI><code>domain\user</code>
+</LI>
+<LI><code>user</code>
+
+<P>
+This form assumes that the user exists in the local domain 
+(that is, on the computer itself).
+</LI>
+</UL>
+
+<P>
+Setting this option causes the addition of the job attribute
+<PRE>
+RunAsUser = True
+</PRE>
+to the backfill client.
+This further implies that the configuration variable
+<TT>STARTER_ALLOW_RUNAS_OWNER</TT> <A NAME="35672"></A> <A NAME="35673"></A> be set to <TT>True</TT>
+to insure that the local <I>condor_starter</I> be able to run jobs in this 
+manner.
+For more information on the <TT>RunAsUser</TT> attribute, 
+see section&nbsp;<A HREF="6_2Microsoft_Windows.html#sec:windows-run-as-owner">6.2.4</A>. 
+For more information on the the <TT>STARTER_ALLOW_RUNAS_OWNER</TT> <A NAME="35681"></A> <A NAME="35682"></A> 
+configuration variable, see 
+section&nbsp;<A HREF="3_3Configuration.html#param:StarterAllowRunAsOwner">3.3.7</A>.
+
+<P>
+</LI>
+</OL>
+
+<H2><A NAME="SECTION0041312000000000000000"></A><A NAME="sec:GroupTracking"></A>
+<BR>
+3.13.12 Group ID-Based Process Tracking
+</H2> 
+
+<P>
+One function that Condor often must perform is keeping track of all
+processes created by a job. This is done so that Condor can provide
+resource usage statistics about jobs, and also so that Condor can properly
+clean up any processes that jobs leave behind when they exit.
+
+<P>
+In general, tracking process families is difficult to do reliably.
+By default Condor uses a combination of process parent-child
+relationships, process groups, and information that Condor places in a
+job's environment to track process families on a best-effort
+basis. This usually works well, but it can falter for certain
+applications or for jobs that try to evade detection.
+
+<P>
+Jobs that run with a user account dedicated for Condor's use
+can be reliably tracked, since all Condor needs to do is look for all
+processes running using the given account. Administrators must specify
+in Condor's configuration what accounts can be considered dedicated
+via the <TT>DEDICATED_EXECUTE_ACCOUNT_REGEXP</TT> <A NAME="35918"></A> <A NAME="35919"></A> setting. See
+Section&nbsp;<A HREF="3_6Security.html#sec:RunAsNobody">3.6.11</A> for further details.
+
+<P>
+Ideally, jobs can be reliably tracked regardless of the user account
+they execute under. This can be accomplished with group ID-based
+tracking. This method of tracking requires that a range of dedicated
+<I>group</I> IDs (GID) be set aside for Condor's use. The number of GIDs
+that must be set aside for an execute machine is equal to its number
+of execution slots. GID-based tracking is only available on Linux, and
+it requires that Condor either runs as <TT>root</TT> or uses privilege
+separation (see Section&nbsp;<A HREF="3_6Security.html#sec:PrivSep">3.6.12</A>).
+
+<P>
+GID-based tracking works by placing a dedicated GID in the
+supplementary group list of a job's initial process. Since modifying
+the supplementary group ID list requires
+<TT>root</TT> privilege, the job will not be able to create processes
+that go unnoticed by Condor.
+
+<P>
+Once a suitable GID range has been set aside for process tracking,
+GID-based tracking can be enabled via the
+<TT>USE_GID_PROCESS_TRACKING</TT> <A NAME="35925"></A> <A NAME="35926"></A> parameter. The minimum and maximum
+GIDs included in the range are specified with the
+<TT>MIN_TRACKING_GID</TT> <A NAME="35930"></A> <A NAME="35931"></A> and <TT>MAX_TRACKING_GID</TT> <A NAME="35935"></A> <A NAME="35936"></A>
+settings. For example, the following would enable GID-based tracking
+for an execute machine with 8 slots.
+<PRE>
+USE_GID_PROCESS_TRACKING = True
+MIN_TRACKING_GID = 750
+MAX_TRACKING_GID = 757
+</PRE>
+
+<P>
+If the defined range is too small, such that there is not a GID available
+when starting a job,
+then the <I>condor_starter</I> will fail as it tries to start the job.
+An error message will be logged stating that there are no more tracking GIDs.
+
+<P>
+GID-based process tracking requires use of the <I>condor_procd</I>. If
+<TT>USE_GID_PROCESS_TRACKING</TT> is true, the <I>condor_procd</I> will
+be used regardless of the <TT>USE_PROCD</TT> <A NAME="35947"></A> <A NAME="35948"></A> setting.  Changes to
+<TT>MIN_TRACKING_GID</TT> and <TT>MAX_TRACKING_GID</TT> require
+a full restart of Condor.
+
+<H2><A NAME="SECTION0041313000000000000000"></A><A NAME="sec:Resource-Limits"></A> 
+<A NAME="35974"></A>
+<A NAME="35975"></A>
+<BR>
+3.13.13 Limiting Resource Usage
+</H2>
+
+<P>
+An administrator can strictly limit the usage of system resources
+by jobs for any job that may be wrapped using
+the script defined by the configuration variable
+<TT>USER_JOB_WRAPPER</TT> <A NAME="36004"></A> <A NAME="36005"></A>.
+These are jobs within universes that are controlled by the
+<I>condor_starter</I> daemon, and they include 
+the <B>vanilla</B>, <B>standard</B>, <B>java</B>,
+<B>local</B>, and <B>parallel</B> universes.
+
+<P>
+The job's ClassAd is written by the <I>condor_starter</I> daemon.
+It will need to contain attributes that the script defined by
+<TT>USER_JOB_WRAPPER</TT> can use to implement 
+platform specific resource limiting actions.
+Examples of resources that may be referred to for limiting purposes
+are RAM, swap space, file descriptors, stack size, and core file size. 
+
+<P>
+An initial sample of a <TT>USER_JOB_WRAPPER</TT> script is provided
+in the installation at
+<TT>$(LIBEXEC)/condor_limits_wrapper.sh</TT>.
+Here is the contents of that file:
+
+<P>
+<PRE>
+#!/bin/sh
+# Copyright 2008 Red Hat, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+if [[ $_CONDOR_MACHINE_AD != "" ]]; then
+   mem_limit=$((`egrep '^Memory' $_CONDOR_MACHINE_AD | cut -d ' ' -f 3` * 1024))
+#   block_size=$((`stat -f -c %s .` / 1024))
+#   disk_limit=$((`egrep '^Disk' $_CONDOR_MACHINE_AD | cut -d ' ' -f 3` / $block_size))
+   disk_limit=`egrep '^Disk' $_CONDOR_MACHINE_AD | cut -d ' ' -f 3`
+   vm_limit=`egrep '^VirtualMemory' $_CONDOR_MACHINE_AD | cut -d ' ' -f 3`
+
+   ulimit -d $mem_limit
+   if [[ $? != 0 ]] || [[ $mem_limit = "" ]]; then
+      echo "Failed to set Memory Resource Limit" &gt; $_CONDOR_WRAPPER_ERROR_FILE
+      exit 1
+   fi
+   ulimit -f $disk_limit
+   if [[ $? != 0 ]] || [[ $disk_limit = "" ]]; then
+      echo "Failed to set Disk Resource Limit" &gt; $_CONDOR_WRAPPER_ERROR_FILE
+      exit 1
+   fi
+   ulimit -v $vm_limit
+   if [[ $? != 0 ]] || [[ $vm_limit = "" ]]; then
+      echo "Failed to set Virtual Memory Resource Limit" &gt; $_CONDOR_WRAPPER_ERROR_FILE
+      exit 1
+   fi
+fi
+
+exec "$@"
+error=$?
+echo "Failed to exec($error): $@" &gt; $_CONDOR_WRAPPER_ERROR_FILE
+exit 1
+</PRE>
+<P>
+If used in an unmodified form,
+this script sets the job's limits on a per slot basis for
+memory, disk, and virtual memory usage,
+with the limits defined by the values in the machine ClassAd.
+This example file will need to be modified and merged for use with a
+preexisting <TT>USER_JOB_WRAPPER</TT> script.
+
+<P>
+If additional functionality is added to the script,
+an administrator is likely to use the <TT>USER_JOB_WRAPPER</TT> script
+in conjunction with <TT>SUBMIT_EXPRS</TT> <A NAME="36023"></A> <A NAME="36024"></A> to force the job ClassAd
+to contain attributes that the <TT>USER_JOB_WRAPPER</TT> script
+expects to have defined.
+
+<P>
+The following variables are set in the environment of the
+the <TT>USER_JOB_WRAPPER</TT> script by the <I>condor_starter</I>
+daemon, when the <TT>USER_JOB_WRAPPER</TT> is defined.
+<DL>
+<DT><STRONG><TT>_CONDOR_MACHINE_AD</TT></STRONG></DT>
+<DD>The full path and file name of the file containing the machine ClassAd.
+</DD>
+<DT><STRONG><TT>_CONDOR_JOB_AD</TT></STRONG></DT>
+<DD>The full path and file name of the file containing the job ClassAd.
+</DD>
+<DT><STRONG><TT>_CONDOR_WRAPPER_ERROR_FILE</TT></STRONG></DT>
+<DD>The full path and file name of the file that the <TT>USER_JOB_WRAPPER</TT>
+  script should create, if there is an error.
+  The text in this file will be included in any Condor failure messages. 
+</DD>
+</DL>
+
+<H2><A NAME="SECTION0041314000000000000000"></A><A NAME="sec:Concurrency-Limits"></A> 
+<A NAME="36055"></A>
+<BR>
+3.13.14 Concurrency Limits
+</H2>
+
+<P>
+Condor's implementation of the mechanism called <I>concurrency limits</I>
+allows an administrator to define and set integer limits on
+consumable resources.
+These limits are utilized during matchmaking, preventing matches when
+the resources are allocated.
+Typical uses of this mechanism will include
+the management of software licenses, database connections,
+and any other consumable resource external to Condor.
+
+<P>
+Use of the concurrency limits mechanism requires configuration variables
+to set distinct limits,
+while jobs must identify the need for a specific resource.
+
+<P>
+In the configuration, a string must be chosen as a name for the
+particular resource.
+This name is used in the configuration of a <I>condor_negotiator</I> daemon
+variable that defines the concurrency limit, or integer quantity
+available of this resource.
+For example, assume that there are 3 licenses for the X software.
+The configuration variable concurrency limit may be:
+<PRE>
+XSW_LIMIT = 3
+</PRE>
+where <TT>"XSW"</TT> is the invented name of this resource,
+which is appended with the string <TT>_LIMIT</TT>.
+With this limit, a maximum of 3 jobs declaring that they need this
+resource may be executed concurrently.
+
+<P>
+In addition to named limits, such as in the example named limit <TT>XSW</TT>,
+configuration may specify a concurrency limit for all resources
+that are not covered by specifically-named limits.
+The configuration variable <TT>CONCURRENCY_LIMIT_DEFAULT</TT> <A NAME="36092"></A> <A NAME="36093"></A> sets
+this value.  For example,
+<PRE>
+CONCURRENCY_LIMIT_DEFAULT = 1
+</PRE>
+sets a limit of 1 job in execution for any job that declares its
+requirement for a resource that is not named in the configuration.
+If <TT>CONCURRENCY_LIMIT_DEFAULT</TT> is omitted  from the
+configuration, then no limits are placed on the number of 
+concurrently executing jobs of resources for which there is no
+specifically named concurrency limit. 
+
+<P>
+The job must declare its need for a resource by placing a command
+in its submit description file or adding an attribute to the
+job ClassAd.
+In the submit description file, an example job that requires
+the X software adds:
+<PRE>
+concurrency_limits = XSW
+</PRE>
+This results in the job ClassAd attribute
+<PRE>
+ConcurrencyLimits = "XSW"
+</PRE>
+
+<P>
+The implementation of the job ClassAd attribute <TT>ConcurrencyLimits</TT>
+has a more general implementation.
+It is either a string or a string list.
+A list contains items delimited by space characters and comma characters.
+Therefore, a job that requires the 3 separate resources 
+named as  <TT>"XSW"</TT>, <TT>"y"</TT>, and  <TT>"Z"</TT>, 
+will contain in its submit description file:
+<PRE>
+concurrency_limits = y,XSW,Z
+</PRE>
+
+<P>
+Additionally, a numerical value identifying the number of resources
+required may be specified in the definition of a resource,
+following the resource name by a colon character and the integer
+number of resources.
+Modifying the given example to specify that 3 of 
+the <TT>"XSW"</TT> resource are needed results in: 
+<PRE>
+concurrency_limits = y,XSW:3,Z
+</PRE>
+
+<P>
+Note that the maximum for any given limit,
+as specified with the configuration variable <TT>&lt;*&gt;_LIMIT</TT>,
+is as strictly enforced <B>as possible</B>.
+In the presence of preemption and dropped updates from
+the <I>condor_startd</I> daemon to the <I>condor_collector</I> daemon,
+it is possible for the limit to be exceeded.
+Condor will never kill a job to free up a limit,
+including the case where a limit maximum is exceeded. 
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1365"
+  HREF="3_14Java_Support.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1359"
+  HREF="3_Administrators_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1353"
+  HREF="3_12Quill.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1361"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1363"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1366"
+  HREF="3_14Java_Support.html">3.14 Java Support Installation</A>
+<B> Up:</B> <A NAME="tex2html1360"
+  HREF="3_Administrators_Manual.html">3. Administrators' Manual</A>
+<B> Previous:</B> <A NAME="tex2html1354"
+  HREF="3_12Quill.html">3.12 Quill</A>
+ &nbsp; <B>  <A NAME="tex2html1362"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1364"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

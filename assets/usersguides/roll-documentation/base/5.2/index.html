@@ -1,0 +1,827 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Base Roll: Users Guide</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="NEXT"
+TITLE="Preface"
+HREF="f18.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="BOOK"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="BOOK"
+><A
+NAME="AEN1"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="AEN2"
+>Base Roll: Users Guide</A
+></H1
+><H2
+CLASS="SUBTITLE"
+><SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+></H2
+><P
+CLASS="COPYRIGHT"
+><A
+HREF="ln15.html"
+>Copyright</A
+> &copy; 2009 University of California</P
+><SPAN
+CLASS="RELEASEINFO"
+>		<A
+HREF="roll-base-usersguide.pdf"
+TARGET="_top"
+>(PDF version)</A
+>
+	<BR></SPAN
+><HR></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Table of Contents</B
+></DT
+><DT
+><A
+HREF="f18.html"
+>Preface</A
+></DT
+><DT
+>1. <A
+HREF="c23.html"
+>Overview</A
+></DT
+><DT
+>2. <A
+HREF="installing.html"
+>Installing a Rocks Cluster</A
+></DT
+><DD
+><DL
+><DT
+>2.1. <A
+HREF="getting-started.html"
+>Getting Started</A
+></DT
+><DT
+>2.2. <A
+HREF="install-frontend.html"
+>Install and Configure Your Frontend</A
+></DT
+><DT
+>2.3. <A
+HREF="install-compute-nodes.html"
+>Install Your Compute Nodes</A
+></DT
+><DT
+>2.4. <A
+HREF="upgrade-frontend.html"
+>Upgrade or Reconfigure Your Existing Frontend</A
+></DT
+><DT
+>2.5. <A
+HREF="frontend-wan.html"
+>Installing a Frontend over the Network</A
+></DT
+><DT
+>2.6. <A
+HREF="enable-www.html"
+>Enabling Public Web Access to Your Frontend</A
+></DT
+></DL
+></DD
+><DT
+>3. <A
+HREF="networking.html"
+>Defining and Modifying Networks and Network Interfaces</A
+></DT
+><DD
+><DL
+><DT
+>3.1. <A
+HREF="x648.html"
+>Networks, Subnets, VLANs and Interfaces</A
+></DT
+><DT
+>3.2. <A
+HREF="x654.html"
+>Named Networks/Subnets</A
+></DT
+><DT
+>3.3. <A
+HREF="x664.html"
+>Host Interfaces</A
+></DT
+><DT
+>3.4. <A
+HREF="x678.html"
+>Virtual LANs (VLANs) and Logical VLAN Bridges</A
+></DT
+><DT
+>3.5. <A
+HREF="x717.html"
+>Network Bridging for Virtual Machines</A
+></DT
+><DT
+>3.6. <A
+HREF="x757.html"
+>Networking Configuration Examples</A
+></DT
+></DL
+></DD
+><DT
+>4. <A
+HREF="customization.html"
+>Customizing your Rocks Installation</A
+></DT
+><DD
+><DL
+><DT
+>4.1. <A
+HREF="customization-adding-packages.html"
+>Adding Packages to Compute Nodes</A
+></DT
+><DT
+>4.2. <A
+HREF="customization-postconfig.html"
+>Customizing Configuration of Compute Nodes</A
+></DT
+><DT
+>4.3. <A
+HREF="customization-adding-applications.html"
+>Adding Applications to Compute Nodes</A
+></DT
+><DT
+>4.4. <A
+HREF="customization-extra-nic.html"
+>Configuring Additional Ethernet Interfaces</A
+></DT
+><DT
+>4.5. <A
+HREF="customization-partitioning.html"
+>Compute Node Disk Partitioning</A
+></DT
+><DT
+>4.6. <A
+HREF="customization-kernel.html"
+>Creating a Custom Kernel RPM</A
+></DT
+><DT
+>4.7. <A
+HREF="customization-rsh.html"
+>Enabling RSH on Compute Nodes</A
+></DT
+><DT
+>4.8. <A
+HREF="customization-adding-appliance.html"
+>Adding a New Appliance Type to the Cluster</A
+></DT
+><DT
+>4.9. <A
+HREF="customization-driver.html"
+>Adding a Device Driver</A
+></DT
+><DT
+>4.10. <A
+HREF="dns.local.html"
+>Extending DNS</A
+></DT
+></DL
+></DD
+><DT
+>5. <A
+HREF="community-resources.html"
+>Community Resources</A
+></DT
+><DD
+><DL
+><DT
+>5.1. <A
+HREF="source-access.html"
+>Access to Rocks Source Code</A
+></DT
+><DT
+>5.2. <A
+HREF="releases.html"
+>All Past Rocks Releases</A
+></DT
+><DT
+>5.3. <A
+HREF="mailing-list.html"
+>Email Discussion List</A
+></DT
+><DT
+>5.4. <A
+HREF="office-hours.html"
+>Office Hours</A
+></DT
+><DT
+>5.5. <A
+HREF="license.html"
+>Rocks License</A
+></DT
+></DL
+></DD
+><DT
+>6. <A
+HREF="admin-examples.html"
+>Administration Examples</A
+></DT
+><DD
+><DL
+><DT
+>6.1. <A
+HREF="commandline.html"
+>Introduction to the Rocks Command Line</A
+></DT
+><DT
+>6.2. <A
+HREF="boot-order.html"
+>Boot Order and PXE First</A
+></DT
+><DT
+>6.3. <A
+HREF="x1340.html"
+>Support for PXE First</A
+></DT
+><DT
+>6.4. <A
+HREF="x1349.html"
+>Forcing a Re-install at Next PXE Boot</A
+></DT
+><DT
+>6.5. <A
+HREF="x1357.html"
+>Inspecting and Changing PXE Behaviour</A
+></DT
+><DT
+>6.6. <A
+HREF="x1400.html"
+>Working with and Modifying Network Configuration</A
+></DT
+><DT
+>6.7. <A
+HREF="sge-cluster-reinstall.html"
+>Reinstall All Compute Nodes with SGE</A
+></DT
+></DL
+></DD
+><DT
+>7. <A
+HREF="advanced-tasks.html"
+>Advanced Tasks</A
+></DT
+><DD
+><DL
+><DT
+>7.1. <A
+HREF="pxeflash.html"
+>Flashing BIOS on Compute Nodes Using PXE</A
+></DT
+><DT
+>7.2. <A
+HREF="central.html"
+>Frontend Central Server</A
+></DT
+><DT
+>7.3. <A
+HREF="cross.html"
+>Cross Kickstarting</A
+></DT
+><DT
+>7.4. <A
+HREF="bootflags.html"
+>Adding Kernel Boot Parameters</A
+></DT
+></DL
+></DD
+><DT
+>8. <A
+HREF="c1524.html"
+>Command Reference</A
+></DT
+><DD
+><DL
+><DT
+>8.1. <A
+HREF="x1526.html"
+>add</A
+></DT
+><DT
+>8.2. <A
+HREF="x2180.html"
+>create</A
+></DT
+><DT
+>8.3. <A
+HREF="x2462.html"
+>disable</A
+></DT
+><DT
+>8.4. <A
+HREF="x2531.html"
+>dump</A
+></DT
+><DT
+>8.5. <A
+HREF="x2720.html"
+>enable</A
+></DT
+><DT
+>8.6. <A
+HREF="x2789.html"
+>help</A
+></DT
+><DT
+>8.7. <A
+HREF="x2817.html"
+>iterate</A
+></DT
+><DT
+>8.8. <A
+HREF="x2858.html"
+>list</A
+></DT
+><DT
+>8.9. <A
+HREF="x3626.html"
+>remove</A
+></DT
+><DT
+>8.10. <A
+HREF="x4341.html"
+>report</A
+></DT
+><DT
+>8.11. <A
+HREF="x4575.html"
+>run</A
+></DT
+><DT
+>8.12. <A
+HREF="x4639.html"
+>set</A
+></DT
+><DT
+>8.13. <A
+HREF="x5944.html"
+>sync</A
+></DT
+></DL
+></DD
+><DT
+>A. <A
+HREF="rocks-faq.html"
+>Frequently Asked Questions</A
+></DT
+><DD
+><DL
+><DT
+>A.1. <A
+HREF="faq-installation.html"
+>Installation</A
+></DT
+><DT
+>A.2. <A
+HREF="faq-configuration.html"
+>Configuration</A
+></DT
+><DT
+>A.3. <A
+HREF="faq-sysadmin.html"
+>System Administration</A
+></DT
+></DL
+></DD
+><DT
+>B. <A
+HREF="release-notes.html"
+>Release Notes</A
+></DT
+><DD
+><DL
+><DT
+>B.1. <A
+HREF="x6225.html"
+>Release 5.1 - changes from 5.0</A
+></DT
+><DT
+>B.2. <A
+HREF="x6279.html"
+>Release 4.3 - changes from 4.2.1</A
+></DT
+><DT
+>B.3. <A
+HREF="x6314.html"
+>Release 3.2.0 - changes from 3.1.0</A
+></DT
+><DT
+>B.4. <A
+HREF="x6340.html"
+>Release 3.2.0 - changes from 3.1.0</A
+></DT
+><DT
+>B.5. <A
+HREF="x6366.html"
+>Release 3.1.0 - changes from 3.0.0</A
+></DT
+><DT
+>B.6. <A
+HREF="x6377.html"
+>Release 3.0.0 - changes from 2.3.2</A
+></DT
+><DT
+>B.7. <A
+HREF="x6406.html"
+>Release 2.3.2 - changes from 2.3.1</A
+></DT
+><DT
+>B.8. <A
+HREF="x6427.html"
+>Release 2.3.1 - changes from 2.3</A
+></DT
+><DT
+>B.9. <A
+HREF="x6451.html"
+>Release 2.2.1 - changes from 2.2</A
+></DT
+><DT
+>B.10. <A
+HREF="x6456.html"
+>Release 2.2 - changes from 2.1.2</A
+></DT
+><DT
+>B.11. <A
+HREF="x6471.html"
+>Release 2.1.2 - changes from 2.1.1</A
+></DT
+><DT
+>B.12. <A
+HREF="x6481.html"
+>Release 2.1.1 - changes from 2.1</A
+></DT
+><DT
+>B.13. <A
+HREF="x6511.html"
+>Release 2.1 - changes from 2.0.1</A
+></DT
+><DT
+>B.14. <A
+HREF="x6532.html"
+>Release 2.0.1 - changes from 2.0</A
+></DT
+></DL
+></DD
+><DT
+>C. <A
+HREF="appendix-b.html"
+>Kickstart Nodes Reference</A
+></DT
+><DD
+><DL
+><DT
+>C.1. <A
+HREF="base-nodes.html"
+>Rocks Base Nodes</A
+></DT
+></DL
+></DD
+><DT
+>D. <A
+HREF="rocks-copyright.html"
+><SPAN
+CLASS="TRADEMARK"
+>Rocks</SPAN
+>&#8482; Copyright and Trademark</A
+></DT
+><DD
+><DL
+><DT
+>D.1. <A
+HREF="x7256.html"
+>Copyright Statement</A
+></DT
+><DT
+>D.2. <A
+HREF="x7260.html"
+>Trademark Licensing</A
+></DT
+></DL
+></DD
+><DT
+>E. <A
+HREF="a7274.html"
+>Common Licenses</A
+></DT
+><DD
+><DL
+><DT
+>E.1. <A
+HREF="artistic-copyright.html"
+>Artistic License</A
+></DT
+><DT
+>E.2. <A
+HREF="apachev2-copyright.html"
+>Apache v2.0</A
+></DT
+><DT
+>E.3. <A
+HREF="ggplv1-copyright.html"
+>GNU General Public License v1</A
+></DT
+><DT
+>E.4. <A
+HREF="ggplv2-copyright.html"
+>GNU General Public License v2</A
+></DT
+><DT
+>E.5. <A
+HREF="glgplv21-copyright.html"
+>GNU Lesser General Public License v2.1</A
+></DT
+><DT
+>E.6. <A
+HREF="glgplv2-copyright.html"
+>GNU Library General Public License v2</A
+></DT
+><DT
+>E.7. <A
+HREF="python2-copyright.html"
+>Python Software Foundation License v2</A
+></DT
+></DL
+></DD
+><DT
+>F. <A
+HREF="a7304.html"
+>Package Licenses</A
+></DT
+><DD
+><DL
+><DT
+>F.1. <A
+HREF="x7309.html"
+>anaconda</A
+></DT
+><DT
+>F.2. <A
+HREF="x7313.html"
+>ant</A
+></DT
+><DT
+>F.3. <A
+HREF="x7329.html"
+>coreutils</A
+></DT
+><DT
+>F.4. <A
+HREF="x7333.html"
+>cvs</A
+></DT
+><DT
+>F.5. <A
+HREF="x7337.html"
+>eGenix mx</A
+></DT
+><DT
+>F.6. <A
+HREF="x7341.html"
+>FireFox</A
+></DT
+><DT
+>F.7. <A
+HREF="x7345.html"
+>gawk</A
+></DT
+><DT
+>F.8. <A
+HREF="x7349.html"
+>gd</A
+></DT
+><DT
+>F.9. <A
+HREF="x7353.html"
+>graphviz</A
+></DT
+><DT
+>F.10. <A
+HREF="x7357.html"
+>kudzu</A
+></DT
+><DT
+>F.11. <A
+HREF="x7361.html"
+>libxml2</A
+></DT
+><DT
+>F.12. <A
+HREF="x7365.html"
+>libxml2doc</A
+></DT
+><DT
+>F.13. <A
+HREF="x7371.html"
+>mysql</A
+></DT
+><DT
+>F.14. <A
+HREF="x7379.html"
+>ncurses</A
+></DT
+><DT
+>F.15. <A
+HREF="x7383.html"
+>numarray</A
+></DT
+><DT
+>F.16. <A
+HREF="x7387.html"
+>Numeric</A
+></DT
+><DT
+>F.17. <A
+HREF="x7397.html"
+>perl</A
+></DT
+><DT
+>F.18. <A
+HREF="x7405.html"
+>perl tk</A
+></DT
+><DT
+>F.19. <A
+HREF="x7419.html"
+>pexpect</A
+></DT
+><DT
+>F.20. <A
+HREF="x7423.html"
+>phpMyAdmin</A
+></DT
+><DT
+>F.21. <A
+HREF="x7427.html"
+>POW</A
+></DT
+><DT
+>F.22. <A
+HREF="x7431.html"
+>pygtk</A
+></DT
+><DT
+>F.23. <A
+HREF="x7435.html"
+>python</A
+></DT
+><DT
+>F.24. <A
+HREF="x7439.html"
+>rcs</A
+></DT
+><DT
+>F.25. <A
+HREF="x7443.html"
+>readline</A
+></DT
+><DT
+>F.26. <A
+HREF="x7447.html"
+>tidy</A
+></DT
+><DT
+>F.27. <A
+HREF="x7451.html"
+>wget</A
+></DT
+></DL
+></DD
+></DL
+></DIV
+><DIV
+CLASS="LOT"
+><DL
+CLASS="LOT"
+><DT
+><B
+>List of Tables</B
+></DT
+><DT
+>1-1. <A
+HREF="c23.html#AEN25"
+>Summary</A
+></DT
+><DT
+>1-2. <A
+HREF="c23.html#AEN45"
+>Roll Compatibility</A
+></DT
+><DT
+>2-1. <A
+HREF="install-frontend.html#AEN369"
+>Frontend -- Default Root Disk Partition</A
+></DT
+><DT
+>4-1. <A
+HREF="customization-partitioning.html#AEN874"
+>Compute Node -- Default Root Disk Partition</A
+></DT
+><DT
+>4-2. <A
+HREF="customization-partitioning.html#AEN987"
+>A Compute Node with 3 SCSI Drives</A
+></DT
+></DL
+></DIV
+><DIV
+CLASS="LOT"
+><DL
+CLASS="LOT"
+><DT
+><B
+>List of Figures</B
+></DT
+><DT
+>D-1. <A
+HREF="x7260.html#ROCKS-LOGO"
+><SPAN
+CLASS="TRADEMARK"
+>Rocks</SPAN
+>&#8482; logo</A
+></DT
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="f18.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Preface</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

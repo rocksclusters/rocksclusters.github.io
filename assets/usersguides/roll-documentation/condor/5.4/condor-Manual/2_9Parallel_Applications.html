@@ -1,0 +1,468 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>2.9 Parallel Applications (Including MPI Applications)</TITLE>
+<META NAME="description" CONTENT="2.9 Parallel Applications (Including MPI Applications)">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="2_10DAGMan_Applications.html">
+<LINK REL="previous" HREF="2_8Java_Applications.html">
+<LINK REL="up" HREF="2_Users_Manual.html">
+<LINK REL="next" HREF="2_10DAGMan_Applications.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html719"
+  HREF="2_10DAGMan_Applications.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html713"
+  HREF="2_Users_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html707"
+  HREF="2_8Java_Applications.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html715"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html717"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html720"
+  HREF="2_10DAGMan_Applications.html">2.10 DAGMan Applications</A>
+<B> Up:</B> <A NAME="tex2html714"
+  HREF="2_Users_Manual.html">2. Users' Manual</A>
+<B> Previous:</B> <A NAME="tex2html708"
+  HREF="2_8Java_Applications.html">2.8 Java Applications</A>
+ &nbsp; <B>  <A NAME="tex2html716"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html718"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html721"
+  HREF="2_9Parallel_Applications.html#SECTION00391000000000000000">2.9.1 Prerequisites to Running Parallel Jobs</A>
+<LI><A NAME="tex2html722"
+  HREF="2_9Parallel_Applications.html#SECTION00392000000000000000">2.9.2 Parallel Job Submission</A>
+<LI><A NAME="tex2html723"
+  HREF="2_9Parallel_Applications.html#SECTION00393000000000000000">2.9.3 Parallel Jobs with Separate Requirements</A>
+<LI><A NAME="tex2html724"
+  HREF="2_9Parallel_Applications.html#SECTION00394000000000000000">2.9.4 MPI Applications Within Condor's Parallel Universe</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00390000000000000000"></A><A NAME="sec:Parallel"></A>
+<A NAME="4064"></A>
+<A NAME="4065"></A>
+<BR>
+2.9 Parallel Applications (Including MPI Applications)
+</H1>
+
+<P>
+Condor's Parallel universe supports a wide variety of parallel
+programming environments, and it encompasses the execution 
+of MPI jobs.
+It supports jobs which need to be co-scheduled.
+A co-scheduled job has
+more than one process that must be running at the same time on different
+machines to work correctly.
+The parallel universe supersedes the mpi universe.
+The mpi universe eventually will be removed from Condor.
+
+<P>
+
+<H2><A NAME="SECTION00391000000000000000"></A><A NAME="sec:parallel-setup"></A>
+<BR>
+2.9.1 Prerequisites to Running Parallel Jobs
+</H2>
+
+<P>
+Condor must be configured such that resources (machines) running
+parallel jobs are dedicated.  
+<A NAME="4067"></A>
+Note that <I>dedicated</I> has a very specific meaning in Condor:
+dedicated
+machines never vacate their executing Condor jobs,
+should the machine's interactive owner return.
+This is implemented by running a single dedicated scheduler
+process on a machine in the pool,
+which becomes the single machine from which parallel universe
+jobs are submitted.
+Once the dedicated scheduler claims a
+dedicated machine for use, 
+the dedicated scheduler will try to use that machine to satisfy
+the requirements of the queue of parallel universe or MPI universe jobs.
+If the dedicated scheduler cannot use a machine for a
+configurable amount of time, it will release its claim on the machine,
+making it available again for the opportunistic scheduler.
+
+<P>
+Since Condor does not ordinarily run this way, (Condor usually uses
+opportunistic scheduling), dedicated machines must be specially
+configured.  Section&nbsp;<A HREF="3_13Setting_Up.html#sec:Config-Dedicated-Jobs">3.13.10</A> of the
+Administrator's Manual describes the necessary configuration and
+provides detailed examples.
+
+<P>
+To simplify the scheduling of dedicated resources, a single machine
+becomes the scheduler of dedicated resources.  This leads to a further
+restriction that jobs submitted to execute under the parallel universe
+must be submitted from the machine acting as the dedicated scheduler.
+
+<P>
+
+<H2><A NAME="SECTION00392000000000000000"></A><A NAME="sec:parallel-submit"></A>
+<BR>
+2.9.2 Parallel Job Submission
+</H2>
+
+<P>
+Given correct configuration, parallel universe jobs may be submitted
+from the machine running the dedicated scheduler.
+The dedicated scheduler claims machines for the parallel universe job,
+and invokes the job when the correct number of machines of the
+correct platform (architecture and operating system) are claimed.
+Note that the job likely consists of more than one process,
+each to be executed on a separate machine.
+The first process (machine) invoked is treated
+different than the others.
+When this first process exits, Condor shuts down all the others,
+even if they have not yet completed their execution.
+
+<P>
+An overly simplified submit description file for a parallel universe
+job appears as
+
+<P>
+<PRE>
+#############################################
+##   submit description file for a parallel program
+#############################################
+universe = parallel
+executable = /bin/sleep
+arguments = 30
+machine_count = 8
+queue
+</PRE>
+
+<P>
+This job specifies the <B>universe</B> as <B>parallel</B>, letting
+Condor know that dedicated resources are required.  The
+<B>machine_count</B> command identifies the number of machines
+required by the job. 
+
+<P>
+When submitted, the dedicated scheduler allocates eight
+machines with the same architecture and operating system as the submit
+machine.  It waits until all eight machines are available before
+starting the job.  When all the machines are ready, it invokes the
+<I>/bin/sleep</I> command, with a command line argument of 30
+on all eight machines more or less simultaneously.
+
+<P>
+A more realistic example of a parallel job utilizes other features.
+<PRE>
+######################################
+## Parallel example submit description file
+######################################
+universe = parallel
+executable = /bin/cat
+log = logfile
+input = infile.$(NODE)
+output = outfile.$(NODE)
+error = errfile.$(NODE)
+machine_count = 4
+queue
+</PRE>
+
+<P>
+The specification of the <B>input</B>, <B>output</B>,
+and <B>error</B> files utilize the predefined macro 
+<TT>$(NODE)</TT>.
+<A NAME="4083"></A>
+See the <I>condor_submit</I>
+manual page on page&nbsp;<A HREF="condor_submit.html#man-condor-submit"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for further
+description of predefined macros.
+The <TT>$(NODE)</TT><A NAME="4150"></A><A NAME="4151"></A> macro is given a
+unique value as processes are assigned to machines.
+The <TT>$(NODE)</TT> value is fixed for the entire length of the job.
+It can therefore be used to identify individual aspects of the computation.
+In this example, it is used to utilize and assign unique names to
+input and output files.
+
+<P>
+This example presumes a shared file system across all the machines
+claimed for the parallel universe job. 
+Where no shared file system is either available or guaranteed,
+use Condor's file transfer mechanism,
+as described in section&nbsp;<A HREF="2_5Submitting_Job.html#sec:file-transfer">2.5.4</A>
+on page&nbsp;<A HREF="2_5Submitting_Job.html#sec:file-transfer"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+This example uses the file transfer mechanism.
+
+<P>
+<PRE>
+######################################
+## Parallel example submit description file
+## without using a shared file system
+######################################
+universe = parallel
+executable = /bin/cat
+log = logfile
+input = infile.$(NODE)
+output = outfile.$(NODE)
+error = errfile.$(NODE)
+machine_count = 4
+should_transfer_files = yes
+when_to_transfer_output = on_exit
+queue
+</PRE>
+
+<P>
+The job requires exactly four machines,
+and queues four processes.
+Each of these processes requires a correctly named input file,
+and produces an output file.
+
+<P>
+
+<H2><A NAME="SECTION00393000000000000000"></A><A NAME="sec:parallel-multi-proc"></A>
+<BR>
+2.9.3 Parallel Jobs with Separate Requirements
+</H2>
+
+<P>
+The different machines executing for a parallel universe job
+may specify different machine requirements.
+A common example requires that the
+head node execute on a specific machine.
+It may be also useful for debugging purposes.
+
+<P>
+Consider the following example.
+
+<P>
+<PRE>
+######################################
+## Example submit description file
+## with multiple procs
+######################################
+universe = parallel
+executable = example
+machine_count = 1
+requirements = ( machine == "machine1")
+queue
+
+requirements = ( machine =!= "machine1")
+machine_count = 3
+queue
+</PRE>
+
+<P>
+The dedicated scheduler allocates four machines.
+All four executing jobs have the same value for <TT>$(Cluster)</TT>
+macro.
+The <TT>$(Process)</TT> macro takes on two values;
+the value 0 will be assigned for the single executable
+that must be executed on machine1, and
+the value 1 will be assigned for the other three 
+that must be executed anywhere but on machine1.
+
+<P>
+Carefully consider the ordering and nature of multiple
+sets of requirements in the same submit description file.
+The scheduler matches jobs to machines based on the ordering
+within the submit description file.
+Mutually exclusive requirements eliminate the dependence on
+ordering within the submit description file.
+Without mutually exclusive requirements,
+the scheduler may be unable to schedule the job.
+The ordering within the submit description file may preclude
+the scheduler considering the specific allocation that
+could satisfy the requirements.
+
+<P>
+
+<H2><A NAME="SECTION00394000000000000000"></A><A NAME="sec:parallel-mpi-submit"></A>
+<A NAME="4098"></A>
+<A NAME="4099"></A>
+<BR>
+2.9.4 MPI Applications Within Condor's Parallel Universe
+</H2>
+
+<P>
+MPI applications utilize a single executable that is invoked in order to
+execute in parallel on one or more machines. 
+Condor's parallel universe provides the environment within
+which this executable is executed in parallel.
+However, the various implementations of MPI
+(for example, LAM or MPICH) require further framework items within
+a system-wide environment.
+Condor supports this necessary framework through 
+user visible and modifiable scripts.
+An MPI implementation-dependent script becomes the Condor job.
+The script sets up the extra, necessary framework,
+and then invokes the MPI application's executable.
+
+<P>
+Condor provides these scripts in the
+<TT><TT>$(RELEASE_DIR)</TT>/etc/examples</TT>
+directory.
+The script for the LAM implementation is <TT>lamscript</TT>.
+The script for the MPICH implementation is <TT>mp1script</TT>.
+Therefore, a Condor submit description file for these
+implementations would appear similar to:
+
+<P>
+<PRE>
+######################################
+## Example submit description file
+## for MPICH 1 MPI
+## works with MPICH 1.2.4, 1.2.5 and 1.2.6
+######################################
+universe = parallel
+executable = mp1script
+arguments = my_mpich_linked_executable arg1 arg2
+machine_count = 4
+should_transfer_files = yes
+when_to_transfer_output = on_exit
+transfer_input_files = my_mpich_linked_executable
+queue
+</PRE>
+
+<P>
+or
+
+<P>
+<PRE>
+######################################
+## Example submit description file
+## for LAM MPI
+######################################
+universe = parallel
+executable = lamscript
+arguments = my_lam_linked_executable arg1 arg2
+machine_count = 4
+should_transfer_files = yes
+when_to_transfer_output = on_exit
+transfer_input_files = my_lam_linked_executable
+queue
+</PRE>
+
+<P>
+The <B>executable</B> is the MPI implementation-dependent script.
+The first argument to the script is the MPI application's 
+executable.
+Further arguments to the script are the MPI application's arguments.
+Condor must transfer this executable;
+do this with the <B>transfer_input_files</B> command.
+
+<P>
+For other implementations of MPI,
+copy and modify one of the given scripts.
+Most MPI implementations require two system-wide prerequisites.
+The first prerequisite is the ability to run a command
+on a remote machine without being prompted for a password.
+<I>ssh</I> is commonly used, but other
+commands may be used.
+The second prerequisite is an ASCII file containing the
+list of machines that may utilize <I>ssh</I>.
+These common prerequisites are implemented in a further script
+called <TT>sshd.sh</TT>.
+<TT>sshd.sh</TT> generates ssh keys 
+(to enable password-less remote execution),
+and starts an <I>sshd</I> daemon.
+The machine name and MPI rank are given to the submit machine.
+
+<P>
+The <I>sshd.sh</I> script requires the definition of
+two Condor configuration variables.
+Configuration variable <TT>CONDOR_SSHD</TT> <A NAME="4171"></A> <A NAME="4172"></A> is an absolute path to
+an implementation of <I>sshd</I>.
+<I>sshd.sh</I> has been tested with <I>openssh</I> version 3.9,
+but should work with more recent versions.
+Configuration variable <TT>CONDOR_SSH_KEYGEN</TT> <A NAME="4179"></A> <A NAME="4180"></A> points
+to the corresponding <I>ssh-keygen</I> executable.
+
+<P>
+Scripts <I>lamscript</I> and <I>mp1script</I>
+each have their own idiosyncrasies.
+In <I>mp1script</I>, the <TT>PATH</TT> to the MPICH installation must be set.
+The shell variable MPDIR indicates its proper value.
+This directory contains the MPICH <I>mpirun</I> executable.
+For LAM, there is a similar path setting, but it is called <TT>LAMDIR</TT>
+in the <I>lamscript</I> script.  In addition, this path must be part of the
+path set in the user's <TT>.cshrc</TT> script.
+As of this writing, the LAM implementation does not work
+if the user's login shell is the Bourne or compatible shell.
+
+<P>
+These MPI jobs operate as all parallel universe jobs do.
+The default policy is that when the first node exits,
+the whole job is considered done, 
+and Condor kills all other running nodes in that parallel job.
+Alternatively, a parallel universe job that sets the attribute
+<PRE>
++ParallelShutdownPolicy = "WAIT_FOR_ALL"
+</PRE>
+in its submit description file changes the policy,
+such that Condor will wait until every node in the parallel 
+job has completed to consider the job finished. 
+
+<P>
+<A NAME="4131"></A>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html719"
+  HREF="2_10DAGMan_Applications.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html713"
+  HREF="2_Users_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html707"
+  HREF="2_8Java_Applications.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html715"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html717"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html720"
+  HREF="2_10DAGMan_Applications.html">2.10 DAGMan Applications</A>
+<B> Up:</B> <A NAME="tex2html714"
+  HREF="2_Users_Manual.html">2. Users' Manual</A>
+<B> Previous:</B> <A NAME="tex2html708"
+  HREF="2_8Java_Applications.html">2.8 Java Applications</A>
+ &nbsp; <B>  <A NAME="tex2html716"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html718"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

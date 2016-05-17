@@ -1,0 +1,369 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Using T_Coffee</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE=" Bio Roll: Users Guide "
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Using the Bio Roll"
+HREF="using.html"><LINK
+REL="PREVIOUS"
+TITLE="Using Phylip"
+HREF="phylip_usage.html"><LINK
+REL="NEXT"
+TITLE="Using
+MPI-Blast"
+HREF="mpiblast_usage.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Bio Roll: Users Guide: 	<DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/dna.png"></P
+></DIV
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="phylip_usage.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 3. Using the Bio Roll</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="mpiblast_usage.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="T_COFFEE_USAGE"
+>3.10. Using T_Coffee</A
+></H1
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN268"
+>3.10.1. About</A
+></H2
+><P
+>T_Coffee is a multiple sequence alignment package. The version included with this distribution of Rocks is v3.84</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN271"
+>3.10.2. Usage</A
+></H2
+><P
+>T-coffee is used for standard alignments and alignment combinations. It
+is installed at /opt/Bio/t_coffee/ on the Rocks distribution. To
+use T-Coffee, just type t_coffee at the command line for a list of all
+possible
+parameters that can be used. T-coffee recognizes formats such as fasta,
+clustalw, blast, etc. Example input files are available at
+/opt/Bio/t_coffee/example/</P
+><P
+>A simple sequence alignment example is shown below about. It is run
+against a sample fasta file present in the example directory. Parts of the
+output are deleted for the sake of brevity. Where missing, output is
+substituted by ellipses (.....)</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>[nostromo@rocks-168 ~]$ t_coffee /opt/Bio/t_coffee/example/sample_aln2.fasta 
+
+PROGRAM: T-COFFEE (Version_3.84)
+-full_log       S       [0] 
+-run_name       S       [0] 
+-mem_mode       S       [0]     mem
+-extend         D       [1]     1 
+-extend_mode    S       [0]     very_fast_triplet
+-max_n_pair     D       [0]     10 
+-seq_name_for_quadruplet        S       [0]     all
+-compact        S       [0]     default
+-clean          S       [0]     no
+-do_self        FL      [0]     0
+-do_normalise   D       [0]     1000 
+-template_file  S       [0] 
+-in             S       [0]     Mlalign_id_pair Mslow_pair
+-seq            S       [1]     /opt/Bio/t_coffee/example/sample_aln2.fasta
+-aln            S       [0] 
+-method         S       [0] 
+.........
+-dpa_keep_tmpfile       FL      [0]     0
+-dpa_debug      D       [0]     0 
+-multi_thread   S       [0] 
+-lib_list       S       [0] 
+
+INPUT FILES
+        Input File (M) lalign_id_pair 
+        Input File (M) slow_pair 
+        Input File (S) /opt/Bio/t_coffee/example/sample_aln2.fasta  Format
+clustal_aln
+
+INPUT SEQUENCES: 6 SEQUENCES  [PROTEIN]
+  Input File /opt/Bio/t_coffee/example/sample_aln2.fasta Seq 1cms   Length
+175 type PROTEIN Struct Unchecked
+  Input File /opt/Bio/t_coffee/example/sample_aln2.fasta Seq 4pep   Length
+174 type PROTEIN Struct Unchecked
+  Input File /opt/Bio/t_coffee/example/sample_aln2.fasta Seq 4ape   Length
+178 type PROTEIN Struct Unchecked
+  Input File /opt/Bio/t_coffee/example/sample_aln2.fasta Seq 3app   Length
+174 type PROTEIN Struct Unchecked
+  Input File /opt/Bio/t_coffee/example/sample_aln2.fasta Seq 2apr   Length
+178 type PROTEIN Struct Unchecked
+  Input File /opt/Bio/t_coffee/example/sample_aln2.fasta Seq 1cms_1 Length
+148 type PROTEIN Struct Unchecked
+
+COMPUTE PAIRWISE SIMILARITY [dp_mode: idscore_pair_wise]
+[distance_matrix_mode: idscore] 
+
+        1cms   1cms_1 identity= 19% score=190
+        1cms   2apr   identity= 34% score=340
+        1cms   3app   identity= 31% score=310
+        1cms   4ape   identity= 29% score=290
+.......        
+	3app   4pep   identity= 34% score=340
+        4ape   4pep   identity= 31% score=310
+
+READ/MAKE LIBRARIES:[3]
+
+        lalign_id_pair [method]
+
+                [Submit   Job][TOT=   15][  0 %][ELAPSED TIME:    0
+sec.][REMAINING TIME: -1073750336 sec.]         [Submit   Job][TOT=   15][100
+%][ELAPSED TIME:    0 sec.][REMAINING TIME:    0 sec.]
+
+                [Retrieve Job][TOT=   15][  0 %][ELAPSED TIME:    0
+sec.][REMAINING TIME: 6722352 sec.]             [Retrieve Job][TOT=   15][100
+%][ELAPSED TIME:    0 sec.][REMAINING TIME:    0 sec.]
+        slow_pair [method]
+
+.......
+        Library Total Size: [5142]
+
+        #### File Type=     WEIGHT Format=  tc_weight Name= no | NOT PRODUCED
+[WARNING:T-COFFEE:Version_3.84]
+
+
+WEIGHTED MODE:t_coffee
+
+          1cms 0.61
+        1cms_1 3.32
+          2apr 0.59
+          3app 0.49
+          4ape 0.48
+          4pep 0.51
+
+
+MAKE NEIGHBOR JOINING DENDROGRAM
+        [MODE=nj][DONE]
+
+PROGRESSIVE_ALIGNMENT [Tree Based]
+
+        Group   7: [Group   6 (  1 seq)] with [Group   1 (  1 seq)]--&#62;[Score=
+53][Len=  176]
+        Group   8: [Group   2 (  1 seq)] with [Group   7 (  2 seq)]--&#62;[Score=
+8][Len=  196]
+
+......
+
+
+CLUSTAL FORMAT for T-COFFEE Version_3.84, CPU=0.94 sec, SCORE=34, Nseq=6,
+Len=204 
+
+1cms            ---gevasvpltnyl-dsqyfgkiylgtppqeftv------------------lfdtgss
+4pep            -----igdeplenyl-dteyfgtigigtpaqdftv------------------ifdtgss
+1cms_1          y-tgslhwvpvtv----qqyw----------qftvdsvtisgvvvaceggcqaildtgts
+2apr            a---gvgtvpmtdygndieyygqvtigtpgkkfnl------------------dfdtgss
+4ape            s-tgsatttpids-l-ddayitpvqigtpaqtlnl------------------dfdtgss
+3app            aasgvatntptan---deeyitpvtig--gttlnl------------------nfdtgsa
+                         *         *            :.:                   :***::
+
+......
+
+
+OUTPUT RESULTS
+        #### File Type= GUIDE_TREE Format=     newick Name= sample_aln2.dnd
+        #### File Type=        MSA Format=   clustalw Name= sample_aln2.aln
+
+
+TIP: Change the Width of your MSA with the environement variable
+ALN_LINE_LENGTH (all formats)
+
+Command Line: t_coffee /opt/Bio/t_coffee/example/sample_aln2.fasta
+[PROGRAM:T-COFFEE]
+
+T-COFFEE Memory Usage: Current= 4.233 Mb, Max= 6.807 Mb
+
+T-COFFEE CPU Usage: 940 millisec
+[nostromo@rocks-168 ~]$</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN276"
+>3.10.3. Further Information</A
+></H2
+><P
+>Further information about t_coffee is available at -</P
+><P
+></P
+><UL
+><LI
+><P
+><A
+HREF="http://igs-server.cnrs-mrs.fr/~cnotred/Projects_home_page/t_coffee_home_page.html"
+TARGET="_top"
+>The
+T-coffee home page</A
+></P
+></LI
+><LI
+><P
+>On your cluster head node at
+/opt/Bio/t_coffee/doc/</P
+></LI
+><LI
+><P
+><A
+HREF="http://igs-server.cnrs-mrs.fr/~cnotred/Documentation/t_coffee/t_coffee_doc.htm"
+TARGET="_top"
+>T-Coffee
+Documentation</A
+></P
+></LI
+></UL
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="phylip_usage.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="mpiblast_usage.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Using Phylip</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="using.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Using
+MPI-Blast</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

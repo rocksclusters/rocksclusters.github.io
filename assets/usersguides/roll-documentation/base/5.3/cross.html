@@ -1,0 +1,486 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+> Cross Kickstarting </TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Roll: Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE=" Advanced Tasks "
+HREF="advanced-tasks.html"><LINK
+REL="PREVIOUS"
+TITLE=" Frontend Central Server "
+HREF="central.html"><LINK
+REL="NEXT"
+TITLE=" Adding Kernel Boot Parameters "
+HREF="bootflags.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Base Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="central.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 7. Advanced Tasks</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="bootflags.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="CROSS"
+>7.3. Cross Kickstarting</A
+></H1
+><P
+>Rocks supports heterogeneous clusters that contain nodes of different hardware
+architectures with a process called cross-kickstarting.  To support an
+architecture different than its own, a frontend needs to expand its local
+distribution with additional packages.  This section describes how to install
+distributions for other architectures on your frontend.</P
+><P
+>Start with a frontend node, as described by <A
+HREF="install-frontend.html"
+>Install Frontend</A
+>,
+or <A
+HREF="upgrade-frontend.html"
+>Upgrade Frontend</A
+>. Follow the instructions below for every
+desired architecture. </P
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="CROSS-I386"
+>7.3.1. Cross Kickstarting x86_64 Compute Nodes with a i386 Frontend</A
+></H2
+><P
+>For this example, we assume the frontend is an i386 (32-bit) and the
+compute nodes are x86_64 CPUs (64-bit).</P
+><P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>Download the x86_64 Rocks rolls.
+At a minimum, you'll need to download the x86_64 versions of the Base, Kernel,
+Web Server and OS disk 1 and OS disk 2 rolls.</P
+><P
+>For each roll, add it to the frontend's roll repository:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks add roll &#60;roll-name&#62;.iso
+# rocks enable roll &#60;roll-name&#62;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>Rebuild your distribution:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># cd /export/rocks/install
+# rocks create distro
+# rocks create distro arch=x86_64</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>To prepare the frontend to cross-kickstart compute nodes via PXE, you
+first need to add the <SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks-boot</SAMP
+> package from
+the x86_64 architecture:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rpm -i --force --ignorearch /export/rocks/install/rocks-dist/x86_64/RedHat/RPMS/rocks-boot-5.3-1.x86_64.rpm
+# cp /boot/kickstart/default/vmlinuz-5.3-x86_64 /tftpboot/pxelinux
+# cp /boot/kickstart/default/initrd.img-5.3-x86_64 /tftpboot/pxelinux</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>Then you need to add a new <SAMP
+CLASS="COMPUTEROUTPUT"
+>bootaction</SAMP
+>:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks add bootaction action="install x86_64" kernel="vmlinuz-5.3-x86_64" \
+  ramdisk="initrd.img-5.3-x86_64" \
+  args="ks ramdisk_size=150000 lang= devfs=nomount pxe kssendmac selinux=0 noipv6"</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>The next step requires you to PXE boot the cross-kickstarted node twice: the
+first is to discover the node, and a second time to install it.</P
+><P
+>On the frontend, run insert-ethers to discover the compute node:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># insert-ethers</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Then, PXE boot the compute node. 
+After the compute node is discovered by insert-ethers, kill insert-ethers (by
+hitting the F9 key), then turn off the compute node.</P
+><P
+>Now instruct the node to use the "install x86_64" profile when it PXE boots (the
+command below assumes the compute node's name is compute-0-0):</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks set host installaction compute-0-0 action="install x86_64"</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Now PXE boot the compute node again.
+The compute node will now install itself with the x86_64 distribution.</P
+></LI
+></OL
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="CROSS-X86_64"
+>7.3.2. Cross Kickstarting i386 Compute Nodes with a x86_64 Frontend</A
+></H2
+><P
+>For this example, we assume the frontend is a x86_64 (64-bit) and the
+compute nodes are i386 CPUs (32-bit).</P
+><P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>Download the i386 Rocks rolls.
+At a minimum, you'll need to download the i386 versions of the Base, Kernel,
+Web Server and OS disk 1 and OS disk 2 rolls.</P
+><P
+>For each roll, add it to the frontend's roll repository:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks add roll &#60;roll-name&#62;.iso
+# rocks enable roll &#60;roll-name&#62;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>Rebuild your distribution:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># cd /export/rocks/install
+# rocks create distro
+# rocks create distro arch=i386</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>To prepare the frontend to cross-kickstart compute nodes via PXE, you
+first need to add the <SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks-boot</SAMP
+> package from
+the i386 architecture:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rpm -i --force /export/rocks/install/rocks-dist/i386/RedHat/RPMS/rocks-boot-5.3-1.i386.rpm
+# cp /boot/kickstart/default/vmlinuz-5.3-i386 /tftpboot/pxelinux
+# cp /boot/kickstart/default/initrd.img-5.3-i386 /tftpboot/pxelinux</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>Then you need to add a new <SAMP
+CLASS="COMPUTEROUTPUT"
+>bootaction</SAMP
+>:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks add bootaction action="install i386" kernel="vmlinuz-5.3-i386" \
+  ramdisk="initrd.img-5.3-i386" \
+  args="ks ramdisk_size=150000 lang= devfs=nomount pxe kssendmac selinux=0 noipv6"</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>The next step requires you to PXE boot the cross-kickstarted node twice: the
+first is to discover the node, and a second time to install it.</P
+><P
+>On the frontend, run insert-ethers to discover the compute node:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># insert-ethers</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Then, PXE boot the compute node. 
+After the compute node is discovered by insert-ethers, kill insert-ethers (by
+hitting the F9 key), then turn off the compute node.</P
+><P
+>Now instruct the node to use the "install i386" profile when it PXE boots (the
+command below assumes the compute node's name is compute-0-0):</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks set host installaction compute-0-0 action="install i386"</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Now PXE boot the compute node again.
+The compute node will now install itself with the i386 distribution.</P
+></LI
+></OL
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="central.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="bootflags.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Frontend Central Server</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="advanced-tasks.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Adding Kernel Boot Parameters</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

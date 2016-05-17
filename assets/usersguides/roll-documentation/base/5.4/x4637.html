@@ -1,0 +1,686 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>open</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Roll: Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Command Reference"
+HREF="c1640.html"><LINK
+REL="PREVIOUS"
+TITLE="list"
+HREF="x3830.html"><LINK
+REL="NEXT"
+TITLE="remove"
+HREF="x4814.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Base Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x3830.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 8. Command Reference</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x4814.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="AEN4637"
+>8.11. open</A
+></H1
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-OPEN-APPLIANCE-FIREWALL"
+>8.11.1. open appliance firewall</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks open appliance firewall</B
+>  {appliance} [network=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [param=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [protocol=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Open a service for an appliance type in the cluster.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>appliance</DT
+><DD
+><P
+>&#13;	The appliance type (e.g., "compute").
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>network=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;        The network this service should be opened on. This is a named network
+        (e.g., 'private') and must be listable by the command
+        'rocks list network'.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>param=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The service identifier, port number or port range. For example
+	"www", 8080 or 0:1024.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>protocol=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The protocol associated with the service. For example, "tcp" or "udp".
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-OPEN-FIREWALL"
+>8.11.2. open firewall</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks open firewall</B
+>  [network=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [protocol=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [service=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Globally open a service for the hosts in the cluster. This will open
+	up the firewall for all the hosts to allow the packets for a
+	service to flow into the hosts.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>network=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;        The network this service should be opened on. This is a named network
+        (e.g., 'private') and must be listable by the command
+        'rocks list network'.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>protocol=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The protocol associated with the service. For example, "tcp" or "udp".
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>service=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The service identifier, port number or port range. For example
+	"www", 8080 or 0:1024.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-OPEN-HOST-CONSOLE"
+>8.11.3. open host console</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks open host console</B
+>  {host} [key=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [vncflags=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Open a console to a virtual machine.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	Host name of machine.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>key=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	A private key that will be used to authenticate the request. This
+	should be a file name that contains the private key.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>vncflags=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	VNC flags to be passed to the VNC viewer. The default flags are:
+	"-log *:stderr:0 -FullColor -PreferredEncoding hextile". See the
+	vncviewer man page for all the available options.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-OPEN-HOST-FIREWALL"
+>8.11.4. open host firewall</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks open host firewall</B
+>  {host} [network=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [protocol=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [service=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Open a service for hosts in the cluster. This will open up the
+	firewall for all the specified hosts to allow the packets for a
+	service to flow into the hosts.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	Host name of machine.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>network=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;        The network this rule should be applied to. This is a named network
+        (e.g., 'private') and must be one listed by the command
+        'rocks list network'.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>protocol=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The protocol associated with the service. For example, "tcp" or "udp".
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>service=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The service identifier, port number or port range. For example
+	"www", 8080 or 0:1024.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-OPEN-OS-FIREWALL"
+>8.11.5. open os firewall</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks open os firewall</B
+>  {os} [network=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [protocol=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [service=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Open a service for an OS type in the cluster.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>os</DT
+><DD
+><P
+>&#13;	The OS type (e.g., "linux", "sunos").
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>network=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;        The network this service should be opened on. This is a named network
+        (e.g., 'private') and must be one listed by the command
+        'rocks list network'.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>protocol=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The protocol associated with the service. For example, "tcp" or "udp".
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>service=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The service identifier, port number or port range. For example
+	"www", 8080 or 0:1024.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x3830.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x4814.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>list</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="c1640.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>remove</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

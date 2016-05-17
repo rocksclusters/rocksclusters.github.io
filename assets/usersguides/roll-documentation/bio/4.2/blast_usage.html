@@ -1,0 +1,471 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Using NCBI BLAST</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE=" Bio Roll: Users Guide "
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Using the Bio Roll"
+HREF="using.html"><LINK
+REL="PREVIOUS"
+TITLE="Using HMMER"
+HREF="hmmer_usage.html"><LINK
+REL="NEXT"
+TITLE="Using ClustalW"
+HREF="clustalw_usage.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Bio Roll: Users Guide: 	<DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/dna.png"></P
+></DIV
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="hmmer_usage.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 3. Using the Bio Roll</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="clustalw_usage.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="BLAST_USAGE"
+>3.3. Using NCBI BLAST</A
+></H1
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN137"
+>3.3.1. About</A
+></H2
+><P
+>BLAST, or Basic Local Alignment Search Tool, is a collection of
+tools that are used to search for and find
+regions of local similarity between sequences. The program
+compares nucleotide or protein sequences to sequence  databases,
+and calculates the statistical significance of the matches. This 
+software suite has been released free to the public by the
+National Centre for Biotechnology Information.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN140"
+>3.3.2. Usage</A
+></H2
+><P
+>BLAST can be used for protein-protein comparisons or
+nucleotide-nucleotide comparisons. Before an example of the usage
+is presented, we must first define some environmental variables.</P
+><P
+></P
+><UL
+><LI
+><P
+>		$BLASTDB - This is the variable which points to
+		the Blast Database. This is set to
+		/share/bio/ncbi/db/. This directory should contain
+		the databases that you would want to search. BLAST
+		by default checks this location and the current working
+		directory for the
+		presence of the databases. This variable is set during
+		login by system login scripts , and may be changed
+		by the user to point to her preferred location in
+		her startup scripts.
+	</P
+></LI
+><LI
+><P
+>		$BLASTMAT - This variable points to the location
+		where the BLAST scoring matricies are present. It is set to
+		/opt/Bio/ncbi/data
+		Again, they may be changed to point to a desired
+		location on a per-user basis.
+	</P
+></LI
+></UL
+><P
+>	BLAST requires the presence of 2 datasets. One dataset is
+	the input sequence that you want to search for, and the other
+	dataset is the database that you want to search against.
+	</P
+><P
+> Use the following procedure to run blast
+	<P
+></P
+><UL
+><LI
+><P
+>Download the BLAST database that
+	you want to blast against.
+	The databases can be obtained from the NCBI ftp site at 
+	<A
+HREF="ftp://ftp.ncbi.nlm.nih.gov/blast/db/"
+TARGET="_top"
+>ftp://ftp.ncbi.nlm.nih.gov/blast/db/</A
+>.
+	Note that the databases available here are preformatted.
+	Unformatted databases can be obtained in FASTA format at
+	<A
+HREF="ftp://ftp.ncbi.nlm.nih.gov/blast/db/FASTA/"
+TARGET="_top"
+>	ftp://ftp.ncbi.nlm.nih.gov/blast/db/FASTA/</A
+>.
+	The databases may also be obtained by running the
+	/opt/Bio/ncbi/doc/blast/update_blastdb.pl script. Run the
+	script without any parameters to view usage.</P
+><P
+>Note that it is recommended that the blast databases be
+	downloaded to the $BLASTDB location. As not everybody has write access
+	to this location, a seperate user called biouser is created who can
+	write to this location. The users of the system may su to this user
+	using the following command.</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>[nostromo@rocks-168 ~]$ sudo su - biouser
+-bash-3.00$ cd $BLASTDB
+-bash-3.00$ /opt/Bio/ncbi/doc/blast/update_blastdb.pl --showall
+Connected to NCBI
+env_nr
+env_nt
+est
+est_human
+est_mouse
+est_others
+gss
+htgs
+human_genomic
+nr
+nt
+other_genomic
+pataa
+patnt
+pdbaa
+pdbnt
+refseq_genomic
+refseq_protein
+refseq_rna
+sts
+swissprot
+taxdb
+wgs
+-bash-3.00$ /opt/Bio/ncbi/doc/blast/update_blastdb.pl patnt    
+Connected to NCBI
+Downloading patnt.tar.gz... done.
+-bash-3.00$ tar xzf patnt.tar.gz
+	</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>This step is to be followed ONLY if you
+	have downloaded unformatted databases. Run the formatdb
+	command to format the database to the BLAST format.</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>-bash-3.00$ formatdb --help
+	</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>gives you a list of all the available options to run
+	formatdb. Make sure you choose the right set of options
+	depending on whether you're running against a nucleotide
+	database or a protien database.</P
+></LI
+><LI
+><P
+>Create a test input file.</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>[nostromo@rocks-168 ~]$ cat &#62; test.txt
+&#62;Test
+AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC
+TTCTGAACTGGTTACCTGCCGTGAGTAAATTAAAATTTTATTGACTTAGGTCACTAAATACTTTAACCAA
+TATAGGCATAGCGCACAGACAGATAAAAATTACAGAGTACACAACATCCATGAAACGCATTAGCACCACC
+ATTACCACCACCATCACCATTACCACAGGTAACGGTGCGGGCTGACGCGTACAGGAAACACAGAAAAAAG
+CCCGCACCTGACAGTGCGGGCTTTTTTTTTCGACCAAAGGTAACGAGGTAACAACCATGCGAGTGTTGAA
+GTTCGGCGGTACATCAGTGGCAAATGCAGAACGTTTTCTGCGTGTTGCCGATATTCTGGAAAGCAATGCC
+AGGCAGGGGCAGGTGGCCACCGTCCTCTCTGCCCCCGCCAAAATCACCAACCACCTGGTGGCGATGATTG
+AAAAAACCATTAGCGGCCAGGATGCTTTACCCAATATCAGCGATGCCGAACGTATTTTTGCCGAACTTTT
+	</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>Run the blastall program on the test input against
+	the downloaded database.</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>[nostromo@rocks-168 ~]$ blastall --help
+	</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>	gives a list of all the options that you can use to run
+	the blastall program.</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>[nostromo@rocks-168 ~]$ blastall -d patnt -p blastn -i test.txt -o result.txt
+[nostromo@rocks-168 ~]$ cat result.txt 
+BLASTN 2.2.13 [Nov-27-2005]
+
+
+Reference: Altschul, Stephen F., Thomas L. Madden, Alejandro A. Schaffer, 
+Jinghui Zhang, Zheng Zhang, Webb Miller, and David J. Lipman (1997), 
+"Gapped BLAST and PSI-BLAST: a new generation of protein database search
+programs",  Nucleic Acids Res. 25:3389-3402.
+
+Query= Test
+(560 letters)
+
+Database: Nucleotide sequences derived from the Patent division of
+GenBank 
+2,738,673 sequences; 1,647,221,730 total letters
+
+Searching..................................................done
+
+Score    E
+Sequences producing significant alignments:                      (bits) Value
+
+emb|CS104136.1| Sequence 1 from Patent WO2005049808                   589   e-166
+dbj|DD171864.1| Method of producing amino acid by fermentation        589   e-166
+dbj|BD179435.1| Method and apparatus for recording sequential da...   589   e-166
+dbj|BD179434.1| Method and apparatus for recording sequential da...   589   e-166
+dbj|BD131253.1| Recording method and apparatus of sequence infor...   589   e-166
+dbj|BD131254.1| Recording method and apparatus of sequence infor...   589   e-166
+dbj|BD103218.1| Method and apparatus for recording information o...   589   e-166
+dbj|BD103217.1| Method and apparatus for recording information o...   589   e-166
+gb|AR384840.1| Sequence 1569 from patent US 6610836                   262   1e-67
+gb|AR384989.1| Sequence 1718 from patent US 6610836                   196   5e-48
+dbj|E38337.1| Process for producing L-methionine by fermentation      121   2e-25
+	</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>The above example shows how to search for the test input in a patented nucleotide database, and a snippet of the output file.
+	</P
+></LI
+></UL
+>
+	</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN170"
+>3.3.3. Further Information</A
+></H2
+><P
+>For further information about BLAST and its usage, please refer
+	to the following sources
+	<P
+></P
+><UL
+><LI
+><P
+>THE NCBI Blast website - <A
+HREF="http://www.ncbi.nlm.nih.gov/BLAST/"
+TARGET="_top"
+>	http://www.ncbi.nlm.nih.gov/BLAST/</A
+></P
+></LI
+><LI
+><P
+>BLAST Help page on your cluster <A
+HREF="/blast/blast-docs/"
+TARGET="_top"
+>BLAST Help Page</A
+>
+	</P
+></LI
+><LI
+><P
+>BLAST Program selection Guide - <A
+HREF="http://www.ncbi.nlm.nih.gov/blast/BLAST_guide.pdf"
+TARGET="_top"
+>	http://www.ncbi.nlm.nih.gov/blast/BLAST_guide.pdf</A
+></P
+></LI
+></UL
+>
+	</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="hmmer_usage.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="clustalw_usage.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Using HMMER</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="using.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Using ClustalW</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

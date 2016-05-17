@@ -1,0 +1,333 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+> Physical Frontend with Virtual Compute Nodes </TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE=" Kvm Users Guide "
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Using the KVM Roll"
+HREF="using.html"><LINK
+REL="PREVIOUS"
+TITLE="Installing Virtual Clusters"
+HREF="using-virtual-clusters.html"><LINK
+REL="NEXT"
+TITLE="Remotely Controlling VMs with Pilot"
+HREF="pilot.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Kvm</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/kvmbanner.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="using-virtual-clusters.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 3. Using the KVM Roll</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="pilot.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="USING-VM-PHYSICAL-FRONTEND"
+>3.4. Physical Frontend with Virtual Compute Nodes</A
+></H1
+><P
+>In this scenario, the frontend is a physical machine (not a VM) and the
+compute nodes are virtual machines.</P
+><P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/phys-frontend-with-vms.png"></P
+></DIV
+></P
+><P
+>In the above picture, "frontend-0-0" is a physical machine (with the public
+name of "espresso.rocksclusters.org".
+The physical machine "frontend-0-0" controls two VM compute nodes
+named "compute-0-0-0" and "compute-0-1-0".
+This means that "compute-0-0-0" and "compute-0-1-0" are configured by 
+"frontend-0-0".
+This is opposed to the "virtual cluster scenario"
+(<A
+HREF="using-virtual-clusters.html"
+>Installing Virtual Clusters</A
+>), where the virtual frontend
+("frontend-0-0-0") configured the VM compute nodes, and the physical
+machine that housed "frontend-0-0-0" only started and stopped the 
+virtual compute nodes.</P
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="USING-VM"
+>3.4.1. Adding, Installing and Booting VMs with a Physical Frontend</A
+></H2
+><P
+>In the common case, you will execute three Rocks commands over the
+lifetime of your VMs: add (to add VM info to the database), start (to
+boot or install a VM) and stop (to shutdown an installed VM).</P
+><P
+>To add a VM to the system, you need to associate a VM with a physical
+machine (i.e., a VM container) and you need to assign an appliance type to
+the VM.
+Here's an example:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks add host vm vm-container-0-0 membership="Compute"</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>The above command will output a message similar to:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>added VM compute-0-0-0 on physical node vm-container-0-0</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>This tells us that, in the database, the compute VM named "compute-0-0-0"
+has been assigned to the physical machine "vm-container-0-0".</P
+><P
+>The next step is to install the VM.</P
+><P
+>VMs are installed with the <SAMP
+CLASS="COMPUTEROUTPUT"
+>start</SAMP
+>.
+Here's how to install the VM that was added above:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks start host vm compute-0-0-0</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/note.png"
+HSPACE="5"
+ALT="Note"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>After running the command above, you may see the following message:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>libvir: KVM Daemon error : POST operation failed: (kvm.err "Error creating domain: Disk isn't accessible")</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>This is not a problem.
+The above means the file that will be used for the VMs disk space was not
+present when the VM was started.
+The <B
+CLASS="COMMAND"
+>rocks start host vm</B
+> command eventually creates it and starts the VM.
+That is, while you may see the error message above, the VM is actually running
+and installing.</P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>The above command will start the standard Rocks installation process for
+the VM named "compute-0-0-0".
+After the installation process initializes the network inside the VM, you
+can monitor the installation just like a physical machine installation
+by executing:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks-console compute-0-0-0</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>After the installation completes, the VM will reboot.
+After the VM boots, you can interact with the VM just like any other physical
+machine.</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="using-virtual-clusters.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="pilot.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Installing Virtual Clusters</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="using.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Remotely Controlling VMs with Pilot</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

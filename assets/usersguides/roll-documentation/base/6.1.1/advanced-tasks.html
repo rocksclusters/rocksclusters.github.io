@@ -1,0 +1,291 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+> Advanced Tasks </TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Users Guide"
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE="Reinstall All Compute Nodes with SGE"
+HREF="sge-cluster-reinstall.html"><LINK
+REL="NEXT"
+TITLE=" Managing the Firewall on the Cluster Nodes "
+HREF="firewall.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="CHAPTER"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Base</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="sge-cluster-reinstall.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="firewall.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="CHAPTER"
+><H1
+><A
+NAME="ADVANCED-TASKS"
+></A
+>Chapter 8.  Advanced Tasks </H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Table of Contents</B
+></DT
+><DT
+>8.1. <A
+HREF="firewall.html"
+>Managing the Firewall on the Cluster Nodes</A
+></DT
+><DD
+><DL
+><DT
+>8.1.1. <A
+HREF="firewall.html#AEN1896"
+>Categories. Subtle Syntax</A
+></DT
+><DT
+>8.1.2. <A
+HREF="firewall.html#AEN1938"
+>Adding Rules. Ordering Rules.  Examples</A
+></DT
+></DL
+></DD
+><DT
+>8.2. <A
+HREF="otp.html"
+>Enabling Two-Factor Authentication with Google Authenticator</A
+></DT
+><DD
+><DL
+><DT
+>8.2.1. <A
+HREF="otp.html#AEN1976"
+>Download and Install App for your Smartphone</A
+></DT
+><DT
+>8.2.2. <A
+HREF="otp.html#AEN1989"
+>Creating a User's Second Factor (One Time Password)</A
+></DT
+><DT
+>8.2.3. <A
+HREF="otp.html#AEN2011"
+>Enabling Two-factor for a particular user</A
+></DT
+><DT
+>8.2.4. <A
+HREF="otp.html#AEN2017"
+>The User Experience</A
+></DT
+><DT
+>8.2.5. <A
+HREF="otp.html#AEN2021"
+>Frequently Asked Questions</A
+></DT
+></DL
+></DD
+><DT
+>8.3. <A
+HREF="pxeflash.html"
+>Flashing BIOS on Compute Nodes Using PXE</A
+></DT
+><DT
+>8.4. <A
+HREF="login-appliance.html"
+>Adding a Login Appliance to Your Cluster</A
+></DT
+><DT
+>8.5. <A
+HREF="bonding.html"
+>Channel Bonding Interfaces</A
+></DT
+><DT
+>8.6. <A
+HREF="central.html"
+>Frontend Central Server</A
+></DT
+><DT
+>8.7. <A
+HREF="cross.html"
+>Cross Kickstarting</A
+></DT
+><DD
+><DL
+><DT
+>8.7.1. <A
+HREF="cross.html#CROSS-I386"
+>Cross Kickstarting x86_64 Compute Nodes with a i386 Frontend</A
+></DT
+><DT
+>8.7.2. <A
+HREF="cross.html#CROSS-X86_64"
+>Cross Kickstarting i386 Compute Nodes with a x86_64 Frontend</A
+></DT
+></DL
+></DD
+><DT
+>8.8. <A
+HREF="bootflags.html"
+>Adding Kernel Boot Parameters</A
+></DT
+><DD
+><DL
+><DT
+>8.8.1. <A
+HREF="bootflags.html#AEN2199"
+>Adding Kernel Boot Parameters to the Installation Kernel</A
+></DT
+><DT
+>8.8.2. <A
+HREF="bootflags.html#AEN2221"
+>Adding Kernel Boot Parameters to the Running Kernel</A
+></DT
+></DL
+></DD
+><DT
+>8.9. <A
+HREF="bootloader.html"
+>Controlling Bootloader Parameters</A
+></DT
+><DT
+>8.10. <A
+HREF="update.html"
+>System Update</A
+></DT
+><DD
+><DL
+><DT
+>8.10.1. <A
+HREF="update.html#UPDATE-ROLL"
+>System update using update roll</A
+></DT
+><DT
+>8.10.2. <A
+HREF="update.html#UPDATES-YUM"
+>System update using YUM</A
+></DT
+></DL
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="sge-cluster-reinstall.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="firewall.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Reinstall All Compute Nodes with SGE</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Managing the Firewall on the Cluster Nodes</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

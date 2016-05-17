@@ -1,0 +1,395 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>condor_advertise</TITLE>
+<META NAME="description" CONTENT="condor_advertise">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="condor_check_userlogs.html">
+<LINK REL="previous" HREF="cleanup_release.html">
+<LINK REL="up" HREF="9_Command_Reference.html">
+<LINK REL="next" HREF="condor_check_userlogs.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html2830"
+  HREF="condor_check_userlogs.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2824"
+  HREF="9_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2818"
+  HREF="cleanup_release.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2826"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2828"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2831"
+  HREF="condor_check_userlogs.html">condor_check_userlogs</A>
+<B> Up:</B> <A NAME="tex2html2825"
+  HREF="9_Command_Reference.html">9. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html2819"
+  HREF="cleanup_release.html">cleanup_release</A>
+ &nbsp; <B>  <A NAME="tex2html2827"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2829"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html2832"
+  HREF="condor_advertise.html#SECTION001021000000000000000">Synopsis</A>
+<LI><A NAME="tex2html2833"
+  HREF="condor_advertise.html#SECTION001022000000000000000">Description</A>
+<LI><A NAME="tex2html2834"
+  HREF="condor_advertise.html#SECTION001023000000000000000">Options</A>
+<LI><A NAME="tex2html2835"
+  HREF="condor_advertise.html#SECTION001024000000000000000">General Remarks</A>
+<LI><A NAME="tex2html2836"
+  HREF="condor_advertise.html#SECTION001025000000000000000">Examples</A>
+<LI><A NAME="tex2html2837"
+  HREF="condor_advertise.html#SECTION001026000000000000000">Exit Status</A>
+<LI><A NAME="tex2html2838"
+  HREF="condor_advertise.html#SECTION001027000000000000000">Author</A>
+<LI><A NAME="tex2html2839"
+  HREF="condor_advertise.html#SECTION001028000000000000000">Copyright</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION001020000000000000000"></A><A NAME="man-condor-advertise"></A>
+<BR>
+<I>condor_advertise</I>
+</H1> Send a ClassAd to the <I>condor_collector</I> daemon
+  
+<P>
+
+<H2><A NAME="SECTION001021000000000000000">
+Synopsis</A>
+</H2><B><I>condor_advertise</I></B>
+
+[<B>-help | -version</B>]
+
+[<B>-pool  </B><I>centralmanagerhostname[:portname]</I>]
+[<B>-debug</B>]
+[<B>-tcp</B>]
+<I>update-command</I>
+[<I>classad-filename</I>]
+
+<P>
+<A NAME="57073"></A>
+<A NAME="57074"></A>
+
+<P>
+
+<H2><A NAME="SECTION001022000000000000000">
+Description</A>
+</H2>
+<I>condor_advertise</I> sends a ClassAd to the <I>condor_collector</I> daemon on
+the central manager machine.
+The required argument <I>update-command</I> says what daemon type's ClassAd
+is to be updated.
+The optional argument <I>classad-filename</I> is the file from which the
+ClassAd should be read.
+If <I>classad-filename</I> is omitted or is ``-'', then the
+ClassAd is read from standard input.
+
+<P>
+The <I>update-command</I> may be one of the following strings:
+<DL>
+<DT><STRONG>UPDATE_STARTD_AD</STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG>UPDATE_SCHEDD_AD</STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG>UPDATE_MASTER_AD</STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG>UPDATE_GATEWAY_AD</STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG>UPDATE_CKPT_SRVR_AD</STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG>UPDATE_NEGOTIATOR_AD</STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG>UPDATE_HAD_AD</STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG>UPDATE_AD_GENERIC</STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG>UPDATE_SUBMITTOR_AD</STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG>UPDATE_COLLECTOR_AD</STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG>UPDATE_LICENSE_AD</STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG>UPDATE_STORAGE_AD</STRONG></DT>
+<DD>
+</DD>
+</DL>
+
+<P>
+<I>condor_advertise</I> can also be used to invalidate and delete
+ClassAds currently held by the <I>condor_collector</I> daemon.  In this case
+the <I>update-command</I> will be one of the following strings:
+<DL>
+<DT><STRONG>INVALIDATE_STARTD_ADS</STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG>INVALIDATE_SCHEDD_ADS</STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG>INVALIDATE_MASTER_ADS</STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG>INVALIDATE_GATEWAY_ADS</STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG>INVALIDATE_CKPT_SRVR_ADS</STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG>INVALIDATE_NEGOTIATOR_ADS</STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG>INVALIDATE_HAD_ADS</STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG>INVALIDATE_ADS_GENERIC</STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG>INVALIDATE_SUBMITTOR_ADS</STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG>INVALIDATE_COLLECTOR_ADS</STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG>INVALIDATE_LICENSE_ADS</STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG>INVALIDATE_STORAGE_ADS</STRONG></DT>
+<DD>
+</DD>
+</DL>
+
+<P>
+For any of these INVALIDATE commands, the ClassAd in the required file
+consists of three entries.
+The file contents will be similar to:
+<PRE>
+MyType = "Query"
+TargetType = "Machine"
+Requirements = Name == "condor.example.com"
+</PRE>
+The definition for <TT>MyType</TT> is always <TT>Query</TT>.
+<TT>TargetType</TT> is set to the <TT>MyType</TT> of the ad to be deleted.
+This <TT>MyType</TT> is
+<TT>DaemonMaster</TT> for the <I>condor_master</I> ClassAd,
+<TT>Machine</TT> for the <I>condor_startd</I> ClassAd,
+<TT>Scheduler</TT> for the <I>condor_schedd</I> ClassAd, and
+<TT>Negotiator</TT> for the <I>condor_negotiator</I> ClassAd.
+<TT>Requirements</TT> is an expression evaluated within the context
+of ads of <TT>TargetType</TT>.
+When <TT>Requirements</TT> evaluates to <TT>True</TT>,
+the matching ad is invalidated.  
+A full example is given below.
+
+<P>
+
+<H2><A NAME="SECTION001023000000000000000">
+Options</A>
+</H2>
+  
+<P>
+  <DL>
+<DT><STRONG><B>-help</B></STRONG></DT>
+<DD>Display usage information
+<BR></DD>
+<DT><STRONG><B>-version</B></STRONG></DT>
+<DD>Display version information
+<BR>
+    
+</DD>
+<DT><STRONG><B>-pool </B><I>centralmanagerhostname[:portname]</I></STRONG></DT>
+<DD>Specify a pool by
+            giving the central manager's host name and an optional port
+	    number.  The default is the
+	    <TT>COLLECTOR_HOST</TT> specified in the configuration file.
+<BR>    
+</DD>
+<DT><STRONG><B>-tcp</B></STRONG></DT>
+<DD>Use TCP for communication. Without this
+        option, UDP is used.
+<BR>    
+</DD>
+<DT><STRONG><B>-debug</B></STRONG></DT>
+<DD>Print debugging information as the command
+            executes.
+<BR>  
+</DD>
+</DL>
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION001024000000000000000">
+General Remarks</A>
+</H2>
+The job and machine ClassAds are regularly updated.
+Therefore, the result of <I>condor_advertise</I> is likely to be
+overwritten in a very short time.
+It is unlikely that either Condor users (those who submit jobs)
+or administrators will ever have a use for this command.
+If it is desired to update or set a ClassAd attribute, the
+<I>condor_config_val</I> command is the proper command to use.
+
+<P>
+For those administrators who do need <I>condor_advertise</I>, you can 
+optionally include these attributes:
+
+<P>
+DaemonStartTime - The time the service you are advertising
+started running.  Measured in seconds since the Unix epoch.
+
+<P>
+UpdateSequenceNumber - An integer that begins at 0 and increments by
+one each time you re-advertise the same ad.
+
+<P>
+If both of the above are included, the <I>condor_collector</I> will
+automatically include the following attributes:
+
+<P>
+UpdatesTotal - The actual number of advertisements for this
+daemon that the <I>condor_collector</I> has seen.
+
+<P>
+UpdatesLost - The number of advertisements that for this daemon
+that the <I>condor_collector</I> expected to see, but did not.
+
+<P>
+UpdatesSequenced - The total of UpdatesTotal and UpdatesLost.
+
+<P>
+UpdatesHistory - See <TT>COLLECTOR_DAEMON_HISTORY_SIZE</TT> <A NAME="57295"></A> <A NAME="57296"></A> in
+section&nbsp;<A HREF="3_3Configuration.html#sec:Collector-Config-File-Entries">3.3.16</A>.
+
+<P>
+
+<H2><A NAME="SECTION001025000000000000000">
+Examples</A>
+</H2>
+
+<P>
+Assume that a machine called condor.example.com is turned off,
+yet its <I>condor_startd</I> ClassAd does not expire for another 20 minutes.
+To avoid this machine being matched, an administrator chooses
+to delete the machine's <I>condor_startd</I> ClassAd.
+Create a file (called <TT>remove_file</TT> in this example)
+with the three required attributes:
+<PRE>
+MyType = "Query"
+TargetType = "Machine"
+Requirements = Name == "condor.example.com"
+</PRE>
+
+<P>
+This file is used with the command:
+<PRE>
+% condor_advertise INVALIDATE_STARTD_ADS remove_file 
+</PRE>
+
+<P>
+
+<H2><A NAME="SECTION001026000000000000000">
+Exit Status</A>
+</H2>
+
+<P>
+<I>condor_advertise</I> will exit with a status value of 0 (zero) upon success,
+and it will exit with the value 1 (one) upon failure.
+
+<P>
+
+<H2><A NAME="SECTION001027000000000000000">
+Author</A>
+</H2> Condor Team, University of Wisconsin-Madison
+  
+<H2><A NAME="SECTION001028000000000000000">
+Copyright</A>
+</H2> 
+  Copyright &#169; 1990-2010 Condor Team, Computer Sciences Department, 
+  University of Wisconsin-Madison, Madison, WI.  All Rights Reserved.  
+	Licensed under the Apache License, Version 2.0.
+
+<P>
+See the <I>Condor Version 7.4.4 Manual</I> or
+	<A NAME="tex2html104"
+  HREF="http://www.condorproject.org/license">http://www.condorproject.org/license</A>
+for
+  additional notices. 
+
+
+  <HR>
+<!--Navigation Panel-->
+<A NAME="tex2html2830"
+  HREF="condor_check_userlogs.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2824"
+  HREF="9_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2818"
+  HREF="cleanup_release.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2826"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2828"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2831"
+  HREF="condor_check_userlogs.html">condor_check_userlogs</A>
+<B> Up:</B> <A NAME="tex2html2825"
+  HREF="9_Command_Reference.html">9. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html2819"
+  HREF="cleanup_release.html">cleanup_release</A>
+ &nbsp; <B>  <A NAME="tex2html2827"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2829"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

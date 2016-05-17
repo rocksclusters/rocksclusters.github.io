@@ -1,0 +1,442 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>report</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE=" Xen Users Guide "
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Command Reference"
+HREF="c423.html"><LINK
+REL="PREVIOUS"
+TITLE="remove"
+HREF="x859.html"><LINK
+REL="NEXT"
+TITLE="restore"
+HREF="x991.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Xen</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/xen.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x859.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 4. Command Reference</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x991.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="AEN898"
+>4.8. report</A
+></H1
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REPORT-HOST-VM"
+>4.8.1. report host vm</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks report host vm</B
+>  {host}</P
+><P
+>&#13;	Outputs a configuration file used by rocks-pygrub in order to boot a VM.
+	
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	One VM host name (e.g., compute-0-0-0).
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks report host vm compute-0-0-0</DT
+><DD
+><P
+>&#13;	Create the VM configuration file for host compute-0-0-0
+	
+	</P
+></DD
+><DT
+>$ rocks report host vm compute-0-0-0</DT
+><DD
+><P
+>&#13;	Create the VM configuration file for host compute-0-0-0.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REPORT-HOST-VM-CONFIG"
+>4.8.2. report host vm config</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks report host vm config</B
+>  {host...}</P
+><P
+>&#13;	Reports the XML Configuration for VM that will be handed
+	to libvirt for startup.	
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	One or more VM host names.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks report host vm config compute-0-0-0</DT
+><DD
+><P
+>&#13;	list the XML configuration of Report XML Config of VM compute-0-0-0.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REPORT-HOST-VM-VIRT_TYPE"
+>4.8.3. report host vm virt_type</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks report host vm virt_type</B
+>  {host}</P
+><P
+>&#13;	Output the type of virtualization used for a VM.
+	
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	One VM host name (e.g., compute-0-0-0).
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks report host vm virt-type compute-0-0-0</DT
+><DD
+><P
+>&#13;	Report the vitualization type used.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REPORT-HOST-XEN-BRIDGE"
+>4.8.4. report host xen bridge</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks report host xen bridge</B
+> </P
+><P
+>&#13;	Generates the Xen networking bridge configuration script for a
+	host.
+	
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks report host xen bridge</DT
+><DD
+><P
+>&#13;	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REPORT-HOST-XEN-XENDOMAINS"
+>4.8.5. report host xen xendomains</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks report host xen xendomains</B
+> </P
+><P
+>&#13;	Generates the /etc/sysconfig/xendomains configuration file for a
+	host.
+	
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks report host xen xendomains vm-container-0-0</DT
+><DD
+><P
+>&#13;	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REPORT-VM-NEXTMAC"
+>4.8.6. report vm nextmac</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks report vm nextmac</B
+> </P
+><P
+>&#13;	Outputs the next free MAC address that can be used for a VM.
+
+        </P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks report vm nextmac</DT
+><DD
+><P
+>&#13;        
+	</P
+></DD
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x859.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x991.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>remove</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="c423.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>restore</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

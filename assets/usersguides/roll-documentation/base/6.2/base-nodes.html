@@ -1,0 +1,4940 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Rocks Base Nodes</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Kickstart Nodes Reference"
+HREF="appendix-b.html"><LINK
+REL="PREVIOUS"
+TITLE="Kickstart Nodes Reference"
+HREF="appendix-b.html"><LINK
+REL="NEXT"
+TITLE="Rocks Copyright and Trademark"
+HREF="rocks-copyright.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Base</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="appendix-b.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Appendix E. Kickstart Nodes Reference</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="rocks-copyright.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="BASE-NODES"
+>E.1. Rocks Base Nodes</A
+></H1
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-411-BASE"
+>E.1.1. 411-base</A
+></H2
+><P
+>&#13;
+  The packages and other common elements of the 
+  411 Secure Information Service.
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-BASE"
+>base</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-411-CLIENT"
+>E.1.2. 411-client</A
+></H2
+><P
+>&#13;
+  Sets up the 411 Secure Information Service for clients.  The
+  411 service will automatically configure itself when a file 
+  is published.
+
+  Also puts all current 411 files from the frontend into the 
+  kickstart file for services that cannot tolerate a single
+  411 failure.
+
+  Note that 411 can never guarentee full absolute success at any
+  single time. It only offers consistancy over the long term.
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-CLIENT"
+>client</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-411-SERVER"
+>E.1.3. 411-server</A
+></H2
+><P
+>&#13;
+  Sets up the 411 Secure Information Service for Master 
+  nodes. Creates the RSA public and private keys for the cluster,
+  and configures Apache for 411.
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SERVER"
+>server</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-APACHE"
+>E.1.4. apache</A
+></H2
+><P
+>&#13;
+  Apache HTTP Server
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SERVER"
+>server</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-AUTO-KICKSTART"
+>E.1.5. auto-kickstart</A
+></H2
+><P
+>&#13;  
+  Force a kickstart on power fail or system crash.
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-BASE"
+>base</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-AUTOFS"
+>E.1.6. autofs</A
+></H2
+><P
+>&#13;
+  AutoFS for automounting home directories over NFS or the loopback
+  device.
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-BASE"
+>base</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-AUTOFS-CLIENT"
+>E.1.7. autofs-client</A
+></H2
+><P
+>&#13;
+  AutoFS Client
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-CLIENT"
+>client</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-AUTOFS-SERVER"
+>E.1.8. autofs-server</A
+></H2
+><P
+>&#13;
+  AutoFS server
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SERVER"
+>server</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-BASE"
+>E.1.9. base</A
+></H2
+><P
+>&#13;
+  Base class for all Rocks nodes.  This should include compute nodes,
+  frontend nodes, standalone laptops, computer labs, graphics nodes,
+  nfs servers
+
+  To achieve this level of flexibility this base class should have
+  edges only to those classes that implement the core of Rocks.
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-CLIENT"
+>client</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SERVER"
+>server</A
+></P
+></LI
+></UL
+></P
+><P
+><EM
+>Children Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-411-BASE"
+>411-base</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-AUTO-KICKSTART"
+>auto-kickstart</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-AUTOFS"
+>autofs</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-DISK-STAMP"
+>disk-stamp</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-FIREWALL"
+>firewall</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-FOUNDATION-BASE"
+>foundation-base</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-GRUB"
+>grub</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-I18N"
+>i18n</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-IP-DIAG"
+>ip-diag</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-IPMI-BASE"
+>ipmi-base</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-LOGROTATE"
+>logrotate</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-MAIL"
+>mail</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-MOSH"
+>mosh</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-NODE"
+>node</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-NTP"
+>ntp</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-PARTITION"
+>partition</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-POSTSHELL"
+>postshell</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-RPC"
+>rpc</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SCRIPTING"
+>scripting</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SECURITY"
+>security</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SELINUX"
+>selinux</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SNMP-SERVER"
+>snmp-server</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SYSLOG"
+>syslog</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-UPSTART"
+>upstart</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-YUM"
+>yum</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-YUM-EXTRAS"
+>yum-extras</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-BOOTSTRAP-DUMMY"
+>E.1.10. bootstrap-dummy</A
+></H2
+><P
+>&#13;	Dummy terminal node for bootstrap-packages subgraph
+	</P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-BOOTSTRAP-PACKAGES"
+>bootstrap-packages</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-BOOTSTRAP-PACKAGES"
+>E.1.11. bootstrap-packages</A
+></H2
+><P
+>&#13;	Additional packages that may be needed on a server that was not
+        originally built with Rocks. Tested on Native CentOS installed build
+        machine.
+	</P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-DEVEL-APPLIANCE"
+>devel-appliance</A
+></P
+></LI
+></UL
+></P
+><P
+><EM
+>Children Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-BOOTSTRAP-DUMMY"
+>bootstrap-dummy</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-C-DEVELOPMENT"
+>E.1.12. c-development</A
+></H2
+><P
+>&#13;
+  Minimalist C development support.  This is everything you need to
+  compile the kernel.
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-COMPILERS"
+>compilers</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-CA"
+>E.1.13. ca</A
+></H2
+><P
+>&#13;
+Sets up keys for the frontend Certificate Authority
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SECURITY-SERVER"
+>security-server</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-CDR"
+>E.1.14. cdr</A
+></H2
+><P
+>&#13;
+  CDR Tools (burnings, iso, ripping, mp3 enconding)
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-DEVEL"
+>devel</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-CENTRAL"
+>E.1.15. central</A
+></H2
+><P
+>&#13;  
+  A Rocks Cluster Central server. Can kickstart other servers
+  over the network.
+
+  Also contains general Apache security setup.
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SECURITY-SERVER"
+>security-server</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-CLIENT"
+>E.1.16. client</A
+></H2
+><P
+>&#13;The 'client node' in the graph.
+
+This file is used as a connection point for other XML configuration nodes.&#13;</P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-COMPUTE-APPLIANCE"
+>compute-appliance</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-DEVEL-APPLIANCE"
+>devel-appliance</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-LOGIN"
+>login</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-NAS"
+>nas</A
+></P
+></LI
+></UL
+></P
+><P
+><EM
+>Children Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-411-CLIENT"
+>411-client</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-AUTOFS-CLIENT"
+>autofs-client</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-BASE"
+>base</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-CLIENT-FIREWALL"
+>client-firewall</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-CLIENT-ROOTPW"
+>client-rootpw</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-DHCP-CLIENT"
+>dhcp-client</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-EMACS"
+>emacs</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-FAIL2BAN"
+>fail2ban</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-FOUNDATION-CLIENT"
+>foundation-client</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-GRUB-CLIENT"
+>grub-client</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-IPMI-CLIENT"
+>ipmi-client</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-MAIL-CLIENT"
+>mail-client</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-NETWORKING-CLIENT"
+>networking-client</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-NODE-CERTS"
+>node-certs</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-NTP-CLIENT"
+>ntp-client</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-PARTITIONS-SAVE"
+>partitions-save</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-PXEBOOT"
+>pxeboot</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-RESOLV"
+>resolv</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-ROUTES-CLIENT"
+>routes-client</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-RSH"
+>rsh</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SECURITY-CLIENT"
+>security-client</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SHARED-MEMORY"
+>shared-memory</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SYSLOG-CLIENT"
+>syslog-client</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-X11"
+>x11</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-CLIENT-FIREWALL"
+>E.1.17. client-firewall</A
+></H2
+><P
+>&#13;Client node firewall rules&#13;</P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-CLIENT"
+>client</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-CLIENT-ROOTPW"
+>E.1.18. client-rootpw</A
+></H2
+><P
+></P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-CLIENT"
+>client</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-COMPILERS"
+>E.1.19. compilers</A
+></H2
+><P
+></P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-DEVEL"
+>devel</A
+></P
+></LI
+></UL
+></P
+><P
+><EM
+>Children Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-C-DEVELOPMENT"
+>c-development</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-FORTRAN-DEVELOPMENT"
+>fortran-development</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-COMPUTE"
+>E.1.20. compute</A
+></H2
+><P
+>&#13;	
+	Compute Appliance Node.  You should create your own extend-compute.xml
+	file to add functionality to this appliance type.
+
+	</P
+><P
+><EM
+>Children Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-COMPUTE-APPLIANCE"
+>compute-appliance</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-COMPUTE-APPLIANCE"
+>E.1.21. compute-appliance</A
+></H2
+><P
+>&#13;  
+  Rocks Cluster Compute Node.
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-COMPUTE"
+>compute</A
+></P
+></LI
+></UL
+></P
+><P
+><EM
+>Children Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-CLIENT"
+>client</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-DATABASE"
+>E.1.22. database</A
+></H2
+><P
+>&#13;
+  NPACI Rocks Cluster Database. Includes client programs,
+  python libraries, and Apache configuration.
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-DEVEL-APPLIANCE"
+>devel-appliance</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SERVER"
+>server</A
+></P
+></LI
+></UL
+></P
+><P
+><EM
+>Children Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-DATABASE-DATA"
+>database-data</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-DATABASE-SCHEMA"
+>database-schema</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-DATABASE-SEC"
+>database-sec</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-DATABASE-DATA"
+>E.1.23. database-data</A
+></H2
+><P
+>&#13;
+  Populate cluster database with initial data
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-DATABASE"
+>database</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-DATABASE-SCHEMA"
+>E.1.24. database-schema</A
+></H2
+><P
+>&#13;
+  Cluster Database SQL table structure.  This used to be generated
+  from a dump of the structure on Meteor.  Now we just edit this
+  directly.
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-DATABASE"
+>database</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-DATABASE-SEC"
+>E.1.25. database-sec</A
+></H2
+><P
+>&#13;$Id: database-sec.xml,v 1.11 2011/08/26 00:05:50 anoop Exp $
+This xml file sets database access permissions
+and grants table and procedure privileges to
+apache and other users&#13;</P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-DATABASE"
+>database</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-DEVEL"
+>E.1.26. devel</A
+></H2
+><P
+></P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-DEVEL-APPLIANCE"
+>devel-appliance</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SERVER"
+>server</A
+></P
+></LI
+></UL
+></P
+><P
+><EM
+>Children Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-CDR"
+>cdr</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-COMPILERS"
+>compilers</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-DOCBOOK"
+>docbook</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-EMACS"
+>emacs</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-DEVEL-APPLIANCE"
+>E.1.27. devel-appliance</A
+></H2
+><P
+>&#13;  
+  Rocks Development Appliance. Defined to compile rolls
+
+  </P
+><P
+><EM
+>Children Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-BOOTSTRAP-PACKAGES"
+>bootstrap-packages</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-CLIENT"
+>client</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-DATABASE"
+>database</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-DEVEL"
+>devel</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-FOUNDATION-SERVER"
+>foundation-server</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-ROCKS-DEVEL"
+>rocks-devel</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-ROCKS-DIST"
+>rocks-dist</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SNMP-CLIENT"
+>snmp-client</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-X11"
+>x11</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-DEVEL-SERVER"
+>E.1.28. devel-server</A
+></H2
+><P
+>&#13;	Add Development Appliance Definition to the Frontend&#13;</P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SERVER"
+>server</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-DHCP-CLIENT"
+>E.1.29. dhcp-client</A
+></H2
+><P
+>&#13;
+  DHCP Client
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-CLIENT"
+>client</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-DHCP-SERVER"
+>E.1.30. dhcp-server</A
+></H2
+><P
+>&#13;
+  Setup the DHCP server for the cluster
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SERVER"
+>server</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-DISK-STAMP"
+>E.1.31. disk-stamp</A
+></H2
+><P
+>&#13;Take a root partition, and make it ours!
+
+This is the key to determining, on reinstalls, if we should save partitions
+(because the stamp is there) or blow away all the paritions on the
+disk (because the stamp isn't there).&#13;</P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-BASE"
+>base</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-DNS-SERVER"
+>E.1.32. dns-server</A
+></H2
+><P
+>&#13;
+  Configures a DNS nameserver for the cluster on the frontend.
+  Both forward and reversed zones are defined using the database.
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SERVER"
+>server</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-DO-PARTITION"
+>E.1.33. do-partition</A
+></H2
+><P
+></P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-PARTITION"
+>partition</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-DOCBOOK"
+>E.1.34. docbook</A
+></H2
+><P
+>&#13;
+	DOC Book support (needed to build rolls)
+
+	</P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-DEVEL"
+>devel</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-EMACS"
+>E.1.35. emacs</A
+></H2
+><P
+>&#13;  
+  Emacs OS
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-CLIENT"
+>client</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-DEVEL"
+>devel</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-ETHERS-SERVER-POSTSHELL"
+>E.1.36. ethers-server-postshell</A
+></H2
+><P
+>&#13;	Intended to be run after postshell. Will re-source the probed-ethers.sh
+	and then regenerate configs for the network interfaces, modprobe.conf.
+	ethers-server.xml will have probed the interfaces to create 
+	probed-ethers.sh. A user can put "postshell" on the command line and
+	then edit probed-ethers.sh to arbitrarily re-assign mac:interface
+	definitions.	&#13;</P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-POSTSHELL"
+>postshell</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-FAIL2BAN"
+>E.1.37. fail2ban</A
+></H2
+><P
+>&#13;Install fail2ban on node with public connection&#13;</P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-CLIENT"
+>client</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SERVER"
+>server</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-FIREWALL"
+>E.1.38. firewall</A
+></H2
+><P
+>&#13;  
+  Default firewall rules for all appliances.  Disable everything but SSH.
+  
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-BASE"
+>base</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-FORTRAN-DEVELOPMENT"
+>E.1.39. fortran-development</A
+></H2
+><P
+>&#13;
+  Fortran
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-COMPILERS"
+>compilers</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-FOUNDATION-BASE"
+>E.1.40. foundation-base</A
+></H2
+><P
+>&#13;
+	Rocks Foundation Packages
+
+	</P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-BASE"
+>base</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-FOUNDATION-CLIENT"
+>E.1.41. foundation-client</A
+></H2
+><P
+>&#13;
+	Rocks Foundation Packages
+
+	</P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-CLIENT"
+>client</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-FOUNDATION-SERVER"
+>E.1.42. foundation-server</A
+></H2
+><P
+>&#13;
+	Rocks Foundation Packages
+
+	</P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-DEVEL-APPLIANCE"
+>devel-appliance</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SERVER"
+>server</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-GOOGLE-OTP"
+>E.1.43. google-otp</A
+></H2
+><P
+>&#13;
+  Google OTP Authentication Support 
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-LOGIN"
+>login</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SERVER"
+>server</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-GOOGLE-OTP-SERVER"
+>E.1.44. google-otp-server</A
+></H2
+><P
+>&#13;
+  Google OTP Authentication Support Server Side
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SERVER"
+>server</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-GRUB"
+>E.1.45. grub</A
+></H2
+><P
+>&#13;
+  Boot loader support (GRand Unified Bootloader)
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-BASE"
+>base</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-GRUB-CLIENT"
+>E.1.46. grub-client</A
+></H2
+><P
+>&#13;
+  Boot loader configuration for cluster appliances.
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-CLIENT"
+>client</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-GRUB-SERVER"
+>E.1.47. grub-server</A
+></H2
+><P
+>&#13;
+  Boot loader configuration for cluster frontends. Puts enough information on
+  the command line to contact the central server on a reinstall.
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SERVER"
+>server</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-I18N"
+>E.1.48. i18n</A
+></H2
+><P
+>&#13;Internationalization support&#13;</P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-BASE"
+>base</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-INSERT-ROLLS"
+>E.1.49. insert-rolls</A
+></H2
+><P
+>&#13;
+Populates the frontend database with initially selected rolls.
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SERVER"
+>server</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-INSTALL"
+>E.1.50. install</A
+></H2
+><P
+>&#13;
+  Do everything needed to kickstart compute nodes or, generally speaking,
+  everything needed to kickstart any node from this machine.
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SERVER"
+>server</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-IP-DIAG"
+>E.1.51. ip-diag</A
+></H2
+><P
+>&#13;
+  TCP/IP Network diagnostic tools.
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-BASE"
+>base</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-IPMI-BASE"
+>E.1.52. ipmi-base</A
+></H2
+><P
+>&#13;
+	Common IPMI Support
+
+	</P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-BASE"
+>base</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-IPMI-CLIENT"
+>E.1.53. ipmi-client</A
+></H2
+><P
+>&#13;
+	Client Nodes
+
+	</P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-CLIENT"
+>client</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-IPMI-SERVER"
+>E.1.54. ipmi-server</A
+></H2
+><P
+>&#13;
+	Server Nodes
+
+	</P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SERVER"
+>server</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-LOGIN"
+>E.1.55. login</A
+></H2
+><P
+>&#13;The root XML node for the Login appliance&#13;</P
+><P
+><EM
+>Children Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-CLIENT"
+>client</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-GOOGLE-OTP"
+>google-otp</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-LOGIN-SERVER"
+>E.1.56. login-server</A
+></H2
+><P
+>&#13;Create a Login appliance&#13;</P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SERVER"
+>server</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-LOGROTATE"
+>E.1.57. logrotate</A
+></H2
+><P
+>&#13;
+Append rules to logrotate to prune files in /var/log
+&#13;</P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-BASE"
+>base</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-MAIL"
+>E.1.58. mail</A
+></H2
+><P
+>&#13;  
+  Mail support for the cluster.
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-BASE"
+>base</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-MAIL-CLIENT"
+>E.1.59. mail-client</A
+></H2
+><P
+>&#13;  
+  Mail support for nodes in the cluster. These nodes do not accept
+  mail for local delivery. They pass everything to a mail hub (generally
+  the frontend).
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-CLIENT"
+>client</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-MAIL-SERVER"
+>E.1.60. mail-server</A
+></H2
+><P
+>&#13;  
+  Mail hub for the cluster. This node serves as the post-office
+  for the whole cluster.
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SERVER"
+>server</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-MOSH"
+>E.1.61. mosh</A
+></H2
+><P
+>&#13; 	MOSH - Mobile Shell from MIT 	
+	</P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-BASE"
+>base</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-NAS"
+>E.1.62. nas</A
+></H2
+><P
+>&#13;  
+	NAS Appliance Node.  You should create your own extend-nas.xml
+	file to add functionality to this appliance type.
+
+	</P
+><P
+><EM
+>Children Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-CLIENT"
+>client</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-NAS-APPLIANCE"
+>nas-appliance</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-NAS-EXPORTS"
+>nas-exports</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-NAS-PARTITION"
+>nas-partition</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-NAS-APPLIANCE"
+>E.1.63. nas-appliance</A
+></H2
+><P
+>&#13;  
+  Rocks Cluster NAS Node.
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-NAS"
+>nas</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-NAS-EXPORTS"
+>E.1.64. nas-exports</A
+></H2
+><P
+>&#13;Rocks Cluster NAS Node export file system definitions&#13;</P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-NAS"
+>nas</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-NAS-PARTITION"
+>E.1.65. nas-partition</A
+></H2
+><P
+>&#13;Define a partitioning layout for NAS nodes.&#13;</P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-NAS"
+>nas</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-NETWORKING-CLIENT"
+>E.1.66. networking-client</A
+></H2
+><P
+>&#13;Configure a node's network&#13;</P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-CLIENT"
+>client</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-NETWORKING-SERVER"
+>E.1.67. networking-server</A
+></H2
+><P
+>&#13;Configure a node's network&#13;</P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SERVER"
+>server</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-NFS-SERVER"
+>E.1.68. nfs-server</A
+></H2
+><P
+>&#13;
+  NFS Servers for /export
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SERVER"
+>server</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-NODE"
+>E.1.69. node</A
+></H2
+><P
+>&#13;  
+  A node is a machine in the cluster.  Node's are on a private network
+  and get DHCP/NIS state from the frontend.
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-BASE"
+>base</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-NODE-CERTS"
+>E.1.70. node-certs</A
+></H2
+><P
+>&#13;
+  Place the root ssh public key from the installation machine on to
+  the installed machine
+
+  While we're at it suck over the SSL CA Cert/Key.  This is a quick
+  hack, we need a secure method for this to put our pants back on.
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-CLIENT"
+>client</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-NTP"
+>E.1.71. ntp</A
+></H2
+><P
+>&#13;
+  Network Time Protocol
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-BASE"
+>base</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-NTP-CLIENT"
+>E.1.72. ntp-client</A
+></H2
+><P
+>&#13;
+  Network Time Protocl
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-CLIENT"
+>client</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-NTP-SERVER"
+>E.1.73. ntp-server</A
+></H2
+><P
+>&#13;
+  Network Time Protocl
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SERVER"
+>server</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-NULL"
+>E.1.74. null</A
+></H2
+><P
+>&#13;An empty XML file.&#13;</P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-WAN"
+>wan</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-PARTITION"
+>E.1.75. partition</A
+></H2
+><P
+></P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-BASE"
+>base</A
+></P
+></LI
+></UL
+></P
+><P
+><EM
+>Children Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-DO-PARTITION"
+>do-partition</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-PARTITIONS-SAVE"
+>E.1.76. partitions-save</A
+></H2
+><P
+>&#13;Save the partition info from this node by sending a message back to the
+frontend. The frontend will store the partition info in the database&#13;</P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-CLIENT"
+>client</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-PARTITIONS-SAVE-SERVER"
+>E.1.77. partitions-save-server</A
+></H2
+><P
+>&#13;Save the partition info for a server node by sending a message to the local
+host. This will store the partition info in the database.
+
+This file is a copy of 'partitions-save' which is connected to the
+'client' graph. We need two files because of ordering: we want to save
+the partitions as early as possible on client nodes so we order
+'partitions-save' off 'HEAD', but for server nodes, we need to wait for
+the database to be configured, so we order 'partitions-save-server' off 'TAIL'.&#13;</P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SERVER"
+>server</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-PERL-DEVELOPMENT"
+>E.1.78. perl-development</A
+></H2
+><P
+>&#13;
+  Perl support
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SCRIPTING"
+>scripting</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-PERL-MODULES"
+>E.1.79. perl-modules</A
+></H2
+><P
+>&#13;
+  Perl Modules to include in the OS roll 
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SCRIPTING"
+>scripting</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-POSTSHELL"
+>E.1.80. postshell</A
+></H2
+><P
+>&#13;Allow interaction after all post sections have run
+If postshell is on the command line, wait until /mnt/sysimage/tmp/postshell
+is removed interactively.&#13;</P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-BASE"
+>base</A
+></P
+></LI
+></UL
+></P
+><P
+><EM
+>Children Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-ETHERS-SERVER-POSTSHELL"
+>ethers-server-postshell</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-PXE"
+>E.1.81. pxe</A
+></H2
+><P
+>&#13;Provides pre-execution environment (PXE) support for frontend machines.&#13;</P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SERVER"
+>server</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-PXEBOOT"
+>E.1.82. pxeboot</A
+></H2
+><P
+>&#13;PXE first configuration for client nodes&#13;</P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-CLIENT"
+>client</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-PYTHON-DEVELOPMENT"
+>E.1.83. python-development</A
+></H2
+><P
+>&#13;
+	Python support
+
+	</P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SCRIPTING"
+>scripting</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-RESOLV"
+>E.1.84. resolv</A
+></H2
+><P
+>&#13;
+  Generates the resolv.conf file for slave nodes.
+  We point to all nameservers listed in the PrivateDNSServers
+  entry in the app_globals table in the database.
+
+  This node used to be named copy-resolv.xml.
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-CLIENT"
+>client</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-RLO"
+>E.1.85. rlo</A
+></H2
+><P
+>&#13;	Remote lights Out
+	</P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SERVER"
+>server</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-ROCKS-DEVEL"
+>E.1.86. rocks-devel</A
+></H2
+><P
+>&#13;
+  Rocks Development
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-DEVEL-APPLIANCE"
+>devel-appliance</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SERVER"
+>server</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-ROCKS-DIST"
+>E.1.87. rocks-dist</A
+></H2
+><P
+>&#13;
+  Distribution building with rocks-dist
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-DEVEL-APPLIANCE"
+>devel-appliance</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SERVER"
+>server</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-ROOT"
+>E.1.88. root</A
+></H2
+><P
+>&#13;The root node that is used by rolls in order to tell 'kpp' which node
+should be the root of the traversed graph&#13;</P
+><P
+><EM
+>Children Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SERVER"
+>server</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-ROUTES-CLIENT"
+>E.1.89. routes-client</A
+></H2
+><P
+>&#13;	Set up static routes
+	</P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-CLIENT"
+>client</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-ROUTES-SERVER"
+>E.1.90. routes-server</A
+></H2
+><P
+>&#13;	Set up static routes on server
+
+	</P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SERVER"
+>server</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-RPC"
+>E.1.91. rpc</A
+></H2
+><P
+>&#13;
+  RPC support
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-BASE"
+>base</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-RSH"
+>E.1.92. rsh</A
+></H2
+><P
+>&#13;	Enable RSH
+	</P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-CLIENT"
+>client</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-SCREEN-CLUSTERINFO"
+>E.1.93. screen-clusterinfo</A
+></H2
+><P
+>&#13;</P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SERVER"
+>server</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-SCREEN-NETWORK-MISC"
+>E.1.94. screen-network-misc</A
+></H2
+><P
+>&#13;</P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SERVER"
+>server</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-SCREEN-NETWORK-PRIVATE"
+>E.1.95. screen-network-private</A
+></H2
+><P
+>&#13;</P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SERVER"
+>server</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-SCREEN-NETWORK-PUBLIC"
+>E.1.96. screen-network-public</A
+></H2
+><P
+>&#13;</P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SERVER"
+>server</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-SCREEN-PARTITIONING"
+>E.1.97. screen-partitioning</A
+></H2
+><P
+>&#13;</P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SERVER"
+>server</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-SCREEN-ROOT-PASSWORD"
+>E.1.98. screen-root-password</A
+></H2
+><P
+>&#13;</P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SERVER"
+>server</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-SCREEN-TIMEZONE"
+>E.1.99. screen-timezone</A
+></H2
+><P
+>&#13;</P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SERVER"
+>server</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-SCRIPTING"
+>E.1.100. scripting</A
+></H2
+><P
+></P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-BASE"
+>base</A
+></P
+></LI
+></UL
+></P
+><P
+><EM
+>Children Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-PERL-DEVELOPMENT"
+>perl-development</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-PERL-MODULES"
+>perl-modules</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-PYTHON-DEVELOPMENT"
+>python-development</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-TCL-DEVELOPMENT"
+>tcl-development</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-SECURITY"
+>E.1.101. security</A
+></H2
+><P
+>&#13;
+Security parent node for common security elements.
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-BASE"
+>base</A
+></P
+></LI
+></UL
+></P
+><P
+><EM
+>Children Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SSH"
+>ssh</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SSL"
+>ssl</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-SECURITY-CLIENT"
+>E.1.102. security-client</A
+></H2
+><P
+>&#13;
+Parent node for client security elements.
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-CLIENT"
+>client</A
+></P
+></LI
+></UL
+></P
+><P
+><EM
+>Children Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SSH-CLIENT"
+>ssh-client</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SSL-CLIENT"
+>ssl-client</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-SECURITY-SERVER"
+>E.1.103. security-server</A
+></H2
+><P
+>&#13;
+Parent node for server security elements.
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SERVER"
+>server</A
+></P
+></LI
+></UL
+></P
+><P
+><EM
+>Children Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-CA"
+>ca</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-CENTRAL"
+>central</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SSL-SERVER"
+>ssl-server</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-SELINUX"
+>E.1.104. selinux</A
+></H2
+><P
+>&#13;Configure SELinux&#13;</P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-BASE"
+>base</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-SERVER"
+>E.1.105. server</A
+></H2
+><P
+>&#13;	The 'server node' in the graph.
+
+	This file is used as a connection point for other XML
+	configuration nodes.
+	</P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-ROOT"
+>root</A
+></P
+></LI
+></UL
+></P
+><P
+><EM
+>Children Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-411-SERVER"
+>411-server</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-APACHE"
+>apache</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-AUTOFS-SERVER"
+>autofs-server</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-BASE"
+>base</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-DATABASE"
+>database</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-DEVEL"
+>devel</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-DEVEL-SERVER"
+>devel-server</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-DHCP-SERVER"
+>dhcp-server</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-DNS-SERVER"
+>dns-server</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-FAIL2BAN"
+>fail2ban</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-FOUNDATION-SERVER"
+>foundation-server</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-GOOGLE-OTP"
+>google-otp</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-GOOGLE-OTP-SERVER"
+>google-otp-server</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-GRUB-SERVER"
+>grub-server</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-INSERT-ROLLS"
+>insert-rolls</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-INSTALL"
+>install</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-IPMI-SERVER"
+>ipmi-server</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-LOGIN-SERVER"
+>login-server</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-MAIL-SERVER"
+>mail-server</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-NETWORKING-SERVER"
+>networking-server</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-NFS-SERVER"
+>nfs-server</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-NTP-SERVER"
+>ntp-server</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-PARTITIONS-SAVE-SERVER"
+>partitions-save-server</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-PXE"
+>pxe</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-RLO"
+>rlo</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-ROCKS-DEVEL"
+>rocks-devel</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-ROCKS-DIST"
+>rocks-dist</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-ROUTES-SERVER"
+>routes-server</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SCREEN-CLUSTERINFO"
+>screen-clusterinfo</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SCREEN-NETWORK-MISC"
+>screen-network-misc</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SCREEN-NETWORK-PRIVATE"
+>screen-network-private</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SCREEN-NETWORK-PUBLIC"
+>screen-network-public</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SCREEN-PARTITIONING"
+>screen-partitioning</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SCREEN-ROOT-PASSWORD"
+>screen-root-password</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SCREEN-TIMEZONE"
+>screen-timezone</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SECURITY-SERVER"
+>security-server</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SERVER-FIREWALL"
+>server-firewall</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SERVER-ROOTPW"
+>server-rootpw</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SNMP-CLIENT"
+>snmp-client</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SYSLOG-SERVER"
+>syslog-server</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-X11"
+>x11</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-SERVER-FIREWALL"
+>E.1.106. server-firewall</A
+></H2
+><P
+>&#13;Server node firewall rules&#13;</P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SERVER"
+>server</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-SERVER-ROOTPW"
+>E.1.107. server-rootpw</A
+></H2
+><P
+>&#13;	$Id: server-rootpw.xml,v 1.2 2011/06/21 23:26:04 anoop Exp $
+	Root Password for the frontend&#13;</P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SERVER"
+>server</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-SHARED-MEMORY"
+>E.1.108. shared-memory</A
+></H2
+><P
+>&#13;Configure the maximum size of a shared memory segment to be 3/4 of main memory&#13;</P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-CLIENT"
+>client</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-SNMP-CLIENT"
+>E.1.109. snmp-client</A
+></H2
+><P
+>&#13;
+  SNMP Client machine.
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-DEVEL-APPLIANCE"
+>devel-appliance</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SERVER"
+>server</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-SNMP-SERVER"
+>E.1.110. snmp-server</A
+></H2
+><P
+>&#13;
+  SNMP Server.  Open all the tables to the public and customize a
+  couple site varialbe.
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-BASE"
+>base</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-SSH"
+>E.1.111. ssh</A
+></H2
+><P
+>&#13;
+  Enable SSH
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SECURITY"
+>security</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-SSH-CLIENT"
+>E.1.112. ssh-client</A
+></H2
+><P
+>&#13;
+SSH Config for compute nodes and other non-frontend appliances.
+
+We are using one key pair among all SSH servers in the
+cluster. This implies we do not care about Man-in-the-Middle
+attacks. We have subverted the protection for these attacks for
+several releases (broadcastSSH).
+
+This logic should not be in the ssh.xml node so the frontend will
+generate its own keypair.
+  &#13;</P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SECURITY-CLIENT"
+>security-client</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-SSL"
+>E.1.113. ssl</A
+></H2
+><P
+>&#13;
+  Open SSL support
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SECURITY"
+>security</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-SSL-CLIENT"
+>E.1.114. ssl-client</A
+></H2
+><P
+>&#13;
+  Secure Sockets Layer for non-frontend nodes.
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SECURITY-CLIENT"
+>security-client</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-SSL-SERVER"
+>E.1.115. ssl-server</A
+></H2
+><P
+>&#13;
+  Secure Sockets Layer for frontend nodes.
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SECURITY-SERVER"
+>security-server</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-SYSLOG"
+>E.1.116. syslog</A
+></H2
+><P
+>&#13;
+  Setup Syslog
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-BASE"
+>base</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-SYSLOG-CLIENT"
+>E.1.117. syslog-client</A
+></H2
+><P
+>&#13;
+  Setup Syslog for client machine to forward messages
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-CLIENT"
+>client</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-SYSLOG-SERVER"
+>E.1.118. syslog-server</A
+></H2
+><P
+>&#13;
+  Setup Syslog for server to accept forwarded messages
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SERVER"
+>server</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-TCL-DEVELOPMENT"
+>E.1.119. tcl-development</A
+></H2
+><P
+>&#13;
+  Tcl support
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SCRIPTING"
+>scripting</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-UPSTART"
+>E.1.120. upstart</A
+></H2
+><P
+>&#13;
+  Defines Upstart-compatible Services
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-BASE"
+>base</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-WAN"
+>E.1.121. wan</A
+></H2
+><P
+>&#13;A new server installed over the wide area network, from a central.&#13;</P
+><P
+><EM
+>Children Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-NULL"
+>null</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-X11"
+>E.1.122. x11</A
+></H2
+><P
+>&#13;
+  X11 Desktop applications.
+
+  </P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-CLIENT"
+>client</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-DEVEL-APPLIANCE"
+>devel-appliance</A
+></P
+></LI
+><LI
+><P
+><A
+HREF="base-nodes.html#S-SERVER"
+>server</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-YUM"
+>E.1.123. yum</A
+></H2
+><P
+>&#13;Configure yum&#13;</P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-BASE"
+>base</A
+></P
+></LI
+></UL
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="S-YUM-EXTRAS"
+>E.1.124. yum-extras</A
+></H2
+><P
+>&#13;Extra Yum Repositories. Yum.xml disables by default&#13;</P
+><P
+><EM
+>Parent Nodes:</EM
+>
+<P
+></P
+><UL
+><LI
+><P
+><A
+HREF="base-nodes.html#S-BASE"
+>base</A
+></P
+></LI
+></UL
+></P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="appendix-b.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="rocks-copyright.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Kickstart Nodes Reference</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="appendix-b.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><SPAN
+CLASS="TRADEMARK"
+>Rocks</SPAN
+>&reg; Copyright and Trademark</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,440 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+> Adding Kernel Boot Parameters </TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE=" Advanced Tasks "
+HREF="advanced-tasks.html"><LINK
+REL="PREVIOUS"
+TITLE=" Cross Kickstarting "
+HREF="cross.html"><LINK
+REL="NEXT"
+TITLE=" System Update "
+HREF="update.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Base</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="cross.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 8. Advanced Tasks</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="update.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="BOOTFLAGS"
+>8.7. Adding Kernel Boot Parameters</A
+></H1
+><P
+>There are two scenarios in which you need to add extra kernel boot parameters:
+1) during installation, and 2) during normal boot.
+For both scenarios, we will use the example of adding the kernel boot
+parameter: "ucsd=rocks".</P
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN2032"
+>8.7.1. Adding Kernel Boot Parameters to the Installation Kernel</A
+></H2
+><P
+>The boot <EM
+>action</EM
+> of a node is controlled by the Rocks
+command line.
+For example, the following lists what the nodes will do on their next
+PXE boot:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks list host boot
+HOST         ACTION
+vi-2:        ------
+compute-0-0: os    
+compute-0-1: os</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>We see that <SAMP
+CLASS="COMPUTEROUTPUT"
+>compute-0-0</SAMP
+> will boot the "os",
+that is, it will boot off its local disk.
+Another common action is "install" which means the node will boot the
+installation kernel and install itself on the node's next PXE boot.</P
+><P
+>To list all the possible boot actions for a node, execute:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks list bootaction
+ACTION            KERNEL                RAMDISK             ARGS                                                                                  
+install:          vmlinuz-5.2-i386      initrd.img-5.2-i386 ks ramdisk_size=150000 lang= devfs=nomount pxe kssendmac selinux=0 noipv6             
+install headless: vmlinuz-5.2-i386      initrd.img-5.2-i386 ks ramdisk_size=150000 lang= devfs=nomount pxe kssendmac selinux=0 noipv6 headless vnc
+memtest:          kernel memtest        ------------------- --------------------------------------------------------------------------------------
+os:               localboot 0           ------------------- --------------------------------------------------------------------------------------
+pxeflash:         kernel memdisk bigraw pxeflash.img        keeppxe                                                                               
+rescue:           vmlinuz-5.2-i386      initrd.img-5.2-i386 ks ramdisk_size=150000 lang= devfs=nomount pxe kssendmac selinux=0 noipv6 rescue</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>To change a node's boot action to "install", execute:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks set host boot compute-0-0 action="install"</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Then we see that correct boot action has been applied:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks list host boot
+HOST         ACTION 
+vi-2:        -------
+compute-0-0: install
+compute-0-1: os</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Now to change the kernel boot parameters for the installing kernel,
+we'll need to add an action.
+We'll create a new action called "install ucsd" and add our boot flag
+"ucsd=rocks" to the end of the kernel boot parameters:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks add bootaction action="install ucsd" kernel="vmlinuz-5.2-i386" ramdisk="initrd.img-5.2-i386" \
+args="ks ramdisk_size=150000 lang= devfs=nomount pxe kssendmac selinux=0 noipv6 ucsd=rocks"</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>We now see that "install ucsd" is an available action:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks list bootaction
+ACTION            KERNEL                RAMDISK             ARGS                                                                                  
+install:          vmlinuz-5.2-i386      initrd.img-5.2-i386 ks ramdisk_size=150000 lang= devfs=nomount pxe kssendmac selinux=0 noipv6             
+install headless: vmlinuz-5.2-i386      initrd.img-5.2-i386 ks ramdisk_size=150000 lang= devfs=nomount pxe kssendmac selinux=0 noipv6 headless vnc
+install ucsd:     vmlinuz-5.2-i386      initrd.img-5.2-i386 ks ramdisk_size=150000 lang= devfs=nomount pxe kssendmac selinux=0 noipv6 ucsd=rocks  
+memtest:          kernel memtest        ------------------- --------------------------------------------------------------------------------------
+os:               localboot 0           ------------------- --------------------------------------------------------------------------------------
+pxeflash:         kernel memdisk bigraw pxeflash.img        keeppxe                                                                               
+rescue:           vmlinuz-5.2-i386      initrd.img-5.2-i386 ks ramdisk_size=150000 lang= devfs=nomount pxe kssendmac selinux=0 noipv6 rescue</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>To set the install action for compute-0-0 to "install ucsd", execute:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks set host installaction compute-0-0 action="install ucsd"</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Then we see that correct boot action has been applied:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks list host
+HOST         MEMBERSHIP CPUS RACK RANK RUNACTION INSTALLACTION
+vi-2:        Frontend   1    0    0    os        install      
+compute-0-0: Compute    2    0    0    os        install ucsd 
+compute-0-1: Compute    2    0    1    os        install </PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>The next time compute-0-0 is installed, it will use the "install ucsd"
+profile.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN2054"
+>8.7.2. Adding Kernel Boot Parameters to the Running Kernel</A
+></H2
+><P
+>To get the current parameters that will be appended to the default kernel
+boot parameters, execute:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks report host bootflags
+rocks-168: dom0_mem=1024M
+compute-0-0: dom0_mem=1024M</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Then, to add our boot flag of "ucsd=rocks", execute:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks set host bootflags compute-0-0 flags="dom0_mem=1024M ucsd=rocks"</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>To check to make sure the flag has been added to the database, execute:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks report host bootflags
+rocks-168: dom0_mem=1024M
+compute-0-0: dom0_mem=1024M ucsd=rocks</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>To apply the flags to the running kernel, you'll need to reinstall the
+compute nodes.
+For example, you'll need to reinstall compute-0-0 in order to apply
+"ucsd=rocks" to its kernel boot parameters.
+After compute-0-0 is reinstalled, you can check that the new kernel boot
+parameters have been applied by logging into compute-0-0 and executing:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># cat /proc/cmdline 
+ro root=LABEL=/ dom0_mem=1024M ucsd=rocks</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="cross.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="update.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Cross Kickstarting</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="advanced-tasks.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>System Update</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

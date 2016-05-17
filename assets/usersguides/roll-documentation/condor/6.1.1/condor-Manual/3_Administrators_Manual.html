@@ -1,0 +1,420 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>3. Administrators' Manual</TITLE>
+<META NAME="description" CONTENT="3. Administrators' Manual">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="4_Miscellaneous_Concepts.html">
+<LINK REL="previous" HREF="2_Users_Manual.html">
+<LINK REL="up" HREF="ref.html">
+<LINK REL="next" HREF="3_1Introduction.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html1211"
+  HREF="3_1Introduction.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1205"
+  HREF="ref.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1199"
+  HREF="2_14Potential_Problems.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1207"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1209"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1212"
+  HREF="3_1Introduction.html">3.1 Introduction</A>
+<B> Up:</B> <A NAME="tex2html1206"
+  HREF="ref.html">HTCondor<SUP><SUP>TM</SUP></SUP> Version 8.0.6 Manual</A>
+<B> Previous:</B> <A NAME="tex2html1200"
+  HREF="2_14Potential_Problems.html">2.14 Potential Problems</A>
+ &nbsp; <B>  <A NAME="tex2html1208"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1210"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00400000000000000000"></A>
+<A NAME="admin-manual"></A><A NAME="8851"></A>
+<BR>
+3. Administrators' Manual
+</H1>
+
+<P>
+<BR><HR>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html1213"
+  HREF="3_1Introduction.html">3.1 Introduction</A>
+<UL>
+<LI><A NAME="tex2html1214"
+  HREF="3_1Introduction.html#SECTION00411000000000000000">3.1.1 The Different Roles a Machine Can Play</A>
+<LI><A NAME="tex2html1215"
+  HREF="3_1Introduction.html#SECTION00412000000000000000">3.1.2 The HTCondor Daemons</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1216"
+  HREF="3_2Installation.html">3.2 Installation</A>
+<UL>
+<LI><A NAME="tex2html1217"
+  HREF="3_2Installation.html#SECTION00421000000000000000">3.2.1 Obtaining HTCondor</A>
+<LI><A NAME="tex2html1218"
+  HREF="3_2Installation.html#SECTION00422000000000000000">3.2.2 Preparation</A>
+<LI><A NAME="tex2html1219"
+  HREF="3_2Installation.html#SECTION00423000000000000000">3.2.3 Newer Unix Installation Procedure</A>
+<LI><A NAME="tex2html1220"
+  HREF="3_2Installation.html#SECTION00424000000000000000">3.2.4 Starting HTCondor Under Unix After Installation</A>
+<LI><A NAME="tex2html1221"
+  HREF="3_2Installation.html#SECTION00425000000000000000">3.2.5 Installation on Windows</A>
+<LI><A NAME="tex2html1222"
+  HREF="3_2Installation.html#SECTION00426000000000000000">3.2.6  RPMs</A>
+<LI><A NAME="tex2html1223"
+  HREF="3_2Installation.html#SECTION00427000000000000000">3.2.7  Debian Packages</A>
+<LI><A NAME="tex2html1224"
+  HREF="3_2Installation.html#SECTION00428000000000000000">3.2.8 Upgrading - Installing a Newer
+Version of HTCondor</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1225"
+  HREF="3_3Configuration.html">3.3 Configuration</A>
+<UL>
+<LI><A NAME="tex2html1226"
+  HREF="3_3Configuration.html#SECTION00431000000000000000">3.3.1 Introduction to
+Configuration Files</A>
+<LI><A NAME="tex2html1227"
+  HREF="3_3Configuration.html#SECTION00432000000000000000">3.3.2 Special Macros</A>
+<LI><A NAME="tex2html1228"
+  HREF="3_3Configuration.html#SECTION00433000000000000000">3.3.3 HTCondor-wide Configuration File Entries</A>
+<LI><A NAME="tex2html1229"
+  HREF="3_3Configuration.html#SECTION00434000000000000000">3.3.4 Daemon Logging Configuration File Entries</A>
+<LI><A NAME="tex2html1230"
+  HREF="3_3Configuration.html#SECTION00435000000000000000">3.3.5 DaemonCore Configuration File Entries</A>
+<LI><A NAME="tex2html1231"
+  HREF="3_3Configuration.html#SECTION00436000000000000000">3.3.6 Network-Related Configuration File Entries</A>
+<LI><A NAME="tex2html1232"
+  HREF="3_3Configuration.html#SECTION00437000000000000000">3.3.7 Shared File System Configuration File Macros</A>
+<LI><A NAME="tex2html1233"
+  HREF="3_3Configuration.html#SECTION00438000000000000000">3.3.8 Checkpoint Server Configuration File Macros</A>
+<LI><A NAME="tex2html1234"
+  HREF="3_3Configuration.html#SECTION00439000000000000000">3.3.9 condor_master Configuration File Macros</A>
+<LI><A NAME="tex2html1235"
+  HREF="3_3Configuration.html#SECTION004310000000000000000">3.3.10 condor_startd
+Configuration File Macros</A>
+<LI><A NAME="tex2html1236"
+  HREF="3_3Configuration.html#SECTION004311000000000000000">3.3.11 condor_schedd
+Configuration File Entries</A>
+<LI><A NAME="tex2html1237"
+  HREF="3_3Configuration.html#SECTION004312000000000000000">3.3.12 condor_shadow
+Configuration File Entries</A>
+<LI><A NAME="tex2html1238"
+  HREF="3_3Configuration.html#SECTION004313000000000000000">3.3.13 condor_starter
+Configuration File Entries</A>
+<LI><A NAME="tex2html1239"
+  HREF="3_3Configuration.html#SECTION004314000000000000000">3.3.14 condor_submit
+Configuration File Entries</A>
+<LI><A NAME="tex2html1240"
+  HREF="3_3Configuration.html#SECTION004315000000000000000">3.3.15 condor_preen
+Configuration File Entries</A>
+<LI><A NAME="tex2html1241"
+  HREF="3_3Configuration.html#SECTION004316000000000000000">3.3.16 condor_collector
+Configuration File Entries</A>
+<LI><A NAME="tex2html1242"
+  HREF="3_3Configuration.html#SECTION004317000000000000000">3.3.17 condor_negotiator
+Configuration File Entries</A>
+<LI><A NAME="tex2html1243"
+  HREF="3_3Configuration.html#SECTION004318000000000000000">3.3.18 condor_procd
+Configuration File Macros</A>
+<LI><A NAME="tex2html1244"
+  HREF="3_3Configuration.html#SECTION004319000000000000000">3.3.19 condor_credd
+Configuration File Macros</A>
+<LI><A NAME="tex2html1245"
+  HREF="3_3Configuration.html#SECTION004320000000000000000">3.3.20 condor_gridmanager
+Configuration File Entries</A>
+<LI><A NAME="tex2html1246"
+  HREF="3_3Configuration.html#SECTION004321000000000000000">3.3.21 condor_job_router
+Configuration File Entries</A>
+<LI><A NAME="tex2html1247"
+  HREF="3_3Configuration.html#SECTION004322000000000000000">3.3.22 condor_lease_manager
+Configuration File Entries</A>
+<LI><A NAME="tex2html1248"
+  HREF="3_3Configuration.html#SECTION004323000000000000000">3.3.23 Grid Monitor
+Configuration File Entries</A>
+<LI><A NAME="tex2html1249"
+  HREF="3_3Configuration.html#SECTION004324000000000000000">3.3.24 Configuration File
+Entries Relating to Grid Usage</A>
+<LI><A NAME="tex2html1250"
+  HREF="3_3Configuration.html#SECTION004325000000000000000">3.3.25 Configuration File 
+Entries for DAGMan</A>
+<LI><A NAME="tex2html1251"
+  HREF="3_3Configuration.html#SECTION004326000000000000000">3.3.26 Configuration File Entries
+Relating to Security</A>
+<LI><A NAME="tex2html1252"
+  HREF="3_3Configuration.html#SECTION004327000000000000000">3.3.27 Configuration File Entries
+Relating to PrivSep</A>
+<LI><A NAME="tex2html1253"
+  HREF="3_3Configuration.html#SECTION004328000000000000000">3.3.28 Configuration File Entries
+Relating to Virtual Machines</A>
+<LI><A NAME="tex2html1254"
+  HREF="3_3Configuration.html#SECTION004329000000000000000">3.3.29 Configuration File Entries
+Relating to High Availability</A>
+<LI><A NAME="tex2html1255"
+  HREF="3_3Configuration.html#SECTION004330000000000000000">3.3.30 MyProxy
+Configuration File Macros</A>
+<LI><A NAME="tex2html1256"
+  HREF="3_3Configuration.html#SECTION004331000000000000000">3.3.31 Configuration File Macros Affecting APIs</A>
+<LI><A NAME="tex2html1257"
+  HREF="3_3Configuration.html#SECTION004332000000000000000">3.3.32 Configuration File Entries
+Relating to condor_ssh_to_job</A>
+<LI><A NAME="tex2html1258"
+  HREF="3_3Configuration.html#SECTION004333000000000000000">3.3.33 condor_rooster Configuration File Macros</A>
+<LI><A NAME="tex2html1259"
+  HREF="3_3Configuration.html#SECTION004334000000000000000">3.3.34 condor_shared_port Configuration File Macros</A>
+<LI><A NAME="tex2html1260"
+  HREF="3_3Configuration.html#SECTION004335000000000000000">3.3.35 Configuration File Entries Relating to Hooks</A>
+<LI><A NAME="tex2html1261"
+  HREF="3_3Configuration.html#SECTION004336000000000000000">3.3.36 Configuration File Entries Only for Windows Platforms</A>
+<LI><A NAME="tex2html1262"
+  HREF="3_3Configuration.html#SECTION004337000000000000000">3.3.37 condor_defrag Configuration File Macros</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1263"
+  HREF="3_4User_Priorities.html">3.4 User Priorities and Negotiation</A>
+<UL>
+<LI><A NAME="tex2html1264"
+  HREF="3_4User_Priorities.html#SECTION00441000000000000000">3.4.1 Real User Priority (RUP)</A>
+<LI><A NAME="tex2html1265"
+  HREF="3_4User_Priorities.html#SECTION00442000000000000000">3.4.2 Effective User Priority (EUP)</A>
+<LI><A NAME="tex2html1266"
+  HREF="3_4User_Priorities.html#SECTION00443000000000000000">3.4.3 Priorities in Negotiation and Preemption</A>
+<LI><A NAME="tex2html1267"
+  HREF="3_4User_Priorities.html#SECTION00444000000000000000">3.4.4 Priority Calculation</A>
+<LI><A NAME="tex2html1268"
+  HREF="3_4User_Priorities.html#SECTION00445000000000000000">3.4.5 Negotiation</A>
+<LI><A NAME="tex2html1269"
+  HREF="3_4User_Priorities.html#SECTION00446000000000000000">3.4.6 The Layperson's Description of the Pie Spin and Pie Slice</A>
+<LI><A NAME="tex2html1270"
+  HREF="3_4User_Priorities.html#SECTION00447000000000000000">3.4.7 Group Accounting</A>
+<LI><A NAME="tex2html1271"
+  HREF="3_4User_Priorities.html#SECTION00448000000000000000">3.4.8 Accounting Groups with Hierarchical Group Quotas</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1272"
+  HREF="3_5Policy_Configuration.html">3.5 Policy Configuration for the <I>condor_startd</I></A>
+<UL>
+<LI><A NAME="tex2html1273"
+  HREF="3_5Policy_Configuration.html#SECTION00451000000000000000">3.5.1 Terminology</A>
+<LI><A NAME="tex2html1274"
+  HREF="3_5Policy_Configuration.html#SECTION00452000000000000000">3.5.2 The <TT>START</TT> expression</A>
+<LI><A NAME="tex2html1275"
+  HREF="3_5Policy_Configuration.html#SECTION00453000000000000000">3.5.3 The <TT>IS_VALID_CHECKPOINT_PLATFORM</TT> expression</A>
+<LI><A NAME="tex2html1276"
+  HREF="3_5Policy_Configuration.html#SECTION00454000000000000000">3.5.4 The <TT>RANK</TT> expression</A>
+<LI><A NAME="tex2html1277"
+  HREF="3_5Policy_Configuration.html#SECTION00455000000000000000">3.5.5  Machine States</A>
+<LI><A NAME="tex2html1278"
+  HREF="3_5Policy_Configuration.html#SECTION00456000000000000000">3.5.6 Machine Activities</A>
+<LI><A NAME="tex2html1279"
+  HREF="3_5Policy_Configuration.html#SECTION00457000000000000000">3.5.7 State and Activity Transitions</A>
+<LI><A NAME="tex2html1280"
+  HREF="3_5Policy_Configuration.html#SECTION00458000000000000000">3.5.8 State/Activity Transition Expression Summary</A>
+<LI><A NAME="tex2html1281"
+  HREF="3_5Policy_Configuration.html#SECTION00459000000000000000">3.5.9 Policy Settings</A>
+<LI><A NAME="tex2html1282"
+  HREF="3_5Policy_Configuration.html#SECTION004510000000000000000">3.5.10 Configuring the <I>condor_startd</I> for Multi-Core Machines</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1283"
+  HREF="3_6Security.html">3.6 Security</A>
+<UL>
+<LI><A NAME="tex2html1284"
+  HREF="3_6Security.html#SECTION00461000000000000000">3.6.1 HTCondor's Security Model</A>
+<LI><A NAME="tex2html1285"
+  HREF="3_6Security.html#SECTION00462000000000000000">3.6.2 Security Negotiation</A>
+<LI><A NAME="tex2html1286"
+  HREF="3_6Security.html#SECTION00463000000000000000">3.6.3 Authentication</A>
+<LI><A NAME="tex2html1287"
+  HREF="3_6Security.html#SECTION00464000000000000000">3.6.4 The Unified Map File for Authentication</A>
+<LI><A NAME="tex2html1288"
+  HREF="3_6Security.html#SECTION00465000000000000000">3.6.5 Encryption</A>
+<LI><A NAME="tex2html1289"
+  HREF="3_6Security.html#SECTION00466000000000000000">3.6.6 Integrity</A>
+<LI><A NAME="tex2html1290"
+  HREF="3_6Security.html#SECTION00467000000000000000">3.6.7 Authorization</A>
+<LI><A NAME="tex2html1291"
+  HREF="3_6Security.html#SECTION00468000000000000000">3.6.8 Security Sessions</A>
+<LI><A NAME="tex2html1292"
+  HREF="3_6Security.html#SECTION00469000000000000000">3.6.9 Host-Based Security in
+HTCondor</A>
+<LI><A NAME="tex2html1293"
+  HREF="3_6Security.html#SECTION004610000000000000000">3.6.10 Examples of Security Configuration</A>
+<LI><A NAME="tex2html1294"
+  HREF="3_6Security.html#SECTION004611000000000000000">3.6.11 Changing the Security Configuration</A>
+<LI><A NAME="tex2html1295"
+  HREF="3_6Security.html#SECTION004612000000000000000">3.6.12 Using 
+HTCondor w/ Firewalls, Private Networks, and NATs</A>
+<LI><A NAME="tex2html1296"
+  HREF="3_6Security.html#SECTION004613000000000000000">3.6.13 User Accounts in HTCondor on Unix Platforms</A>
+<LI><A NAME="tex2html1297"
+  HREF="3_6Security.html#SECTION004614000000000000000">3.6.14 Privilege Separation</A>
+<LI><A NAME="tex2html1298"
+  HREF="3_6Security.html#SECTION004615000000000000000">3.6.15 Support for <I>glexec</I></A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1299"
+  HREF="3_7Networking_includes.html">3.7 Networking (includes sections on Port Usage and CCB)</A>
+<UL>
+<LI><A NAME="tex2html1300"
+  HREF="3_7Networking_includes.html#SECTION00471000000000000000">3.7.1 Port Usage in HTCondor</A>
+<LI><A NAME="tex2html1301"
+  HREF="3_7Networking_includes.html#SECTION00472000000000000000">3.7.2 Reducing Port Usage with the <I>condor_shared_port</I> Daemon</A>
+<LI><A NAME="tex2html1302"
+  HREF="3_7Networking_includes.html#SECTION00473000000000000000">3.7.3 Configuring HTCondor for
+Machines With Multiple Network Interfaces </A>
+<LI><A NAME="tex2html1303"
+  HREF="3_7Networking_includes.html#SECTION00474000000000000000">3.7.4 HTCondor Connection Brokering (CCB)</A>
+<LI><A NAME="tex2html1304"
+  HREF="3_7Networking_includes.html#SECTION00475000000000000000">3.7.5 Using TCP to Send Updates to
+the <I>condor_collector</I></A>
+<LI><A NAME="tex2html1305"
+  HREF="3_7Networking_includes.html#SECTION00476000000000000000">3.7.6 Running HTCondor on an IPv6 Network Stack</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1306"
+  HREF="3_8Checkpoint_Server.html">3.8  The Checkpoint Server</A>
+<UL>
+<LI><A NAME="tex2html1307"
+  HREF="3_8Checkpoint_Server.html#SECTION00481000000000000000">3.8.1  Preparing to Install
+a Checkpoint Server</A>
+<LI><A NAME="tex2html1308"
+  HREF="3_8Checkpoint_Server.html#SECTION00482000000000000000">3.8.2 Installing the Checkpoint Server Module</A>
+<LI><A NAME="tex2html1309"
+  HREF="3_8Checkpoint_Server.html#SECTION00483000000000000000">3.8.3  
+Configuring the Pool to Use Multiple Checkpoint Servers</A>
+<LI><A NAME="tex2html1310"
+  HREF="3_8Checkpoint_Server.html#SECTION00484000000000000000">3.8.4  
+Checkpoint Server Domains</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1311"
+  HREF="3_9DaemonCore.html">3.9 DaemonCore</A>
+<UL>
+<LI><A NAME="tex2html1312"
+  HREF="3_9DaemonCore.html#SECTION00491000000000000000">3.9.1 DaemonCore and Unix signals</A>
+<LI><A NAME="tex2html1313"
+  HREF="3_9DaemonCore.html#SECTION00492000000000000000">3.9.2 DaemonCore and
+Command-line Arguments</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1314"
+  HREF="3_10Pool_Management.html">3.10 Pool Management</A>
+<UL>
+<LI><A NAME="tex2html1315"
+  HREF="3_10Pool_Management.html#SECTION004101000000000000000">3.10.1 Upgrading - Installing a New Version on an Existing Pool</A>
+<LI><A NAME="tex2html1316"
+  HREF="3_10Pool_Management.html#SECTION004102000000000000000">3.10.2 Shutting Down and Restarting an HTCondor Pool</A>
+<LI><A NAME="tex2html1317"
+  HREF="3_10Pool_Management.html#SECTION004103000000000000000">3.10.3 Reconfiguring an HTCondor Pool</A>
+<LI><A NAME="tex2html1318"
+  HREF="3_10Pool_Management.html#SECTION004104000000000000000">3.10.4 Absent ClassAds</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1319"
+  HREF="3_11High_Availability.html">3.11 The High Availability of Daemons</A>
+<UL>
+<LI><A NAME="tex2html1320"
+  HREF="3_11High_Availability.html#SECTION004111000000000000000">3.11.1  High Availability of the Job Queue</A>
+<LI><A NAME="tex2html1321"
+  HREF="3_11High_Availability.html#SECTION004112000000000000000">3.11.2  High Availability of the
+Central Manager</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1322"
+  HREF="3_12Setting_Up.html">3.12 Setting Up for Special
+Environments</A>
+<UL>
+<LI><A NAME="tex2html1323"
+  HREF="3_12Setting_Up.html#SECTION004121000000000000000">3.12.1 Using HTCondor with AFS</A>
+<LI><A NAME="tex2html1324"
+  HREF="3_12Setting_Up.html#SECTION004122000000000000000">3.12.2 Enabling the Transfer of Files Specified by a URL</A>
+<LI><A NAME="tex2html1325"
+  HREF="3_12Setting_Up.html#SECTION004123000000000000000">3.12.3 Configuring HTCondor for
+Multiple Platforms</A>
+<LI><A NAME="tex2html1326"
+  HREF="3_12Setting_Up.html#SECTION004124000000000000000">3.12.4 Full Installation of
+condor_compile</A>
+<LI><A NAME="tex2html1327"
+  HREF="3_12Setting_Up.html#SECTION004125000000000000000">3.12.5 The <I>condor_kbdd</I></A>
+<LI><A NAME="tex2html1328"
+  HREF="3_12Setting_Up.html#SECTION004126000000000000000">3.12.6 Configuring The HTCondorView Server</A>
+<LI><A NAME="tex2html1329"
+  HREF="3_12Setting_Up.html#SECTION004127000000000000000">3.12.7 Running HTCondor Jobs within a Virtual Machine</A>
+<LI><A NAME="tex2html1330"
+  HREF="3_12Setting_Up.html#SECTION004128000000000000000">3.12.8 HTCondor's Dedicated Scheduling</A>
+<LI><A NAME="tex2html1331"
+  HREF="3_12Setting_Up.html#SECTION004129000000000000000">3.12.9 Configuring HTCondor for Running Backfill Jobs</A>
+<LI><A NAME="tex2html1332"
+  HREF="3_12Setting_Up.html#SECTION0041210000000000000000">3.12.10 Per Job PID Namespaces</A>
+<LI><A NAME="tex2html1333"
+  HREF="3_12Setting_Up.html#SECTION0041211000000000000000">3.12.11 Group ID-Based Process Tracking</A>
+<LI><A NAME="tex2html1334"
+  HREF="3_12Setting_Up.html#SECTION0041212000000000000000">3.12.12 Cgroup-Based Process Tracking</A>
+<LI><A NAME="tex2html1335"
+  HREF="3_12Setting_Up.html#SECTION0041213000000000000000">3.12.13 Limiting Resource Usage with a User Job Wrapper</A>
+<LI><A NAME="tex2html1336"
+  HREF="3_12Setting_Up.html#SECTION0041214000000000000000">3.12.14 Limiting Resource Usage Using Cgroups</A>
+<LI><A NAME="tex2html1337"
+  HREF="3_12Setting_Up.html#SECTION0041215000000000000000">3.12.15 Concurrency Limits</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1338"
+  HREF="3_13Java_Support.html">3.13 Java Support Installation</A>
+<LI><A NAME="tex2html1339"
+  HREF="3_14Virtual_Machines.html">3.14 Virtual Machines</A>
+<UL>
+<LI><A NAME="tex2html1340"
+  HREF="3_14Virtual_Machines.html#SECTION004141000000000000000">3.14.1 Configuration Variables</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1341"
+  HREF="3_15Power_Management.html">3.15 Power Management</A>
+<UL>
+<LI><A NAME="tex2html1342"
+  HREF="3_15Power_Management.html#SECTION004151000000000000000">3.15.1 Entering a Low Power State</A>
+<LI><A NAME="tex2html1343"
+  HREF="3_15Power_Management.html#SECTION004152000000000000000">3.15.2 Returning From a Low Power State</A>
+<LI><A NAME="tex2html1344"
+  HREF="3_15Power_Management.html#SECTION004153000000000000000">3.15.3 Keeping a ClassAd for a Hibernating Machine</A>
+<LI><A NAME="tex2html1345"
+  HREF="3_15Power_Management.html#SECTION004154000000000000000">3.15.4 Linux Platform Details</A>
+<LI><A NAME="tex2html1346"
+  HREF="3_15Power_Management.html#SECTION004155000000000000000">3.15.5 Windows Platform Details</A>
+</UL></UL>
+<!--End of Table of Child-Links-->
+<BR><HR>
+
+</BODY>
+</HTML>

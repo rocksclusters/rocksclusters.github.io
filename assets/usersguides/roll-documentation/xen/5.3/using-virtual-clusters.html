@@ -1,0 +1,530 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Installing Virtual Clusters</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE=" Xen Roll: Users Guide "
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Using the Xen Roll"
+HREF="using.html"><LINK
+REL="PREVIOUS"
+TITLE="Installing VM Containers "
+HREF="using-vm-container.html"><LINK
+REL="NEXT"
+TITLE=" Physical Frontend with Virtual Compute Nodes "
+HREF="using-vm-physical-frontend.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Xen Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/xen.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="using-vm-container.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 3. Using the Xen Roll</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="using-vm-physical-frontend.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="USING-VIRTUAL-CLUSTERS"
+>3.3. Installing Virtual Clusters</A
+></H1
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="USING-VIRTUAL-CLUSTERS-FRONTEND"
+>3.3.1. Installing a VM Frontend</A
+></H2
+><P
+>After you install a VM Server and at least one VM Container, you are ready
+to install a virtual cluster.</P
+><P
+>We'll use the following illustration as a guide to help keep track of the
+names of the physical machines and the virtual machines.</P
+><P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/virtual-cluster.png"></P
+></DIV
+></P
+><P
+>In the above picture, "espresso.rocksclusters.org" is a physical machine.
+Also, "vm-container-0-0" and "vm-container-0-1" are physical machines that
+were kickstarted by "espresso".
+The machine "frontend-0-0-0" is a virtual machine that is hosted by
+"espresso".
+The machines "hosted-vm-0-0-0" and "hosted-vm-0-1-0" are VMs that are
+associated with "frontend-0-0-0" (they are all in the same VLAN).
+The names "frontend-0-0-0", "hosted-vm-0-0-0" and "hosted-vm-0-1-0" are
+names used by physical machine to control the VMs (e.g., to start and
+stop them).</P
+><P
+>The names in the virtual cluster look like the names in a traditional
+cluster -- the frontend is named "vi-1.rocksclusters.org" and its compute
+nodes are named "compute-0-0" and "compute-0-1".
+If you login to "vi-1.rocksclusters.org", you would be hard pressed to tell
+the difference between this virtual cluster and a traditional physical cluster.</P
+><DIV
+CLASS="WARNING"
+><P
+></P
+><TABLE
+CLASS="WARNING"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/warning.png"
+HSPACE="5"
+ALT="Warning"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>You must select your own FQDN and IP address for your virtual frontend.
+The FQDN "vi-1.rocksclusters.org" and the IP address "137.110.119.118" are
+managed by UCSD and should not be used by you.</P
+><P
+>They are only used here to show you a concrete example.</P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>First, we'll add a virtual cluster to the VM Server's database.
+In this example, we'll add a frontend with the FQDN of
+"vi-1.rocksclusters.org", IP of "137.110.119.118" and we'll associate
+2 compute nodes with it:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks add cluster fqdn="vi-1.rocksclusters.org" ip="137.110.119.118" num-computes=2</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>The above command will take some time and then output something similar to:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>created frontend VM named: frontend-0-0-0 
+	created compute VM named: hosted-vm-0-0-0
+	created compute VM named: hosted-vm-0-1-0</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>The command adds entries to the database for the above nodes and establishes
+a VLAN that will be used for the private network (eth0 inside the VM).</P
+><P
+>Info about all the defined clusters on the VM Server (including the
+physical cluster) can be obtained with the command:
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks list cluster</SAMP
+>:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks list cluster
+FRONTEND                    CLIENT NODES     TYPE    
+espresso.rocksclusters.org: ---------------- physical
+:                           vm-container-0-0 physical
+:                           vm-container-0-1 physical
+vi-1.rocksclusters.org:     ---------------- VM      
+:                           hosted-vm-0-0-0  VM      
+:                           hosted-vm-0-1-0  VM</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Now we need to install the VM frontend.
+This is done by "starting" the VM:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks start host vm vi-1.rocksclusters.org install=yes</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>To interact with the VM frontend's console, you need to start "virt-manager"</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># virt-manager</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>This will display a screen similar to:</P
+><P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/virt-manager-1.png"></P
+></DIV
+></P
+><P
+>Double click on the "localhost" entry and then you'll see:</P
+><P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/virt-manager-2.png"></P
+></DIV
+></P
+><P
+>To bring the up the console for the VM frontend, double click on
+"frontend-0-0-0".
+Now you should see the familiar frontend installation screen:</P
+><P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/virt-manager-4.png"></P
+></DIV
+></P
+><P
+>In the "Hostname of Roll Server" field, insert the FQDN of your VM Server
+(the name of the physical machine that is hosting the VM frontend).
+Then click "Download".</P
+><P
+>From here, you want to follow the
+<A
+HREF="/roll-documentation/base/5.3/install-frontend.html"
+TARGET="_top"
+>standard procedure for bringing up a frontend</A
+> starting at Step 8.</P
+><P
+>After the VM frontend installs, it will reboot.
+After it reboots, login and then we'll begin installing VM compute nodes.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="USING-VIRTUAL-CLUSTERS-COMPUTE"
+>3.3.2. Installing VM Compute Nodes</A
+></H2
+><P
+>Login to the VM frontend (the virtual machine named "vi-1.rocksclusters.org"
+in the example picture at the top of this page), and execute:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># insert-ethers</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Select "Compute" as the appliance type.</P
+><P
+>Back on the VM Server, we'll need to start the first VM that hosts the
+VM compute node.
+In this example, the name is "hosted-vm-0-0-0".</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks start host vm hosted-vm-0-0-0 install=yes</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Back in the VM frontend, you should see insert-ethers discover the VM compute
+node:</P
+><P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/discovered.png"></P
+></DIV
+></P
+><P
+>Repeat for each VM compute node.</P
+><P
+>You now have a virtual cluster up and running within your physical cluster.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="VIRT-MANAGER-COMPUTE"
+>3.3.3. Connecting to a VM Compute Node's Console</A
+></H2
+><P
+>You can connect to a virtual compute node's console in a manner similar to
+connecting to the virtual frontend's console.
+Again, bring up "virt-manager":</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># virt-manager</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>We'll connect to the console for the virtual compute node "compute-0-0".
+In the example configuration described at the top of this page,
+The VM "compute-0-0" is hosted on the physical machine named
+"vm-container-0-0" so we'll need to tell "virt-manager" to open a connection
+to "vm-container-0-0".</P
+><P
+>Inside "virt-manager", click on "File" then "Open connection...".
+This brings up a window that looks like:</P
+><P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/virt-manager-10.png"></P
+></DIV
+></P
+><P
+>Now change the "Connection:" field to "Remote tunnel over SSH" and enter
+"vm-container-0-0" for the "Hostname:" field:</P
+><P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/virt-manager-11.png"></P
+></DIV
+></P
+><P
+>Then click "Connect".</P
+><P
+>In the "virt-manager" window, you should see something similar to:</P
+><P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/virt-manager-12.png"></P
+></DIV
+></P
+><P
+>Double click on "vm-container-0-0" and then you'll see:</P
+><P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/virt-manager-13.png"></P
+></DIV
+></P
+><P
+>Now to connect to the compute node's console, double click on "hosted-vm-0-0-0".
+Recall that from the perspective of the physical frontend (the VM Server),
+"hosted-vm-0-0-0" is the name for the VM "compute-0-0" (again, see the
+figure at the top of this page).</P
+><P
+>You should now see the console for compute-0-0:</P
+><P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/virt-manager-14.png"></P
+></DIV
+></P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="using-vm-container.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="using-vm-physical-frontend.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Installing VM Containers</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="using.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Physical Frontend with Virtual Compute Nodes</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

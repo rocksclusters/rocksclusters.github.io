@@ -1,0 +1,271 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Release 5.5/6.1 - changes from 5.5/6.0</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Release Notes"
+HREF="release-notes.html"><LINK
+REL="PREVIOUS"
+TITLE="Release 5.6/6.1_sp1 - changes from 5.6/6.1"
+HREF="x8501.html"><LINK
+REL="NEXT"
+TITLE="Release 5.5/6.0 - changes from 5.4.3"
+HREF="x8551.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Base</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x8501.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Appendix B. Release Notes</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x8551.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="AEN8516"
+>B.3. Release 5.5/6.1 - changes from 5.5/6.0</A
+></H1
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN8518"
+>B.3.1. New Features</A
+></H2
+><P
+></P
+><UL
+><LI
+><P
+> Host-based SSH authentication is now the default. This
+        eliminates the requirement the users have password-less ssh keys
+        and/or mounted home area on remote nodes   	
+        </P
+></LI
+><LI
+><P
+> Two-factor SSH authentication using Google Authenticator 
+        Apps for Android and/or iPhone is supported for any/all users. Users
+        can easily create a time-based verification codes that are used
+        in addition to their usual password.
+        </P
+></LI
+><LI
+><P
+>  libqrencode.so and qrencode added to easily generate
+        QR 2-dimensional codes.
+        </P
+></LI
+><LI
+><P
+>  New ZFS-linux roll to support the ZFS file system via the 
+         <A
+HREF="http://zfsonlinux.org"
+TARGET="_top"
+>ZFS on Linux</A
+>.  Does not
+         support zfs as root file system, yet. 
+        </P
+></LI
+><LI
+><P
+>  New kernel-org roll to more easily support vanilla linux
+         kernels from kernel.org.  
+        </P
+></LI
+><LI
+><P
+> Added Infiniband Support (Mellanox Hardware). Subnet manager 
+        runs by default on frontend. Devices properly configured for users to
+        run OpenMPI applications. 
+        </P
+></LI
+></UL
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN8534"
+>B.3.2. Enhancements and Bug Fixes</A
+></H2
+><P
+>	Base: removed creation of md5sum of all rpm packages during rocks create distro 
+	</P
+><P
+>	Base: now properly configure rsyslog on Rocks 6 (instead of syslog)
+	</P
+><P
+>	Base: properly configure logrotate on Rocks 6
+	</P
+><P
+>	Base: better handlying of "rocks run host" when running command on the local host
+	</P
+><P
+>	Base: added suport for frontend with single partition
+	</P
+><P
+>	Base: new documentation section on ipmi and insert-ethers command line 
+	</P
+><P
+>	Base: support for GPT partition table on the compute nodes (disk bigger that 2TB)
+	</P
+><P
+> 	Base: Bugfix. Secure Attributes resynchronized after reinstall/reboot. 
+	</P
+><P
+> 	Base: Bugfix. Fixed "remove appliance" to raise an error if a host with
+        that appliance type stil exists. 
+	</P
+><P
+> 	Base: Bugfix. Support software RAID-1 for compute node / partitions	
+	</P
+><P
+> 	Base: Bugfix. For automatic reinstalls, grub configuration modified to
+        add ksdevice= directive
+	</P
+><P
+> 	Base: Bugfix. Fixed permissions on file: /etc/security/ca/ca.cfg 
+	</P
+><P
+>	Base/Kernel: Bugfix. Kernel roll can now be rebuilt if just the 
+        Rocks-trimmed OS Roll is installed. Full CentOS distribution
+        not required.
+	</P
+><P
+>	Kernel: tracker client now checks received rpm with internal rpm md5sum 
+	</P
+><P
+>	Ganglia: updated Ganglia to 3.3.7
+	</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x8501.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x8551.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Release 5.6/6.1_sp1 - changes from 5.6/6.1</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="release-notes.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Release 5.5/6.0 - changes from 5.4.3</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

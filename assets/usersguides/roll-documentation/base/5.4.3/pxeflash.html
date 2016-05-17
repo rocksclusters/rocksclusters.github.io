@@ -1,0 +1,347 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+> Flashing BIOS on Compute Nodes Using PXE </TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE=" Advanced Tasks "
+HREF="advanced-tasks.html"><LINK
+REL="PREVIOUS"
+TITLE=" Managing the Firewall on the Cluster Nodes "
+HREF="firewall.html"><LINK
+REL="NEXT"
+TITLE=" Adding a Login Appliance to Your Cluster "
+HREF="login-appliance.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Base</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="firewall.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 8. Advanced Tasks</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="login-appliance.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="PXEFLASH"
+>8.2. Flashing BIOS on Compute Nodes Using PXE</A
+></H1
+><P
+>This procedure describes how to flash BIOS on a client node (e.g., compute node 
+or viz tile node) by using the Rocks command line and PXE.</P
+><P
+></P
+><UL
+><LI
+><P
+>	First, you must add the BIOS flashing files (e.g., a DOS-based flash
+	utility, .bin file or an autoexec.bat) to the directory
+	<SAMP
+CLASS="COMPUTEROUTPUT"
+>/opt/pxeflash/addon</SAMP
+>.
+	</P
+><P
+>	As an example, to flash a Dell Dimension E521 desktop, we executed:
+	</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># cd /opt/pxeflash/addon
+# wget http://ftp.us.dell.com/bios/DME521-010111.EXE</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>	To add the BIOS flashing file to a bootable floppy image, execute:
+	</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># cd /opt/pxeflash
+# make build</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>	This will incorporate all files in the
+	<SAMP
+CLASS="COMPUTEROUTPUT"
+>/opt/pxeflash/addon</SAMP
+> directory into
+	a floppy image named
+	<SAMP
+CLASS="COMPUTEROUTPUT"
+>pxeflash-FDSTD.288</SAMP
+>.
+	</P
+></LI
+><LI
+><P
+>	Now copy the floppy image into 
+	<SAMP
+CLASS="COMPUTEROUTPUT"
+>/tftpboot/pxelinux/pxeflash</SAMP
+>, by
+	executing:
+	</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># make install</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>	Set a client node to PXE boot your flash image:
+	</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks set host runaction &#60;hostname&#62; action=pxeflash
+# rocks set host boot &#60;hostname&#62; action=run</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>	PXE boot the client node.
+	After the client boots, it will display a DOS prompt.
+	</P
+></LI
+><LI
+><P
+>	On the client, execute the BIOS flash program.
+	</P
+><P
+>	In our example, we executed the program
+	<SAMP
+CLASS="COMPUTEROUTPUT"
+>DME521-010111.EXE</SAMP
+>.
+	</P
+></LI
+><LI
+><P
+>	When the BIOS flash program completes and before you reboot the
+	client, on the frontend, reset the PXE action
+	so when the client reboots, it will boot the OS from local disk:
+	</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks set host runaction &#60;hostname&#62; action=os
+# rocks set host boot &#60;hostname&#62; action=os</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>	When the flash process completes, reboot the client node.
+	</P
+></LI
+></UL
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/note.png"
+HSPACE="5"
+ALT="Note"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+><EM
+>Important Acknowledgement:</EM
+>
+We are grateful for the contribution of Jeremy Lawrence for describing the
+basic approach in his Rocks discussion list posting 
+https://lists.sdsc.edu/pipermail/npaci-rocks-discussion/2005-June/012092.html.</P
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="firewall.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="login-appliance.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Managing the Firewall on the Cluster Nodes</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="advanced-tasks.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Adding a Login Appliance to Your Cluster</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,2139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>8.5 Stable Release Series 7.4</TITLE>
+<META NAME="description" CONTENT="8.5 Stable Release Series 7.4">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="previous" HREF="8_4Development_Release.html">
+<LINK REL="up" HREF="8_Version_History.html">
+<LINK REL="next" HREF="9_Command_Reference.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html2284"
+  HREF="9_Command_Reference.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2278"
+  HREF="8_Version_History.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2274"
+  HREF="8_4Development_Release.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2280"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2282"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2285"
+  HREF="9_Command_Reference.html">9. Command Reference Manual</A>
+<B> Up:</B> <A NAME="tex2html2279"
+  HREF="8_Version_History.html">8. Version History and</A>
+<B> Previous:</B> <A NAME="tex2html2275"
+  HREF="8_4Development_Release.html">8.4 Development Release Series</A>
+ &nbsp; <B>  <A NAME="tex2html2281"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2283"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html2286"
+  HREF="8_5Stable_Release.html#SECTION00951000000000000000">Version 7.4.5</A>
+<LI><A NAME="tex2html2287"
+  HREF="8_5Stable_Release.html#SECTION00952000000000000000">Version 7.4.4</A>
+<LI><A NAME="tex2html2288"
+  HREF="8_5Stable_Release.html#SECTION00953000000000000000">Version 7.4.3</A>
+<LI><A NAME="tex2html2289"
+  HREF="8_5Stable_Release.html#SECTION00954000000000000000">Version 7.4.2</A>
+<LI><A NAME="tex2html2290"
+  HREF="8_5Stable_Release.html#SECTION00955000000000000000">Version 7.4.1</A>
+<LI><A NAME="tex2html2291"
+  HREF="8_5Stable_Release.html#SECTION00956000000000000000">Version 7.4.0</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00950000000000000000"></A><A NAME="sec:History-7-4"></A>
+<BR>
+8.5 Stable Release Series 7.4
+</H1>
+
+<P>
+This is a stable release series of Condor.
+As usual, only bug fixes (and potentially, ports to new platforms)
+will be provided in future 7.4.x releases.
+New features will be added in the 7.5.x development series.
+
+<P>
+The details of each version are described below.
+
+<P>
+
+<H2><A NAME="SECTION00951000000000000000"></A><A NAME="sec:New-7-4-5"></A>
+<BR>
+Version 7.4.5
+</H2>
+
+<P>
+Release Notes:
+
+<P>
+
+<UL>
+<LI>Condor version 7.4.5 not yet released.
+
+<P>
+</LI>
+</UL>
+
+<P>
+New Features:
+
+<P>
+
+<UL>
+<LI><I>condor_dagman</I> now prints a message in the <TT>dagman.out</TT> file
+whenever it truncates a node job user log file.
+
+<P>
+</LI>
+<LI><I>condor_dagman</I> now prints additional diagnostic information in the
+case of certain log file errors.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Configuration Variable and ClassAd Attribute Additions and Changes:
+
+<P>
+
+<UL>
+<LI>None.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Bugs Fixed:
+
+<P>
+
+<UL>
+<LI>A network disconnect between the submit machine and execute
+  machine during the transfer of output files caused the
+  <I>condor_starter</I> daemon to immediately give up, rather than waiting
+  for the <I>condor_shadow</I> to reconnect.  This problem was introduced
+  in Condor version 7.4.4.
+
+<P>
+</LI>
+<LI>If <I>condor_ssh_to_job</I> attempted to connect to a job while the
+  job's input files were being transferred, this caused the file
+  transfer to fail, which resulted in the job returning to the idle
+  state in the queue.
+
+<P>
+</LI>
+<LI>In privsep mode, the transfer of output failed if a job's execute
+  directory contained symbolic links to non-existent paths.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Known Bugs:
+
+<P>
+
+<UL>
+<LI>None.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Additions and Changes to the Manual:
+
+<P>
+
+<UL>
+<LI>None.
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<H2><A NAME="SECTION00952000000000000000"></A><A NAME="sec:New-7-4-4"></A>
+<BR>
+Version 7.4.4
+</H2>
+
+<P>
+Release Notes:
+
+<P>
+
+<UL>
+<LI>Condor version 7.4.4 released on October 18, 2010.
+
+<P>
+</LI>
+<LI><U><I>Security Item</I></U>: 
+This release fixes a bug in which Amazon EC2 jobs
+(jobs with <B>universe = grid</B> and <B>grid_resource = amazon</B>)
+that use the <B>amazon_keypair_file</B>
+command may expose the private SSH key to other users.
+The created file had insecure permissions,
+allowing other users on the submit host to read the file.
+Any other user who could see the file could learn about these EC2 jobs
+using <I>condor_q</I>, 
+and the other user could then connect to them with the private SSH key.
+
+<P>
+To work around the bug without installing this release,
+do one or both of the following:
+
+<UL>
+<LI>Do not use the submit description file command
+<B>amazon_keypair_file</B>.
+</LI>
+<LI>Ensure that the directory holding the private SSH key 
+has suitably restrictive permissions,
+such that other users cannot read files inside the directory.
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI>Condor can now be built on Mac OS X 10.6.
+
+<P>
+</LI>
+<LI>The <I>condor_master</I> shutdown program, which is configured via 
+  the <TT>MASTER_SHUTDOWN_&lt;Name&gt;</TT> <A NAME="54863"></A> <A NAME="54864"></A> configuration variable,
+  is now run with root (Unix) or administrator (Windows) privileges.
+  The adminstrator must ensure
+  that this cannot be used in such a way as to violate system integrity.
+
+<P>
+</LI>
+</UL>
+
+<P>
+New Features:
+
+<P>
+
+<UL>
+<LI><B>load_profile</B> is now supported by the Unix version of
+<I>condor_submit</I> when submitting jobs to Windows.  Previously, this command
+was only supported by the Windows version of <I>condor_submit</I>.
+
+<P>
+</LI>
+<LI>Added an example Mac OS X launchd configuration file for starting Condor.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Configuration Variable and ClassAd Attribute Additions and Changes:
+
+<P>
+
+<UL>
+<LI>None.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Bugs Fixed:
+
+<P>
+
+<UL>
+<LI>Fixed bad behavior in <I>condor_quill</I> where, under certain error
+conditions, many copies of the <TT>schedd_sql.log</TT> file would be
+inserted into the database, filling up the disk volume used by the
+database. As a consequence of this bug fix, the <code>LogBody</code> column
+for each row in the <code>Error_SqlLogs</code> table will be empty. Please
+consult the <I>condor_quill</I> daemon log file for the error instead.
+
+<P>
+</LI>
+<LI>Fixed a bug with how the <B>standard</B> universe 
+remote system call <TT>getrlimit()</TT> functioned.
+Under certain conditions with
+32-bit and 64-bit <B>standard</B> universe binaries,
+<TT>getrlimit()</TT> would erroneously report 2147483647 bytes as a limit,
+when <TT>RLIM_INFINITY</TT> should have been the correct response.
+
+<P>
+</LI>
+<LI>Fixed a misleading error message issued by <I>condor_run</I>,
+which stated
+<PRE>
+The DAGMan job was aborted by the user.
+</PRE>
+when the job submitted by <I>condor_run</I> was aborted by the user.
+It now states 
+<PRE>
+The job was aborted by the user.
+</PRE>
+
+<P>
+</LI>
+<LI>When the <I>condor_startd</I> daemon is running with an execute directory on
+a very large file system, with more than 32 bits worth of free blocks
+on a 32-bit system, it would incorrectly report 0 free bytes.  This
+has been fixed.
+
+<P>
+</LI>
+<LI>For spooled jobs, input files were sometimes transferred twice from
+the submit machine to the execute machine.  This happened if the input files
+were specified without any path information,
+as with a file name with no directory specified.
+This problem has existed since before Condor version 7.0.0.
+
+<P>
+</LI>
+<LI>The configuration variable <TT>NETWORK_INTERFACE</TT> did not
+work in some situations, because of Condor's attempts to
+automatically rewrite published addresses to match the IP address of
+the network interface used to make the publication.
+
+<P>
+</LI>
+<LI>Fixed a bug in which the default unit of configuration variable
+<TT>STARTD_CRON_TEST_PERIOD</TT>
+should have been seconds, but instead was <TT>Undefined</TT>.
+
+<P>
+</LI>
+<LI>Fixed a bug in which <I>condor_submit</I> checked for bad <I>condor_schedd</I> cron 
+ arguments incorrectly within a submit description file.
+ Now <I>condor_submit</I> will detect the problem and print out an error message.
+
+<P>
+</LI>
+<LI>With some versions of <I>ssh</I>, <I>condor_ssh_to_job</I> failed if
+the <TT>SHELL</TT> environment variable was set to <I>/bin/csh</I>.
+
+<P>
+</LI>
+<LI>Submission of <B>vm</B> universe jobs via Globus was not possible,
+because the Globus Condor jobmanager explicitly set the input, output,
+and error files to <TT>/dev/null</TT>,
+and <I>condor_submit</I> refused any setting of these files for
+<B>vm</B> universe jobs.  
+Now, <TT>/dev/null</TT> is an allowed setting for the input, output,
+and error files for <B>vm</B> universe jobs.
+
+<P>
+</LI>
+<LI>Fixed a bug that caused a <B>vm</B> universe job's output files
+to be incorrectly transferred back to the submit machine, 
+when the submit description file command <B>vm_no_output_vm</B>
+was set to <TT>false</TT>,
+indicating that no files should be transferred.
+
+<P>
+</LI>
+<LI>String literals within <code>$$([])</code> expressions within a submit
+description file failed to be evaluated and resulted in the job going on hold.
+This problem has existed since before Condor 7.0.0.
+
+<P>
+</LI>
+<LI><I>condor_preen</I> was not able to clean up files in the <TT>EXECUTE</TT>
+directory when in privsep mode.
+
+<P>
+</LI>
+<LI>A problem was fixed that could cause a Condor daemon that
+  connects to other daemons via CCB to permanently run out of space
+  for more registered sockets until restarted.  This problem appeared
+  in the logs as the following message:
+
+<P>
+<PRE>
+file descriptor safety level exceeded
+</PRE>
+
+<P>
+</LI>
+<LI>Fixed a problem that could cause the <I>condor_collector</I> to crash
+when receiving updated matchmaking information for offline ClassAds that do
+not exist.
+
+<P>
+</LI>
+<LI><I>condor_ssh_to_job</I> did not work when
+<TT>SEC_DEFAULT_NEGOTIATION</TT> was set to <TT>OPTIONAL</TT>.
+
+<P>
+</LI>
+<LI>The <B>vm</B> universe now works properly on machines that 
+have Condor's Privilege Separation mechanism enabled.
+
+<P>
+</LI>
+<LI><I>condor_submit</I> no longer pads a <B>vm</B> universe job's disk usage
+estimation by 100MB.
+
+<P>
+</LI>
+<LI>Fixed a bug with the <TT>vm_cdrom_files</TT> <A NAME="54926"></A> <A NAME="54927"></A> submit file
+command, that caused VMware <B>vm</B> universe jobs to fail if the virtual
+machine already had a CD-ROM image associated with it.
+
+<P>
+</LI>
+<LI>Configuration variables <TT>SOAP_SSL_CA_DIR</TT> <A NAME="54932"></A> <A NAME="54933"></A> and
+<TT>SOAP_SSL_CA_FILE</TT> <A NAME="54937"></A> <A NAME="54938"></A> are now properly used when authenticating
+with Amazon EC2 servers.
+
+<P>
+</LI>
+<LI>Fix a bug with the <TT>&lt;subsys&gt;_LOCK</TT> <A NAME="54942"></A> <A NAME="54943"></A> configuration variable.
+It could let daemons writing to the same daemon log overwrite each other's
+entries and cause daemons to exit when the log is rotated.
+
+<P>
+</LI>
+<LI>Fixed a bug that caused nordugrid jobs to fail if the
+<B>grid_resource</B> attribute included a port as part of the server
+host name.
+
+<P>
+</LI>
+<LI>Fixed a confusing error message mentioning
+  <code>LocalUserLog::logStarterError()</code> when the <I>condor_starter</I> fails to
+  communicate with the <I>condor_shadow</I> before the job has started.
+
+<P>
+</LI>
+<LI>Fixed the event log and shadow log for standard universe jobs to 
+identify the checkpoint server on which a job might have failed to store 
+its checkpoint or from which it might have failed to restore its checkpoint.
+
+<P>
+</LI>
+<LI>Fixed a bug in the <I>condor_gridmanager</I> that could cause it to crash
+while handling grid-type cream jobs.
+
+<P>
+</LI>
+<LI>Improved the <I>condor_gridmanager</I>'s handling of grid-type cream jobs
+that are held or removed by the user. Canceling the cream job is much less
+likely to fail and jobs can no longer get stuck in the cream state of
+CANCELED.
+
+<P>
+</LI>
+<LI>Fixed the web server feature controlled by <TT>ENABLE_WEB_SERVER</TT> <A NAME="54956"></A> <A NAME="54957"></A>.
+Previously, all HTTP GET requests would fail on non-linux Unix machines.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Known Bugs:
+
+<P>
+
+<UL>
+<LI>None.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Additions and Changes to the Manual:
+
+<P>
+
+<UL>
+<LI>The Windows platform installation instructions have been updated.
+
+<P>
+</LI>
+<LI>Section&nbsp;<A HREF="2_5Submitting_Job.html#sec:file-transfer">2.5.4</A> on Condor's File Transfer Mechanism
+has been revised and updated.
+
+<P>
+</LI>
+<LI>Section&nbsp;<A HREF="4_1Condor_s_ClassAd.html#classad-query-examples">4.1.4</A>, providing examples of utilizing
+ClassAd expressions within the <B>-constraint</B> option of <I>condor_q</I>
+or <I>condor_status</I> commands has been expanded to clarify both
+Unix and Windows platform specifics.
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<H2><A NAME="SECTION00953000000000000000"></A><A NAME="sec:New-7-4-3"></A>
+<BR>
+Version 7.4.3
+</H2>
+
+<P>
+Release Notes:
+
+<P>
+
+<UL>
+<LI>Condor version 7.4.3 released on August 16, 2010.
+
+<P>
+</LI>
+</UL>
+
+<P>
+New Features:
+
+<P>
+
+<UL>
+<LI>None.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Configuration Variable and ClassAd Attribute Additions and Changes:
+
+<P>
+
+<UL>
+<LI>The new configuration variable <TT>ENABLE_CHIRP</TT> <A NAME="54967"></A> <A NAME="54968"></A> 
+defaults to <TT>True</TT>. 
+An administrator may set it to <TT>False</TT>, which 
+disables Chirp remote file access from execute machines.
+
+<P>
+</LI>
+<LI>The new configuration variable
+  <TT>ENABLE_ADDRESS_REWRITING</TT> <A NAME="54974"></A> <A NAME="54975"></A> defaults to <TT>True</TT>.  It may
+  be set to <TT>False</TT> to disable Condor's dynamic algorithm for choosing
+  which IP address to publish in multi-homed environments.  The dynamic
+  algorithm chooses the IP address associated with the network interface
+  used to make the publication, for example, the network interface used 
+  to communicate with the <I>condor_collector</I>.
+
+<P>
+</LI>
+<LI>Configuration variable <TT>VM_BRIDGE_SCRIPT</TT> <A NAME="54983"></A> <A NAME="54984"></A> has been removed
+  and is no longer valid.
+
+<P>
+</LI>
+<LI>The new configuration variable
+  <TT>VM_NETWORKING_BRIDGE_INTERFACE</TT> <A NAME="54988"></A> <A NAME="54989"></A> specifies the networking interface
+  that Xen or KVM <B>vm</B> universe jobs will use.
+  See section&nbsp;<A HREF="3_3Configuration.html#param:VMNetworkingBridgeInterface">3.3.29</A> for documentation.
+
+<P>
+</LI>
+<LI>Allowed the configuration file entries <TT>GSI_DAEMON_TRUSTED_CA_DIR</TT>
+and <TT>GSI_DAEMON_DIRECTORY</TT> to be set with environment variables,
+as the rest of Condor configuration variables can be.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Bugs Fixed:
+
+<P>
+
+<UL>
+<LI>When using file transfer semantics,
+if the job exited in such a manner so as to not produce all
+output files specified in <B>transfer_output_files</B>,
+then which files were transferred was potentially incorrect.
+Now, all existing files are transferred back,
+and the files which are not able to be transferred back due to non-existence
+appear as zero length files.
+An example of when this occurred would be the job dumping core
+and then being placed on hold.
+
+<P>
+</LI>
+<LI>Fetch work hooks to prepare are now invoked as the <TT>condor</TT> user,
+instead of as the job user.
+
+<P>
+</LI>
+<LI>Improved the file extension detection on Windows platforms.
+
+<P>
+</LI>
+<LI><I>condor_wait</I> could occasionally get stuck in an infinite loop,
+if it missed the execution event of the job it is waiting for.
+This is now fixed.
+
+<P>
+</LI>
+<LI>Fixed a bug within the <I>condor_startd</I> cron capabilities,
+that only occurred on Windows platforms.
+<I>condor_startd</I> cron scripts failed to run if an initial directory was left
+unspecified.
+
+<P>
+</LI>
+<LI>Fixed a bug in which a job would be incorrectly placed on hold, with 
+a confusing error message that appeared similar to
+<PRE>
+Condor failed to start your job 9090.-1 because job attribute Args contains $$(VirtualMachineID).
+</PRE>This occurred if the submit command <B>copy_to_spool</B> 
+was <TT>true</TT>,
+the submit description file for the job contained $$ macros,
+and <I>condor_preen</I> ran after the job was submitted and before it started.
+
+<P>
+</LI>
+<LI>Added the jobs_vertical_history table to the list of tables that
+<I>condor_quill</I> periodically re-indexes.
+
+<P>
+</LI>
+<LI>Fixed bug in <I>condor_preen</I> in which it would delete <I>condor_startd</I> daemon
+history files.
+
+<P>
+</LI>
+<LI>Fixed a bug where if a user job using file transfer with
+  <B>transfer_output_files</B> and <B>when_to_transfer_output</B>
+  is set to <TT>ON_EXIT_OR_EVICT</TT> fails
+  to produce all of the specified files and exit, as when core
+  dumping due to a fault, then the stdout, stderr, and core file of the
+  job were not transferred back to the submitting machine.
+
+<P>
+</LI>
+<LI>Fixed numerous, small, rare memory leaks.
+
+<P>
+</LI>
+<LI>Fixed a bug in which processor affinity settings were ignored if
+  privilege separation was enabled.
+
+<P>
+</LI>
+<LI>Network connections for Condor file transfers were ignoring
+  private network settings.  The connection from the execute node to
+  the submit node always attempted to use the public network address
+  of the submit machine.
+
+<P>
+</LI>
+<LI>The configuration variable <TT>TCP_FORWARDING_HOST</TT> did not work
+in some situations
+because of Condor's attempts to automatically rewrite published addresses to
+match the IP address of the network interface used to make the publication.
+
+<P>
+</LI>
+<LI>A single job could match multiple offline slots in a single
+negotiation cycle.  This problem could cause <I>condor_rooster</I> to
+wake up too many offline machines for the number of jobs available
+to run on them.  The fix for this problem requires updating both
+the <I>condor_negotiator</I> and the <I>condor_schedd</I>.
+
+<P>
+</LI>
+<LI>Fixed a problem that caused the <I>condor_startd</I> daemon to
+crash in some cases when <TT>STARTD_SENDS_ALIVES</TT> was <TT>True</TT>.
+This setting is <TT>False</TT> by default.
+
+<P>
+</LI>
+<LI>Fixed a problem where the <I>condor_kbdd</I> has a chance of
+entering an infinite loop on platforms that use X-Windows.
+Microsoft Windows and Mac OS X platforms were not affected.  This bug is
+present in all earlier 7.4.x Condor releases.
+
+<P>
+</LI>
+<LI>The default path to <I>sftp-server</I> has been improved,
+ so that <I>condor_ssh_to_job</I> can use <I>sftp</I> out-of-the-box on 
+RedHat Enterprise Linux 5 platforms.
+
+<P>
+</LI>
+<LI>A <I>nordugrid_gahp</I> binary built on RedHat Enterprise Linux 3
+no longer crashes
+when run on a RedHat Enterprise Linux 4 or Scientific Linux 4 machine.
+
+<P>
+</LI>
+<LI>Fixed a bug in <I>condor_rm</I> that caused it to misinterpret user names
+that begin with a digit, such as <TT>4abc</TT>.
+It incorrectly used them as cluster numbers. 
+
+<P>
+</LI>
+<LI>Fixed a bug that caused the <I>condor_startd</I> to invoke the
+  ``power_state'' plug-in as the condor user.  This caused
+  hibernation to fail because power_state requires root privileges
+  to function properly.
+
+<P>
+</LI>
+<LI>Fixed a bug that could cause the <I>condor_schedd</I> to crash if there
+were any idle scheduler universe jobs when files were staged into the
+<I>condor_schedd</I> for a new job.
+
+<P>
+</LI>
+<LI>Fixed a bug in the <I>nordugrid_gahp</I> that could cause it to exit
+when connecting to a misconfigured LDAP server.
+
+<P>
+</LI>
+<LI>Fixed a bug that prevented the log file defined with the configuration
+variable <TT>NEGOTIATOR_MATCH_LOG</TT> <A NAME="55046"></A> <A NAME="55047"></A> from rotating.
+See section&nbsp;<A HREF="3_3Configuration.html#param:SubsysLevelLog">3.3.4</A> for the definition of this variable. 
+
+<P>
+</LI>
+<LI>Fixed a bug that caused <I>startd_cron</I> jobs to fail on Windows. 
+This bug is present in all earlier 7.4.x Condor releases.
+
+<P>
+</LI>
+<LI>The submit description file command <B>vm_cdrom_files</B>
+now works properly with Windows execute machines. 
+Previously, creation of the ISO file would fail, 
+causing job execution to be aborted.
+
+<P>
+</LI>
+<LI>Fixed a bug that caused the <I>condor_startd</I> to invoke the
+  <I>power_state</I> plug-in as the condor user.
+  This caused hibernation to fail, 
+  because <I>power_state</I> requires root privileges to function properly.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Known Bugs:
+
+<P>
+
+<UL>
+<LI>None.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Additions and Changes to the Manual:
+
+<P>
+
+<UL>
+<LI>Searching the PDF version of the manual for items containing 
+underscore characters, such as many configuration variable names,
+now works correctly.
+
+<P>
+</LI>
+<LI>The new subsection&nbsp;<A HREF="4_1Condor_s_ClassAd.html#ClassAd:examples">4.1.3</A> provides examples of
+evaluation results when using the operators <TT>==</TT>, <TT>=?=</TT>,
+<TT>!=</TT>, and <TT>=!=</TT>.
+
+<P>
+</LI>
+<LI>Section&nbsp;<A HREF="2_11Virtual_Machine.html#sec:vmuniverse">2.11</A> with specifics on <B>vm</B>
+universe jobs has been updated to contain more details about
+both checkpoints and <B>vm</B> universe jobs in general.
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<H2><A NAME="SECTION00954000000000000000"></A><A NAME="sec:New-7-4-2"></A>
+<BR>
+Version 7.4.2
+</H2>
+
+<P>
+Release Notes:
+
+<P>
+
+<UL>
+<LI>Condor version 7.4.2 released on April 6, 2010.
+
+<P>
+</LI>
+</UL>
+
+<P>
+New Features:
+
+<P>
+
+<UL>
+<LI>None.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Configuration Variable and ClassAd Attribute Additions and Changes:
+
+<P>
+
+<UL>
+<LI>When <TT>WANT_SUSPEND</TT> is defined and evaluates to anything
+other than the value <TT>True</TT>,
+it is now utilized as if it were <TT>False</TT>.
+If <TT>WANT_SUSPEND</TT> is not explicitly defined,
+the <I>condor_startd</I> exits with an error message.
+Previously, if <TT>Undefined</TT>, it was treated as an error,
+which caused the <I>condor_startd</I> to exit with an error message.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Bugs Fixed:
+
+<P>
+
+<UL>
+<LI>Fixed a bug in which the <I>condor_schedd</I> would sometimes negotiate
+  for and try to run
+  more jobs than specified by <TT>MAX_RUNNING_JOBS</TT>.  Once the
+  jobs started running, it would then kill them off to get back below
+  the limit.  This was more likely to happen with slow preemption
+  caused by <TT>MaxJobRetirementTime</TT> or by a large timeout
+  imposed by <TT>KILL</TT>.  This problem has existed since before
+  Condor 6.5.  When this problem happened, the following message
+  appeared in the <I>condor_schedd</I> log:
+
+<P>
+<PRE>
+Preempting X jobs due to MAX_JOBS_RUNNING change
+</PRE>
+
+<P>
+</LI>
+<LI>Fixed a problem that caused <I>condor_ssh_to_job</I> to fail to connect
+to a job running on a slot with multiple '@' signs in its name.  This bug
+has existed since the introduction of <I>condor_ssh_to_job</I> in 7.3.2.
+
+<P>
+</LI>
+<LI>In all previous versions of Condor, <I>condor_status</I> refused to
+  accept <B>-long</B>, <B>-xml</B>, and <B>-format</B> when followed by
+  an argument such as <B>-master</B> that specified which type of
+  daemon to look at.  The order of the arguments had to be reversed or
+  it would produce a message such as the following:
+
+<P>
+<PRE>
+Error:  arg 4 (-master) contradicts arg 1 (-format)
+</PRE>
+
+<P>
+</LI>
+<LI>Fixed a bug which caused the <I>condor_master</I> to crash if
+<TT>VIEW_SERVER</TT> was included in <TT>DAEMON_LIST</TT> and
+<TT>CONDOR_VIEW_HOST</TT> was unset.
+
+<P>
+</LI>
+<LI>Fixed a bug that caused configuration parameter
+<TT>LOCAL_CONFIG_DIR</TT> to be ignored if it was set in a local
+configuration file, as opposed to the top-level configuration file.
+
+<P>
+</LI>
+<LI>Fixed a bug that could cause the <I>condor_schedd</I> to behave
+incorrectly when reading an invalid job queue log on startup.
+
+<P>
+</LI>
+<LI>Fixed a bug that could corrupt the job queue log
+if the <I>condor_schedd</I> daemon's attempt to compact it fails.
+
+<P>
+</LI>
+<LI>Fixed a problem that in rare cases caused the <I>condor_schedd</I> to
+crash shortly after the <I>condor_gridmanager</I> exited.
+This bug has existed since before Condor version 6.8.
+
+<P>
+</LI>
+<LI>Fixed a problem that was resulting in messages such as the following:
+
+<P>
+<PRE>
+ERROR: receiving new UDP message but found a long message still waiting
+to be closed (consumed=0). Closing it now.
+</PRE>
+<P>
+</LI>
+<LI>The file extension specified to <I>condor_fetch_log</I> can no longer
+contain a path delimiter.
+
+<P>
+</LI>
+<LI>When in graceful shutdown mode, the <I>condor_schedd</I> was
+  sometimes starting idle scheduler universe jobs.  With a large
+  enough number of scheduler universe jobs, this could lead to a cycle
+  of stopping and restarting jobs until the graceful shutdown time
+  expired.
+
+<P>
+</LI>
+<LI>Fixed multiple bugs that prevented Condor from building on or
+  running correctly on OpenSolaris X86/64 version 2009.06.
+
+<P>
+</LI>
+<LI>Fixed a bug which caused the <I>condor_startd</I> to incorrectly
+  count the number of processors on some machines with
+  Hyper-threading enabled.  This bug was introduced in
+  Condor version 7.3.2, and exists in 7.4.0 and 7.4.1.
+
+<P>
+</LI>
+<LI>Fixed a problem with GSI authentication in Condor that would cause
+daemons to consume more and more memory over time.  The biggest source
+of trouble was introduced in Condor version 7.3.2.
+However, a smaller memory leak that
+existed in all previous versions of Condor has also been fixed.
+
+<P>
+</LI>
+<LI>Fixed a bug where if <I>condor_compile</I> is invoked in a manner such as:
+<PRE>
+  condor_compile gcc -print-prog-name=ld
+</PRE>
+an error would be emitted,
+and <I>condor_compile</I> would exit with a bad exit code.
+
+<P>
+</LI>
+<LI>The sort based on <I>condor_status</I> output accidentally changed in 
+Condor version 7.3,
+so that the output was based on the slot name first, then machine name.
+The behavior is now restored to the original sorting: first on machine name,
+then slot name.
+
+<P>
+</LI>
+<LI>If one machine running a parallel job crashed,
+and job leases are enabled (which they are by default),
+the job would not exit until the job lease duration expired.
+As the <I>condor_starter</I> will not get respawned,
+there is no need to wait.
+Many sites set long job lease durations,
+to prevent jobs from being killed when the machine running
+the <I>condor_schedd</I> daemon reboots.
+Now, if one node goes away, the whole computation is shut down immediately.
+
+<P>
+</LI>
+<LI>Fixed the verbosity level of some <I>condor_dagman</I> messages written to
+the <TT>dagman.out</TT> file.
+
+<P>
+</LI>
+<LI>Fixed a bug introduced in Condor version 7.3.2 that resulted in
+  messages such as the following even in cases where no problem in
+  communicating with the <I>condor_collector</I> had been encountered:
+
+<P>
+<PRE>
+Collector &lt;X&gt; is still being avoided if an alternative succeeds.
+</PRE>
+
+<P>
+This problem was believed to be fixed in Condor 7.4.1, but some cases
+of the problem remained in that version.
+
+<P>
+</LI>
+<LI>Fixed a bug from Condor version 6.1.14,
+that resulted in the <I>condor_schedd</I> performing
+the operation scheduled via <TT>WALL_CLOCK_CKPT_INTERVAL</TT> at the
+specified frequency (default time of 1 hour),
+multiplied by the number of times the
+<I>condor_schedd</I> daemon had been reconfigured during its lifetime.
+This could lead to degraded performance,
+especially prior to Condor version 7.4.1,
+when this operation was more disk-intensive.
+
+<P>
+</LI>
+<LI>32-bit Linux versions of Condor running in a 64-bit environment would
+sometimes not detect the existence of some processes and sometimes
+wrongly detect that a tracked process belonged to root when it
+actually belonged to some other user.  This could lead to failure to run
+jobs or failure to properly monitor and clean up after them.  When the wrong
+process ownership problem happened,
+the following message appeared in the <I>condor_master</I> and/or <I>condor_procd</I>
+logs:
+
+<P>
+<PRE>
+ProcAPI: fstat failed in /proc! (errno=75)
+</PRE>
+
+<P>
+If <I>condor_procd</I> failed to detect the existence of its own parent process,
+it would exit with the following message in its log:
+
+<P>
+<PRE>
+ERROR: master has exited
+</PRE>
+
+<P>
+</LI>
+<LI>Fixed a problem in the <I>condor_job_router</I> daemon,
+  introduced in Condor version 7.2.2,
+  that could cause the daemon to crash when failing to carry out the change
+  of state dictated by a job's periodic policy expressions,
+  for example, the failure to put a job on hold when <TT>periodic_hold</TT>
+  becomes <TT>True</TT>.
+
+<P>
+</LI>
+<LI>Fixed a bug introduced in Condor 7.3.2 that caused Grid Monitor
+jobs to receive a full X.509 proxy. Now, it always receives a limited
+proxy, which was the previous behavior.
+
+<P>
+</LI>
+<LI>Fixed a bug that could cause the nordugrid_gahp to crash.
+
+<P>
+</LI>
+<LI>Fixed a problem introduced in 7.4.0 that could cause two 
+  <I>condor_schedd</I> daemons
+  with a match to the same slot to both fail to claim it, rather than
+  letting the first one to claim it succeed.  This sort of situation
+  can happen when the <I>condor_negotiator</I> has a stale view of the pool,
+  either because the gap between negotiation cycles is configured to
+  be shorter than usual, or because updates from the <I>condor_startd</I>
+  to the <I>condor_collector</I>
+  are not reliably delivered and processed.
+
+<P>
+</LI>
+<LI>The <I>condor_kbdd</I> is no longer ignored by the <I>condor_startd</I>
+when the configuration variable <TT>CONSOLE_DEVICES</TT> <A NAME="55155"></A> <A NAME="55156"></A> is defined.
+
+<P>
+</LI>
+<LI>When using the <B>-d</B> command line argument with a daemon,
+the values of <TT>LOG</TT>, <TT>SPOOL</TT>, and <TT>EXECUTE</TT>
+no longer change every time a <I>condor_reconfig</I> command is received.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Known Bugs:
+
+<P>
+
+<UL>
+<LI>The <I>condor_kbdd</I> has a chance of entering an infinite loop
+on platforms that use X-Windows.  Microsoft Windows and Mac OS X
+are not affected.  Removing KBDD from <TT>DAEMON_LIST</TT> is a
+workaround, although this impairs Condor's ability to detect
+console usage.  This bug is fixed in Condor version 7.4.3.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Additions and Changes to the Manual:
+
+<P>
+
+<UL>
+<LI>Descriptions of all the commands that may be placed into a
+submit description file are now located within the <I>condor_submit</I>
+manual page, instead of within Chapter 2, the Users' Manual.
+
+<P>
+</LI>
+<LI>An initial, but not yet complete set of configuration variables
+that require a restart when changed,
+is listed in section&nbsp;<A HREF="3_3Configuration.html#sec:Macros-Requiring-Restart">3.3.1</A>.
+Using <I>condor_reconfig</I> to change these variables' values is not sufficient.
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<H2><A NAME="SECTION00955000000000000000"></A><A NAME="sec:New-7-4-1"></A>
+<BR>
+Version 7.4.1
+</H2>
+
+<P>
+Release Notes:
+
+<P>
+
+<UL>
+<LI><U><I>Security Item</I></U>: A flaw was found that could allow a user who already is authorized to
+submit jobs into Condor, to queue a job under the guise of  a different
+user.  In this way, someone who has access to a Condor submission
+service and is allowed to submit jobs into Condor could gain access to
+another non-root or non-administrator account on the system.
+This flaw was discovered during the development process; no incidents
+have been reported.  Details of the problem will be made available on Feb 1st,
+2010.
+
+<P>
+</LI>
+<LI>The default value of <TT>JOB_ROUTER_NAME</TT> has changed
+  from an empty string to <code>jobrouter</code> in order to address
+  problems caused by the previous default.  Without special handling,
+  this means that jobs being managed by <I>condor_job_router</I> before
+  upgrading will not be adopted by the new version of
+  <I>condor_job_router</I> if the default <TT>JOB_ROUTER_NAME</TT> was
+  being used.  To correct this, follow the instructions given in the
+  description of <TT>JOB_ROUTER_NAME</TT> on
+  page&nbsp;<A HREF="3_3Configuration.html#JobRouterName"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+</LI>
+</UL>
+
+<P>
+New Features:
+
+<P>
+
+<UL>
+<LI>Condor allows submit files to specify an <B>IwdFlushNFSCache</B>
+expression,
+to control whether or not Condor tries to flush the NFS cache for 
+a job's initial working directory on job completion.
+
+<P>
+</LI>
+<LI>The new <B>-attributes</B> option to <I>condor_status</I>
+  explicitly specifies the attributes to be listed when using the
+  <B>-xml</B> or <B>-long</B> options.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Configuration Variable and ClassAd Attribute Additions and Changes:
+
+<P>
+
+<UL>
+<LI>New VOMS attributes have been introduced into the job ad to keep them
+separate from the X509UserProxySubjectName.
+
+<P>
+</LI>
+<LI>The default for <TT>JOB_ROUTER_NAME</TT> has changed from an
+  empty string to <code>jobrouter</code>.  See the release notes for more
+  information about upgrading from an old version.
+
+<P>
+</LI>
+<LI>The configuration variable <TT>TCP_FORWARDING_HOST</TT> <A NAME="55193"></A> <A NAME="55194"></A>
+  has existed in Condor since version 7.0.0, but was not documented.
+  See section&nbsp;<A HREF="3_3Configuration.html#param:TcpForwardingHost">3.3.6</A> for documentation.
+
+<P>
+</LI>
+<LI>The new configuration variable <TT>STARTD_PER_JOB_HISTORY_DIR</TT>
+allows ClassAds of completed jobs to be stored in a directory separate 
+from the existing one specified with <TT>PER_JOB_HISTORY_DIR</TT>.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Bugs Fixed:
+
+<P>
+
+<UL>
+<LI>Condor no longer creates the job sandbox in its <TT>SPOOL</TT>
+directory if it is not needed.
+
+<P>
+</LI>
+<LI>Fixed a problem introduced in Condor version 7.4.0 that caused GSI
+authentication between Condor processes to fail with using a
+non-legacy format X.509 proxy.
+
+<P>
+</LI>
+<LI>Fixed a problem with CCB under Windows platforms that has existed since
+Condor version 7.3.0.  
+This problem caused CCB-enabled daemons to become unresponsive
+after the exit of a child process.
+
+<P>
+</LI>
+<LI>Improved the handling of previously-submitted gt2 grid jobs upon
+release from hold, when there is no Globus job manager for the job running
+on the remote resource.
+
+<P>
+</LI>
+<LI>Fixed a problem with job leases for jobs that use a <I>condor_shadow</I>.
+Previously, while these jobs were running, lease renewals from the 
+submitter would not be
+noticed, and the job would be aborted when the original lease expired.
+
+<P>
+</LI>
+<LI>Fixed a bug that only allowed approximately 50 splices to be included into
+a DAG input file. There is now no limit to the number of splices
+one may include into a DAG input file except, of course, for the
+implicit memory allocation limit of the <I>condor_dagman</I> process.
+
+<P>
+</LI>
+<LI>Removed attempted limiting of swap space via <I>ulimit -v</I> using the
+<TT>VirtualMemory</TT> machine ClassAd attribute in the script
+<TT>condor_limits_wrapper.sh</TT>.
+
+<P>
+</LI>
+<LI>Fixed a bug that caused <TT>ALLOW_CONFIG</TT> and
+  <TT>HOSTALLOW_CONFIG</TT>, as well as the corresponding
+  <TT>DENY</TT> configuration variables to incorrectly handle a
+  setting consisting of a single <TT>*</TT> or the equivalent <TT>*/*</TT>.  This
+  also fixes a bug that caused incorrect merging of <TT>ALLOW</TT>
+  and <TT>HOSTALLOW</TT> settings when one, but not both, consisted of
+  a single <TT>*</TT> or the equivalent <TT>*/*</TT>.
+  These bugs have existed since before Condor version 6.8.
+
+<P>
+</LI>
+<LI>Fixed a bug introduced in Condor version 7.3.0 that could cause 
+Condor daemons to crash when reading malformed network addresses.
+
+<P>
+</LI>
+<LI>Removed a check for root ownership of a script specified by
+the configuration variable <TT>VM_SCRIPT</TT>.
+
+<P>
+</LI>
+<LI>Fixed a bug in writing the header of the file identified by
+the configuration variable <TT>EVENT_LOG</TT>.
+
+<P>
+</LI>
+<LI>Fixed a bug that could cause the <I>condor_startd</I> to segfault on shutdown
+when using dynamic slots.
+
+<P>
+</LI>
+<LI>Fixed a problem introduced in Condor version 7.3.2 that changed 
+  the behavior of
+  an undocumented method for selecting attributes to be displayed in
+  <I>condor_q</I> <B>-xml</B>.  Prior to this bug, the following command
+  would produce XML output with the attributes <TT>A</TT> and <TT>B</TT>,
+  plus a few other attributes that were always shown.
+
+<P>
+<PRE>
+condor_q -xml -format "%s" A+B
+</PRE>
+
+<P>
+In Condor versions 7.3.2 and 7.4.0,
+this same command produced an empty XML ClassAd.
+The workaround was to use multiple <B>-format</B> options, each listing
+just one desired attribute, rather than a single one with an
+expression of all desired attributes.  Although this is now fixed, the
+more straightforward way to select attributes since Condor version 7.3.2
+is to use the <B>-attributes</B> option.
+
+<P>
+</LI>
+<LI>Fixed a bug introduced in Condor version 7.3.2 that resulted in 
+  messages such
+  as the following even in cases where no problem in communicating
+  with the <I>condor_collector</I> had been encountered:
+
+<P>
+<PRE>
+Collector &lt;X&gt; is still being avoided if an alternative succeeds.
+</PRE>
+
+<P>
+</LI>
+<LI>Fixed a bug that has been in the <I>condor_startd</I> since before
+  Condor version 6.8.  If the <I>condor_startd</I> ever failed to send signals to the
+  <I>condor_starter</I> process, it could fail to properly clean up the
+  machine ClassAd, leaving attributes from
+  <TT>STARTD_JOB_EXPRS</TT> in the ClassAd but not making them visible
+  in <I>condor_status</I> queries.  One possible problem resulting from
+  this could be matches being made by the <I>condor_negotiator</I> that are then
+  rejected by the <I>condor_startd</I>.  Repeated messages such as the following
+  would then result in the <I>condor_startd</I> log:
+
+<P>
+<PRE>
+slot1: Request to claim resource refused.
+</PRE>
+
+<P>
+</LI>
+<LI>Fixed a problem that resulted in the following message in the
+  <I>condor_startd</I> log:
+
+<P>
+<PRE>
+Timer -1 not found
+</PRE>
+
+<P>
+</LI>
+<LI>Fixed a problem in which security sessions were not cached
+  correctly when using CCB.  This resulted in re-authentication in
+  some cases where a cached security session could have been used.
+
+<P>
+</LI>
+<LI>Fixed multiple problems with the handling of VOMS attributes in GSI
+proxies.
+
+<P>
+</LI>
+<LI>Fixed a bug that caused <I>condor_dagman</I> to hang when running a
+DAG with POST scripts, if the global event log is turned on.
+
+<P>
+</LI>
+<LI>Improved how the private network address is published when using
+  the configuration variables <TT>PRIVATE_NETWORK_NAME</TT> and
+  <TT>PRIVATE_NETWORK_INTERFACE</TT>.  In some cases, this
+  information was not being used, and therefore connections were made
+  to the public address when they could have been made to the private
+  address.
+
+<P>
+</LI>
+<LI>Fixed a bug exhibited under Windows XP,
+where using <TT>USE_VISIBLE_DESKTOP</TT>
+would cause strange behavior after a job completed.
+
+<P>
+</LI>
+<LI>CCB now works with <TT>TCP_FORWARDING_HOST</TT>.  Previously,
+  the reverse connection was made to the private address rather than
+  to the host defined by <TT>TCP_FORWARDING_HOST</TT>.
+
+<P>
+</LI>
+<LI>Removed a bad optimization that caused some information about job
+execution to be lost during job completion or removal,
+if a history file was not configured.
+
+<P>
+</LI>
+<LI>Condor now checks whether the configuration variable
+<TT>GRIDFTP_URL_BASE</TT> is set before
+submitting cream grid jobs, as that variable is required for cream jobs
+to function properly. If the variable is not set, cream jobs are put on
+hold with an appropriate message.
+
+<P>
+</LI>
+<LI>Fixed a bug that allowed running virtual machines to be leaked
+if the <I>condor_startd</I> crashed.
+
+<P>
+</LI>
+<LI>Fixed a bug in <I>cream_gahp</I> which could cause crashes when
+there were more than 500 cream jobs queued.
+
+<P>
+</LI>
+<LI>Improved recovery when Condor crashes during the submission of a cream
+grid job. Before, affected jobs would remain in <TT>REGISTERED</TT> state
+on the cream server, but never run.
+
+<P>
+</LI>
+<LI>Improved the <TT>HoldReason</TT> message when cream grid jobs are
+held by the <I>condor_gridmanager</I>.
+
+<P>
+</LI>
+<LI>When naming a resource for a cream grid job, Condor now properly
+recognizes the format used by the standard cream client UI:
+<TT>https://foo.edu:8443/cream-pbs-cream_queue</TT>.
+
+<P>
+</LI>
+<LI>The configuration variable <TT>SOAP_SSL_CA_FILE</TT> is now 
+consulted in addition to
+<TT>SOAP_SSL_CA_DIR</TT> when authenticating
+an https proxy for Amazon EC2, when <TT>AMAZON_HTTP_PROXY</TT> is defined.
+
+<P>
+</LI>
+<LI>Previously, if <I>condor_rm</I> and friends were given both a constraint
+and a user name or cluster id, they would act on all jobs matching the
+constraint and all jobs associated with the user or cluster. Now, this
+combination of arguments results in an error.
+
+<P>
+</LI>
+<LI>Failure to purge a cream grid universe job from the remote server
+because it was previously purged no longer results in the job being held.
+
+<P>
+</LI>
+<LI>The <I>condor_gridmanager</I> now recognizes VOMS attributes in X.509
+proxies and will handle them appropriately. For example, it recognizes
+that two proxies with the same identity but different VOMS attributes may
+be mapped to different accounts on a remote machine.
+
+<P>
+</LI>
+<LI>Fixed a bug in <I>condor_dagman</I>, introduced in 7.3.2, that will
+cause <I>condor_dagman</I> running on Windows to hang on any DAG using
+more than one log file for the node jobs.
+
+<P>
+</LI>
+<LI>Fixed a bug in <I>condor_dagman</I>, introduced in 7.3.2, that could
+cause <I>condor_dagman</I> to fail on a DAG using node job log files on
+multiple devices, if log files on different devices happened to have
+the same inode number.
+
+<P>
+</LI>
+<LI>Fixed a bug that caused the <I>condor_schedd</I> daemon to segfault when
+spooling more than 9 files.
+
+<P>
+</LI>
+<LI>Fixed a bug that caused the <I>condor_startd</I> daemon to crash on
+Debian Stable.
+
+<P>
+</LI>
+<LI>Fixed keyboard activity detection on the Windows XP platform.
+
+<P>
+</LI>
+<LI>Fixed a bug in the <I>condor_had</I> daemon that caused it to not start
+the controlled daemon if CCB was enabled.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Known Bugs:
+
+<P>
+
+<UL>
+<LI>The <I>condor_kbdd</I> has a chance of entering an infinite loop
+on platforms that use X-Windows.  Microsoft Windows and Mac OS X
+are not affected.  Removing KBDD from <TT>DAEMON_LIST</TT> is a
+workaround, although this impairs Condor's ability to detect
+console usage.  This bug is fixed in Condor version 7.4.3.
+
+<P>
+</LI>
+<LI><I>condor_dagman</I> may fail on Windows if the set of node job log
+file names includes multiple paths that are hard links (not symbolic links)
+to the same file.
+
+<P>
+</LI>
+<LI><I>condor_dagman</I> PRE and POST script arguments (and the names of
+the scripts themselves) cannot contain spaces.
+
+<P>
+</LI>
+<LI><I>condor_dagman</I> VARS values cannot contain single quotes.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Additions and Changes to the Manual:
+
+<P>
+
+<UL>
+<LI>Added documentation about how to include spaces (and other
+special characters) in <I>condor_dagman</I> VARS values.
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<H2><A NAME="SECTION00956000000000000000"></A><A NAME="sec:New-7-4-0"></A>
+<BR>
+Version 7.4.0
+</H2>
+
+<P>
+Release Notes:
+
+<P>
+
+<UL>
+<LI>The default configuration file within the release now uses
+  <TT>ALLOW</TT>/<TT>DENY</TT> in place of
+  <TT>HOSTALLOW</TT>/<TT>HOSTDENY</TT> for security related settings.
+  We recommend making this
+  same change throughout all configuration files.  That way,
+  a policy that depends on the default policy should continue to
+  work as it did before.  The behavior of these configuration variables
+  remains unchanged.  The <TT>ALLOW</TT>/<TT>DENY</TT> lists are
+  added to the <TT>HOSTALLOW</TT>/<TT>HOSTDENY</TT> lists to form the
+  authorization policy.  Both styles support the same syntax.  
+  This change permits an anticipated
+  phasing out of the <TT>HOSTALLOW</TT>/<TT>HOSTDENY</TT>  configuration
+  variables, in order to simplify configuration.
+
+<P>
+</LI>
+<LI>As of Condor version 7.3.2, <I>condor_q</I> <B>-xml</B> output no longer 
+  begins with the non-XML consisting of two blank lines followed by a line
+  of the following form:
+
+<P>
+<PRE>
+-- Submitter: schedd-name : &lt;IP&gt; : hostname
+</PRE>
+
+<P>
+</LI>
+<LI>All <I>Stork</I> data placement is now supported by the Stork
+project at the 
+LSU Center for Computation and Technology
+(<A NAME="tex2html107"
+  HREF="http://www.cct.lsu.edu/www.cct.lsu.edu">http://www.cct.lsu.edu/www.cct.lsu.edu</A>).
+Please see the home page of the Stork project at
+<A NAME="tex2html108"
+  HREF="http://www.cct.lsu.edu/~kosar/stork/index.php">http://www.cct.lsu.edu/~kosar/stork/index.php</A>
+for details and
+software.
+
+<P>
+</LI>
+</UL>
+
+<P>
+New Features:
+
+<P>
+
+<UL>
+<LI>Condor is now integrated with the Hadoop Distributed File System (HDFS). 
+See documentation in section&nbsp;<A HREF="3_13Setting_Up.html#sec:Condor-HDFS">3.13.2</A> and 
+section&nbsp;<A HREF="3_3Configuration.html#sec:HDFS-Config-File-Entries">3.3.23</A>.
+
+<P>
+</LI>
+<LI><I>condor_q</I> using the options <B>-analyze</B> and <B>-better-analyze</B>
+  now provide analysis for scheduler and local universe jobs.
+  Specifically, the <TT>START_SCHEDULER_UNIVERSE</TT> and
+  <TT>START_LOCAL_UNIVERSE</TT> expressions are checked.
+
+<P>
+</LI>
+<LI>Added the ClassAd attributes
+<TT>TotalLocalRunningJobs</TT>, <TT>TotalLocalIdleJobs</TT>,
+<TT>TotalSchedulerRunningJobs</TT>, and <TT>TotalSchedulerIdleJobs</TT>
+to the published ClassAd for the <I>condor_schedd</I>.  This means that
+<I>condor_q</I> <B>-analyze</B> can still give helpful information about
+why local or scheduler universe jobs are idle when
+the configuration variables <TT>START_LOCAL_UNIVERSE</TT> or
+<TT>START_SCHEDULER_UNIVERSE</TT> refer to these attributes.
+These attributes were already present internally within 
+the <I>condor_schedd</I> daemon, 
+just not published.
+
+<P>
+</LI>
+<LI>The <I>condor_vm-gahp</I> now supports KVM and links with libvirt, rather 
+than calling virsh command-line tools.
+
+<P>
+</LI>
+<LI>Greatly improved the <I>condor_gridmanager</I>'s scalability when handling
+many grid type gt2 grid universe jobs.  Improvements include more quickly
+processing updated X.509 certificates, not checking jobs for status updates if 
+they have not been submitted to the remote site, and eliminating unnecessary 
+updates to the <I>condor_schedd</I> daemon.
+
+<P>
+</LI>
+<LI>Latency in the submission and cleaning up of Condor-C jobs
+has been improved by changing the default value of
+<TT>C_GAHP_CONTACT_SCHEDD_DELAY</TT> <A NAME="55345"></A> <A NAME="55346"></A> from 20 to 5.
+
+<P>
+</LI>
+<LI>The <TT>eval()</TT> ClassAd function added in Condor version 7.3.2
+is now also understood by the <I>condor_job_router</I> and
+<I>condor_q</I> using the <B>-better-analyze</B> option.
+
+<P>
+</LI>
+<LI>The submit command <B>run_as_owner</B> is now supported
+for Unix platforms. Previously, it was only supported on Windows platforms.
+
+<P>
+</LI>
+<LI>When setting <TT>AMAZON_HTTP_PROXY</TT>, a username and password
+can now be given as part of the proxy URL.
+The value of <TT>SOAP_SSL_CA_DIR</TT> is now consulted when authenticating
+an https proxy for Amazon EC2, when <TT>AMAZON_HTTP_PROXY</TT> is defined.
+
+<P>
+</LI>
+<LI>The <I>condor_collector</I> daemon now advertises to itself, and will appear
+in the output of <I>condor_status</I> <B>-collector</B>.
+
+<P>
+</LI>
+<LI>Optimizations in core Condor systems should provide minor speed 
+improvements.
+
+<P>
+</LI>
+<LI>Updated the maximum log size to the maximum operating system's file size.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Configuration Variable and ClassAd Attribute Additions and Changes:
+
+<P>
+
+<UL>
+<LI>The undocumented configuration variable 
+  <TT>TOOLS_PROVIDE_OLD_MESSAGES</TT> <A NAME="55367"></A> <A NAME="55368"></A> is no longer recognized by Condor.
+
+<P>
+</LI>
+<LI>The new configuration variable 
+  <TT>SCHEDD_JOB_QUEUE_LOG_FLUSH_DELAY</TT> <A NAME="55372"></A> <A NAME="55373"></A> sets an
+  upper bound in seconds on how long it takes for changes to the job
+  ClassAd to be visible to the Condor Job Router and to Quill.
+  The default value is 5 seconds.
+  Previously, there was no upper limit.  Typically, other activity in
+  the job queue, such as jobs being submitted or completed would cause
+  buffered data to be flushed to disk, such that the effective upper bound was
+  a function of how busy the job queue was.
+
+<P>
+</LI>
+<LI>The default configuration file now uses
+  <TT>ALLOW</TT>/<TT>DENY</TT> in place of
+  <TT>HOSTALLOW</TT>/<TT>HOSTDENY</TT>.  See the release notes above
+  for more information.
+
+<P>
+</LI>
+<LI>The default value for <TT>MAX_JOBS_RUNNING</TT> <A NAME="55381"></A> <A NAME="55382"></A> has changed.
+  Previously, it was 200.  Now it is defined by an expression that depends 
+  on the total amount of memory and the operating system.  The default
+  expression requires 1MByte of RAM per running job, on the submit machine.
+  In some environments and configurations, this is overly
+  generous and can be cut by as much as 50%.  Under Windows, the
+  number of running jobs is still capped at 200.
+  A 64-bit version of Windows  is recommended in order to raise the value
+  above the default.
+  Under Unix, the maximum default is now 10,000.  To scale higher, we
+  recommend that the system ephemeral port range is extended
+  such that there are at least 2.1 ports per running job.
+
+<P>
+</LI>
+<LI>The default value of <TT>RESERVED_SWAP</TT> has changed to
+  the value 0, which
+  disables the <I>condor_schedd</I> daemon's check for sufficient swap space
+  before starting more jobs.  The new expression defined with 
+  <TT>MAX_JOBS_RUNNING</TT> has a more appropriate memory check, so
+  the configuration variable <TT>RESERVED_SWAP</TT> will no longer
+  be used in the near future.
+  For cases where 
+  <TT>RESERVED_SWAP</TT> is not set to 0, the default value
+  of <TT>SHADOW_SIZE_ESTIMATE</TT> has changed to 800 Kbytes.
+  Previously, it was 200 if not set,
+  but it was set to 1800 in the example configuration file.
+
+<P>
+</LI>
+<LI>The default values of <TT>START_LOCAL_UNIVERSE</TT> <A NAME="55393"></A> <A NAME="55394"></A> and
+  <TT>START_SCHEDULER_UNIVERSE</TT> <A NAME="55398"></A> <A NAME="55399"></A> have changed.  Previously,
+  these were set to <TT>True</TT>.  Now, they are set using an expression
+  that allows
+  up to 200 local universe and 200 scheduler universe jobs to run.
+
+<P>
+</LI>
+<LI>The default value of
+  <TT>GRIDMANAGER_MAX_SUBMITTED_JOBS_PER_RESOURCE</TT> <A NAME="55404"></A> <A NAME="55405"></A> has
+  changed from 100 to 1000.
+
+<P>
+</LI>
+<LI>The default value of <TT>NEGOTIATOR_INTERVAL</TT> <A NAME="55409"></A> <A NAME="55410"></A>
+   has changed from 300 to 60.
+
+<P>
+</LI>
+<LI>The default value of <TT>ENABLE_GRID_MONITOR</TT> <A NAME="55414"></A> <A NAME="55415"></A> has been
+  changed from <TT>False</TT> to <TT>True</TT>.  This variable
+  was assigned to <TT>True</TT> in the example configuration file, so
+  the change in default value now matches the value set in the example
+  configuration.
+
+<P>
+</LI>
+<LI>The configuration variable <TT>VM_VERSION</TT> has been removed,
+as has the machine ClassAd attribute of the same name.
+When the virtual machine version information is needed in the machine ClassAd,
+the configuration variable <TT>STARTD_ATTRS</TT> can be used to
+add it.
+
+<P>
+</LI>
+<LI>The default configuration now uses
+  <TT>VM_BRIDGE_SCRIPT</TT> and <TT>VM_SCRIPT</TT> in place of
+  <TT>XEN_BRIDGE_SCRIPT</TT> and <TT>XEN_SCRIPT</TT> due to the
+  support of KVM. 
+  Submit description file commands have also been added, and they include:
+  <B>kvm_disk</B>, <B>kvm_transfer_files</B>,
+   and <B>kvm_cd_rom_device</B>.
+
+<P>
+</LI>
+<LI>The configuration variables <TT>XEN_DEFAULT_KERNEL</TT>
+  and <TT>XEN_DEFAULT_INITRD</TT> have been removed.
+  Corresponding to this, the submit description file command
+  <TT>xen_kernel = any</TT> is no longer valid.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Bugs Fixed:
+
+<P>
+
+<UL>
+<LI>Fixed a bug that prevented parallel universe jobs from running 
+  on <I>condor_startd</I> daemons with dynamic slots enabled.
+
+<P>
+</LI>
+<LI>Fixed a race condition bug in the <I>condor_startd</I> which allowed
+it to send Unix signals, intended for <I>condor_starter</I> processes, as
+root to non-Condor related processes.
+
+<P>
+</LI>
+<LI>A Windows platform bug has been fixed.
+The bug caused a 20-second interval in which
+the <I>condor_shadow</I>, <I>condor_startd</I>, and <I>condor_starter</I> daemons
+appeared as deadlocked. 
+The bug was visible if a job ClassAd update from the <I>condor_starter</I> caused
+the job's periodic hold or remove policy to become <TT>True</TT>.
+
+<P>
+</LI>
+<LI>Fixed a bug that could cause <I>condor_dagman</I> to generate an
+illegal rescue DAG, if it read events incorrectly in recovery mode.
+<I>condor_dagman</I> now checks for events that violate DAG semantics
+when reading events in recovery mode, and it exits without creating a
+rescue DAG if it reads such an event.
+
+<P>
+</LI>
+<LI>Fixed a bug that could cause <I>condor_dagman</I> to abort if it saw
+the combination of a terminated event and an aborted event on a node with
+retries.
+
+<P>
+</LI>
+<LI>Changed some logged warnings in <I>condor_dagman</I> to not be
+printed at the default verbosity setting.
+
+<P>
+</LI>
+<LI>The version compatibility checking between a <TT>.condor.sub</TT>
+file and the <I>condor_dagman</I> binary which is done at DAG startup
+is now much more permissive.
+Currently, <TT>.condor.sub</TT> files with
+Condor versions of 7.1.2 and later accepted by <I>condor_dagman</I>.
+
+<P>
+</LI>
+<LI>Fixed a bug introduced with the new <I>condor_dagman</I> lazy log file
+evaluation code in Condor version 7.3.2.
+The bug sometimes caused failure when running rescue DAGs.
+
+<P>
+</LI>
+<LI>Fixed a bug originating in Condor version 7.1.4.
+When a user submitted a job
+with an executable that did not have execute permission enabled,
+Condor was running as root, and file transfer was specified in the job,
+Condor failed to automatically turn on execute permission after
+transferring the file.
+
+<P>
+</LI>
+<LI>Fixed a bug that appeared in Condor version 7.3.2.
+The configuration variable
+<TT>COUNT_HYPERTHREAD_CPUS</TT> was ignored and was effectively
+treated as <TT>False</TT> in all cases.
+
+<P>
+</LI>
+<LI>Fixed a bug in which the Condor Job Router was not able
+to see matchmaking diagnostic attributes such as <TT>LastRejMatchTime</TT>.
+Therefore, when evaluating policy
+expressions that referred to these attributes, they were effectively
+treated as though <TT>Undefined</TT>.
+Quill was also not able to see these attributes.
+
+<P>
+</LI>
+<LI>Fixed a bug introduced in Condor version 7.3.2 that could cause the
+<I>condor_gridmanager</I> to crash repeatedly on startup,
+if the job queue
+contained grid type gt2 jobs that had been previously submitted.
+
+<P>
+</LI>
+<LI>Fixed two bugs introduced in Condor version 7.3.2,
+and related to VOMS. 
+The first bug
+prevented jobs with X.509 proxies from being submitted on platforms
+on which Condor does not support VOMS.
+The second bug prevented submission
+of jobs with VOMS proxies, if the authenticity of the VOMS extensions
+could not be verified.
+At the same time, improved memory usage when VOMS extensions are not used.
+
+<P>
+</LI>
+<LI>Fixed a bad default in the file <TT>batch_gahp.config</TT>,
+that prevented
+Condor from observing job state changes for grid universe jobs
+with a grid type of pbs or lsf.
+
+<P>
+</LI>
+<LI>Fixed a bug that caused Condor-C jobs to fail if
+the submit description file command <B>transfer_executable</B>
+was set to <TT>False</TT>.
+
+<P>
+</LI>
+<LI>Fixed a bug that caused Condor-C jobs to fail if the executable
+or one of the <TT>stdin</TT>, <TT>stdout</TT>, or <TT>stderr</TT> file names
+contained a comma.
+
+<P>
+</LI>
+<LI>File transfer for grid type gt4 jobs requires an empty directory
+within <TT>/tmp</TT>, which the <I>condor_gridmanager</I> creates. 
+If this directory is deleted, the <I>condor_gridmanager</I> will now recreate it.
+
+<P>
+</LI>
+<LI>Fixed a bug that could cause the user job log to become
+  corrupted on Windows platforms.  This bug would manifest itself only if the
+  same log file was specified with different paths.  For example, the
+  following submit file could have triggered this bug:
+<PRE>
+...
+initialdir = /data/job1
+log = ../JobLog
+queue
+
+initialdir = /data/job2
+log = ../JobLog
+queue
+</PRE>
+
+<P>
+</LI>
+<LI>Fixed a memory leak introduced into Condor version 7.3.2.
+The leak was in the <I>condor_collector</I> daemon.
+
+<P>
+</LI>
+<LI>Fixed a bug introduced in Condor version 7.3.2
+that resulted in the <I>condor_negotiator</I> daemon
+refusing to run, if the configuration variable <TT>GROUP_QUOTA</TT>
+for any group was set to 0.
+
+<P>
+</LI>
+<LI>Fixed a bug that caused the <TT>ctime</TT> in the event log header
+  to always be zero.
+
+<P>
+</LI>
+<LI>Fixed the output of <I>condor_status</I> when used with the command-line
+  options <B>-java</B> or <B>-vm</B>.
+
+<P>
+</LI>
+<LI>Fixed a problem in the <I>condor_schedd</I> daemon introduced in
+  7.3.2.  For <I>condor_schedd</I> daemons with lots of jobs having periodic release
+  expressions, this bug could result in the <I>condor_schedd</I> taking a long
+  time while evaluating periodic expressions, causing it to become
+  unresponsive to queries and other tasks.
+  With a job queue of 30,000 jobs,
+  a period of unresponsiveness of an hour was observed,
+  whereas the evaluation of periodic expressions in this same environment
+  normally takes less than 5 seconds.
+
+<P>
+</LI>
+<LI>Potential bugs and memory leaks were identified and 
+fixed throughout Condor.  The Condor Team is not aware of anyone having 
+encountered these bugs.
+
+<P>
+</LI>
+<LI>The <I>condor_starter</I> cleans up working directories in more
+situations.  Previously during some error conditions, the working
+directory within <TT>$(EXECUTE)</TT> might be left behind.
+
+<P>
+</LI>
+<LI>If the user log cannot be accessed when a local universe
+job starts, the job would fail and immediately be retried.  Now
+the job is placed on hold.
+
+<P>
+</LI>
+<LI>Fixed a bug in the <I>condor_startd</I> in which vacating jobs would not 
+respect the value of <TT>JobLeaseDuration</TT>.
+
+<P>
+</LI>
+<LI>Updated the detection of <TT>HasVM</TT> within the <I>condor_startd</I>
+ to publish an update to the <I>condor_collector</I>,
+ when the configuration variable <TT>VM_RECHECK_INTERVAL</TT> is specified.
+
+<P>
+</LI>
+<LI>Fixed a bug in which the <I>condor_gridmanager</I> could, in rare cases,
+waste a
+small amount of memory and processor time checking for proxy files no longer
+being used by any active jobs.
+
+<P>
+</LI>
+<LI>The setting <TT>CREAM_GAHP</TT> <A NAME="55514"></A> <A NAME="55515"></A> was added to the default configuration 
+file with a value of <TT>$(SBIN)/cream_gahp</TT>.
+Existing installations desiring to 
+submit jobs to CREAM should add this setting.
+
+<P>
+</LI>
+<LI>Fixed a bug where <I>condor_restart</I> would fail on a <I>condor_collector</I>
+daemon configured for high availability with multiple <I>condor_collector</I>
+daemons.
+
+<P>
+</LI>
+<LI>Fixed a bug in which multiple entries of output from 
+the command
+<I>condor_status</I> <B>-negotiator</B>
+would be on a single line.  They are now listed one per line.
+
+<P>
+</LI>
+<LI>Fixed a bug in which the command
+<I>condor_submit</I> <B>-dump</B> would crash if multiple
+jobs were queued from within a single submit file.
+
+<P>
+</LI>
+<LI>Fixed a bug in which a slot whose associated job disappeared
+could remain in the Claimed/Idle state until the claim lease expired.
+The slot should now promptly return to the Unclaimed/Idle state.
+
+<P>
+</LI>
+<LI>Fixed a bug in which a <I>condor_startd</I> using dynamic slots could
+crash on shutdown or reconfiguration.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Known Bugs:
+
+<P>
+
+<UL>
+<LI>The <I>condor_kbdd</I> has a chance of entering an infinite loop
+on platforms that use X-Windows.  Microsoft Windows and Mac OS X
+are not affected.  Removing KBDD from <TT>DAEMON_LIST</TT> is a
+workaround, although this impairs Condor's ability to detect
+console usage.  This bug is fixed in Condor version 7.4.3.
+
+<P>
+</LI>
+<LI>There are multiple bugs related to using VOMS attributes.
+In Condor version 7.4.0, VOMS support should be disabled by setting
+the configuration variable <TT>USE_VOMS_ATTRIBUTES = FALSE</TT>.
+
+<P>
+</LI>
+<LI>A configuration variable of  <TT>USE_VISIBLE_DESKTOP</TT> <A NAME="55540"></A> <A NAME="55541"></A> set 
+to <TT>True</TT> will corrupt the visible desktop.
+  This bug is present back through Condor version 7.2.4.
+This configuration variable did not work at all in 7.2 releases
+prior to 7.2.4.  This bug will be fixed in Condor version 7.4.1.
+
+<P>
+</LI>
+<LI>If the global event log (see section&nbsp;<A HREF="3_3Configuration.html#param:EventLog">3.3.4</A>) is
+turned on, <I>condor_dagman</I> will hang when running any DAG that has
+POST scripts.
+
+<P>
+</LI>
+<LI><I>condor_dagman</I> will hang on Windows when running any DAG that
+uses more than one log file for the node jobs.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Additions and Changes to the Manual:
+
+<P>
+
+<UL>
+<LI>See section&nbsp;<A HREF="3_13Setting_Up.html#sec:Condor-HDFS">3.13.2</A> and 
+section&nbsp;<A HREF="3_3Configuration.html#sec:HDFS-Config-File-Entries">3.3.23</A> for preliminary documentation of
+Condor's integration with the Hadoop Distributed File System (HDFS). 
+
+<P>
+</LI>
+</UL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html2284"
+  HREF="9_Command_Reference.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2278"
+  HREF="8_Version_History.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2274"
+  HREF="8_4Development_Release.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2280"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2282"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2285"
+  HREF="9_Command_Reference.html">9. Command Reference Manual</A>
+<B> Up:</B> <A NAME="tex2html2279"
+  HREF="8_Version_History.html">8. Version History and</A>
+<B> Previous:</B> <A NAME="tex2html2275"
+  HREF="8_4Development_Release.html">8.4 Development Release Series</A>
+ &nbsp; <B>  <A NAME="tex2html2281"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2283"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

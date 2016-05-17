@@ -1,0 +1,220 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Reconfiguring Condor after Installation </TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE=" Condor Roll: Users Guide "
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Customizing the Condor Roll"
+HREF="customizing.html"><LINK
+REL="PREVIOUS"
+TITLE="Examples of Condor Configuration"
+HREF="config-examples-condor.html"><LINK
+REL="NEXT"
+TITLE="Programatically changing the Contents of condor_config.local"
+HREF="condor-advanced-configuration.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Condor Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/condor.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="config-examples-condor.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 4. Customizing the Condor Roll</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="condor-advanced-configuration.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="RECONFIGURING-CONDOR"
+>4.4. Reconfiguring Condor after Installation</A
+></H1
+><P
+>The configuration of Condor is done during the install, the resulting 
+configuration files are located in /opt/condor/etc. To reconfigure Condor 
+on a node,  make appropriate attribute using the commands above  and then run
+<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks sync host condor &#60;hostname&#62;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><P
+>This will rewrite the condor_config.local on the file and then calls the Condor
+command <SAMP
+CLASS="COMPUTEROUTPUT"
+>/opt/condor/sbin/condor_reconfigure</SAMP
+></P
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/note.png"
+HSPACE="5"
+ALT="Note"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>To view the contents of the condor_config.local before making changes, use
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks report host condor config &#60;hostname&#62;</SAMP
+></P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>To find information about administrating  and using Condor Pools
+please see the original Condor manual at <A
+HREF="http://www.cs.wisc.edu/condor/manual"
+TARGET="_top"
+>Condor
+manuals</A
+> or <A
+HREF="condor-Manual"
+TARGET="_top"
+> locally </A
+>.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="config-examples-condor.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="condor-advanced-configuration.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Examples of Condor Configuration</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="customizing.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Programatically changing the Contents of condor_config.local</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

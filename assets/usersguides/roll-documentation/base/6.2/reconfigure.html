@@ -1,0 +1,491 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Reconfigure a Cluster</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE=" Advanced Tasks "
+HREF="advanced-tasks.html"><LINK
+REL="PREVIOUS"
+TITLE=" System Update "
+HREF="update.html"><LINK
+REL="NEXT"
+TITLE="Command Reference"
+HREF="c2387.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Base</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="update.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 8. Advanced Tasks</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="c2387.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="RECONFIGURE"
+>8.11. Reconfigure a Cluster</A
+></H1
+><P
+>This section explains how to reconfigure a cluster after the initial
+installation, when some of the cluster wide configurations need to be
+changed (e.g. public IP, FQDN of the frontend, etc.).
+The reconfiguration process generates a script which performs all the necessary
+steps to modify the desired parameters. The script is generated traversing
+the graph and parsing the section marked as "reconfigure" section (see
+the developers guide).</P
+><DIV
+CLASS="WARNING"
+><P
+></P
+><TABLE
+CLASS="WARNING"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/warning.png"
+HSPACE="5"
+ALT="Warning"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>Reconfiguring a cluster is a potentially harmful operation and
+can damage you system. The safest option is always reinstalling
+the frontend with the correct values.</P
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN2319"
+>8.11.1. Supported reconfiguration</A
+></H2
+><P
+>Currently only the following roll support reconfiguration:</P
+><P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>Base</P
+></LI
+><LI
+><P
+>Kernel</P
+></LI
+><LI
+><P
+>Ganglia</P
+></LI
+><LI
+><P
+>Java</P
+></LI
+><LI
+><P
+>Perl</P
+></LI
+><LI
+><P
+>Python</P
+></LI
+><LI
+><P
+>Hpc</P
+></LI
+><LI
+><P
+>SGE</P
+></LI
+></OL
+><P
+>The attribute which can be reconfigure are:</P
+><P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>Kickstart_PublicHostname </P
+></LI
+><LI
+><P
+>Kickstart_PublicDNSDomain</P
+></LI
+><LI
+><P
+>Kickstart_PrivateHostname</P
+></LI
+><LI
+><P
+>Kickstart_PublicAddress </P
+></LI
+><LI
+><P
+>Kickstart_PublicBroadcast </P
+></LI
+><LI
+><P
+>Kickstart_PublicNetmaskCIDR </P
+></LI
+><LI
+><P
+>Kickstart_PublicNetwork </P
+></LI
+><LI
+><P
+>Kickstart_PublicNetmask </P
+></LI
+><LI
+><P
+>Kickstart_PublicGateway </P
+></LI
+><LI
+><P
+>Kickstart_PrivateAddress</P
+></LI
+><LI
+><P
+>Kickstart_PrivateBroadcast</P
+></LI
+><LI
+><P
+>Kickstart_PrivateNetmaskCIDR</P
+></LI
+><LI
+><P
+>Kickstart_PrivateNetwork</P
+></LI
+><LI
+><P
+>Kickstart_PrivateNetmask</P
+></LI
+></OL
+><P
+>The attribute names are self explanatory and they can be used to change
+public network configuration and private network configuration.</P
+><P
+>The reconfiguration works only if you haven't changed manually rocks default
+configurations (Postfix, Named, Apache, configuration files should still be
+at their default configurations)</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN2371"
+>8.11.2. How to reconfigure a system</A
+></H2
+><P
+>To change one of the main parameters of your system first reset 
+the history of your attributes change:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+> # rocks run reconfigure clear=1</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>To change the attributes, use the standard rocks 
+commands (in the following example we show how to change the public ip 
+address):</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+> # rocks set attr Kickstart_PublicAddress 123.123.123.123
+ # rocks set attr Kickstart_PublicNetmask 255.255.255.0
+ # rocks set attr Kickstart_PublicGateway 123.123.123.1
+ # rocks set attr Kickstart_PublicHostname newhostname.somedomain.com</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>When you change an attribute (e.g. Kickstart_PublicAddress) the old value 
+will be stored in an attribute named with a "_old" postfix (e.g. 
+Kickstart_PublicAddress_old).
+You can verify which attributes will be updated with reconfigure using showattr:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+> # rocks run reconfigure showattr=1
+User modified attributes
+ATTR                        OLD VALUE -&#62;               NEW VALUE                 
+Kickstart_PublicNetmask     255.255.255.0              255.255.255.0             
+Kickstart_PublicHostname    myoldhost.ucsd.edu         newhostname.somedomain.com
+Kickstart_PublicAddress     2.2.2.24                   123.123.123.123           
+Kickstart_PublicGateway     2.2.2.1                    123.123.123.1             
+                                                                                 
+Additional attributes                                                            
+Kickstart_PrivateHostname   myoldhost                  newhostname               
+Kickstart_PublicBroadcast   2.2.2.255                  123.123.123.255           
+Kickstart_PublicNetwork     2.2.2.0                    123.123.123.0             
+Kickstart_PublicDNSDomain   ucsd.edu                   somedomain.com            
+Kickstart_PublicNetmaskCIDR 24                         24                    &#13;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>The command shows also the attributes that will be updated to maintain 
+consistency (section "Additional attributes") in the rocks database.
+
+If all the modified values make sense you can proceed and run the 
+reconfigure script:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+> # rocks run reconfigure &#62; /tmp/script.sh
+ # # inspect the script.sh
+ # bash /tmp/script.sh</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Depending on what attributes you have changed you will need to reinstall 
+all your nodes.</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+> # rocks run host compute login "/boot/kickstart/cluster-kickstart-pxe"</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><DIV
+CLASS="WARNING"
+><P
+></P
+><TABLE
+CLASS="WARNING"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/warning.png"
+HSPACE="5"
+ALT="Warning"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>If you have SGE installed the reconfigure operation will wipe all your
+SGE configurations (queue configuration, host configuration, etc.)</P
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="WARNING"
+><P
+></P
+><TABLE
+CLASS="WARNING"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/warning.png"
+HSPACE="5"
+ALT="Warning"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>If you change some private networking parameters you will have to
+remove and re-install all your nodes with insert-ether.
+For example if you change the private network address (e.g. from
+10.1.0.0 to 10.5.0.0) all the IP addresses of your node will be out
+of the new network. 
+For this reason you will need to remove all the compute nodes and 
+re-add them with insert-ethernet.</P
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="update.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="c2387.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>System Update</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="advanced-tasks.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Command Reference</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

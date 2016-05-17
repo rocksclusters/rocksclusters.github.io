@@ -1,0 +1,349 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Command Reference</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE=" Xen Users Guide "
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE="Networking with XEN Roll"
+HREF="x381.html"><LINK
+REL="NEXT"
+TITLE="add"
+HREF="x425.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="CHAPTER"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Xen</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/xen.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x381.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x425.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="CHAPTER"
+><H1
+><A
+NAME="AEN423"
+></A
+>Chapter 4. Command Reference</H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Table of Contents</B
+></DT
+><DT
+>4.1. <A
+HREF="x425.html"
+>add</A
+></DT
+><DD
+><DL
+><DT
+>4.1.1. <A
+HREF="x425.html#ROCKS-ADD-CLUSTER"
+>add cluster</A
+></DT
+><DT
+>4.1.2. <A
+HREF="x425.html#ROCKS-ADD-HOST-VM"
+>add host vm</A
+></DT
+></DL
+></DD
+><DT
+>4.2. <A
+HREF="x681.html"
+>create</A
+></DT
+><DT
+>4.3. <A
+HREF="x701.html"
+>dump</A
+></DT
+><DT
+>4.4. <A
+HREF="x733.html"
+>list</A
+></DT
+><DD
+><DL
+><DT
+>4.4.1. <A
+HREF="x733.html#ROCKS-LIST-CLUSTER"
+>list cluster</A
+></DT
+><DT
+>4.4.2. <A
+HREF="x733.html#ROCKS-LIST-HOST-VM"
+>list host vm</A
+></DT
+></DL
+></DD
+><DT
+>4.5. <A
+HREF="x809.html"
+>move</A
+></DT
+><DT
+>4.6. <A
+HREF="x839.html"
+>pause</A
+></DT
+><DT
+>4.7. <A
+HREF="x859.html"
+>remove</A
+></DT
+><DD
+><DL
+><DT
+>4.7.1. <A
+HREF="x859.html#ROCKS-REMOVE-CLUSTER"
+>remove cluster</A
+></DT
+><DT
+>4.7.2. <A
+HREF="x859.html#ROCKS-REMOVE-HOST-VM"
+>remove host vm</A
+></DT
+></DL
+></DD
+><DT
+>4.8. <A
+HREF="x898.html"
+>report</A
+></DT
+><DD
+><DL
+><DT
+>4.8.1. <A
+HREF="x898.html#ROCKS-REPORT-HOST-VM"
+>report host vm</A
+></DT
+><DT
+>4.8.2. <A
+HREF="x898.html#ROCKS-REPORT-HOST-VM-CONFIG"
+>report host vm config</A
+></DT
+><DT
+>4.8.3. <A
+HREF="x898.html#ROCKS-REPORT-HOST-VM-VIRT_TYPE"
+>report host vm virt_type</A
+></DT
+><DT
+>4.8.4. <A
+HREF="x898.html#ROCKS-REPORT-HOST-XEN-BRIDGE"
+>report host xen bridge</A
+></DT
+><DT
+>4.8.5. <A
+HREF="x898.html#ROCKS-REPORT-HOST-XEN-XENDOMAINS"
+>report host xen xendomains</A
+></DT
+><DT
+>4.8.6. <A
+HREF="x898.html#ROCKS-REPORT-VM-NEXTMAC"
+>report vm nextmac</A
+></DT
+></DL
+></DD
+><DT
+>4.9. <A
+HREF="x991.html"
+>restore</A
+></DT
+><DT
+>4.10. <A
+HREF="x1016.html"
+>resume</A
+></DT
+><DT
+>4.11. <A
+HREF="x1036.html"
+>save</A
+></DT
+><DT
+>4.12. <A
+HREF="x1061.html"
+>set</A
+></DT
+><DD
+><DL
+><DT
+>4.12.1. <A
+HREF="x1061.html#ROCKS-SET-CLUSTER-POWER"
+>set cluster power</A
+></DT
+><DT
+>4.12.2. <A
+HREF="x1061.html#ROCKS-SET-HOST-VM"
+>set host vm</A
+></DT
+></DL
+></DD
+><DT
+>4.13. <A
+HREF="x1174.html"
+>start</A
+></DT
+><DD
+><DL
+><DT
+>4.13.1. <A
+HREF="x1174.html#ROCKS-START-HOST-VM"
+>start host vm</A
+></DT
+><DT
+>4.13.2. <A
+HREF="x1174.html#ROCKS-START-SERVICE-AIRBOSS"
+>start service airboss</A
+></DT
+></DL
+></DD
+><DT
+>4.14. <A
+HREF="x1213.html"
+>stop</A
+></DT
+><DD
+><DL
+><DT
+>4.14.1. <A
+HREF="x1213.html#ROCKS-STOP-HOST-VM"
+>stop host vm</A
+></DT
+><DT
+>4.14.2. <A
+HREF="x1213.html#ROCKS-STOP-SERVICE-AIRBOSS"
+>stop service airboss</A
+></DT
+></DL
+></DD
+><DT
+>4.15. <A
+HREF="x1238.html"
+>sync</A
+></DT
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x381.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x425.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Networking with XEN Roll</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>add</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

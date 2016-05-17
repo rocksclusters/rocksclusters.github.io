@@ -1,0 +1,262 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Environment Modules for OpenMPI</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE=" HPC Users Guide "
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Using"
+HREF="using.html"><LINK
+REL="PREVIOUS"
+TITLE="Using"
+HREF="using.html"><LINK
+REL="NEXT"
+TITLE="Using mpirun from OpenMPI"
+HREF="using_openmpi.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>HPC</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/hpc.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="using.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 3. Using</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="using_openmpi.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="ENVIRONMENT_MODULES"
+>3.1. Environment Modules for OpenMPI</A
+></H1
+><P
+>As of Rocks 5.5 and 6.0 (Mamba), Environment Modules are utilized to control
+MPI path names.   By default the rocks-openmpi module is loaded and
+is openmpi compiled with gnu compiler and the ethernet device. </P
+><P
+></P
+><UL
+><LI
+><P
+>	To see the currently loaded modules:
+	</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>% module list
+Currently Loaded Modulefiles:
+  1) rocks-openmpi
+%</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>	To see available modules:
+	</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>% module avail
+------------------------ /usr/share/Modules/modulefiles ------------------------
+dot           module-info   null          use.own
+module-cvs    modules       rocks-openmpi
+
+------------------------ /usr/share/Modules/modulefiles ------------------------
+dot           module-info   null          use.own
+module-cvs    modules       rocks-openmpi
+%</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>	To NOT load the Rocks default module Definition. Set the environment
+	variable ROCKS_MODULE_USER_DEF to a non-zero string. 
+	</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>export ROCKS_USER_MODULE_DEF=True</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><DIV
+CLASS="TIP"
+><P
+></P
+><TABLE
+CLASS="TIP"
+WIDTH="90%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/tip.png"
+HSPACE="5"
+ALT="Tip"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> if modules are already loaded, then ROCKS_USER_MODULE_DEF will not
+unload already loaded modules.  If you do not want the Rocks default then set the above definition in your $HOME/.bashrc or $HOME/.cshrc  files</P
+></TD
+></TR
+></TABLE
+></DIV
+></LI
+></UL
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="using.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="using_openmpi.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Using</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="using.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Using mpirun from OpenMPI</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,224 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>10.1 Introduction to HTCondor Versions</TITLE>
+<META NAME="description" CONTENT="10.1 Introduction to HTCondor Versions">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="10_2Upgrading_from.html">
+<LINK REL="previous" HREF="10_Version_History.html">
+<LINK REL="up" HREF="10_Version_History.html">
+<LINK REL="next" HREF="10_2Upgrading_from.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html2531"
+  HREF="10_2Upgrading_from.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2525"
+  HREF="10_Version_History.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2519"
+  HREF="10_Version_History.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2527"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2529"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2532"
+  HREF="10_2Upgrading_from.html">10.2 Upgrading from the</A>
+<B> Up:</B> <A NAME="tex2html2526"
+  HREF="10_Version_History.html">10. Version History and</A>
+<B> Previous:</B> <A NAME="tex2html2520"
+  HREF="10_Version_History.html">10. Version History and</A>
+ &nbsp; <B>  <A NAME="tex2html2528"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2530"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html2533"
+  HREF="10_1Introduction_HTCondor.html#SECTION001111000000000000000">10.1.1 HTCondor Version Number Scheme</A>
+<LI><A NAME="tex2html2534"
+  HREF="10_1Introduction_HTCondor.html#SECTION001112000000000000000">10.1.2 The Stable Release Series</A>
+<LI><A NAME="tex2html2535"
+  HREF="10_1Introduction_HTCondor.html#SECTION001113000000000000000">10.1.3 The Development Release Series</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION001110000000000000000"></A><A NAME="sec:History-Intro"></A>
+<BR>
+10.1 Introduction to HTCondor Versions
+</H1>
+
+<P>
+This chapter provides descriptions of what features have been added or
+bugs fixed for each version of HTCondor.
+The first section describes the HTCondor version numbering scheme, what
+the numbers mean, and what the different <I>release series</I> are.
+The rest of the sections each describe a specific release series, and
+all the HTCondor versions found in that series.
+
+<P>
+
+<H2><A NAME="SECTION001111000000000000000"></A><A NAME="sec:Version-Number-Scheme"></A>
+<BR>
+10.1.1 HTCondor Version Number Scheme
+</H2>
+
+<P>
+Starting with version 6.0.1, HTCondor adopted a new, hopefully easy to
+understand version numbering scheme.
+It reflects the fact that HTCondor is both a production system and a
+research project.
+The numbering scheme was primarily taken from the Linux kernel's
+version numbering, so if you are familiar with that, it should seem
+quite natural.
+
+<P>
+There will usually be two HTCondor versions available at any given time,
+the <I>stable</I> version, and the <I>development</I> version.
+Gone are the days of ``patch level 3'', ``beta2'', or any other random
+words in the version string.
+All versions of HTCondor now have exactly three numbers, separated by
+``.''   
+
+<P>
+
+<UL>
+<LI>The first number represents the major version number, and will
+change very infrequently.
+
+<P>
+</LI>
+<LI><I>The thing that determines whether a version of HTCondor is
+<I>stable</I> or <I>development</I> is the second digit.
+Even numbers represent stable versions, while odd numbers represent
+development versions.</I>
+
+<P>
+</LI>
+<LI>The final digit represents the minor version number, which
+defines a particular version in a given release series.
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<H2><A NAME="SECTION001112000000000000000"></A><A NAME="sec:Stable-Series"></A>
+<BR>
+10.1.2 The Stable Release Series
+</H2>
+
+<P>
+People expecting the stable, production HTCondor system should download
+the stable version, denoted with an even number in the second digit of
+the version string.
+Most people are encouraged to use this version.  
+We will only offer our paid support for versions of HTCondor from the
+stable release series.
+
+<P>
+<I>On the stable series, new minor version releases will only
+be made for bug fixes and to support new platforms.</I>
+No new features will be added to the stable series.
+People are encouraged to install new stable versions of HTCondor when
+they appear, since they probably fix bugs you care about.
+Hopefully, there will not be many minor version releases for any given
+stable series.
+
+<P>
+
+<H2><A NAME="SECTION001113000000000000000"></A><A NAME="sec:Developement-Series"></A>
+<BR>
+10.1.3 The Development Release Series
+</H2>
+
+<P>
+Only people who are interested in the latest research, new features
+that haven't been fully tested, etc, should download the development
+version, denoted with an odd number in the second digit of the version
+string.  
+We will make a best effort to ensure that the development series will
+work, but we make no guarantees.
+
+<P>
+On the development series, new minor version releases will probably
+happen frequently.
+People should not feel compelled to install new minor versions unless
+they know they want features or bug fixes from the newer development
+version.
+
+<P>
+<I>Most sites will probably never want to install a development
+version of HTCondor for any reason.</I>
+Only if you know what you are doing (and like pain), or were
+explicitly instructed to do so by someone on the HTCondor Team, should
+you install a development version at your site.
+
+<P>
+After the feature set of the development series is satisfactory to the
+HTCondor Team, we will put a code freeze in place, and from that point
+forward, only bug fixes will be made to that development series.
+When we have fully tested this version, we will release a new stable
+series, resetting the minor version number, and start work on a new
+development release from there.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html2531"
+  HREF="10_2Upgrading_from.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2525"
+  HREF="10_Version_History.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2519"
+  HREF="10_Version_History.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2527"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2529"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2532"
+  HREF="10_2Upgrading_from.html">10.2 Upgrading from the</A>
+<B> Up:</B> <A NAME="tex2html2526"
+  HREF="10_Version_History.html">10. Version History and</A>
+<B> Previous:</B> <A NAME="tex2html2520"
+  HREF="10_Version_History.html">10. Version History and</A>
+ &nbsp; <B>  <A NAME="tex2html2528"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2530"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

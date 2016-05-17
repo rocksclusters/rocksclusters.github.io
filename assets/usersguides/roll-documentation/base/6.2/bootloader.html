@@ -1,0 +1,309 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+> Controlling Bootloader Parameters</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE=" Advanced Tasks "
+HREF="advanced-tasks.html"><LINK
+REL="PREVIOUS"
+TITLE=" Adding Kernel Boot Parameters "
+HREF="bootflags.html"><LINK
+REL="NEXT"
+TITLE=" System Update "
+HREF="update.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Base</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="bootflags.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 8. Advanced Tasks</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="update.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="BOOTLOADER"
+>8.9. Controlling Bootloader Parameters</A
+></H1
+><P
+>The default parameters for the GRUB bootloader is the master boot record
+on the first BIOS-enabled drive. However, sometimes more control is needed
+to support alternative configurations or to work around either anaconda 
+(the installer) issues or platform BIOS problems. For Rocks version 6,
+the default parameters are</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>--location=mbr --timeout=5 </PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>These are encoded into the base.xml configuration node and is part of the base roll.</P
+><P
+>It is possible to completely override the default with the <EM
+>Bootloader</EM
+> attribute. This affects the generation of the node's kickstart file. The most common change is the <EM
+>--driveorder</EM
+> option to tell
+anaconda precisely which device is the first in the BIOS boot order. 
+In the following example, we set the driveorder to "sda" for node 
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>compute-0-0</SAMP
+>.</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks set host attr compute-0-0 Bootloader value="--location=mbr --timeout=5 --driveorder=sda" </PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>One can check the value as follows</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks list host attr compute-0-0 | grep Bootloader
+compute-0-0: Bootloader     --location=mbr --timeout=5 --driveorder=sda H     </PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>We see that <SAMP
+CLASS="COMPUTEROUTPUT"
+>compute-0-0</SAMP
+> has the Bootloader 
+attribute set.  The "H" indicates that this attribute is a Host-specific 
+attribute.</P
+><DIV
+CLASS="WARNING"
+><P
+></P
+><TABLE
+CLASS="WARNING"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/warning.png"
+HSPACE="5"
+ALT="Warning"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>If you define a Bootloader attribute, you must include 
+the <SAMP
+CLASS="COMPUTEROUTPUT"
+>--location=</SAMP
+> directive. This is an 
+Anaconda requirement</P
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/note.png"
+HSPACE="5"
+ALT="Note"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>The full set of bootloader options is available at 
+<A
+HREF="https://access.redhat.com/knowledge/docs/en-US/Red_Hat_Enterprise_Linux/6/html/Installation_Guide/s1-kickstart2-options.html"
+TARGET="_top"
+>Kickstart Options</A
+></P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>To revert to the Rocks default, one simply removes the attribute</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks remove host attr compute-0-0 attr=Bootloader </PRE
+></FONT
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="bootflags.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="update.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Adding Kernel Boot Parameters</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="advanced-tasks.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>System Update</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,172 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<link rel="canonical" href="http://research.cs.wisc.edu/htcondor/manual/current/condor_pool_job_report.html">
+
+<TITLE>condor_pool_job_report</TITLE>
+<META NAME="description" CONTENT="condor_pool_job_report">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="condor_power.html">
+<LINK REL="previous" HREF="condor_ping.html">
+<LINK REL="up" HREF="11_Command_Reference.html">
+<LINK REL="next" HREF="condor_power.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html3775"
+  HREF="condor_power.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3769"
+  HREF="11_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3763"
+  HREF="condor_ping.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3771"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3773"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3776"
+  HREF="condor_power.html">condor_power</A>
+<B> Up:</B> <A NAME="tex2html3770"
+  HREF="11_Command_Reference.html">11. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3764"
+  HREF="condor_ping.html">condor_ping</A>
+ &nbsp; <B>  <A NAME="tex2html3772"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3774"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html3777"
+  HREF="condor_pool_job_report.html#SECTION0012311000000000000000">Synopsis</A>
+<LI><A NAME="tex2html3778"
+  HREF="condor_pool_job_report.html#SECTION0012312000000000000000">Description</A>
+<LI><A NAME="tex2html3779"
+  HREF="condor_pool_job_report.html#SECTION0012313000000000000000">Exit Status</A>
+<LI><A NAME="tex2html3780"
+  HREF="condor_pool_job_report.html#SECTION0012314000000000000000">Author</A>
+<LI><A NAME="tex2html3781"
+  HREF="condor_pool_job_report.html#SECTION0012315000000000000000">Copyright</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION0012310000000000000000"></A><A NAME="man-pool-job-report"></A>
+<BR>
+<I>condor_pool_job_report</I>
+</H1> generate report about all jobs that have run in the last 24 hours on
+all execute hosts
+  
+<P>
+
+<A NAME="74426"></A>
+<A NAME="74427"></A>
+
+<P>
+
+<H2><A NAME="SECTION0012311000000000000000">
+Synopsis</A>
+</H2>
+
+<P>
+<B><I>condor_pool_job_report</I></B>
+
+<P>
+
+<H2><A NAME="SECTION0012312000000000000000">
+Description</A>
+</H2>
+
+<P>
+<I>condor_pool_job_report</I> is a Linux-only 
+tool that is designed to be run nightly using <I>cron</I>.
+It is intended to be run on the central manager, 
+or another machine that has administrative permissions,
+and is able to fetch the <I>condor_startd</I> history logs
+from all of the <I>condor_startd</I> daemons in the pool.
+After fetching these logs, 
+<I>condor_pool_job_report</I> then generates a report about job run times
+and mails it to administrators, 
+as defined by configuration variable <TT>CONDOR_ADMIN</TT><A NAME="74508"></A><A NAME="74509"></A>.
+
+<P>
+
+<H2><A NAME="SECTION0012313000000000000000">
+Exit Status</A>
+</H2>
+
+<P>
+<I>condor_pool_job_report</I> will exit with a status value of 0 (zero) 
+upon success,
+and it will exit with the value 1 (one) upon failure.
+
+<P>
+
+<H2><A NAME="SECTION0012314000000000000000">
+Author</A>
+</H2> Center for High Throughput Computing, University of Wisconsin-Madison
+  
+<H2><A NAME="SECTION0012315000000000000000">
+Copyright</A>
+</H2> 
+  Copyright &#169; 1990-2015 Center for High Throughput Computing, 
+  Computer Sciences Department, 
+  University of Wisconsin-Madison, Madison, WI.  All Rights Reserved.  
+	Licensed under the Apache License, Version 2.0.  
+
+  <HR>
+<!--Navigation Panel-->
+<A NAME="tex2html3775"
+  HREF="condor_power.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3769"
+  HREF="11_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3763"
+  HREF="condor_ping.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3771"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3773"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3776"
+  HREF="condor_power.html">condor_power</A>
+<B> Up:</B> <A NAME="tex2html3770"
+  HREF="11_Command_Reference.html">11. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3764"
+  HREF="condor_ping.html">condor_ping</A>
+ &nbsp; <B>  <A NAME="tex2html3772"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3774"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

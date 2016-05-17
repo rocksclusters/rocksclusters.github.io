@@ -1,0 +1,391 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Testing the Condor Roll</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE=" Condor Roll: Users Guide "
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Using the Condor Roll"
+HREF="using.html"><LINK
+REL="PREVIOUS"
+TITLE="Using Condor"
+HREF="using-condor.html"><LINK
+REL="NEXT"
+TITLE="Customizing the Condor Roll"
+HREF="customizing.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Condor Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/condor.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="using-condor.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 3. Using the Condor Roll</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="customizing.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="TESTING-CONDOR"
+>3.2. Testing the Condor Roll</A
+></H1
+><P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>First, make sure condor daemons are running by executing:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># ps -ef | grep condor</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>On the frontend, the output should be similar to following:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>condor    2623     1  0 Apr19 ?        00:04:26 /opt/condor/sbin/condor_master
+condor    2646  2623  0 Apr19 ?        00:20:25 condor_collector -f
+condor    2647  2623  0 Apr19 ?        00:04:56 condor_negotiator -f
+condor    2649  2623  0 Apr19 ?        00:00:02 condor_schedd -f</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>And on the compute nodes, the output should be similar to following:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>condor   17007     1  0 Apr19 ?        00:01:09 /opt/condor/sbin/condor_master
+condor   17009 17007  0 Apr19 ?        00:00:02 condor_schedd -f
+condor   17010 17007  0 Apr19 ?        00:09:09 condor_startd -f</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>Try a test job submission.
+If you don't already have a non-root user account, you'll need to create one:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># useradd testuser
+# rocks sync users</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Then, to run a test job submission, execute:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># su - testuser 
+$ cp /opt/condor/tests/hello.* .
+$ condor_submit hello.sub</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>Check if jobs are submitted by executing:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>$ condor_q</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>The output should be similar to:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>-- Submitter: jeebs.rocksclusters.org : &#60;172.19.119.241:44626&#62; : jeebs.rocksclusters.org
+ ID      OWNER            SUBMITTED     RUN_TIME ST PRI SIZE CMD               
+   2.0   testuser       12/12 09:38   0+00:00:01 R  0   0.0  hello.sh          
+
+1 jobs; 0 idle, 1 running, 0 held</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+><EM
+>R</EM
+> in status column(ST) means running.
+<EM
+>I</EM
+> means idling.</P
+></LI
+><LI
+><P
+>Once the queue is empty (above command shows no jobs) can see the history of
+jobs execution with:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>$ condor_history</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>To see all the nodes in the condor pool do:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>$ condor_status</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>The output should be similar to:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>Name          OpSys       Arch   State      Activity   LoadAv Mem   ActvtyTime
+
+vm1@compute-0 LINUX       INTEL  Unclaimed  Idle       0.000   506  0+00:40:04
+vm2@compute-0 LINUX       INTEL  Unclaimed  Idle       0.000   506  0+00:45:05
+vm3@compute-0 LINUX       INTEL  Unclaimed  Idle       0.000   506  0+00:45:06
+vm4@compute-0 LINUX       INTEL  Unclaimed  Idle       0.000   506  0+00:45:07
+vm1@compute-0 LINUX       INTEL  Unclaimed  Idle       0.000   506  0+00:35:04
+vm2@compute-0 LINUX       INTEL  Unclaimed  Idle       0.000   506  0+00:40:05
+vm3@compute-0 LINUX       INTEL  Unclaimed  Idle       0.000   506  0+00:40:06
+vm4@compute-0 LINUX       INTEL  Unclaimed  Idle       0.000   506  0+00:40:07
+vm1@compute-0 LINUX       INTEL  Unclaimed  Idle       0.000   506  0+00:25:04
+vm2@compute-0 LINUX       INTEL  Unclaimed  Idle       0.000   506  0+00:30:05
+vm3@compute-0 LINUX       INTEL  Unclaimed  Idle       0.000   506  0+00:30:06
+vm4@compute-0 LINUX       INTEL  Unclaimed  Idle       0.000   506  0+00:30:07
+vm1@compute-0 LINUX       INTEL  Unclaimed  Idle       0.000   506  0+00:15:05
+vm2@compute-0 LINUX       INTEL  Unclaimed  Idle       0.000   506  0+00:20:06
+vm3@compute-0 LINUX       INTEL  Unclaimed  Idle       0.000   506  0+00:20:07
+vm4@compute-0 LINUX       INTEL  Unclaimed  Idle       0.000   506  0+00:20:08
+vm1@compute-0 LINUX       INTEL  Unclaimed  Idle       0.000   506  0+00:10:04
+vm2@compute-0 LINUX       INTEL  Unclaimed  Idle       0.000   506  0+00:15:05
+vm3@compute-0 LINUX       INTEL  Unclaimed  Idle       0.000   506  0+00:15:06
+vm4@compute-0 LINUX       INTEL  Unclaimed  Idle       0.000   506  0+00:15:07
+vm1@compute-0 LINUX       INTEL  Unclaimed  Idle       0.000   506  0+00:00:04
+vm2@compute-0 LINUX       INTEL  Unclaimed  Idle       0.000   506  0+00:05:05
+vm3@compute-0 LINUX       INTEL  Unclaimed  Idle       0.000   506  0+00:05:06
+vm4@compute-0 LINUX       INTEL  Unclaimed  Idle       0.000   506  0+00:05:07
+vm1@compute-0 LINUX       INTEL  Owner      Idle       0.860   506  0+00:00:09
+vm2@compute-0 LINUX       INTEL  Unclaimed  Idle       0.000   506  0+00:00:05
+vm3@compute-0 LINUX       INTEL  Unclaimed  Idle       0.000   506  0+00:00:06
+vm4@compute-0 LINUX       INTEL  Unclaimed  Idle       0.000   506  0+00:00:07
+
+                     Machines Owner Claimed Unclaimed Matched Preempting
+
+         INTEL/LINUX       28     1       0        27       0          0
+
+               Total       28     1       0        27       0          0</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+></OL
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="using-condor.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="customizing.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Using Condor</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="using.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Customizing the Condor Roll</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

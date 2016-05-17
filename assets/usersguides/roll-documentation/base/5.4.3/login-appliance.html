@@ -1,0 +1,271 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+> Adding a Login Appliance to Your Cluster </TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE=" Advanced Tasks "
+HREF="advanced-tasks.html"><LINK
+REL="PREVIOUS"
+TITLE=" Flashing BIOS on Compute Nodes Using PXE "
+HREF="pxeflash.html"><LINK
+REL="NEXT"
+TITLE=" Channel Bonding Interfaces "
+HREF="bonding.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Base</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="pxeflash.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 8. Advanced Tasks</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="bonding.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="LOGIN-APPLIANCE"
+>8.3. Adding a Login Appliance to Your Cluster</A
+></H1
+><P
+>A <EM
+>login appliance</EM
+> is a host that users use to build,
+launch and monitor their application(s).
+This host is a subset of a frontend appliance (a frontend runs several other
+services that are used to install and maintain all the nodes in the system).</P
+><P
+>First, we need to perform the initial installation of the login appliance.
+On the frontend, execute:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># insert-ethers</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Select "Login" as the appliance type.</P
+><P
+>Then PXE boot the host that you want to be a login appliance.</P
+><P
+>Login hosts are generally hosts that also have a public network interface
+so users can directly access the login host.
+After the login appliance installs, to configure the public network interface
+on the login host, see <A
+HREF="x1130.html#ADDING-PUBLIC-IP"
+>Adding a public IP address to the second ethernet adapter on a compute node</A
+>.</P
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN1935"
+>8.3.1. Making any Host a Submission and/or Execution Host</A
+></H2
+><P
+>If you've installed a batch queueing system (e.g., by using the SGE Roll or
+Torque Roll), you can change any host in your system to be a submission host
+(a host where users can submit jobs) and/or an execution host (the queueing
+system schedules jobs on execution hosts).</P
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/note.png"
+HSPACE="5"
+ALT="Note"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>By default, a login host is a submission host, but not an execution host.
+By default, a compute node is an execution host, but not a submission host.</P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>To make a host a submission host (e.g., tile-0-0), on the frontend execute:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks set host attr tile-0-0 submit_host true</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Then reinstall tile-0-0.</P
+><P
+>To make a host an execution host (e.g., tile-0-0), on the frontend execute:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks set host attr tile-0-0 exec_host true</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Then reinstall tile-0-0.</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="pxeflash.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="bonding.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Flashing BIOS on Compute Nodes Using PXE</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="advanced-tasks.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Channel Bonding Interfaces</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

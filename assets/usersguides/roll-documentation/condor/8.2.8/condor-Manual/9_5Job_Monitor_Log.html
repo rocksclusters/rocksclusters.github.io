@@ -1,0 +1,248 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>9.5 Job Monitor/Log Viewer</TITLE>
+<META NAME="description" CONTENT="9.5 Job Monitor/Log Viewer">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="previous" HREF="9_4HTCondorView_Client.html">
+<LINK REL="up" HREF="9_Contrib_Source.html">
+<LINK REL="next" HREF="10_Version_History.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html2466"
+  HREF="10_Version_History.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2460"
+  HREF="9_Contrib_Source.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2456"
+  HREF="9_4HTCondorView_Client.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2462"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2464"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2467"
+  HREF="10_Version_History.html">10. Version History and</A>
+<B> Up:</B> <A NAME="tex2html2461"
+  HREF="9_Contrib_Source.html">9. Contrib and Source</A>
+<B> Previous:</B> <A NAME="tex2html2457"
+  HREF="9_4HTCondorView_Client.html">9.4 The HTCondorView Client</A>
+ &nbsp; <B>  <A NAME="tex2html2463"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2465"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html2468"
+  HREF="9_5Job_Monitor_Log.html#SECTION001051000000000000000">9.5.1 Transition States</A>
+<LI><A NAME="tex2html2469"
+  HREF="9_5Job_Monitor_Log.html#SECTION001052000000000000000">9.5.2 Events</A>
+<LI><A NAME="tex2html2470"
+  HREF="9_5Job_Monitor_Log.html#SECTION001053000000000000000">9.5.3 Selecting Jobs</A>
+<LI><A NAME="tex2html2471"
+  HREF="9_5Job_Monitor_Log.html#SECTION001054000000000000000">9.5.4 Zooming</A>
+<LI><A NAME="tex2html2472"
+  HREF="9_5Job_Monitor_Log.html#SECTION001055000000000000000">9.5.5 Keyboard and Mouse Shortcuts</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION001050000000000000000"></A>
+<A NAME="57286"></A>
+<A NAME="57287"></A>
+<BR>
+9.5 Job Monitor/Log Viewer
+</H1>
+
+<P>
+The HTCondor Job Monitor is a Java application designed to allow users to 
+view user log files. 
+It is identified as the Contrib Module called HTCondor Log Viewer. 
+
+<P>
+To view a user log file, select it using the open file command in 
+the File menu.  
+After the file is parsed, it will be visually represented.  
+Each horizontal line represents an individual job.  
+The x-axis is time.  
+Whether a job is running at a particular time is represented by 
+its color at that time - white for running, black for idle.  
+For example, a job which appears predominantly white has made
+efficient progress, 
+whereas a job which appears predominantly black has received 
+an inordinately small proportion of computational time. 
+
+<P>
+
+<H2><A NAME="SECTION001051000000000000000"></A><A NAME="sec:transition-states"></A>
+<BR>
+9.5.1 Transition States
+</H2>
+
+<P>
+A transition state is the state of a job at any time.  
+It is called a transition, 
+because it is defined by the two events which bookmark it.  
+There are two basic transition states: running and idle. 
+An idle job typically is a job which has just been submitted into 
+the HTCondor pool and is waiting to be matched with an appropriate machine 
+or a job which has vacated from a machine and has been returned to the pool.  
+A running job, by contrast, is a job which is making active progress. 
+
+<P>
+Advanced users may want a visual distinction between two types of 
+running transitions: <I>goodput</I> or <I>badput</I>.  
+Goodput is the transition state preceding an eventual job completion or
+checkpoint.  
+Badput is the transition state preceding a non-checkpointed eviction event.
+Note that badput is potentially a misleading nomenclature; 
+a job which does not produce a checkpoint by the
+HTCondor program may produce the checkpoint itself or make progress 
+in some other way.  
+To view these two transition as distinct transitions, 
+select the appropriate option from the "View" menu. 
+
+<P>
+
+<H2><A NAME="SECTION001052000000000000000"></A><A NAME="sec:events"></A>
+<BR>
+9.5.2 Events
+</H2>
+
+<P>
+There are two basic kinds of events: checkpoint events and error events.   
+Plus, advanced users can ask to see more events. 
+
+<P>
+
+<H2><A NAME="SECTION001053000000000000000"></A><A NAME="sec:job-selector"></A>
+<BR>
+9.5.3 Selecting Jobs
+</H2>
+
+<P>
+To view any arbitrary selection of jobs in a job file, use the job selector tool.  Jobs appear visually by order of appearance within the actual text log file.  For example, the log file might contain jobs
+775.1, 775.2, 775.3, 775.4, and 775.5, which appear in that order.  A user who wishes to see only jobs 775.2 and 775.5 can select only these two jobs in the job selector tool and click the "Ok" or
+"Apply" button.  The job selector supports double clicking; double
+click on any single job to see it drawn in isolation. 
+
+<P>
+
+<H2><A NAME="SECTION001054000000000000000"></A><A NAME="sec:zooming"></A>
+<BR>
+9.5.4 Zooming
+</H2>
+
+<P>
+To view a small area of the log file, zoom in on the area which you would like to see in greater detail. You can zoom in, out and do a full zoom. A full zoom redraws the log file in its entirety. For
+example, if you have zoomed in very close and would like to go all the way back out, you could do so with a succession of zoom outs or with one full zoom. 
+
+<P>
+There is a difference between using the menu driven zooming and the mouse driven zooming. The menu driven zooming will recenter itself around the current center, whereas mouse driven
+zooming will recenter itself (as much as possible) around the mouse click. To help you re-find the clicked area, a box will flash after the zoom. This is called the "zoom finder" and it can be turned
+off in the zoom menu if you prefer. 
+
+<P>
+
+<H2><A NAME="SECTION001055000000000000000"></A><A NAME="sec:k-m-shortcuts"></A>
+<BR>
+9.5.5 Keyboard and Mouse Shortcuts
+</H2>
+
+<P>
+
+<OL>
+<LI>The Keyboard shortcuts: 
+
+<P>
+
+<UL>
+<LI>Arrows - an approximate ten percent scroll bar movement
+</LI>
+<LI>PageUp and PageDown - an approximate one hundred percent scroll bar movement 
+</LI>
+<LI>Control + Left or Right - approximate one hundred percent scroll bar movement 
+</LI>
+<LI>End and Home - scroll bar movement to the vertical extreme 
+</LI>
+<LI>Others - as seen beside menu items
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI>The mouse shortcuts: 
+
+<P>
+
+<UL>
+<LI>Control + Left click - zoom in 
+</LI>
+<LI>Control + Right click - zoom out
+</LI>
+<LI>Shift + left click - re-center
+</LI>
+</UL>
+</LI>
+</OL>
+
+<P>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html2466"
+  HREF="10_Version_History.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2460"
+  HREF="9_Contrib_Source.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2456"
+  HREF="9_4HTCondorView_Client.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2462"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2464"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2467"
+  HREF="10_Version_History.html">10. Version History and</A>
+<B> Up:</B> <A NAME="tex2html2461"
+  HREF="9_Contrib_Source.html">9. Contrib and Source</A>
+<B> Previous:</B> <A NAME="tex2html2457"
+  HREF="9_4HTCondorView_Client.html">9.4 The HTCondorView Client</A>
+ &nbsp; <B>  <A NAME="tex2html2463"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2465"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

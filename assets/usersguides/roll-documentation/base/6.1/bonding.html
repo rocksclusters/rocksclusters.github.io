@@ -1,0 +1,360 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+> Channel Bonding Interfaces </TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE=" Advanced Tasks "
+HREF="advanced-tasks.html"><LINK
+REL="PREVIOUS"
+TITLE=" Adding a Login Appliance to Your Cluster "
+HREF="login-appliance.html"><LINK
+REL="NEXT"
+TITLE=" Frontend Central Server "
+HREF="central.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Base</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="login-appliance.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 8. Advanced Tasks</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="central.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="BONDING"
+>8.5. Channel Bonding Interfaces</A
+></H1
+><P
+>Channel bonding enables two or more network interfaces to act as one.
+The following procedure describes how to channel bond interfaces in Rocks.</P
+><P
+>We'll use the example of channel bonding two interfaces for compute-0-1.
+First, let's list the current configuration of the interfaces for compute-0-1:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks list host interface compute-0-1
+SUBNET  IFACE MAC               IP           NETMASK     MODULE NAME        VLAN OPTIONS
+private eth0  00:1e:4f:b0:74:ef 10.1.255.253 255.255.0.0 tg3    compute-0-1 ---- -------
+------- eth1  00:10:18:31:74:43 ------------ ----------- tg3    ----------- ---- -------</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Here's what we'll do:</P
+><P
+></P
+><UL
+><LI
+><P
+>	Bond eth0 and eth1.
+	</P
+></LI
+><LI
+><P
+>	Name the bonded channel "bond0".
+	</P
+></LI
+><LI
+><P
+>	Give bond0 the IP address 10.1.255.253.
+	</P
+></LI
+><LI
+><P
+>	Associate bond0 with the private network.
+	</P
+></LI
+></UL
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks add host bonded compute-0-1 channel=bond0 interfaces=eth0,eth1 ip=10.1.255.253 network=private</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>The above command changes the interface configuraion for compute-0-1 in the
+following way:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks list host interface compute-0-1
+SUBNET  IFACE MAC               IP           NETMASK     MODULE  NAME        VLAN OPTIONS CHANNEL
+private bond0 ----------------- 10.1.255.253 255.255.0.0 bonding compute-0-1 ---- ------- -------
+------- eth0  00:1e:4f:b0:74:ef ------------ ----------- tg3     ----------- ---- ------- bond0  
+------- eth1  00:10:18:31:74:43 ------------ ----------- tg3     ----------- ---- ------- bond0</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>To apply the configuration, execute:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks sync config
+# rocks sync host network compute-0-1</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN2109"
+>8.5.1. Adding Parameters to the Kernel Bonding Module</A
+></H2
+><P
+>There are several options that can be added to the kernel bonding module (see
+RedHat's documentation 
+<A
+HREF="http://docs.redhat.com/docs/en-US/Red_Hat_Enterprise_Linux/5/html/Deployment_Guide/s2-modules-bonding.html"
+TARGET="_top"
+> The Channel Bonding Module </A
+>
+for a full description of all the options).</P
+><P
+>To set options "miimon=100" and "mode=balance-rr" for the kernel bonding
+module associated with bond0, execute:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks set host interface options compute-0-1 bond0 options="miimon=100 mode=balance-rr"</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><DIV
+CLASS="WARNING"
+><P
+></P
+><TABLE
+CLASS="WARNING"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/warning.png"
+HSPACE="5"
+ALT="Warning"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>The "options" value (e.g., "miimon=100 mode=balance-rr") must be a
+space-separated list.</P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>And now we see:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>SUBNET  IFACE MAC               IP           NETMASK     MODULE  NAME        VLAN OPTIONS                    CHANNEL
+private bond0 ----------------- 10.1.255.253 255.255.0.0 bonding compute-0-1 ---- miimon=100 mode=balance-rr -------
+------- eth0  00:1e:4f:b0:74:ef ------------ ----------- tg3     ----------- ---- -------------------------- bond0  
+------- eth1  00:10:18:31:74:43 ------------ ----------- tg3     ----------- ---- -------------------------- bond0</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>To apply the options to the bond0 interface, execute:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks sync host network compute-0-1</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="login-appliance.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="central.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Adding a Login Appliance to Your Cluster</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="advanced-tasks.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Frontend Central Server</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

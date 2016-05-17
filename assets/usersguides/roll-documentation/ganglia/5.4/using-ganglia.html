@@ -1,0 +1,340 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Using the Ganglia Roll</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE=" Ganglia Roll: Users Guide "
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Using the ganglia Roll"
+HREF="using.html"><LINK
+REL="PREVIOUS"
+TITLE="Using the ganglia Roll"
+HREF="using.html"><LINK
+REL="NEXT"
+TITLE="Customizing the Ganglia Roll"
+HREF="customizing.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Ganglia Roll: Users Guide: 		
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="using.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 3. Using the ganglia Roll</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="customizing.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="USING-GANGLIA"
+>3.1. Using the Ganglia Roll</A
+></H1
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="MONITORING-GANGLIA"
+>3.1.1. Cluster Status</A
+></H2
+><P
+>The webpages available from this link provide a graphical interface to live 
+cluster information provided by <A
+HREF="http://ganglia.info/"
+TARGET="_top"
+>Ganglia monitors</A
+> running on each 
+cluster node. The monitors gather values for various metrics such as CPU load, 
+free memory, disk usage, network I/O, operating system version, etc. These 
+metrics are sent through the private cluster network and are used by the 
+frontend node to generate the historical graphs.</P
+><P
+>In addition to metric parameters, a heartbeat message from each node is 
+collected by the Ganglia monitors.
+When a number of heartbeats from any node are 
+missed, this web page will declare it "dead". These dead nodes often have 
+problems which require additional attention, and are marked with the 
+Skull-and-Crossbones icon, or a red background.</P
+><P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/ganglia.png"></P
+></DIV
+></P
+><DIV
+CLASS="TIP"
+><P
+></P
+><TABLE
+CLASS="TIP"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/tip.png"
+HSPACE="5"
+ALT="Tip"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>The Rocks Cluster Group maintains a similar web page called 
+<EM
+>Meta</EM
+> that collects Ganglia information from many clusters 
+built with Rocks software. It may give you a glimpse of the power and 
+scalability of the Ganglia monitors. The meta page is available at <A
+HREF="http://meta.rocksclusters.org/"
+TARGET="_top"
+>http://meta.rocksclusters.org/</A
+>.</P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+><A
+HREF="http://ganglia.info/"
+TARGET="_top"
+>Ganglia</A
+> was designed at 
+Berkeley by Matt Massie (massie@cs.berkeley.edu) in 2000, and is currently 
+developed by an open source partnership between Berkeley, SDSC, and others. It 
+is distributed through Sourceforge.net under the GPL software liscence.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN182"
+>3.1.2. Cluster Top</A
+></H2
+><P
+>This page is a version of the standard "top" command for your cluster. This page presents process information from each node in the cluster. This page is useful for monitoring the precise activity of your nodes.</P
+><P
+>The Cluster Top differs from standard top in several respects. Most importantly, each row has a "HOST" designation and a "TN" attribute that specifies its age. Since taking a process measurement itself requires resources, compute nodes report process data only once every 60 seconds on average. A process row with TN=30 means the host reported information about that process 30 seconds ago. </P
+><P
+>For brevity and minimal performance impact, each node only reports as many processes as it has CPUs. The processes shown had the highest %CPU utilization on the node at the time of reporting. Unfortunately the number of processes per node is not currently adjustable. The restriction lies in the structure of the Ganglia monitoring system, which only delivers information and has no faculty for accepting parameters on the fly. However, showing the most CPU intensive processes should give you a good idea of how the CPUs are being utilized.</P
+><P
+>The process data is gathered by raw processing of the /proc filesystem on each node. Memory statistics differ slightly from standard "ps" output, and are calculated from the /proc/[pid]/statm virtual file.</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>Process Columns</B
+></P
+><DL
+><DT
+>TN</DT
+><DD
+><P
+>The age of the information in this row, in seconds.</P
+></DD
+><DT
+>HOST</DT
+><DD
+><P
+> 
+The node in the cluster on which this process is running.</P
+></DD
+><DT
+>PID</DT
+><DD
+><P
+> 
+The Process ID. A non-negative integer, unique among all processes
+on this node.</P
+></DD
+><DT
+>USER</DT
+><DD
+><P
+> 
+The username of this processes.</P
+></DD
+><DT
+>CMD</DT
+><DD
+><P
+> 
+The command name of this process, without arguments.</P
+></DD
+><DT
+>%CPU</DT
+><DD
+><P
+> 
+The percentage of available CPU cycles occupied by this process. This is always an approximate figure, which is more accurate for longer running processes.</P
+></DD
+><DT
+>%MEM</DT
+><DD
+><P
+> 
+The percentage of available physical memory occupied by this process.</P
+></DD
+><DT
+>SIZE</DT
+><DD
+><P
+> 
+The size of the "text" memory segment of this process, in kilobytes. This approximately relates the size of the executable itself (depending on the BSS segment).</P
+></DD
+><DT
+>DATA</DT
+><DD
+><P
+> 
+Approximately the size of all dynamically allocated memory of this process, in kilobytes. Includes the Heap and Stack of the process. Defined as the "resident" - "shared" size, where resident is the total amount of physical memory used, and shared is defined below. Includes the the text segment as well if this process has no children. </P
+></DD
+><DT
+>SHARED</DT
+><DD
+><P
+> 
+The size of the shared memory belonging to this process, in kilobytes. Defined as any page of this process' physical memory that is referenced by another process. Includes shared libraries such as the standard libc and loader. </P
+></DD
+><DT
+>VM</DT
+><DD
+><P
+> 
+The total virtual memory size used by this process, in kilobytes. </P
+></DD
+></DL
+></DIV
+><P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/top.png"></P
+></DIV
+></P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="using.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="customizing.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Using the ganglia Roll</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="using.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Customizing the Ganglia Roll</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

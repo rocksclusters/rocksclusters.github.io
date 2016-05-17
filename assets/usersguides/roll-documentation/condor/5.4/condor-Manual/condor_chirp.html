@@ -1,0 +1,327 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>condor_chirp</TITLE>
+<META NAME="description" CONTENT="condor_chirp">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="condor_cod.html">
+<LINK REL="previous" HREF="condor_checkpoint.html">
+<LINK REL="up" HREF="9_Command_Reference.html">
+<LINK REL="next" HREF="condor_cod.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html2892"
+  HREF="condor_cod.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2886"
+  HREF="9_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2880"
+  HREF="condor_checkpoint.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2888"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2890"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2893"
+  HREF="condor_cod.html">condor_cod</A>
+<B> Up:</B> <A NAME="tex2html2887"
+  HREF="9_Command_Reference.html">9. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html2881"
+  HREF="condor_checkpoint.html">condor_checkpoint</A>
+ &nbsp; <B>  <A NAME="tex2html2889"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2891"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html2894"
+  HREF="condor_chirp.html#SECTION001051000000000000000">Synopsis</A>
+<LI><A NAME="tex2html2895"
+  HREF="condor_chirp.html#SECTION001052000000000000000">Description</A>
+<LI><A NAME="tex2html2896"
+  HREF="condor_chirp.html#SECTION001053000000000000000">Options</A>
+<LI><A NAME="tex2html2897"
+  HREF="condor_chirp.html#SECTION001054000000000000000">Examples</A>
+<LI><A NAME="tex2html2898"
+  HREF="condor_chirp.html#SECTION001055000000000000000">Exit Status</A>
+<LI><A NAME="tex2html2899"
+  HREF="condor_chirp.html#SECTION001056000000000000000">Author</A>
+<LI><A NAME="tex2html2900"
+  HREF="condor_chirp.html#SECTION001057000000000000000">Copyright</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION001050000000000000000"></A><A NAME="man-condor-chirp"></A>
+<BR>
+<I>condor_chirp</I>
+</H1> Access files or job ClassAd from an executing job
+  
+<P>
+
+<H2><A NAME="SECTION001051000000000000000">
+Synopsis</A>
+</H2>
+<B><I>condor_chirp</I></B>
+[<B>-help</B>] 
+
+<P>
+<B><I>condor_chirp</I></B>
+<B>fetch</B> <I>RemoteFileName</I> <I>LocalFileName</I>
+
+<P>
+<B><I>condor_chirp</I></B>
+<B>put</B> [<B>-mode  </B><I>mode</I>] [<B>-perm  </B><I>UnixPerm</I>] <I>LocalFileName</I> <I>RemoteFileName</I>
+
+<P>
+<B><I>condor_chirp</I></B>
+<B>remove</B> <I>RemoteFileName</I>
+
+<P>
+<B><I>condor_chirp</I></B>
+<B>get_job_attr</B> <I>JobAttributeName</I>
+
+<P>
+<B><I>condor_chirp</I></B>
+<B>set_job_attr</B> <I>JobAttributeName</I> <I>AttributeValue</I>
+
+<P>
+<B><I>condor_chirp</I></B>
+<B>ulog</B> <I>Message</I>
+
+<P>
+
+<H2><A NAME="SECTION001052000000000000000"></A>
+<A NAME="57821"></A>
+<A NAME="57822"></A>
+<BR>
+Description
+</H2>
+<I>condor_chirp</I> is run from a user job while executing.
+It accesses files or job ClassAd attributes on the submit machine.
+Files can be read, written or removed.
+Job attributes can be read, and most attributes can be updated.
+
+<P>
+Descriptions using the terms <I>local</I> and <I>remote</I>
+are given from the point of view of the executing program.
+
+<P>
+If the input file name for <B>put</B> is a dash,
+<I>condor_chirp</I> uses standard input as the source.
+If the output file name for <B>fetch</B> is a dash,
+<I>condor_chirp</I> writes to standard output instead of a local file.
+
+<P>
+Jobs that use <I>condor_chirp</I> must have the attribute
+<TT>WantIOProxy</TT> set to <TT>True</TT> in the job ad.
+To do this, place
+<PRE>
++WantIOProxy = true
+</PRE>
+in the submit description file for the job.
+
+<P>
+<I>condor_chirp</I> only works for jobs run in the
+vanilla, parallel and java universes.
+
+<P>
+The optional <B>-mode </B><I>mode</I> argument
+is one or more of the following characters describing the
+<I>RemoteFileName</I> file.
+  
+<UL>
+<LI>w:  open for writing
+</LI>
+<LI>a:  force all writes to append
+</LI>
+<LI>t:  truncate before use
+</LI>
+<LI>c:  create the file, if it does not exist
+</LI>
+<LI>x:  fail if 'c' is given, and the file already exists
+  
+</LI>
+</UL>
+
+<P>
+The optional <B>-perm </B><I>UnixPerm</I> argument
+describes the file access permissions in a Unix format
+(for example, 660).
+
+<P>
+
+<H2><A NAME="SECTION001053000000000000000">
+Options</A>
+</H2>
+  
+<P>
+  <DL>
+<DT><STRONG><B>-help</B></STRONG></DT>
+<DD>Display usage information and exit.
+<BR>  
+</DD>
+<DT><STRONG>fetch</STRONG></DT>
+<DD>Copy the <I>RemoteFileName</I> from the submit machine
+    to the execute machine.
+<BR>  
+</DD>
+<DT><STRONG>remove</STRONG></DT>
+<DD>Remove the <I>RemoteFileName</I> file from the 
+    submit machine.
+<BR>  
+</DD>
+<DT><STRONG>put</STRONG></DT>
+<DD>Copy the <I>LocalFileName</I> from the execute machine
+    to the submit machine.  Perm is the unix permission to open the file with.
+<BR>  
+</DD>
+<DT><STRONG>get_job_attr</STRONG></DT>
+<DD>Prints the named job ClassAd attribute to
+    standard output.
+<BR>  
+</DD>
+<DT><STRONG>set_job_attr</STRONG></DT>
+<DD>Sets the named job ClassAd attribute with
+    the given attribute value.
+<BR>  
+</DD>
+<DT><STRONG>ulog</STRONG></DT>
+<DD>Appends a message to the job's user log.
+<BR>  
+</DD>
+</DL>
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION001054000000000000000">
+Examples</A>
+</H2>
+
+<P>
+To copy a file from the submit machine to the execute machine while the 
+user job is running, run
+
+<P>
+<PRE>
+% condor_chirp fetch remotefile localfile
+</PRE>
+<P>
+To print to standard output the value of the <TT>Requirements</TT>
+expression from within a running job, run
+
+<P>
+<PRE>
+% condor_chirp get_job_attr Requirements
+</PRE>
+<P>
+Note that the remote (submit-side) directory path is relative to the
+submit directory, and the local (execute-side) directory is relative to the
+current directory of the running program.
+
+<P>
+To append the word "foo" to a file on the submit machine, run
+
+<P>
+<PRE>
+% echo foo | condor_chirp put -mode wat - RemoteFile
+</PRE>
+<P>
+To append the message "Hello World" to the user log, run
+
+<P>
+<PRE>
+% condor_chirp ulog "Hello World"
+</PRE>
+<P>
+
+<H2><A NAME="SECTION001055000000000000000">
+Exit Status</A>
+</H2>
+
+<P>
+<I>condor_chirp</I> will exit with a status value of 0 (zero) upon success,
+and it will exit with the value 1 (one) upon failure.
+
+<P>
+
+<H2><A NAME="SECTION001056000000000000000">
+Author</A>
+</H2> Condor Team, University of Wisconsin-Madison
+  
+<H2><A NAME="SECTION001057000000000000000">
+Copyright</A>
+</H2> 
+  Copyright &#169; 1990-2010 Condor Team, Computer Sciences Department, 
+  University of Wisconsin-Madison, Madison, WI.  All Rights Reserved.  
+	Licensed under the Apache License, Version 2.0.
+
+<P>
+See the <I>Condor Version 7.4.4 Manual</I> or
+	<A NAME="tex2html107"
+  HREF="http://www.condorproject.org/license">http://www.condorproject.org/license</A>
+for
+  additional notices. 
+
+
+  <HR>
+<!--Navigation Panel-->
+<A NAME="tex2html2892"
+  HREF="condor_cod.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2886"
+  HREF="9_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2880"
+  HREF="condor_checkpoint.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2888"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2890"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2893"
+  HREF="condor_cod.html">condor_cod</A>
+<B> Up:</B> <A NAME="tex2html2887"
+  HREF="9_Command_Reference.html">9. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html2881"
+  HREF="condor_checkpoint.html">condor_checkpoint</A>
+ &nbsp; <B>  <A NAME="tex2html2889"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2891"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

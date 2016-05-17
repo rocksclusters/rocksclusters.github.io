@@ -1,0 +1,668 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+> Installation </TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Roll: Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Frequently Asked Questions"
+HREF="rocks-faq.html"><LINK
+REL="PREVIOUS"
+TITLE="Frequently Asked Questions"
+HREF="rocks-faq.html"><LINK
+REL="NEXT"
+TITLE=" Configuration "
+HREF="faq-configuration.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Base Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="rocks-faq.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Appendix A. Frequently Asked Questions</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="faq-configuration.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="FAQ-INSTALLATION"
+>A.1. Installation</A
+></H1
+><DIV
+CLASS="QANDASET"
+><DL
+><DT
+>A.1.1. <A
+HREF="faq-installation.html#NO-DHCP"
+>Insert-ethers never sees new compute nodes. I also don't see any DHCP messages
+from compute nodes on the frontend. What is wrong?</A
+></DT
+><DT
+>A.1.2. <A
+HREF="faq-installation.html#COMPUTE-KICKSTART-FILE"
+>While trying to install a compute node, 
+and when I plug a monitor into the compute node, I see the error message
+'Error opening kickstart file /tmp/ks.cfg. No such file or directory' or
+I see a screen on the compute node asking me to select a language.
+What went wrong?</A
+></DT
+><DT
+>A.1.3. <A
+HREF="faq-installation.html#AEN7876"
+>	I successfully installed all the Rolls, but during the last stage 
+	after the machine reboots, the system hangs with the error:
+	<EM
+>GRUB</EM
+> Loading Stage2.... What went wrong?
+	</A
+></DT
+><DT
+>A.1.4. <A
+HREF="faq-installation.html#CANT-MOUNT"
+>When I try to install a compute node, the error message on the compute node 
+says, "Can't mount /tmp. Please press OK to restart".
+What should I do?</A
+></DT
+><DT
+>A.1.5. <A
+HREF="faq-installation.html#FLOPPY"
+>My compute nodes don't have a CD drive and my network cards don't PXE
+boot, but my compute nodes do have a floppy drive.
+How can I install the compute nodes?</A
+></DT
+></DL
+><DIV
+CLASS="QANDAENTRY"
+><DIV
+CLASS="QUESTION"
+><P
+><A
+NAME="NO-DHCP"
+></A
+><B
+>A.1.1. </B
+>Insert-ethers never sees new compute nodes. I also don't see any DHCP messages
+from compute nodes on the frontend. What is wrong?</P
+></DIV
+><DIV
+CLASS="ANSWER"
+><P
+><B
+> </B
+>Try bypassing the network switch connecting your nodes to the frontend. The
+swich may be configured to squash broadcast messages from unknown IP addresses,
+which drops DHCP messages from nodes. To verify your switch is indeed the
+problem:</P
+><P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>Connect an ethernet cable 
+between a single compute node and the frontend's "eth0" interface.</P
+></LI
+><LI
+><P
+>Install the compute node normally (<A
+HREF="install-compute-nodes.html"
+>Install Compute Nodes</A
+>).
+You should see the DHCP messages from the node at the frontend.</P
+></LI
+></OL
+></DIV
+></DIV
+><DIV
+CLASS="QANDAENTRY"
+><DIV
+CLASS="QUESTION"
+><P
+><A
+NAME="COMPUTE-KICKSTART-FILE"
+></A
+><B
+>A.1.2. </B
+>While trying to install a compute node, 
+and when I plug a monitor into the compute node, I see the error message
+'Error opening kickstart file /tmp/ks.cfg. No such file or directory' or
+I see a screen on the compute node asking me to select a language.
+What went wrong?</P
+></DIV
+><DIV
+CLASS="ANSWER"
+><P
+><B
+> </B
+>A compute node kickstart requires the following services to be running
+on the frontend:</P
+><P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+> dhcpd </P
+></LI
+><LI
+><P
+> httpd </P
+></LI
+><LI
+><P
+> mysqld </P
+></LI
+><LI
+><P
+> autofs </P
+></LI
+></OL
+><P
+>To check if httpd and mysqld are running:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># ps auwx | grep httpd
+# ps auwx | grep mysqld</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>If either one is not running, restart them with:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># /etc/rc.d/init.d/httpd restart</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>and/or</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># /etc/rc.d/init.d/mysqld restart</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>The autofs service is called 'automount'.
+To check if it is running:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># ps auwx | grep automount</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>If it isn't, restart it:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># /etc/rc.d/init.d/autofs restart</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Finally, to test if the Rocks installation infrastructure is working:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks list host profile compute-0-0</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>This should return a kickstart file.</P
+><P
+>And to see if there are any errors associated with constructing kickstart
+files on the frontend:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks list host profile compute-0-0 &#62; /dev/null</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="QANDAENTRY"
+><DIV
+CLASS="QUESTION"
+><P
+><A
+NAME="AEN7876"
+></A
+><B
+>A.1.3. </B
+>	I successfully installed all the Rolls, but during the last stage 
+	after the machine reboots, the system hangs with the error:
+	<EM
+>GRUB</EM
+> Loading Stage2.... What went wrong?
+	</P
+></DIV
+><DIV
+CLASS="ANSWER"
+><P
+><B
+> </B
+>	This is an intermittent problem we've seen in the lab as well.
+	The installation is fine, except that the grub installation program,
+	for an unknown reason, did not run correctly.
+	</P
+><P
+>	Here is a workaround:
+	</P
+><P
+></P
+><UL
+><LI
+><P
+>	Put the Rocks Boot Roll CD in the frontend and boot the frontend.
+	</P
+></LI
+><LI
+><P
+>	At the boot prompt, type:
+	</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>frontend rescue</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>	A screen will appear, click the <EM
+>Continue</EM
+> button.
+	</P
+></LI
+><LI
+><P
+>	When you see the shell prompt, execute:
+	</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># chroot /mnt/sysimage</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>	Run the grub installation program:
+	</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># /sbin/grub-install `awk -F= '/^#boot/ { print $2 }' /boot/grub/grub.conf`</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>	This should output something similar to:
+	</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>Installation finished. No error reported.
+This is the contents of the device map /boot/grub/device.map.
+Check if this is correct or not. If any of the lines is incorrect,
+fix it and re-run the script `grub-install'.
+
+# this device map was generated by anaconda
+(fd0)     /dev/fd0
+(hd0)     /dev/hda</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>	Exit the chroot environment:
+	</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># exit</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>	Reboot the frontend.
+	</P
+></LI
+><LI
+><P
+>	Take the CD out of the drive and the frontend should come up cleanly.
+	</P
+></LI
+></UL
+></DIV
+></DIV
+><DIV
+CLASS="QANDAENTRY"
+><DIV
+CLASS="QUESTION"
+><P
+><A
+NAME="CANT-MOUNT"
+></A
+><B
+>A.1.4. </B
+>When I try to install a compute node, the error message on the compute node 
+says, "Can't mount /tmp. Please press OK to restart".
+What should I do?</P
+></DIV
+><DIV
+CLASS="ANSWER"
+><P
+><B
+> </B
+>Most likely, this situation arises due to the size of the disk drive on the compute
+node.
+The installation procedure for Rocks formats the disk on the compute node if Rocks
+has never been installed on the compute node before.</P
+><P
+>The fix requires changing the way Rocks partitions disk drives.
+See <A
+HREF="customization-partitioning.html"
+>Partitioning</A
+> for details.</P
+></DIV
+></DIV
+><DIV
+CLASS="QANDAENTRY"
+><DIV
+CLASS="QUESTION"
+><P
+><A
+NAME="FLOPPY"
+></A
+><B
+>A.1.5. </B
+>My compute nodes don't have a CD drive and my network cards don't PXE
+boot, but my compute nodes do have a floppy drive.
+How can I install the compute nodes?</P
+></DIV
+><DIV
+CLASS="ANSWER"
+><P
+><B
+> </B
+>You will create a boot floppy that emulates the PXE protocol.
+This is accomplished by going to the web site:</P
+><P
+><A
+HREF="http://www.rom-o-matic.net/"
+TARGET="_top"
+>ROM-o-matic.net</A
+></P
+><P
+>Then click on the version number under the
+<EM
+>Latest Production Release</EM
+> (as of this writing,
+this is version 5.4.3).</P
+><P
+>Select your device driver in item 1.
+Keep the default setting in item 2 (Floppy bootable ROM Image).
+Then click "Get ROM" in item 4.</P
+><P
+>We suggest using <SAMP
+CLASS="COMPUTEROUTPUT"
+>dd</SAMP
+> to copy the
+downloaded floppy image to the floppy media.
+For example:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># dd if=eb-5.4.0-pcnet32.zdsk of=/dev/fd0</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Then run <SAMP
+CLASS="COMPUTEROUTPUT"
+>insert-ethers</SAMP
+> on your frontend
+and boot your compute node with the floppy.</P
+></DIV
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="rocks-faq.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="faq-configuration.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Frequently Asked Questions</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="rocks-faq.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Configuration</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

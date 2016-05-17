@@ -1,0 +1,329 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<link rel="canonical" href="http://research.cs.wisc.edu/htcondor/manual/current/condor_reschedule.html">
+
+<TITLE>condor_reschedule</TITLE>
+<META NAME="description" CONTENT="condor_reschedule">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="condor_restart.html">
+<LINK REL="previous" HREF="condor_release.html">
+<LINK REL="up" HREF="11_Command_Reference.html">
+<LINK REL="next" HREF="condor_restart.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html3831"
+  HREF="condor_restart.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3825"
+  HREF="11_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3819"
+  HREF="condor_release.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3827"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3829"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3832"
+  HREF="condor_restart.html">condor_restart</A>
+<B> Up:</B> <A NAME="tex2html3826"
+  HREF="11_Command_Reference.html">11. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3820"
+  HREF="condor_release.html">condor_release</A>
+ &nbsp; <B>  <A NAME="tex2html3828"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3830"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html3833"
+  HREF="condor_reschedule.html#SECTION0012381000000000000000">Synopsis</A>
+<LI><A NAME="tex2html3834"
+  HREF="condor_reschedule.html#SECTION0012382000000000000000">Description</A>
+<LI><A NAME="tex2html3835"
+  HREF="condor_reschedule.html#SECTION0012383000000000000000">Options</A>
+<LI><A NAME="tex2html3836"
+  HREF="condor_reschedule.html#SECTION0012384000000000000000">Exit Status</A>
+<LI><A NAME="tex2html3837"
+  HREF="condor_reschedule.html#SECTION0012385000000000000000">Examples</A>
+<LI><A NAME="tex2html3838"
+  HREF="condor_reschedule.html#SECTION0012386000000000000000">Author</A>
+<LI><A NAME="tex2html3839"
+  HREF="condor_reschedule.html#SECTION0012387000000000000000">Copyright</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION0012380000000000000000"></A><A NAME="man-condor-reschedule"></A>
+<BR>
+<I>condor_reschedule</I>
+</H1> Update scheduling information to the central manager
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION0012381000000000000000">
+Synopsis</A>
+</H2><B><I>condor_reschedule</I></B>
+
+[<B>-help <IMG
+ WIDTH="10" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img62.png"
+ ALT="$\vert$"> -version</B>]
+
+<P>
+<B><I>condor_reschedule</I></B>
+
+[<B>-debug</B>]
+
+[<B>-pool  </B><I>centralmanagerhostname[:portnumber]</I>] 
+[<B>-name </B><I>hostname</I> <IMG
+ WIDTH="10" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img62.png"
+ ALT="$\vert$"> <I>hostname</I> <IMG
+ WIDTH="10" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img62.png"
+ ALT="$\vert$">
+<B>-addr </B><I>"<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">a.b.c.d:port<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$">"</I> <IMG
+ WIDTH="10" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img62.png"
+ ALT="$\vert$"> <I>"<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">a.b.c.d:port<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$">"</I> <IMG
+ WIDTH="10" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img62.png"
+ ALT="$\vert$"> 
+<B>-constraint </B><I>expression</I> <IMG
+ WIDTH="10" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img62.png"
+ ALT="$\vert$"> <B>-all</B> ]
+
+<P>
+<A NAME="74325"></A>
+<A NAME="74326"></A>
+
+<P>
+
+<H2><A NAME="SECTION0012382000000000000000">
+Description</A>
+</H2>
+
+<P>
+<I>condor_reschedule</I> updates the information about a set of machines' resources
+and jobs to the central manager.
+This command is used to force an update before viewing the
+current status of a machine.
+Viewing the status of a machine is done with 
+the <I>condor_status</I> command.
+<I>condor_reschedule</I> also
+starts a new negotiation cycle between resource owners and resource providers
+on the central managers, so that jobs can be matched with machines right
+away.
+This can be useful in situations where the time between negotiation
+cycles is somewhat long, and an administrator wants to see if a job 
+in the queue will get matched without waiting for the next negotiation cycle.
+
+<P>
+A new negotiation cycle cannot occur more frequently than
+every 20 seconds.
+Requests for new negotiation cycle within that
+20 second window will be deferred until 20 seconds have passed
+since that last cycle.
+
+<P>
+
+<H2><A NAME="SECTION0012383000000000000000">
+Options</A>
+</H2>
+  
+<P>
+  <DL>
+<DT><STRONG><B>-help</B></STRONG></DT>
+<DD>Display usage information
+<BR></DD>
+<DT><STRONG><B>-version</B></STRONG></DT>
+<DD>Display version information
+<BR>
+	
+</DD>
+<DT><STRONG><B>-debug</B></STRONG></DT>
+<DD>Causes debugging information to be sent to
+<TT>stderr</TT>, based on the value of the configuration variable
+<TT>TOOL_DEBUG</TT>
+<BR>
+	
+</DD>
+<DT><STRONG><B>-pool </B><I>centralmanagerhostname[:portnumber]</I></STRONG></DT>
+<DD>Specify a pool by giving the
+	central manager's host name and an optional port number
+<BR></DD>
+<DT><STRONG><B>-name </B><I>hostname</I></STRONG></DT>
+<DD>Send the command to a machine identified by <I>hostname</I>
+<BR></DD>
+<DT><STRONG><I>hostname</I></STRONG></DT>
+<DD>Send the command to a machine identified by <I>hostname</I>
+<BR></DD>
+<DT><STRONG><B>-addr </B><I>"<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">a.b.c.d:port<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$">"</I></STRONG></DT>
+<DD>Send the command
+	to a machine's master located at <I>"<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">a.b.c.d:port<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$">"</I>
+<BR></DD>
+<DT><STRONG><I>"<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">a.b.c.d:port<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$">"</I></STRONG></DT>
+<DD>Send the command
+	to a machine located at <I>"<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">a.b.c.d:port<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$">"</I>
+<BR></DD>
+<DT><STRONG><B>-constraint </B><I>expression</I></STRONG></DT>
+<DD>Apply this command only
+        to machines matching the given ClassAd <I>expression</I>
+<BR></DD>
+<DT><STRONG><B>-all</B></STRONG></DT>
+<DD>Send the command
+	to all machines in the pool
+<BR>
+  
+</DD>
+</DL>
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION0012384000000000000000">
+Exit Status</A>
+</H2>
+
+<P>
+<I>condor_reschedule</I> will exit with a status value of 0 (zero) upon success,
+and it will exit with the value 1 (one) upon failure.
+
+<P>
+
+<H2><A NAME="SECTION0012385000000000000000">
+Examples</A>
+</H2>
+
+<P>
+To update the information on three named machines:
+<PRE>
+% condor_reschedule robin cardinal bluejay
+</PRE>
+
+<P>
+To reschedule on a machine within a pool
+other than the local pool, use the <B>-pool</B> option.
+The argument is the name of the central manager for the pool.
+Note that one or more machines within the pool must be
+specified as the targets for the command.
+This command reschedules 
+the single machine named <B>cae17</B> within the
+pool of machines that has <B>condor.cae.wisc.edu</B> as
+its central manager:
+<PRE>
+% condor_reschedule -pool condor.cae.wisc.edu -name cae17
+</PRE>
+
+<P>
+
+<H2><A NAME="SECTION0012386000000000000000">
+Author</A>
+</H2> Center for High Throughput Computing, University of Wisconsin-Madison
+  
+<H2><A NAME="SECTION0012387000000000000000">
+Copyright</A>
+</H2> 
+  Copyright &#169; 1990-2013 Center for High Throughput Computing, 
+  Computer Sciences Department, 
+  University of Wisconsin-Madison, Madison, WI.  All Rights Reserved.  
+	Licensed under the Apache License, Version 2.0.  
+
+  <HR>
+<!--Navigation Panel-->
+<A NAME="tex2html3831"
+  HREF="condor_restart.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3825"
+  HREF="11_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3819"
+  HREF="condor_release.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3827"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3829"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3832"
+  HREF="condor_restart.html">condor_restart</A>
+<B> Up:</B> <A NAME="tex2html3826"
+  HREF="11_Command_Reference.html">11. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3820"
+  HREF="condor_release.html">condor_release</A>
+ &nbsp; <B>  <A NAME="tex2html3828"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3830"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

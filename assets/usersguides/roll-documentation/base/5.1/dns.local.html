@@ -1,0 +1,270 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+> Extending DNS </TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Roll: Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE=" Customizing your Rocks Installation "
+HREF="customization.html"><LINK
+REL="PREVIOUS"
+TITLE=" Adding a Device Driver "
+HREF="customization-driver.html"><LINK
+REL="NEXT"
+TITLE=" Community Resources "
+HREF="community-resources.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Base Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="customization-driver.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 4. Customizing your Rocks Installation</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="community-resources.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="DNS.LOCAL"
+>4.10. Extending DNS</A
+></H1
+><P
+>Rocks provides a mechanism to put external hostnames under the DNS control of
+your cluster. Generally, external hosts have names served by site-wide DNS
+servers. However if there is no external DNS server available, you may want to
+use your frontend's DNS server to handle the name to IP mappings for certain
+non-cluster nodes.&#13;</P
+><P
+>Since the DNS configuration file is automatically generated Rocks, you
+cannot add static configuration to the standard zone files in /var/named.
+Instead, you need to put local name mappings in the file:&#13;</P
+><P
+><TT
+CLASS="LITERAL"
+>/var/named/rocks.domain.local</TT
+></P
+><P
+>And reverse mappings (IP to name) in:</P
+><P
+><TT
+CLASS="LITERAL"
+>/var/named/reverse.rocks.domain.local-network-prefix.local</TT
+></P
+><P
+>Where <EM
+>local-network-prefix</EM
+> for a default rocks is
+<EM
+>10</EM
+>.
+That is, the above file name would be:</P
+><P
+><TT
+CLASS="LITERAL"
+>/var/named/reverse.rocks.domain.10.local</TT
+></P
+><P
+>To add the mappings in the above <EM
+>.local</EM
+> files to the
+running configuration, execute:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># insert-ethers --update</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>These files are in the BIND configuration format, just like the standard
+<TT
+CLASS="LITERAL"
+>rocks.domain</TT
+> and <TT
+CLASS="LITERAL"
+>reverse.rocks.domain</TT
+>
+files.</P
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/note.png"
+HSPACE="5"
+ALT="Note"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>Your external hosts will have names in the .local cluster domain.</P
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="WARNING"
+><P
+></P
+><TABLE
+CLASS="WARNING"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/warning.png"
+HSPACE="5"
+ALT="Warning"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>Errors in your local DNS files will cause the entire local cluster domain naming
+to fail. Proceed with caution.</P
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="customization-driver.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="community-resources.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Adding a Device Driver</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="customization.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Community Resources</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

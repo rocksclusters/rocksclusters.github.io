@@ -1,0 +1,215 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Named Networks/Subnets</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE=" Defining and Modifying Networks and Network Interfaces "
+HREF="networking.html"><LINK
+REL="PREVIOUS"
+TITLE="Networks, Subnets, VLANs and Interfaces"
+HREF="x1035.html"><LINK
+REL="NEXT"
+TITLE="Host Interfaces"
+HREF="x1051.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Base</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x1035.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 4. Defining and Modifying Networks and Network Interfaces</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x1051.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="AEN1041"
+>4.2. Named Networks/Subnets</A
+></H1
+><P
+>Rocks clusters are required to have two subnets defined: "public" and "private", but a cluster owner
+can define more subnets.  The commmand <SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks list network</SAMP
+> lists the defined 
+networks</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>[root@rocks ~]# rocks list network
+NETWORK    SUBNET       NETMASK      
+private:   172.16.254.0 255.255.255.0
+public:    132.239.8.0  255.255.255.0
+optiputer: 67.58.32.0   255.255.224.0</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>In the screen above, the additional network called "optiputer" is defined with netmask 255.255.224.0(/19).
+To add a network called "fast" as 192.168.1.0 and netmask 255.255.255.0(/24) do the following </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>[root@rocks ~]# rocks add network fast subnet=192.168.1.0 netmask=255.255.255.0
+[root@rocks ~]# rocks list network
+NETWORK    SUBNET       NETMASK      
+private:   172.16.254.0 255.255.255.0
+public:    132.239.8.0  255.255.255.0
+optiputer: 67.58.32.0   255.255.224.0
+fast:      192.168.1.0  255.255.255.0</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>The subnet and netmask of an existing network can be changed using 
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks set network subnet</SAMP
+> and 
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks set network netmask</SAMP
+> commands.  </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x1035.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x1051.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Networks, Subnets, VLANs and Interfaces</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="networking.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Host Interfaces</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

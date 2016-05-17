@@ -1,0 +1,323 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>MrBayes</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE=" Bio Users Guide "
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Using"
+HREF="using.html"><LINK
+REL="PREVIOUS"
+TITLE="Fasta"
+HREF="fasta_usage.html"><LINK
+REL="NEXT"
+TITLE="Phylip"
+HREF="phylip_usage.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Bio</B
+> Users Guide: 	<DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/dna.png"></P
+></DIV
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="fasta_usage.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 3. Using</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="phylip_usage.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="MRBAYES_USAGE"
+>3.8. MrBayes</A
+></H1
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN307"
+>3.8.1. About</A
+></H2
+><P
+>MrBayes is a program used for bayesian inference of phylogeny. MrBayes is cowritten by John Huelsenbeck and Fredrik Ronquist.</P
+><P
+>The version of MrBayes included with this version of Rocks is MPI enabled, and can be used in either
+parallel or serial modes of execution.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN311"
+>3.8.2. Usage</A
+></H2
+><P
+>MrBayes uses the NEXUS file format for input. To use MrBayes in interactive mode, just type mb at the command line</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>[nostromo@xxx mrbayes]$ mb
+MrBayes v3.1.2
+
+                      (Bayesian Analysis of Phylogeny)
+
+                             (Parallel version)
+                         (1 processors available)
+
+                                     by
+
+                  Fredrik Ronquist and John P. Huelsenbeck
+
+                       School of Computational Science
+                           Florida State University
+                            ronquist@csit.fsu.edu 
+
+                 Section of Ecology, Behavior and Evolution
+                       Division of Biological Sciences
+                     University of California, San Diego
+                           johnh@biomail.ucsd.edu
+
+              Distributed under the GNU General Public License
+
+               Type "help" or "help &#60;command&#62;" for information
+                     on the commands that are available.
+
+
+MrBayes &#62;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>To use MrBayes in the parallel version, you'll need to use it in non-interactive mode. It can be invoked as shown.</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>[nostromo@xxx ~]$ /opt/openmpi/bin/mpirun -np 4 /opt/bio/mrbayes/mb /opt/bio/mrbayes/primates.nex &#62; ~/log.txt
+[nostromo@xxx ~]$ cat log.txt 
+                               MrBayes v3.1.2
+
+                      (Bayesian Analysis of Phylogeny)
+
+                             (Parallel version)
+                         (4 processors available)
+
+                                     by
+
+                  John P. Huelsenbeck and Fredrik Ronquist
+
+                 Section of Ecology, Behavior and Evolution
+                       Division of Biological Sciences
+                     University of California, San Diego
+                           johnh@biomail.ucsd.edu
+
+                       School of Computational Science
+                           Florida State University
+                            ronquist@csit.fsu.edu 
+
+              Distributed under the GNU General Public License
+
+               Type "help" or "help &#60;command&#62;" for information
+                     on the commands that are available.
+
+
+
+   Executing file "/opt/bio/mrbayes/primates.nex"
+   UNIX line termination
+   Longest line length = 915
+   Parsing file
+   Expecting NEXUS formatted file
+   Reading data block
+      Allocated matrix
+      Matrix has 12 taxa and 898 characters
+      Data is Dna
+      Data matrix is not interleaved
+      Gaps coded as -
+      Setting default partition (does not divide up characters).
+      Taxon  1 -&#62; Tarsius_syrichta
+      Taxon  2 -&#62; Lemur_catta
+      Taxon  3 -&#62; Homo_sapiens
+      Taxon  4 -&#62; Pan
+      Taxon  5 -&#62; Gorilla
+      Taxon  6 -&#62; Pongo
+      Taxon  7 -&#62; Hylobates
+      Taxon  8 -&#62; Macaca_fuscata
+      Taxon  9 -&#62; M_mulatta
+      Taxon 10 -&#62; M_fascicularis
+      Taxon 11 -&#62; M_sylvanus
+      Taxon 12 -&#62; Saimiri_sciureus
+      Setting output file names to "/opt/bio/mrbayes/primates.nex.run&#60;i&#62;.&#60;p/t&#62;"
+      Successfully read matrix
+   Exiting data block
+   Reached end of file
+
+   Tasks completed, exiting program because mode is noninteractive
+   To return control to the command line after completion of file processing, 
+   set mode to interactive with 'mb -i &#60;filename&#62;' (i is for interactive)
+   or use 'set mode=interactive'
+
+[nostromo@xxx ~]$</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN317"
+>3.8.3. Further Information</A
+></H2
+><P
+>A wealth of information about MrBayes is available at the <A
+HREF="http://mrbayes.csit.fsu.edu/index.php"
+TARGET="_top"
+>MrBayes Home Page</A
+> and at the <A
+HREF="http://mrbayes.scs.fsu.edu/wiki/index.php/Manual"
+TARGET="_top"
+>MrBayes Wiki</A
+></P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="fasta_usage.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="phylip_usage.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Fasta</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="using.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Phylip</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

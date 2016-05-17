@@ -1,0 +1,471 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+> Enabling Two-Factor Authentication with Google Authenticator </TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE=" Advanced Tasks "
+HREF="advanced-tasks.html"><LINK
+REL="PREVIOUS"
+TITLE=" Managing the Firewall on the Cluster Nodes "
+HREF="firewall.html"><LINK
+REL="NEXT"
+TITLE=" Flashing BIOS on Compute Nodes Using PXE "
+HREF="pxeflash.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Base</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="firewall.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 8. Advanced Tasks</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="pxeflash.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="OTP"
+>8.2. Enabling Two-Factor Authentication with Google Authenticator</A
+></H1
+><P
+><EM
+>Two-factor</EM
+> authentication is a technique to improve password
+security on frontends and login nodes. The two factors are something you know
+(password) and something you possess physically (e.g., a phone, a hardware key token
+, ...). Rocks supports two-factor authentication on Frontend and Login appliances
+using Google's free and open <A
+HREF="http://code.google.com/p/google-authenticator"
+TARGET="_top"
+> google authenticator </A
+>.  Two-factor authentication is often called one-time passwords (OTP), because the rotating codes (every 30 seconds, by default) are 
+used just once and then discarded. This document uses two-factor and one-time 
+passwords (OTP) interchangeably.</P
+><P
+> It is reasonable to ask, "How is this different from RSA or other hardware 
+tokens?".  In technique, this method is not different from hardware tokens. Both 
+use time-based keys.  However, standalone key tokens are arguably stronger because
+the device that you possess is not connected to any network (unlike your phone). 
+Nevertheless, Google Authenticator is significantly stronger than just using password-only authentication. </P
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN1976"
+>8.2.1. Download and Install App for your Smartphone</A
+></H2
+><P
+>Google authenticator requires the user to download a small application for their
+smartphone.  There are apps for 
+<A
+HREF="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2"
+TARGET="_top"
+> 
+Android phones </A
+> and 
+<A
+HREF="http://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8"
+TARGET="_top"
+> 
+Apple iPhones</A
+>. Please see the appropriate link for your smartphone.  </P
+><P
+>The Android Application is available at the Google Play Store
+<DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/GooglePlayAuthenticator.png"></P
+></DIV
+></P
+><P
+>The IOS Application is available at the Apple iTunes Store 
+<DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/AppleiTunesAuthenticator.png"></P
+></DIV
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN1989"
+>8.2.2. Creating a User's Second Factor (One Time Password)</A
+></H2
+><P
+> 
+Users must be in the <SAMP
+CLASS="COMPUTEROUTPUT"
+>google-otp</SAMP
+> group to utilize
+one-time passwords (OTP).  The Rocks-defined PAM configuration first checks if 
+the user is in the group, and then checks if a user-specific OTP configuration 
+file is in the correct location (/export/google-authenticator/&#60;username&#62;).   
+This enables cluster owners to have mixtures of users, some of whom use two-factor
+authentication and some of whom do not. It is highly recommended that users who
+can gain root privilege (sudo or direct login) utilize two-factor authentication.</P
+><P
+> The user creates a password file using <SAMP
+CLASS="COMPUTEROUTPUT"
+>google-authenticator</SAMP
+>. A number of options are asked of the user and it is recommended
+that the user selects "yes" to every question.  The program will create 
+a <A
+HREF="http://en.wikipedia.org/wiki/QR_code"
+TARGET="_top"
+> QR </A
+> code that can be 
+scanned by either the Android or IOS application to register the created password
+with the phone application. </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>% google-authenticator </PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>The following example shows a screenshot of google-authenticator
+<DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/GoogleAuthenticator1.png"></P
+></DIV
+></P
+><P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/GoogleAuthenticator2.png"></P
+></DIV
+></P
+><DIV
+CLASS="WARNING"
+><P
+></P
+><TABLE
+CLASS="WARNING"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/warning.png"
+HSPACE="5"
+ALT="Warning"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>Your terminal font may need to be minimized to fit the QR code onto your
+display so that it can be scanned by the Phone App</P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>Scan the QR code with your Phone's Camera while in the Google Authenticator App. 
+For example, in the iPhone app, you should get to screen that looks like
+<DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/scanbarcode.png"></P
+></DIV
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN2011"
+>8.2.3. Enabling Two-factor for a particular user</A
+></H2
+><P
+>Once a user has created a two-factor code (which is a private password file), it 
+needs to be moved from the user's home directory to a more secure location. 
+That password file, then needs to be owned by root for two-factor to become active. 
+Removing this file, will disable two-factor authentication for a particular user.</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># mv /home/&#60;user&#62;/.google-authenticator /export/google-authenticator/&#60;user&#62;
+# chown root.root /export/google-authenticator/&#60;user&#62;
+# make -C /var/411 clean groups
+# rocks sync users</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/note.png"
+HSPACE="5"
+ALT="Note"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>If the user has generated their password on a login node, then securely copy 
+their .google-authenticator file to the /export/google-authenticator directory on
+the frontend.  Rocks 411 will properly sync these files to all login appliances</P
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN2017"
+>8.2.4. The User Experience</A
+></H2
+><P
+>If all has been configured correctly, then a user will see an  extra step at login,
+a request for a verification code</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>[phil@build-x86-64 ~]$ ssh 192.168.122.12 -l phil
+Verification code: 
+Password: 
+[phil@centos-6-3 ~]$ </PRE
+></FONT
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN2021"
+>8.2.5. Frequently Asked Questions</A
+></H2
+><P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>Q: is root's OTP key file synched to Login node</P
+><P
+>A: No. Like other security keys associated with root on the frontend,
+this data is never transferred </P
+></LI
+><LI
+><P
+>Q: If I delete an OTP key file from the frontend and then run 
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks sync users</SAMP
+>, will the file be deleted
+on the Login node?</P
+><P
+>A: Yes. The 411 handler on the Login node first deletes all keys (except root)
+in the /export/google-authenticator directory and then unpacks the new ones.  </P
+></LI
+><LI
+><P
+>Q: Is it possible to turn off the automatic addition of users to the google-otp group? </P
+><P
+>A: Yes. This automatic addition is handled by a <SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks sync users</SAMP
+> plugin.  If you set the attribute 
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>Info_GoogleOTPUsers</SAMP
+> to "no", then no automated additions will be made. This will not remove users from the google-otp group that have already been added.</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks set attr Info_GoogleOTPUsers no</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+></OL
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="firewall.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="pxeflash.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Managing the Firewall on the Cluster Nodes</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="advanced-tasks.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Flashing BIOS on Compute Nodes Using PXE</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

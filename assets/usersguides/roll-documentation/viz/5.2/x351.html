@@ -1,0 +1,255 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Chromium</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Viz Roll: Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Using"
+HREF="c295.html"><LINK
+REL="PREVIOUS"
+TITLE="Attributes"
+HREF="x297.html"><LINK
+REL="NEXT"
+TITLE="Rocks Copyright and Trademark"
+HREF="rocks-copyright.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Viz Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/resized-eye.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x297.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 4. Using</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="rocks-copyright.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="AEN351"
+>4.2. Chromium</A
+></H1
+><P
+>Chromium is used to display the OpenGL frame of applications on the wall.  Applications must be dynamically linked to the libGL.so library and can be either 64-bit or 32-bit binaries.  Although the Viz Roll does include a 32-bit version of Chromium other application libraries may be missing. 
+Some newer applications may contain code written to a later OpenGL 
+specification than is supported by Chromium, however, most application work
+without any source code changes.  </P
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN354"
+>4.2.1. Enabling and Disabling</A
+></H2
+><P
+>Enabling and disabling Chromium is done on per use basis and is not a global setting for all users.  In the default disabled state all OpenGL applications started on the frontend of the cluster will display normally in the frotend's X11 display.  If Chromium is enable the application will draw the non-OpenGL components (and window frame) on the frontend display and the OpenGL frame will be rendered across all the tiles in the wall.  Chromium is enabled and disabled using the following commands:</P
+><P
+><SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks enable chromium</SAMP
+></P
+><P
+><SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks disable chromium</SAMP
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN361"
+>4.2.2. Controlling Bezels</A
+></H2
+><P
+> 
+The default for Chromium is to not hide the bezels. 
+The <SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks enable chromium hidebezels</SAMP
+> and
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks disable chromium hidebezels</SAMP
+> commands can be used to control this behavior.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN366"
+>4.2.3. Application Notes</A
+></H2
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="AEN368"
+>4.2.3.1. Google Earth</A
+></H3
+><P
+>Google Earth is a 32-bit application and may require extra 32-bit libraries installed on the frontend of the cluster (not the tile nodes).  Recent version of Google Earth work well under Chromium with the "atmosphere" effects turned off.  If the compas does not appear resize the application window on the frontend to set the correct aspect ratio to allow the drawing of the compas.</P
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN371"
+>4.2.4. SAGE</A
+></H2
+><P
+>SAGE requires every user to have a complete personal copy of the SAGE binaries and libraries, and does not allow the sharing of the application in a common directory.  Where a user first starts SAGE a local copy of the SAGE distribution is made in ~/.sage.  All configuration files refered to in the EVL SAGE documentation are in this user specific ~/.sage directory.</P
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="AEN374"
+>4.2.4.1. Starting and Stopping</A
+></H3
+><P
+>SAGE can be started and stopped using the following command.  However the SAGE UI shutdown button is the preferred way to exit SAGE.</P
+><P
+><SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks start sage</SAMP
+>
+Starting SAGE will create the ~/.sage directory if one does not exists and will generate all the SAGE configuration files based on the tile layout stored in the Rocks database.</P
+><P
+><SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks stop sage</SAMP
+>
+Stopping SAGE can be a slow process.  The Viz Roll changes the normal SAGE shutdown process to track down all orphaned SAGE processes on the cluster.  While the is not fool-proof it does improve issues of orphaned SAGE applications prevented SAGE from starting.</P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x297.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="rocks-copyright.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Attributes</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="c295.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><SPAN
+CLASS="TRADEMARK"
+>Rocks</SPAN
+>&#8482; Copyright and Trademark</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

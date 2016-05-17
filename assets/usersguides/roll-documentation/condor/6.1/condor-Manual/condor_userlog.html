@@ -1,0 +1,359 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<link rel="canonical" href="http://research.cs.wisc.edu/condor/manual/current/condor_userlog.html">
+
+<TITLE>condor_userlog</TITLE>
+<META NAME="description" CONTENT="condor_userlog">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="condor_userprio.html">
+<LINK REL="previous" HREF="condor_updates_stats.html">
+<LINK REL="up" HREF="10_Command_Reference.html">
+<LINK REL="next" HREF="condor_userprio.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html4257"
+  HREF="condor_userprio.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html4251"
+  HREF="10_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html4245"
+  HREF="condor_updates_stats.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html4253"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html4255"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4258"
+  HREF="condor_userprio.html">condor_userprio</A>
+<B> Up:</B> <A NAME="tex2html4252"
+  HREF="10_Command_Reference.html">10. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html4246"
+  HREF="condor_updates_stats.html">condor_updates_stats</A>
+ &nbsp; <B>  <A NAME="tex2html4254"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html4256"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html4259"
+  HREF="condor_userlog.html#SECTION0011511000000000000000">Synopsis</A>
+<LI><A NAME="tex2html4260"
+  HREF="condor_userlog.html#SECTION0011512000000000000000">Description</A>
+<LI><A NAME="tex2html4261"
+  HREF="condor_userlog.html#SECTION0011513000000000000000">Options</A>
+<LI><A NAME="tex2html4262"
+  HREF="condor_userlog.html#SECTION0011514000000000000000">General Remarks</A>
+<LI><A NAME="tex2html4263"
+  HREF="condor_userlog.html#SECTION0011515000000000000000">Exit Status</A>
+<LI><A NAME="tex2html4264"
+  HREF="condor_userlog.html#SECTION0011516000000000000000">Author</A>
+<LI><A NAME="tex2html4265"
+  HREF="condor_userlog.html#SECTION0011517000000000000000">Copyright</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION0011510000000000000000"></A><A NAME="man-condor-userlog"></A>
+<BR>
+<I>condor_userlog</I>
+</H1> Display and summarize job statistics from job log files.
+  
+<P>
+
+<H2><A NAME="SECTION0011511000000000000000">
+Synopsis</A>
+</H2><B><I>condor_userlog</I></B>
+[<B>-help</B>] 
+[<B>-total | -raw</B>] 
+[<B>-debug</B>] 
+[<B>-evict</B>] 
+[<B>-j  </B><I>cluster | cluster.proc</I>]
+[<B>-all</B>] 
+[<B>-hostname</B>] 
+<I>logfile ... </I>
+
+<P>
+
+<H2><A NAME="SECTION0011512000000000000000">
+Description</A>
+</H2>
+<I>condor_userlog</I> parses the information in job log files and displays
+summaries for each workstation allocation and for each job.  See the
+manual page for <I>condor_submit</I> on page&nbsp;<A HREF="condor_submit.html#man-condor-submit"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for
+instructions for specifying that Condor write a log file for your
+jobs.
+
+<P>
+If <B>-total</B> is not specified, <I>condor_userlog</I> will first display
+a record for each workstation allocation, which includes the following
+information:
+
+<P>
+<DL>
+<DT><STRONG>Job</STRONG></DT>
+<DD>The cluster/process id of the Condor job.
+</DD>
+<DT><STRONG>Host</STRONG></DT>
+<DD>The host where the job ran.  By default, the host's IP
+address is displayed.  If <B>-hostname</B> is specified, the host name
+will be displayed instead.
+</DD>
+<DT><STRONG>Start Time</STRONG></DT>
+<DD>The time (month/day hour:minute) when the job began
+running on the host.
+</DD>
+<DT><STRONG>Evict Time</STRONG></DT>
+<DD>The time (month/day hour:minute) when
+the job was evicted from the host.
+</DD>
+<DT><STRONG>Wall Time</STRONG></DT>
+<DD>The time (days+hours:minutes) for which this workstation was
+allocated to the job.
+</DD>
+<DT><STRONG>Good Time</STRONG></DT>
+<DD>The allocated time (days+hours:min) which
+contributed to the completion of this job.  If the job exited during
+the allocation, then this value will equal ``Wall Time.''  If the job
+performed a checkpoint, then the value equals the work saved in
+the checkpoint during this allocation.  If the job did not exit or
+perform a checkpoint during this allocation, the value will be 0+00:00.
+This value can be greater than 0 and less than ``Wall Time'' if the
+application completed a periodic checkpoint during the allocation but
+failed to checkpoint when evicted.
+</DD>
+<DT><STRONG>CPU Usage</STRONG></DT>
+<DD>The CPU time (days+hours:min) which contributed to
+the completion of this job.
+</DD>
+</DL>
+
+<P>
+<I>condor_userlog</I> will then display summary statistics per host:
+
+<P>
+<DL>
+<DT><STRONG>Host/Job</STRONG></DT>
+<DD>The IP address or host name for the host.
+</DD>
+<DT><STRONG>Wall Time</STRONG></DT>
+<DD>The workstation time (days+hours:minutes) allocated by
+this host to the jobs specified in the query.  By default, all jobs in
+the log are included in the query.
+</DD>
+<DT><STRONG>Good Time</STRONG></DT>
+<DD>The time (days+hours:minutes) allocated on this host which
+contributed to the completion of the jobs specified in the query.
+</DD>
+<DT><STRONG>CPU Usage</STRONG></DT>
+<DD>The CPU time (days+hours:minutes) obtained from this
+host which
+contributed to the completion of the jobs specified in the query.
+</DD>
+<DT><STRONG>Avg Alloc</STRONG></DT>
+<DD>The average length of an allocation on this host
+(days+hours:minutes).
+</DD>
+<DT><STRONG>Avg Lost</STRONG></DT>
+<DD>The average amount of work lost (days+hours:minutes) when a job
+was evicted from this host without successfully performing a checkpoint.
+</DD>
+<DT><STRONG>Goodput</STRONG></DT>
+<DD>This percentage is computed as Good Time divided by
+Wall Time.
+</DD>
+<DT><STRONG>Util.</STRONG></DT>
+<DD>This percentage is computed as CPU Usage divided by Good
+Time.
+</DD>
+</DL>
+
+<P>
+<I>condor_userlog</I> will then display summary statistics per job:
+
+<P>
+<DL>
+<DT><STRONG>Host/Job</STRONG></DT>
+<DD>The cluster/process id of the Condor job.
+</DD>
+<DT><STRONG>Wall Time</STRONG></DT>
+<DD>The total workstation time (days+hours:minutes) allocated to
+this job.
+</DD>
+<DT><STRONG>Good Time</STRONG></DT>
+<DD>The total time (days+hours:minutes) allocated to this
+job which 
+contributed to the job's completion.
+</DD>
+<DT><STRONG>CPU Usage</STRONG></DT>
+<DD>The total CPU time (days+hours:minutes) which
+contributed to this 
+job's completion.
+</DD>
+<DT><STRONG>Avg Alloc</STRONG></DT>
+<DD>The average length of a workstation allocation
+obtained by this job in minutes (days+hours:minutes).
+</DD>
+<DT><STRONG>Avg Lost</STRONG></DT>
+<DD>The average amount of work lost (days+hours:minutes)
+when this job 
+was evicted from a host without successfully performing a checkpoint.
+</DD>
+<DT><STRONG>Goodput</STRONG></DT>
+<DD>This percentage is computed as Good Time divided by
+Wall Time.
+</DD>
+<DT><STRONG>Util.</STRONG></DT>
+<DD>This percentage is computed as CPU Usage divided by Good
+Time.
+</DD>
+</DL>
+
+<P>
+Finally, <I>condor_userlog</I> will display a summary for all hosts and
+jobs.
+
+<P>
+
+<H2><A NAME="SECTION0011513000000000000000">
+Options</A>
+</H2>
+  
+<P>
+  <DL>
+<DT><STRONG><B>-help</B></STRONG></DT>
+<DD>Get a brief description of the supported options
+<BR>    
+</DD>
+<DT><STRONG><B>-total</B></STRONG></DT>
+<DD>Only display job totals
+<BR>    
+</DD>
+<DT><STRONG><B>-raw</B></STRONG></DT>
+<DD>Display raw data only
+<BR>    
+</DD>
+<DT><STRONG><B>-debug</B></STRONG></DT>
+<DD>Debug mode
+<BR>    
+</DD>
+<DT><STRONG><B>-j</B></STRONG></DT>
+<DD>Select a specific cluster or cluster.proc
+<BR>    
+</DD>
+<DT><STRONG><B>-evict</B></STRONG></DT>
+<DD>Select only allocations which ended due to eviction
+<BR>    
+</DD>
+<DT><STRONG><B>-all</B></STRONG></DT>
+<DD>Select all clusters and all allocations
+<BR>    
+</DD>
+<DT><STRONG><B>-hostname</B></STRONG></DT>
+<DD>Display host name instead of IP address
+<BR>  
+</DD>
+</DL>
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION0011514000000000000000">
+General Remarks</A>
+</H2>
+Since the Condor job log file format does not contain a year field in
+the timestamp, all entries are assumed to occur in the current year.
+Allocations which begin in one year and end in the next will be
+silently ignored.
+
+<P>
+
+<H2><A NAME="SECTION0011515000000000000000">
+Exit Status</A>
+</H2>
+
+<P>
+<I>condor_userlog</I> will exit with a status value of 0 (zero) upon success,
+and it will exit with the value 1 (one) upon failure.
+
+<P>
+
+<H2><A NAME="SECTION0011516000000000000000">
+Author</A>
+</H2> Condor Team, University of Wisconsin-Madison
+  
+<H2><A NAME="SECTION0011517000000000000000">
+Copyright</A>
+</H2> 
+  Copyright &#169; 1990-2012 Condor Team, Computer Sciences Department, 
+  University of Wisconsin-Madison, Madison, WI.  All Rights Reserved.  
+	Licensed under the Apache License, Version 2.0.
+
+<P>
+See the <I>Condor Version 7.8.5 Manual</I> or
+	<A NAME="tex2html460"
+  HREF="http://www.condorproject.org/license">http://www.condorproject.org/license</A>
+for
+  additional notices. 
+
+
+  <HR>
+<!--Navigation Panel-->
+<A NAME="tex2html4257"
+  HREF="condor_userprio.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html4251"
+  HREF="10_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html4245"
+  HREF="condor_updates_stats.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html4253"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html4255"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4258"
+  HREF="condor_userprio.html">condor_userprio</A>
+<B> Up:</B> <A NAME="tex2html4252"
+  HREF="10_Command_Reference.html">10. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html4246"
+  HREF="condor_updates_stats.html">condor_updates_stats</A>
+ &nbsp; <B>  <A NAME="tex2html4254"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html4256"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

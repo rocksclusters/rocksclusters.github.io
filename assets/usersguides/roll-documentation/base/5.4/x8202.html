@@ -1,0 +1,343 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Release 5.1 - changes from 5.0</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Roll: Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Release Notes"
+HREF="release-notes.html"><LINK
+REL="PREVIOUS"
+TITLE="Release 5.2 - changes from 5.1"
+HREF="x8123.html"><LINK
+REL="NEXT"
+TITLE="Release 4.3 - changes from 4.2.1"
+HREF="x8256.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Base Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x8123.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Appendix B. Release Notes</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x8256.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="AEN8202"
+>B.3. Release 5.1 - changes from 5.0</A
+></H1
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN8204"
+>B.3.1. New Features</A
+></H2
+><P
+></P
+><UL
+><LI
+><P
+> Support for Virtual Clusters </P
+><P
+>	Virtual frontends and virtual compute nodes are now supported.
+	The network for a VM frontend its VM compute nodes are contained within
+	its own VLAN.
+	</P
+><P
+>	A virtual cluster is added with
+	"rocks add cluster fqdn=X ip=Y num-computes=Z".
+	See "rocks add cluster help" for details.
+	</P
+></LI
+><LI
+><P
+> Can build rolls outside of Rocks source tree. </P
+><P
+>	All roll building support files are under
+	<SAMP
+CLASS="COMPUTEROUTPUT"
+>/opt/rocks/share/devel</SAMP
+>.
+	</P
+></LI
+><LI
+><P
+>	Can reconfigure a compute node's network without rebooting.
+	</P
+><P
+>	Rocks commands were added to support this.
+	See the documentation for the procedure.
+	</P
+></LI
+><LI
+><P
+>	Distribution moved to
+	<SAMP
+CLASS="COMPUTEROUTPUT"
+>/export/rocks/install</SAMP
+>.
+	</P
+><P
+>	No longer require NFS on the frontend to properly host a Rocks
+	Distribution.
+	This will make moving user accounts to an external NFS server easier.
+	</P
+></LI
+><LI
+><P
+>	Fine-grained control over the "boot" and "install" kernel for Xen
+	VMs.
+	</P
+><P
+>	Rocks commands where added to support this feature.
+	For details, execute: "rocks help installprofile" and
+	"rocks help bootprofile".
+	</P
+></LI
+></UL
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN8225"
+>B.3.2. Enhancements</A
+></H2
+><P
+>	OS: Based on CentOS release 5/update 2 and all updates as of
+	November 4, 2008.
+	</P
+><P
+>	Base: Anaconda installer updated to v11.1.2.113.
+	</P
+><P
+>	Base: Increased the / partition default size to 16 GB.
+	</P
+><P
+>	Base: Opened the 'www' and 'https' ports to the local public
+	network.
+	</P
+><P
+>	Base: In Avalanche Installer, added code to check if a package is
+	requested twice in a row.
+	If it is, we assume the package is corrupted.
+	In this case, we toss the package and retrieve it the package from
+	the frontend.
+	</P
+><P
+>	Base: Added Rocks commands to manage the "aliases" table.
+	</P
+><P
+>	Base: Added "rocks remove roll" command.
+	Thanks to Brandon Davidson from the University of Oregon for the code.
+	</P
+><P
+>	Base: The command "rocks-dist" is replaced with "rocks create distro".
+	</P
+><P
+>	Base: Disabled the watchdog for frontend installs that boot off a
+	CD/DVD.
+	</P
+><P
+>	Base: Changed boot command from "frontend" to "build".
+	To build a frontend, when you see the "boot:" prompt, now type:
+	"build".
+	</P
+><P
+>	Web Server: Wordpress updated to v2.6.1.
+	</P
+><P
+>	Web Server: Updated Wordpress theme.
+	</P
+><P
+>	Area51: All commands converted to Rocks command line.
+	</P
+><P
+>	HPC: Updated OpenMPI to v1.2.7.
+	</P
+><P
+>	HPC: Updated MPICH2 to v1.0.7.
+	</P
+><P
+>	Java: Fixed a bug in the graph that Java from properly installing on
+	compute nodes.
+	</P
+><P
+>	Restore: All files under /export/rocks/install/contrib are now
+	included in the Restore Roll.
+	</P
+><P
+>	Restore: All files in /var/named/*local are now
+	included in the Restore Roll.
+	</P
+><P
+>	Restore: The frontend's ssh machine keys are now 
+	included in the Restore Roll.
+	</P
+><P
+>	SGE: Updated to v6.1 update 5.
+	</P
+><P
+>	SGE: Added a script to reinstall a cluster by submitting an SGE job.
+	</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN8248"
+>B.3.3. Bug Fixes</A
+></H2
+><P
+>	Base: Reverse domain lookups now work for subnets that don't fall
+	on an octet boundary.
+	</P
+><P
+>	Base: Bootflags now carry over between reinstallations and reboots.
+	In the previous release, a reboot would "forget" the bootflags set
+	by the user with the Rocks command line.
+	</P
+><P
+>	Base: Added full path to "mksquashfs".
+	Now can build distribution when using "sudo".
+	</P
+><P
+>	Restore: Ethernet Switches, Power Units and Remote Management
+	appliances are now properly saved in the Restore Roll.
+	</P
+><P
+>	Ganglia: Fixed the 'tail +4' bug in the cron job.
+	</P
+><P
+>	SGE: Fixed the display in the "Job Queue" on the frontend's web site.
+	SGE now reports the correct number of CPUs in use.
+	</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x8123.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x8256.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Release 5.2 - changes from 5.1</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="release-notes.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Release 4.3 - changes from 4.2.1</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,480 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>3.10 Monitoring</TITLE>
+<META NAME="description" CONTENT="3.10 Monitoring">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="3_11High_Availability.html">
+<LINK REL="previous" HREF="3_9DaemonCore.html">
+<LINK REL="up" HREF="3_Administrators_Manual.html">
+<LINK REL="next" HREF="3_11High_Availability.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html1677"
+  HREF="3_11High_Availability.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1671"
+  HREF="3_Administrators_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1665"
+  HREF="3_9DaemonCore.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1673"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1675"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1678"
+  HREF="3_11High_Availability.html">3.11 The High Availability</A>
+<B> Up:</B> <A NAME="tex2html1672"
+  HREF="3_Administrators_Manual.html">3. Administrators' Manual</A>
+<B> Previous:</B> <A NAME="tex2html1666"
+  HREF="3_9DaemonCore.html">3.9 DaemonCore</A>
+ &nbsp; <B>  <A NAME="tex2html1674"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1676"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html1679"
+  HREF="3_10Monitoring.html#SECTION004101000000000000000">3.10.1 Ganglia</A>
+<LI><A NAME="tex2html1680"
+  HREF="3_10Monitoring.html#SECTION004102000000000000000">3.10.2 Absent ClassAds</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION004100000000000000000"></A><A NAME="sec:Monitoring"></A>
+<A NAME="39129"></A>
+<A NAME="39130"></A>
+<A NAME="39131"></A>
+<BR>
+3.10 Monitoring
+</H1>
+
+<P>
+Information that
+the <I>condor_collector</I> collects can be used to monitor a pool.
+The <I>condor_status</I> command can be used to display
+snapshot of the current state of the pool.
+Monitoring systems can be set up to track the state over time,
+and they might go further, 
+to alert the system administrator about exceptional conditions.
+
+<P>
+
+<H2><A NAME="SECTION004101000000000000000"></A><A NAME="sec:monitor-ganglia"></A>
+<A NAME="39135"></A>
+<A NAME="39136"></A>
+<BR>
+3.10.1 Ganglia
+</H2>
+<A NAME="39192"></A>
+<A NAME="39138"></A>
+
+<P>
+Support for the Ganglia monitoring system (<A NAME="tex2html49"
+  HREF="http://ganglia.info/">http://ganglia.info/</A>)
+is integral to HTCondor.
+Nagios (<A NAME="tex2html50"
+  HREF="http://www.nagios.org/">http://www.nagios.org/</A>)
+is often used to provide alerts based on data from the Ganglia
+monitoring system.
+The <I>condor_gangliad</I> daemon provides an efficient way to take information from
+an HTCondor pool and supply it to the Ganglia monitoring system.
+
+<P>
+The <I>condor_gangliad</I> gathers up data as specified by its configuration,
+and it streamlines getting that data to the Ganglia monitoring
+system.
+Updates sent to Ganglia are done using the Ganglia shared libraries for
+efficiency.
+
+<P>
+If Ganglia is already deployed in the pool,
+the monitoring of HTCondor is enabled by running the <I>condor_gangliad</I> daemon
+on a single machine within the pool.
+If the machine chosen is the one running Ganglia's <I>gmetad</I>,
+then the HTCondor configuration consists of
+adding <TT>GANGLIAD</TT> to the definition of configuration
+variable <TT>DAEMON_LIST</TT> on that machine.
+It may be advantageous to run the <I>condor_gangliad</I> daemon
+on the same machine as is running the <I>condor_collector</I> daemon,
+because on a large pool with many ClassAds,
+there is likely to be less network traffic.
+If the <I>condor_gangliad</I> daemon is to run on a different machine
+than the one running Ganglia's <I>gmetad</I>,
+modify configuration variable <TT>GANGLIA_GSTAT_COMMAND</TT><A NAME="39220"></A><A NAME="39221"></A> to get the
+list of monitored hosts from the master <I>gmond</I> program.
+
+<P>
+If the pool does not use Ganglia, 
+the pool can still be monitored by a separate server running Ganglia.
+
+<P>
+By default, the <I>condor_gangliad</I> will only propagate metrics to hosts
+that are already monitored by Ganglia.
+Set configuration variable <TT>GANGLIA_SEND_DATA_FOR_ALL_HOSTS</TT><A NAME="39228"></A><A NAME="39229"></A> 
+to <TT>True</TT> to set up
+a Ganglia host to monitor a pool not monitored by Ganglia
+or have a heterogeneous pool where some hosts are not monitored.
+In this case, default graphs that Ganglia provides will not be present.
+However, the HTCondor metrics will appear.
+
+<P>
+On large pools, 
+setting configuration variable <TT>GANGLIAD_PER_EXECUTE_NODE_METRICS</TT><A NAME="39234"></A><A NAME="39235"></A>
+to <TT>False</TT> will reduce the amount of data sent to Ganglia.
+The execute node data is the least important to monitor.
+One can also limit the amount of data by setting configuration variable
+<TT>GANGLIAD_REQUIREMENTS</TT><A NAME="39240"></A><A NAME="39241"></A>.
+Be aware that aggregate sums over the entire pool will not be accurate
+if this variable limits the ClassAds queried.
+
+<P>
+Metrics to be sent to Ganglia are specified in all files within the
+directory specified by configuration variable 
+<TT>GANGLIAD_METRICS_CONFIG_DIR</TT><A NAME="39245"></A><A NAME="39246"></A>.
+Each file in the directory is read,
+and the format within each file is that of New ClassAds.
+Here is an example of a single metric definition given as a New ClassAd:
+
+<P>
+<PRE>
+[
+  Name   = "JobsSubmitted";
+  Desc   = "Number of jobs submitted";
+  Units  = "jobs";
+  TargetType = "Scheduler";
+]
+</PRE>
+
+<P>
+A nice set of default metrics is in file:
+<TT>$(GANGLIAD_METRICS_CONFIG_DIR)/00_default_metrics</TT>.
+
+<P>
+Recognized metric attribute names and their use:
+
+<P>
+<DL>
+<DT><STRONG>Name</STRONG></DT>
+<DD>The name of this metric,  
+    which corresponds to the ClassAd attribute name.
+    Metrics published for the same machine must have unique names.
+
+<P>
+</DD>
+<DT><STRONG>Value</STRONG></DT>
+<DD>A ClassAd expression that produces the value when evaluated.
+    The default value is the value in the daemon ClassAd of the
+    attribute with the same name as this metric.
+
+<P>
+</DD>
+<DT><STRONG>Desc</STRONG></DT>
+<DD>A brief description of the metric.  This string is displayed 
+    when the user holds the mouse over the Ganglia graph for the metric.
+
+<P>
+</DD>
+<DT><STRONG>Verbosity</STRONG></DT>
+<DD>The integer verbosity level of this metric.  
+    Metrics with a higher verbosity level than that specified by
+    configuration variable <TT>GANGLIA_VERBOSITY</TT><A NAME="39251"></A><A NAME="39252"></A> will not be published.
+
+<P>
+</DD>
+<DT><STRONG>TargetType</STRONG></DT>
+<DD>A string containing a comma-separated list of daemon
+    ClassAd types that this metric monitors.  The specified values should
+    match the value of <TT>MyType</TT> of the daemon ClassAd.  
+    In addition, there are
+    special values that may be included. <code>"Machine_slot1"</code> may be
+    specified to monitor the machine ClassAd for slot 1 only.  This is
+    useful when monitoring machine-wide attributes.  The special
+    value <code>"ANY"</code> matches any type of ClassAd.
+
+<P>
+</DD>
+<DT><STRONG>Requirements</STRONG></DT>
+<DD>A boolean expression that may restrict how this
+    metric is incorporated.  It defaults to <TT>True</TT>, which places
+    no restrictions on the collection of this ClassAd metric.
+
+<P>
+</DD>
+<DT><STRONG>Title</STRONG></DT>
+<DD>The graph title used for this metric.  The default is the
+    metric name.
+
+<P>
+</DD>
+<DT><STRONG>Group</STRONG></DT>
+<DD>A string specifying the name of this metric's group.
+    Metrics are arranged by group within a Ganglia web page.  The
+    default is determined by the daemon type.  Metrics in different
+    groups must have unique names.
+
+<P>
+</DD>
+<DT><STRONG>Cluster</STRONG></DT>
+<DD>A string specifying the cluster name for this metric.
+    The default cluster name is taken from the configuration variable
+    <TT>GANGLIAD_DEFAULT_CLUSTER</TT><A NAME="39258"></A><A NAME="39259"></A>.
+
+<P>
+</DD>
+<DT><STRONG>Units</STRONG></DT>
+<DD>A string describing the units of this metric.
+
+<P>
+</DD>
+<DT><STRONG>Scale</STRONG></DT>
+<DD>A scaling factor that is multiplied by the value of the
+    <TT>Value</TT> attribute.
+    The scale factor is used when the value is not in the basic unit
+    or a human-interpretable unit. For example, duty cycle is commonly
+    expressed as a percent, but the HTCondor value ranges from 0 to 1.
+    So, duty cycle is scaled by 100. Some metrics are reported in KiB.
+    Scaling by 1024 allows Ganglia to pick the appropriate units,
+    such as number of bytes rather than number of KiB. 
+    When scaling by large values, converting to
+    the <code>"float"</code> type is recommended.
+
+<P>
+</DD>
+<DT><STRONG>Derivative</STRONG></DT>
+<DD>A boolean value that specifies if Ganglia should
+    graph the derivative of this metric.  Ganglia versions prior to
+    3.4 do not support this.
+
+<P>
+</DD>
+<DT><STRONG>Type</STRONG></DT>
+<DD>A string specifying the type of the metric.  Possible
+    values are <code>"double"</code>, <code>"float"</code>, <code>"int32"</code>,
+    <code>"uint32"</code>, <code>"int16"</code>, <code>"uint16"</code>,
+    <code>"int8"</code>, <code>"uint8"</code>, and <code>"string"</code>.
+    The default is <code>"string"</code> for string values,
+    The default is <code>"int32"</code> for integer values,
+    The default is <code>"float"</code> for real values,
+    The default is <code>"int8"</code> for boolean values.
+    Integer values can be coerced to <code>"float"</code> or <code>"double"</code>.
+    This is especially important for values stored internally as 64-bit
+    values.
+
+<P>
+</DD>
+<DT><STRONG>Regex</STRONG></DT>
+<DD>This string value specifies a regular expression that
+    matches attributes to be monitored by this metric.  This is useful
+    for dynamic attributes that cannot be enumerated in advance,
+    because their names depend on dynamic information such as the
+    users who are currently running jobs.  When this is specified, one
+    metric per matching attribute is created.  The default metric name
+    is the name of the matched attribute, and the default value is the
+    value of that attribute.  As usual, the <TT>Value</TT> expression
+    may be used when the raw attribute value needs to be manipulated
+    before publication.  However, since the name of the attribute is
+    not known in advance, a special ClassAd attribute in the daemon ClassAd
+    is provided to allow the <TT>Value</TT> expression to refer to it.
+    This special attribute is named <TT>Regex</TT>.  Another special
+    feature is the ability to refer to text matched by regular
+    expression groups defined by parentheses within the regular
+    expression.  These may be substituted into the values of other
+    string attributes such as <TT>Name</TT> and <TT>Desc</TT>.  This is
+    done by putting macros in the string values.  <code>"\\1"</code> is
+    replaced by the first group, <code>"\\2"</code> by the second group, and
+    so on.
+
+<P>
+</DD>
+<DT><STRONG>Aggregate</STRONG></DT>
+<DD>This string value specifies an aggregation function
+    to apply, instead of publishing individual metrics for each daemon
+    ClassAd.  Possible values are <code>"sum"</code>, <code>"avg"</code>, <code>"max"</code>,
+    and <code>"min"</code>.
+
+<P>
+</DD>
+<DT><STRONG>AggregateGroup</STRONG></DT>
+<DD>When an aggregate function has been specified,
+    this string value specifies which aggregation group the current
+    daemon ClassAd belongs to.  The default is the metric <TT>Name</TT>.  This
+    feature works like GROUP BY in SQL.  The aggregation function
+    produces one result per value of <TT>AggregateGroup</TT>.  A single
+    aggregate group would therefore be appropriate for a pool-wide
+    metric.  Example use of aggregate grouping: if one wished to
+    publish the sum of an attribute across different types of slot
+    ClassAds, one could make the metric name an expression that is unique
+    to each type.  The default <TT>AggregateGroup</TT> would be set
+    accordingly.  Note that the assumption is still that the result
+    is a pool-wide metric, so by default it is associated with the
+    <I>condor_collector</I> daemon's host.
+    To group by machine and publish the result into
+    the Ganglia page associated with each machine, one should make
+    the <TT>AggregateGroup</TT> contain the machine name and override
+    the default <TT>Machine</TT> attribute to be the daemon's machine
+    name, rather than the <I>condor_collector</I> daemon's.
+
+<P>
+</DD>
+<DT><STRONG>Machine</STRONG></DT>
+<DD>The name of the host associated with this metric.  
+    If configuration variable
+    <TT>GANGLIAD_DEFAULT_MACHINE</TT><A NAME="39278"></A><A NAME="39279"></A> is not specified, 
+    the default
+    is taken from the <TT>Machine</TT> attribute of the daemon ClassAd.
+    If the daemon name is of the form <code>name@hostname</code>, this may
+    indicate that there are multiple instances of HTCondor running on
+    the same machine.  To avoid the metrics from these instances
+    overwriting each other, the default machine name is set to the
+    daemon name in this case.  For aggregate metrics, the default
+    value of <TT>Machine</TT> will be the name of the <I>condor_collector</I> host.
+
+<P>
+</DD>
+<DT><STRONG>IP</STRONG></DT>
+<DD>A string containing the IP address of the host associated
+    with this metric.  If <TT>GANGLIAD_DEFAULT_IP</TT><A NAME="39287"></A><A NAME="39288"></A> is not
+    specified, the default is extracted from the <TT>MyAddress</TT>
+    attribute of the daemon ClassAd.  This value must be unique for each
+    machine published to Ganglia.  It need not be a valid IP address.
+    If the value of <TT>Machine</TT> contains an <code>"@"</code> sign, the
+    default IP value will be set to the same value as <TT>Machine</TT>
+    in order to make the IP value unique to each instance of HTCondor
+    running on the same host.
+
+<P>
+</DD>
+</DL>
+
+<P>
+
+<H2><A NAME="SECTION004102000000000000000"></A><A NAME="sec:Absent-Ads"></A>
+<A NAME="39361"></A>
+<A NAME="39362"></A>
+<A NAME="39363"></A>
+<BR>
+3.10.2 Absent ClassAds
+</H2>
+
+<P>
+By default, HTCondor assumes that resources are transient: 
+the <I>condor_collector</I>
+will discard ClassAds older than <TT>CLASSAD_LIFETIME</TT><A NAME="39389"></A><A NAME="39390"></A> seconds.
+Its default configuration value is 15 minutes, 
+and as such, the default value for <TT>UPDATE_INTERVAL</TT><A NAME="39394"></A><A NAME="39395"></A> will 
+pass three times before HTCondor forgets about a resource.
+In some pools, especially those with dedicated resources, 
+this approach may make it unnecessarily difficult to determine 
+what the composition of the pool ought to be, 
+in the sense of knowing which machines would be in the pool,
+if HTCondor were properly functioning on all of them.
+
+<P>
+This assumption of transient machines can be modified by 
+the use of absent ClassAds.  
+When a machine ClassAd would otherwise expire, 
+the <I>condor_collector</I> evaluates the configuration variable
+<TT>ABSENT_REQUIREMENTS</TT><A NAME="39401"></A><A NAME="39402"></A> against the machine ClassAd.
+If <TT>True</TT>, 
+the machine ClassAd will be saved in a persistent manner and 
+be marked as absent;
+this causes the machine to appear in the output of 
+<TT>condor_status -absent</TT>.
+When the machine returns to the pool, 
+its first update to the <I>condor_collector</I> will 
+invalidate the absent machine ClassAd.
+
+<P>
+Absent ClassAds, like offline ClassAds, 
+are stored to disk to ensure that they are remembered,
+even across <I>condor_collector</I> crashes.
+The configuration variable <TT>COLLECTOR_PERSISTENT_AD_LOG</TT><A NAME="39412"></A><A NAME="39413"></A>
+defines the file in which the ClassAds are stored,
+and replaces the no longer used variable <TT>OFFLINE_LOG</TT>.
+Absent ClassAds are retained on disk as maintained by 
+the <I>condor_collector</I> for a length of time in seconds defined by the
+configuration variable <TT>ABSENT_EXPIRE_ADS_AFTER</TT><A NAME="39420"></A><A NAME="39421"></A>.
+A value of 0 for this variable means that the ClassAds are never discarded,
+and the default value is thirty days.
+
+<P>
+Absent ClassAds are only returned by the <I>condor_collector</I> and displayed
+when the <B>-absent</B> option to <I>condor_status</I> is specified,
+or when the absent machine ClassAd attribute is mentioned on 
+the <I>condor_status</I> command line.  
+This renders absent ClassAds invisible to the rest of 
+the HTCondor infrastructure.
+
+<P>
+A daemon may inform the <I>condor_collector</I> that the daemon's
+ClassAd should not expire, but should be removed right away;
+the daemon asks for its ClassAd to be invalidated.
+It may be useful to place an invalidated ClassAd in the absent state,
+instead of having it removed as an invalidated ClassAd.
+An example of a ClassAd that could benefit from being absent
+is a system with an uninterruptible power supply that shuts
+down cleanly but unexpectedly as a result of a power outage.
+To cause all invalidated ClassAds to become absent instead of invalidated, 
+set <TT>EXPIRE_INVALIDATED_ADS</TT><A NAME="39435"></A><A NAME="39436"></A> to <TT>True</TT>.
+Invalidated ClassAds will instead be treated as if they expired, 
+including when evaluating <TT>ABSENT_REQUIREMENTS</TT>.
+
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1677"
+  HREF="3_11High_Availability.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1671"
+  HREF="3_Administrators_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1665"
+  HREF="3_9DaemonCore.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1673"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1675"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1678"
+  HREF="3_11High_Availability.html">3.11 The High Availability</A>
+<B> Up:</B> <A NAME="tex2html1672"
+  HREF="3_Administrators_Manual.html">3. Administrators' Manual</A>
+<B> Previous:</B> <A NAME="tex2html1666"
+  HREF="3_9DaemonCore.html">3.9 DaemonCore</A>
+ &nbsp; <B>  <A NAME="tex2html1674"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1676"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

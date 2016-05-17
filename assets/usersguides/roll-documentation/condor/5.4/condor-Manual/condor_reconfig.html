@@ -1,0 +1,324 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>condor_reconfig</TITLE>
+<META NAME="description" CONTENT="condor_reconfig">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="condor_reconfig_schedd.html">
+<LINK REL="previous" HREF="condor_qedit.html">
+<LINK REL="up" HREF="9_Command_Reference.html">
+<LINK REL="next" HREF="condor_reconfig_schedd.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html3415"
+  HREF="condor_reconfig_schedd.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3409"
+  HREF="9_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3403"
+  HREF="condor_qedit.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3411"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3413"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3416"
+  HREF="condor_reconfig_schedd.html">condor_reconfig_schedd</A>
+<B> Up:</B> <A NAME="tex2html3410"
+  HREF="9_Command_Reference.html">9. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3404"
+  HREF="condor_qedit.html">condor_qedit</A>
+ &nbsp; <B>  <A NAME="tex2html3412"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3414"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html3417"
+  HREF="condor_reconfig.html#SECTION0010301000000000000000">Synopsis</A>
+<LI><A NAME="tex2html3418"
+  HREF="condor_reconfig.html#SECTION0010302000000000000000">Description</A>
+<LI><A NAME="tex2html3419"
+  HREF="condor_reconfig.html#SECTION0010303000000000000000">Options</A>
+<LI><A NAME="tex2html3420"
+  HREF="condor_reconfig.html#SECTION0010304000000000000000">Exit Status</A>
+<LI><A NAME="tex2html3421"
+  HREF="condor_reconfig.html#SECTION0010305000000000000000">Examples</A>
+<LI><A NAME="tex2html3422"
+  HREF="condor_reconfig.html#SECTION0010306000000000000000">Author</A>
+<LI><A NAME="tex2html3423"
+  HREF="condor_reconfig.html#SECTION0010307000000000000000">Copyright</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION0010300000000000000000"></A><A NAME="man-condor-reconfig"></A>
+<BR>
+<I>condor_reconfig</I>
+</H1> Reconfigure Condor daemons
+  
+<P>
+
+<H2><A NAME="SECTION0010301000000000000000">
+Synopsis</A>
+</H2><B><I>condor_reconfig</I></B>
+
+[<B>-help | -version</B>]
+
+<P>
+<B><I>condor_reconfig</I></B>
+
+[<B>-debug</B>]
+
+[<B>-name </B><I>name</I> | <I>name</I> | <B>-addr </B><I>"&lt;a.b.c.d:port&gt;"</I> | <I>"&lt;a.b.c.d:port&gt;"</I> <B>... </B> ]| [<B>-all</B>] 
+<BR>
+
+[<B>-subsystem  </B><I>master | startd | schedd | collector | negotiator
+	| kbdd | quill</I>]
+[<B>-full</B>]
+
+<P>
+<B><I>condor_reconfig</I></B>
+
+[<B>-debug</B>]
+
+[<B>-pool </B><I>centralmanagerhostname[:portnumber]</I>
+| <B>-name </B><I>name</I> ]| [<B>-addr  </B><I>"&lt;a.b.c.d:port&gt;"</I>]
+<B>... </B> [<B> | -all</B>] 
+<BR>
+
+[<B>-subsystem  </B><I>master | startd | schedd | collector | negotiator
+	| kbdd | quill</I>]
+[<B>-full</B>]
+
+<P>
+<A NAME="67583"></A>
+<A NAME="67584"></A>
+
+<P>
+
+<H2><A NAME="SECTION0010302000000000000000">
+Description</A>
+</H2>
+
+<P>
+<I>condor_reconfig</I> reconfigures all of the Condor daemons in accordance with 
+the current
+status of the Condor configuration file(s).  
+Once reconfiguration is complete, the daemons will behave according to
+the policies stated in the configuration file(s).
+The main exception is with the <TT>DAEMON_LIST</TT> variable,
+which will only be
+updated if the <I>condor_restart</I> command is used.  
+Other configuration variables that can only be changed
+if the Condor daemons are restarted are listed in
+section&nbsp;<A HREF="3_3Configuration.html#sec:Macros-Requiring-Restart">3.3.1</A>
+on page&nbsp;<A HREF="3_3Configuration.html#sec:Macros-Requiring-Restart"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+In general, <I>condor_reconfig</I> should be used when making changes to
+the configuration files, since it is faster and more efficient than
+restarting the daemons.
+
+<P>
+The command 
+<I>condor_reconfig</I>
+with no arguments or with the <B>-subsystem </B><I>master</I> option 
+will cause the reconfiguration of the <I>condor_master</I>
+daemon and all the child processes of the <I>condor_master</I>.
+
+<P>
+For security purposes (authentication and authorization),
+this command requires an administrator's level of access.
+Note that changes to the <TT>ALLOW_*</TT> and
+<TT>DENY_*</TT> configuration variables require the 
+<B>-full</B> option.
+See
+section&nbsp;<A HREF="3_6Security.html#sec:Config-Security">3.6.1</A> on page&nbsp;<A HREF="3_6Security.html#sec:Config-Security"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>
+for further explanation.
+
+<P>
+
+<H2><A NAME="SECTION0010303000000000000000">
+Options</A>
+</H2>
+  
+<P>
+  <DL>
+<DT><STRONG><B>-help</B></STRONG></DT>
+<DD>Display usage information
+<BR></DD>
+<DT><STRONG><B>-version</B></STRONG></DT>
+<DD>Display version information
+<BR>
+    
+</DD>
+<DT><STRONG><B>-full</B></STRONG></DT>
+<DD>Perform a full reconfiguration.
+    In addition to re-reading the configuration files,
+    a full reconfiguration will clear
+    cached DNS information in the daemons.
+    Use this option only when the DNS information needs to
+    be reinitialized.
+<BR>    
+</DD>
+<DT><STRONG><B>-debug</B></STRONG></DT>
+<DD>Causes debugging information to be sent to
+<TT>stderr</TT>, based on the value of the configuration variable
+<TT>TOOL_DEBUG</TT>
+<BR>
+    
+</DD>
+<DT><STRONG><B>-pool </B><I>centralmanagerhostname[:portnumber]</I></STRONG></DT>
+<DD>Specify a pool by giving the
+	central manager's host name and an optional port number
+<BR></DD>
+<DT><STRONG><B>-name </B><I>name</I></STRONG></DT>
+<DD>Send the command to a machine identified by <I>name</I>
+<BR></DD>
+<DT><STRONG><I>name</I></STRONG></DT>
+<DD>Send the command to a machine identified by <I>name</I>
+<BR></DD>
+<DT><STRONG><B>-addr </B><I>"&lt;a.b.c.d:port&gt;"</I></STRONG></DT>
+<DD>Send the command
+	to a machine's master located at <I>"&lt;a.b.c.d:port&gt;"</I>
+<BR></DD>
+<DT><STRONG><I>"&lt;a.b.c.d:port&gt;"</I></STRONG></DT>
+<DD>Send the command
+	to a machine located at <I>"&lt;a.b.c.d:port&gt;"</I>
+<BR></DD>
+<DT><STRONG><B>-all</B></STRONG></DT>
+<DD>Send the command
+	to all machines in the pool
+<BR>
+    
+</DD>
+<DT><STRONG><B>-subsystem </B><I>master | startd | schedd | collector | negotiator | kbdd | quill</I></STRONG></DT>
+<DD>Send the command to the named daemon. Without this option,
+the command is sent to the <I>condor_master</I> daemon.
+<BR>
+  
+</DD>
+</DL>
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION0010304000000000000000">
+Exit Status</A>
+</H2>
+
+<P>
+<I>condor_reconfig</I> will exit with a status value of 0 (zero) upon success,
+and it will exit with the value 1 (one) upon failure.
+
+<P>
+
+<H2><A NAME="SECTION0010305000000000000000">
+Examples</A>
+</H2>
+To reconfigure the <I>condor_master</I> and all its children
+on the local host:
+<PRE>
+% condor_reconfig
+</PRE>
+
+<P>
+To reconfigure only the <I>condor_startd</I> on a named machine:
+<PRE>
+% condor_reconfig -name bluejay -subsystem startd
+</PRE>
+
+<P>
+To reconfigure a machine within a pool
+other than the local pool, use the <B>-pool</B> option.
+The argument is the name of the central manager for the pool.
+Note that one or more machines within the pool must be
+specified as the targets for the command.
+This command reconfigures
+the single machine named <B>cae17</B> within the
+pool of machines that has <B>condor.cae.wisc.edu</B> as
+its central manager:
+<PRE>
+% condor_reconfig -pool condor.cae.wisc.edu -name cae17
+</PRE>
+
+<P>
+
+<H2><A NAME="SECTION0010306000000000000000">
+Author</A>
+</H2> Condor Team, University of Wisconsin-Madison
+  
+<H2><A NAME="SECTION0010307000000000000000">
+Copyright</A>
+</H2> 
+  Copyright &#169; 1990-2010 Condor Team, Computer Sciences Department, 
+  University of Wisconsin-Madison, Madison, WI.  All Rights Reserved.  
+	Licensed under the Apache License, Version 2.0.
+
+<P>
+See the <I>Condor Version 7.4.4 Manual</I> or
+	<A NAME="tex2html137"
+  HREF="http://www.condorproject.org/license">http://www.condorproject.org/license</A>
+for
+  additional notices. 
+
+
+  <HR>
+<!--Navigation Panel-->
+<A NAME="tex2html3415"
+  HREF="condor_reconfig_schedd.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3409"
+  HREF="9_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3403"
+  HREF="condor_qedit.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3411"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3413"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3416"
+  HREF="condor_reconfig_schedd.html">condor_reconfig_schedd</A>
+<B> Up:</B> <A NAME="tex2html3410"
+  HREF="9_Command_Reference.html">9. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3404"
+  HREF="condor_qedit.html">condor_qedit</A>
+ &nbsp; <B>  <A NAME="tex2html3412"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3414"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

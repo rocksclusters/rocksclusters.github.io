@@ -1,0 +1,386 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Inspecting and Changing PXE Behaviour</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Roll: Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Administration Examples"
+HREF="admin-examples.html"><LINK
+REL="PREVIOUS"
+TITLE="Forcing a Re-install at Next PXE Boot"
+HREF="x1349.html"><LINK
+REL="NEXT"
+TITLE="Working with and Modifying Network Configuration"
+HREF="x1400.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Base Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x1349.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 6. Administration Examples</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x1400.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="AEN1357"
+>6.5. Inspecting and Changing PXE Behaviour</A
+></H1
+><P
+> 
+There are two parts to the Rocks database for modifying PXE behaviour:
+<EM
+>boot</EM
+> and
+<EM
+>bootaction</EM
+>.  The "boot" part determines which logical
+action should be performed. The two common actions are "os" and "install."
+The second table is the bootaction table.
+This associates a logical action with a specific TFTP configuration.</P
+><DIV
+CLASS="WARNING"
+><P
+></P
+><TABLE
+CLASS="WARNING"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/warning.png"
+HSPACE="5"
+ALT="Warning"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>It is possible to have commands affect all nodes. In this case use '%' as the host wildcard.  For example <SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks set host boot % action=install </SAMP
+> will cause ALL nodes to reinstall the next time they boot.</P
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/note.png"
+HSPACE="5"
+ALT="Note"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>For commands that take lists of hosts, it is possible to use an appliance type
+for the host(s) argument. <SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks list appliance</SAMP
+>
+are the list of valid appliance types.
+To set the boot action of all compute appliances to be
+<EM
+>install</EM
+>, use
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks set host boot compute action=install</SAMP
+>.</P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>The following illustrates how to inspect the current action of nodes and then the specifics of each action.</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks list host boot
+HOST         ACTION 
+vizzy:       os     
+compute-0-0: os     
+compute-0-1: os     
+compute-1-0: os     
+compute-1-1: install
+compute-2-0: os     
+compute-2-1: os 
+
+
+# rocks list bootaction output-col=action,kernel     
+ACTION               KERNEL                                     
+install:             vmlinuz-5.2-i386                           
+install headless:    vmlinuz-5.2-i386                           
+memtest:             kernel memtest                             
+os:                  localboot 0                                
+pxeflash:            kernel memdisk bigraw                      
+rescue:              vmlinuz-5.2-i386</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+> In the above, all nodes are set to boot the "os", except for node compute-1-1. That node will call the boot action named "install".  In the case the TFTP configuration file contain the details arguments of the listed in the install
+action.
+The command <SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks list bootaction</SAMP
+> shows the
+details of each logical action.</P
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN1374"
+>6.5.1. Changing a logical PXE action</A
+></H2
+><P
+>It is possible to override the details of a logical action on a per-node
+basis. Suppose that we wanted to make the logical action of "install" for
+compute-1-1 to be headless and to set a flag <SAMP
+CLASS="COMPUTEROUTPUT"
+>acpi=off</SAMP
+>.  Then the following will accomplish this:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks add bootaction action="install headless noacpi" kernel="vmlinuz-5.2-i386" ramdisk="initrd.img-5.2-i386" \
+args="ks ramdisk_size=150000 lang= devfs=nomount pxe kssendmac selinux=0 noipv6 headless vnc acpi=off"
+
+# rocks set host installaction compute-1-1 action="install headless noacpi"</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>To inspect that the change is indeed specific to just compute-1-1, then do
+the following</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks list host compute-1-1
+MEMBERSHIP   CPUS RACK RANK RUNACTION INSTALLACTION          
+Compute      2    0    0    os        install headless noacpi
+
+# rocks list host compute-1-0
+MEMBERSHIP   CPUS RACK RANK RUNACTION INSTALLACTION
+Compute      8    0    1    os        install</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>In the above, compute-1-1 has a specific override for its install action, where
+compute-1-0 still retains the default install action. </P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN1382"
+>6.5.2. Running Memtest86</A
+></H2
+><P
+>&#13;It is often useful to run the memory testing tool
+<A
+HREF="http://www.memtest.org"
+TARGET="_top"
+> memtest86+ </A
+> to determine
+if memory is valid. The straightforward way to accomplish this in
+Rocks 4.3 is to apply the following procedure (in our example case
+for host compute-1-1) </P
+><P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+><SAMP
+CLASS="COMPUTEROUTPUT"
+># rocks set host runaction compute-1-1 action=memtest</SAMP
+></P
+><P
+><SAMP
+CLASS="COMPUTEROUTPUT"
+># rocks set host boot compute-1-1 action=os</SAMP
+></P
+></LI
+><LI
+><P
+>Boot node compute-1-1 by power cycle or other means.</P
+></LI
+><LI
+><P
+>After compute-1-1 has successfully started the diagnostic, reset the runaction
+parameter:</P
+><P
+><SAMP
+CLASS="COMPUTEROUTPUT"
+># rocks set host runaction compute-1-1 action=os</SAMP
+></P
+></LI
+></OL
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x1349.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x1400.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Forcing a Re-install at Next PXE Boot</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="admin-examples.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Working with and Modifying Network Configuration</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

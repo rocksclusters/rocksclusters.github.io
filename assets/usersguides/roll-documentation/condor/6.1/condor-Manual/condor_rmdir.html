@@ -1,0 +1,257 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<link rel="canonical" href="http://research.cs.wisc.edu/condor/manual/current/condor_rmdir.html">
+
+<TITLE>condor_rmdir</TITLE>
+<META NAME="description" CONTENT="condor_rmdir">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="condor_router_history.html">
+<LINK REL="previous" HREF="condor_rm.html">
+<LINK REL="up" HREF="10_Command_Reference.html">
+<LINK REL="next" HREF="condor_router_history.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html3940"
+  HREF="condor_router_history.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3934"
+  HREF="10_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3928"
+  HREF="condor_rm.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3936"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3938"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3941"
+  HREF="condor_router_history.html">condor_router_history</A>
+<B> Up:</B> <A NAME="tex2html3935"
+  HREF="10_Command_Reference.html">10. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3929"
+  HREF="condor_rm.html">condor_rm</A>
+ &nbsp; <B>  <A NAME="tex2html3937"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3939"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html3942"
+  HREF="condor_rmdir.html#SECTION0011361000000000000000">Synopsis</A>
+<LI><A NAME="tex2html3943"
+  HREF="condor_rmdir.html#SECTION0011362000000000000000">Description</A>
+<LI><A NAME="tex2html3944"
+  HREF="condor_rmdir.html#SECTION0011363000000000000000">Options</A>
+<LI><A NAME="tex2html3945"
+  HREF="condor_rmdir.html#SECTION0011364000000000000000">Exit Status</A>
+<LI><A NAME="tex2html3946"
+  HREF="condor_rmdir.html#SECTION0011365000000000000000">Author</A>
+<LI><A NAME="tex2html3947"
+  HREF="condor_rmdir.html#SECTION0011366000000000000000">Copyright</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION0011360000000000000000"></A><A NAME="man-condor-rmdir"></A>
+<BR>
+<I>condor_rmdir</I>
+</H1> Windows-only no-fail deletion of directories
+  
+<P>
+
+<H2><A NAME="SECTION0011361000000000000000">
+Synopsis</A>
+</H2>
+<B><I>condor_rmdir</I></B>
+[<B>/HELP | /?</B>]
+
+<P>
+<B><I>condor_rmdir</I></B>
+<I>@filename</I>
+
+<P>
+<B><I>condor_rmdir</I></B>
+[<B>/VERBOSE</B>]
+[<B>/DIAGNOSTIC</B>]
+[<B>/PATH:&lt;path&gt;</B>]
+[<B>/S</B>]
+[<B>/C</B>]
+[<B>/Q</B>]
+[<B>/NODEL</B>]
+<I>directory</I>
+
+<P>
+<A NAME="73306"></A>
+<A NAME="73307"></A>
+
+<P>
+
+<H2><A NAME="SECTION0011362000000000000000">
+Description</A>
+</H2>
+
+<P>
+<I>condor_rmdir</I> can delete a specified <I>directory</I>,
+and will not fail if the directory contains files that have ACLs 
+that deny the SYSTEM process delete access,
+unlike the built-in Windows <I>rmdir</I> command. 
+
+<P>
+The directory to be removed together with other command line arguments
+may be specified within a file named <I>filename</I>,
+prefixing this argument with an <TT>@</TT> character.
+
+<P>
+The <I>condor_rmdir.exe</I> executable is is intended to be used  
+by Condor with the <B>/S</B> <B>/C</B>  options, 
+which cause it to recurse into subdirectories and continue on errors.
+
+<P>
+
+<H2><A NAME="SECTION0011363000000000000000">
+Options</A>
+</H2>
+  
+<P>
+  <DL>
+<DT><STRONG><B>/HELP</B></STRONG></DT>
+<DD>Print usage information.  
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>/?</B></STRONG></DT>
+<DD>Print usage information.  
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>/VERBOSE</B></STRONG></DT>
+<DD>Print detailed output.  
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>/DIAGNOSTIC</B></STRONG></DT>
+<DD>Print out the internal flow of control
+   information.  
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>/PATH:&lt;path&gt;</B></STRONG></DT>
+<DD>Remove the directory given by <B>&lt;path&gt;</B>.  
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>/S</B></STRONG></DT>
+<DD>Include subdirectories in those removed.  
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>/C</B></STRONG></DT>
+<DD>Continue even if access is denied.  
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>/Q</B></STRONG></DT>
+<DD>Print error output only.  
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>/NODEL</B></STRONG></DT>
+<DD>Do not remove directories.  ACLs may still be
+   changed. 
+<BR>
+<P>
+</DD>
+</DL>
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION0011364000000000000000">
+Exit Status</A>
+</H2>
+
+<P>
+<I>condor_rmdir</I> will exit with a status value of 0 (zero) upon success,
+and it will exit with the standard HRESULT error code upon failure.
+
+<P>
+
+<H2><A NAME="SECTION0011365000000000000000">
+Author</A>
+</H2> Condor Team, University of Wisconsin-Madison
+  
+<H2><A NAME="SECTION0011366000000000000000">
+Copyright</A>
+</H2> 
+  Copyright &#169; 1990-2012 Condor Team, Computer Sciences Department, 
+  University of Wisconsin-Madison, Madison, WI.  All Rights Reserved.  
+	Licensed under the Apache License, Version 2.0.
+
+<P>
+See the <I>Condor Version 7.8.5 Manual</I> or
+	<A NAME="tex2html444"
+  HREF="http://www.condorproject.org/license">http://www.condorproject.org/license</A>
+for
+  additional notices. 
+
+
+  <HR>
+<!--Navigation Panel-->
+<A NAME="tex2html3940"
+  HREF="condor_router_history.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3934"
+  HREF="10_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3928"
+  HREF="condor_rm.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3936"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3938"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3941"
+  HREF="condor_router_history.html">condor_router_history</A>
+<B> Up:</B> <A NAME="tex2html3935"
+  HREF="10_Command_Reference.html">10. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3929"
+  HREF="condor_rm.html">condor_rm</A>
+ &nbsp; <B>  <A NAME="tex2html3937"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3939"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

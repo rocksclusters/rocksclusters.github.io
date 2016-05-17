@@ -1,0 +1,776 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<link rel="canonical" href="http://research.cs.wisc.edu/condor/manual/current/condor_glidein.html">
+
+<TITLE>condor_glidein</TITLE>
+<META NAME="description" CONTENT="condor_glidein">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="condor_history.html">
+<LINK REL="previous" HREF="condor_gather_info.html">
+<LINK REL="up" HREF="10_Command_Reference.html">
+<LINK REL="next" HREF="condor_history.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html3581"
+  HREF="condor_history.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3575"
+  HREF="10_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3569"
+  HREF="condor_gather_info.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3577"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3579"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3582"
+  HREF="condor_history.html">condor_history</A>
+<B> Up:</B> <A NAME="tex2html3576"
+  HREF="10_Command_Reference.html">10. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3570"
+  HREF="condor_gather_info.html">condor_gather_info</A>
+ &nbsp; <B>  <A NAME="tex2html3578"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3580"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html3583"
+  HREF="condor_glidein.html#SECTION0011191000000000000000">Synopsis</A>
+<LI><A NAME="tex2html3584"
+  HREF="condor_glidein.html#SECTION0011192000000000000000">Description</A>
+<LI><A NAME="tex2html3585"
+  HREF="condor_glidein.html#SECTION0011193000000000000000">Examples</A>
+<LI><A NAME="tex2html3586"
+  HREF="condor_glidein.html#SECTION0011194000000000000000">Generate File Options</A>
+<LI><A NAME="tex2html3587"
+  HREF="condor_glidein.html#SECTION0011195000000000000000">Set Up Task Options</A>
+<LI><A NAME="tex2html3588"
+  HREF="condor_glidein.html#SECTION0011196000000000000000">Execute Task Options</A>
+<LI><A NAME="tex2html3589"
+  HREF="condor_glidein.html#SECTION0011197000000000000000">Options</A>
+<LI><A NAME="tex2html3590"
+  HREF="condor_glidein.html#SECTION0011198000000000000000">Exit Status</A>
+<LI><A NAME="tex2html3591"
+  HREF="condor_glidein.html#SECTION0011199000000000000000">Author</A>
+<LI><A NAME="tex2html3592"
+  HREF="condor_glidein.html#SECTION00111910000000000000000">Copyright</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION0011190000000000000000"></A><A NAME="man-condor-glidein"></A>
+<BR>
+<I>condor_glidein</I>
+</H1> add a remote grid resource to a local Condor pool
+  
+<P>
+
+<H2><A NAME="SECTION0011191000000000000000">
+Synopsis</A>
+</H2>
+<B><I>condor_glidein</I></B>
+[<B>-help</B>]
+
+<P>
+<B><I>condor_glidein</I></B>
+[<B>-admin  </B><I>address</I>]
+[<B>-anybody</B>]
+[<B>-archdir  </B><I>dir</I>]
+[<B>-basedir  </B><I>basedir</I>]
+[<B>-count  </B><I>CPU count</I>]
+[<B>&lt;Execute Task Options&gt;</B>]
+[<B>&lt;Generate File Options&gt;</B>]
+[<B>-gsi_daemon_name  </B><I>cert_name</I>]
+[<B>-idletime  </B><I>minutes</I>]
+[<B>-install_gsi_trusted_ca_dir  </B><I>path</I>]
+[<B>-install_gsi_gridmap  </B><I>file</I>]
+[<B>-localdir  </B><I>dir</I>]
+[<B>-memory  </B><I>MBytes</I>]
+[<B>-project  </B><I>name</I>]
+[<B>-queue  </B><I>name</I>]
+[<B>-runtime  </B><I>minutes</I>]
+[<B>-runonly</B>]
+[<B>&lt;Set Up Task Options&gt;</B>]
+[<B>-suffix  </B><I>suffix</I>]
+[<B>-slots  </B><I>slot count</I>]
+<I>&lt;contact argument&gt;</I>
+
+<P>
+<A NAME="67134"></A>
+<A NAME="67135"></A>
+
+<P>
+
+<H2><A NAME="SECTION0011192000000000000000">
+Description</A>
+</H2>
+
+<P>
+<I>condor_glidein</I> allows the temporary addition of a grid resource to
+a local Condor pool.
+The addition is accomplished by installing and executing some of the Condor
+daemons on the remote grid resource,
+such that it reports in as part of the local Condor pool.
+<I>condor_glidein</I> accomplishes two separate tasks: set up and execution.
+These separated tasks allow flexibility, 
+in that the user may use <I>condor_glidein</I> to do only one
+of the tasks or both, 
+in addition to customizing the tasks.
+
+<P>
+The set up task generates a script that may be used
+to start the Condor daemons during the execution task,
+places this script on the remote grid resource,
+composes and installs a configuration file,
+and it installs the <I>condor_master</I>, <I>condor_startd</I>
+and <I>condor_starter</I> daemons on the grid resource.
+
+<P>
+The execution task runs the script generated by
+the set up task.
+The goal of the script is to invoke the <I>condor_master</I> daemon.
+The Condor job <I>glidein_startup</I> appears in the queue of the local
+Condor pool for each invocation of  <I>condor_glidein</I>.
+To remove the grid resource from the local Condor pool,
+use <I>condor_rm</I> to remove the <I>glidein_startup</I> job.
+
+<P>
+The Condor jobs to do both the set up and execute tasks
+utilize
+Condor-G and Globus gt2 protocols to communicate with the remote resource.
+Therefore,
+an X.509 certificate (proxy) is required
+for the user running <I>condor_glidein</I>.
+
+<P>
+Specify the remote grid machine with the command line
+argument <I>&lt;contact argument&gt;</I>.
+<I>&lt;contact argument&gt;</I> takes one of 4 forms:
+
+<OL>
+<LI><I>hostname</I> 
+</LI>
+<LI><I>Globus contact string</I> 
+</LI>
+<LI><I>hostname/jobmanager-&lt;schedulername&gt;</I> 
+</LI>
+<LI><B>-contactfile </B><I>filename</I> 
+</LI>
+</OL>
+The argument <B>-contactfile </B><I>filename</I> specifies the full
+path and file name of a file that contains Globus contact strings.
+Each of the resources given by a Globus contact string 
+is added to the local Condor pool.
+
+<P>
+The set up task of <I>condor_glidein</I>
+copies the binaries for the correct platform from a central server.
+To obtain access to the server,
+or to set up your own server, follow
+instructions on the Glidein Server Setup page,
+at <A NAME="tex2html422"
+  HREF="http://www.cs.wisc.edu/condor/glidein">http://www.cs.wisc.edu/condor/glidein</A>.
+Set up need only be done once per site, as the installation
+is never removed.
+
+<P>
+By default, all files installed on the remote grid resource are placed in
+the directory
+<TT><TT>$(HOME)</TT>/Condor_glidein</TT>.
+<TT>$(HOME)</TT> is evaluated and defined 
+on the remote machine using a grid map.
+This directory must be in a shared file system accessible
+by all machines that will run the Condor daemons.
+By default, the daemon's log files will also be written in this 
+directory.
+Change this directory with the <B>-localdir</B> option to make
+Condor daemons write to local scratch space on the execution machine.
+For debugging initial problems, it may be convenient to have the log
+files in the more accessible default directory.
+If using the default directory, 
+occasionally clean up old log and execute directories
+to avoid running out of space.
+
+<P>
+
+<H2><A NAME="SECTION0011193000000000000000">
+Examples</A>
+</H2>
+
+<P>
+To have
+10 grid resources running PBS at a grid site with a
+gatekeeper named gatekeeper.site.edu join the local Condor pool:
+<PRE>
+% condor_glidein -count 10 gatekeeper.site.edu/jobmanager-pbs
+</PRE>
+
+<P>
+If you try something like the above and <I>condor_glidein</I> is not able to
+automatically determine everything it needs to know about the remote site,
+it will ask you to provide more information.  A typical result of this
+process is something like the following command:
+<PRE>
+% condor_glidein \
+    -count 10 \
+    -arch 6.6.7-i686-pc-Linux-2.4 \
+    -setup_jobmanager jobmanager-fork \
+    gatekeeper.site.edu/jobmanager-pbs
+</PRE>
+
+<P>
+The Condor jobs that do the set up and execute tasks
+will appear in the queue for the local Condor pool.
+As a result of a successful glidein,
+use <I>condor_status</I> to see that the remote grid resources
+are part of the local Condor pool.
+
+<P>
+A list of common problems and solutions is presented in this
+manual page.
+
+<P>
+
+<H2><A NAME="SECTION0011194000000000000000">
+Generate File Options</A>
+</H2>
+<DL>
+<DT><STRONG><B>-genconfig</B></STRONG></DT>
+<DD>Create a local copy of the configuration file that may be used
+    on the remote resource.
+    The file is named <TT>glidein_condor_config.&lt;suffix&gt;</TT>.
+    The string defined by <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img11.png"
+ ALT="$&lt;$">suffix<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img12.png"
+ ALT="$&gt;$"> defaults to the process
+    id (PID) of the <I>condor_glidein</I> process or is defined with
+    the <B>-suffix</B> command line option.
+    The configuration file may be edited for later use with
+    the <B>-useconfig</B> option.  
+<BR>  
+</DD>
+<DT><STRONG><B>-genstartup</B></STRONG></DT>
+<DD>Create a local copy of the script used
+    on the remote resource to invoke the <I>condor_master</I>.
+    The file is named <TT>glidein_startup.&lt;suffix&gt;</TT>.
+    The string defined by <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img11.png"
+ ALT="$&lt;$">suffix<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img12.png"
+ ALT="$&gt;$"> defaults to the process
+    id (PID) of the <I>condor_glidein</I> process or is defined with
+    the <B>-suffix</B> command line option.
+    The file may be edited for later use with the
+    <B>-usestartup</B> option.  
+<BR>    
+</DD>
+<DT><STRONG><B>-gensubmit</B></STRONG></DT>
+<DD>Generate submit description files,
+    but do not submit.
+    The submit description file for the set up task is
+    named <TT>glidein_setup.submit.&lt;suffix&gt;</TT>.
+    The submit description file for the execute task is
+    named <TT>glidein_run.submit.&lt;suffix&gt;</TT>.
+    The string defined by <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img11.png"
+ ALT="$&lt;$">suffix<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img12.png"
+ ALT="$&gt;$"> defaults to the process
+    id (PID) of the <I>condor_glidein</I> process or is defined with
+    the <B>-suffix</B> command line option.  
+<BR></DD>
+</DL>
+
+<P>
+
+<H2><A NAME="SECTION0011195000000000000000">
+Set Up Task Options</A>
+</H2>
+<DL>
+<DT><STRONG><B>-setuponly</B></STRONG></DT>
+<DD>Do only the set up task of <I>condor_glidein</I>.
+    This option cannot be run simultaneously with <B>-runonly</B>. 
+<BR>  
+</DD>
+<DT><STRONG><B>-setup_here</B></STRONG></DT>
+<DD>Do the set up task on the local machine,
+    instead of at a remote grid resource.
+    This may be used, for example,
+    to do the set up task of <I>condor_glidein</I> in an AFS area that is read-only
+    from the remote grid resource. 
+<BR>  
+</DD>
+<DT><STRONG><B>-forcesetup</B></STRONG></DT>
+<DD>During the set up task, force the copying of files,
+    even if this overwrites existing files.
+    Use this to push out changes to the configuration.
+<BR>  
+</DD>
+<DT><STRONG><B>-useconfig </B><I>config_file</I></STRONG></DT>
+<DD>The set up task copies the specified configuration file,
+    rather than generating one.  
+<BR>  
+</DD>
+<DT><STRONG><B>-usestartup </B><I>startup_file</I></STRONG></DT>
+<DD>The set up task copies the specified startup script,
+    rather than generating one.  
+<BR>  
+</DD>
+<DT><STRONG><B>-setup_jobmanager </B><I>jobmanagername</I></STRONG></DT>
+<DD>Identifies the jobmanager on the remote grid resource
+    to receive the files during the set up task.  If a
+    reasonable default can be discovered through MDS, this is optional.
+    <I>jobmanagername</I> is a string representing any gt2
+    name for the job manager.  The correct string in most cases
+    will be <I>jobmanager-fork</I>.
+    Other common strings may be <I>jobmanager</I>, <I>jobmanager-condor</I>,
+    <I>jobmanager-pbs</I>, and <I>jobmanager-lsf</I>. 
+<BR></DD>
+</DL>
+
+<P>
+
+<H2><A NAME="SECTION0011196000000000000000">
+Execute Task Options</A>
+</H2>
+<DL>
+<DT><STRONG><B>-runonly</B></STRONG></DT>
+<DD>Starts execution of the Condor daemons on the grid
+    resource.  If any of the necessary files or executables are missing,
+    <I>condor_glidein</I> exits with an error code.
+    This option cannot be run simultaneously with <B>-setuponly</B>. 
+<BR>  
+</DD>
+<DT><STRONG><B>-run_here</B></STRONG></DT>
+<DD>Runs <I>condor_master</I> directly rather than submitting a Condor job
+    that causes the remote execution.
+    To instead generate a script that
+    does this, use <B>-run_here</B> in combination with
+    <B>-gensubmit</B>.  This may be useful for running Condor daemons on
+    resources that are not directly accessible by Condor.
+<BR></DD>
+</DL>
+
+<P>
+
+<H2><A NAME="SECTION0011197000000000000000">
+Options</A>
+</H2>
+  
+<P>
+  <DL>
+<DT><STRONG><B>-help</B></STRONG></DT>
+<DD>Display brief usage information and exit.
+<BR>    
+</DD>
+<DT><STRONG><B>-basedir </B><I>basedir</I></STRONG></DT>
+<DD>Specifies the base directory on the remote grid resource
+	used for placing files.
+	The default directory is <TT><TT>$(HOME)</TT>/Condor_glidein</TT>
+	on the grid resource.
+	
+<BR>    
+</DD>
+<DT><STRONG><B>-archdir </B><I>dir</I></STRONG></DT>
+<DD>Specifies the directory on the remote grid resource for placement
+	of the Condor executables. 
+	The default value for <B>-archdir </B><I>i</I>s based upon version information on the grid resource.
+	It is of the form
+	<TT><IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img11.png"
+ ALT="$&lt;$">basedir<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img12.png"
+ ALT="$&gt;$">/<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img11.png"
+ ALT="$&lt;$">condor-version<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img12.png"
+ ALT="$&gt;$">-<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img11.png"
+ ALT="$&lt;$">Globus canonicalsystemname<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img12.png"
+ ALT="$&gt;$"></TT>. 
+	An example of the directory
+	(without the base directory)
+	for Condor version 7.6.0
+	running on a 64-bit Intel processor with RHEL 3 is
+	<TT>7.6.0-x86_64-pc-Linux-2.4-glibc2.3</TT> . 
+<BR>    
+</DD>
+<DT><STRONG><B>-localdir </B><I>dir</I></STRONG></DT>
+<DD>Specifies the directory on the remote grid resource
+	in which to create log and execution subdirectories needed by Condor.
+	If limited disk quota in the home or base directory
+	on the grid resource is a problem,
+	set <B>-localdir</B> to a large temporary space,
+	such as <TT>/tmp</TT> or <TT>/scratch</TT>.  If the batch system
+        requires invocation of Condor daemons in a temporary scratch directory,
+        '.' may be used for the definition of the <B>-localdir</B> option.
+	
+<BR>    
+</DD>
+<DT><STRONG><B>-arch </B><I>architecture</I></STRONG></DT>
+<DD>Identifies the platform of the required tarball
+	containing the correct Condor daemon executables to download
+	and install.
+	If a reasonable default can be discovered through MDS, this is
+	optional.  A list of possible values may be found at
+	<A NAME="tex2html423"
+  HREF="http://www.cs.wisc.edu/condor/glidein/binaries">http://www.cs.wisc.edu/condor/glidein/binaries</A>.
+	The architecture
+        name is the same as the tarball name without the suffix
+	<TT>tar.gz</TT>.  An example is 6.6.5-i686-pc-Linux-2.4 . 
+<BR>    
+</DD>
+<DT><STRONG><B>-queue </B><I>name</I></STRONG></DT>
+<DD>The argument <I>name</I> is a string used at the
+	grid resource to identify a job queue.  
+<BR>    
+</DD>
+<DT><STRONG><B>-project </B><I>name</I></STRONG></DT>
+<DD>The argument <I>name</I> is a string used at the
+	grid resource to identify a project name.  
+<BR>    
+</DD>
+<DT><STRONG><B>-memory </B><I>MBytes</I></STRONG></DT>
+<DD>The maximum memory size in Megabytes to request from the grid resource.
+	
+<BR>    
+</DD>
+<DT><STRONG><B>-count </B><I>CPU count</I></STRONG></DT>
+<DD>The number of CPUs requested to join the local pool.
+	The default is 1. 
+<BR>    
+</DD>
+<DT><STRONG><B>-slots </B><I>slot count</I></STRONG></DT>
+<DD>For machines with multiple CPUs, the CPUs maybe divided
+	up into slots. <I>slot count</I> is the number
+	of slots that results.
+	By default, Condor divides multiple-CPU resources such that
+	each CPU is a slot, each with an equal share of RAM,
+	disk, and swap space.
+	This option configures the number of slots, so that
+	multi-threaded jobs can run in a slot with multiple
+	CPUs.
+	For example, if 4 CPUs are requested and 
+	<B>-slots</B> is not specified, Condor will
+	divide the request up into 4 slots with 1 CPU each.
+	However, if <B>-slots </B><I>2</I> is specified,
+	Condor will divide the request up into 2 slots with
+	2 CPUs each, and if <B>-slots </B><I>1</I> is
+	specified, Condor will put all 4 CPUs into one slot. 
+<BR>    
+</DD>
+<DT><STRONG><B>-idletime </B><I>minutes</I></STRONG></DT>
+<DD>The amount of time that a remote grid resource 
+	will remain idle state, before the daemons shut down.
+	A value of 0 (zero) means that the daemons never shut
+	down due to remaining in the idle state.
+	In this case,
+	the <B>-runtime</B> option defines when the daemons shut down.
+	The default value is 20 minutes.  
+<BR>    
+</DD>
+<DT><STRONG><B>-runtime </B><I>minutes</I></STRONG></DT>
+<DD>The maximum amount of time the Condor daemons on
+	the remote grid resource
+	will run before shutting themselves down. This option is useful
+	for resources with enforced maximum run times. Setting
+	<B>-runtime</B> to be a few minutes shorter than the enforced
+	limit gives the daemons time to perform a graceful shut down.  
+<BR>    
+</DD>
+<DT><STRONG><I>-anybody</I></STRONG></DT>
+<DD>Sets the Condor <TT>START</TT> expression for the added
+	remote grid resource to <TT>True</TT>.
+	This permits any user's job which can run on
+	the added remote grid resource to run.
+	Without this option, only jobs owned by the user executing
+	<I>condor_glidein</I> can execute on the remote grid resource. WARNING:
+	Using this option may violate the usage policies of many
+	institutions.
+	
+<BR>    
+</DD>
+<DT><STRONG><B>-admin </B><I>address</I></STRONG></DT>
+<DD>Where to send e-mail with problems.
+	The default is the login of the user running
+	<I>condor_glidein</I> at UID domain of the local Condor pool.  
+<BR>    
+</DD>
+<DT><STRONG><B>-suffix </B><I>X</I></STRONG></DT>
+<DD>Suffix to use when generating files.  Default is process id. 
+<BR>    
+</DD>
+<DT><STRONG><B>-gsi_daemon_name </B><I>cert_name</I></STRONG></DT>
+<DD>Includes and enables GSI authentication in the 
+        configuration for the remote grid resource.
+	The argument is the GSI
+        certificate name that the daemons will use to authenticate
+        themselves.  
+<BR>    
+</DD>
+<DT><STRONG><B>-install_gsi_trusted_ca_dir </B><I>path</I></STRONG></DT>
+<DD>The argument identifies the directory
+        containing the trusted CA certificates that the
+        daemons are to use 
+	(for example, <TT>/etc/grid-security/certificates</TT>).
+	The contents of this directory will be installed at the remote
+        site in the directory <TT><IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img11.png"
+ ALT="$&lt;$">basedir<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img12.png"
+ ALT="$&gt;$">/grid-security</TT>. 
+<BR>    
+</DD>
+<DT><STRONG><B>-install_gsi_gridmap </B><I>file</I></STRONG></DT>
+<DD>The argument is the file name
+        of the GSI-specific X.509 map file that the daemons will use.
+	The file will be installed at the remote site
+        in <TT><IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img11.png"
+ ALT="$&lt;$">basedir<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img12.png"
+ ALT="$&gt;$">/grid-security</TT>.
+	The file contains
+        entries mapping certificates to user names.  At the
+        very least, it must contain an entry for the certificate
+        given by the command-line option <B>-gsi_daemon_name </B><I>.</I>
+	If other Condor
+        daemons use different certificates, then this file will
+        also list any certificates that the daemons
+        will encounter for 
+	the <I>condor_schedd</I>, <I>condor_collector</I>, and <I>condor_negotiator</I>.
+	See section&nbsp;<A HREF="3_6Security.html#sec:GSI-Authentication">3.6.3</A> for more information. 
+<BR>  
+</DD>
+</DL>
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION0011198000000000000000">
+Exit Status</A>
+</H2>
+
+<P>
+<I>condor_glidein</I> will exit with a status value of 0 (zero) upon 
+complete success,
+or with non-zero values upon failure.
+The status value will be 1 (one) if 
+<I>condor_glidein</I> encountered an error making a directory,
+was unable to copy a tar file,
+encountered an error in parsing the command line,
+or was not able to gather required information.
+The status value will be 2 (two) if 
+there was an error in the remote set up.
+The status value will be 3 (three) if 
+there was an error in remote submission.
+The status value will be -1 (negative one) if 
+no resource was specified in the command line.
+
+<P>
+Common problems are listed below.  Many of these are best discovered by
+looking in the <TT>StartLog</TT> log file on the remote grid resource.
+
+<P>
+<DL>
+<DT><STRONG>WARNING: The file xxx is not writable by condor</STRONG></DT>
+<DD>This error occurs when
+<I>condor_glidein</I> is run in a directory that does not have the proper
+permissions for Condor to access files.  An AFS directory
+does not give Condor the user's AFS ACLs.
+
+<P>
+</DD>
+<DT><STRONG>Glideins fail to run due to GLIBC errors</STRONG></DT>
+<DD>Check the list of
+available glidein binaries
+(<A NAME="tex2html424"
+  HREF="http://www.cs.wisc.edu/condor/glidein/binaries">http://www.cs.wisc.edu/condor/glidein/binaries</A>), and try 
+specifying the architecture name that includes the correct glibc
+version for the remote grid site.
+
+<P>
+</DD>
+<DT><STRONG>Glideins join pool but no jobs run on them</STRONG></DT>
+<DD>One common
+cause of this problem is that the remote grid resources are in a different
+file system domain, and the submitted Condor jobs 
+have an implicit
+requirement that they must run in the same file system domain.  
+See
+section&nbsp;<A HREF="2_5Submitting_Job.html#sec:file-transfer">2.5.4</A> for details on
+using Condor's file transfer capabilities to solve this problem.
+Another cause of this
+problem is a communication failure.  For example, a firewall may be
+preventing the <I>condor_negotiator</I> or the <I>condor_schedd</I> daemons
+from connecting to
+the <I>condor_startd</I> on the remote grid resource.
+Although work is being done to remove
+this requirement in the future, it is currently necessary to have full
+bidirectional connectivity, at least over a restricted range of
+ports.  See page&nbsp;<A HREF="3_3Configuration.html#param:HighPort"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for more information on
+configuring a port range.
+
+<P>
+</DD>
+<DT><STRONG>Glideins run but fail to join the pool</STRONG></DT>
+<DD>This may be caused by
+the local pool's security settings or by a communication failure.  Check
+that the security settings in the local pool's configuration file allow
+write access to the remote grid resource.  To not modify
+the security settings for the pool, run a separate pool
+specifically for the remote grid resources,
+and use flocking to balance jobs across
+the two pools of resources.  If the log files
+indicate a communication failure, then see the next item.
+
+<P>
+</DD>
+<DT><STRONG>The startd cannot connect to the collector</STRONG></DT>
+<DD>This may be caused
+by several things.  One is a firewall.  Another is when the compute
+nodes do not have even outgoing network access.  Configuration
+to work without full network access to and from the compute nodes is
+still in the experimental stages, so for now, the short answer is that
+you must at least have a range of open (bidirectional) ports and set
+up the configuration file as described on
+page&nbsp;<A HREF="3_3Configuration.html#param:HighPort"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.  Use the option <B>-genconfig</B>,
+edit the generated configuration file,
+and then do the glidein execute task with the option <B>-useconfig</B>.)
+
+<P>
+Another possible cause of connectivity problems may be the use of UDP by
+the <I>condor_startd</I> to register itself with the <I>condor_collector</I>.
+Force it to use TCP as described on
+page&nbsp;<A HREF="3_3Configuration.html#param:UpdateCollectorWithTcp"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+Yet another possible cause of connectivity problems is when the 
+remote grid resources
+have more than one network interface, and the default one chosen
+by Condor is not the correct one.  One way to fix this is to modify
+the glidein startup script using the <B>-genstartup</B> and <B>-usestartup</B>
+options.
+The script needs to determine the IP address associated with
+the correct network interface, and assign this to the environment
+variable <TT>_condor_NETWORK_INTERFACE</TT>.
+
+<P>
+</DD>
+<DT><STRONG>NFS file locking problems</STRONG></DT>
+<DD>If the <B>-localdir</B> option
+uses files
+on NFS (not recommended, but sometimes convenient
+for testing), the Condor daemons may have trouble manipulating file
+locks.  Try inserting the following into the configuration file:
+
+<P>
+<PRE>
+IGNORE_NFS_LOCK_ERRORS = True
+</PRE>
+
+<P>
+</DD>
+</DL>
+
+<P>
+
+<H2><A NAME="SECTION0011199000000000000000">
+Author</A>
+</H2> Condor Team, University of Wisconsin-Madison
+  
+<H2><A NAME="SECTION00111910000000000000000">
+Copyright</A>
+</H2> 
+  Copyright &#169; 1990-2012 Condor Team, Computer Sciences Department, 
+  University of Wisconsin-Madison, Madison, WI.  All Rights Reserved.  
+	Licensed under the Apache License, Version 2.0.
+
+<P>
+See the <I>Condor Version 7.8.5 Manual</I> or
+	<A NAME="tex2html425"
+  HREF="http://www.condorproject.org/license">http://www.condorproject.org/license</A>
+for
+  additional notices. 
+
+
+  <HR>
+<!--Navigation Panel-->
+<A NAME="tex2html3581"
+  HREF="condor_history.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3575"
+  HREF="10_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3569"
+  HREF="condor_gather_info.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3577"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3579"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3582"
+  HREF="condor_history.html">condor_history</A>
+<B> Up:</B> <A NAME="tex2html3576"
+  HREF="10_Command_Reference.html">10. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3570"
+  HREF="condor_gather_info.html">condor_gather_info</A>
+ &nbsp; <B>  <A NAME="tex2html3578"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3580"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,239 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Changing the Root password</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE=" Customizing your Rocks Installation "
+HREF="customization.html"><LINK
+REL="PREVIOUS"
+TITLE=" Extending DNS "
+HREF="dns.local.html"><LINK
+REL="NEXT"
+TITLE="The insert-ethers command line"
+HREF="insert-ethers.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Base</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="dns.local.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 5. Customizing your Rocks Installation</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="insert-ethers.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="CUSTOMIZATION-PASSWD"
+>5.12. Changing the Root password</A
+></H1
+><P
+>Starting with Rocks v5.4.3, we have attempted to improve the security of the
+Rocks system by making changes to the way some of the important passwords are
+generated and stored.</P
+><P
+>To change the root password on the frontend, you can now run the
+<B
+CLASS="COMMAND"
+>passwd</B
+> command.</P
+><P
+>To change the root password on the client nodes, you can use the <A
+HREF="rocks_sec_attr.html"
+>rocks secure attribute</A
+> infrastructure.</P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN1698"
+></A
+><P
+><B
+>Example 5-1. Change the root password of a single compute host</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks set host sec_attr compute-0-0 attr=root_pw
+  Enter root_pw: 
+Confirm root_pw: 
+# rocks list host sec_attr compute
+HOST         ATTR    VALUE                              ENC  
+compute-0-0: root_pw $1$G55uZRrO$5MI7Nv14U5yWfKAlauqPE0 crypt
+# rocks sync host sec_attr compute-0-0</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>For more information about changes to the rocks security infrastructure,
+refer to the <A
+HREF="passwd_sec.html"
+>Rocks Password Infrastructure</A
+>
+section of this usersguide</P
+><DIV
+CLASS="WARNING"
+><P
+></P
+><TABLE
+CLASS="WARNING"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/warning.png"
+HSPACE="5"
+ALT="Warning"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>The default rocks password policy is to set the root password of
+the frontend to be the password supplied during the installation. For client
+nodes, the root password will be generated at random during installation. Unless
+there is compelling reason to do so, (such as giving a user root access to a
+compute node) the Rocks group advices against changing the root password on the
+client nodes.</P
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="dns.local.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="insert-ethers.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Extending DNS</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="customization.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>The insert-ethers command line</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

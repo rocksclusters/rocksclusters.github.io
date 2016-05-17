@@ -1,0 +1,470 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>4.2 Condor's Checkpoint Mechanism</TITLE>
+<META NAME="description" CONTENT="4.2 Condor's Checkpoint Mechanism">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="4_3Computing_On.html">
+<LINK REL="previous" HREF="4_1Condor_s_ClassAd.html">
+<LINK REL="up" HREF="4_Miscellaneous_Concepts.html">
+<LINK REL="next" HREF="4_3Computing_On.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html1561"
+  HREF="4_3Computing_On.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1555"
+  HREF="4_Miscellaneous_Concepts.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1549"
+  HREF="4_1Condor_s_ClassAd.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1557"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1559"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1562"
+  HREF="4_3Computing_On.html">4.3 Computing On Demand</A>
+<B> Up:</B> <A NAME="tex2html1556"
+  HREF="4_Miscellaneous_Concepts.html">4. Miscellaneous Concepts</A>
+<B> Previous:</B> <A NAME="tex2html1550"
+  HREF="4_1Condor_s_ClassAd.html">4.1 Condor's ClassAd Mechanism</A>
+ &nbsp; <B>  <A NAME="tex2html1558"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1560"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html1563"
+  HREF="4_2Condor_s_Checkpoint.html#SECTION00521000000000000000">4.2.1 Standalone Checkpointing</A>
+<LI><A NAME="tex2html1564"
+  HREF="4_2Condor_s_Checkpoint.html#SECTION00522000000000000000">4.2.2 Checkpoint Safety</A>
+<LI><A NAME="tex2html1565"
+  HREF="4_2Condor_s_Checkpoint.html#SECTION00523000000000000000">4.2.3 Checkpoint Warnings</A>
+<LI><A NAME="tex2html1566"
+  HREF="4_2Condor_s_Checkpoint.html#SECTION00524000000000000000">4.2.4 Checkpoint Library Interface</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00520000000000000000"></A><A NAME="ckpt-reference"></A>
+<A NAME="40618"></A>
+<BR>
+4.2 Condor's Checkpoint Mechanism
+</H1>
+
+<P>
+Checkpointing is taking a snapshot of the current state of a program
+in such a way that the program can be restarted from that state at a
+later time.  Checkpointing gives the Condor scheduler the freedom to
+reconsider scheduling decisions through preemptive-resume scheduling.
+If the scheduler decides to no longer allocate a machine to a job (for
+example, when the owner of that machine returns), it can checkpoint
+the job and preempt it without losing the work the job has already
+accomplished.  The job can be resumed later when the scheduler
+allocates it a new machine.  Additionally, periodic checkpointing
+provides fault tolerance in Condor.  Snapshots are taken periodically,
+and after an interruption in service the program can continue from the
+most recent snapshot.
+
+<P>
+Condor provides checkpointing services to single process jobs on a
+number of Unix platforms.
+To enable checkpointing, the user must link the program with the
+Condor system call library (<TT>libcondorsyscall.a</TT>), using the
+<I>condor_compile</I> command.
+This means that the
+user must have the object files or source code of the program to use
+Condor checkpointing.  However, the checkpointing services provided by
+Condor are strictly optional.  So, while there are some classes of
+jobs for which Condor does not provide checkpointing services, these
+jobs may still be submitted to Condor to take advantage of Condor's
+resource management functionality.  (See
+section&nbsp;<A HREF="2_4Road_map_Running.html#sec:standard-universe">2.4.1</A> on
+page&nbsp;<A HREF="2_4Road_map_Running.html#sec:standard-universe"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for a description of the
+classes of jobs for which Condor does not provide checkpointing
+services.)
+
+<P>
+<A NAME="40623"></A>
+Process checkpointing is implemented in the Condor system call library
+as a signal handler.  When Condor sends a checkpoint signal to a
+process linked with this library, the provided signal handler writes
+the state of the process out to a file or a network socket.  This
+state includes the contents of the process stack and data segments,
+all shared library code and data mapped into the process's address
+space, the state of all open files, and any signal handlers and
+pending signals.  On restart, the process reads this state from the
+file, restoring the stack, shared library and data segments, file
+state, signal handlers, and pending signals.  The checkpoint signal
+handler then returns to user code, which continues from where it left
+off when the checkpoint signal arrived.
+
+<P>
+Condor processes for which checkpointing is enabled perform a
+checkpoint when preempted from a machine.  When a suitable replacement
+execution machine is found (of the same architecture and operating
+system), the process is restored on this new machine from the
+checkpoint, and computation is resumed from where it left off.  Jobs
+that can not be checkpointed are preempted and restarted from the
+beginning.
+
+<P>
+<A NAME="40624"></A>
+Condor's periodic checkpointing provides fault tolerance.  Condor
+pools are each configured with the <TT>PERIODIC_CHECKPOINT</TT> <A NAME="40696"></A> <A NAME="40697"></A>
+expression which controls when and how often jobs which can be
+checkpointed do periodic checkpoints (examples: never, every three
+hours, etc.).  When the time for a periodic checkpoint occurs, the job
+suspends processing, performs the checkpoint, and immediately
+continues from where it left off.  There is also a <I>condor_ckpt</I> command
+which allows the user to request that a Condor job immediately perform
+a periodic checkpoint.
+
+<P>
+In all cases, Condor jobs continue execution from the most recent
+complete checkpoint.  If service is interrupted while a checkpoint is
+being performed, causing that checkpoint to fail, the process will
+restart from the previous checkpoint.  Condor uses a commit style
+algorithm for writing checkpoints: a previous checkpoint is deleted
+only after a new complete checkpoint has been written successfully.
+
+<P>
+In certain cases, checkpointing may be delayed until a more appropriate
+time.  For example, a Condor job will defer a checkpoint request if
+it is communicating with another process over the network.  When the
+network connection is closed, the checkpoint will occur.
+
+<P>
+The Condor checkpointing facility can also be used for any Unix process
+outside of the Condor batch environment. Standalone checkpointing
+is described in section&nbsp;<A HREF="#sec:standalone-ckpt">4.2.1</A>.
+
+<P>
+<A NAME="40628"></A>
+Condor can produce and use compressed checkpoints.
+Configuration variables (detailed in 
+section&nbsp;<A HREF="3_3Configuration.html#sec:Shadow-Config-File-Entries">3.3.12</A>
+control whether compression is used.
+The default is to not compress.
+
+<P>
+By default, a checkpoint is written to a file on the local disk of the
+machine where the job was submitted.  A Condor pool can also be
+configured with a checkpoint server or servers that
+serve as a repository for checkpoints.  (See
+section&nbsp;<A HREF="3_8Checkpoint_Server.html#sec:Ckpt-Server">3.8</A> on page&nbsp;<A HREF="3_8Checkpoint_Server.html#sec:Ckpt-Server"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.)
+When a host is configured to use a checkpoint server, jobs submitted
+on that machine write and read checkpoints to and from the server
+rather than the local disk of the submitting machine, taking the
+burden of storing checkpoint files off of the submitting machines and
+placing it instead on server machines (with disk space dedicated to
+the purpose of storing checkpoints).
+
+<P>
+
+<H2><A NAME="SECTION00521000000000000000"></A><A NAME="sec:standalone-ckpt"></A>
+<BR>
+4.2.1 Standalone Checkpointing
+</H2>
+
+<P>
+<A NAME="40633"></A>
+Using the Condor checkpoint library without the remote system call
+functionality and outside of the Condor system is known as standalone
+mode checkpointing.
+
+<P>
+To prepare a program for standalone checkpointing, simply use the
+<I>condor_compile</I> utility as for a standard Condor job, 
+but do not use <I>condor_submit</I>.
+Run the program from the command line.
+The checkpointing library will print a message to let you know
+that checkpointing is enabled and to inform you of the default
+name for the checkpoint image.
+The message is of the form:
+
+<P>
+<PRE>
+Condor: Notice: Will checkpoint to program_name.ckpt
+Condor: Notice: Remote system calls disabled.
+</PRE>
+<P>
+Platforms that use address space randomization will need
+a modified invocation of the program,
+as described in section&nbsp;<A HREF="6_1Linux.html#sec:platform-linux-addrspace-random">6.1.2</A> on
+page&nbsp;<A HREF="6_1Linux.html#sec:platform-linux-addrspace-random"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+The invocation disables the address space randomization.
+
+<P>
+To force the program to write a checkpoint image and stop, send it
+the SIGTSTP signal or press control-Z.  To force the program to 
+write a checkpoint image and continue executing, send it the
+SIGUSR2 signal.
+
+<P>
+To restart a program using a checkpoint, run the program
+with the argument
+<I>-_condor_restart</I> followed by the name of the checkpoint
+image file.
+As an example, if the program is called <I>P1</I> and
+the checkpoint is called <TT>P1.ckpt</TT>, use
+<PRE>
+P1 -_condor_restart P1.ckpt
+</PRE>
+Again, platforms that implement address space randomization will
+need a modified invocation,
+as described in section&nbsp;<A HREF="6_1Linux.html#sec:platform-linux-addrspace-random">6.1.2</A>.
+
+<P>
+
+<H2><A NAME="SECTION00522000000000000000"></A><A NAME="sec:ckpt-safety"></A>
+<BR>
+4.2.2 Checkpoint Safety
+</H2>
+
+<P>
+Some programs have fundamental limitations that make them
+unsafe for checkpointing.  For example, a program that both reads
+and writes a single file may enter an unexpected state. Here
+is an example of how this might happen.
+
+<P>
+
+<OL>
+<LI>Record a checkpoint image.
+</LI>
+<LI>Read data from a file.
+</LI>
+<LI>Write data to the same file.
+</LI>
+<LI>Execution failure, so roll back to step 2.
+</LI>
+</OL>
+
+<P>
+In this example, the program would re-read data from the file, but
+instead of finding the original data, would see data created in the
+future, and yield unexpected results.
+
+<P>
+To prevent this sort of accident, Condor displays a warning
+if a file is used for both reading and writing.  You can ignore or disable
+these warnings if you choose (see section <A HREF="#sec:ckpt-warnings">4.2.3</A>,) but
+please understand that your program may compute incorrect results.
+
+<P>
+
+<H2><A NAME="SECTION00523000000000000000"></A><A NAME="sec:ckpt-warnings"></A>
+<BR>
+4.2.3 Checkpoint Warnings
+</H2>
+
+<P>
+Condor has warning messages in the case unexpected
+behaviors in your program.  For example, if file <TT>x</TT>
+is opened for reading
+and writing, you will see:
+
+<P>
+<PRE>
+Condor: Warning: READWRITE: File '/tmp/x' used for both reading and writing.
+</PRE>
+<P>
+You may control how these messages are displayed with the
+<code>-_condor_warning</code> command-line argument.  This argument
+accepts a warning category and a mode.  The category describes a certain
+class of messages, such as READWRITE or ALL.  The mode describes what
+to do with the category.  It may be ON, OFF, or ONCE.
+If a category is ON, it is always displayed.
+If a category is OFF, it is never displayed.
+If a category is ONCE, it is displayed only once.
+To show all the available categories and modes, just use
+<code>-_condor_warning</code> with no arguments.
+
+<P>
+For example, to limit read/write warnings to one instance:
+
+<P>
+<PRE>
+-_condor_warning READWRITE ONCE
+</PRE>
+
+<P>
+To turn all ordinary notices off:
+
+<P>
+<PRE>
+-_condor_warning NOTICE OFF
+</PRE>
+
+<P>
+The same effect can be accomplished within a program by using the function
+<code>_condor_warning_config</code>, described in section <A HREF="#sec:ckpt-api">4.2.4</A>.
+
+<P>
+
+<H2><A NAME="SECTION00524000000000000000"></A><A NAME="sec:ckpt-api"></A>
+<BR>
+4.2.4 Checkpoint Library Interface
+</H2>
+
+<P>
+<A NAME="40660"></A>
+A program need not be rewritten to take advantage of checkpointing.
+However, the checkpointing library provides several C entry points
+that allow for a program to control its own checkpointing behavior
+if needed.
+
+<P>
+
+<UL>
+<LI><TT>void init_image_with_file_name( char *ckpt_file_name )</TT>
+<BR>
+This function explicitly sets a file name to use when
+producing or using a checkpoint.
+<TT>ckpt()</TT> or
+<TT>ckpt_and_exit()</TT> must be called to produce the
+checkpoint, and
+<TT>restart()</TT> must be called to perform the
+actual restart.
+
+<P>
+</LI>
+<LI><TT>void init_image_with_file_descriptor( int fd )</TT>
+<BR>
+This function explicitly sets a file descriptor to use when
+producing or using a checkpoint.
+<TT>ckpt()</TT> or
+<TT>ckpt_and_exit()</TT> must be called to produce the
+checkpoint, and
+<TT>restart()</TT> must be called to perform the
+actual restart.
+
+<P>
+</LI>
+<LI><TT>void ckpt()</TT>
+<BR>
+This function causes a checkpoint image to be written to disk.
+The program will continue to execute.  This is identical to sending
+the program a SIGUSR2 signal.
+
+<P>
+</LI>
+<LI><TT>void ckpt_and_exit()</TT>
+<BR>
+This function causes a checkpoint image to be written to disk.
+The program will then exit.  This is identical to sending the program
+a SIGTSTP signal.
+
+<P>
+</LI>
+<LI><TT>void restart()</TT>
+<BR>
+This function causes the program to read the checkpoint
+image and to resume
+execution of the program from the point where the checkpoint
+was taken.
+This function does not return.
+
+<P>
+</LI>
+<LI><TT>void _condor_ckpt_disable()</TT>
+<BR>
+This function temporarily disables checkpointing.  This can
+be handy if your program does something that is not checkpoint-safe.
+For example, if a program must not be interrupted while accessing
+a special file, call <TT>_condor_ckpt_disable()</TT>, access the
+file, and then call <TT>_condor_ckpt_enable()</TT>.  Some program
+actions, such as opening a socket or a pipe, implicitly cause
+checkpointing to be disabled.
+
+<P>
+</LI>
+<LI><TT>void _condor_ckpt_enable()</TT>
+<BR>
+This function re-enables checkpointing after a call to
+<TT>_condor_ckpt_disable()</TT>.  If a checkpointing signal arrived
+while checkpointing was disabled, the checkpoint will occur when
+this function is called.  Disabling and enabling of checkpointing
+must occur in matched pairs.  <TT>_condor_ckpt_enable()</TT> must
+be called once for every time that <TT>_condor_ckpt_disable()</TT>
+is called.
+
+<P>
+</LI>
+<LI><TT>int _condor_warning_config( const char *kind, const char *mode )</TT>
+<BR>
+This function controls what warnings are displayed by Condor.
+The <TT>kind</TT> and <TT>mode</TT> arguments are the same as for the
+<TT>-_condor_warning</TT> option described in section <A HREF="#sec:ckpt-warnings">4.2.3</A>.  This function returns true
+if the arguments are understood and accepted.  Otherwise, it returns false.
+
+<P>
+</LI>
+<LI><TT>extern int condor_compress_ckpt</TT>
+<BR>
+Setting this variable to one causes checkpoint images to be compressed.
+Setting it to zero disables compression.
+
+<P>
+</LI>
+</UL>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1561"
+  HREF="4_3Computing_On.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1555"
+  HREF="4_Miscellaneous_Concepts.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1549"
+  HREF="4_1Condor_s_ClassAd.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1557"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1559"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1562"
+  HREF="4_3Computing_On.html">4.3 Computing On Demand</A>
+<B> Up:</B> <A NAME="tex2html1556"
+  HREF="4_Miscellaneous_Concepts.html">4. Miscellaneous Concepts</A>
+<B> Previous:</B> <A NAME="tex2html1550"
+  HREF="4_1Condor_s_ClassAd.html">4.1 Condor's ClassAd Mechanism</A>
+ &nbsp; <B>  <A NAME="tex2html1558"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1560"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

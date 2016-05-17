@@ -1,0 +1,366 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>User Partitioning</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE=" JumpStart Users Guide "
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Solaris Partitioning"
+HREF="partitioning.html"><LINK
+REL="PREVIOUS"
+TITLE="Default Partitioning"
+HREF="default_part.html"><LINK
+REL="NEXT"
+TITLE="Templated Partitioning"
+HREF="template_part.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>JumpStart Users Guide: 	<DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/sun_rocks_graphic.png"
+WIDTH="500"></P
+></DIV
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="default_part.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 3. Solaris Partitioning</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="template_part.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="USER_PART"
+>3.2. User Partitioning</A
+></H1
+><P
+>Rocks supports user-specified partitioning on Solaris. User-specified partitioning
+on Solaris is very similar to user-specified partitioning on Linux. We use the concept of
+programmatic partitioning to specify partitioning on Solaris.</P
+><P
+>On Solaris, the user specified partitions should be specified in
+<TT
+CLASS="FILENAME"
+>/tmp/user_part_info</TT
+>. This file must be created in the
+<TT
+CLASS="LITERAL"
+>&#60;pre&#62;</TT
+> section of the jumpstart XML file. The contents of this file must
+conform to the jumpstart partitioning syntax.</P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN135"
+></A
+><P
+><B
+>Example 3-1. User-specific Partitioning</B
+></P
+><P
+>This example describes how to create a 90 GB root zfs pool on a compute node. There are
+a few assumptions made in this example. The root device is c1t0d0, and disk is
+large enough to accomadate a 90 GB root pool, 2 GB swap, and a 1 GB dump. </P
+><P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>		In <TT
+CLASS="FILENAME"
+>/export/rocks/install/site-profiles/5.4.3/nodes/</TT
+>
+		create the <TT
+CLASS="FILENAME"
+>extend-compute.xml</TT
+> file. 
+		</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="PROGRAMLISTING"
+>&#60;?xml version="1.0" standalone="no"?&#62;
+
+&#60;jumpstart&#62;
+
+&#60;pre&#62;
+cat &#38;gt; /tmp/user_part_info &#38;lt;&#38;lt; "_feof_"
+usedisk c1t0d0
+fdisk c1t0d0 solaris all
+pool rocks 90G 2G 1G c1t0d0s0
+filesys c1t0d0s3 free unnamed
+_feof_
+&#60;/pre&#62;
+
+&#60;/jumpstart&#62;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>			Re-create the solaris distribution.
+		</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="PROGRAMLISTING"
+># cd /export/rocks/install
+# rocks create soldist</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>		Re-install the node in question, by setting it's
+		bootaction to "install" and rebooting the node.
+	</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="PROGRAMLISTING"
+># rocks set host boot compute-0-0 action=install
+# ssh compute-0-0 shutdown -g0 -i6 -y</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+></OL
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN150"
+>3.2.1. More Information</A
+></H2
+><P
+>		The syntax for the profile keywords and values can be found at <A
+HREF="http://download.oracle.com/docs/cd/E18752_01/html/821-1911/preparecustom-24696.html"
+TARGET="_top"
+>Oracle
+		Solaris 10 9/10 Installation Guide: Custom JumpStart and Advanced
+		Installations</A
+>.
+	</P
+><P
+>		The default installation uses a ZFS root pool as the root
+		device. Information about how to use this is available <A
+HREF="http://download.oracle.com/docs/cd/E18752_01/html/821-1911/gguec.html"
+TARGET="_top"
+>here</A
+>.
+	</P
+><P
+>		<DIV
+CLASS="WARNING"
+><P
+></P
+><TABLE
+CLASS="WARNING"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/warning.png"
+HSPACE="5"
+ALT="Warning"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>There are certain limitations to using ZFS as the root pool.
+			These limitations are listed <A
+HREF="http://download.oracle.com/docs/cd/E18752_01/html/821-1911/ggugd.html#ggudz"
+TARGET="_top"
+>here</A
+>
+			</P
+></TD
+></TR
+></TABLE
+></DIV
+>
+	</P
+><P
+>		<DIV
+CLASS="WARNING"
+><P
+></P
+><TABLE
+CLASS="WARNING"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/warning.png"
+HSPACE="5"
+ALT="Warning"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>			It is important to note that the root device chosen must be bootable by the
+			bios. If, for any reason, Solaris cannot determine if  device in question is 
+			bootable, it will halt at the end of the installation, and the administrator
+			will have to reboot the node manually.
+			</P
+></TD
+></TR
+></TABLE
+></DIV
+>
+	</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="default_part.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="template_part.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Default Partitioning</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="partitioning.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Templated Partitioning</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

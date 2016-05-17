@@ -1,0 +1,811 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>add</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE=" Xen Roll: Users Guide "
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Command Reference"
+HREF="c291.html"><LINK
+REL="PREVIOUS"
+TITLE="Command Reference"
+HREF="c291.html"><LINK
+REL="NEXT"
+TITLE="create"
+HREF="x530.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Xen Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/xen.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="c291.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 4. Command Reference</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x530.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="AEN293"
+>4.1. add</A
+></H1
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-ADD-CLUSTER"
+>4.1.1. add cluster</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks add cluster</B
+>  {fqdn} {ip} {num-computes} [container-hosts=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [cpus-per-compute=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [disk-per-compute=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [disk-per-frontend=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [fqdn=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [ip=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [mem-per-compute=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [num-computes=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [vlan=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Add a VM-based cluster to an existing physical cluster.
+	
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>fqdn</DT
+><DD
+><P
+>&#13;	The FQDN for the virtual frontend.
+	
+	</P
+></DD
+><DT
+>ip</DT
+><DD
+><P
+>&#13;	The IP address for the virtual frontend.
+	
+	</P
+></DD
+><DT
+>num-computes</DT
+><DD
+><P
+>&#13;	The number of compute nodes VMs to associate with the frontend.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>container-hosts=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	A list of VM container hosts that will be used to hold the VM
+	compute nodes. This must be a space-separated list (e.g.,
+	container-hosts="vm-container-0-0 vm-container-0-1").
+	The default is to allocate the compute nodes in a round robin fashion
+	across all the VM containers.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>cpus-per-compute=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The number of CPUs to allocate to each VM compute node. The default
+	is 1.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>disk-per-compute=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The size of the disk (in gigabytes) to allocate to each VM compute
+	node. The default is 36.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>disk-per-frontend=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The size of the disk (in gigabytes) to allocate to the VM frontend
+	node. The default is 36.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>fqdn=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of the fqdn argument.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>ip=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of the ip argument.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>mem-per-compute=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The amount of memory (in megabytes) to allocate to each VM compute
+	node. The default is 1024.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>num-computes=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of the num-computes argument.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>vlan=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The VLAN ID to assign to this cluster. All network communication
+	between the nodes of the virtual cluster will be encapsulated within
+	this VLAN.
+	The default is the next free VLAN ID.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks add cluster vm.cluster.org 1.2.3.4 2</DT
+><DD
+><P
+>&#13;	Create one frontend VM and assign it the name 'vm.cluster.org' with
+	the IP address '1.2.3.4' and create 2 compute node VMs.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-ADD-HOST-VM"
+>4.1.2. add host vm</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks add host vm</B
+>  {host...} {membership} [cpus=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [disk=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [disksize=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [ip=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [mac=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [mem=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [membership=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [name=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [num-macs=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [slice=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [subnet=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [sync-config=<TT
+CLASS="REPLACEABLE"
+><I
+>bool</I
+></TT
+>] [vlan=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Add a VM specification to the database.
+	
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	One or more physical host names.
+	
+	</P
+></DD
+><DT
+>membership</DT
+><DD
+><P
+>&#13;	The membership to assign to the VM.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>cpus=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The number of CPUs to assign to this VM.
+	The default is: 1.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>disk=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	A disk specification for this VM.
+	The default is: file:/&#60;largest-partition-on-physical-node&#62;/xen/disks/&#60;vm-name&#62;.hda,hda,w
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>disksize=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The amount of disk space in gigabytes to assign to the disk
+	specification.
+	The default is: 36.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>ip=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The IP address to assign to the VM.
+	If no IP address is provided, then one will be automatically assigned.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>mac=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	A MAC address to assign to this VM.
+	If no MAC address is specified, the next free MAC address will be
+	selected.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>mem=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The amount of memory in megabytes to assign to this VM.
+	The default is: 1024.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>membership=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of the membership argument.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>name=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The name to assign to the VM (e.g., 'compute-0-0-0').
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>num-macs=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The number of MAC addresses to automatically assign to this VM.
+	The default is 1.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>slice=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The 'slice' id on the physical node. Each VM on a physical node has
+	a unique slice number
+	The default is the next available free slice number.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>subnet=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The subnet to associate to this VM.
+	The default is: private.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>sync-config=<TT
+CLASS="REPLACEABLE"
+><I
+>bool</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Decides if 'rocks sync config' should be run after the VM is added.
+	The default is: yes.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>vlan=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The vlan ID to set for each interface. If you supply multiple MACs
+	(e.g., 'num-macs' &#62; 1), you can specify multiple vlan IDs by a
+	comma separated list (e.g., vlan="3,4,5"). To not specify a vlan
+	for a MAC, use the keyword 'none'. For example, if you want to
+	specify a vlan ID for interface 1 and 3, but not interface 2, type:
+	vlan="3,none,5".
+	The default is to not assign a vlan ID.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks add host vm</DT
+><DD
+><P
+>&#13;	Create a default VM.
+	
+	</P
+></DD
+><DT
+># rocks add host vm mem=4096</DT
+><DD
+><P
+>&#13;	Create a VM and allocate 4 GB of memory to it.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="c291.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x530.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Command Reference</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="c291.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>create</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

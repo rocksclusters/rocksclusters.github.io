@@ -1,0 +1,359 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Command Reference</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE=" Kvm Users Guide "
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE="Tutorial on Advanced Configuration"
+HREF="tutorial.html"><LINK
+REL="NEXT"
+TITLE="add"
+HREF="x528.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="CHAPTER"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Kvm</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/kvmbanner.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="tutorial.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x528.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="CHAPTER"
+><H1
+><A
+NAME="AEN526"
+></A
+>Chapter 4. Command Reference</H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Table of Contents</B
+></DT
+><DT
+>4.1. <A
+HREF="x528.html"
+>add</A
+></DT
+><DD
+><DL
+><DT
+>4.1.1. <A
+HREF="x528.html#ROCKS-ADD-CLUSTER"
+>add cluster</A
+></DT
+><DT
+>4.1.2. <A
+HREF="x528.html#ROCKS-ADD-HOST-VM"
+>add host vm</A
+></DT
+></DL
+></DD
+><DT
+>4.2. <A
+HREF="x792.html"
+>check</A
+></DT
+><DT
+>4.3. <A
+HREF="x805.html"
+>create</A
+></DT
+><DT
+>4.4. <A
+HREF="x825.html"
+>dump</A
+></DT
+><DT
+>4.5. <A
+HREF="x857.html"
+>list</A
+></DT
+><DD
+><DL
+><DT
+>4.5.1. <A
+HREF="x857.html#ROCKS-LIST-CLUSTER"
+>list cluster</A
+></DT
+><DT
+>4.5.2. <A
+HREF="x857.html#ROCKS-LIST-HOST-INTERFACE-DISABLEKVM"
+>list host interface disablekvm</A
+></DT
+><DT
+>4.5.3. <A
+HREF="x857.html#ROCKS-LIST-HOST-VM"
+>list host vm</A
+></DT
+></DL
+></DD
+><DT
+>4.6. <A
+HREF="x956.html"
+>move</A
+></DT
+><DT
+>4.7. <A
+HREF="x986.html"
+>pause</A
+></DT
+><DT
+>4.8. <A
+HREF="x1006.html"
+>remove</A
+></DT
+><DD
+><DL
+><DT
+>4.8.1. <A
+HREF="x1006.html#ROCKS-REMOVE-CLUSTER"
+>remove cluster</A
+></DT
+><DT
+>4.8.2. <A
+HREF="x1006.html#ROCKS-REMOVE-HOST-VM"
+>remove host vm</A
+></DT
+></DL
+></DD
+><DT
+>4.9. <A
+HREF="x1045.html"
+>report</A
+></DT
+><DD
+><DL
+><DT
+>4.9.1. <A
+HREF="x1045.html#ROCKS-REPORT-HOST-VLAN"
+>report host vlan</A
+></DT
+><DT
+>4.9.2. <A
+HREF="x1045.html#ROCKS-REPORT-HOST-VM-CONFIG"
+>report host vm config</A
+></DT
+><DT
+>4.9.3. <A
+HREF="x1045.html#ROCKS-REPORT-HOST-VM-VIRT_TYPE"
+>report host vm virt_type</A
+></DT
+><DT
+>4.9.4. <A
+HREF="x1045.html#ROCKS-REPORT-VM-NEXTMAC"
+>report vm nextmac</A
+></DT
+></DL
+></DD
+><DT
+>4.10. <A
+HREF="x1105.html"
+>restore</A
+></DT
+><DT
+>4.11. <A
+HREF="x1135.html"
+>resume</A
+></DT
+><DT
+>4.12. <A
+HREF="x1155.html"
+>save</A
+></DT
+><DT
+>4.13. <A
+HREF="x1180.html"
+>set</A
+></DT
+><DD
+><DL
+><DT
+>4.13.1. <A
+HREF="x1180.html#ROCKS-SET-CLUSTER-POWER"
+>set cluster power</A
+></DT
+><DT
+>4.13.2. <A
+HREF="x1180.html#ROCKS-SET-HOST-INTERFACE-DISABLEKVM"
+>set host interface disablekvm</A
+></DT
+><DT
+>4.13.3. <A
+HREF="x1180.html#ROCKS-SET-HOST-VM"
+>set host vm</A
+></DT
+><DT
+>4.13.4. <A
+HREF="x1180.html#ROCKS-SET-HOST-VM-CDROM"
+>set host vm cdrom</A
+></DT
+></DL
+></DD
+><DT
+>4.14. <A
+HREF="x1374.html"
+>start</A
+></DT
+><DD
+><DL
+><DT
+>4.14.1. <A
+HREF="x1374.html#ROCKS-START-HOST-VM"
+>start host vm</A
+></DT
+><DT
+>4.14.2. <A
+HREF="x1374.html#ROCKS-START-SERVICE-AIRBOSS"
+>start service airboss</A
+></DT
+></DL
+></DD
+><DT
+>4.15. <A
+HREF="x1413.html"
+>stop</A
+></DT
+><DD
+><DL
+><DT
+>4.15.1. <A
+HREF="x1413.html#ROCKS-STOP-HOST-VM"
+>stop host vm</A
+></DT
+><DT
+>4.15.2. <A
+HREF="x1413.html#ROCKS-STOP-SERVICE-AIRBOSS"
+>stop service airboss</A
+></DT
+></DL
+></DD
+><DT
+>4.16. <A
+HREF="x1448.html"
+>sync</A
+></DT
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="tutorial.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x528.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Tutorial on Advanced Configuration</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>add</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

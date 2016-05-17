@@ -1,0 +1,745 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>8.3 Stable Release Series 7.6</TITLE>
+<META NAME="description" CONTENT="8.3 Stable Release Series 7.6">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="8_4Development_Release.html">
+<LINK REL="previous" HREF="8_2Upgrading_from.html">
+<LINK REL="up" HREF="8_Version_History.html">
+<LINK REL="next" HREF="8_4Development_Release.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html2248"
+  HREF="8_4Development_Release.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2242"
+  HREF="8_Version_History.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2236"
+  HREF="8_2Upgrading_from.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2244"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2246"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2249"
+  HREF="8_4Development_Release.html">8.4 Development Release Series</A>
+<B> Up:</B> <A NAME="tex2html2243"
+  HREF="8_Version_History.html">8. Version History and</A>
+<B> Previous:</B> <A NAME="tex2html2237"
+  HREF="8_2Upgrading_from.html">8.2 Upgrading from the</A>
+ &nbsp; <B>  <A NAME="tex2html2245"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2247"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html2250"
+  HREF="8_3Stable_Release.html#SECTION00931000000000000000">Version 7.6.2</A>
+<LI><A NAME="tex2html2251"
+  HREF="8_3Stable_Release.html#SECTION00932000000000000000">Version 7.6.1</A>
+<LI><A NAME="tex2html2252"
+  HREF="8_3Stable_Release.html#SECTION00933000000000000000">Version 7.6.0</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00930000000000000000"></A><A NAME="sec:History-7-6"></A>
+<BR>
+8.3 Stable Release Series 7.6
+</H1>
+
+<P>
+This is a stable release series of Condor.
+As usual, only bug fixes (and potentially, ports to new platforms)
+will be provided in future 7.6.x releases.
+New features will be added in the 7.7.x development series.
+
+<P>
+The details of each version are described below.
+
+<P>
+
+<H2><A NAME="SECTION00931000000000000000"></A><A NAME="sec:New-7-6-2"></A>
+<BR>
+Version 7.6.2
+</H2>
+
+<P>
+Release Notes:
+
+<P>
+
+<UL>
+<LI>Condor version 7.6.2 released on July 19, 2011.
+
+<P>
+</LI>
+</UL>
+
+<P>
+New Features:
+
+<P>
+
+<UL>
+<LI>Improved how <I>condor_dagman</I> deals with certain parse errors:
+missing node name or submit description file in JOB lines.
+Also, <I>condor_dagman</I>
+now prints DAG input file lines as they are parsed, 
+if the debug verbosity setting is 6 or above,
+as set with the <I>condor_submit_dag</I> command line option <B>-debug</B>.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Configuration Variable and ClassAd Attribute Additions and Changes:
+
+<P>
+
+<UL>
+<LI>None.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Bugs Fixed:
+
+<P>
+
+<UL>
+<LI>Fixed a bug in the <I>condor_negotiator</I> that impacted the processing 
+of machine <TT>RANK</TT> such that <I>condor_startd</I> <TT>RANK</TT>
+preemption only occurred if the preempting user had sufficient user priority 
+to claim another machine. 
+
+<P>
+</LI>
+<LI><I>condor_ssh_to_job</I> did not work on systems using the 
+dash shell for <I>/bin/sh</I>.
+
+<P>
+</LI>
+<LI><I>condor_ssh_to_job</I> now works with jobs that are run via 
+<I>glexec</I>. Previously, it did not. 
+
+<P>
+</LI>
+<LI>When <I>glexec</I> was configured with <TT>linger=on</TT>,
+the <I>condor_starter</I> would become unresponsive for the duration of the job. 
+For jobs longer than the value set by configuration variable
+<TT>NOT_RESPONDING_TIMEOUT</TT>,
+this caused the job to be aborted. 
+This also prevented job resource usage monitoring from working 
+while the job was running.
+
+<P>
+</LI>
+<LI>Fixed a bug in hierarchical group quotas that caused 
+a warning to be logged, despite correct implementation.
+
+<P>
+</LI>
+<LI><I>condor_preen</I> now properly respects the convention that
+the <B>-debug</B> option causes <TT>dprintf()</TT> logging to <TT>stderr</TT>. 
+
+<P>
+</LI>
+<LI>Fixed a problem introduced in Condor version 7.5.5 
+that could cause the <I>condor_schedd</I> to crash when a job was removed 
+during negotiation or when an idle parallel universe job left the queue. 
+
+<P>
+</LI>
+<LI>Fixed a problem that sometimes caused the <I>condor_procd</I> to die.
+The chain of events for this fixed bug were that
+the <I>condor_startd</I> killed the <I>condor_starter</I> due to unresponsiveness,
+and the <I>condor_procd</I> would die.
+Then <I>condor_startd</I> logged the message
+<TT>ProcD has failed</TT> and the <I>condor_startd</I> exited. 
+
+<P>
+</LI>
+<LI>Fixed a problem introduced in Condor version 7.6.1 
+that caused the <I>condor_shadow</I> to crash without successfully putting the job 
+on hold when the user log could not be opened for writing. 
+
+<P>
+</LI>
+<LI><I>condor_history</I> no longer crashes when given a constraint expression 
+longer than 512 characters. 
+
+<P>
+</LI>
+<LI>PBS and LSF grid jobs that arrive in a queue via Condor-C
+or remote submission again work properly. 
+
+<P>
+</LI>
+<LI>Fix a bug that can cause the <I>condor_gridmanager</I> to crash 
+when a CREAM job ClassAd is missing the <TT>X509UserProxy</TT> attribute. 
+
+<P>
+</LI>
+<LI>Fix a bug that caused CREAM jobs to have incomplete input files,
+if the <I>condor_gridmanager</I> crashed during transfer of those input files. 
+
+<P>
+</LI>
+<LI>Fix a bug in <I>condor_submit</I> that caused grid jobs intended for 
+CREAM services whose names contain extra dashes to become held. 
+
+<P>
+</LI>
+<LI>Fixed a bug in which <I>condor_submit</I> would try, 
+but fail to open the Deltacloud password file,
+when the file name was dependent on an expression specified with <TT>$$()</TT>.
+
+<P>
+</LI>
+<LI>If the <TT>Owner</TT> attribute was not set in the ClassAd associated
+with a cluster of jobs,
+shared spooled executables were not correctly cleaned up.
+
+<P>
+</LI>
+<LI>Fixed a bug for 64-bit versions of Windows in which the
+user <TT>condor-reuse-slot&lt;N&gt;</TT> showed up on the login screen.
+
+<P>
+</LI>
+<LI>Fixed a bug introduced in Condor version 7.5.5,
+which changed the default value of the configuration variable
+<TT>INVALID_LOG_FILES</TT> <A NAME="51423"></A> <A NAME="51424"></A> from the empty set to a file called <TT>core</TT>.
+This resulted in core files being removed unexpectedly by <I>condor_preen</I>,
+and that complicated debugging of Condor.
+Previous behavior has been restored.
+
+<P>
+</LI>
+<LI>Fixed a bug existing since Condor version 7.5.5 on Windows platforms.
+The installer installed Java jar files in the correct <code>$(BIN)</code> directory,
+while the value for the configuration variable 
+<TT>JAVA_CLASSPATH_DEFAULT</TT> utilized the obsolete <code>$(LIB)</code>
+directory.
+The installer now correctly sets <TT>JAVA_CLASSPATH_DEFAULT</TT> 
+to the <code>$(BIN)</code> directory.
+
+<P>
+</LI>
+<LI>Fixed a problem causing Condor to fail to start when
+privsep was enabled and the environment had any variables
+containing newlines.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Known Bugs:
+
+<P>
+
+<UL>
+<LI>For Condor versions 7.6.2, 7.6.1, and 7.6.0,
+a bug causes parallel universe jobs to be preempted upon 
+expiration of the job lease, 
+which has a default value of 20 minutes, 
+essentially meaning that no parallel universe job that takes
+longer than 20 minutes can ever finish.
+The work around for this bug is to place the following
+configuration variable in the configuration of the submit machine:
+<PRE>
+  STARTD_SENDS_ALIVES = FALSE
+</PRE>
+A <I>condor_reconfig</I> is required, 
+after which the preempted parallel universe jobs will then be
+able to run to completion.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Additions and Changes to the Manual:
+
+<P>
+
+<UL>
+<LI>None.
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<H2><A NAME="SECTION00932000000000000000"></A><A NAME="sec:New-7-6-1"></A>
+<BR>
+Version 7.6.1
+</H2>
+
+<P>
+Release Notes:
+
+<P>
+
+<UL>
+<LI>Condor version 7.6.1 released on June 3, 2011.
+
+<P>
+</LI>
+</UL>
+
+<P>
+New Features:
+
+<P>
+
+<UL>
+<LI>None.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Configuration Variable and ClassAd Attribute Additions and Changes:
+
+<P>
+
+<UL>
+<LI>None.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Bugs Fixed:
+
+<P>
+
+<UL>
+<LI>A bug introduced in Condor version 7.5.5 caused the <I>condor_schedd</I>
+to die when its attempt to claim a slot for a parallel universe job 
+was rejected by the <I>condor_startd</I>. 
+
+<P>
+</LI>
+<LI><I>condor_q</I> <B>-analyze</B> failed to provide detailed analysis of
+the job's requirements expression when the expression contained ClassAd
+function calls in some cases. 
+
+<P>
+</LI>
+<LI>Fixed an incorrect exit code from <I>condor_q</I> 
+when invoked with the <B>-name</B> option and using Quill.
+
+<P>
+</LI>
+<LI>Fixed a segmentation fault bug introduced in Condor version 7.5.5,
+in the checkpoint and restart of jobs using compressed checkpoint images
+under the standard universe.
+By default, Condor will not compress checkpoints under the standard universe.
+Jobs which do not compress their checkpoints were immune to this bug.  
+Compressed checkpoints are only available in 32-bit versions of Condor.
+Generation of checkpoints in 64-bit versions of Condor are unaffected.
+
+<P>
+</LI>
+<LI>In Condor version 7.6.0, the <I>condor_schedd</I> would create a 
+spool directory for every job. The corrected and previous behavior 
+has now been restored, 
+which is to create a spool directory only when needed.
+
+<P>
+</LI>
+<LI>Fixed a bug introduced in Condor version 7.5.2,
+that caused the <I>condor_negotiator</I> daemon to crash
+if any machine ClassAds contained cyclical attribute references.
+
+<P>
+</LI>
+<LI>Fixed a bug that caused usage by <B>nice_user</B> jobs to
+be charged to the user directly rather than `nice-user.<I>user</I>'.
+This bug was introduced in the 7.5 series.
+
+<P>
+</LI>
+<LI>Fixed bugs in the RPM init script that could cause some 
+shutdown failures to be unreported, 
+and they could cause status requests,
+such as <TT>service condor status</TT>,
+to always report Condor as inactive.
+
+<P>
+</LI>
+<LI>Fixed a bug in the <I>condor_gridmanager</I> that could cause a crash 
+when a grid type <B>amazon</B> job was missing required attributes.
+
+<P>
+</LI>
+<LI>Fixed bug in the <I>condor_shadow</I>, in which it would treat 
+the closed socket to the execute machine as an error,
+after both it had asked for the claim to be deactivated and the 
+<I>condor_schedd</I> daemon was busy.  
+As a result, a busy <I>condor_schedd</I> could result in the job being re-run.
+
+<P>
+</LI>
+<LI>The matchmaking attributes 
+<TT>SubmitterUserResourcesInUse</TT> and <TT>RemoteUserResourcesInUse</TT> 
+no longer ignore <TT>SlotWeight</TT>, if used by the <I>condor_negotiator</I>.
+
+<P>
+</LI>
+<LI>On Windows, the <I>condor_kbdd</I> daemon was missing changes to the
+port on which the <I>condor_startd</I> was listening.
+This resulted in failure of the <I>condor_kbdd</I> to send updates in 
+keyboard and mouse activity,
+further causing the failure of policy implementation that relied upon 
+knowledge of the activity.
+
+<P>
+</LI>
+<LI>Fixed a bug present throughout ClassAds,
+in which expressions expecting a floating point value returned an error,
+if the expression actually evaluated to a boolean.
+This is most common in machine <TT>RANK</TT> expressions.
+
+<P>
+</LI>
+<LI>Fixed a bug in the <I>condor_negotiator</I> daemon,
+which caused a crash if the <I>condor_negotiator</I> was reconfigured 
+during a negotiation cycle, 
+but only if hierarchical group quotas were in use.
+
+<P>
+</LI>
+<LI>Fixed a bug in which when submitting a job into the <I>condor_schedd</I>
+remotely, or with spooling, 
+the file transfer plug-ins activated on the submit machine 
+and pulled down all the specified URLs in the transfer list 
+to the spool directory. 
+This behavior has been changed so that URLs are only downloaded 
+when the job is actually running with a <I>condor_starter</I> above it. 
+This is usually on an execute node, but could also be in the local universe. 
+
+<P>
+</LI>
+<LI>Removed the requirement that the Condor GAHP needs DAEMON-level 
+authorization access to the <I>condor_gridmanager</I>. 
+
+<P>
+</LI>
+<LI>On Windows platforms only, 
+fixed a bug that could cause a sporadic access violation 
+when a Condor daemon spawned another process.
+
+<P>
+</LI>
+<LI>Fixed a bug that would cause the <I>condor_startd</I> to 
+incorrectly report <TT>Benchmarking</TT> as its activity, instead of <TT>Idle</TT>
+when there was a problem launching the benchmarking programs. 
+
+<P>
+</LI>
+<LI>Fixed a bug in which the <I>condor_startd</I> can get stuck in a loop,
+trying to execute an invalid, non-existent Daemon ClassAd Hook job. 
+
+<P>
+</LI>
+<LI>Fixed a bug in which the dedicated scheduler did not correctly 
+deactivate claims,
+tending to result in jobs that appear to move back and forth between
+the <TT>Idle</TT> and <TT>Running</TT> states,
+with the <I>condor_shadow</I> daemon exiting each time with status 108.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Known Bugs:
+
+<P>
+
+<UL>
+<LI>None.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Additions and Changes to the Manual:
+
+<P>
+
+<UL>
+<LI>None.
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<H2><A NAME="SECTION00933000000000000000"></A><A NAME="sec:New-7-6-0"></A>
+<BR>
+Version 7.6.0
+</H2>
+
+<P>
+Release Notes:
+
+<P>
+
+<UL>
+<LI>Condor version 7.6.0 released on April 19, 2011.
+
+<P>
+</LI>
+<LI>Prior to Condor version 7.5.0, commenting out <TT>PREEN</TT> in the
+  default configuration file disabled <I>condor_preen</I>.  
+  Starting in Condor version 7.5.0,
+  there was an internal default value for <TT>PREEN</TT>, so if
+  the configuration variable was not set in any configuration file,
+  <I>condor_preen</I> would still run.
+  To disable this functionality, <TT>PREEN</TT> can be explicitly set to
+  nothing.
+
+<P>
+</LI>
+</UL>
+
+<P>
+New Features:
+
+<P>
+
+<UL>
+<LI>Condor can now create and manage virtual machine instances in a
+cloud service via Deltacloud. This is done via the new
+<B>deltacloud</B> grid type in the grid universe.
+See section&nbsp;<A HREF="5_3Grid_Universe.html#sec:Deltacloud">5.3.9</A> for details.
+
+<P>
+</LI>
+<LI>Improved scalability of submission of cream grid type jobs.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Configuration Variable and ClassAd Attribute Additions and Changes:
+
+<P>
+
+<UL>
+<LI>The new configuration variable <TT>DELTACLOUD_GAHP</TT> <A NAME="51502"></A> <A NAME="51503"></A> specifies
+where the <I>deltacloud_gahp</I> binary is located. This binary is used to
+manage deltacloud grid type jobs in the grid universe.
+In a normal Condor installation, the value should be
+<TT>$(SBIN)/deltacloud_gahp</TT>.
+
+<P>
+</LI>
+<LI>Several new job ClassAd attributes have been added to support
+the deltacloud grid type in the grid universe.
+These attributes are taken from the submit description file:
+<TT>DeltacloudUsername</TT>,
+<TT>DeltacloudPasswordFile</TT>,
+<TT>DeltacloudImageId</TT>,
+<TT>DeltacloudRealmId</TT>,
+<TT>DeltacloudHardwareProfile</TT>,
+<TT>DeltacloudHardwareProfileCpu</TT>,
+<TT>DeltacloudHardwareProfileMemory</TT>,
+<TT>DeltacloudHardwareProfileStorage</TT>,
+<TT>DeltacloudKeyname</TT>, and
+<TT>DeltacloudUserData</TT>.
+These attributes are set by Condor when the instance runs:
+<TT>DeltacloudAvailableActions</TT>,
+<TT>DeltacloudPrivateNetworkAddresses</TT>,
+<TT>DeltacloudPublicNetworkAddresses</TT>.
+See section&nbsp;<A HREF="5_3Grid_Universe.html#sec:Deltacloud">5.3.9</A> for details of running jobs under
+Deltacloud, and see section&nbsp;<A HREF="10_Appendix_A.html#sec:Job-ClassAd-Attributes">10</A>
+for definitions of these job ClassAd attributes.
+
+<P>
+</LI>
+<LI>The configuration variable <TT>JAVA_MAXHEAP_ARGUMENT</TT> <A NAME="51522"></A> <A NAME="51523"></A> 
+  has been removed. 
+  This means that Java universe jobs will now run with the JVM's 
+  default maximum heap setting,
+  unless specified otherwise by the administrator using the configuration
+  of <TT>JAVA_EXTRA_ARGUMENTS</TT> <A NAME="51527"></A> <A NAME="51528"></A>,
+  or by the job via 
+  <B>java_vm_args</B> in the submit description file
+  as described in section&nbsp;<A HREF="2_8Java_Applications.html#sec:Java">2.8</A>.
+
+<P>
+</LI>
+<LI>The configuration variable <TT>TRUST_UID_DOMAIN</TT> <A NAME="51533"></A> <A NAME="51534"></A>
+  was set to <TT>True</TT> in the default <TT>condor_config.local</TT>
+  in the rpm and Debian packages.  This is no longer the case.
+  This setting will therefore use the default value <TT>False</TT>.
+
+<P>
+</LI>
+<LI>The configuration variable <TT>NEGOTIATOR_INTERVAL</TT> <A NAME="51541"></A> <A NAME="51542"></A> was set
+  to 20 in the default <TT>condor_config.local</TT> in the rpm and
+  Debian packages.  This is no longer the case.  This setting
+  therefore will use the default value 60.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Bugs Fixed:
+
+<P>
+
+<UL>
+<LI>Fixed a bug in <I>condor_dagman</I> that caused it to fail when in recovery
+mode in the face of a specific combination of node job failures with
+retries.
+
+<P>
+</LI>
+<LI>Fixed a bug that resulted in the spooled user log not being
+  fetched by <I>condor_transfer_data</I>.  Prior to Condor version 7.5.4, this
+  problem affected spooled jobs submitted with an explicit list of
+  output files to transfer.  In Condor version 7.5.4, this problem also
+  affected spooled jobs that auto-detected output files.
+
+<P>
+</LI>
+<LI>When a job is submitted with the <B>-spool</B> option to <I>condor_submit</I>,
+the <I>condor_schedd</I> now correctly writes the submit event to the user log 
+in its spool directory. 
+Previously, it would try to write the event using the user
+log path given to <I>condor_submit</I> by the user, 
+which <I>condor_submit</I> may not have access to.
+
+<P>
+</LI>
+<LI>Fixed a file descriptor leak in the <I>condor_vm-gahp</I>. The leak would
+cause the daemon to fail if a VMware job ran for more than 16 hours on a
+Linux machine.
+
+<P>
+</LI>
+<LI>Fixed a bug in <I>condor_dagman</I> that caused it to treat any dollar
+sign in the log file name of a node job's submit description file
+as an illegal <I>condor_dagman</I> macro.
+Now only the sequence of characters <TT>$(</TT> delimits a macro.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Known Bugs:
+
+<P>
+
+<UL>
+<LI>There are two known issues related to the automatic creation
+of checkpoints with the Condor checkpointing library in 
+Condor version 7.6.0.
+The first is that compression of
+standalone checkpoints is disabled for 32-bit binaries.
+It was always disabled previously, for 64-bit binaries.
+A standalone checkpoint is one that is run outside
+of Condor's standard universe.  The second problem has to do with compressed
+32-bit checkpoint files within the standard universe.
+If a user requests a compressed 32-bit checkpoint in the standard universe,
+the resulting checkpoint will not be compressed.
+As with standalone checkpoints, this has never been supported
+in 64-bit binaries.  We hope to fix both problems in 
+Condor version 7.6.1.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Additions and Changes to the Manual:
+
+<P>
+
+<UL>
+<LI>None.
+
+<P>
+</LI>
+</UL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html2248"
+  HREF="8_4Development_Release.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2242"
+  HREF="8_Version_History.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2236"
+  HREF="8_2Upgrading_from.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2244"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2246"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2249"
+  HREF="8_4Development_Release.html">8.4 Development Release Series</A>
+<B> Up:</B> <A NAME="tex2html2243"
+  HREF="8_Version_History.html">8. Version History and</A>
+<B> Previous:</B> <A NAME="tex2html2237"
+  HREF="8_2Upgrading_from.html">8.2 Upgrading from the</A>
+ &nbsp; <B>  <A NAME="tex2html2245"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2247"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

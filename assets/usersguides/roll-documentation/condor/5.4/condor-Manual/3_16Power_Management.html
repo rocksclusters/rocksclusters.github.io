@@ -1,0 +1,387 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>3.16 Power Management</TITLE>
+<META NAME="description" CONTENT="3.16 Power Management">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="previous" HREF="3_15Virtual_Machines.html">
+<LINK REL="up" HREF="3_Administrators_Manual.html">
+<LINK REL="next" HREF="4_Miscellaneous_Concepts.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html1449"
+  HREF="4_Miscellaneous_Concepts.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1443"
+  HREF="3_Administrators_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1439"
+  HREF="3_15Virtual_Machines.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1445"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1447"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1450"
+  HREF="4_Miscellaneous_Concepts.html">4. Miscellaneous Concepts</A>
+<B> Up:</B> <A NAME="tex2html1444"
+  HREF="3_Administrators_Manual.html">3. Administrators' Manual</A>
+<B> Previous:</B> <A NAME="tex2html1440"
+  HREF="3_15Virtual_Machines.html">3.15 Virtual Machines</A>
+ &nbsp; <B>  <A NAME="tex2html1446"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1448"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html1451"
+  HREF="3_16Power_Management.html#SECTION004161000000000000000">3.16.1 Entering a Low Power State</A>
+<LI><A NAME="tex2html1452"
+  HREF="3_16Power_Management.html#SECTION004162000000000000000">3.16.2 Returning From a Low Power State</A>
+<LI><A NAME="tex2html1453"
+  HREF="3_16Power_Management.html#SECTION004163000000000000000">3.16.3 Keeping a ClassAd for a Hibernating Machine</A>
+<LI><A NAME="tex2html1454"
+  HREF="3_16Power_Management.html#SECTION004164000000000000000">3.16.4 Linux Platform Details</A>
+<LI><A NAME="tex2html1455"
+  HREF="3_16Power_Management.html#SECTION004165000000000000000">3.16.5 Windows Platform Details</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION004160000000000000000"></A><A NAME="sec:power-man"></A>
+<A NAME="36436"></A>
+<A NAME="36437"></A>
+<BR>
+3.16 Power Management
+</H1>
+
+<P>
+Condor supports placing machines in low power states.
+Power setting decisions are based upon  
+Condor configuration.
+
+<P>
+Power conservation is relevant when machines are not in heavy use,
+or when there are known periods of low activity within the pool.
+
+<P>
+
+<H2><A NAME="SECTION004161000000000000000"></A>
+<A NAME="36439"></A>
+<BR>
+3.16.1 Entering a Low Power State
+</H2>
+
+<P>
+By default, Condor does not do power management.
+When desired, the ability to place a machine into a low
+power state is accomplished through configuration.
+This occurs when all slots on a machine agree that a low power state
+is desired.
+
+<P>
+A slot's readiness to hibernate is determined by the 
+evaluating the <TT>HIBERNATE</TT> <A NAME="36517"></A> <A NAME="36518"></A> configuration variable
+(see section&nbsp;<A HREF="3_3Configuration.html#param:Hibernate">3.3.10</A> on page&nbsp;<A HREF="3_3Configuration.html#param:Hibernate"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>)
+within the context of the slot.
+Readiness is evaluated at fixed intervals, 
+as determined by the <TT>HIBERNATE_CHECK_INTERVAL</TT> <A NAME="36522"></A> <A NAME="36523"></A> configuration variable.
+A non-zero value of this variable enables the power management facility.
+It is an integer value representing seconds,
+and it need not be a small value.
+There is a trade off between the extra time not at a low power state
+and the unnecessary computation of readiness.  
+
+<P>
+To put the machine in a low power state rapidly
+after it has become idle, consider checking each slot's state frequently,
+as in the example configuration:
+
+<P>
+<PRE>
+HIBERNATE_CHECK_INTERVAL = 20
+</PRE>
+
+<P>
+This checks each slot's readiness every 20 seconds.
+A more common value for frequency of checks is 300 (5 minutes).
+A value of 300 loses some degree of granularity,
+but it is more reasonable as machines are likely to be put 
+in to a low power state after a few hours, rather than minutes.
+
+<P>
+A slot's readiness or willingness to enter a low power state is 
+determined by the <TT>HIBERNATE</TT> expression. 
+Because this expression is evaluated in the context of each slot,
+and not on the machine as a whole, 
+any one slot can veto a change of power state.  
+The <TT>HIBERNATE</TT> expression may reference a wide array of variables.
+Possibilities include the change in power state if 
+none of the slots are claimed, or if the slots are not in the
+Owner state.
+
+<P>
+Here is a concrete example.
+Assume that the <TT>START</TT> expression is not set to always be <TT>True</TT>.
+This permits an easy determination whether or not
+the machine is in an Unclaimed state through the use of
+an auxiliary macro called <TT>ShouldHibernate</TT>.
+
+<P>
+<PRE>
+TimeToWait 	= (2 * $(HOUR))
+ShouldHibernate = ( (KeyboardIdle &gt; $(StartIdleTime)) \
+                    &amp;&amp; $(CPUIdle) \
+                    &amp;&amp; ($(StateTimer) &gt; $(TimeToWait)) )
+</PRE>
+<P>
+This macro evaluates to <TT>True</TT> if the following are all <TT>True</TT>:
+
+<UL>
+<LI>The keyboard has been idle long enough.
+</LI>
+<LI>The CPU is idle.
+</LI>
+<LI>The slot has been Unclaimed for more than 2 hours.
+</LI>
+</UL>
+
+<P>
+The sample <TT>HIBERNATE</TT> expression 
+that enters the power state called <code>"RAM"</code>, if
+<TT>ShouldHibernate</TT> evaluates to <TT>True</TT>,
+and remains in its current state otherwise is
+
+<P>
+<PRE>
+HibernateState 	= "RAM"
+HIBERNATE = ifThenElse($(ShouldHibernate), $(HibernateState), "NONE" )
+</PRE>
+<P>
+If any slot returns <code>"NONE"</code>,
+that slot vetoes the decision to enter a low power state.
+Only when values returned by all slots are all non-zero 
+is there a decision to enter a low power state.
+If all agree to enter the low power state, but differ in which state to enter,
+then the largest magnitude value is chosen. 
+
+<P>
+
+<H2><A NAME="SECTION004162000000000000000"></A>
+<A NAME="36463"></A>
+<BR>
+3.16.2 Returning From a Low Power State
+</H2>
+
+<P>
+The Condor command line tool <I>condor_power</I> may wake a machine
+from a low power state by 
+sending a UDP Wake On LAN (WOL) packet.  See the <I>condor_power</I> manual page on
+page&nbsp;<A HREF="condor_power.html#man-condor-power"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+<A NAME="36514"></A>
+<A NAME="36515"></A>
+<A NAME="36469"></A>
+To automatically call <I>condor_power</I> under specific conditions,
+<I>condor_rooster</I> may be used.  The configuration options for
+<I>condor_rooster</I> are described in section&nbsp;<A HREF="3_3Configuration.html#sec:Config-rooster">3.3.35</A>.
+
+<P>
+
+<H2><A NAME="SECTION004163000000000000000">
+3.16.3 Keeping a ClassAd for a Hibernating Machine</A>
+</H2>
+
+<P>
+A pool's <I>condor_collector</I> daemon can be configured to keep a 
+persistent ClassAd entry for each machine, once it has entered hibernation.
+This is required by <I>condor_rooster</I> so that it can evaluate the
+<TT>UNHIBERNATE</TT> <A NAME="36555"></A> <A NAME="36556"></A> expression of the offline machines.
+
+<P>
+To do this, define a log file using the <TT>OFFLINE_LOG</TT> <A NAME="36560"></A> <A NAME="36561"></A>
+configuration variable.
+See section&nbsp;<A HREF="3_3Configuration.html#param:OfflineLog">3.3.10</A> on
+page&nbsp;<A HREF="3_3Configuration.html#param:OfflineLog"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for the definition.
+An optional expiration time for each ClassAd can
+be specified with <TT>OFFLINE_EXPIRE_ADS_AFTER</TT> <A NAME="36565"></A> <A NAME="36566"></A>.
+The timing begins from the time the hibernating machine's ClassAd enters
+the <I>condor_collector</I> daemon.
+See section&nbsp;<A HREF="3_3Configuration.html#param:OfflineExpireAdsAfter">3.3.10</A> on
+page&nbsp;<A HREF="3_3Configuration.html#param:OfflineExpireAdsAfter"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for the definition.
+
+<P>
+
+<H2><A NAME="SECTION004164000000000000000"></A>
+<A NAME="36486"></A>
+<BR>
+3.16.4 Linux Platform Details
+</H2>
+
+<P>
+Depending on the Linux distribution and version,
+there are three 
+methods for controlling a machine's power state.
+The methods:
+
+<OL>
+<LI><I>pm-utils</I> is a set of command line tools which can be used to
+  detect and switch power states.
+  In Condor, this is defined by the string <code>"pm-utils"</code>.
+</LI>
+<LI>The directory in the virtual file system <TT>/sys/power</TT> 
+  contains virtual files that can be used to detect and set the power states.
+  In Condor, this is defined by the string <code>"/sys"</code>.
+</LI>
+<LI>The directory in the virtual file system <TT>/proc/acpi</TT> 
+  contains virtual files that can be used to detect and set the power states.
+  In Condor, this is defined by the string <code>"/proc"</code>.
+</LI>
+</OL>
+
+<P>
+By default, the Condor attempts to detect the method
+to use in the order shown.  The first method detected as usable
+on the system is chosen.
+
+<P>
+This ordered detection may be bypassed,
+to use a specified method instead by setting the configuration
+variable <TT>LINUX_HIBERNATION_METHOD</TT> with
+one of the defined strings.
+This variable is defined in 
+section&nbsp;<A HREF="3_3Configuration.html#param:LinuxHibernationMethod">3.3.10</A> on
+page&nbsp;<A HREF="3_3Configuration.html#param:LinuxHibernationMethod"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+If no usable methods are detected or the method specified by
+<TT>LINUX_HIBERNATION_METHOD</TT> is either not detected or invalid,
+hibernation is disabled.
+
+<P>
+The details of this selection process, and the final method selected
+can be logged via enabling <TT>D_FULLDEBUG</TT> in the relevant
+subsystem's log configuration.
+
+<P>
+
+<H2><A NAME="SECTION004165000000000000000"></A>
+<A NAME="36498"></A>
+<BR>
+3.16.5 Windows Platform Details
+</H2>
+
+<P>
+If after a suitable amount of time,
+a Windows machine has not entered the expected power state,
+then Condor is having difficulty exercising the operating system's
+low power capabilities.  
+While the cause will be specific to the machine's hardware,
+it may also be due to improperly configured software.  
+For hardware difficulties,
+the likely culprit is the configuration within the machine's BIOS,
+for which Condor can offer little guidance.
+For operating system difficulties,
+the Vista <I>powercfg</I> tool can be used to discover the available 
+power states on the machine.
+The following command demonstrates how to
+list all of the supported power states of the machine:
+
+<P>
+<PRE>
+&gt; powercfg -A
+The following sleep states are available on this system: 
+Standby (S3) Hibernate Hybrid Sleep
+The following sleep states are not available on this system:
+Standby (S1)
+        The system firmware does not support this standby state.
+Standby (S2)
+        The system firmware does not support this standby state.
+</PRE>
+
+<P>
+Note that the <TT>HIBERNATE</TT> expression is written in terms of the 
+S<I>n</I> state, where <I>n</I> is the value evaluated from the expression.
+
+<P>
+This tool can also be used to enable and disable other sleep states.
+This example turns hibernation on.
+
+<P>
+<PRE>
+&gt; powercfg -h on
+</PRE>
+
+<P>
+If this tool is insufficient for configuring the machine in the manner required,
+the <I>Power Options</I> control panel application offers
+the full extent of the machine's power management abilities.
+Windows 2000 and XP lack the <I>powercfg</I> program,
+so all configuration must be done via the <I>Power Options</I>
+control panel application.
+
+<P>
+<A NAME="36508"></A>
+<A NAME="36509"></A>
+
+<P>
+<A NAME="36510"></A>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1449"
+  HREF="4_Miscellaneous_Concepts.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1443"
+  HREF="3_Administrators_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1439"
+  HREF="3_15Virtual_Machines.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1445"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1447"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1450"
+  HREF="4_Miscellaneous_Concepts.html">4. Miscellaneous Concepts</A>
+<B> Up:</B> <A NAME="tex2html1444"
+  HREF="3_Administrators_Manual.html">3. Administrators' Manual</A>
+<B> Previous:</B> <A NAME="tex2html1440"
+  HREF="3_15Virtual_Machines.html">3.15 Virtual Machines</A>
+ &nbsp; <B>  <A NAME="tex2html1446"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1448"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

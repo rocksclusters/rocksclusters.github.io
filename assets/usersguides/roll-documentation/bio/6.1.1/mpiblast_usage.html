@@ -1,0 +1,424 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>MPI-Blast</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE=" Bio Users Guide "
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Using"
+HREF="using.html"><LINK
+REL="PREVIOUS"
+TITLE="TIGR Assembler v2"
+HREF="tigr_usage.html"><LINK
+REL="NEXT"
+TITLE="GROMACS"
+HREF="gromacs_usage.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Bio</B
+> Users Guide: 	<DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/dna.png"></P
+></DIV
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="tigr_usage.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 3. Using</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="gromacs_usage.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="MPIBLAST_USAGE"
+>3.12. MPI-Blast</A
+></H1
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN361"
+>3.12.1. About</A
+></H2
+><P
+>MPI-Blast is a program from <A
+HREF="http://www.lanl.gov/"
+TARGET="_top"
+>LANL</A
+>
+which parallelizes the NCBI Blast algorithms using Message Passing Interface
+library. The version of MPI-Blast included with Rocks is v1.5.0-pio patched
+and compiled against NCBI Blast 2.2.19.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN365"
+>3.12.2. Usage</A
+></H2
+><P
+>MPI-Blast is used in a similar manner to NCBI-Blast. MPI-Blast uses the
+same variables that are available for NCBI-Blast.</P
+><P
+> There are 3 steps to running  MPI-Blast.</P
+><P
+></P
+><UL
+><LI
+><P
+>Download a FASTA database to $BLASTDB. For this example we
+will download the ecoli nucleotide database.</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>[nostromo@xxx ~]$ cd $BLASTDB
+[nostromo@xxx ~]$ wget ftp://ftp.ncbi.nlm.nih.gov/blast/db/FASTA/ecoli.nt.gz
+--17:06:23--  ftp://ftp.ncbi.nlm.nih.gov/blast/db/FASTA/ecoli.nt.gz
+           =&#62; `ecoli.nt.gz'
+Resolving ftp.ncbi.nlm.nih.gov... 165.112.7.10
+Connecting to ftp.ncbi.nlm.nih.gov|165.112.7.10|:21... connected.
+Logging in as anonymous ... Logged in!
+==&#62; SYST ... done.    ==&#62; PWD ... done.
+==&#62; TYPE I ... done.  ==&#62; CWD /blast/db/FASTA ... done.
+==&#62; PASV ... done.    ==&#62; RETR ecoli.nt.gz ... done.
+Length: 1,438,199 (1.4M) (unauthoritative)
+
+100%[========================================================&#62;] 1,438,199
+610.14K/s             
+
+17:06:27 (607.91 KB/s) - `ecoli.nt.gz' saved [1438199]</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>Format the database using mpiformatdb as follows. A good rule
+is to format the database to atleast 4 processors, as follows.</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>[nostromo@xxx ~]$ gunzip ecoli.nt.gz 
+[nostromo@xxx ~]$ ls
+ecoli.nt
+[nostromo@xxx ~]$ mpiformatdb --nfrags=4 -i ecoli.nt -pF --quiet
+Reading input file
+Done, read 58882 lines
+Reordering 400 sequence entries
+Breaking ecoli.nt into 4 fragments
+Executing: formatdb -p F -i /tmp/reorderncq8B1 -N 4 -n /home/nostromo/bio/ncbi/db/ecoli.nt -o T 
+Removed /tmp/reorderncq8B1
+Created 4 fragments.
+[nostromo@xxx ~]$ ls
+ecoli.nt          ecoli.nt.000.nsq  ecoli.nt.001.nsq  ecoli.nt.002.nsq  ecoli.nt.003.nsq
+ecoli.nt.000.nhr  ecoli.nt.001.nhr  ecoli.nt.002.nhr  ecoli.nt.003.nhr  ecoli.nt.mbf
+ecoli.nt.000.nin  ecoli.nt.001.nin  ecoli.nt.002.nin  ecoli.nt.003.nin  ecoli.nt.nal
+ecoli.nt.000.nnd  ecoli.nt.001.nnd  ecoli.nt.002.nnd  ecoli.nt.003.nnd  formatdb.log
+ecoli.nt.000.nni  ecoli.nt.001.nni  ecoli.nt.002.nni  ecoli.nt.003.nni
+ecoli.nt.000.nsd  ecoli.nt.001.nsd  ecoli.nt.002.nsd  ecoli.nt.003.nsd
+ecoli.nt.000.nsi  ecoli.nt.001.nsi  ecoli.nt.002.nsi  ecoli.nt.003.nsi</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>Now create a test sequence file and run mpiblast on the
+sequence against the formatted database.</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>[nostromo@xxx ~]$ cat &#62; test.txt
+&#62;Test
+AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC
+TTCTGAACTGGTTACCTGCCGTGAGTAAATTAAAATTTTATTGACTTAGGTCACTAAATACTTTAACCAA
+TATAGGCATAGCGCACAGACAGATAAAAATTACAGAGTACACAACATCCATGAAACGCATTAGCACCACC
+ATTACCACCACCATCACCATTACCACAGGTAACGGTGCGGGCTGACGCGTACAGGAAACACAGAAAAAAG
+CCCGCACCTGACAGTGCGGGCTTTTTTTTTCGACCAAAGGTAACGAGGTAACAACCATGCGAGTGTTGAA
+GTTCGGCGGTACATCAGTGGCAAATGCAGAACGTTTTCTGCGTGTTGCCGATATTCTGGAAAGCAATGCC
+AGGCAGGGGCAGGTGGCCACCGTCCTCTCTGCCCCCGCCAAAATCACCAACCACCTGGTGGCGATGATTG
+AAAAAACCATTAGCGGCCAGGATGCTTTACCCAATATCAGCGATGCCGAACGTATTTTTGCCGAACTTTT
+
+[nostromo@xxx mpiblast]$ /opt/openmpi/bin/mpirun -np 4 /opt/bio/mpiblast/bin/mpiblast -d ecoli.nt -i $HOME/test.txt -p blastn -o $HOME/result.txt</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>After mpirun terminates, result.txt contains the result of your computation.</P
+></LI
+></UL
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN380"
+>3.12.3. Running MPI Blast and SGE</A
+></H2
+><P
+> This section gives a brief overview of running MPI Blast with SGE</P
+><P
+></P
+><UL
+><LI
+><P
+>Create a simple SGE submission scripts called mpiblast_sge.sh with the following contents
+<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>#!/bin/bash
+
+#$ -cwd
+#$ -j y
+#$ -S /bin/bash
+
+export MPI_DIR=/opt/openmpi/
+export BLASTDB=$HOME/bio/ncbi/db/
+export BLASTMAT=/opt/bio/ncbi/data/
+
+$MPI_DIR/bin/mpirun -np $NSLOTS \
+	/opt/bio/mpiblast/bin/mpiblast \
+	-d ecoli.nt -i $HOME/test.txt \
+	-p blastn -o $HOME/result.txt</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+></LI
+><LI
+><P
+>Run
+<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>[nostromo@xxx ~]$ qsub -pe orte 4 mpiblast_sge.sh 
+Your job 11 ("mpiblast_sge.sh") has been submitted</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+></LI
+><LI
+><P
+>The results of your computation will be present in 
+$HOME/result.txt</P
+></LI
+></UL
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/note.png"
+HSPACE="5"
+ALT="Note"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>Please note that an MPI blast job requires atleast 3 processors to run. The argument
+for mpirun specifying the number of processors should be factor of the number of pieces the
+blast database was divided into. If you're running on a cluster with 2 processors, SGE, by default,
+will not schedule a job which requires more than 2 slots to run.</P
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN394"
+>3.12.4. Further Information</A
+></H2
+><P
+>Further information about using mpiblast can be found at <A
+HREF="http://mpiblast.lanl.gov/"
+TARGET="_top"
+>the MPI-Blast home page</A
+>.</P
+><P
+>For support, please join the <A
+HREF="http://mpiblast.lanl.gov/Support.Lists.html"
+TARGET="_top"
+>mpiblast mailing
+list</A
+></P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="tigr_usage.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="gromacs_usage.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>TIGR Assembler v2</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="using.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>GROMACS</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

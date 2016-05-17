@@ -1,0 +1,253 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+> Configuring an I/O Server </TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE=" PVFS2 Roll: Users Guide "
+HREF="index.html"><LINK
+REL="UP"
+TITLE=" Configuring your PVFS2 Installation "
+HREF="configuring.html"><LINK
+REL="PREVIOUS"
+TITLE=" Configuring a Metadata Server "
+HREF="configuring-metatdata.html"><LINK
+REL="NEXT"
+TITLE=" Configuring Client Nodes "
+HREF="configuring-nodes.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>PVFS2 Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/roll.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="configuring-metatdata.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 3. Configuring your PVFS2 Installation</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="configuring-nodes.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="CONFIGURING-IO"
+>3.2. Configuring an I/O Server</A
+></H1
+><P
+>After you install PVFS2 on your frontend, you need to specify at least
+one PVFS2 I/O Node.
+A PVFS2 I/O Node holds data blocks for PVFS2.</P
+><P
+>To make one of the nodes in your cluster a 
+PVFS2 I/O Node, you'll need to run
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>insert-ethers</SAMP
+> and select
+<EM
+>PVFS2 I/O Node</EM
+>.</P
+><P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/insert-ethers-io.png"></P
+></DIV
+>&#13;</P
+><P
+>Then PXE boot the node you wish to be a PVFS2 I/O Node (you can also
+boot the node with the Rocks Boot CD).</P
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="CONFIGURING-IO-HYBRID"
+>3.2.1. Configuring a Hybrid I/O Server</A
+></H2
+><P
+>You can also specify a <EM
+>hybrid</EM
+> node that will be
+configured as a PVFS2 I/O Node <EM
+>and</EM
+> a Compute Node.
+Nodes that are in this configuration will serve PVFS2 blocks as well as
+have user jobs scheduled on them (e.g., SGE or PBS will schedule jobs
+on this node).</P
+><DIV
+CLASS="WARNING"
+><P
+></P
+><TABLE
+CLASS="WARNING"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/warning.png"
+HSPACE="5"
+ALT="Warning"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>Installing <EM
+>hybrid</EM
+> nodes is highly discouraged.</P
+><P
+>This is because user jobs will be scheduled on hybrid nodes
+and user jobs have been known to crash nodes.
+When a PVFS2 I/O Node crashes, the entire PVFS2 file system will be offline.</P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>To make one of the nodes in your cluster a hybrid node, you must first
+install a compute node in the standard way, then, assuming the compute
+node you want to convert into a hybrid node is named
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>compute-0-0</SAMP
+>, execute:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks set host attr compute-0-0 pvfs_io true</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Then, reinstall the compute node.</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="configuring-metatdata.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="configuring-nodes.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Configuring a Metadata Server</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="configuring.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Configuring Client Nodes</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

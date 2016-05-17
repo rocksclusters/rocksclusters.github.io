@@ -1,0 +1,304 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>The insert-ethers command line</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE=" Customizing your Rocks Installation "
+HREF="customization.html"><LINK
+REL="PREVIOUS"
+TITLE="Changing the Root password"
+HREF="customization-passwd.html"><LINK
+REL="NEXT"
+TITLE=" Community Resources "
+HREF="community-resources.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Base</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="customization-passwd.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 5. Customizing your Rocks Installation</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="community-resources.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="INSERT-ETHERS"
+>5.13. The insert-ethers command line</A
+></H1
+><P
+>This section describes the various command line argument accepted by 
+insert-ethers which can be used to customize hostname, IPs 
+address and other parameters of the discovered node during installation.</P
+><P
+></P
+><UL
+><LI
+><P
+>insert-ethers</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>&#13;Insert Ethernet Addresses - 
+Usage: insert-ethers [-hv] [-p password] [-u host] [-d database] [--help]
+ [--list-rcfiles] [--list-project-info] [--verbose] [--update] [--staticip]
+ [--rcfile arg] [--host host] [--password password] [--db database]
+ [--user host] [--baseip ip address] [--basename basename] [--hostname hostname]
+ [--ipaddr ip address] [--cabinet number] [--rack number] [--inc number]
+ [--rank number] [--replace hostname] [--remove hostname]
+ [--membership membership] [--os the OS to install on the machines]&#13;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>  <EM
+>[-p password] [-u host] [-d database]</EM
+>: they are used to change the hostname the 
+password and the name of the backend database used by insert-ether and Rocks.
+Users should not use this arguments.</P
+></LI
+><LI
+><P
+><EM
+>[--list-rcfiles]</EM
+>: it lists the RC file used by insert-ethers (RC file are internal 
+configuration file used by Rocks)</P
+></LI
+><LI
+><P
+><EM
+>[--list-project-info]</EM
+> it returns the Rocks version and the Roll this command belongs to</P
+></LI
+><LI
+><P
+><EM
+> [--baseip ip address] </EM
+> the IP address that will be used for the first node, when 
+installing multiple nodes insert-ethers start from this IP address and then it uses --inc to get the 
+following IP addresses. Default is the highest IP address available in the private network.
+If the private network is 10.1.0.0 (with netmask 255.255.0.0) it will start from 10.1.255.255.</P
+></LI
+><LI
+><P
+> 
+<EM
+> [--inc number]</EM
+> the increment value to use when determining the following IP address
+during the installation of multimple nodes. Default to -1. So if the start IP address is 10.1.255.255 
+the following IP address will be 10.1.255.254, 10.1.255.253, 10.1.255.252, and so on.</P
+></LI
+><LI
+><P
+><EM
+> [--basename basename] </EM
+> this is the first part of the 
+final hostname of the hosts that will be installed. The final hostname 
+will be in the form of &#60;basename&#62;-&#60;rack&#62;-&#60;rank&#62; where 
+rack and rank are two counter internally calculated by rocks.</P
+></LI
+><LI
+><P
+><EM
+> [--cabinet number] [--rack number]</EM
+>  this two options 
+are equivalent. They can be used to increment the 'rack' part  of the final
+hostname (hostname are in the form of &#60;basename&#62;-&#60;rack&#62;-&#60;rank&#62;). 
+insert-ethers --cabinet 2 selecting compute node will install 
+nodes with the hostname equal to: node-2-0, node-2-1, node-2-2, etc.</P
+></LI
+><LI
+><P
+><EM
+>  [--rank number] </EM
+> this can be used to set the rank 
+part of the hostname of the installed node(). This number default to 0 at the 
+first installed node and then it is automatically incremented by Rocks, but if 
+the user wants to skip some number or wants to start from a number different 
+from 0, it can use this option.</P
+></LI
+><LI
+><P
+><EM
+> [--hostname hostname]</EM
+> this is the full hostname that will be
+assigned to the first host you will install with insert-ethers. If you specify 
+this option insert-ethers will install only one host.</P
+></LI
+><LI
+><P
+><EM
+> [--ipaddr ip address]</EM
+> it specifies the IP address that will be 
+assigned to the first installed host. If you specify this option insert-ethers 
+will install only one host.</P
+></LI
+><LI
+><P
+><EM
+> [--replace hostname] </EM
+> it deletes hostname from the Rocks 
+database and install 1 new discovered host with the same rack and rank of the deleted
+host. This command will install only one host.
+return.</P
+></LI
+><LI
+><P
+><EM
+> [--remove hostname] </EM
+> it removes hostname from the rocks database
+this command is equivalent to 'rocks remove host hostname'. This command will not 
+start the GUI, it will simply delete the hostname and return.</P
+></LI
+><LI
+><P
+><EM
+> [--membership membership] </EM
+> You can specify the membership name 
+and skip the first promt screen.</P
+></LI
+><LI
+><P
+><EM
+> [--os the OS to install on the machines] </EM
+> it specifies the OS 
+to install on the new discovered host. Default is linux.</P
+></LI
+></UL
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="customization-passwd.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="community-resources.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Changing the Root password</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="customization.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Community Resources</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

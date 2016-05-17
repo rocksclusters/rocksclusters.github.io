@@ -1,0 +1,216 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>filelock_undertaker</TITLE>
+<META NAME="description" CONTENT="filelock_undertaker">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="install_release.html">
+<LINK REL="previous" HREF="filelock_midwife.html">
+<LINK REL="up" HREF="9_Command_Reference.html">
+<LINK REL="next" HREF="install_release.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html3925"
+  HREF="install_release.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3919"
+  HREF="9_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3913"
+  HREF="filelock_midwife.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3921"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3923"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3926"
+  HREF="install_release.html">install_release</A>
+<B> Up:</B> <A NAME="tex2html3920"
+  HREF="9_Command_Reference.html">9. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3914"
+  HREF="filelock_midwife.html">filelock_midwife</A>
+ &nbsp; <B>  <A NAME="tex2html3922"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3924"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html3927"
+  HREF="filelock_undertaker.html#SECTION0010541000000000000000">Synopsis</A>
+<LI><A NAME="tex2html3928"
+  HREF="filelock_undertaker.html#SECTION0010542000000000000000">Description</A>
+<LI><A NAME="tex2html3929"
+  HREF="filelock_undertaker.html#SECTION0010543000000000000000">Options</A>
+<LI><A NAME="tex2html3930"
+  HREF="filelock_undertaker.html#SECTION0010544000000000000000">Exit Status</A>
+<LI><A NAME="tex2html3931"
+  HREF="filelock_undertaker.html#SECTION0010545000000000000000">See Also</A>
+<LI><A NAME="tex2html3932"
+  HREF="filelock_undertaker.html#SECTION0010546000000000000000">Author</A>
+<LI><A NAME="tex2html3933"
+  HREF="filelock_undertaker.html#SECTION0010547000000000000000">Copyright</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION0010540000000000000000"></A><A NAME="man-filelock-undertaker"></A>
+<BR>
+<I>filelock_undertaker</I>
+</H1> determine whether a process has exited
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION0010541000000000000000">
+Synopsis</A>
+</H2><B><I>filelock_undertaker</I></B>
+<B>-help</B>
+
+<P>
+<B><I>filelock_undertaker</I></B>
+[<B>-file  </B><I>filename</I>]
+[<B>-block</B>]
+
+<P>
+<A NAME="78592"></A>
+<A NAME="78593"></A>
+
+<P>
+
+<H2><A NAME="SECTION0010542000000000000000">
+Description</A>
+</H2>
+<I>filelock_undertaker</I> can examine an artifact file created by
+<I>filelock_midwife</I> and determine whether the program started by
+the <I>midwife</I> has exited.  It does this by attempting to acquire
+a file lock.
+
+<P>
+Be warned that this will not work on NFS unless the separate
+file lock server is running.
+
+<P>
+
+<H2><A NAME="SECTION0010543000000000000000">
+Options</A>
+</H2>
+  
+<P>
+  <DL>
+<DT><STRONG><B>-block</B></STRONG></DT>
+<DD>If the process has not exited, block until it does.
+  
+<BR>  
+</DD>
+<DT><STRONG><B>-file </B><I>filename</I></STRONG></DT>
+<DD>The name of the artifact file.
+    created by <I>filelock_midwife</I>.
+    The file <TT>lock.file</TT> is the default file used when
+    this option is not specified.
+  
+<BR>  
+</DD>
+</DL>
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION0010544000000000000000">
+Exit Status</A>
+</H2>
+<I>filelock_undertaker</I> will exit with a status of 0 (zero) if the
+monitored process has exited, with a status of 1 (one) if the
+monitored process has definitely not exited, with a status of 2 if it
+is uncertain whether the process has exited (this is generally due to
+a failure by the <I>filelock_midwife</I>), or with any other value
+for program failure.
+
+<P>
+
+<H2><A NAME="SECTION0010545000000000000000">
+See Also</A>
+</H2>
+<I>uniq_pid_undertaker</I> (on page&nbsp;<A HREF="uniq_pid_undertaker.html#man-uniq-pid-undertaker"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>),
+<I>filelock_midwife</I> (on page&nbsp;<A HREF="filelock_midwife.html#man-filelock-midwife"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>).
+
+<P>
+
+<H2><A NAME="SECTION0010546000000000000000">
+Author</A>
+</H2> Condor Team, University of Wisconsin-Madison
+  
+<H2><A NAME="SECTION0010547000000000000000">
+Copyright</A>
+</H2> 
+  Copyright &#169; 1990-2010 Condor Team, Computer Sciences Department, 
+  University of Wisconsin-Madison, Madison, WI.  All Rights Reserved.  
+	Licensed under the Apache License, Version 2.0.
+
+<P>
+See the <I>Condor Version 7.4.4 Manual</I> or
+	<A NAME="tex2html162"
+  HREF="http://www.condorproject.org/license">http://www.condorproject.org/license</A>
+for
+  additional notices. 
+
+
+  <HR>
+<!--Navigation Panel-->
+<A NAME="tex2html3925"
+  HREF="install_release.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3919"
+  HREF="9_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3913"
+  HREF="filelock_midwife.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3921"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3923"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3926"
+  HREF="install_release.html">install_release</A>
+<B> Up:</B> <A NAME="tex2html3920"
+  HREF="9_Command_Reference.html">9. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3914"
+  HREF="filelock_midwife.html">filelock_midwife</A>
+ &nbsp; <B>  <A NAME="tex2html3922"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3924"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

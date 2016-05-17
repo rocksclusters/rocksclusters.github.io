@@ -1,0 +1,615 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<link rel="canonical" href="http://research.cs.wisc.edu/htcondor/manual/current/condor_configure.html">
+
+<TITLE>condor_configure</TITLE>
+<META NAME="description" CONTENT="condor_configure">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="condor_continue.html">
+<LINK REL="previous" HREF="condor_config_val.html">
+<LINK REL="up" HREF="11_Command_Reference.html">
+<LINK REL="next" HREF="condor_continue.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html3443"
+  HREF="condor_continue.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3437"
+  HREF="11_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3431"
+  HREF="condor_config_val.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3439"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3441"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3444"
+  HREF="condor_continue.html">condor_continue</A>
+<B> Up:</B> <A NAME="tex2html3438"
+  HREF="11_Command_Reference.html">11. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3432"
+  HREF="condor_config_val.html">condor_config_val</A>
+ &nbsp; <B>  <A NAME="tex2html3440"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3442"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html3445"
+  HREF="condor_configure.html#SECTION0012151000000000000000">Synopsis</A>
+<LI><A NAME="tex2html3446"
+  HREF="condor_configure.html#SECTION0012152000000000000000">Description</A>
+<LI><A NAME="tex2html3447"
+  HREF="condor_configure.html#SECTION0012153000000000000000">Options</A>
+<LI><A NAME="tex2html3448"
+  HREF="condor_configure.html#SECTION0012154000000000000000">Exit Status</A>
+<LI><A NAME="tex2html3449"
+  HREF="condor_configure.html#SECTION0012155000000000000000">Examples</A>
+<LI><A NAME="tex2html3450"
+  HREF="condor_configure.html#SECTION0012156000000000000000">Author</A>
+<LI><A NAME="tex2html3451"
+  HREF="condor_configure.html#SECTION0012157000000000000000">Copyright</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION0012150000000000000000"></A><A NAME="man-condor-configure"></A>
+<BR>
+<I>condor_configure</I>
+</H1> Configure or install HTCondor
+  
+<P>
+
+<P>
+<A NAME="67965"></A>
+<A NAME="67966"></A>
+<A NAME="67967"></A>
+<A NAME="67968"></A>
+
+<P>
+
+<H2><A NAME="SECTION0012151000000000000000">
+Synopsis</A>
+</H2><B><I>condor_configure</I> or <I>condor_install</I></B>
+[<code>--</code><B>help</B>]
+[<code>--</code><B>usage</B>]
+
+<P>
+<B><I>condor_configure</I></B> or <B><I>condor_install</I></B>
+[<code>--</code><B>install[=<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">path/to/release<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$">] </B>]
+[<code>--</code><B>install-dir=<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">path<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></B>]
+[<code>--</code><B>prefix=<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">path<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></B>]
+[<code>--</code><B>local-dir=<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">path<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></B>]
+[<code>--</code><B>make-personal-condor</B>]
+[<code>--</code><B>bosco</B>]
+[<code>--</code><B>type = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$"> submit, execute, manager <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></B>]
+[<code>--</code><B>central-manager = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$"> hostname<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></B>]
+[<code>--</code><B>owner = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$"> ownername <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></B>]
+[<code>--</code><B>maybe-daemon-owner</B>]
+[<code>--</code><B>install-log = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$"> file <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></B>]
+[<code>--</code><B>overwrite</B>]
+[<code>--</code><B>ignore-missing-libs</B>]
+[<code>--</code><B>force</B>]
+[<code>--</code><B>no-env-scripts</B>]
+[<code>--</code><B>env-scripts-dir = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$"> directory <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></B>]
+[<code>--</code><B>backup</B>]
+[<code>--</code><B>credd</B>]
+[<code>--</code><B>verbose</B>]
+
+<P>
+
+<H2><A NAME="SECTION0012152000000000000000">
+Description</A>
+</H2>
+
+<P>
+<I>condor_configure</I> and <I>condor_install</I> refer to a single script that installs
+and/or configures HTCondor on Unix machines.  As the names imply,
+<I>condor_install</I> is intended to perform a HTCondor installation, and
+<I>condor_configure</I> is intended to configure (or reconfigure) an
+existing installation.
+Both will run with Perl 5.6.0 or more recent versions.
+
+<P>
+<I>condor_configure</I> (and <I>condor_install</I>) are designed to be run more
+than one time where required.
+It can install HTCondor when invoked with a correct configuration via
+<PRE>
+condor_install
+</PRE>
+or 
+<PRE>
+condor_configure --install
+</PRE>
+or, it can change the configuration files when invoked via
+<PRE>
+condor_configure
+</PRE>
+Note that changes in the configuration files do not result
+in changes while HTCondor is running.
+To effect changes while HTCondor is running,
+it is necessary to further use the <I>condor_reconfig</I> or <I>condor_restart</I>
+command.
+<I>condor_reconfig</I>  is required where the currently executing
+daemons need to be informed of configuration changes.
+<I>condor_restart</I> is required where the options
+<code>--</code><B>make-personal-condor</B> or
+<code>--</code><B>type</B>
+are used, since these affect which daemons are running.
+
+<P>
+Running <I>condor_configure</I> or <I>condor_install</I> with no options results
+in a usage screen being printed.
+The <code>--</code><B>help</B> option can be used to display a full help screen.
+
+<P>
+Within the options given below, 
+the phrase <I>release directories</I> is the list of directories that are
+released with HTCondor.  This list includes: 
+<TT>bin</TT>, <TT>etc</TT>, <TT>examples</TT>, <TT>include</TT>,
+<TT>lib</TT>, <TT>libexec</TT>, <TT>man</TT>, <TT>sbin</TT>,
+<TT>sql</TT> and <TT>src</TT>.
+
+<P>
+
+<H2><A NAME="SECTION0012153000000000000000">
+Options</A>
+</H2>
+  
+<P>
+  <DL>
+<DT><STRONG><B>--help</B></STRONG></DT>
+<DD>Print help screen and exit
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>--usage</B></STRONG></DT>
+<DD>Print short usage and exit
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>--install[=<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">path/to/release<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$">]</B></STRONG></DT>
+<DD>Perform installation, 
+    assuming that
+    the current working directory contains the release directory,
+    if the optional <TT>=&lt;path/to/release&gt;</TT> is not specified.
+    Without further options, the configuration is that of
+    a Personal HTCondor, a complete one-machine pool.
+    If used as an 
+    upgrade within an existing installation directory, existing 
+    configuration files and local directory are preserved.  This
+    is the default behavior of <I>condor_install</I>. 
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>--install-dir=<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">path<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></B></STRONG></DT>
+<DD>Specifies the path
+    where HTCondor should be installed or the path where it already is
+    installed. The default is the current working directory.
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>--prefix=<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">path<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></B></STRONG></DT>
+<DD>This is an alias for
+    <B>-install-dir</B>.
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>--local-dir=<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">path<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></B></STRONG></DT>
+<DD>Specifies the
+    location of the local directory, which is the directory that generally 
+    contains the local (machine-specific) configuration file as well as the
+    directories where HTCondor daemons write their run-time information 
+    (<TT>spool</TT>, <TT>log</TT>, <TT>execute</TT>).
+    This location is indicated  by the <TT>LOCAL_DIR</TT> 
+    variable in the configuration file. 
+    When installing (that is, if <B>-install</B> is specified),
+    <I>condor_configure</I> 
+    will properly create the local directory in the location specified.
+    If none is specified, the default value is given by the evaluation of
+    <TT>$(RELEASE_DIR)/local.$(HOSTNAME)</TT>.
+
+<P>
+During subsequent invocations of <I>condor_configure</I>
+    (that is, without the --install option),
+    if the --local-dir option is specified, the new directory
+    will be created and the <TT>log</TT>, <TT>spool</TT> and <TT>execute</TT> 
+    directories will be moved there from their current location.
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>--make-personal-condor</B></STRONG></DT>
+<DD>Installs and configures for 
+     Personal HTCondor, a fully-functional, one-machine pool.
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>--bosco</B></STRONG></DT>
+<DD>Installs and configures Bosco, a personal
+     HTCondor that submits jobs to remote batch systems.
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>--type= <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$"> submit, execute, manager <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></B></STRONG></DT>
+<DD>One
+    or more of the types may be listed.
+    This determines the roles that a machine may play in a pool.
+    In general, any machine can be a submit and/or execute machine,
+    and there is one central manager per pool.
+    In the case of a Personal HTCondor,
+    the machine fulfills all three of these roles.
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>--central-manager=<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">hostname<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></B></STRONG></DT>
+<DD>Instructs
+    the current HTCondor installation to use the specified machine
+    as the central manager. 
+    This modifies the configuration variable <TT>COLLECTOR_HOST</TT>
+    to point to the given host name.
+    The central manager machine's HTCondor configuration needs
+    to be independently configured to 
+    act as a manager using the option <B>-type=manager</B>. 
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>--owner=<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">ownername<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></B></STRONG></DT>
+<DD>Set configuration
+    such that HTCondor daemons will be executed as the given owner.
+    This modifies the 
+    ownership on the <TT>log</TT>, <TT>spool</TT> and <TT>execute</TT>
+    directories and sets the <TT>CONDOR_IDS</TT> value
+    in the configuration file,
+    to ensure that HTCondor daemons start up as the specified effective user.
+    The section on security within the HTCondor manual discusses
+    UIDs in HTCondor.
+    This is only applicable when <I>condor_configure</I> is run by root.
+    If not run as root, the owner is the user running
+    the <I>condor_configure</I> command.  
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>--maybe-daemon-owner</B></STRONG></DT>
+<DD>If <B>-owner</B> is not specified and
+    no appropriate user can be found to run Condor, then this option
+    will allow the daemon user to be selected. This option is rarely
+    needed by users but can be useful for scripts that invoke
+    condor_configure to install Condor.
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>--install-log=<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">file<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></B></STRONG></DT>
+<DD>Save information about the
+    installation in the specified file. This is normally only needed
+    when condor_configure is called by a higher-level script, not when
+    invoked by a person.
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>--overwrite</B></STRONG></DT>
+<DD>Always overwrite the contents of the <TT>sbin</TT> directory in
+    the installation directory.  By default, <I>condor_install</I>
+    will not install if it finds an existing <TT>sbin</TT> directory
+    with HTCondor programs in it.  In this case, <I>condor_install</I>
+    will exit with an error message.  Specify
+    <B>-overwrite</B> or <B>-backup</B> to tell <I>condor_install</I>
+    what to do.
+
+<P>
+This prevents <I>condor_install</I> from moving an <TT>sbin</TT>
+    directory out of the way that it should not move.  This is
+    particularly useful when trying to install HTCondor in a
+    location used by other things (<TT>/usr</TT>, <TT>/usr/local</TT>, etc.)
+    For example: <I>condor_install</I> <B>-prefix=/usr</B>
+         will not move
+    <TT>/usr/sbin</TT> out of the way unless you specify the
+    <B>-backup</B> option.
+
+<P>
+The <B>-backup</B> behavior is used to
+    prevent <I>condor_install</I> from overwriting running daemons -
+    Unix semantics will keep the existing binaries running, even
+    if they have been moved to a new directory.
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>--backup</B></STRONG></DT>
+<DD>Always backup the <TT>sbin</TT> directory in the installation
+    directory.  By default, <I>condor_install</I> will not install if
+    it finds an existing <TT>sbin</TT> directory with HTCondor programs
+    in it.  In this case, <I>condor_install</I> with exit with an
+    error message.  You must specify <B>-overwrite</B> or
+    <B>-backup</B> to tell <I>condor_install</I> what to do.
+
+<P>
+This prevents <I>condor_install</I> from moving an <TT>sbin</TT>
+    directory out of the way that it should not move.  This is
+    particularly useful if you're trying to install HTCondor in a
+    location used by other things (<TT>/usr</TT>, <TT>/usr/local</TT>, etc.)
+    For example: <I>condor_install</I> <B>-prefix=/usr</B>
+         will not move
+    <TT>/usr/sbin</TT> out of the way unless you specify the
+    <B>-backup</B> option.
+
+<P>
+The <B>-backup</B> behavior is used to
+    prevent <I>condor_install</I> from overwriting running daemons -
+    Unix semantics will keep the existing binaries running, even
+    if they have been moved to a new directory.
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>--ignore-missing-libs</B></STRONG></DT>
+<DD>Ignore missing shared libraries that are detected by
+    <I>condor_install</I>.  By default, <I>condor_install</I> will detect
+    missing shared libraries such as <TT>libstdc++.so.5</TT> on
+    Linux; it will print messages and exit if missing libraries
+    are detected.  The <B>--ignore-missing-libs</B> will cause
+    <I>condor_install</I> to not exit, and to proceed with the
+    installation if missing libraries are detected.  
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>--force</B></STRONG></DT>
+<DD>This is equivalent to enabling both the <B>--overwrite</B> and
+    <B>--ignore-missing-libs</B> command line options.  
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>--no-env-scripts</B></STRONG></DT>
+<DD>By default, <I>condor_configure</I> writes simple sh and csh
+    shell scripts which can be sourced by their respective
+    shells to set the user's <TT>PATH</TT> and <TT>CONDOR_CONFIG</TT>
+    environment
+    variables.  This option prevents <I>condor_configure</I> from
+    generating these scripts.  
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>--env-scripts-dir=<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">directory<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></B></STRONG></DT>
+<DD>By default, the simple <I>sh</I> and <I>csh</I> shell scripts (see
+    <B>--no-env-scripts</B> for details) are created in 
+    the root directory of the HTCondor installation.  This option
+    causes <I>condor_configure</I> to generate these scripts in the
+    specified directory.  
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>--credd</B></STRONG></DT>
+<DD>Configure the
+    the <I>condor_credd</I> daemon (credential manager daemon).
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>--verbose</B></STRONG></DT>
+<DD>Print information about changes
+    to configuration variables as they occur.
+<BR>  
+</DD>
+</DL>
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION0012154000000000000000">
+Exit Status</A>
+</H2>
+
+<P>
+<I>condor_configure</I> will exit with a status value of 0 (zero) upon success,
+and it will exit with a nonzero value upon failure.
+
+<P>
+
+<H2><A NAME="SECTION0012155000000000000000">
+Examples</A>
+</H2>
+Install HTCondor on the machine (machine1@cs.wisc.edu)
+to be the pool's central manager.
+On machine1,
+within the directory that contains the unzipped HTCondor
+distribution directories:
+<PRE>
+% condor_install --type=submit,execute,manager
+</PRE>This will allow the machine to submit and execute HTCondor jobs, 
+in addition to being the central manager of the pool.
+
+<P>
+To change the configuration such that
+machine2@cs.wisc.edu is an execute-only machine
+(that is, a dedicated computing node)
+within a pool with central manager on machine1@cs.wisc.edu,
+issue the command on that machine2@cs.wisc.edu
+from within the directory where HTCondor is installed:
+<PRE>
+% condor_configure --central-manager=machine1@cs.wisc.edu --type=execute
+</PRE>
+<P>
+To change the location of the <TT>LOCAL_DIR</TT> directory
+in the configuration file, do (from the directory where HTCondor is installed):
+<PRE>
+% condor_configure --local-dir=/path/to/new/local/directory
+</PRE>This will move the <TT>log</TT>,<TT>spool</TT>,<TT>execute</TT> directories
+to <TT>/path/to/new/local/directory</TT> from the current local directory.
+
+<P>
+
+<H2><A NAME="SECTION0012156000000000000000">
+Author</A>
+</H2> Center for High Throughput Computing, University of Wisconsin-Madison
+  
+<H2><A NAME="SECTION0012157000000000000000">
+Copyright</A>
+</H2> 
+  Copyright &#169; 1990-2015 Center for High Throughput Computing, 
+  Computer Sciences Department, 
+  University of Wisconsin-Madison, Madison, WI.  All Rights Reserved.  
+	Licensed under the Apache License, Version 2.0.  
+
+  <HR>
+<!--Navigation Panel-->
+<A NAME="tex2html3443"
+  HREF="condor_continue.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3437"
+  HREF="11_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3431"
+  HREF="condor_config_val.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3439"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3441"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3444"
+  HREF="condor_continue.html">condor_continue</A>
+<B> Up:</B> <A NAME="tex2html3438"
+  HREF="11_Command_Reference.html">11. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3432"
+  HREF="condor_config_val.html">condor_config_val</A>
+ &nbsp; <B>  <A NAME="tex2html3440"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3442"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

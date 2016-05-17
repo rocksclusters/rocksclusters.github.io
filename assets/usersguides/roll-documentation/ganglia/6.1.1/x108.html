@@ -1,0 +1,306 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Customizing the Ganglia Web interface</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Ganglia Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Customizing the Ganglia Roll"
+HREF="customizing.html"><LINK
+REL="PREVIOUS"
+TITLE="Customizing the Ganglia Roll"
+HREF="customizing.html"><LINK
+REL="NEXT"
+TITLE="Monitoring Multiple Clusters with Ganglia"
+HREF="x138.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Ganglia</B
+> Users Guide</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="customizing.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 4. Customizing the Ganglia Roll</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x138.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="AEN108"
+>4.1. Customizing the Ganglia Web interface</A
+></H1
+><P
+>The Ganglia Web interface
+(at <TT
+CLASS="LITERAL"
+>http://</TT
+><CODE
+CLASS="VARNAME"
+>YOUR_FRONTEND_NAME</CODE
+><TT
+CLASS="LITERAL"
+>/ganglia/</TT
+>)
+allows extensive customization.  This is done by modifying the
+file <TT
+CLASS="FILENAME"
+>/var/www/html/ganglia/conf.php</TT
+> on your
+frontend.  The default configuration file contains:</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>&#60;?php
+
+$conf['rrdtool'] = "/opt/rocks/bin/rrdtool";
+
+?&#62;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><P
+>If you would like to change the font used in the various graphs, for
+example, use something like the following instead of
+the <TT
+CLASS="LITERAL"
+>$conf['rrdtool']</TT
+> line above; "Sans" is the font to
+use:</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>$conf['rrdtool'] = "env RRD_DEFAULT_FONT='Sans' /opt/rocks/bin/rrdtool";</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><P
+>You can also set the default metric and prevent certain graphs from
+appearing; simply add something like the following to somewhere between
+the <TT
+CLASS="LITERAL"
+>&#60;?php</TT
+> and <TT
+CLASS="LITERAL"
+>?&#62;</TT
+> lines:</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>$conf['show_stacked_graphs'] = 0;
+$conf['default_metric'] = 'cpu_report';</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><P
+>You can also override the installation defaults supplied in the
+file <TT
+CLASS="FILENAME"
+>/var/www/html/ganglia/conf_default.php</TT
+>.  For
+example, if you would like to modify the list of time ranges available,
+you could add something like the following
+to <TT
+CLASS="FILENAME"
+>conf.php</TT
+>:</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>$conf['time_ranges'] = array(
+   '15min' =&#62; 900,
+   'hour'  =&#62; 3600,
+   '2hr'   =&#62; 7200,
+   '4hr'   =&#62; 14400,
+   'day'   =&#62; 86400,
+   '3day'  =&#62; 259200,
+   'week'  =&#62; 604800,
+   'month' =&#62; 2419200,
+   'year'  =&#62; 31449600
+);</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><P
+>Note that you should <EM
+>not</EM
+>
+modify <TT
+CLASS="FILENAME"
+>conf_default.php</TT
+> directly!</P
+><P
+>For further ideas on customizing <TT
+CLASS="FILENAME"
+>conf.php</TT
+>, please
+read the default configuration
+file <TT
+CLASS="FILENAME"
+>/var/www/html/ganglia/conf_default.php</TT
+>.  You
+should also see
+the <A
+HREF="http://sourceforge.net/apps/trac/ganglia/wiki/ganglia-web-2"
+TARGET="_top"
+>Ganglia
+Web 2 homepage</A
+>.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="customizing.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x138.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Customizing the Ganglia Roll</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="customizing.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Monitoring Multiple Clusters with Ganglia</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

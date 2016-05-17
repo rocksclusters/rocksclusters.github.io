@@ -1,0 +1,294 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Fasta</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE=" Bio Roll: Users Guide "
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Using"
+HREF="using.html"><LINK
+REL="PREVIOUS"
+TITLE="Glimmer"
+HREF="glimmer_usage.html"><LINK
+REL="NEXT"
+TITLE="MrBayes"
+HREF="mrbayes_usage.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Bio Roll: Users Guide: 	<DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/dna.png"></P
+></DIV
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="glimmer_usage.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 3. Using</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="mrbayes_usage.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="FASTA_USAGE"
+>3.7. Fasta</A
+></H1
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN331"
+>3.7.1. About Fasta</A
+></H2
+><P
+>FASTA is a program used to search in large Protein or DNA sequence data
+banks. It was developed at the University of Virginia by William R. Pearson,
+and D.J. Lippman.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN334"
+>3.7.2. Usage</A
+></H2
+><P
+>FASTA is installed in /opt/Bio/fasta/.
+FASTA is run in a similar manner to NCBI Blast.</P
+><P
+></P
+><UL
+><LI
+><P
+>First create a test query file</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>[nostromo@xxx ~]$ cat &#62; test.txt
+&#62;Test
+AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC
+TTCTGAACTGGTTACCTGCCGTGAGTAAATTAAAATTTTATTGACTTAGGTCACTAAATACTTTAACCAA
+TATAGGCATAGCGCACAGACAGATAAAAATTACAGAGTACACAACATCCATGAAACGCATTAGCACCACC
+ATTACCACCACCATCACCATTACCACAGGTAACGGTGCGGGCTGACGCGTACAGGAAACACAGAAAAAAG
+CCCGCACCTGACAGTGCGGGCTTTTTTTTTCGACCAAAGGTAACGAGGTAACAACCATGCGAGTGTTGAA
+GTTCGGCGGTACATCAGTGGCAAATGCAGAACGTTTTCTGCGTGTTGCCGATATTCTGGAAAGCAATGCC
+AGGCAGGGGCAGGTGGCCACCGTCCTCTCTGCCCCCGCCAAAATCACCAACCACCTGGTGGCGATGATTG
+AAAAAACCATTAGCGGCCAGGATGCTTTACCCAATATCAGCGATGCCGAACGTATTTTTGCCGAACTTTT</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>The next step is to search for this against a database
+sequence. For this, we can download a DNA or protein sequence database or use
+the ones that are provided by the program. For this example, we will use the
+ones present along with the fasta program in /opt/Bio/fasta/.</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>[nostromo@xxx ~]$ fasta34
+# fasta34
+FASTA searches a protein or DNA sequence data bank
+ version 3.4t25 Sept 2, 2005
+Please cite:
+ W.R. Pearson &#38; D.J. Lipman PNAS (1988) 85:2444-2448
+
+ test sequence file name: test.txt
+ library file name: /opt/Bio/fasta/gst.seq   
+ ktup? (1 to 6) [6] 1
+Query library test.txt vs /opt/Bio/fasta/gst.seq library
+searching /opt/Bio/fasta/gst.seq library
+
+  1&#62;&#62;&#62;Test - 560 nt
+ vs  /opt/Bio/fasta/gst.seq library
+
+   1287 residues in     1 sequences
+ Altschul/Gish params: n0: 560 Lambda: 0.192 K: 0.177 H: 0.360
+
+FASTA (3.47 Mar 2004) function [optimized, +5/-4 matrix (5:-4)] ktup: 1
+ join: 77, opt: 62, open/ext: -12/-4, width:  16
+ Scan time:  0.000
+Enter filename for results []: res.txt
+ How many scores would you like to see? [20] 
+The best scores are:                                      opt bits E(1)
+gi|193547|gb|J04632|MUSGLUTA Mouse glutathione (1287) [r]   68  21.5    0.22
+gi|193547|gb|J04632|MUSGLUTA Mouse glutathione (1287) [f]   62  19.8    0.55
+ More scores? [0] 
+ Display alignments also? (y/n) [n] y
+ number of alignments [20]? 
+
+
+560 residues in 1 query   sequences
+1287 residues in 1 library sequences
+ Scomplib [34t25]
+ start: Wed Mar 15 16:14:08 2006 done: Wed Mar 15 16:14:51 2006
+ Total Scan time:  0.000 Total Display time:  0.010
+
+Function used was FASTA [version 3.4t25 Sept 2, 2005]</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Looking into res.txt we can see the results of our search.</P
+></LI
+></UL
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN345"
+>3.7.3. Further Information</A
+></H2
+><P
+>Further information about the usage of fasta can be obtained from
+/opt/Bio/fasta/fasta3x.doc present on the frontend of your installation.</P
+><P
+>More information is also available at <A
+HREF="http://fasta.bioch.virginia.edu/"
+TARGET="_top"
+>the FASTA home page</A
+>.</P
+><P
+>For support, you are encouraged to join the FASTA mailing list at
+http://list.mail.virginia.edu/mailman/listinfo/fasta_list </P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="glimmer_usage.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="mrbayes_usage.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Glimmer</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="using.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>MrBayes</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

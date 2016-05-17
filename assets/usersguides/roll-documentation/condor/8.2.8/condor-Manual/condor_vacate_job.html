@@ -1,0 +1,369 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<link rel="canonical" href="http://research.cs.wisc.edu/htcondor/manual/current/condor_vacate_job.html">
+
+<TITLE>condor_vacate_job</TITLE>
+<META NAME="description" CONTENT="condor_vacate_job">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="condor_version.html">
+<LINK REL="previous" HREF="condor_vacate.html">
+<LINK REL="up" HREF="11_Command_Reference.html">
+<LINK REL="next" HREF="condor_version.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html4486"
+  HREF="condor_version.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html4480"
+  HREF="11_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html4474"
+  HREF="condor_vacate.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html4482"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html4484"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4487"
+  HREF="condor_version.html">condor_version</A>
+<B> Up:</B> <A NAME="tex2html4481"
+  HREF="11_Command_Reference.html">11. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html4475"
+  HREF="condor_vacate.html">condor_vacate</A>
+ &nbsp; <B>  <A NAME="tex2html4483"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html4485"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html4488"
+  HREF="condor_vacate_job.html#SECTION0012651000000000000000">Synopsis</A>
+<LI><A NAME="tex2html4489"
+  HREF="condor_vacate_job.html#SECTION0012652000000000000000">Description</A>
+<LI><A NAME="tex2html4490"
+  HREF="condor_vacate_job.html#SECTION0012653000000000000000">Options</A>
+<LI><A NAME="tex2html4491"
+  HREF="condor_vacate_job.html#SECTION0012654000000000000000">General Remarks</A>
+<LI><A NAME="tex2html4492"
+  HREF="condor_vacate_job.html#SECTION0012655000000000000000">Examples</A>
+<LI><A NAME="tex2html4493"
+  HREF="condor_vacate_job.html#SECTION0012656000000000000000">Exit Status</A>
+<LI><A NAME="tex2html4494"
+  HREF="condor_vacate_job.html#SECTION0012657000000000000000">Author</A>
+<LI><A NAME="tex2html4495"
+  HREF="condor_vacate_job.html#SECTION0012658000000000000000">Copyright</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION0012650000000000000000"></A><A NAME="man-condor-vacate-job"></A>
+<BR>
+<I>condor_vacate_job</I>
+</H1> vacate jobs in the HTCondor queue from the hosts where they are running
+  
+<P>
+
+<A NAME="90784"></A>
+<A NAME="90785"></A>
+
+<P>
+
+<H2><A NAME="SECTION0012651000000000000000">
+Synopsis</A>
+</H2><B><I>condor_vacate_job</I></B>
+
+[<B>-help <IMG
+ WIDTH="10" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img65.png"
+ ALT="$\vert$"> -version</B>]
+
+<P>
+<B><I>condor_vacate_job</I></B>
+
+[<B>-pool </B><I>centralmanagerhostname[:portnumber]</I>
+<IMG
+ WIDTH="10" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img65.png"
+ ALT="$\vert$"> <B>-name </B><I>scheddname</I> ]<IMG
+ WIDTH="10" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img65.png"
+ ALT="$\vert$"> [<B>-addr  </B><I>"<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">a.b.c.d:port<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$">"</I>]
+
+[<B>-fast</B>]
+
+<I> cluster... <IMG
+ WIDTH="10" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img65.png"
+ ALT="$\vert$"> cluster.process... <IMG
+ WIDTH="10" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img65.png"
+ ALT="$\vert$"> user... </I> 
+
+<IMG
+ WIDTH="10" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img65.png"
+ ALT="$\vert$"> <B>-constraint </B><I>expression</I> ... 
+
+<P>
+<B><I>condor_vacate_job</I></B>
+
+[<B>-pool </B><I>centralmanagerhostname[:portnumber]</I>
+<IMG
+ WIDTH="10" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img65.png"
+ ALT="$\vert$"> <B>-name </B><I>scheddname</I> ]<IMG
+ WIDTH="10" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img65.png"
+ ALT="$\vert$"> [<B>-addr  </B><I>"<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">a.b.c.d:port<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$">"</I>]
+
+[<B>-fast</B>]
+
+<B>-all</B>
+
+<P>
+
+<H2><A NAME="SECTION0012652000000000000000">
+Description</A>
+</H2>
+
+<P>
+<I>condor_vacate_job</I> finds one or more jobs from the HTCondor job queue
+and vacates them from the host(s) where they are currently running.  
+The jobs remain in the job queue and return to the idle state.
+
+<P>
+A job running under the standard universe will first produce a
+checkpoint and then the job will be killed.
+HTCondor will then restart the job somewhere else, using the checkpoint
+to continue from where it left off.
+A job running under any other universe will be sent a soft kill signal
+(SIGTERM by default, or whatever is defined as the <TT>SoftKillSig</TT>
+in the job ClassAd), and HTCondor will restart the job from the
+beginning somewhere else. 
+
+<P>
+If the <B>-fast</B> option is used, the job(s) will be immediately killed,
+meaning that standard universe jobs will not be allowed to checkpoint,
+and the job will have to revert to the last checkpoint or start over
+from the beginning.
+
+<P>
+If the <B>-name</B> option is specified, the named <I>condor_schedd</I> is
+targeted for processing.  
+If the <B>-addr</B> option is used, the <I>condor_schedd</I> at the given
+address is targeted for processing.  
+Otherwise, the local <I>condor_schedd</I> is targeted.
+The jobs to be vacated are identified by one or more job identifiers, as
+described below.
+For any given job, only the owner of the job or one of the queue super users
+(defined by the <TT>QUEUE_SUPER_USERS</TT> macro) can vacate the job.
+
+<P>
+Using <I>condor_vacate_job</I> on jobs which are not currently running has
+no effect.
+
+<P>
+
+<H2><A NAME="SECTION0012653000000000000000">
+Options</A>
+</H2>
+  
+<P>
+  <DL>
+<DT><STRONG><B>-help</B></STRONG></DT>
+<DD>Display usage information
+<BR></DD>
+<DT><STRONG><B>-version</B></STRONG></DT>
+<DD>Display version information
+<BR>
+	
+</DD>
+<DT><STRONG><B>-pool </B><I>centralmanagerhostname[:portnumber]</I></STRONG></DT>
+<DD>Specify a pool by giving the
+	central manager's host name and an optional port number
+<BR></DD>
+<DT><STRONG><B>-name </B><I>scheddname</I></STRONG></DT>
+<DD>Send the command to a machine identified by <I>scheddname</I>
+<BR></DD>
+<DT><STRONG><B>-addr </B><I>"<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">a.b.c.d:port<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$">"</I></STRONG></DT>
+<DD>Send the command
+	to a machine located at <I>"<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">a.b.c.d:port<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$">"</I>
+<BR>
+	
+</DD>
+<DT><STRONG><I>cluster</I></STRONG></DT>
+<DD>Vacate all jobs in the specified cluster
+<BR>	
+</DD>
+<DT><STRONG><I>cluster.process</I></STRONG></DT>
+<DD>Vacate the specific job in the cluster
+<BR>	
+</DD>
+<DT><STRONG><I>user</I></STRONG></DT>
+<DD>Vacate jobs belonging to specified user
+<BR>	
+</DD>
+<DT><STRONG><B>-constraint </B><I>expression</I></STRONG></DT>
+<DD>Vacate all jobs which match
+	                the job ClassAd expression constraint
+<BR>        
+</DD>
+<DT><STRONG><I>-all</I></STRONG></DT>
+<DD>Vacate all the jobs in the queue
+<BR>        
+</DD>
+<DT><STRONG><I>-fast</I></STRONG></DT>
+<DD>Perform a fast vacate and hard kill the jobs
+<BR>  
+</DD>
+</DL>
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION0012654000000000000000">
+General Remarks</A>
+</H2>
+
+<P>
+Do not confuse <I>condor_vacate_job</I> with <I>condor_vacate</I>.
+<I>condor_vacate</I> is given a list of hosts to vacate, regardless of what
+jobs happen to be running on them.
+Only machine owners and administrators have permission to use
+<I>condor_vacate</I> to evict jobs from a given host.
+<I>condor_vacate_job</I> is given a list of job to vacate, regardless of
+which hosts they happen to be running on.
+Only the owner of the jobs or queue super users have permission to use
+<I>condor_vacate_job</I>.
+
+<P>
+
+<H2><A NAME="SECTION0012655000000000000000">
+Examples</A>
+</H2>
+
+<P>
+To vacate job 23.0:
+<PRE>
+% condor_vacate_job 23.0
+</PRE>
+
+<P>
+To vacate all jobs of a user named Mary:
+<PRE>
+% condor_vacate_job mary 
+</PRE>
+
+<P>
+To vacate all standard universe jobs owned by Mary:
+<PRE>
+% condor_vacate_job -constraint 'JobUniverse == 1 &amp;&amp; Owner == "mary"'
+</PRE>Note that the entire constraint, including the quotation marks, must
+be enclosed in single quote marks for most shells.
+
+<P>
+
+<H2><A NAME="SECTION0012656000000000000000">
+Exit Status</A>
+</H2>
+
+<P>
+<I>condor_vacate_job</I> will exit with a status value of 0 (zero) upon success,
+and it will exit with the value 1 (one) upon failure.
+
+<P>
+
+<H2><A NAME="SECTION0012657000000000000000">
+Author</A>
+</H2> Center for High Throughput Computing, University of Wisconsin-Madison
+  
+<H2><A NAME="SECTION0012658000000000000000">
+Copyright</A>
+</H2> 
+  Copyright &#169; 1990-2015 Center for High Throughput Computing, 
+  Computer Sciences Department, 
+  University of Wisconsin-Madison, Madison, WI.  All Rights Reserved.  
+	Licensed under the Apache License, Version 2.0.  
+
+  <HR>
+<!--Navigation Panel-->
+<A NAME="tex2html4486"
+  HREF="condor_version.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html4480"
+  HREF="11_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html4474"
+  HREF="condor_vacate.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html4482"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html4484"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4487"
+  HREF="condor_version.html">condor_version</A>
+<B> Up:</B> <A NAME="tex2html4481"
+  HREF="11_Command_Reference.html">11. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html4475"
+  HREF="condor_vacate.html">condor_vacate</A>
+ &nbsp; <B>  <A NAME="tex2html4483"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html4485"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

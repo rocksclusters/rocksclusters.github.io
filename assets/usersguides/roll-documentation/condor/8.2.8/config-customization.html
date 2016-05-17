@@ -1,0 +1,212 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Condor Configuration Mechanics</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE=" Condor Users Guide "
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Customizing the Condor Roll"
+HREF="customizing.html"><LINK
+REL="PREVIOUS"
+TITLE="Using a pool password to secure Condor Communications"
+HREF="condor-password-security.html"><LINK
+REL="NEXT"
+TITLE="Examples of Condor Configuration"
+HREF="config-examples-condor.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Condor</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/condor.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="condor-password-security.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 4. Customizing the Condor Roll</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="config-examples-condor.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="CONFIG-CUSTOMIZATION"
+>4.3. Condor Configuration Mechanics</A
+></H1
+><P
+>With the Condor Roll &#62; 8.2.1, Rocks has adopted Condor's configuration directory approach. Configuration 
+files are read in lexicographic order. If a Condor configuration variable is defined multiple times (and/or in
+multiples files), the last
+one read is the value of the configuration variable.  
+One can dump all of the current configuration values on a running 
+Condor pool using the command.
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>condor_config_val --dump</SAMP
+>. 
+The configuration directory itself, is located in 
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>/opt/condor/etc/config.d</SAMP
+>. Within that directory, Rocks creates two 
+configuration files</P
+><P
+></P
+><UL
+><LI
+><P
+>000Rocks.conf - where most generated values are written  </P
+></LI
+><LI
+><P
+>99Rocks.conf - generally, the last configuration file read, used to overwrite any other values. Written,
+but blank by default  </P
+></LI
+></UL
+><P
+> Most of the configuration values are written to the file
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>000Rocks.conf</SAMP
+>. 
+However, the file 
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>99Rocks.conf</SAMP
+>, can have values written that will  
+overwrite a configuration parameter set by some other means
+(e.g. by Rocks or by some package that drops a configuration file into the configuration directory).
+To overwrite a value (say UID_DOMAIN), add an attribute to the Rocks database prefaced by 
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>Condor_99Rocks_</SAMP
+> so that the full name of the 
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>UID_DOMAIN</SAMP
+> attribute in the database
+would be 
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>Condor_99Rocks_UID_DOMAIN</SAMP
+>. </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="condor-password-security.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="config-examples-condor.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Using a pool password to secure Condor Communications</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="customizing.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Examples of Condor Configuration</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

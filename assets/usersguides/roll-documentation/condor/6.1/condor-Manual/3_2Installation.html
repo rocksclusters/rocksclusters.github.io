@@ -1,0 +1,2408 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>3.2 Installation</TITLE>
+<META NAME="description" CONTENT="3.2 Installation">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="3_3Configuration.html">
+<LINK REL="previous" HREF="3_1Introduction.html">
+<LINK REL="up" HREF="3_Administrators_Manual.html">
+<LINK REL="next" HREF="3_3Configuration.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html1328"
+  HREF="3_3Configuration.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1322"
+  HREF="3_Administrators_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1316"
+  HREF="3_1Introduction.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1324"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1326"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1329"
+  HREF="3_3Configuration.html">3.3 Configuration</A>
+<B> Up:</B> <A NAME="tex2html1323"
+  HREF="3_Administrators_Manual.html">3. Administrators' Manual</A>
+<B> Previous:</B> <A NAME="tex2html1317"
+  HREF="3_1Introduction.html">3.1 Introduction</A>
+ &nbsp; <B>  <A NAME="tex2html1325"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1327"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html1330"
+  HREF="3_2Installation.html#SECTION00421000000000000000">3.2.1 Obtaining Condor</A>
+<LI><A NAME="tex2html1331"
+  HREF="3_2Installation.html#SECTION00422000000000000000">3.2.2 Preparation</A>
+<LI><A NAME="tex2html1332"
+  HREF="3_2Installation.html#SECTION00423000000000000000">3.2.3 Newer Unix Installation Procedure</A>
+<LI><A NAME="tex2html1333"
+  HREF="3_2Installation.html#SECTION00424000000000000000">3.2.4 Starting Condor Under Unix After Installation</A>
+<LI><A NAME="tex2html1334"
+  HREF="3_2Installation.html#SECTION00425000000000000000">3.2.5 Installation on Windows</A>
+<UL>
+<LI><A NAME="tex2html1335"
+  HREF="3_2Installation.html#SECTION00425100000000000000">3.2.5.1 Installation Requirements</A>
+<LI><A NAME="tex2html1336"
+  HREF="3_2Installation.html#SECTION00425200000000000000">3.2.5.2 Preparing to Install
+Condor under Windows </A>
+<LI><A NAME="tex2html1337"
+  HREF="3_2Installation.html#SECTION00425300000000000000">3.2.5.3 Installation Procedure Using the MSI Program</A>
+<LI><A NAME="tex2html1338"
+  HREF="3_2Installation.html#SECTION00425400000000000000">3.2.5.4 Unattended Installation Procedure Using the Included Set Up Program</A>
+<LI><A NAME="tex2html1339"
+  HREF="3_2Installation.html#SECTION00425500000000000000">3.2.5.5 Manual Installation Condor on Windows</A>
+<LI><A NAME="tex2html1340"
+  HREF="3_2Installation.html#SECTION00425600000000000000">3.2.5.6 Starting Condor Under Windows After Installation</A>
+<LI><A NAME="tex2html1341"
+  HREF="3_2Installation.html#SECTION00425700000000000000">3.2.5.7 Condor is Running Under Windows ... Now What?</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1342"
+  HREF="3_2Installation.html#SECTION00426000000000000000">3.2.6  RPMs</A>
+<LI><A NAME="tex2html1343"
+  HREF="3_2Installation.html#SECTION00427000000000000000">3.2.7  Debian Packages</A>
+<LI><A NAME="tex2html1344"
+  HREF="3_2Installation.html#SECTION00428000000000000000">3.2.8 Upgrading - Installing a Newer
+Version of Condor</A>
+<LI><A NAME="tex2html1345"
+  HREF="3_2Installation.html#SECTION00429000000000000000">3.2.9 Dynamic Deployment</A>
+<UL>
+<LI><A NAME="tex2html1346"
+  HREF="3_2Installation.html#SECTION00429100000000000000">3.2.9.1 Configuration and Usage</A>
+</UL></UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00420000000000000000"></A><A NAME="sec:install"></A>
+<BR>
+3.2 Installation
+</H1>
+
+<P>
+This section contains the instructions for installing Condor.
+The installation will have a default configuration that can
+be customized.
+Sections of the manual that follow this one explain customization.
+
+<P>
+Read this entire section before starting installation.
+
+<P>
+Please read the copyright and disclaimer information in 
+section&nbsp;<A HREF="Contents.html#sec:license"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> on
+page&nbsp;<A HREF="Contents.html#sec:license"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> of the manual.
+Installation and
+use of Condor is acknowledgment that you have read and agree to the
+terms.
+
+<P>
+
+<H2><A NAME="SECTION00421000000000000000"></A><A NAME="sec:pre-install-procedure"></A>
+<A NAME="8967"></A>
+<A NAME="8968"></A>
+<A NAME="8969"></A>
+<BR>
+3.2.1 Obtaining Condor
+</H2>
+The first step to installing Condor is to download it from the Condor
+web site, <A NAME="tex2html29"
+  HREF="http://www.cs.wisc.edu/condor">http://www.cs.wisc.edu/condor</A>.
+The downloads are available from the downloads page,
+at <A NAME="tex2html30"
+  HREF="http://www.cs.wisc.edu/condor/downloads/">http://www.cs.wisc.edu/condor/downloads/</A>.
+
+<P>
+The platform-dependent Condor files are currently available from two sites.
+The main site is at the University of Wisconsin-Madison,
+Madison, Wisconsin, USA.
+A second site is the Istituto Nazionale di Fisica Nucleare Sezione di
+Bologna, Bologna, Italy.
+Please choose the site nearest to you.
+
+<P>
+Make note of the location of where you download the binary into.
+
+<P>
+The Condor binary distribution is packaged in the following files
+and directories:
+
+<P>
+<DL>
+<DT><STRONG><TT>DOC</TT></STRONG></DT>
+<DD>directions on where to find Condor documentation
+</DD>
+<DT><STRONG><TT>INSTALL</TT></STRONG></DT>
+<DD>these installation directions
+</DD>
+<DT><STRONG><TT>LICENSE-2.0.TXT</TT></STRONG></DT>
+<DD>the licensing agreement.
+                  By installing Condor, you agree to the contents of
+		  this file
+</DD>
+<DT><STRONG><TT>README</TT></STRONG></DT>
+<DD>general information
+</DD>
+<DT><STRONG><TT>condor_configure</TT></STRONG></DT>
+<DD>the Perl script used to install and
+                  configure Condor
+</DD>
+<DT><STRONG><TT>condor_install</TT></STRONG></DT>
+<DD>the Perl script used to install Condor
+</DD>
+<DT><STRONG><TT>examples</TT></STRONG></DT>
+<DD>directory containing C, Fortran and C++ example
+		  programs to run with Condor
+</DD>
+<DT><STRONG><TT>bin</TT></STRONG></DT>
+<DD>directory which contains the distribution Condor
+		  user programs.
+</DD>
+<DT><STRONG><TT>sbin</TT></STRONG></DT>
+<DD>directory which contains the distribution Condor
+		  system programs.
+</DD>
+<DT><STRONG><TT>etc</TT></STRONG></DT>
+<DD>directory which contains the distribution Condor
+		  configuration data.
+</DD>
+<DT><STRONG><TT>lib</TT></STRONG></DT>
+<DD>directory which contains the distribution Condor
+		  libraries.
+</DD>
+<DT><STRONG><TT>libexec</TT></STRONG></DT>
+<DD>directory which contains the distribution Condor
+		  programs that are only used internally by Condor.
+</DD>
+<DT><STRONG><TT>man</TT></STRONG></DT>
+<DD>directory which contains the distribution Condor
+		  manual pages.
+</DD>
+<DT><STRONG><TT>src</TT></STRONG></DT>
+<DD>directory which contains the distribution Condor
+		  source code for CHIRP and DRMAA.
+</DD>
+</DL>
+
+<P>
+Before you install, please consider joining the condor-world mailing
+list.
+Traffic on this list is kept to an absolute minimum.
+It is only used to announce new releases of Condor.
+To subscribe, send a message to <A NAME="tex2html31"
+  HREF="mailto:majordomo@cs.wisc.edu">majordomo@cs.wisc.edu</A>
+with the body:
+<PRE>
+   subscribe condor-world
+</PRE>
+
+<P>
+
+<H2><A NAME="SECTION00422000000000000000"></A><A NAME="sec:Preparing-to-Install"></A>
+<BR>
+3.2.2 Preparation
+</H2> 
+
+<P>
+Before installation, make a few important
+decisions about the basic layout of your pool.
+The decisions answer the questions:
+
+<P>
+
+<OL>
+<LI>What machine will be the central manager?
+</LI>
+<LI>What machines should be allowed to submit jobs?
+</LI>
+<LI>Will Condor run as root or not?
+</LI>
+<LI>Who will be administering Condor on the machines in your pool?
+</LI>
+<LI>Will you have a Unix user named condor and will its home directory be
+   shared? 
+</LI>
+<LI>Where should the machine-specific directories for Condor go?
+</LI>
+<LI>Where should the parts of the Condor system be installed? 
+	
+<UL>
+<LI>Configuration files
+</LI>
+<LI>Release directory
+		
+<UL>
+<LI>user binaries
+</LI>
+<LI>system binaries 
+</LI>
+<LI><TT>lib</TT> directory
+</LI>
+<LI><TT>etc</TT> directory
+		
+</LI>
+</UL>
+</LI>
+<LI>Documentation
+	
+</LI>
+</UL>
+</LI>
+<LI>Am I using AFS?
+</LI>
+<LI>Do I have enough disk space for Condor?
+</LI>
+</OL>
+
+<P>
+<DL>
+<DT><STRONG>1. What machine will be the central manager?</STRONG></DT>
+<DD><P>
+One machine in your pool must be the central manager.
+<A NAME="9001"></A>
+Install Condor on this machine first.
+This is the centralized information repository for the Condor pool,
+and it is also the
+machine that does match-making between available machines and
+submitted jobs.
+If the central manager machine crashes, any currently active
+matches in the system will keep running, but no new matches will be
+made.  Moreover, most Condor tools will stop working.  Because of the
+importance of this machine for the proper functioning of Condor,
+install the central manager on a machine that is likely to stay up all the
+time, or on one that will be rebooted quickly if it does crash.
+
+<P>
+Also consider
+network traffic and your network layout when choosing your central
+manager.
+All the daemons send updates (by default, every 5 minutes) to this machine.
+Memory requirements for the central manager differ by the number of machines
+in the pool.
+A pool with up to about 100 machines will require approximately
+25 Mbytes of memory for the central manager's tasks.
+A pool with about 1000 machines will require approximately
+100 Mbytes of memory for the central manager's tasks.
+
+<P>
+A faster CPU will improve the time to do matchmaking. 
+
+<P>
+</DD>
+<DT><STRONG>2. Which machines should be allowed to submit jobs?</STRONG></DT>
+<DD><P>
+Condor can restrict the machines allowed to submit jobs.  Alternatively, 
+it can allow any machine the network allows to connect to a submit machine
+to submit jobs.  If the Condor pool is behind a firewall, and all machines
+inside the firewall are trusted, the <TT>HOSTALLOW_WRITE</TT> <A NAME="9275"></A> <A NAME="9276"></A> configuration
+entry can be set to *.  Otherwise, it should be set to reflect
+the set of machines permitted to submit jobs to this pool.
+Condor tries to be secure by default,
+so out of the box, the configuration file ships with an invalid definition
+for this configuration variable.
+This invalid value allows no machine to connect and submit
+jobs, so after installation, change this entry.
+Look for the
+entry defined with the value
+<TT>YOU_MUST_CHANGE_THIS_INVALID_CONDOR_CONFIGURATION_VALUE</TT>.
+
+<P>
+</DD>
+<DT><STRONG>3. Will Condor run as root or not?</STRONG></DT>
+<DD><P>
+<A NAME="9004"></A>
+Start up the Condor daemons as the Unix user root.
+Without this,
+Condor can do very little to enforce security and policy
+decisions.
+You can install Condor as any user,
+however there are both serious security and performance consequences.
+Please see section&nbsp;<A HREF="3_6Security.html#sec:Non-Root">3.6.13</A> on page&nbsp;<A HREF="3_6Security.html#sec:Non-Root"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>
+in the manual for the details and ramifications of
+running Condor as a Unix user other than root.
+
+<P>
+</DD>
+<DT><STRONG>4. Who will administer Condor?</STRONG></DT>
+<DD><P>
+<A NAME="9007"></A>
+<A NAME="9008"></A>
+<A NAME="9009"></A>
+
+<P>
+Either root will be administering Condor directly, or someone else
+would be acting as the Condor administrator.  If root has delegated
+the responsibility to another person, keep in mind that as long as
+Condor is started up as root, it should be clearly understood that
+whoever has the ability to edit the condor configuration files can
+effectively run arbitrary programs as root.
+
+<P>
+</DD>
+<DT><STRONG>5. Will you have a Unix user named condor, and will its home
+directory be shared?</STRONG></DT>
+<DD><P>
+<A NAME="9010"></A>
+To simplify installation of Condor,
+create a Unix user named condor on all machines in the pool.
+The Condor daemons will create files
+(such as the log files) owned by this user,
+and the home directory can be used to specify the location of files
+and directories needed by Condor.  The home directory of this user can
+either be shared among all machines in your pool, or could be a
+separate home directory on the local partition of each machine.  Both
+approaches have advantages and disadvantages.  Having the directories
+centralized can make administration easier, but also concentrates the
+resource usage such that you potentially need a lot of space for a
+single shared home directory.  See the section below on
+machine-specific directories for more details.
+
+<P>
+Note that the user condor must not be an account into which a person
+can log in.
+If a person can log in as user condor, 
+it permits a major security breach,
+in that the user condor could submit jobs that run as any other user,
+providing complete access to the user's data by the jobs. 
+A standard way of not allowing log in to an account on Unix platforms
+is to enter an invalid shell in the password file.
+
+<P>
+If you choose not to create a user named condor,
+then you must specify either via the
+<A NAME="9240"></A>
+<A NAME="9241"></A>
+<TT>CONDOR_IDS</TT> environment variable or the <TT>CONDOR_IDS</TT> <A NAME="9282"></A> <A NAME="9283"></A>
+config file setting which uid.gid pair should be used for
+the ownership of various Condor files.  
+See section&nbsp;<A HREF="3_6Security.html#sec:uids">3.6.13</A> on UIDs in Condor on
+page&nbsp;<A HREF="3_6Security.html#sec:uids"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> in the Administrator's Manual for details.
+
+<P>
+</DD>
+<DT><STRONG>6. Where should the machine-specific directories for
+Condor go?</STRONG></DT>
+<DD><P>
+Condor needs a few directories that are unique on every machine in
+your pool.  These are 
+<TT>spool</TT>, 
+<TT>log</TT>, and 
+<TT>execute</TT>.  Generally, all
+three are subdirectories of a single machine specific directory called
+the local directory (specified by the <TT>LOCAL_DIR</TT> <A NAME="9290"></A> <A NAME="9291"></A> macro
+in the configuration file).
+Each should be owned by the user that Condor is to be run as.
+<A NAME="9021"></A>
+
+<P>
+If you have a Unix user named condor with a local home directory on each
+machine, the <TT>LOCAL_DIR</TT> could just be user condor's home
+directory (<TT>LOCAL_DIR</TT> = <TT>$(TILDE)</TT> in the 
+configuration file).
+If this user's home directory is shared among all machines in your
+pool, you would want to create a directory for each host (named by
+host name) for the local directory (for example, <TT>LOCAL_DIR</TT> =
+<TT>$(TILDE)</TT>/hosts/<TT>$(HOSTNAME)</TT>).  If you do not
+have a condor account on your machines, you can put these directories
+wherever you'd like.
+However, where to place them will require some
+thought, as each one has its own resource needs:
+
+<P>
+<DL>
+<DD><A NAME="9242"></A>
+<A NAME="9243"></A>
+</DD>
+<DT><STRONG><TT>execute</TT></STRONG></DT>
+<DD>This is the directory that acts as the current working
+directory for any Condor jobs that run on a given execute machine.
+The binary for the remote job is copied into this directory, so
+there
+must be enough space for it.  (Condor will not send a job to a
+machine that does not have enough disk space to hold the initial
+binary).  In addition, if the remote job dumps core for some reason,
+it is first dumped to the execute directory before it is sent back to
+the submit machine.  So, put the execute directory on
+a partition with enough space to hold a possible core file from the
+jobs submitted to your pool.
+<P>
+<A NAME="9244"></A>
+<A NAME="9245"></A>
+</DD>
+<DT><STRONG><TT>spool</TT></STRONG></DT>
+<DD>The <TT>spool</TT> directory holds the job queue
+and history files,
+and the checkpoint files for all jobs submitted from a given machine.
+As a result, disk space requirements for the <TT>spool</TT> directory
+can be quite large,
+particularly if users are submitting jobs with very large
+executables or image sizes.
+By using a checkpoint server
+(see section&nbsp;<A HREF="3_8Checkpoint_Server.html#sec:Ckpt-Server">3.8</A> on Installing a Checkpoint Server on
+page&nbsp;<A HREF="3_8Checkpoint_Server.html#sec:Ckpt-Server"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for details),
+you can ease the disk
+space requirements, since all checkpoint files are stored on the
+server instead of the spool directories for each machine.  However,
+the initial checkpoint files (the executables for all the clusters you
+submit) are still stored in the spool directory, so you will need
+some space, even with a checkpoint server.
+
+<P>
+<A NAME="9246"></A>
+<A NAME="9247"></A>
+</DD>
+<DT><STRONG><TT>log</TT></STRONG></DT>
+<DD>Each Condor daemon writes its own log file,
+and each log file is placed
+in the <TT>log</TT> directory.  You can specify what size you want these files
+to grow to before they are rotated,
+so the disk space requirements of
+the directory are configurable.
+The larger the log files, the more
+historical information they will hold if there is a problem, but the
+more disk space they use up.  If you have a network file system
+installed at your pool, you might want to place the log directories in
+a shared location (such as <TT>/usr/local/condor/logs/$(HOSTNAME)</TT>),
+so that you can view the log files from all your machines in a single
+location.  However, if you take this approach, you will have to
+specify a local partition for the <TT>lock</TT> directory (see below).
+
+<P>
+<A NAME="9248"></A>
+</DD>
+<DT><STRONG>lock</STRONG></DT>
+<DD>Condor uses a small number of lock files to synchronize
+access to certain files that are shared between multiple daemons.
+Because of problems encountered with file locking and network
+file systems (particularly NFS), these lock files should be placed on a
+local partition on each machine.  By default, they are placed in
+the <TT>log</TT> directory.  If you place your <TT>log</TT>
+directory on a network file system partition,
+specify a local partition for the
+lock files with the <TT>LOCK</TT> <A NAME="9318"></A> <A NAME="9319"></A> parameter in the configuration file (such as
+<TT>/var/lock/condor</TT>).
+
+<P>
+</DD>
+</DL>
+
+<P>
+<A NAME="9051"></A>
+Generally speaking, it is recommended that you do not put these directories
+(except <TT>lock</TT>) on the same partition as <TT>/var</TT>,
+since if the partition
+fills up, you will fill up <TT>/var</TT> as well. 
+This will cause lots of
+problems for your machines.  Ideally, you will have a separate partition
+for the Condor directories. Then, the only consequence of filling up
+the directories
+will be Condor's malfunction, not your whole machine.
+
+<P>
+</DD>
+<DT><STRONG>7. Where should the parts of the Condor system be installed?</STRONG></DT>
+<DD><P>
+
+<UL>
+<LI>Configuration Files
+</LI>
+<LI>Release directory
+		
+<UL>
+<LI>User Binaries
+</LI>
+<LI>System Binaries 
+</LI>
+<LI><TT>lib</TT> Directory
+</LI>
+<LI><TT>etc</TT> Directory
+		
+</LI>
+</UL>
+</LI>
+<LI>Documentation
+	
+</LI>
+</UL>
+
+<P>
+<A NAME="sec:Config-File-Locations"></A><DL>
+<DT><STRONG>Configuration Files</STRONG></DT>
+<DD>There are a number of configuration files
+that allow you
+different levels of control over how Condor is configured at each
+machine in your pool.  
+The global configuration file is shared by all machines in the pool.
+For ease of administration, this file should be located on a shared
+file system, if possible.
+In addition, there is a local
+configuration file for each machine, where you can override settings in the
+global file.  This allows you to have different daemons running,
+different policies for when to start and stop Condor jobs, and so on.
+You can also have configuration files specific to each platform in your pool.
+See
+section&nbsp;<A HREF="3_12Setting_Up.html#sec:Multiple-Platforms">3.12.3</A> on
+page&nbsp;<A HREF="3_12Setting_Up.html#sec:Multiple-Platforms"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> about Configuring Condor for
+Multiple Platforms for details.
+
+<P>
+<A NAME="9065"></A>
+In general, there are a number of places that Condor will look to find
+its configuration files.  The first file it looks for is the global configuration
+file.  These locations are searched in order until a configuration file is
+found.  If none contain a valid configuration file, Condor will print an
+error message and exit:
+
+<OL>
+<LI>File specified in the <TT>CONDOR_CONFIG</TT> environment variable
+</LI>
+<LI><TT>$(HOME)/.condor/condor_config</TT>
+</LI>
+<LI><TT>/etc/condor/condor_config</TT>
+</LI>
+<LI><TT>/usr/local/etc/condor_config</TT>
+</LI>
+<LI><TT>~condor/condor_config</TT>
+</LI>
+<LI><TT>$(GLOBUS_LOCATION)/etc/condor_config</TT>
+</LI>
+</OL>
+
+<P>
+If you specify a file in the <TT>CONDOR_CONFIG</TT> environment variable
+and there's a problem reading that file, Condor will print an error
+message and exit right away, instead of continuing to search the other
+options.
+However, if no <TT>CONDOR_CONFIG</TT> environment variable is set,
+Condor will search through the other options.
+
+<P>
+Next, Condor tries to load the local configuration file(s).
+The only way to specify the local configuration file(s) is in the global configuration
+file, with the <TT>LOCAL_CONFIG_FILE</TT> <A NAME="9338"></A> <A NAME="9339"></A> macro.  If that macro is not
+set, no local configuration file is used.  This macro can be a list of files
+or a single file.
+
+<P>
+</DD>
+<DT><STRONG>Release Directory</STRONG></DT>
+<DD><P>
+Every binary distribution contains a contains
+five subdirectories: <TT>bin</TT>, <TT>etc</TT>, <TT>lib</TT>, <TT>sbin</TT>,
+and <TT>libexec</TT>. Wherever you
+choose to install these five directories we call the release directory
+(specified by the <TT>RELEASE_DIR</TT> <A NAME="9348"></A> <A NAME="9349"></A> macro in the configuration file).
+Each
+release directory contains platform-dependent binaries and libraries,
+so you will need to install a separate one for each kind of machine in
+your pool.  For ease of administration, these directories should be
+located on a shared file system, if possible.
+
+<P>
+
+<UL>
+<LI>User Binaries:
+
+<P>
+All of the files in the <TT>bin</TT> directory are programs the end
+     Condor users should expect to have in their path.  You could
+     either put them in a well known location (such as
+     <TT>/usr/local/condor/bin</TT>) which you have Condor users add to
+     their <TT>PATH</TT> environment variable, or copy those files
+     directly into a well known place already in the user's PATHs (such as
+     <TT>/usr/local/bin</TT>).  With the above examples, you could also
+     leave the binaries in <TT>/usr/local/condor/bin</TT> and put in
+     soft links from <TT>/usr/local/bin</TT> to point to each program.
+
+<P>
+</LI>
+<LI>System Binaries:
+
+<P>
+All of the files in the <TT>sbin</TT> directory are Condor daemons and
+     agents, or programs that only the Condor administrator would need
+     to run.  Therefore, add these programs only
+     to the <TT>PATH</TT> of the Condor administrator.
+
+<P>
+</LI>
+<LI>Private Condor Binaries:
+
+<P>
+All of the files in the <TT>libexec</TT> directory are Condor
+     programs that should never be run by hand, but are only used
+     internally by Condor. 
+
+<P>
+</LI>
+<LI><TT>lib</TT> Directory:
+
+<P>
+The files in the <TT>lib</TT> directory are the Condor libraries that
+     must be linked in with user jobs for all of Condor's
+     checkpointing and migration features to be used.  <TT>lib</TT> also
+     contains scripts used by the <I>condor_compile</I> program to help
+     re-link jobs with the Condor libraries.  These files should be
+     placed in a location that is world-readable, but they do not need
+     to be placed in anyone's <TT>PATH</TT>.  The <I>condor_compile</I> script checks
+     the configuration file for the location of the <TT>lib</TT> directory.
+
+<P>
+</LI>
+<LI><TT>etc</TT> Directory:
+
+<P>
+<TT>etc</TT> contains an <TT>examples</TT> subdirectory which holds various
+     example configuration files and other files used for installing Condor.
+     <TT>etc</TT> is the recommended location to keep the master copy of your
+     configuration files.  You can put in soft links from one of the places
+     mentioned above that Condor checks automatically to find its
+     global configuration file. 
+</LI>
+</UL>
+
+<P>
+</DD>
+<DT><STRONG>Documentation</STRONG></DT>
+<DD><P>
+The documentation provided with Condor is currently available in
+     HTML, Postscript and PDF (Adobe Acrobat).  It can be locally installed
+     wherever is customary at your site.  You can also find the Condor
+     documentation on the web at:
+     <A NAME="tex2html32"
+  HREF="http://www.cs.wisc.edu/condor/manual">http://www.cs.wisc.edu/condor/manual</A>.
+
+<P>
+</DD>
+</DL>
+
+<P>
+</DD>
+<DT><STRONG>7. Am I using AFS?</STRONG></DT>
+<DD><P>
+If you are using AFS at your site, be sure to read the
+section&nbsp;<A HREF="3_12Setting_Up.html#sec:Condor-AFS">3.12.1</A> on page&nbsp;<A HREF="3_12Setting_Up.html#sec:Condor-AFS"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> in the
+manual.
+Condor does not currently have a way to authenticate itself to AFS.
+A solution is not ready for
+Version 7.8.5.
+This implies that you are probably not going to want
+to have the <TT>LOCAL_DIR</TT> <A NAME="9377"></A> <A NAME="9378"></A> for Condor on AFS.
+However, you can
+(and probably should) have the Condor <TT>RELEASE_DIR</TT> on AFS, so
+that you can share one copy of those files and upgrade them in a
+centralized location.  You will also have to do something special if
+you submit jobs to Condor from a directory on AFS.  Again, read manual
+section&nbsp;<A HREF="3_12Setting_Up.html#sec:Condor-AFS">3.12.1</A> for all the details.
+
+<P>
+</DD>
+<DT><STRONG>8. Do I have enough disk space for Condor?</STRONG></DT>
+<DD><P>
+<A NAME="9112"></A>
+Condor takes up a fair amount of space.
+This is another reason why it is a good idea to have it on a shared
+file system.
+The compressed downloads currently range from a low of about 100 Mbytes
+for Windows to about 500 Mbytes for Linux.
+The compressed source code takes approximately 16 Mbytes.
+
+<P>
+In addition, you will need a lot of disk space in the local directory
+of any machines that are submitting jobs to Condor.  See question 6
+above for details on this.
+
+<P>
+</DD>
+</DL>
+
+<P>
+
+<H2><A NAME="SECTION00423000000000000000"></A><A NAME="sec:new-install-procedure"></A>
+<BR>
+3.2.3 Newer Unix Installation Procedure
+</H2>
+
+<P>
+<A NAME="9250"></A>
+<A NAME="9116"></A>
+The Perl script <I>condor_configure</I> installs Condor.
+Command-line arguments specify all needed information to this
+script.  The script can be executed multiple times, to modify or further
+set the configuration.  <I>condor_configure</I> has been tested using Perl 5.003.
+Use this or a more recent version of Perl.
+
+<P>
+After download, all the files are in a compressed, tar format.
+They need to be untarred, as
+<PRE>
+  tar xzf completename.tar.gz
+</PRE>
+After untarring, the directory will have the Perl scripts
+<I>condor_configure</I> and <I>condor_install</I>, as well as a ``bin'', ``etc'',
+``examples'', ``include'', ``lib'', ``libexec'', ``man'', ``sbin'',
+``sql'' and ``src'' subdirectories.
+
+<P>
+<I>condor_configure</I> and <I>condor_install</I> are the same program, but have
+different default behaviors.  <I>condor_install</I> is identical to
+running ``<I>condor_configure</I> -install=.''.
+<I>condor_configure</I> and <I>condor_install</I> work on above directories
+(``sbin'', etc.).  As the names imply, <I>condor_install</I> is used to
+install Condor, whereas <I>condor_configure</I> is used to modify the
+configuration of an existing Condor install.
+
+<P>
+<I>condor_configure</I> and <I>condor_install</I> are completely command-line
+driven; it is not interactive.  Several command-line arguments are
+always needed with <I>condor_configure</I> and <I>condor_install</I>.
+The argument
+<PRE>
+  --install=/path/to/release.
+</PRE>
+specifies the path to the Condor release directories (see above).
+The default for <I>condor_install</I> is ``-install=.''.
+The argument
+<PRE> --install-dir=directory
+</PRE>
+or
+<PRE> --prefix=directory
+</PRE>
+specifies the path to the install directory.
+
+<P>
+The argument
+<PRE>
+--local-dir=directory
+</PRE>
+specifies the path to the local directory.
+
+<P>
+The <B>-type</B> option to <I>condor_configure</I>
+specifies one or more of the roles that a machine may take on
+within the Condor pool: central manager, submit or execute.
+These options are given in a comma separated list.
+So, if a machine is both a submit and execute
+machine, 
+the proper command-line option is
+<PRE>
+--type=manager,execute
+</PRE>
+
+<P>
+Install Condor on the central manager machine first.  If Condor
+will run as root in this pool (Item 3 above), run <I>condor_install</I> 
+as root, and it will install and set the file permissions correctly.  
+On the central manager machine, run <I>condor_install</I> as follows.
+<PRE>
+% condor_install --prefix=~condor \
+	--local-dir=/scratch/condor --type=manager
+</PRE>
+
+<P>
+To update the above Condor installation, for example, to also be
+submit machine:
+<PRE>
+% condor_configure --prefix=~condor \
+	--local-dir=/scratch/condor --type=manager,submit
+</PRE>
+
+<P>
+As in the above example, the central manager can also be a submit
+point or and execute machine, but this is only recommended for very
+small pools.  If this is the case, the <B>-type</B> option changes to
+<TT>manager,execute</TT> or <TT>manager,submit</TT>  or 
+<TT>manager,submit,execute</TT>.
+
+<P>
+After the central manager is installed, the execute and submit machines
+should then be configured.  Decisions about whether to run Condor as root
+should be consistent throughout the pool. For each machine in the pool,
+run
+
+<P>
+<PRE>
+% condor_install --prefix=~condor \
+	--local-dir=/scratch/condor --type=execute,submit
+</PRE>
+
+<P>
+See the <I>condor_configure</I> manual page in
+section&nbsp;<A HREF="condor_configure.html#man-condor-configure">10</A> on
+page&nbsp;<A HREF="condor_configure.html#man-condor-configure"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for details.
+
+<P>
+
+<H2><A NAME="SECTION00424000000000000000"></A><A NAME="installed-now-what"></A>
+<A NAME="9164"></A>
+<BR>
+3.2.4 Starting Condor Under Unix After Installation
+</H2>
+
+<P>
+Now that Condor has been installed on the machine(s), there are a few
+things to check before starting up Condor.
+
+<P>
+
+<OL>
+<LI>Read through the <TT><IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img11.png"
+ ALT="$&lt;$">release_dir<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img12.png"
+ ALT="$&gt;$">/etc/condor_config</TT> file.  There are a
+    lot of possible settings and you should at least take a look at
+    the first two main sections to make sure everything looks okay.
+    In particular, you might want to set up security for
+    Condor.  See the section&nbsp;<A HREF="3_6Security.html#sec:Config-Security">3.6.1</A> on
+    page&nbsp;<A HREF="3_6Security.html#sec:Config-Security"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> to learn how to do this.
+
+<P>
+</LI>
+<LI>For Linux platforms, run the <I>condor_kbdd</I> to monitor keyboard
+    and mouse activity on all machines within the pool that will
+    run a <I>condor_startd</I>; these are machines that execute jobs.
+    To do this, the subsystem <TT>KBDD</TT> will need to be added to
+    the <TT>DAEMON_LIST</TT> configuration variable definition.
+
+<P>
+For Unix platforms other than Linux,
+    Condor can monitor the activity of your mouse and keyboard,
+    provided that you tell it where to look.  You do this with the
+    <TT>CONSOLE_DEVICES</TT> <A NAME="9441"></A> <A NAME="9442"></A> entry in the condor_startd section of
+    the configuration file.  On most platforms, reasonable
+    defaults are provided.
+    For example, the default device for the mouse
+    is 'mouse', since most installations have a soft link from
+    <TT>/dev/mouse</TT> that points to the right device (such as
+    <TT>tty00</TT> if you have a serial mouse, <TT>psaux</TT> if you have
+    a PS/2 bus mouse, etc).  If you do not have a <TT>/dev/mouse</TT>
+    link, you should either create one (you will be glad you did), or
+    change the <TT>CONSOLE_DEVICES</TT> entry in Condor's
+    configuration file.
+    This entry is a comma separated list, so you can have any
+    devices in <TT>/dev</TT> count as 'console devices' and activity
+    will be reported in the condor_startd's ClassAd as
+    <TT>ConsoleIdleTime</TT>.
+
+<P>
+</LI>
+<LI>(Linux only) Condor needs to be able to find the <TT>utmp</TT> file.
+    According to the Linux File System Standard, this file should be
+    <TT>/var/run/utmp</TT>.  If Condor cannot find it there, it looks in
+    <TT>/var/adm/utmp</TT>.  If it still cannot find it, it gives up.  So, if
+    your Linux distribution places this file somewhere else, be sure to
+    put a soft link from <TT>/var/run/utmp</TT> to point to the real location.
+
+<P>
+</LI>
+</OL>
+
+<P>
+To start up the Condor daemons, execute
+<TT><IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img11.png"
+ ALT="$&lt;$">release_dir<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img12.png"
+ ALT="$&gt;$">/sbin/condor_master</TT>.  This is the Condor master, whose
+only job in life is to make sure the other Condor daemons are running.
+The master keeps track of the daemons, restarts them if they crash,
+and periodically checks to see if you have installed new binaries (and
+if so, restarts the affected daemons).
+
+<P>
+If you are setting up your own pool, you should start Condor on your
+central manager machine first.  If you have done a submit-only
+installation and are adding machines to an existing pool,
+the start order does not
+matter.
+
+<P>
+To ensure that Condor is running, you can run either:
+<PRE>
+        ps -ef | egrep condor_
+</PRE>
+or
+<PRE>
+        ps -aux | egrep condor_
+</PRE>
+depending on your flavor of Unix.  
+On a central manager machine that can submit jobs as well
+as execute them, there will be processes for:
+
+<UL>
+<LI>condor_master
+</LI>
+<LI>condor_collector
+</LI>
+<LI>condor_negotiator
+</LI>
+<LI>condor_startd
+</LI>
+<LI>condor_schedd
+</LI>
+</UL>
+On a central manager machine that does not submit jobs nor
+execute them, there will be processes for:
+
+<UL>
+<LI>condor_master
+</LI>
+<LI>condor_collector
+</LI>
+<LI>condor_negotiator
+</LI>
+</UL>
+For a machine that only submits jobs, there will be processes for:
+
+<UL>
+<LI>condor_master
+</LI>
+<LI>condor_schedd
+</LI>
+</UL>
+For a machine that only executes jobs, there will be processes for:
+
+<UL>
+<LI>condor_master
+</LI>
+<LI>condor_startd
+</LI>
+</UL>
+
+<P>
+Once you are sure the Condor daemons are running, check to make sure
+that they are communicating with each other.  You can run
+<I>condor_status</I> to get a one line summary of the status of each
+machine in your pool.
+
+<P>
+Once you are sure Condor is working properly, you should add
+<I>condor_master</I> into your startup/bootup scripts (i.e. <TT>/etc/rc</TT> ) so
+that your machine runs <I>condor_master</I> upon bootup.  <I>condor_master</I>
+will then fire up the necessary Condor daemons whenever your machine
+is rebooted.  
+
+<P>
+If your system uses System-V style init scripts, you can look in
+<TT><IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img11.png"
+ ALT="$&lt;$">release_dir<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img12.png"
+ ALT="$&gt;$">/etc/examples/condor.boot</TT> for a script that can be used
+to start and stop Condor automatically by init.  Normally, you would
+install this script as <TT>/etc/init.d/condor</TT> and put in soft link from
+various directories (for example, <TT>/etc/rc2.d</TT>) that point back to
+<TT>/etc/init.d/condor</TT>.  The exact location of these scripts and links
+will vary on different platforms.
+
+<P>
+If your system uses BSD style boot scripts, you probably have an
+<TT>/etc/rc.local</TT> file.  Add a line to start up
+<TT><IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img11.png"
+ ALT="$&lt;$">release_dir<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img12.png"
+ ALT="$&gt;$">/sbin/condor_master</TT>.
+
+<P>
+Now that the Condor daemons are running, there are a few things you
+can and should do:
+
+<P>
+
+<OL>
+<LI>(Optional) Do a full install for the <I>condor_compile</I> script.
+    condor_compile assists in linking jobs with the Condor libraries
+    to take advantage of all of Condor's features.  As it is currently
+    installed, it will work by placing it in front of any of the
+    following commands that you would normally use to link your code:
+    gcc, g++, g77, cc, acc, c89, CC, f77, fort77 and ld.  If you
+    complete the full install, you will be able to use
+    condor_compile with any command whatsoever, in particular, make.
+    See section&nbsp;<A HREF="3_12Setting_Up.html#sec:full-condor-compile">3.12.4</A> on
+    page&nbsp;<A HREF="3_12Setting_Up.html#sec:full-condor-compile"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> in the manual for
+    directions.
+
+<P>
+</LI>
+<LI>Try building and submitting some test jobs.  See
+    <TT>examples/README</TT> for details.
+
+<P>
+</LI>
+<LI>If your site uses the AFS network file system, see
+section&nbsp;<A HREF="3_12Setting_Up.html#sec:Condor-AFS">3.12.1</A> on page&nbsp;<A HREF="3_12Setting_Up.html#sec:Condor-AFS"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> in the
+manual.
+
+<P>
+</LI>
+<LI>We strongly recommend that you start up Condor (run the
+<I>condor_master</I> daemon) as user root.  If you must start Condor as
+some user other than root, see section&nbsp;<A HREF="3_6Security.html#sec:Non-Root">3.6.13</A> on
+page&nbsp;<A HREF="3_6Security.html#sec:Non-Root"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+</LI>
+</OL>
+
+<P>
+
+<H2><A NAME="SECTION00425000000000000000"></A><A NAME="sec:Windows-Install"></A>
+<BR>
+3.2.5 Installation on Windows
+</H2>
+
+<P>
+<A NAME="9706"></A>
+<A NAME="9707"></A>
+This section contains the instructions for 
+installing the Windows version of Condor.  
+The install program will set up a slightly customized configuration
+file that may be further customized after the installation has completed.
+
+<P>
+Please read the copyright and disclaimer information in 
+section&nbsp;<A HREF="Contents.html#sec:license"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> on
+page&nbsp;<A HREF="Contents.html#sec:license"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> of the manual.
+Installation and
+use of Condor is acknowledgment that you have read and agree to the
+terms.
+
+<P>
+Be sure that the Condor tools are of the same version
+as the daemons installed.
+The Condor executable for distribution is packaged in
+a single file named similar to:
+<PRE>
+  condor-7.4.3-winnt50-x86.msi
+</PRE>
+<A NAME="9712"></A>
+This file is approximately 80 Mbytes in size, and it may be
+removed once Condor is fully installed.
+
+<P>
+Before installing Condor, please consider joining the condor-world mailing
+list.  Traffic on this list is kept to an absolute minimum.  It is only
+used to announce new releases of Condor.
+To subscribe, follow the directions given at
+<A NAME="tex2html33"
+  HREF="http://www.cs.wisc.edu/condor/mail-lists/">http://www.cs.wisc.edu/condor/mail-lists/</A>.
+
+<P>
+For any installation, Condor services are installed and run as the
+Local System account.
+Running the Condor services as any other account (such as a domain user) 
+is not supported and could be problematic.
+
+<P>
+
+<H3><A NAME="SECTION00425100000000000000">
+3.2.5.1 Installation Requirements</A>
+</H3>
+
+<P>
+
+<UL>
+<LI>Condor for Windows requires Windows 2000 SP4, Windows XP SP2, 
+or a more recent version.
+
+<P>
+</LI>
+<LI>300 megabytes of free disk space is recommended.  Significantly more 
+disk space could be desired to be able to run jobs with large data files.
+
+<P>
+</LI>
+<LI>Condor for Windows will operate on either an NTFS or FAT file system.  However, for security purposes, NTFS is preferred.
+
+<P>
+</LI>
+<LI>Condor for Windows requires the Visual C++ 2008 C runtime library.
+</LI>
+</UL>
+
+<P>
+
+<H3><A NAME="SECTION00425200000000000000"></A><A NAME="sec:NT-Preparing-to-Install"></A>
+<BR>
+3.2.5.2 Preparing to Install
+Condor under Windows 
+</H3> 
+
+<P>
+<A NAME="9718"></A>
+Before installing the Windows version of Condor,
+there are two major
+decisions to make about the basic layout of the pool.
+
+<P>
+
+<OL>
+<LI>What machine will be the central manager?
+</LI>
+<LI>Is there enough disk space for Condor?
+</LI>
+</OL>
+
+<P>
+If the answers to these questions are already known,
+skip to the Windows Installation Procedure section below,
+section&nbsp;<A HREF="#sec:nt-install-procedure">3.2.5</A> on
+page&nbsp;<A HREF="3_2Installation.html#sec:nt-install-procedure"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+If unsure, read on.
+
+<P>
+
+<UL>
+<LI>What machine will be the central manager?
+
+<P>
+One machine in your pool must be the central manager.
+This is the
+centralized information repository for the Condor pool and is also the
+machine that matches available machines with waiting
+jobs.  If the central manager machine crashes, any currently active
+matches in the system will keep running, but no new matches will be
+made.  Moreover, most Condor tools will stop working.  Because of the
+importance of this machine for the proper functioning of Condor, we
+recommend installing it on a machine that is likely to stay up all the
+time, or at the very least, one that will be rebooted quickly if it
+does crash.  Also, because all the services will send updates (by
+default every 5 minutes) to this machine, it is advisable to consider
+network traffic and network layout when choosing the central
+manager.
+
+<P>
+Install Condor on the central manager before installing
+on the other machines within the pool.
+
+<P>
+</LI>
+<LI>Is there enough disk space for Condor?
+
+<P>
+<A NAME="9726"></A>
+The Condor release directory takes up a fair amount of space.
+The size requirement for the release
+directory is approximately 250 Mbytes.
+Condor itself, however, needs space to store all of the jobs and their
+input files.  If there will be large numbers of jobs,
+consider installing Condor on a volume with a large amount
+of free space.
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<H3><A NAME="SECTION00425300000000000000"></A><A NAME="sec:nt-install-procedure"></A>
+<BR>
+3.2.5.3 Installation Procedure Using the MSI Program
+</H3>
+
+<P>
+Installation of Condor must be done by a user with administrator privileges.
+After installation, the Condor services will be run under 
+the local system account.
+When Condor is running a user job, however, 
+it will run that user job with normal user permissions.
+
+<P>
+Download Condor, and start the installation process by running the installer. 
+The Condor installation is completed by answering questions 
+and choosing options within the following steps.
+
+<P>
+<DL>
+<DT><STRONG>If Condor is already installed.</STRONG></DT>
+<DD><P>
+If Condor has been previously installed,
+     a dialog box will appear before the installation of Condor proceeds.
+     The question asks if you wish to preserve your current
+     Condor configuration files.
+     Answer yes or no, as appropriate.
+
+<P>
+If you answer yes, your configuration files will not be changed, 
+     and you will proceed to the point where the new binaries will be installed.
+
+<P>
+If you answer no, then there will be a second question
+     that asks if you want to use answers
+     given during the previous installation
+     as default answers.
+
+<P>
+</DD>
+<DT><STRONG>STEP 1: License Agreement.</STRONG></DT>
+<DD><P>
+The first step in installing Condor
+     is a welcome screen and license agreement.
+     You are reminded that it is best to run the installation
+     when no other Windows programs are running.
+     If you need to close other Windows programs, it is safe to cancel the
+     installation and close them.
+     You are asked to agree to the license.
+     Answer yes or no.  If you should disagree with the License, the
+     installation will not continue.
+
+<P>
+Also fill in name and company information,
+     or use the defaults as given.
+
+<P>
+</DD>
+<DT><STRONG>STEP 2: Condor Pool Configuration.</STRONG></DT>
+<DD><P>
+The Condor configuration needs to be set based upon
+     if this is a new pool or to join an existing one.
+     Choose the appropriate radio button.
+
+<P>
+For a new pool, enter a chosen name for the pool.
+     To join an existing pool, 
+     enter the host name of the central manager of the pool.
+
+<P>
+</DD>
+<DT><STRONG>STEP 3: This Machine's Roles.</STRONG></DT>
+<DD><P>
+Each machine within a Condor pool may either
+     submit jobs or execute submitted jobs, or both
+     submit and execute jobs.
+     A check box determines if this machine will be a submit point for
+     the pool.
+
+<P>
+A set of radio buttons determines the ability and configuration of
+     the ability to execute jobs.
+     There are four choices:
+     <DL>
+<DT><STRONG>Do not run jobs on this machine.</STRONG></DT>
+<DD>This machine will not execute Condor jobs.
+     
+</DD>
+<DT><STRONG>Always run jobs and never suspend them.</STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG>Run jobs when the keyboard has been idle for 15 minutes.</STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG>Run jobs when the keyboard has been idle for 15 minutes,
+and the CPU is idle.</STRONG></DT>
+<DD>
+</DD>
+</DL>
+
+<P>
+For testing purposes, it is often helpful to use the always run Condor
+     jobs option. 
+
+<P>
+For a machine that is to execute jobs and the choice is one of
+the last two in the list,
+Condor needs to further know what to do with the currently running jobs.
+There are two choices:
+     <DL>
+<DT><STRONG>Keep the job in memory and continue when the machine meets
+the condition chosen for when to run jobs.</STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG>Restart the job on a different machine.</STRONG></DT>
+<DD>
+</DD>
+</DL>
+
+<P>
+This choice involves a trade off.
+     Restarting the job on a different machine is less intrusive
+     on the workstation owner than leaving the job in memory for a later time.
+     A suspended job left in memory will require swap space,
+     which could be a scarce resource.
+     Leaving a job in memory, however, has the benefit that accumulated
+     run time is not lost for a partially completed job.
+
+<P>
+</DD>
+<DT><STRONG>STEP 4: The Account Domain.</STRONG></DT>
+<DD><P>
+Enter the machine's accounting (or UID) domain.
+     On this version of Condor for Windows, this setting is only used for user
+     priorities (see section&nbsp;<A HREF="3_4User_Priorities.html#sec:UserPrio">3.4</A> on
+     page&nbsp;<A HREF="3_4User_Priorities.html#sec:UserPrio"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>) and to form a default e-mail address for
+     the user.
+
+<P>
+</DD>
+<DT><STRONG>STEP 5: E-mail Settings.</STRONG></DT>
+<DD><P>
+Various parts of Condor will send e-mail to a Condor administrator
+     if something goes wrong and requires human attention.
+     Specify the e-mail address and the SMTP relay host
+     of this administrator.  Please pay close attention to this e-mail,
+     since it will indicate problems in the Condor pool.
+
+<P>
+</DD>
+<DT><STRONG>STEP 6: Java Settings.</STRONG></DT>
+<DD>In order to run jobs in the <B>java</B> universe,
+     Condor must have the path to the jvm executable on the machine.
+     The installer will search for and list the jvm path, if it finds one.
+     If not, enter the path.
+     To disable use of the <B>java</B> universe,
+     leave the field blank.
+
+<P>
+</DD>
+<DT><STRONG>STEP 7: Host Permission Settings.</STRONG></DT>
+<DD>Machines within the Condor pool will need various types of 
+     access permission. 
+     The three categories of permission are read, write, and administrator.
+     Enter the machines or domain to be given access permissions,
+     or use the defaults provided.
+     Wild cards and macros are permitted.
+
+<P>
+<DL>
+<DT><STRONG>Read</STRONG></DT>
+<DD>Read access allows a machine to obtain information about
+     Condor such as the status of machines in the pool and the job queues.
+     All machines in the pool should be given read access. 
+     In addition, giving read access to *.cs.wisc.edu 
+     will allow the Condor team to obtain information about
+     the Condor pool, in the event that debugging is needed.
+     
+</DD>
+<DT><STRONG>Write</STRONG></DT>
+<DD>All machines in the pool should be given write access. 
+     It allows the machines you specify to send information to your
+     local Condor daemons, for example, to start a Condor job.
+     Note that for a machine to join the Condor pool, 
+     it must have both read and write access to all of the machines in the pool.
+     
+</DD>
+<DT><STRONG>Administrator</STRONG></DT>
+<DD>A machine with administrator access will be allowed more
+     extended permission to do things such as
+     change other user's priorities, modify the job queue,
+     turn Condor services on and off, and restart Condor.
+     The central manager should be given administrator access
+     and is the default listed.
+     This setting is granted to the entire machine, 
+     so care should be taken not to make this too open.
+     
+</DD>
+</DL>
+
+<P>
+For more details on these access permissions, and others that can be
+     manually changed in your configuration file, please
+     see the section titled Setting Up IP/Host-Based Security in Condor
+     in section section&nbsp;<A HREF="3_6Security.html#sec:Host-Security">3.6.9</A>
+     on page&nbsp;<A HREF="3_6Security.html#sec:Host-Security"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+</DD>
+<DT><STRONG>STEP 8: VM Universe Setting.</STRONG></DT>
+<DD>A radio button determines whether 
+     this machine will be configured to run <B>vm</B> universe jobs 
+     utilizing VMware.
+     In addition to having the VMware Server installed, Condor also needs
+     <I>Perl</I> installed.
+     The resources available for <B>vm</B> universe jobs can be tuned 
+     with these settings, or the defaults listed may be used.
+
+<P>
+<DL>
+<DT><STRONG>Version</STRONG></DT>
+<DD>Use the default value, as only one version is currently supported.
+     
+</DD>
+<DT><STRONG>Maximum Memory</STRONG></DT>
+<DD>The maximum memory that each virtual machine is permitted to use 
+     on the target machine.
+     
+</DD>
+<DT><STRONG>Maximum Number of VMs</STRONG></DT>
+<DD>The number of virtual machines that can be run in parallel 
+     on the target machine.
+     
+</DD>
+<DT><STRONG>Networking Support</STRONG></DT>
+<DD>The VMware instances can be configured to use network support.
+     There are four options in the pull-down menu.
+          
+<UL>
+<LI>None: No networking support.
+</LI>
+<LI>NAT: Network address translation.
+</LI>
+<LI>Bridged: Bridged mode.
+</LI>
+<LI>NAT and Bridged: Allow both methods.
+          
+</LI>
+</UL>
+     
+</DD>
+<DT><STRONG>Path to Perl Executable</STRONG></DT>
+<DD>The path to the <I>Perl</I> executable.
+     
+</DD>
+</DL>
+
+<P>
+</DD>
+<DT><STRONG>STEP 9: HDFS Settings.</STRONG></DT>
+<DD>A radio button enables support for 
+     the Hadoop Distributed File System (HDFS).
+     When enabled, a further radio button specifies 
+     either name node or data node mode.
+
+<P>
+Running HDFS requires Java to be installed,
+     and Condor must know where the installation is.
+     Running HDFS in data node mode also requires the installation of Cygwin,
+     and the path to the Cygwin directory must be added to the 
+     global <TT>PATH</TT> environment variable.
+
+<P>
+HDFS has several configuration options that must be filled in to be used.
+     <DL>
+<DT><STRONG>Primary Name Node</STRONG></DT>
+<DD>The full host name of the primary name node.
+     
+</DD>
+<DT><STRONG>Name Node Port</STRONG></DT>
+<DD>The port that the name node is listening on.
+     
+</DD>
+<DT><STRONG>Name Node Web Port</STRONG></DT>
+<DD>The port the name node's web interface is bound to.
+     It should be different from the name node's main port.
+     
+</DD>
+</DL>
+
+<P>
+</DD>
+<DT><STRONG>STEP 10: Choose Setup Type</STRONG></DT>
+<DD><P>
+<A NAME="9753"></A>
+The next step is where the destination of the Condor files will be
+decided.
+We recommend that Condor be installed in the location shown as the default 
+in the install choice:
+<code>C:\Condor</code>. This is due to several hard coded
+paths in scripts and configuration files.
+Clicking on the Custom choice permits changing the installation directory.
+
+<P>
+Installation on the local disk is chosen for several reasons.
+The Condor services run as local system, and within Microsoft Windows, 
+local system has no network privileges.
+Therefore, for Condor to operate, 
+Condor should be installed on a local hard drive,
+as opposed to a network drive (file server).
+
+<P>
+The second reason for installation on the local disk is that
+the Windows usage of drive letters has implications for where
+Condor is placed.
+The drive letter used must be not change, even when different users are
+logged in.
+Local drive letters do not change under normal operation of Windows.
+
+<P>
+While it is strongly discouraged, 
+it may be possible to place Condor on a hard drive that is not local,
+if a dependency is added to the service control manager
+such that Condor starts after the required file services
+are available.
+
+<P>
+</DD>
+</DL>
+
+<P>
+
+<H3><A NAME="SECTION00425400000000000000"></A><A NAME="sec:nt-unattended-install-procedure"></A>
+<BR>
+3.2.5.4 Unattended Installation Procedure Using the Included Set Up Program
+</H3>
+
+<P>
+<A NAME="9756"></A>
+This section details how to run the Condor for Windows installer in an
+unattended batch mode.
+This mode is one that occurs completely from the command prompt,
+without the GUI interface.
+
+<P>
+The Condor for Windows installer uses the Microsoft Installer (MSI)
+technology, and it can be configured for unattended installs analogous
+to any other ordinary MSI installer.
+
+<P>
+The following is a sample batch file that is used to set all the
+properties necessary for an unattended install.
+
+<P>
+<PRE>
+@echo on
+set ARGS=
+set ARGS=NEWPOOL="N"
+set ARGS=%ARGS% POOLNAME=""
+set ARGS=%ARGS% RUNJOBS="C"
+set ARGS=%ARGS% VACATEJOBS="Y"
+set ARGS=%ARGS% SUBMITJOBS="Y"
+set ARGS=%ARGS% CONDOREMAIL="you@yours.com"
+set ARGS=%ARGS% SMTPSERVER="smtp.localhost"
+set ARGS=%ARGS% HOSTALLOWREAD="*"
+set ARGS=%ARGS% HOSTALLOWWRITE="*"
+set ARGS=%ARGS% HOSTALLOWADMINISTRATOR="$(IP_ADDRESS)"
+set ARGS=%ARGS% INSTALLDIR="C:\Condor"
+set ARGS=%ARGS% POOLHOSTNAME="$(IP_ADDRESS)"
+set ARGS=%ARGS% ACCOUNTINGDOMAIN="none"
+set ARGS=%ARGS% JVMLOCATION="C:\Windows\system32\java.exe"
+set ARGS=%ARGS% USEVMUNIVERSE="N"set ARGS=%ARGS% VMMEMORY="128"
+set ARGS=%ARGS% VMMAXNUMBER="$(NUM_CPUS)"
+set ARGS=%ARGS% VMNETWORKING="N"
+set ARGS=%ARGS% USEHDFS="N"
+set ARGS=%ARGS% NAMENODE=""
+set ARGS=%ARGS% HDFSMODE="HDFS_NAMENODE"
+set ARGS=%ARGS% HDFSPORT="5000"
+set ARGS=%ARGS% HDFSWEBPORT="4000"
+ 
+msiexec /qb /l* condor-install-log.txt /i condor-7.1.0-winnt50-x86.msi %ARGS%
+</PRE>
+
+<P>
+Each property corresponds to answers that would have been
+supplied while running an interactive installer.
+The following is a brief explanation of each property
+as it applies to unattended installations:
+
+<P>
+<DL>
+<DT><STRONG>NEWPOOL = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img11.png"
+ ALT="$&lt;$"> Y |  N <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img12.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>determines whether the installer will create a new pool with the target
+machine as the central manager.
+
+<P>
+</DD>
+<DT><STRONG>POOLNAME</STRONG></DT>
+<DD>sets the name of the pool, if a new pool is to be created. Possible values
+are either the name or the empty string <code>""</code>.
+
+<P>
+</DD>
+<DT><STRONG>RUNJOBS = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img11.png"
+ ALT="$&lt;$"> N |  A |  I |  C <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img12.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>determines when Condor will run jobs. This can be set to:
+
+<UL>
+<LI>Never run jobs (N)
+</LI>
+<LI>Always run jobs (A)
+</LI>
+<LI>Only run jobs when the keyboard and mouse are Idle (I)
+</LI>
+<LI>Only run jobs when the keyboard and mouse are idle and the CPU
+usage is low (C)
+</LI>
+</UL>
+
+<P>
+</DD>
+<DT><STRONG>VACATEJOBS = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img11.png"
+ ALT="$&lt;$"> Y |  N <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img12.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>determines what Condor should do when it has to stop the execution of
+a user job. When set to Y, Condor will vacate the job and start
+it somewhere else if possible. When set to N, Condor will merely
+suspend the job in memory and wait for the machine to become available
+again. 
+
+<P>
+</DD>
+<DT><STRONG>SUBMITJOBS  = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img11.png"
+ ALT="$&lt;$"> Y |  N <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img12.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>will cause the installer to configure the machine as a submit
+node when set to Y. 
+
+<P>
+</DD>
+<DT><STRONG>CONDOREMAIL</STRONG></DT>
+<DD>sets the e-mail address of the Condor administrator. Possible values are
+an e-mail address or the empty string <code>""</code>.
+
+<P>
+</DD>
+<DT><STRONG>HOSTALLOWREAD</STRONG></DT>
+<DD>is a list of host names that are allowed to issue READ commands to
+Condor daemons. This value should be set in accordance with the
+<TT>HOSTALLOW_READ</TT> <A NAME="9895"></A> <A NAME="9896"></A> setting in the configuration file, as described in
+section&nbsp;<A HREF="3_6Security.html#sec:Host-Security">3.6.9</A> on page&nbsp;<A HREF="3_6Security.html#sec:Host-Security"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+</DD>
+<DT><STRONG>HOSTALLOWWRITE</STRONG></DT>
+<DD>is a list of host names that are allowed to issue WRITE commands to
+Condor daemons. This value should be set in accordance with the
+<TT>HOSTALLOW_WRITE</TT> <A NAME="9900"></A> <A NAME="9901"></A> setting in the configuration file, as described in
+section&nbsp;<A HREF="3_6Security.html#sec:Host-Security">3.6.9</A> on page&nbsp;<A HREF="3_6Security.html#sec:Host-Security"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+</DD>
+<DT><STRONG>HOSTALLOWADMINISTRATOR</STRONG></DT>
+<DD>is a list of host names that are allowed to issue ADMINISTRATOR commands to
+Condor daemons. This value should be set in accordance with the
+<TT>HOSTALLOW_ADMINISTRATOR</TT> <A NAME="9905"></A> <A NAME="9906"></A> setting in the configuration file, 
+as described in
+section&nbsp;<A HREF="3_6Security.html#sec:Host-Security">3.6.9</A> on page&nbsp;<A HREF="3_6Security.html#sec:Host-Security"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+</DD>
+<DT><STRONG>INSTALLDIR</STRONG></DT>
+<DD>defines the path to the directory where Condor will be installed. 
+
+<P>
+</DD>
+<DT><STRONG>POOLHOSTNAME</STRONG></DT>
+<DD>defines the host name of the pool's central manager. 
+
+<P>
+</DD>
+<DT><STRONG>ACCOUNTINGDOMAIN</STRONG></DT>
+<DD>defines the accounting (or UID) domain the target machine will be in.
+
+<P>
+</DD>
+<DT><STRONG>JVMLOCATION</STRONG></DT>
+<DD>defines the path to Java virtual machine on the target machine.
+
+<P>
+</DD>
+<DT><STRONG>SMTPSERVER</STRONG></DT>
+<DD>defines the host name of the SMTP server that the target machine is to
+use to send e-mail.
+
+<P>
+</DD>
+<DT><STRONG>VMMEMORY</STRONG></DT>
+<DD>an integer value that defines the maximum memory each VM run on the target
+machine.
+
+<P>
+</DD>
+<DT><STRONG>VMMAXNUMBER</STRONG></DT>
+<DD>an integer value that defines the number of VMs that can be run in parallel
+on the target machine.
+
+<P>
+</DD>
+<DT><STRONG>VMNETWORKING = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img11.png"
+ ALT="$&lt;$"> N |  A |  B |  C <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img12.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>determines if VM Universe can use networking. This can be set to:
+
+<UL>
+<LI>None (N)
+</LI>
+<LI>NAT (A)
+</LI>
+<LI>Bridged (B)
+</LI>
+<LI>NAT and Bridged (C)
+</LI>
+</UL>
+
+<P>
+</DD>
+<DT><STRONG>USEVMUNIVERSE = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img11.png"
+ ALT="$&lt;$"> Y |  N <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img12.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>will cause the installer to enable VM Universe jobs on the target machine.
+
+<P>
+</DD>
+<DT><STRONG>PERLLOCATION</STRONG></DT>
+<DD>defines the path to <I>Perl</I> on the target machine. This is required in
+order to use the <B>vm</B> universe.
+
+<P>
+</DD>
+<DT><STRONG>USEHDFS = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img11.png"
+ ALT="$&lt;$"> Y |  N <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img12.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>determines if HDFS is run.
+
+<P>
+</DD>
+<DT><STRONG>HDFSMODE <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img11.png"
+ ALT="$&lt;$"> HDFS_DATANODE |  HDFS_NAMENODE <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img12.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>sets the mode HDFS runs in.
+
+<P>
+</DD>
+<DT><STRONG>NAMENODE</STRONG></DT>
+<DD>sets the host name of the primary name node.
+
+<P>
+</DD>
+<DT><STRONG>HDFSPORT</STRONG></DT>
+<DD>sets the port number that the primary name node listens to.
+
+<P>
+</DD>
+<DT><STRONG>HDFSWEBPORT</STRONG></DT>
+<DD>sets the port number that the name node web interface is bound to.
+</DD>
+</DL>
+
+<P>
+After defining each of these properties for the MSI installer, the
+installer can be started with the <I>msiexec</I> command. The following
+command starts the installer in unattended mode, and it dumps a journal of
+the installer's progress to a log file:
+<PRE>
+msiexec /qb /lxv* condor-install-log.txt /i condor-7.2.2-winnt50-x86.msi [property=value] ...
+</PRE>
+<P>
+More information on the features of <I>msiexec</I>
+can be found at Microsoft's website at
+<A NAME="tex2html34"
+  HREF="http://www.microsoft.com/resources/documentation/windows/xp/all/proddocs/en-us/msiexec.mspx">http://www.microsoft.com/resources/documentation/windows/xp/all/proddocs/en-us/msiexec.mspx</A>.
+
+<P>
+
+<H3><A NAME="SECTION00425500000000000000"></A><A NAME="sec:NT-Manual-Install"></A>
+<BR>
+3.2.5.5 Manual Installation Condor on Windows
+</H3>
+
+<P>
+<A NAME="9782"></A>
+If you are to install Condor on many different machines, you may wish
+to use some other mechanism to install Condor on additional machines
+rather than running the Setup program described above on each machine.
+
+<P>
+<U>WARNING</U>: This is for advanced users only!  All others should use the Setup program described above. 
+
+<P>
+Here is a brief overview of how to install Condor manually without using the provided GUI-based setup program:
+
+<P>
+<DL>
+<DT><STRONG>The Service</STRONG></DT>
+<DD>The service that Condor will install is called "Condor".  The Startup
+Type is Automatic.  The service should log on as System Account, but
+<B>do not enable</B> "Allow Service to Interact with Desktop".  The
+program that is run is <I>condor_master.exe</I>.
+
+<P>
+The Condor service can be installed and removed using the
+<TT>sc.exe</TT> tool, which is included in Windows XP and Windows 2003
+Server. The tool is also available as part of the Windows 2000
+Resource Kit.
+
+<P>
+Installation can be done as follows:
+<PRE>
+sc create Condor binpath= c:\condor\bin\condor_master.exe
+</PRE>
+
+<P>
+To remove the service, use:
+<PRE>
+sc delete Condor
+</PRE>
+
+<P>
+</DD>
+<DT><STRONG>The Registry</STRONG></DT>
+<DD>Condor uses a few registry entries in its operation.  The key that Condor
+uses is HKEY_LOCAL_MACHINE/Software/Condor.  The values that Condor puts
+in this registry key serve two purposes.
+
+<OL>
+<LI>The values of CONDOR_CONFIG and RELEASE_DIR are used for Condor
+to start its service.
+
+<P>
+CONDOR_CONFIG should point to the <TT>condor_config</TT> file.  In this version
+of Condor, it <B>must</B> reside on the local disk.
+
+<P>
+RELEASE_DIR should point to the directory where Condor is installed.  This
+is typically
+<code>C:\Condor</code>, and again, this <B>must</B> reside on the
+local disk.
+
+<P>
+</LI>
+<LI>The other purpose is storing the entries from the last installation
+so that they can be used for the next one.
+</LI>
+</OL>
+
+<P>
+</DD>
+<DT><STRONG>The File System</STRONG></DT>
+<DD>The files that are needed for Condor to operate are identical to the Unix
+version of Condor, except that executable files end in <TT>.exe</TT>.  For
+example the on Unix one of the files is <TT>condor_master</TT> and on Condor
+the corresponding file is <TT>condor_master.exe</TT>.
+
+<P>
+These files currently must reside on the local disk for a variety of reasons.
+Advanced Windows users might be able to put the files on remote resources.
+The main concern is twofold.  First, the files must be there when the service
+is started.  Second, the files must always be in the same spot (including
+drive letter), no matter who is logged into the machine.  
+
+<P>
+Note also that when installing manually, you will need to create the
+directories that Condor will expect to be present given your
+configuration. This normally is simply a matter of creating the
+<TT>log</TT>, <TT>spool</TT>, and <TT>execute</TT> directories.
+
+<P>
+</DD>
+</DL>
+
+<P>
+
+<H3><A NAME="SECTION00425600000000000000"></A><A NAME="nt-installed-now-what"></A>
+<A NAME="9804"></A>
+<A NAME="9805"></A>
+<BR>
+3.2.5.6 Starting Condor Under Windows After Installation
+</H3>
+
+<P>
+After the installation of Condor is completed, the Condor service
+must be started.  If you used the GUI-based setup program to install
+Condor, the Condor service should already be started.  If you installed
+manually, Condor must
+be started by hand, or you can simply reboot. <U>NOTE</U>: The Condor service
+will start automatically whenever you reboot your machine.
+
+<P>
+To start Condor by hand:
+
+<OL>
+<LI>From the Start menu, choose Settings.
+</LI>
+<LI>From the Settings menu, choose Control Panel.
+</LI>
+<LI>From the Control Panel, choose Services.
+</LI>
+<LI>From Services, choose Condor, and Start.
+</LI>
+</OL>
+
+<P>
+Or, alternatively you can enter the following command from a command prompt:
+<PRE>
+         net start condor
+</PRE>
+
+<P>
+<A NAME="9810"></A>
+Run the Task Manager (Control-Shift-Escape) to check that Condor
+services are running.  The following tasks should
+be running:  
+
+<UL>
+<LI><I>condor_master.exe</I>
+</LI>
+<LI><I>condor_negotiator.exe</I>, if this machine is a central manager.
+</LI>
+<LI><I>condor_collector.exe</I>, if this machine is a central manager.
+</LI>
+<LI><I>condor_startd.exe</I>, if you indicated that this Condor node should start jobs
+</LI>
+<LI><I>condor_schedd.exe</I>, if you indicated that this Condor node should submit jobs
+to the Condor pool.
+</LI>
+</UL>
+
+<P>
+Also, you should now be able to open up a new cmd (DOS prompt) window, and
+the Condor bin directory should be in your path, so you can issue the normal
+Condor commands, such as <I>condor_q</I> and <I>condor_status</I>.
+
+<P>
+<A NAME="9820"></A>
+<A NAME="9821"></A>
+
+<P>
+
+<H3><A NAME="SECTION00425700000000000000"></A><A NAME="nt-running-now-what"></A>
+<BR>
+3.2.5.7 Condor is Running Under Windows ... Now What?
+</H3>
+
+<P>
+Once Condor services are running, try submitting test jobs.
+Example 2 within section&nbsp;<A HREF="2_5Submitting_Job.html#sec:sample-submit-files">2.5.1</A> 
+on page&nbsp;<A HREF="2_5Submitting_Job.html#sec:sample-submit-files"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> presents a vanilla
+universe job.
+
+<P>
+
+<H2><A NAME="SECTION00426000000000000000"></A><A NAME="sec:install-rpms"></A>
+<BR>
+3.2.6  RPMs
+</H2>
+
+<P>
+<A NAME="9826"></A>
+<A NAME="9827"></A>
+RPMs are available in Condor Version 7.8.5.
+We provide a Yum repository, as well as 
+installation and configuration in one easy step.
+This RPM installation is currently available for Red Hat-compatible
+systems only.
+As of Condor version 7.5.1, 
+the Condor RPM installs into FHS locations.
+
+<P>
+Yum repositories are at
+ <A NAME="tex2html35"
+  HREF="http://www.cs.wisc.edu/condor/yum/">http://www.cs.wisc.edu/condor/yum/</A>
+.
+The repositories are named to distinguish stable releases from
+development releases and by Red Hat version number. 
+The 4 repositories are:
+
+<UL>
+<LI><TT>condor-stable-rhel4.repo</TT>
+</LI>
+<LI><TT>condor-stable-rhel5.repo</TT>
+</LI>
+<LI><TT>condor-development-rhel4.repo</TT>
+</LI>
+<LI><TT>condor-development-rhel5.repo</TT>
+</LI>
+</UL>
+
+<P>
+Here are an ordered set of steps that get Condor running using the RPM.
+
+<OL>
+<LI>The Condor package will automatically add a <TT>condor</TT> user/group,
+if it does not exist already.
+Sites wishing to control the attributes of this user/group 
+should add the <TT>condor</TT> user/group manually before installation.
+
+<P>
+</LI>
+<LI>Download and install the meta-data that describes 
+the appropriate YUM repository. 
+This example is for the stable series, on RHEL 5. 
+<PRE>
+  cd /etc/yum.repos.d
+  wget http://www.cs.wisc.edu/condor/yum/repo.d/condor-stable-rhel5.repo
+</PRE>Note that this step need be done only once;
+do not get the same repository more than once.
+
+<P>
+</LI>
+<LI>Install Condor.
+For 32-bit machines:
+<PRE>
+  yum install condor
+</PRE>
+For 64-bit machines:
+<PRE>
+  yum install condor.x86_64
+</PRE>
+
+<P>
+</LI>
+<LI>As needed, edit the Condor configuration files to customize.
+The configuration files are in the directory <TT>/etc/condor/</TT> .
+Do <I>not</I> use <I>condor_configure</I> or <I>condor_install</I> for configuration.
+The installation will be able to find configuration files without
+additional administrative intervention,
+as the configuration files are placed in <TT>/etc</TT>,
+and Condor searches this directory.
+
+<P>
+</LI>
+<LI>Start Condor daemons:
+<PRE>
+  /sbin/service condor start
+</PRE>
+
+<P>
+</LI>
+</OL>
+
+<P>
+
+<H2><A NAME="SECTION00427000000000000000"></A><A NAME="sec:install-debs"></A>
+<A NAME="9853"></A>
+<A NAME="9854"></A>
+<BR>
+3.2.7  Debian Packages
+</H2>
+
+<P>
+Debian packages are available in Condor Version 7.8.5.
+We provide an APT repository, as well as 
+installation and configuration in one easy step.
+These Debian packages of Condor are currently available for 
+Debian 5 (Lenny) and Debian 6 (Squeeze).
+As of Condor version 7.5.1, 
+the Condor Debian package installs into FHS locations.
+
+<P>
+The Condor APT repositories are specified at
+ <A NAME="tex2html36"
+  HREF="http://www.cs.wisc.edu/condor/debian/">http://www.cs.wisc.edu/condor/debian/</A>
+.
+See this web page for repository information.
+
+<P>
+Here are an ordered set of steps that get Condor running.
+
+<OL>
+<LI>The Condor package will automatically add a <TT>condor</TT> user/group,
+if it does not exist already.
+Sites wishing to control the attributes of this user/group 
+should add the <TT>condor</TT> user/group manually before installation.
+
+<P>
+</LI>
+<LI>If not already present,
+set up access to the appropriate APT repository;
+they are distinguished as stable or development release,
+and by operating system. 
+Ensure that the correct one of the following release and 
+operating system-specific lines is in 
+the file <TT>/etc/apt/sources.list</TT> .
+<PRE>
+deb http://www.cs.wisc.edu/condor/debian/stable/ etch contrib
+deb http://www.cs.wisc.edu/condor/debian/development/ etch contrib
+deb http://www.cs.wisc.edu/condor/debian/stable/ lenny contrib
+deb http://www.cs.wisc.edu/condor/debian/development/ lenny contrib
+</PRE>Note that this step need be done only once;
+do not add the same repository more than once.
+
+<P>
+</LI>
+<LI>Install and start Condor services:
+<PRE>
+  apt-get update
+  apt-get install condor
+</PRE>
+
+<P>
+</LI>
+<LI>As needed, edit the Condor configuration files to customize.
+The configuration files are in the directory <TT>/etc/condor/</TT> .
+Do <I>not</I> use <I>condor_configure</I> or <I>condor_install</I> for configuration.
+The installation will be able to find configuration files without
+additional administrative intervention,
+as the configuration files are placed in <TT>/etc</TT>,
+and Condor searches this directory.
+
+<P>
+Then, if any configuration changes are made, restart Condor with
+<PRE>
+  /etc/init.d/condor restart
+</PRE>
+
+<P>
+</LI>
+</OL>
+
+<P>
+
+<H2><A NAME="SECTION00428000000000000000"></A><A NAME="sec:upgrade-directions"></A>
+<BR>
+3.2.8 Upgrading - Installing a Newer
+Version of Condor
+</H2>
+Section&nbsp;<A HREF="3_10Pool_Management.html#sec:Pool-Upgrade">3.10.1</A>  on page&nbsp;<A HREF="3_10Pool_Management.html#sec:Pool-Upgrade"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>
+within the section on Pool Management describes 
+strategies for doing an upgrade:
+changing the running version of Condor 
+from the current installation to a newer version.
+
+<P>
+
+<H2><A NAME="SECTION00429000000000000000"></A><A NAME="sec:Dynamic-Deployment"></A>
+<A NAME="10296"></A>
+<A NAME="10297"></A>
+<BR>
+3.2.9 Dynamic Deployment
+</H2>
+
+<P>
+Dynamic deployment is a mechanism that allows rapid, automated
+installation and start up of Condor resources on a given machine.
+In this way any machine can be added to a Condor pool.
+The dynamic
+deployment tool set also provides tools to remove a machine from the
+pool, without leaving residual effects on the machine such as leftover
+installations, log files, and working directories.
+
+<P>
+<A NAME="10298"></A>
+Installation and start up is provided by <I>condor_cold_start</I>.
+The <I>condor_cold_start</I> program determines the operating system and
+architecture of the target machine, and transfers the correct
+installation package from an ftp, http, or grid ftp site.
+After transfer, it
+installs Condor and creates a local working
+directory for Condor to run in.  As a last step, <I>condor_cold_start</I>
+begins running Condor in a manner which allows for later easy and reliable
+shut down.
+
+<P>
+<A NAME="10302"></A>
+The program that reliably shuts down and uninstalls a previously
+dynamically installed Condor instance is <I>condor_cold_stop</I>.
+<I>condor_cold_stop</I> begins by safely and reliably shutting off the
+running Condor installation.  It ensures that Condor has
+completely shut down before continuing, and optionally ensures that
+there are no queued jobs at the site.
+Next, <I>condor_cold_stop</I>
+removes and optionally archives the Condor working directories,
+including the <TT>log</TT> directory. 
+These archives can be stored to a
+mounted file system or to a grid ftp site.
+As a last step,
+<I>condor_cold_stop</I> uninstalls the Condor executables and libraries.
+The end result is that the machine resources are left unchanged after
+a dynamic deployment of Condor leaves.
+
+<P>
+
+<H3><A NAME="SECTION00429100000000000000">
+3.2.9.1 Configuration and Usage</A>
+</H3>
+
+<P>
+<A NAME="10309"></A>
+Dynamic deployment is designed for the expert Condor user
+and administrator.
+Tool design choices were made for functionality,
+not ease-of-use.
+
+<P>
+Like every installation of Condor, a dynamically deployed installation
+relies on a configuration.
+To add a target
+machine to a previously created Condor pool,
+the global configuration file for that pool is a good starting point.
+Modifications to that configuration can be made in a separate, 
+local configuration file used in the dynamic deployment.
+The global configuration file must
+be placed on an ftp, http, grid ftp, or file server 
+accessible by <I>condor_cold_start</I>.  The local configuration file
+is to be on a file system accessible by the target machine.
+There are some specific configuration variables that may be set for
+dynamic deployment.  
+A list of executables and directories which must be present
+for Condor to start on the target machine may be set with
+the configuration variables <TT>DEPLOYMENT_REQUIRED_EXECS</TT> <A NAME="10352"></A> <A NAME="10353"></A> and
+<TT>DEPLOYMENT_REQUIRED_DIRS</TT> <A NAME="10357"></A> <A NAME="10358"></A>. 
+If defined and the comma-separated list of executables or directories are
+not present, then <I>condor_cold_start</I> exits with error.
+Note this does not affect what is installed, only
+whether start up is successful. 
+
+<P>
+A list of executables and directories which are recommended to be present
+for Condor to start on the target machine may be set with
+the configuration variables <TT>DEPLOYMENT_RECOMMENDED_EXECS</TT> <A NAME="10364"></A> <A NAME="10365"></A> and
+<TT>DEPLOYMENT_RECOMMENDED_DIRS</TT> <A NAME="10369"></A> <A NAME="10370"></A>. 
+If defined and the comma-separated lists of executables or directories are
+not present, then <I>condor_cold_start</I> prints a warning message
+and continues.
+Here is a portion of the configuration relevant to
+a dynamic deployment of a Condor submit node:
+
+<P>
+<PRE>
+DEPLOYMENT_REQUIRED_EXECS    = MASTER, SCHEDD, PREEN, STARTER, \
+                               STARTER_STANDARD, SHADOW, \
+                               SHADOW_STANDARD, GRIDMANAGER, GAHP, CONDOR_GAHP
+DEPLOYMENT_REQUIRED_DIRS     = SPOOL, LOG, EXECUTE
+DEPLOYMENT_RECOMMENDED_EXECS = CREDD
+DEPLOYMENT_RECOMMENDED_DIRS  = LIB, LIBEXEC
+</PRE>
+<P>
+Additionally, the user must
+specify which Condor services will be started.  This is done through
+the <TT>DAEMON_LIST</TT> configuration variable.  Another excerpt
+from a dynamic submit node deployment configuration:
+
+<P>
+<PRE>
+DAEMON_LIST  = MASTER, SCHEDD
+</PRE>
+<P>
+Finally, the location
+of the dynamically installed Condor executables is tricky to set,
+since the location is unknown before installation.
+Therefore,
+the variable <TT>DEPLOYMENT_RELEASE_DIR</TT> <A NAME="10377"></A> <A NAME="10378"></A> is defined in the environment.
+It corresponds to the location of the dynamic Condor installation.
+If, as is often the case, 
+the configuration file specifies the location of Condor executables in
+relation to the <TT>RELEASE_DIR</TT> variable, the configuration can
+be made dynamically deployable by setting <TT>RELEASE_DIR</TT> to
+<TT>DEPLOYMENT_RELEASE_DIR</TT> as 
+
+<P>
+<PRE>
+RELEASE_DIR = $(DEPLOYMENT_RELEASE_DIR)
+</PRE>
+<P>
+In addition to setting up the configuration, the user must also
+determine where the installation package will reside.
+The installation package can be in either tar or 
+gzipped tar form, and may
+reside on a ftp, http, grid ftp, or file server.  
+Create this installation package by tar'ing up the binaries and libraries
+needed, and place them on the appropriate server.
+The binaries can be tar'ed in a flat structure or within <TT>bin</TT> and
+<TT>sbin</TT>.  Here is a list of files to give an example
+structure for a dynamic deployment of the <I>condor_schedd</I> daemon.
+
+<P>
+<PRE>
+% tar tfz latest-i686-Linux-2.4.21-37.ELsmp.tar.gz
+bin/
+bin/condor_config_val
+bin/condor_q
+sbin/
+sbin/condor_preen
+sbin/condor_shadow.std
+sbin/condor_starter.std
+sbin/condor_schedd
+sbin/condor_master
+sbin/condor_gridmanager
+sbin/gahp_server
+sbin/condor_starter
+sbin/condor_shadow
+sbin/condor_c-gahp
+sbin/condor_off
+</PRE><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1328"
+  HREF="3_3Configuration.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1322"
+  HREF="3_Administrators_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1316"
+  HREF="3_1Introduction.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1324"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1326"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1329"
+  HREF="3_3Configuration.html">3.3 Configuration</A>
+<B> Up:</B> <A NAME="tex2html1323"
+  HREF="3_Administrators_Manual.html">3. Administrators' Manual</A>
+<B> Previous:</B> <A NAME="tex2html1317"
+  HREF="3_1Introduction.html">3.1 Introduction</A>
+ &nbsp; <B>  <A NAME="tex2html1325"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1327"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

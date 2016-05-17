@@ -1,0 +1,232 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<link rel="canonical" href="http://research.cs.wisc.edu/htcondor/manual/current/condor_sos.html">
+
+<TITLE>condor_sos</TITLE>
+<META NAME="description" CONTENT="condor_sos">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="condor_stats.html">
+<LINK REL="previous" HREF="condor_ssh_to_job.html">
+<LINK REL="up" HREF="11_Command_Reference.html">
+<LINK REL="next" HREF="condor_stats.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html4191"
+  HREF="condor_stats.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html4185"
+  HREF="11_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html4179"
+  HREF="condor_ssh_to_job.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html4187"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html4189"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4192"
+  HREF="condor_stats.html">condor_stats</A>
+<B> Up:</B> <A NAME="tex2html4186"
+  HREF="11_Command_Reference.html">11. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html4180"
+  HREF="condor_ssh_to_job.html">condor_ssh_to_job</A>
+ &nbsp; <B>  <A NAME="tex2html4188"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html4190"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html4193"
+  HREF="condor_sos.html#SECTION0012511000000000000000">Synopsis</A>
+<LI><A NAME="tex2html4194"
+  HREF="condor_sos.html#SECTION0012512000000000000000">Description</A>
+<LI><A NAME="tex2html4195"
+  HREF="condor_sos.html#SECTION0012513000000000000000">Options</A>
+<LI><A NAME="tex2html4196"
+  HREF="condor_sos.html#SECTION0012514000000000000000">Examples</A>
+<LI><A NAME="tex2html4197"
+  HREF="condor_sos.html#SECTION0012515000000000000000">Exit Status</A>
+<LI><A NAME="tex2html4198"
+  HREF="condor_sos.html#SECTION0012516000000000000000">Author</A>
+<LI><A NAME="tex2html4199"
+  HREF="condor_sos.html#SECTION0012517000000000000000">Copyright</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION0012510000000000000000"></A><A NAME="man-condor-sos"></A>
+<BR>
+<I>condor_sos</I>
+</H1> Issue a command that will be service with a higher priority
+  
+<P>
+
+<A NAME="81161"></A>
+<A NAME="81162"></A>
+
+<P>
+
+<H2><A NAME="SECTION0012511000000000000000">
+Synopsis</A>
+</H2><B><I>condor_sos</I></B>
+
+[<B>-help <IMG
+ WIDTH="10" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img65.png"
+ ALT="$\vert$"> -version</B>]
+
+<P>
+<B><I>condor_sos</I></B>
+[<B>-debug</B>]
+[<B>-timeoutmult  </B><I>value</I>]
+<I>condor_command</I>
+
+<P>
+
+<H2><A NAME="SECTION0012512000000000000000">
+Description</A>
+</H2>
+<I>condor_sos</I> sends the <I>condor_command</I> in such a way 
+that the command is serviced ahead of other waiting commands.
+It appears to have a higher priority than other waiting commands.
+
+<P>
+<I>condor_sos</I> is intended to give administrators a way to query the
+<I>condor_schedd</I> and <I>condor_collector</I> daemons when they are under
+such a heavy load that they are not responsive. 
+
+<P>
+There must be a special command port configured, 
+in order for a command to be serviced with priority.
+The <I>condor_schedd</I> and <I>condor_collector</I> always have the special
+command port.
+Other daemons require configuration by setting
+configuration variable <TT>&lt;SUBSYS&gt;_SUPER_ADDRESS_FILE</TT><A NAME="81290"></A>.
+
+<P>
+
+<H2><A NAME="SECTION0012513000000000000000">
+Options</A>
+</H2>
+  
+<P>
+  <DL>
+<DT><STRONG><B>-help</B></STRONG></DT>
+<DD>Display usage information
+<BR></DD>
+<DT><STRONG><B>-version</B></STRONG></DT>
+<DD>Display version information
+<BR>
+  
+</DD>
+<DT><STRONG><B>-debug</B></STRONG></DT>
+<DD>Print extra debugging information as the command
+    executes.
+<BR>  
+</DD>
+<DT><STRONG><B>-timeoutmult </B><I>value</I></STRONG></DT>
+<DD>Multiply any timeouts set for the command by the integer <I>value</I>.  
+<BR>  
+</DD>
+</DL>
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION0012514000000000000000">
+Examples</A>
+</H2>
+
+<P>
+The example command
+<PRE>
+  condor_sos -timeoutmult 5 condor_hold -all
+</PRE>
+causes the <TT>condor_hold -all</TT> command to be handled by the
+<I>condor_schedd</I> with priority over any other commands that the <I>condor_schedd</I>
+has waiting to be serviced.
+It also extends any set timeouts by a factor of 5.
+
+<P>
+
+<H2><A NAME="SECTION0012515000000000000000">
+Exit Status</A>
+</H2>
+
+<P>
+<I>condor_sos</I> will exit with the value 1 on error and with the
+exit value of the invoked command when the command is successfully
+invoked. 
+
+<P>
+
+<H2><A NAME="SECTION0012516000000000000000">
+Author</A>
+</H2> Center for High Throughput Computing, University of Wisconsin-Madison
+  
+<H2><A NAME="SECTION0012517000000000000000">
+Copyright</A>
+</H2> 
+  Copyright &#169; 1990-2015 Center for High Throughput Computing, 
+  Computer Sciences Department, 
+  University of Wisconsin-Madison, Madison, WI.  All Rights Reserved.  
+	Licensed under the Apache License, Version 2.0.  
+
+  <HR>
+<!--Navigation Panel-->
+<A NAME="tex2html4191"
+  HREF="condor_stats.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html4185"
+  HREF="11_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html4179"
+  HREF="condor_ssh_to_job.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html4187"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html4189"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4192"
+  HREF="condor_stats.html">condor_stats</A>
+<B> Up:</B> <A NAME="tex2html4186"
+  HREF="11_Command_Reference.html">11. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html4180"
+  HREF="condor_ssh_to_job.html">condor_ssh_to_job</A>
+ &nbsp; <B>  <A NAME="tex2html4188"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html4190"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

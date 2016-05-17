@@ -1,0 +1,263 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>KVM Networking (Advanced)</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE=" Kvm Users Guide "
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Using the KVM Roll"
+HREF="using.html"><LINK
+REL="PREVIOUS"
+TITLE="Remotely Controlling VMs with Pilot"
+HREF="pilot.html"><LINK
+REL="NEXT"
+TITLE="Command Reference"
+HREF="c411.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Kvm</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/kvmbanner.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="pilot.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 3. Using the KVM Roll</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="c411.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="NETWORK"
+>3.6. KVM Networking (Advanced)</A
+></H1
+><P
+>In order to support KVM Virtual Machines it is neccesary to have in place a 
+particular network configuration on the hosting servers (which can be frontends
+or vm-containers). In particular bridges must be set up to provide Virtual 
+Machine with network connectivity (KVM networking differ substantially from 
+XEN networking). In this paragraph we will explain in much details what are 
+the differences from a standard Rocks Cluster network configuration.</P
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN392"
+>3.6.1. VM Network Bridging to Physical Devices</A
+></H2
+><P
+>When a VM is bridged to the physical device, it must be assigned in the same subnet as the physical device with 
+a compatible IP address (this case is exactly what is described in <A
+HREF="using-vm-physical-frontend.html"
+>Physical Frontend with Virtual Compute Nodes</A
+> ).</P
+><P
+>For this reason every Ethernet interfaces is renamed with a 'p' (for physical) in front of its 
+original name. The interface is also put into promiscuous mode and then 
+attached to a bridge named with the original name of the interface. The IP 
+address and netmask are finally configured on the bridge device. </P
+><P
+>For example if you have an eth0 which is supposed to be configured with IP
+address 1.2.3.4 and netmask 255.255.255.0 you will end up with the physical 
+interface named peth0 in promiscuous mode attached to a bridge named eth0 with 
+IP address 1.2.3.4 and netmask 255.255.255.0. The creation of the bridge 
+device, the renaming of the physical interface and the assignment of the IP 
+address is all managed by Rocks through the Red Hat init scripts. This 
+means that <TT
+CLASS="FILENAME"
+>rocks sync host network</TT
+> creates the proper 
+configuration files in <TT
+CLASS="FILENAME"
+>/etc/sysconfig/network-scripts/</TT
+>.</P
+><P
+>If you start a virtual compute on a VM Container, with the VLAN 0 (the virtual 
+machine belongs to the same cluster as the physical frontend), you will see a
+virtual device belonging to the virtual machine attached to the eth0 bridge.</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>[root@vm-container-0-0 ~]# brctl show
+bridge name	bridge id		STP enabled	interfaces
+eth0		8000.00144f80de00	no		peth0
+							vnet0
+virbr0		8000.5254007953c7	yes		virbr0-nic</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>As you can see from the previous example bridge eth0 is connected to peth0 
+(the physical interface) and vnet0 (the virtual interface of the virtual machine).
+virbr0 is a default bridge started by libvirt which you can ignore.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN403"
+>3.6.2. Logical VLAN Devices</A
+></H2
+><P
+>In this scenario, The guest (hosted-vm-0-0-0) and the host (vm-container-0-0) are not in the same logical
+network (this is the scenario described in <A
+HREF="using-virtual-clusters.html#PROVISIONING-VIRTUAL-CLUSTER"
+>Provisioning a Virtual Cluster</A
+>).</P
+><P
+>The virtual machine hosted-vm-0-0-0 will be connected to the network through a 
+Logical VLAN (for more information consult 
+<A
+HREF="http://www.rocksclusters.org/roll-documentation/base/6.0/x1051.html#NETWORKING-LOGICAL-VLAN"
+TARGET="_top"
+>the Base Roll documentation on networking</A
+>).
+Logical Vlan interfaces don't need bridge device and they are dynamically loaded only when 
+the virtual machine is started. They are called after the physical name interface 
+simply adding the number of the VLAN (e.g. VLAN 2 on peth0 will be called peth0.2).
+Virtual machines are attached to the VLAN interface using a 
+<A
+HREF="http://virt.kernelnewbies.org/MacVTap"
+TARGET="_top"
+>MacVTap</A
+> driver which does 
+not require any bridging infrastructure. After you run a 
+<TT
+CLASS="FILENAME"
+>rocks start host vm hosted-vm-0-0-0</TT
+> if you go on the physical 
+node you will see an interface called peth0.2 (the physical peth0 with the VLAN tag 
+set to 2) and the macvtap0 which is the interface used by the virtual host.</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="pilot.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="c411.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Remotely Controlling VMs with Pilot</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="using.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Command Reference</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

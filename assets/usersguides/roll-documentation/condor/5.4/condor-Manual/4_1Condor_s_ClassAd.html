@@ -1,0 +1,1655 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>4.1 Condor's ClassAd Mechanism</TITLE>
+<META NAME="description" CONTENT="4.1 Condor's ClassAd Mechanism">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="4_2Condor_s_Checkpoint.html">
+<LINK REL="previous" HREF="4_Miscellaneous_Concepts.html">
+<LINK REL="up" HREF="4_Miscellaneous_Concepts.html">
+<LINK REL="next" HREF="4_2Condor_s_Checkpoint.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html1507"
+  HREF="4_2Condor_s_Checkpoint.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1501"
+  HREF="4_Miscellaneous_Concepts.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1495"
+  HREF="4_Miscellaneous_Concepts.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1503"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1505"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1508"
+  HREF="4_2Condor_s_Checkpoint.html">4.2 Condor's Checkpoint Mechanism</A>
+<B> Up:</B> <A NAME="tex2html1502"
+  HREF="4_Miscellaneous_Concepts.html">4. Miscellaneous Concepts</A>
+<B> Previous:</B> <A NAME="tex2html1496"
+  HREF="4_Miscellaneous_Concepts.html">4. Miscellaneous Concepts</A>
+ &nbsp; <B>  <A NAME="tex2html1504"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1506"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html1509"
+  HREF="4_1Condor_s_ClassAd.html#SECTION00511000000000000000">4.1.1 Syntax</A>
+<UL>
+<LI><A NAME="tex2html1510"
+  HREF="4_1Condor_s_ClassAd.html#SECTION00511100000000000000">4.1.1.1 Literals</A>
+<LI><A NAME="tex2html1511"
+  HREF="4_1Condor_s_ClassAd.html#SECTION00511200000000000000">4.1.1.2 Attributes</A>
+<LI><A NAME="tex2html1512"
+  HREF="4_1Condor_s_ClassAd.html#SECTION00511300000000000000">4.1.1.3 Operators</A>
+<LI><A NAME="tex2html1513"
+  HREF="4_1Condor_s_ClassAd.html#SECTION00511400000000000000">4.1.1.4 Predefined Functions</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1514"
+  HREF="4_1Condor_s_ClassAd.html#SECTION00512000000000000000">4.1.2 Evaluation Semantics</A>
+<UL>
+<LI><A NAME="tex2html1515"
+  HREF="4_1Condor_s_ClassAd.html#SECTION00512100000000000000">4.1.2.1 Literals</A>
+<LI><A NAME="tex2html1516"
+  HREF="4_1Condor_s_ClassAd.html#SECTION00512200000000000000">4.1.2.2 Attribute References</A>
+<LI><A NAME="tex2html1517"
+  HREF="4_1Condor_s_ClassAd.html#SECTION00512300000000000000">4.1.2.3 Operators</A>
+<LI><A NAME="tex2html1518"
+  HREF="4_1Condor_s_ClassAd.html#SECTION00512400000000000000">4.1.2.4 Expression Examples</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1519"
+  HREF="4_1Condor_s_ClassAd.html#SECTION00513000000000000000">4.1.3 ClassAds in the Condor System</A>
+<UL>
+<LI><A NAME="tex2html1520"
+  HREF="4_1Condor_s_ClassAd.html#SECTION00513100000000000000">4.1.3.1 Constraints and Preferences</A>
+<LI><A NAME="tex2html1521"
+  HREF="4_1Condor_s_ClassAd.html#SECTION00513200000000000000">4.1.3.2 Querying with ClassAd Expressions</A>
+</UL></UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00510000000000000000"></A><A NAME="classad-reference"></A>
+<A NAME="sec:classadref"></A>
+<BR>
+4.1 Condor's ClassAd Mechanism
+</H1>
+
+<P>
+<A NAME="36678"></A>
+ClassAds are a flexible mechanism for representing the characteristics and
+constraints of machines and jobs in the Condor system.  ClassAds are used
+extensively in the Condor system to represent jobs, resources, submitters
+and other Condor daemons.  An understanding of this mechanism is required
+to harness the full flexibility of the Condor system.
+
+<P>
+A ClassAd is is a set of uniquely named expressions.  Each named expression
+is called an <I>attribute</I>.  Figure&nbsp;<A HREF="#ClassAd:example">4.1</A> shows an example 
+of a ClassAd with ten attributes.
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="ClassAd:example"></A><A NAME="37348"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 4.1:</STRONG>
+An example ClassAd</CAPTION>
+<TR><TD><IMG
+ WIDTH="499" HEIGHT="148" BORDER="0"
+ SRC="img29.png"
+ ALT="\begin{figure}\footnotesize
+\begin{verbatim}MyType = ''Machine''
+TargetType = ...
+...\vert LoadAvg&lt;=0.3 &amp;&amp; KeyboardIdle&gt;15*60\end{verbatim}
+\normalsize\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+ClassAd expressions look very much like expressions in C, and are composed
+of literals and attribute references composed with operators 
+and functions.
+The difference
+between ClassAd expressions and C expressions arise from the fact that ClassAd
+expressions operate in a much more dynamic environment.  For example, an
+expression from a machine's ClassAd may refer to an attribute in a job's 
+ClassAd, such as <code>TARGET.Owner</code> in the above example.  The value and type 
+of the attribute is not known until the expression is evaluated in an 
+environment which pairs a specific job ClassAd with the machine ClassAd.
+
+<P>
+ClassAd expressions handle these uncertainties by defining all operators
+to be <I>total</I> operators, which means that they have well defined
+behavior regardless of supplied operands.  This functionality is provided
+through two distinguished values, <TT>UNDEFINED</TT> and <TT>ERROR</TT>,
+and defining all operators so that they can operate on all possible values
+in the ClassAd system.  For example, the multiplication operator which usually
+only operates on numbers, has a well defined behavior if supplied with values
+which are not meaningful to multiply.  Thus, the expression 
+<code>10 * "A string"</code> evaluates to the value <TT>ERROR</TT>.  Most operators
+are <I>strict</I> with respect to <TT>ERROR</TT>, which means that they evaluate
+to <TT>ERROR</TT> if any of their operands are <TT>ERROR</TT>.  Similarly,
+most operators are strict with respect to <TT>UNDEFINED</TT>.
+
+<P>
+
+<H2><A NAME="SECTION00511000000000000000"></A>
+<A NAME="36696"></A>
+<BR>
+4.1.1 Syntax
+</H2>
+ClassAd expressions are formed by composing literals, attribute references and 
+other sub-expressions with operators and functions. 
+
+<H3><A NAME="SECTION00511100000000000000"></A>
+<A NAME="ClassAd:literals"></A>
+<BR>
+4.1.1.1 Literals
+</H3>
+Literals in the ClassAd language may be of integer, real, string, undefined or 
+error types.  The syntax of these literals is as follows:
+<DL>
+<DT><STRONG>Integer</STRONG></DT>
+<DD>A sequence of continuous digits (i.e., <code>[0-9]</code>).
+		Additionally, the keywords <code>TRUE</code> and <code>FALSE</code> (case
+		insensitive) are syntactic representations of the integers 1 and 0 
+		respectively.
+
+<P>
+</DD>
+<DT><STRONG>Real</STRONG></DT>
+<DD>Two sequences of continuous digits separated by a period
+		(i.e., <code>[0-9]+.[0-9]+</code>).
+
+<P>
+</DD>
+<DT><STRONG>String</STRONG></DT>
+<DD>A double quote character, followed by an list of characters
+		terminated by a double quote character.  A backslash character inside
+		the string causes the following character to be considered as part of
+		the string, irrespective of what that character is.
+
+<P>
+</DD>
+<DT><STRONG>Undefined</STRONG></DT>
+<DD>The keyword <TT>UNDEFINED</TT> (case insensitive)
+		represents the <TT>UNDEFINED</TT> value.
+
+<P>
+</DD>
+<DT><STRONG>Error</STRONG></DT>
+<DD>The keyword <TT>ERROR</TT> (case insensitive)
+		represents the <TT>ERROR</TT> value.
+</DD>
+</DL>
+
+<P>
+
+<H3><A NAME="SECTION00511200000000000000"></A>
+<A NAME="36706"></A>
+<BR>
+4.1.1.2 Attributes
+</H3>
+Every expression in a ClassAd is named by an <I>attribute name</I>.  Together,
+the (name,expression) pair is called an <I>attribute</I>.  An attributes may be
+referred to in other expressions through its attribute name.
+
+<P>
+Attribute names are sequences of alphabetic characters, digits and underscores,
+and may not begin with a digit.  All characters in the name are significant,
+but case is <I>not</I> significant.  Thus, <code>Memory</code>, <code>memory</code> and 
+<code>MeMoRy</code> all refer to the same attribute.
+
+<P>
+An <I>attribute reference</I> consists of the name of the attribute being 
+referenced, and an optional <I>scope resolution prefix</I>.  The 
+prefixes that may be used are <TT>MY.</TT> and <TT>TARGET.</TT>.
+The case used for these prefixes is <I>not</I> significant.
+The semantics of supplying a prefix are discussed in 
+Section&nbsp;<A HREF="#ClassAd:evaluation">4.1.2</A>.
+
+<P>
+
+<H3><A NAME="SECTION00511300000000000000"></A>
+<A NAME="36717"></A>
+<BR>
+4.1.1.3 Operators
+</H3>
+The operators that may be used in ClassAd expressions are similar to those
+available in C.  The available operators and their relative precedence is shown 
+in figure&nbsp;<A HREF="#ClassAd:operator-fig">4.2</A>.
+
+<DIV ALIGN="CENTER"><A NAME="ClassAd:operator-fig"></A><A NAME="37349"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 4.2:</STRONG>
+Relative precedence of ClassAd expression
+operators</CAPTION>
+<TR><TD><IMG
+ WIDTH="316" HEIGHT="131" BORDER="0"
+ SRC="img30.png"
+ ALT="\begin{figure}\begin{verbatim}- (unary negation) (high precedence)
+* /
++ -...
+... &gt;= &gt;
+== != =?= =!=
+&amp;&amp;
+\vert\vert (low precedence)\end{verbatim}
+\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+The operator with the highest precedence is the unary minus operator.  The
+only operators which are unfamiliar are the <code>=?=</code> and <code>=!=</code>
+operators, which are discussed in Section&nbsp;<A HREF="#ClassAd:evaluation-meta">4.1.2</A>.
+
+<P>
+
+<H3><A NAME="SECTION00511400000000000000"></A><A NAME="sec:classadFunctions"></A>
+<A NAME="36726"></A>
+<A NAME="36727"></A>
+<BR>
+4.1.1.4 Predefined Functions
+</H3>
+Any ClassAd expression may utilize predefined functions.
+Function names are case insensitive.
+Parameters to functions 
+and a return value from a function 
+may be typed (as given) or not.
+Nested or recursive function calls are allowed.
+
+<P>
+Here are descriptions of each of these predefined functions.
+The possible types are the same as itemized in 
+in Section&nbsp;<A HREF="#ClassAd:literals">4.1.1</A>.
+Where the type may be any of these literal types, it is
+called out as <code>AnyType</code>.
+Where the type is <code>Integer</code>, but only returns
+the value 1 or 0 (implying <TT>True</TT> or <TT>False</TT>),
+it is called out as <code>Boolean</code>.
+The format of each function is given as
+
+<P>
+<PRE>
+ReturnType FunctionName(ParameterType parameter1, ParameterType parameter2, ...)
+</PRE>Optional parameters are given within square brackets.
+
+<P>
+<DL>
+<DD><A NAME="36734"></A>
+  
+</DD>
+<DT><STRONG><TT>AnyType eval(AnyType Expr)</TT></STRONG></DT>
+<DD>Evaluates <TT>Expr</TT> as a string and then returns the result of
+  evaluating the <I>contents</I> of the string as a ClassAd expression.
+  This is useful when referring to an attribute such as <TT>slotX_State</TT>
+  where <TT>X</TT>, the desired slot number is an expression, such as
+  <TT>SlotID+10</TT>.  
+  In such a case, if attribute <TT>SlotID</TT> is 5,
+  the value of the attribute <TT>slot15_State</TT> can
+  be referenced using the expression
+  <TT>eval(strcat("slot", SlotID+10,"_State"))</TT>.
+  Function <TT>strcat()</TT> calls function <TT>string()</TT>
+  on the second parameter, which evaluates the expression,
+  and then converts the integer result 15 to the string "15."
+  The concatenated string returned by <TT>strcat()</TT> is
+  <code>"slot15_State"</code>, and this string is then evaluated.
+
+<P>
+Note that referring to attributes of a job from within the string
+  passed to <TT>eval()</TT> in the <TT>Requirements</TT> or
+  <TT>Rank</TT> expressions could cause inaccuracies in Condor's
+  automatic auto-clustering of jobs into equivalent groups for
+  matchmaking purposes.  This is because Condor needs to determine
+  which ClassAd attributes are significant for matchmaking purposes,
+  and indirect references from within the string passed to <TT>eval()</TT>
+  will not be counted.
+
+<P>
+<A NAME="36751"></A>
+  
+</DD>
+<DT><STRONG><TT>AnyType ifThenElse(AnyType IfExpr,AnyType ThenExpr, AnyType ElseExpr)</TT></STRONG></DT>
+<DD>A conditional expression is described by <TT>IfExpr</TT>.
+    The following defines return values, when <TT>IfExpr</TT>
+    evaluates to
+    
+<UL>
+<LI><TT>True</TT>. Evaluate and return the value as given
+      by <TT>ThenExpr</TT>.
+</LI>
+<LI><TT>False</TT>. Evaluate and return the value as given
+      by <TT>ElseExpr</TT>.
+</LI>
+<LI><TT>UNDEFINED</TT>. Return the value <TT>UNDEFINED</TT>.
+</LI>
+<LI><TT>ERROR</TT>. Return the value <TT>ERROR</TT>.
+</LI>
+<LI><TT>0.0</TT>. Evaluate, and return the value as given
+      by <TT>ElseExpr</TT>.
+</LI>
+<LI>non-<TT>0.0</TT> Real values. Evaluate, and return the value as given
+      by <TT>ThenExpr</TT>.
+    
+</LI>
+</UL>
+    Where <TT>IfExpr</TT> evaluates to give a value of type <TT>String</TT>,
+    the function returns the value <TT>ERROR</TT>.
+    The implementation uses lazy evaluation, so expressions
+    are only evaluated as defined.
+
+<P>
+This function returns <TT>ERROR</TT> if other than exactly 3
+    arguments are given.
+
+<P>
+<A NAME="36773"></A>
+  
+</DD>
+<DT><STRONG><TT>Boolean isUndefined(AnyType Expr)</TT></STRONG></DT>
+<DD>Returns <TT>True</TT>, if <TT>Expr</TT> evaluates to <TT>UNDEFINED</TT>.
+    Returns <TT>False</TT> in all other cases.
+
+<P>
+This function returns <TT>ERROR</TT> if other than exactly 1
+    argument is given.
+
+<P>
+<A NAME="36780"></A>
+  
+</DD>
+<DT><STRONG><TT>Boolean isError(AnyType Expr)</TT></STRONG></DT>
+<DD>Returns <TT>True</TT>, if <TT>Expr</TT> evaluates to <TT>ERROR</TT>.
+    Returns <TT>False</TT> in all other cases.
+
+<P>
+This function returns <TT>ERROR</TT> if other than exactly 1
+    argument is given.
+
+<P>
+<A NAME="36787"></A>
+  
+</DD>
+<DT><STRONG><TT>Boolean isString(AnyType Expr)</TT></STRONG></DT>
+<DD>Returns <TT>True</TT>, if the evaluation of <TT>Expr</TT>
+    gives a value of type <TT>String</TT>.
+    Returns <TT>False</TT> in all other cases.
+
+<P>
+This function returns <TT>ERROR</TT> if other than exactly 1
+    argument is given.
+
+<P>
+<A NAME="36794"></A>
+  
+</DD>
+<DT><STRONG><TT>Boolean isInteger(AnyType Expr)</TT></STRONG></DT>
+<DD>Returns <TT>True</TT>, if the evaluation of <TT>Expr</TT>
+    gives a value of type <TT>Integer</TT>.
+    Returns <TT>False</TT> in all other cases.
+
+<P>
+This function returns <TT>ERROR</TT> if other than exactly 1
+    argument is given.
+
+<P>
+<A NAME="36801"></A>
+  
+</DD>
+<DT><STRONG><TT>Boolean isReal(AnyType Expr)</TT></STRONG></DT>
+<DD>Returns <TT>True</TT>, if the evaluation of <TT>Expr</TT>
+    gives a value of type <TT>Real</TT>.
+    Returns <TT>False</TT> in all other cases.
+
+<P>
+This function returns <TT>ERROR</TT> if other than exactly 1
+    argument is given.
+
+<P>
+<A NAME="36808"></A>
+  
+</DD>
+<DT><STRONG><TT>Boolean isBoolean(AnyType Expr)</TT></STRONG></DT>
+<DD>Returns <TT>True</TT>, if the evaluation of <TT>Expr</TT>
+    gives the integer value 0 or 1.
+    Returns <TT>False</TT> in all other cases.
+
+<P>
+This function returns <TT>ERROR</TT> if other than exactly 1
+    argument is given.
+
+<P>
+<A NAME="36814"></A>
+  
+</DD>
+<DT><STRONG><TT>Integer int(AnyType Expr)</TT></STRONG></DT>
+<DD>Returns the integer value as defined by <TT>Expr</TT>.
+    Where the type of the evaluated <TT>Expr</TT> is <TT>Real</TT>,
+    the value is truncated (round towards zero) to an integer.
+    Where the type of the evaluated <TT>Expr</TT> is <TT>String</TT>,
+    the string is converted to an integer using a C-like
+    <TT>atoi()</TT> function. When this result is not an integer,
+    <TT>ERROR</TT> is returned.
+    Where the evaluated <TT>Expr</TT> is <TT>ERROR</TT> or <TT>UNDEFINED</TT>,
+    <TT>ERROR</TT> is returned.
+
+<P>
+This function returns <TT>ERROR</TT> if other than exactly 1
+    argument is given.
+
+<P>
+<A NAME="36828"></A>
+  
+</DD>
+<DT><STRONG><TT>Real real(AnyType Expr)</TT></STRONG></DT>
+<DD>Returns the real value as defined by <TT>Expr</TT>.
+    Where the type of the evaluated <TT>Expr</TT> is <TT>Integer</TT>,
+    the return value is the converted integer.
+    Where the type of the evaluated <TT>Expr</TT> is <TT>String</TT>,
+    the string is converted to a real value using a C-like
+    <TT>atof()</TT> function. When this result is not a real,
+    <TT>ERROR</TT> is returned.
+    Where the evaluated <TT>Expr</TT> is <TT>ERROR</TT> or <TT>UNDEFINED</TT>,
+    <TT>ERROR</TT> is returned.
+
+<P>
+This function returns <TT>ERROR</TT> if other than exactly 1
+    argument is given.
+
+<P>
+<A NAME="36842"></A>
+  
+</DD>
+<DT><STRONG><TT>String string(AnyType Expr)</TT></STRONG></DT>
+<DD>Returns the string that results from the evaluation of <TT>Expr</TT>.
+    Converts a non-string value to a string.
+    Where the evaluated <TT>Expr</TT> is <TT>ERROR</TT> or <TT>UNDEFINED</TT>,
+    <TT>ERROR</TT> is returned.
+
+<P>
+This function returns <TT>ERROR</TT> if other than exactly 1
+    argument is given.
+
+<P>
+<A NAME="36850"></A>
+  
+</DD>
+<DT><STRONG><TT>Integer floor(AnyType Expr)</TT></STRONG></DT>
+<DD>Returns the integer that results from the evaluation of <TT>Expr</TT>,
+    where the type of the evaluated <TT>Expr</TT> is <TT>Integer</TT>.
+    Where the type of the evaluated <TT>Expr</TT> is <I>not</I> <TT>Integer</TT>,
+    function <TT>real(Expr)</TT> is called.
+    Its return value is then used to return the largest magnitude
+    integer that is not larger than the returned value. 
+    Where <TT>real(Expr)</TT> returns <TT>ERROR</TT> or <TT>UNDEFINED</TT>,
+    <TT>ERROR</TT> is returned.
+
+<P>
+This function returns <TT>ERROR</TT> if other than exactly 1
+    argument is given.
+
+<P>
+<A NAME="36864"></A>
+  
+</DD>
+<DT><STRONG><TT>Integer ceiling(AnyType Expr)</TT></STRONG></DT>
+<DD>Returns the integer that results from the evaluation of <TT>Expr</TT>,
+    where the type of the evaluated <TT>Expr</TT> is <TT>Integer</TT>.
+    Where the type of the evaluated <TT>Expr</TT> is <I>not</I> <TT>Integer</TT>,
+    function <TT>real(Expr)</TT> is called.
+    Its return value is then used to return the smallest magnitude
+    integer that is not less than the returned value. 
+    Where <TT>real(Expr)</TT> returns <TT>ERROR</TT> or <TT>UNDEFINED</TT>,
+    <TT>ERROR</TT> is returned.
+
+<P>
+This function returns <TT>ERROR</TT> if other than exactly 1
+    argument is given.
+
+<P>
+<A NAME="36878"></A>
+  
+</DD>
+<DT><STRONG><TT>Integer round(AnyType Expr)</TT></STRONG></DT>
+<DD>Returns the integer that results from the evaluation of <TT>Expr</TT>,
+    where the type of the evaluated <TT>Expr</TT> is <TT>Integer</TT>.
+    Where the type of the evaluated <TT>Expr</TT> is <I>not</I> <TT>Integer</TT>,
+    function <TT>real(Expr)</TT> is called.
+    Its return value is then used to return the 
+    integer that results from a round-to-nearest rounding method. 
+    The nearest integer value to the return value is returned,
+    except in the case of the value at the exact midpoint between
+    two integer values.  
+    In this case, the even valued integer is returned.
+    Where <TT>real(Expr)</TT> returns <TT>ERROR</TT> or <TT>UNDEFINED</TT>,
+    or the integer value does not fit into 32 bits,
+    <TT>ERROR</TT> is returned.
+
+<P>
+This function returns <TT>ERROR</TT> if other than exactly 1
+    argument is given.
+
+<P>
+<A NAME="36892"></A>
+  
+</DD>
+<DT><STRONG><TT>Integer random([ AnyType Expr ])</TT></STRONG></DT>
+<DD>Where the optional argument <TT>Expr</TT> evaluates to type <TT>Integer</TT>
+    or type <TT>Real</TT>
+    (and called <TT>x</TT>),
+    the return value is the integer or real <TT>r</TT> randomly chosen
+    from the interval <TT>0 &lt;= r &lt; x</TT>.
+    With no argument, the return value is chosen with <TT>random(1.0)</TT>.
+    Returns <TT>ERROR</TT> in all other cases.
+
+<P>
+This function returns <TT>ERROR</TT> if greater than 1
+    argument is given.
+
+<P>
+<A NAME="36903"></A>
+  
+</DD>
+<DT><STRONG><TT>String strcat(AnyType Expr1 [ , AnyType Expr2 ... ])</TT></STRONG></DT>
+<DD>Returns the string which is the concatenation of all arguments, where all arguments are 
+    converted to type <TT>String</TT> by function <TT>string(Expr)</TT>.
+    Returns <TT>ERROR</TT> if any argument evaluates to <TT>UNDEFINED</TT> or <TT>ERROR</TT>.
+
+<P>
+<A NAME="36910"></A>
+  
+</DD>
+<DT><STRONG><TT>String substr(String s, Integer offset [ , Integer length  ])</TT></STRONG></DT>
+<DD>Returns the substring of <TT>s</TT>, from the position indicated by <TT>offset</TT>,
+    with (optional) <TT>length</TT> characters.
+    The first character within <TT>s</TT> is at offset 0.
+    If the optional <TT>length</TT> argument is not present, the substring extends to the
+    end of the string.
+    If <TT>offset</TT> is negative, the value <TT>(length - offset)</TT> is used for the offset.
+    If <TT>length</TT> is negative, an initial substring is computed, from the offset
+    to the end of the string.
+    Then, the absolute value of <TT>length</TT> characters are deleted from the
+    right end of the initial substring.
+    Further, where characters of this resulting substring lie outside the original
+    string, the part that lies within the original string is returned.
+    If the substring lies completely outside of the original string, the null string
+    is returned.
+
+<P>
+This function returns <TT>ERROR</TT> if greater than 3 or less than 2
+    arguments are given.
+
+<P>
+<A NAME="36922"></A>
+  
+</DD>
+<DT><STRONG><TT>Integer strcmp(AnyType Expr1, AnyType Expr2)</TT></STRONG></DT>
+<DD>Both arguments are converted to type <TT>String</TT> by function <TT>string(Expr)</TT>.
+    The return value is an integer that will be
+    
+<UL>
+<LI>less than 0,
+      if <TT>Expr1</TT> is lexicographically less than <TT>Expr2</TT>
+</LI>
+<LI>equal to 0,
+      if <TT>Expr1</TT> is lexicographically equal to <TT>Expr2</TT>
+</LI>
+<LI>greater than 0,
+      if <TT>Expr1</TT> is lexicographically greater than <TT>Expr2</TT>
+    
+</LI>
+</UL>
+    Case is significant in the comparison.
+    Where either argument evaluates to <TT>ERROR</TT> or <TT>UNDEFINED</TT>,
+    <TT>ERROR</TT> is returned.
+
+<P>
+This function returns <TT>ERROR</TT> if other than 2 arguments are given.
+
+<P>
+<A NAME="36941"></A>
+  
+</DD>
+<DT><STRONG><TT>Integer stricmp(AnyType Expr1, AnyType Expr2)</TT></STRONG></DT>
+<DD>This function is the same as <TT>strcmp</TT>, except that letter case is
+    <I>not</I> significant.
+
+<P>
+<A NAME="36945"></A>
+  
+</DD>
+<DT><STRONG><TT>String toUpper(AnyType Expr)</TT></STRONG></DT>
+<DD>The single argument is converted to type <TT>String</TT> by function <TT>string(Expr)</TT>.
+    The return value is this string, with all lower case letters converted to
+    upper case.
+    If the argument evaluates to <TT>ERROR</TT> or <TT>UNDEFINED</TT>,
+    <TT>ERROR</TT> is returned.
+
+<P>
+This function returns <TT>ERROR</TT> if greater than 1
+    argument is given.
+
+<P>
+<A NAME="36953"></A>
+  
+</DD>
+<DT><STRONG><TT>String toLower(AnyType Expr)</TT></STRONG></DT>
+<DD>The single argument is converted to type <TT>String</TT> by function <TT>string(Expr)</TT>.
+    The return value is this string, with all upper case letters converted to
+    lower case.
+    If the argument evaluates to <TT>ERROR</TT> or <TT>UNDEFINED</TT>,
+    <TT>ERROR</TT> is returned.
+
+<P>
+This function returns <TT>ERROR</TT> if other than exactly 1
+    argument is given.
+
+<P>
+<A NAME="36961"></A>
+  
+</DD>
+<DT><STRONG><TT>Integer size(AnyType Expr)</TT></STRONG></DT>
+<DD>Returns the number of characters in the string, after calling function
+    <TT>string(Expr)</TT>.
+    If the argument evaluates to <TT>ERROR</TT> or <TT>UNDEFINED</TT>,
+    <TT>ERROR</TT> is returned.
+
+<P>
+This function returns <TT>ERROR</TT> if other than exactly 1
+    argument is given.
+
+<P>
+<A NAME="36968"></A>
+  
+</DD>
+<DT><STRONG><TT>Integer time()</TT></STRONG></DT>
+<DD>Returns the current coordinated universal time, which is the same
+    as the ClassAd attribute <TT>CurrentTime</TT>.
+    This is the time, in seconds, since midnight of January 1, 1970.
+
+<P>
+<A NAME="36971"></A>
+  
+</DD>
+<DT><STRONG><TT>String formatTime([ Integer time ] [ , String format ])</TT></STRONG></DT>
+<DD><P>
+Returns a formatted string that is a representation of <TT>time</TT>.
+    The argument <TT>time</TT> is interpreted as coordinated universe time in
+    seconds, since midnight of January 1, 1970. If not specified,
+    <TT>time</TT> will default to the value of attribute <TT>CurrentTime</TT>.
+
+<P>
+The argument <TT>format</TT> is interpreted similarly to the format
+    argument of the ANSI C strftime function. It consists of arbitrary text
+    plus placeholders for elements of the time. These placeholders are
+    percent signs (%) followed by a single letter.
+    To have a percent sign in
+    the output, use a double percent sign (%%).  If
+    <TT>format</TT> is not specified, it defaults to <TT>%c</TT>.
+
+<P>
+Because the implementation uses <TT>strftime()</TT> to implement this,
+    and some
+    versions implement extra, non-ANSI C options, the exact options
+    available to an implementation may vary. An implementation is only
+    required to implement the ANSI C options, which are: 
+    <DL>
+<DT><STRONG><TT>%a</TT></STRONG></DT>
+<DD>abbreviated weekday name
+    
+</DD>
+<DT><STRONG><TT>%A</TT></STRONG></DT>
+<DD>full weekday name
+    
+</DD>
+<DT><STRONG><TT>%b</TT></STRONG></DT>
+<DD>abbreviated month name
+    
+</DD>
+<DT><STRONG><TT>%B</TT></STRONG></DT>
+<DD>full month name
+    
+</DD>
+<DT><STRONG><TT>%c</TT></STRONG></DT>
+<DD>local date and time representation
+    
+</DD>
+<DT><STRONG><TT>%d</TT></STRONG></DT>
+<DD>day of the month (01-31)
+    
+</DD>
+<DT><STRONG><TT>%H</TT></STRONG></DT>
+<DD>hour in the 24-hour clock (0-23)
+    
+</DD>
+<DT><STRONG><TT>%I</TT></STRONG></DT>
+<DD>hour in the 12-hour clock (01-12)
+    
+</DD>
+<DT><STRONG><TT>%j</TT></STRONG></DT>
+<DD>day of the year (001-366)
+    
+</DD>
+<DT><STRONG><TT>%m</TT></STRONG></DT>
+<DD>month (01-12)
+    
+</DD>
+<DT><STRONG><TT>%M</TT></STRONG></DT>
+<DD>minute (00-59)
+    
+</DD>
+<DT><STRONG><TT>%p</TT></STRONG></DT>
+<DD>local equivalent of AM or PM
+    
+</DD>
+<DT><STRONG><TT>%S</TT></STRONG></DT>
+<DD>second (00-59)
+    
+</DD>
+<DT><STRONG><TT>%U</TT></STRONG></DT>
+<DD>week number of the year (Sunday as first day of week) (00-53)
+    
+</DD>
+<DT><STRONG><TT>%w</TT></STRONG></DT>
+<DD>weekday (0-6, Sunday is 0)
+    
+</DD>
+<DT><STRONG><TT>%W</TT></STRONG></DT>
+<DD>week number of the year (Monday as first day of week) (00-53)
+    
+</DD>
+<DT><STRONG><TT>%x</TT></STRONG></DT>
+<DD>local date representation
+    
+</DD>
+<DT><STRONG><TT>%X</TT></STRONG></DT>
+<DD>local time representation
+    
+</DD>
+<DT><STRONG><TT>%y</TT></STRONG></DT>
+<DD>year without century (00-99)
+    
+</DD>
+<DT><STRONG><TT>%Y</TT></STRONG></DT>
+<DD>year with century
+    
+</DD>
+<DT><STRONG><TT>%Z</TT></STRONG></DT>
+<DD>time zone name, if any
+    
+</DD>
+</DL>
+
+<P>
+<A NAME="37004"></A>
+  
+</DD>
+<DT><STRONG><TT>String interval(Integer seconds)</TT></STRONG></DT>
+<DD>Uses <TT>seconds</TT> to return a string of the form
+    <TT>days+hh:mm:ss</TT>.
+    This represents an interval of time.
+    Leading values that are zero are omitted from the string.
+    For example, <TT>seconds</TT> of 67 becomes "1:07".
+    A second example, <TT>seconds</TT> of 
+    1472523 = 17*24*60*60 + 1*60*60 + 2*60 + 3, results in the
+    string "17+1:02:03".
+
+<P>
+<A NAME="37010"></A>
+  
+</DD>
+<DT><STRONG><TT>AnyType debug(AnyType expression)</TT></STRONG></DT>
+<DD>This function evaluates its argument, and it returns the result.
+     Thus, it is a no-operation.
+     However, a side-effect of the function is that information about
+     the evaluation is logged to the evaluating program's log file.
+     This is useful for determining why a given ClassAd expression
+     is evaluating the way it does.  
+     For example, if a <I>condor_startd</I> <TT>START</TT> expression
+     is unexpectedly evaluating to <TT>UNDEFINED</TT>,
+     then wrapping the expression in this <TT>debug()</TT> function will
+     log information about each component of the expression to the log file,
+     making it easier to understand the expression.
+
+<P>
+</DD>
+</DL>
+
+<P>
+For the following functions, a delimiter is represented by a string.
+Each character within the delimiter string
+delimits individual strings within a list of strings 
+that is given by a single string.
+The default delimiter contains the comma and space characters.
+A string within the list is ended (delimited) by one or more
+characters within the delimiter string.
+
+<P>
+<DL>
+<DD><A NAME="37018"></A>
+  
+</DD>
+<DT><STRONG><TT>Integer stringListSize(String list [ , String delimiter ])</TT></STRONG></DT>
+<DD>Returns the number of elements in the string <TT>list</TT>,
+    as delimited by the optional <TT>delimiter</TT> string.
+    Returns <TT>ERROR</TT> if either argument is not a string.
+
+<P>
+This function returns <TT>ERROR</TT> if other than 1 or 2 arguments are given.
+
+<P>
+<A NAME="37024"></A>
+  
+</DD>
+<DT><STRONG><TT>Integer stringListSum(String list [ , String delimiter ])</TT></STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG>OR <TT>Real stringListSum(String list [ , String delimiter ])</TT></STRONG></DT>
+<DD>Sums and returns the sum of all items in the string <TT>list</TT>,
+    as delimited by the optional <TT>delimiter</TT> string.
+    If all items in the list are integers, the return value is also
+    an integer.
+    If any item in the list is a real value (noninteger),
+    the return value is a real.
+    If any item does not represent an integer or real value,
+    the return value is <TT>ERROR</TT>.
+
+<P>
+<A NAME="37030"></A>
+  
+</DD>
+<DT><STRONG><TT>Real stringListAvg(String list [ , String delimiter ])</TT></STRONG></DT>
+<DD>Sums and returns the real-valued average of all items in the 
+    string <TT>list</TT>,
+    as delimited by the optional <TT>delimiter</TT> string.
+    If any item does not represent an integer or real value,
+    the return value is <TT>ERROR</TT>.
+    A list with 0 items (the empty list) returns the value 0.0.
+
+<P>
+<A NAME="37035"></A>
+  
+</DD>
+<DT><STRONG><TT>Integer stringListMin(String list [ , String delimiter ])</TT></STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG>OR <TT>Real stringListMin(String list [ , String delimiter ])</TT></STRONG></DT>
+<DD>Finds and returns the minimum value from all items in the
+    string <TT>list</TT>,
+    as delimited by the optional <TT>delimiter</TT> string.
+    If all items in the list are integers, the return value is also
+    an integer.
+    If any item in the list is a real value (noninteger),
+    the return value is a real.
+    If any item does not represent an integer or real value,
+    the return value is <TT>ERROR</TT>.
+    A list with 0 items (the empty list) returns the value <TT>UNDEFINED</TT>.
+
+<P>
+<A NAME="37042"></A>
+  
+</DD>
+<DT><STRONG><TT>Integer stringListMax(String list [ , String delimiter ])</TT></STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG>OR <TT>Real stringListMax(String list [ , String delimiter ])</TT></STRONG></DT>
+<DD>Finds and returns the maximum value from all items in the
+    string <TT>list</TT>,
+    as delimited by the optional <TT>delimiter</TT> string.
+    If all items in the list are integers, the return value is also
+    an integer.
+    If any item in the list is a real value (noninteger),
+    the return value is a real.
+    If any item does not represent an integer or real value,
+    the return value is <TT>ERROR</TT>.
+    A list with 0 items (the empty list) returns the value <TT>UNDEFINED</TT>.
+
+<P>
+<A NAME="37049"></A>
+  
+</DD>
+<DT><STRONG><TT>Boolean stringListMember(String x, String list [ , String delimiter ])</TT></STRONG></DT>
+<DD>Returns <TT>TRUE</TT> if item <TT>x</TT> is in the string <TT>list</TT>,
+    as delimited by the optional <TT>delimiter</TT> string.
+    Returns <TT>FALSE</TT> if item <TT>x</TT> is not in the string <TT>list</TT>.
+    Comparison is done with <TT>strcmp()</TT>.
+    The return value is <TT>ERROR</TT>, if any of the arguments
+    are not strings.
+
+<P>
+<A NAME="37060"></A>
+  
+</DD>
+<DT><STRONG><TT>Boolean stringListIMember(String x, String list [ , String delimiter ])</TT></STRONG></DT>
+<DD>Same as <TT>stringListMember()</TT>, but comparison is done
+    with <TT>stricmp()</TT>, so letter case is not relevant.
+
+<P>
+<A NAME="37064"></A>
+  
+</DD>
+<DT><STRONG><TT>Boolean stringList_regexpMember(String pattern, String list [ , String delimiter ]) [, String options ]</TT></STRONG></DT>
+<DD>Returns <TT>TRUE</TT> if the string <TT>pattern</TT> is a regular expression
+    that matches an item in the string <TT>list</TT>,
+    as delimited by the optional <TT>delimiter</TT> string.
+    String <TT>options</TT> modifies how the match is performed.
+    Returns <TT>FALSE</TT> if <TT>pattern</TT> does not match any entries in
+    <TT>list</TT>.
+    The return value is <TT>ERROR</TT>, if any of the arguments
+    are not strings, or if <TT>pattern</TT> is not a valid regular expression.
+
+<P>
+</DD>
+</DL>
+
+<P>
+The following three functions utilize regular expressions as defined
+and supported by the PCRE library.
+See <A NAME="tex2html66"
+  HREF="http://www.pcre.org">http://www.pcre.org</A>
+for complete documentation of
+regular expressions.
+
+<P>
+The <TT>options</TT> argument to these functions is a string of 
+special characters that modify the use of the regular expressions.
+Inclusion of characters other than these as options are ignored.
+<DL>
+<DT><STRONG><TT>I</TT> or <TT>i</TT></STRONG></DT>
+<DD>Ignore letter case.
+  
+</DD>
+<DT><STRONG><TT>M</TT> or <TT>m</TT></STRONG></DT>
+<DD>Modifies the interpretation of the carat (<code>^</code>) and dollar sign
+    (<code>$</code>) characters.
+    The carat character matches the start of a string, as well as
+    after each newline character.
+    The dollar sign character matches before a newline character.
+  
+</DD>
+<DT><STRONG><TT>S</TT> or <TT>s</TT></STRONG></DT>
+<DD>The period matches any character, including the newline character. 
+</DD>
+</DL>
+
+<P>
+<DL>
+<DD><A NAME="37088"></A>
+  
+</DD>
+<DT><STRONG><TT>Boolean regexp(String pattern, String target [ , String options ])</TT></STRONG></DT>
+<DD>Returns <TT>TRUE</TT> if the string <TT>target</TT> is 
+    a regular expression as described by <TT>pattern</TT>.
+    Returns <TT>FALSE</TT> otherwise.
+    If any argument is not a string, or if <TT>pattern</TT> does not describe
+    a valid regular expression, returns <TT>ERROR</TT>.
+
+<P>
+<A NAME="37096"></A>
+  
+</DD>
+<DT><STRONG><TT>String regexps(String pattern, String target, String substitute,</TT></STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG><TT>[ String options ]) </TT> </STRONG></DT>
+<DD>The regular expression <TT>pattern</TT> is applied to <TT>target</TT>.
+    If the string <TT>target</TT> is a regular expression
+    as described by <TT>pattern</TT>,
+    the string <TT>substitute</TT> is returned,
+    with backslash expansion performed.
+    The return value is <TT>ERROR</TT>, if any of the arguments
+    are not strings.
+
+<P>
+<A NAME="37105"></A>
+  
+</DD>
+<DT><STRONG><TT>Boolean stringListRegexpMember(String pattern, String list [ , String delimiter ] </TT> </STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG><TT>[ , String options ])</TT></STRONG></DT>
+<DD>Returns <TT>TRUE</TT> if any of the strings within the
+    <TT>list</TT> is a regular expression as described by <TT>pattern</TT>.
+    Returns <TT>FALSE</TT> otherwise.
+    If any argument is not a string, or if <TT>pattern</TT> does not describe
+    a valid regular expression, returns <TT>ERROR</TT>.
+    To include the fourth (optional) argument <TT>options</TT>, a third argument
+    of <TT>delimiter</TT> is required.
+    A default value for a delimiter is " ,".
+
+<P>
+</DD>
+</DL>
+
+<P>
+
+<H2><A NAME="SECTION00512000000000000000"></A>
+<A NAME="ClassAd:evaluation"></A>
+<BR>
+4.1.2 Evaluation Semantics
+</H2>
+The ClassAd mechanism's primary purpose is for matching entities that supply
+constraints on candidate matches.  The mechanism is therefore defined to
+carry out expression evaluations in the context of two ClassAds that are
+testing each other for a potential match.  For example, the <I>condor_negotiator</I>
+evaluates the <TT>Requirements</TT> expressions of machine and job ClassAds to
+test if they can be matched.  The semantics of evaluating such constraints
+is defined below.
+
+<P>
+
+<H3><A NAME="SECTION00512100000000000000">
+4.1.2.1 Literals</A>
+</H3>
+Literals are self-evaluating, Thus, integer, string, real, undefined and
+error values evaluate to themselves.
+
+<P>
+
+<H3><A NAME="SECTION00512200000000000000"></A>
+<A NAME="37123"></A>
+<A NAME="37124"></A>
+<A NAME="37125"></A>
+<A NAME="37126"></A>
+<BR>
+4.1.2.2 Attribute References
+</H3>
+Since the expression evaluation is being carried out in the context of two
+ClassAds, there is a potential for name space ambiguities.  The following
+rules define the semantics of attribute references made by ad <I>A</I> that is being 
+evaluated in a context with another ad <I>B</I>:
+
+<OL>
+<LI>If the reference is prefixed by a scope resolution prefix, 
+    
+<UL>
+<LI>If the prefix is <TT>MY.</TT>, the attribute is looked up in 
+        ClassAd <I>A</I>.  If the named attribute does not exist in <I>A</I>, the
+        value of the reference is <TT>UNDEFINED</TT>.  Otherwise, the
+        value of the reference is the value of the expression bound to
+        the attribute name.
+
+<P>
+</LI>
+<LI>Similarly, if the prefix is <TT>TARGET.</TT>, the attribute is 
+        looked up in ClassAd <I>B</I>.  If the named attribute does not exist in 
+        <I>B</I>, the value of the reference is <TT>UNDEFINED</TT>.  Otherwise, 
+        the value of the reference is the value of the expression bound to
+        the attribute name.
+
+<P>
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI>If the reference is not prefixed by a scope resolution prefix,
+    
+<UL>
+<LI>If the attribute is defined in <I>A</I>, the value of the reference
+        is the value of the expression bound to the attribute name in <I>A</I>.
+</LI>
+<LI>Otherwise, if the attribute is defined in <I>B</I>, the value of the
+        reference is the value of the expression bound to the attribute
+        name in <I>B</I>.
+</LI>
+<LI>Otherwise, if the attribute is defined in the ClassAd environment, the
+        value from the environment is returned.
+        This is a special environment, to be
+        distinguished from the Unix environment.
+        Currently, the only attribute
+        of the environment is <TT>CurrentTime</TT>, which evaluates to the
+        integer value returned by the system call <TT>time(2)</TT>.
+</LI>
+<LI>Otherwise, the value of the reference is <TT>UNDEFINED</TT>.
+    
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI>Finally, if the reference refers to an expression that is itself in 
+    the process of being evaluated, there is a circular dependency in the 
+    evaluation.  The value of the reference is <TT>ERROR</TT>.
+</LI>
+</OL>
+
+<P>
+
+<H3><A NAME="SECTION00512300000000000000"></A>
+<A NAME="ClassAd:evaluation-meta"></A><A NAME="37143"></A>
+<BR>
+4.1.2.3 Operators
+</H3>
+All operators in the ClassAd language are <I>total</I>, and thus have well
+defined behavior regardless of the supplied operands.  Furthermore, most
+operators are <I>strict</I> with respect to <TT>ERROR</TT> and 
+<TT>UNDEFINED</TT>, and thus evaluate to <TT>ERROR</TT> or <TT>UNDEFINED</TT>
+if either of their operands have these exceptional values.
+
+<P>
+
+<UL>
+<LI><B>Arithmetic operators:</B>  
+	
+<OL>
+<LI>The operators <code>*</code>, <code>/</code>, <code>+</code> and <code>-</code> operate 
+		arithmetically only on integers and reals.
+
+<P>
+</LI>
+<LI>Arithmetic is carried out in the same type as both operands,
+		and type promotions from integers to reals are performed if one operand 
+		is an integer and the other real.
+
+<P>
+</LI>
+<LI>The operators are strict with respect to both <TT>UNDEFINED</TT> 
+		and <TT>ERROR</TT>.  
+
+<P>
+</LI>
+<LI>If either operand is not a numerical type, the value of the
+		operation is <TT>ERROR</TT>.
+	
+</LI>
+</OL>
+
+<P>
+</LI>
+<LI><B>Comparison operators:</B>
+	
+<OL>
+<LI>The comparison operators <code>==</code>, <code>!=</code>, <code>&lt;=</code>, 
+		<code>&lt;</code>, <code>&gt;=</code> and <code>&gt;</code> operate on integers, reals and strings.
+
+<P>
+</LI>
+<LI>String comparisons are case insensitive for most operators.  The only
+		exceptions are the operators <code>=?=</code> and <code>=!=</code>, which do case sensitive
+		comparisons assuming both sides are strings. 
+
+<P>
+</LI>
+<LI>Comparisons are carried out in the same type as both operands,
+		and type promotions from integers to reals are performed if one operand
+		is a real, and the other an integer.  Strings may not be converted to
+		any other type, so comparing a string and an integer or a
+		string and a real results in <TT>ERROR</TT>.
+
+<P>
+</LI>
+<LI>The operators <code>==</code>, <code>!=</code>, <code>&lt;=</code>, <code>&lt;</code> and 
+		<code>&gt;=</code> <code>&gt;</code> are strict with respect to both <TT>UNDEFINED</TT> 
+		and <TT>ERROR</TT>.
+
+<P>
+</LI>
+<LI>In addition, the operators <code>=?=</code> and <code>=!=</code> behave
+		similar to <code>==</code> and <code>!=</code>, but are not strict.  Semantically,
+		the <code>=?=</code> tests if its operands are ``identical,'' i.e., have
+		the same type and the same value.  For example, <code>10 == UNDEFINED</code> 
+		and <code>UNDEFINED == UNDEFINED</code> both evaluate to <TT>UNDEFINED</TT>,
+		but <code>10 =?= UNDEFINED</code> and <code>UNDEFINED =?= UNDEFINED</code> 
+		evaluate to <TT>FALSE</TT> and <TT>TRUE</TT> respectively.  The
+		<code>=!=</code> operator test for the ``is not identical to'' condition.
+	
+</LI>
+</OL>
+
+<P>
+</LI>
+<LI><B>Logical operators:</B>
+	
+<OL>
+<LI>The logical operators <code>&amp;&amp;</code> and <code>||</code> operate on 
+		integers and reals.  The zero value of these types are considered 
+		<TT>FALSE</TT> and non-zero values <TT>TRUE</TT>.
+
+<P>
+</LI>
+<LI>The operators are <I>not</I> strict, and exploit the 
+		``don't care'' properties of the operators to squash <TT>UNDEFINED</TT>
+		and <TT>ERROR</TT> values when possible.  For example,
+		<code>UNDEFINED &amp;&amp; FALSE</code> evaluates to <TT>FALSE</TT>, but	
+		<code>UNDEFINED || FALSE</code> evaluates to <TT>UNDEFINED</TT>.
+
+<P>
+</LI>
+<LI>Any string operand is equivalent to an <TT>ERROR</TT> operand
+		for a logical operator.  In other words,
+		<code>TRUE &amp;&amp; "foobar"</code> evaluates to <TT>ERROR</TT>.
+	
+</LI>
+</OL>
+</LI>
+</UL>
+
+<P>
+
+<H3><A NAME="SECTION00512400000000000000"></A>
+<A NAME="ClassAd:examples"></A><A NAME="37181"></A>
+<BR>
+4.1.2.4 Expression Examples
+</H3>
+
+<P>
+The <TT>=?=</TT> operator is similar to the <TT>==</TT> operator.
+It checks if the left hand side operand is identical in both type and value
+to the the right hand side operand, returning <TT>TRUE</TT> when they
+are identical.
+A key point in understanding is that
+the <TT>=?=</TT> operator only produces evaluation results of <TT>TRUE</TT>
+and <TT>FALSE</TT>,
+where the <TT>==</TT> operator may produce evaluation results <TT>TRUE</TT>,
+<TT>FALSE</TT>, <TT>UNDEFINED</TT>, or <TT>ERROR</TT>.
+Table&nbsp;<A HREF="#expr-examples-1">4.1</A> presents examples that define the
+outcome of the <TT>==</TT> operator.
+Table&nbsp;<A HREF="#expr-examples-2">4.2</A> presents examples that define the
+outcome of the <TT>=?=</TT> operator.
+
+<P>
+<DIV ALIGN="CENTER">
+</DIV>
+<BR><P></P>
+<DIV ALIGN="CENTER"><A NAME="37358"></A>
+<TABLE>
+<CAPTION><STRONG>Table 4.1:</STRONG>
+Evaluation examples for the <TT>==</TT> operator</CAPTION>
+<TR><TD><TABLE CELLPADDING=3 BORDER="1">
+<TR><TH ALIGN="LEFT" VALIGN="TOP" WIDTH=227><B>expression</B></TH>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH=113><B>evaluated result</B></TH>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227><TT>(10 == 10)</TT></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=113><TT>TRUE</TT></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227><TT>(10 == 5)</TT></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=113><TT>FALSE</TT></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227><TT>(10 == "ABC")</TT></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=113><TT>ERROR</TT></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227><TT>(10 == UNDEFINED)</TT></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=113><TT>UNDEFINED</TT></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227><TT>(UNDEFINED == UNDEFINED)</TT></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=113><TT>UNDEFINED</TT></TD>
+</TR>
+</TABLE>
+</TD></TR>
+</TABLE>
+</DIV><P></P>
+<BR>
+<DIV ALIGN="CENTER">
+</DIV>
+
+<P>
+<DIV ALIGN="CENTER">
+</DIV>
+<BR><P></P>
+<DIV ALIGN="CENTER"><A NAME="37360"></A>
+<TABLE>
+<CAPTION><STRONG>Table 4.2:</STRONG>
+Evaluation examples for the <TT>=?=</TT> operator</CAPTION>
+<TR><TD><TABLE CELLPADDING=3 BORDER="1">
+<TR><TH ALIGN="LEFT" VALIGN="TOP" WIDTH=227><B>expression</B></TH>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH=113><B>evaluated result</B></TH>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227><TT>(10 =?= 10)</TT></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=113><TT>TRUE</TT></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227><TT>(10 =?= 5)</TT></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=113><TT>FALSE</TT></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227><TT>(10 =?= "ABC")</TT></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=113><TT>FALSE</TT></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227><TT>(10 =?= UNDEFINED)</TT></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=113><TT>FALSE</TT></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227><TT>(UNDEFINED =?= UNDEFINED)</TT></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=113><TT>TRUE</TT></TD>
+</TR>
+</TABLE>
+</TD></TR>
+</TABLE>
+</DIV><P></P>
+<BR>
+<DIV ALIGN="CENTER">
+</DIV>
+
+<P>
+The <TT>=!=</TT> operator is similar to the <TT>!=</TT> operator.
+It checks if the left hand side operand is <I>not</I> identical 
+in both type and value to the the right hand side operand,
+returning <TT>FALSE</TT> when they are identical.
+A key point in understanding is that
+the <TT>=!=</TT> operator only produces evaluation results of <TT>TRUE</TT>
+and <TT>FALSE</TT>,
+where the <TT>!=</TT> operator may produce evaluation results <TT>TRUE</TT>,
+<TT>FALSE</TT>, <TT>UNDEFINED</TT>, or <TT>ERROR</TT>.
+Table&nbsp;<A HREF="#expr-examples-3">4.3</A> presents examples that define the
+outcome of the <TT>!=</TT> operator.
+Table&nbsp;<A HREF="#expr-examples-4">4.4</A> presents examples that define the
+outcome of the <TT>=!=</TT> operator.
+
+<P>
+<DIV ALIGN="CENTER">
+</DIV>
+<BR><P></P>
+<DIV ALIGN="CENTER"><A NAME="37362"></A>
+<TABLE>
+<CAPTION><STRONG>Table 4.3:</STRONG>
+Evaluation examples for the <TT>!=</TT> operator</CAPTION>
+<TR><TD><TABLE CELLPADDING=3 BORDER="1">
+<TR><TH ALIGN="LEFT" VALIGN="TOP" WIDTH=227><B>expression</B></TH>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH=113><B>evaluated result</B></TH>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227><TT>(10 != 10)</TT></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=113><TT>FALSE</TT></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227><TT>(10 != 5)</TT></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=113><TT>TRUE</TT></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227><TT>(10 != "ABC")</TT></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=113><TT>ERROR</TT></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227><TT>(10 != UNDEFINED)</TT></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=113><TT>UNDEFINED</TT></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227><TT>(UNDEFINED != UNDEFINED)</TT></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=113><TT>UNDEFINED</TT></TD>
+</TR>
+</TABLE>
+</TD></TR>
+</TABLE>
+</DIV><P></P>
+<BR>
+<DIV ALIGN="CENTER">
+</DIV>
+
+<P>
+<DIV ALIGN="CENTER">
+</DIV>
+<BR><P></P>
+<DIV ALIGN="CENTER"><A NAME="37364"></A>
+<TABLE>
+<CAPTION><STRONG>Table 4.4:</STRONG>
+Evaluation examples for the <TT>=!=</TT> operator</CAPTION>
+<TR><TD><TABLE CELLPADDING=3 BORDER="1">
+<TR><TH ALIGN="LEFT" VALIGN="TOP" WIDTH=227><B>expression</B></TH>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH=113><B>evaluated result</B></TH>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227><TT>(10 =!= 10)</TT></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=113><TT>FALSE</TT></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227><TT>(10 =!= 5)</TT></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=113><TT>TRUE</TT></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227><TT>(10 =!= "ABC")</TT></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=113><TT>TRUE</TT></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227><TT>(10 =!= UNDEFINED)</TT></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=113><TT>TRUE</TT></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=227><TT>(UNDEFINED =!= UNDEFINED)</TT></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=113><TT>FALSE</TT></TD>
+</TR>
+</TABLE>
+</TD></TR>
+</TABLE>
+</DIV><P></P>
+<BR>
+<DIV ALIGN="CENTER">
+</DIV>
+
+<P>
+
+<H2><A NAME="SECTION00513000000000000000">
+4.1.3 ClassAds in the Condor System</A>
+</H2>
+The simplicity and flexibility of ClassAds is heavily exploited in the Condor
+system.  ClassAds are not only used to represent machines and jobs in the 
+Condor pool, but also other entities that exist in the pool such as 
+checkpoint servers, submitters of jobs and master daemons.  Since arbitrary
+expressions may be supplied and evaluated over these ads, users have a uniform
+and powerful mechanism to specify constraints over these ads.  These constraints
+can take the form of <TT>Requirements</TT> expressions in resource and job ads,
+or queries over other ads.
+
+<P>
+
+<H3><A NAME="SECTION00513100000000000000"></A>
+<A NAME="37304"></A>
+<A NAME="37305"></A>
+<BR>
+4.1.3.1 Constraints and Preferences
+</H3>
+The <TT>requirements</TT> and <TT>rank</TT> expressions
+within the submit description file
+are the mechanism
+by which users specify the constraints and preferences of jobs.
+For machines, the configuration determines both 
+constraints and preferences of the machines.
+
+<P>
+<A NAME="37308"></A>
+<A NAME="37309"></A>
+For both machine and job, 
+the <TT>rank</TT> expression specifies
+the desirability of the match (where higher numbers mean better matches).
+For example, a job ad may contain the following expressions:
+<PRE>
+Requirements = Arch=="SUN4u" &amp;&amp; OpSys == "SOLARIS251"
+Rank         = TARGET.Memory + TARGET.Mips
+</PRE>In this case, the job requires an UltraSparc computer running the Solaris 
+2.5.1 operating system.
+Among all such computers,
+the customer prefers those with large physical memories and high MIPS ratings.  
+Since the <TT>Rank</TT> is a user-specified metric,
+<I>any</I> expression may be used to specify the
+perceived desirability of the match.
+The <I>condor_negotiator</I> daemon runs algorithms
+to deliver the best resource (as defined by the <TT>rank</TT> expression)
+while satisfying other required criteria.
+
+<P>
+Similarly, the machine may place constraints and preferences on 
+the jobs that it will run by setting the machine's configuration.
+For example,
+<PRE>
+    Friend        = Owner == "tannenba" || Owner == "wright"
+    ResearchGroup = Owner == "jbasney" || Owner == "raman"
+    Trusted       = Owner != "rival" &amp;&amp; Owner != "riffraff"
+    START         = Trusted &amp;&amp; ( ResearchGroup || LoadAvg &lt; 0.3 &amp;&amp;
+                         KeyboardIdle &gt; 15*60 )
+    RANK          = Friend + ResearchGroup*10
+</PRE>
+<P>
+The above policy states that the computer will never run jobs owned by
+users rival and riffraff, while the computer will always run a 
+job submitted by members of the research group.
+Furthermore,
+jobs submitted by friends are preferred to other foreign jobs,
+and jobs submitted
+by the research group are preferred to jobs submitted by friends. 
+
+<P>
+<B>Note:</B>  Because of the dynamic nature of ClassAd expressions, there
+is no <I>a priori</I> notion of an integer-valued expression, a real-valued
+expression, etc.  However, it is intuitive to think of the <TT>Requirements</TT>
+and <TT>Rank</TT> expressions as integer-valued and real-valued expressions,
+respectively.  If the actual type of the expression is not of the expected 
+type, the value is assumed to be zero.
+
+<P>
+
+<H3><A NAME="SECTION00513200000000000000"></A><A NAME="classad-query-examples"></A>
+<BR>
+4.1.3.2 Querying with ClassAd Expressions
+</H3>
+The flexibility of this system may also be used when querying ClassAds
+through the <I>condor_status</I> and <I>condor_q</I> tools which allow users to
+supply ClassAd constraint expressions from the command line.
+
+<P>
+Needed syntax is different on Unix and Windows platforms, 
+due to the interpretation of characters in forming command-line arguments.
+The expression must be a single command-line argument,
+and the resulting examples differ for the platforms.
+For Unix shells,
+single quote marks are used to delimit a single argument.
+For a Windows command window,
+double quote marks are used to delimit a single argument.
+Within the argument,
+Unix escapes the double quote mark by prepending a backslash to the double
+quote mark.
+Windows escapes the double quote mark by prepending another double
+quote mark. There may not be spaces in between.
+
+<P>
+Here are several examples.
+To find all computers which have had their keyboards idle for 
+more than 20 minutes and have more than 100 MB of memory,
+the desired ClassAd expression is
+<PRE>
+KeyboardIdle &gt; 20*60 &amp;&amp; Memory &gt; 100
+</PRE>On a Unix platform, the command appears as
+<PRE>
+% condor_status -const 'KeyboardIdle &gt; 20*60 &amp;&amp; Memory &gt; 100'
+
+Name       Arch     OpSys        State      Activity   LoadAv Mem  ActvtyTime
+
+amul.cs.wi SUN4u    SOLARIS251   Claimed    Busy       1.000  128   0+03:45:01
+aura.cs.wi SUN4u    SOLARIS251   Claimed    Busy       1.000  128   0+00:15:01
+balder.cs. INTEL    SOLARIS251   Claimed    Busy       1.000  1024  0+01:05:00
+beatrice.c INTEL    SOLARIS251   Claimed    Busy       1.000  128   0+01:30:02
+...
+...
+                     Machines Owner Claimed Unclaimed Matched Preempting
+
+    SUN4u/SOLARIS251        3     0       3         0       0          0
+    INTEL/SOLARIS251       21     0      21         0       0          0
+    SUN4x/SOLARIS251        3     0       3         0       0          0
+       INTEL/WINNT51        1     0       0         1       0          0
+         INTEL/LINUX        1     0       1         0       0          0
+
+               Total       29     0      28         1       0          0
+</PRE>
+<P>
+The Windows equivalent command is
+<PRE>
+&gt;condor_status -const "KeyboardIdle &gt; 20*60 &amp;&amp; Memory &gt; 100"
+</PRE>
+<P>
+Here is an example for a Unix platform that utilizes a regular expression
+ClassAd function to list specific information.
+A file contains ClassAd information.
+<I>condor_advertise</I> is used to inject this information,
+and <I>condor_status</I> constrains the search with an expression
+that contains a ClassAd function.
+
+<P>
+<PRE>
+% cat ad
+MyType = "Generic"
+FauxType = "DBMS"
+Name = "random-test"
+Machine = "f05.cs.wisc.edu"
+MyAddress = "&lt;128.105.149.105:34000&gt;"
+DaemonStartTime = 1153192799
+UpdateSequenceNumber = 1
+
+% condor_advertise UPDATE_AD_GENERIC ad
+
+% condor_status -any -constraint 'FauxType=="DBMS" &amp;&amp; regexp("random.*", Name, "i")'
+
+MyType               TargetType           Name                          
+
+Generic              None                 random-test
+</PRE>
+<P>
+The ClassAd expression describing a machine that
+advertises a Windows NT operating system:
+<PRE>
+OpSys == "WINNT51"
+</PRE>Here are three equivalent ways on a Unix platform to list all machines
+advertising a Windows NT operating system.
+Spaces appear in these examples to show where they are permitted.
+<PRE>
+% condor_status -constraint ' OpSys == "WINNT51"  '
+</PRE><PRE>
+% condor_status -constraint OpSys==\"WINNT51\"
+</PRE><PRE>
+% condor_status -constraint "OpSys==\"WINNT51\""
+</PRE>
+<P>
+The equivalent command on a Windows platform to list all machines
+advertising a Windows NT operating system must delimit the single
+argument with double quote marks, and then escape the needed
+double quote marks that identify the string within the expression. 
+Spaces appear in this example where they are permitted.
+<PRE>
+&gt;condor_status -constraint " OpSys == ""WINNT51"" "
+</PRE>
+<P>
+<A NAME="37346"></A>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1507"
+  HREF="4_2Condor_s_Checkpoint.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1501"
+  HREF="4_Miscellaneous_Concepts.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1495"
+  HREF="4_Miscellaneous_Concepts.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1503"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1505"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1508"
+  HREF="4_2Condor_s_Checkpoint.html">4.2 Condor's Checkpoint Mechanism</A>
+<B> Up:</B> <A NAME="tex2html1502"
+  HREF="4_Miscellaneous_Concepts.html">4. Miscellaneous Concepts</A>
+<B> Previous:</B> <A NAME="tex2html1496"
+  HREF="4_Miscellaneous_Concepts.html">4. Miscellaneous Concepts</A>
+ &nbsp; <B>  <A NAME="tex2html1504"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1506"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

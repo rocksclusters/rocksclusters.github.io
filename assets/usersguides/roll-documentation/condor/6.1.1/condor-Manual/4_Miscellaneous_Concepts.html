@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>4. Miscellaneous Concepts</TITLE>
+<META NAME="description" CONTENT="4. Miscellaneous Concepts">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="5_Grid_Computing.html">
+<LINK REL="previous" HREF="3_Administrators_Manual.html">
+<LINK REL="up" HREF="ref.html">
+<LINK REL="next" HREF="4_1HTCondor_s_ClassAd.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html1783"
+  HREF="4_1HTCondor_s_ClassAd.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1777"
+  HREF="ref.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1771"
+  HREF="3_15Power_Management.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1779"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1781"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1784"
+  HREF="4_1HTCondor_s_ClassAd.html">4.1 HTCondor's ClassAd Mechanism</A>
+<B> Up:</B> <A NAME="tex2html1778"
+  HREF="ref.html">HTCondor<SUP><SUP>TM</SUP></SUP> Version 8.0.6 Manual</A>
+<B> Previous:</B> <A NAME="tex2html1772"
+  HREF="3_15Power_Management.html">3.15 Power Management</A>
+ &nbsp; <B>  <A NAME="tex2html1780"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1782"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00500000000000000000"></A>
+<A NAME="misc-concepts"></A>
+<BR>
+4. Miscellaneous Concepts
+</H1>
+This chapter contains sections describing a variety of key
+HTCondor concepts that do not belong in other chapters.
+
+<P>
+ClassAds and the ClassAd language are presented.
+
+<P>
+Details of checkpoints are presented.
+
+<P>
+Description and useage of COD (Computing on Demand) extensions to HTCondor
+are presented.
+
+<P>
+The various hooks that HTCondor implements are described.
+
+<P>
+<BR><HR>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html1785"
+  HREF="4_1HTCondor_s_ClassAd.html">4.1 HTCondor's ClassAd Mechanism</A>
+<UL>
+<LI><A NAME="tex2html1786"
+  HREF="4_1HTCondor_s_ClassAd.html#SECTION00511000000000000000">4.1.1 ClassAds: Old and New</A>
+<LI><A NAME="tex2html1787"
+  HREF="4_1HTCondor_s_ClassAd.html#SECTION00512000000000000000">4.1.2 Old ClassAd Syntax</A>
+<LI><A NAME="tex2html1788"
+  HREF="4_1HTCondor_s_ClassAd.html#SECTION00513000000000000000">4.1.3 Old ClassAd Evaluation Semantics</A>
+<LI><A NAME="tex2html1789"
+  HREF="4_1HTCondor_s_ClassAd.html#SECTION00514000000000000000">4.1.4 Old ClassAds in the HTCondor System</A>
+<LI><A NAME="tex2html1790"
+  HREF="4_1HTCondor_s_ClassAd.html#SECTION00515000000000000000">4.1.5 Extending ClassAds with User-written Functions</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1791"
+  HREF="4_2HTCondor_s_Checkpoint.html">4.2 HTCondor's Checkpoint Mechanism</A>
+<UL>
+<LI><A NAME="tex2html1792"
+  HREF="4_2HTCondor_s_Checkpoint.html#SECTION00521000000000000000">4.2.1 Standalone Checkpoint Mechanism</A>
+<LI><A NAME="tex2html1793"
+  HREF="4_2HTCondor_s_Checkpoint.html#SECTION00522000000000000000">4.2.2 Checkpoint Safety</A>
+<LI><A NAME="tex2html1794"
+  HREF="4_2HTCondor_s_Checkpoint.html#SECTION00523000000000000000">4.2.3 Checkpoint Warnings</A>
+<LI><A NAME="tex2html1795"
+  HREF="4_2HTCondor_s_Checkpoint.html#SECTION00524000000000000000">4.2.4 Checkpoint Library Interface</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1796"
+  HREF="4_3Computing_On.html">4.3 Computing On Demand (COD)</A>
+<UL>
+<LI><A NAME="tex2html1797"
+  HREF="4_3Computing_On.html#SECTION00531000000000000000">4.3.1 Overview of How COD Works</A>
+<LI><A NAME="tex2html1798"
+  HREF="4_3Computing_On.html#SECTION00532000000000000000">4.3.2 Authorizing Users to Create and Manage COD Claims</A>
+<LI><A NAME="tex2html1799"
+  HREF="4_3Computing_On.html#SECTION00533000000000000000">4.3.3 Defining a COD Application</A>
+<LI><A NAME="tex2html1800"
+  HREF="4_3Computing_On.html#SECTION00534000000000000000">4.3.4 Managing COD Resource Claims</A>
+<LI><A NAME="tex2html1801"
+  HREF="4_3Computing_On.html#SECTION00535000000000000000">4.3.5 Limitations of COD Support in HTCondor</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1802"
+  HREF="4_4Hooks.html">4.4 Hooks</A>
+<UL>
+<LI><A NAME="tex2html1803"
+  HREF="4_4Hooks.html#SECTION00541000000000000000">4.4.1 Job Hooks That Fetch Work</A>
+<LI><A NAME="tex2html1804"
+  HREF="4_4Hooks.html#SECTION00542000000000000000">4.4.2 Hooks for a Job Router</A>
+<LI><A NAME="tex2html1805"
+  HREF="4_4Hooks.html#SECTION00543000000000000000">4.4.3 Daemon ClassAd Hooks</A>
+</UL></UL>
+<!--End of Table of Child-Links-->
+<BR><HR>
+
+</BODY>
+</HTML>

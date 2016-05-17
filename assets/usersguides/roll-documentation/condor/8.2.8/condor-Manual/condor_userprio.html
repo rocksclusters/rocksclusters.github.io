@@ -1,0 +1,438 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<link rel="canonical" href="http://research.cs.wisc.edu/htcondor/manual/current/condor_userprio.html">
+
+<TITLE>condor_userprio</TITLE>
+<META NAME="description" CONTENT="condor_userprio">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="condor_vacate.html">
+<LINK REL="previous" HREF="condor_userlog.html">
+<LINK REL="up" HREF="11_Command_Reference.html">
+<LINK REL="next" HREF="condor_vacate.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html4444"
+  HREF="condor_vacate.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html4438"
+  HREF="11_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html4432"
+  HREF="condor_userlog.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html4440"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html4442"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4445"
+  HREF="condor_vacate.html">condor_vacate</A>
+<B> Up:</B> <A NAME="tex2html4439"
+  HREF="11_Command_Reference.html">11. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html4433"
+  HREF="condor_userlog.html">condor_userlog</A>
+ &nbsp; <B>  <A NAME="tex2html4441"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html4443"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html4446"
+  HREF="condor_userprio.html#SECTION0012631000000000000000">Synopsis</A>
+<LI><A NAME="tex2html4447"
+  HREF="condor_userprio.html#SECTION0012632000000000000000">Description</A>
+<LI><A NAME="tex2html4448"
+  HREF="condor_userprio.html#SECTION0012633000000000000000">Options</A>
+<LI><A NAME="tex2html4449"
+  HREF="condor_userprio.html#SECTION0012634000000000000000">Examples</A>
+<LI><A NAME="tex2html4450"
+  HREF="condor_userprio.html#SECTION0012635000000000000000">Exit Status</A>
+<LI><A NAME="tex2html4451"
+  HREF="condor_userprio.html#SECTION0012636000000000000000">Author</A>
+<LI><A NAME="tex2html4452"
+  HREF="condor_userprio.html#SECTION0012637000000000000000">Copyright</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION0012630000000000000000"></A><A NAME="man-condor-userprio"></A>
+<BR>
+<I>condor_userprio</I>
+</H1> Manage user priorities
+  
+<P>
+
+<A NAME="90032"></A>
+<A NAME="90033"></A>
+
+<P>
+
+<H2><A NAME="SECTION0012631000000000000000">
+Synopsis</A>
+</H2><B><I>condor_userprio</I></B>
+[<B>-pool  </B><I>centralmanagerhostname[:portnumber]</I>]
+[<B>Edit option</B>] <IMG
+ WIDTH="10" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img65.png"
+ ALT="$\vert$"> [<B>Display options</B>]
+
+<P>
+
+<H2><A NAME="SECTION0012632000000000000000">
+Description</A>
+</H2>
+<I>condor_userprio</I> either modifies priority-related information
+or displays priority-related information.
+Displayed information comes from the accountant log,
+where the <I>condor_negotiator</I> daemon stores historical usage information
+in the file at <TT><TT>$(SPOOL)</TT>/Accountantnew.log</TT>.
+Which fields are displayed changes based on command line arguments.
+<I>condor_userprio</I> with no arguments, 
+lists the active users along with their priorities,
+in increasing priority order. 
+The <B>-all</B> option can be used to display
+more detailed information about each user, 
+resulting in a rather wide display,
+and includes the following columns:
+
+<P>
+<DL>
+<DT><STRONG>Effective Priority</STRONG></DT>
+<DD>The effective priority value of the user, 
+which is used to calculate the user's share when allocating resources. 
+A lower value means a higher priority, 
+and the minimum value (highest priority) is 0.5. 
+The effective priority is
+calculated by multiplying the real priority by the priority factor.
+</DD>
+<DT><STRONG>Real Priority</STRONG></DT>
+<DD>The value of the real priority of the user. 
+This value follows the user's resource usage.
+</DD>
+<DT><STRONG>Priority Factor</STRONG></DT>
+<DD>The system administrator can set this value 
+for each user, 
+thus controlling a user's effective priority relative to other users. 
+This can be used to create different classes of users.
+</DD>
+<DT><STRONG>Res Used</STRONG></DT>
+<DD>The number of resources currently used. 
+</DD>
+<DT><STRONG>Accumulated Usage</STRONG></DT>
+<DD>The accumulated number of resource-hours 
+used by the user since the usage start time.
+</DD>
+<DT><STRONG>Usage Start Time</STRONG></DT>
+<DD>The time since when usage has been recorded 
+for the user. 
+This time is set when a user job runs for the first time. 
+It is reset to the present time when the
+usage for the user is reset.
+</DD>
+<DT><STRONG>Last Usage Time</STRONG></DT>
+<DD>The most recent time a resource usage has been recorded 
+for the user.
+</DD>
+</DL>
+
+<P>
+By default only users for whom usage was recorded in the last 24 hours, 
+or whose priority is greater than the minimum are listed.
+
+<P>
+The <B>-pool</B> option can be used to contact a different central manager 
+than the local one (the default).
+
+<P>
+For security purposes of authentication and authorization,
+specifying an Edit Option requires the ADMINISTRATOR level of access.
+
+<P>
+
+<H2><A NAME="SECTION0012633000000000000000">
+Options</A>
+</H2>
+  
+<P>
+  <DL>
+<DT><STRONG><B>-pool </B><I>centralmanagerhostname[:portnumber]</I></STRONG></DT>
+<DD>Contact the specified <I>centralmanagerhostname</I> with an
+  optional port number, instead of the local central manager. 
+  This can be used to check other pools.  
+  NOTE: The host name (and optional port) specified refer to the host name
+  (and port) of the <I>condor_negotiator</I> to query for user priorities.
+  This is slightly different than most HTCondor tools
+  that support a <B>-pool</B> option,
+  and instead expect the host name (and port) of the <I>condor_collector</I>.
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>-delete </B><I>username</I></STRONG></DT>
+<DD>(Edit option) Remove the specified <I>username</I> from HTCondor's accounting.
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>-resetall</B></STRONG></DT>
+<DD>(Edit option) Reset the accumulated usage of all the users to zero.
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>-resetusage </B><I>username</I></STRONG></DT>
+<DD>(Edit option) Reset the accumulated usage of the user specified by
+  <I>username</I> to zero. 
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>-setaccum </B><I>username value</I></STRONG></DT>
+<DD>(Edit option) Set the accumulated usage of the user specified by
+  <I>username</I> to the specified floating point <I>value</I>. 
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>-setbegin </B><I>username value</I></STRONG></DT>
+<DD>(Edit option) Set the begin usage time of the user specified by
+  <I>username</I> to the specified <I>value</I>. 
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>-setfactor </B><I>username value</I></STRONG></DT>
+<DD>(Edit option) Set the priority factor of the user specified by
+  <I>username</I> to the specified <I>value</I>.  
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>-setlast </B><I>username value</I></STRONG></DT>
+<DD>(Edit option) Set the last usage time of the user specified by
+  <I>username</I> to the specified <I>value</I>.  
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>-setprio </B><I>username value</I></STRONG></DT>
+<DD>(Edit option) Set the real priority of the user specified by
+  <I>username</I> to the specified <I>value</I>.  
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>-activefrom </B><I>month day year</I></STRONG></DT>
+<DD>(Display option) Display information for users who have 
+  some recorded accumulated usage since the specified date.  
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>-all</B></STRONG></DT>
+<DD>(Display option) Display all available fields about each group or user.
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>-allusers</B></STRONG></DT>
+<DD>(Display option) Display information for all the users 
+  who have some recorded accumulated usage.
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>-flat</B></STRONG></DT>
+<DD>(Display option) Display information such that users within hierarchical
+  groups are <I>not</I> listed with their group. 
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>-getreslist </B><I>username</I></STRONG></DT>
+<DD>(Display option) Display all the resources currently allocated to the 
+  user specified by <I>username</I>.  
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>-grouporder</B></STRONG></DT>
+<DD>(Display option) Display submitter information with accounting group
+   entries at the top of the list, 
+   and in breadth-first order within the group hierarchy tree.
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>-grouprollup</B></STRONG></DT>
+<DD>(Display option) For hierarchical groups,
+  the display shows sums as computed for groups, 
+  and these sums include sub groups.  
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>-hierarchical</B></STRONG></DT>
+<DD>(Display option) Display information such that users within hierarchical
+  groups are listed with their group. 
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>-long</B></STRONG></DT>
+<DD>(Display option) A verbose output which displays entire ClassAds.  
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>-most</B></STRONG></DT>
+<DD>(Display option) Display fields considered to be the most useful.
+  This is the default set of fields displayed.   
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>-priority</B></STRONG></DT>
+<DD>(Display option) Display fields with user priority information.  
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>-quotas</B></STRONG></DT>
+<DD>(Display option) Display fields relevant to hierarchical group quotas.  
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>-usage</B></STRONG></DT>
+<DD>(Display option) Display usage information for each group or user.
+<BR>
+<P>
+</DD>
+</DL>
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION0012634000000000000000">
+Examples</A>
+</H2>
+
+<P>
+<U>Example 1</U> Since the output varies due to command line arguments, 
+here is an example of the default output for a pool that does not use 
+Hierarchical Group Quotas.
+This default output is the same as given with the <B>-most</B> Display option.
+<PRE>
+Last Priority Update:  1/19 13:14
+                        Effective   Priority   Res   Total Usage  Time Since
+User Name                Priority    Factor   In Use (wghted-hrs) Last Usage
+---------------------- ------------ --------- ------ ------------ ----------
+www-cndr@cs.wisc.edu           0.56      1.00      0    591998.44    0+16:30
+joey@cs.wisc.edu               1.00      1.00      1       990.15 &lt;now&gt;
+suzy@cs.wisc.edu               1.53      1.00      0       261.78    0+09:31
+leon@cs.wisc.edu               1.63      1.00      2     12597.82 &lt;now&gt;
+raj@cs.wisc.edu                3.34      1.00      0      8049.48    0+01:39
+jose@cs.wisc.edu               3.62      1.00      4     58137.63 &lt;now&gt;
+betsy@cs.wisc.edu             13.47      1.00      0      1475.31    0+22:46
+petra@cs.wisc.edu            266.02    500.00      1    288082.03 &lt;now&gt;
+carmen@cs.wisc.edu           329.87     10.00    634   2685305.25 &lt;now&gt;
+carlos@cs.wisc.edu           687.36     10.00      0     76555.13    0+14:31
+ali@proj1.wisc.edu          5000.00  10000.00      0      1315.56    0+03:33
+apu@nnland.edu              5000.00  10000.00      0       482.63    0+09:56
+pop@proj1.wisc.edu         26688.11  10000.00      1     49560.88 &lt;now&gt;
+franz@cs.wisc.edu          29352.06    500.00    109    600277.88 &lt;now&gt;
+martha@nnland.edu          58030.94  10000.00      0     48212.79    0+12:32
+izzi@nnland.edu            62106.40  10000.00      0      6569.75    0+02:26
+marta@cs.wisc.edu          62577.84    500.00     29    193706.30 &lt;now&gt;
+kris@proj1.wisc.edu       100597.94  10000.00      0     20814.24    0+04:26
+boss@proj1.wisc.edu       318229.25  10000.00      3    324680.47 &lt;now&gt;
+---------------------- ------------ --------- ------ ------------ ----------
+Number of users: 19                              784   4969073.00    0+23:59
+</PRE>
+<P>
+<U>Example 2</U> This is an example of the default output for a pool
+that uses hierarchical groups, and the groups accept surplus.
+This leads to a very wide display.
+<PRE>
+% condor_userprio -pool crane.cs.wisc.edu -allusers
+Last Priority Update:  1/19 13:18
+Group                                 Config     Use    Effective   Priority   Res   Total Usage  Time Since
+  User Name                            Quota   Surplus   Priority    Factor   In Use (wghted-hrs) Last Usage
+------------------------------------ --------- ------- ------------ --------- ------ ------------ ----------
+&lt;none&gt;                                    0.00     yes                   1.00      0         6.78    9+03:52
+  johnsm@crane.cs.wisc.edu                                     0.50      1.00      0         6.62    9+19:42
+  John.Smith@crane.cs.wisc.edu                                 0.50      1.00      0         0.02    9+03:52
+  Sedge@crane.cs.wisc.edu                                      0.50      1.00      0         0.05   13+03:03
+  Duck@crane.cs.wisc.edu                                       0.50      1.00      0         0.02   31+00:28
+  other@crane.cs.wisc.edu                                      0.50      1.00      0         0.04   16+03:42
+Duck                                      2.00      no                   1.00      0         0.02   13+02:57
+  goose@crane.cs.wisc.edu                                      0.50      1.00      0         0.02   13+02:57
+Sedge                                     4.00      no                   1.00      0         0.17    9+03:07
+  johnsm@crane.cs.wisc.edu                                     0.50      1.00      0         0.13    9+03:08
+  Half@crane.cs.wisc.edu                                       0.50      1.00      0         0.02   31+00:02
+  John.Smith@crane.cs.wisc.edu                                 0.50      1.00      0         0.05    9+03:07
+  other@crane.cs.wisc.edu                                      0.50      1.00      0         0.01   28+19:34
+------------------------------------ --------- ------- ------------ --------- ------ ------------ ----------
+Number of users: 10                            ByQuota                             0         6.97
+</PRE>
+<P>
+
+<H2><A NAME="SECTION0012635000000000000000">
+Exit Status</A>
+</H2>
+
+<P>
+<I>condor_userprio</I> will exit with a status value of 0 (zero) upon success,
+and it will exit with the value 1 (one) upon failure.
+
+<P>
+
+<H2><A NAME="SECTION0012636000000000000000">
+Author</A>
+</H2> Center for High Throughput Computing, University of Wisconsin-Madison
+  
+<H2><A NAME="SECTION0012637000000000000000">
+Copyright</A>
+</H2> 
+  Copyright &#169; 1990-2015 Center for High Throughput Computing, 
+  Computer Sciences Department, 
+  University of Wisconsin-Madison, Madison, WI.  All Rights Reserved.  
+	Licensed under the Apache License, Version 2.0.  
+
+  <HR>
+<!--Navigation Panel-->
+<A NAME="tex2html4444"
+  HREF="condor_vacate.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html4438"
+  HREF="11_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html4432"
+  HREF="condor_userlog.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html4440"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html4442"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4445"
+  HREF="condor_vacate.html">condor_vacate</A>
+<B> Up:</B> <A NAME="tex2html4439"
+  HREF="11_Command_Reference.html">11. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html4433"
+  HREF="condor_userlog.html">condor_userlog</A>
+ &nbsp; <B>  <A NAME="tex2html4441"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html4443"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

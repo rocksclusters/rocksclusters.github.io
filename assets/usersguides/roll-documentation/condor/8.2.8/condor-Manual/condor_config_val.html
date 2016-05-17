@@ -1,0 +1,493 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<link rel="canonical" href="http://research.cs.wisc.edu/htcondor/manual/current/condor_config_val.html">
+
+<TITLE>condor_config_val</TITLE>
+<META NAME="description" CONTENT="condor_config_val">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="condor_configure.html">
+<LINK REL="previous" HREF="condor_compile.html">
+<LINK REL="up" HREF="11_Command_Reference.html">
+<LINK REL="next" HREF="condor_configure.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html3422"
+  HREF="condor_configure.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3416"
+  HREF="11_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3410"
+  HREF="condor_compile.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3418"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3420"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3423"
+  HREF="condor_configure.html">condor_configure</A>
+<B> Up:</B> <A NAME="tex2html3417"
+  HREF="11_Command_Reference.html">11. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3411"
+  HREF="condor_compile.html">condor_compile</A>
+ &nbsp; <B>  <A NAME="tex2html3419"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3421"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html3424"
+  HREF="condor_config_val.html#SECTION0012141000000000000000">Synopsis</A>
+<LI><A NAME="tex2html3425"
+  HREF="condor_config_val.html#SECTION0012142000000000000000">Description</A>
+<LI><A NAME="tex2html3426"
+  HREF="condor_config_val.html#SECTION0012143000000000000000">Options</A>
+<LI><A NAME="tex2html3427"
+  HREF="condor_config_val.html#SECTION0012144000000000000000">Exit Status</A>
+<LI><A NAME="tex2html3428"
+  HREF="condor_config_val.html#SECTION0012145000000000000000">Examples</A>
+<LI><A NAME="tex2html3429"
+  HREF="condor_config_val.html#SECTION0012146000000000000000">Author</A>
+<LI><A NAME="tex2html3430"
+  HREF="condor_config_val.html#SECTION0012147000000000000000">Copyright</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION0012140000000000000000"></A><A NAME="man-condor-config-val"></A>
+<BR>
+<I>condor_config_val</I>
+</H1> Query or set a given HTCondor configuration variable
+  
+<P>
+
+<A NAME="67365"></A>
+<A NAME="67366"></A>
+
+<P>
+
+<H2><A NAME="SECTION0012141000000000000000">
+Synopsis</A>
+</H2><B><I>condor_config_val</I></B>
+<I>&lt;help option&gt;</I>
+
+<P>
+<B><I>condor_config_val</I></B>
+[<B>&lt;location options&gt;</B>]
+<I>&lt;edit option&gt;</I>
+
+<P>
+<B><I>condor_config_val</I></B>
+[<B>&lt;location options&gt;</B>]
+[<B>&lt;view options&gt;</B>]
+<I>vars</I>
+
+<P>
+
+<H2><A NAME="SECTION0012142000000000000000">
+Description</A>
+</H2>
+
+<P>
+<I>condor_config_val</I> can be used to quickly see what the current
+HTCondor configuration is on any given machine.  
+Given a space separated set of
+configuration variables with the <I>vars</I> argument,
+<I>condor_config_val</I> will report what each of these
+variables is currently set to.  If a given variable is not defined,
+<I>condor_config_val</I> will halt on that variable, and report that it is
+not defined.  By default, <I>condor_config_val</I> looks in the local
+machine's configuration files in order to evaluate the variables.
+Variables and values may instead be queried from a daemon specified
+using a <B>location option</B>.
+
+<P>
+<I>Raw</I> output of <I>condor_config_val</I> displays the string used to
+define the configuration variable.
+This is what is on the right hand side of the equals sign (<TT>=</TT>)
+in a configuration file for a variable.
+The default output is an <I>expanded</I> one.
+Expanded output recursively replaces any macros within the raw definition
+of a variable with the macro's raw definition.
+
+<P>
+Each daemon remembers settings made by a successful invocation
+of <I>condor_config_val</I>.  
+The configuration <I>file</I> is not modified.  
+
+<P>
+<I>condor_config_val</I> can be used to persistently set or unset 
+configuration variables for a specific daemon on a given machine
+using a <I>-set</I> or <I>-unset</I> <B>edit option</B>.
+Persistent settings remain when the daemon is restarted.  
+Configuration variables for a specific daemon on a given machine
+may be set or unset for the time period that the daemon continues to run
+using a <I>-rset</I> or <I>-runset</I> <B>edit option</B>.
+These runtime settings are lost when the daemon is restarted.  
+Any changes made will not take effect until <I>condor_reconfig</I> is invoked.
+
+<P>
+In general, modifying a host's configuration with
+<I>condor_config_val</I>  
+requires the <TT>CONFIG</TT> access level, which is disabled on all
+hosts by default.
+Administrators have more
+fine-grained control over which access levels can modify which
+settings.
+See section&nbsp;<A HREF="3_6Security.html#sec:Config-Security">3.6.1</A> on
+page&nbsp;<A HREF="3_6Security.html#sec:Config-Security"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for more details on security settings.
+Further, security considerations require proper settings of
+configuration variables
+<TT>SETTABLE_ATTRS... </TT><A NAME="67666"></A><A NAME="67667"></A> (see <A HREF="3_3Configuration.html#param:SettableAttrs">3.3.5</A>),
+<TT>ENABLE_PERSISTENT_CONFIG</TT><A NAME="67671"></A><A NAME="67672"></A> (see <A HREF="3_3Configuration.html#param:EnablePersistentConfig">3.3.5</A>),
+and <TT>HOSTALLOW... </TT><A NAME="67676"></A><A NAME="67677"></A> (see <A HREF="3_3Configuration.html#param:HostAllow">3.3.5</A>)
+in order to use <I>condor_config_val</I> to change any configuration variable.
+
+<P>
+It is generally wise to test a new configuration on a single
+machine to ensure that no syntax or other errors in the
+configuration have been made before the reconfiguration of many machines.  
+Having bad syntax or invalid configuration settings is a fatal error
+for HTCondor daemons, and they will exit.
+It is far better to discover such a problem on a single machine than to
+cause all the HTCondor daemons in the pool to exit.
+<I>condor_config_val</I> can help with this type of testing.
+
+<P>
+
+<H2><A NAME="SECTION0012143000000000000000">
+Options</A>
+</H2>
+  
+<P>
+  <DL>
+<DT><STRONG><B>-help</B></STRONG></DT>
+<DD>(help option) 
+    Print usage information and exit.
+   
+<BR>  
+</DD>
+<DT><STRONG><B>-version</B></STRONG></DT>
+<DD>(help option) 
+    Print the HTCondor version information and exit.
+   
+<BR>  
+</DD>
+<DT><STRONG><B>-set </B><I>"var = value"</I></STRONG></DT>
+<DD>(edit option) 
+    Sets one or more persistent configuration file 
+    variables.  The new value remains if the daemon is restarted.
+    One or more variables can be set; the syntax requires double quote marks
+    to identify the pairing of variable name to value, and to permit spaces. 
+   
+<BR>  
+</DD>
+<DT><STRONG><B>-unset </B><I>var</I></STRONG></DT>
+<DD>(edit option)
+    Each of the persistent configuration variables listed reverts to
+    its previous value.
+   
+<BR>  
+</DD>
+<DT><STRONG><B>-rset </B><I>"var = value"</I></STRONG></DT>
+<DD>(edit option) 
+    Sets one or more configuration file variables.  
+    The new value remains as long as the daemon continues running.
+    One or more variables can be set; the syntax requires double quote marks
+    to identify the pairing of variable name to value, and to permit spaces. 
+   
+<BR>  
+</DD>
+<DT><STRONG><B>-runset </B><I>var</I></STRONG></DT>
+<DD>(edit option) 
+    Each of the configuration variables listed reverts to
+    its previous value as long as the daemon continues running.
+   
+<BR>  
+</DD>
+<DT><STRONG><B>-dump</B></STRONG></DT>
+<DD>(view option)
+    Display the raw value of all <I>vars</I> listed.  
+    If no <I>vars</I> are listed, then print all configuration variables and
+    their values.
+    The <B>-expand</B>, <B>-default</B>, and <B>-evaluate</B> options take
+    precedence over this <B>-dump</B> option, such that the output will 
+    not be raw.
+   
+<BR>  
+</DD>
+<DT><STRONG><B>-default</B></STRONG></DT>
+<DD>(view option)
+    Default values are displayed.
+   
+<BR>  
+</DD>
+<DT><STRONG><B>-expand</B></STRONG></DT>
+<DD>(view option)
+    Expanded values are displayed.  This is the default.
+   
+<BR>  
+</DD>
+<DT><STRONG><B>-raw</B></STRONG></DT>
+<DD>(view option)
+    Raw values are displayed.
+   
+<BR>  
+</DD>
+<DT><STRONG><B>-verbose</B></STRONG></DT>
+<DD>(view option)
+    Display configuration file name and line number where the variable is
+    set, along with the raw, expanded, and default values of the variable.
+   
+<BR>  
+</DD>
+<DT><STRONG><B>-debug[:&lt;opts&gt;]</B></STRONG></DT>
+<DD>(view option)
+    Send output to <TT>stderr</TT>,
+    overriding a set value of <TT>TOOL_DEBUG</TT>. 
+   
+<BR>  
+</DD>
+<DT><STRONG><B>-evaluate</B></STRONG></DT>
+<DD>(view option)
+    Applied only when a <B>location option</B> specifies a daemon.
+    The value of the requested parameter will be evaluated with 
+    respect to the ClassAd of that daemon.  
+   
+<BR>  
+</DD>
+<DT><STRONG><B>-used</B></STRONG></DT>
+<DD>(view option)
+    Applied only when a <B>location option</B> specifies a daemon.
+    Modifies which variables are displayed to only those 
+    used by the specified daemon.
+   
+<BR>  
+</DD>
+<DT><STRONG><B>-unused</B></STRONG></DT>
+<DD>(view option)
+    Applied only when a <B>location option</B> specifies a daemon.
+    Modifies which variables are displayed to only those <I>not</I>
+    used by the specified daemon.
+   
+<BR>  
+</DD>
+<DT><STRONG><B>-config</B></STRONG></DT>
+<DD>(view option)
+    Applied only when the configuration is read from files (the default),
+    and <I>not</I> when applied to a specific daemon.
+    Display the current configuration file that set the variable.
+   
+<BR>  
+</DD>
+<DT><STRONG><B>-writeconfig[:upgrade] </B><I>filename</I></STRONG></DT>
+<DD>(view option)
+    For the configuration read from files (the default),
+    write to file <I>filename</I> all configuration variables. Values that are
+    the same as internal, compile-time defaults will be preceded by the comment character.
+    If the <B>:upgrade </B><I>o</I>ption is specified, then values that are the same as
+    the internal, compile-time defaults are omitted. Variables are in the same
+    order as the they were read from the original configuration files.
+   
+<BR>  
+</DD>
+<DT><STRONG><B>-mixedcase</B></STRONG></DT>
+<DD>(view option)
+    Applied only when the configuration is read from files (the default),
+    and <I>not</I> when applied to a specific daemon.
+    Print variable names with the same letter case used in the 
+    variable's definition.
+   
+<BR>  
+</DD>
+<DT><STRONG><B>-local-name </B><I>&lt;name&gt;</I></STRONG></DT>
+<DD>(view option) 
+    Applied only when the configuration is read from files (the default),
+    and <I>not</I> when applied to a specific daemon.
+    Inspect the values of attributes that use local names,
+    which is useful to distinguish which daemon when there is more than
+    one of the particular daemon running.
+<BR>  
+</DD>
+<DT><STRONG><B>-subsystem </B><I>&lt;daemon&gt;</I></STRONG></DT>
+<DD>(view option) 
+    Applied only when the configuration is read from files (the default),
+    and <I>not</I> when applied to a specific daemon.
+    Specifies the subsystem or daemon name to query, 
+    with a default value of the <TT>TOOL</TT> subsystem.
+   
+<BR>  
+</DD>
+<DT><STRONG><B>-address </B><I><IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">ip:port<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></I></STRONG></DT>
+<DD>(location option)
+    Connect to the given IP address and port number. 
+<BR>  
+</DD>
+<DT><STRONG><B>-pool </B><I>centralmanagerhostname[:portnumber]</I></STRONG></DT>
+<DD>(location option) Use the given central manager and an optional 
+    port number to find daemons. 
+<BR>  
+</DD>
+<DT><STRONG><B>-name </B><I>&lt;machine_name&gt;</I></STRONG></DT>
+<DD>(location option)
+    Query the specified
+    machine's <I>condor_master</I> daemon for its configuration. 
+    Does not function together with any of the options:
+    <B>-dump</B>, <B>-config</B>, or <B>-verbose</B>. 
+<BR>  
+</DD>
+<DT><STRONG><B>-master | -schedd | -startd | -collector 
+           | -negotiator</B></STRONG></DT>
+<DD>(location option) The specific daemon to query. 
+<BR>  
+</DD>
+</DL>
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION0012144000000000000000">
+Exit Status</A>
+</H2>
+
+<P>
+<I>condor_config_val</I> will exit with a status value of 0 (zero) upon success,
+and it will exit with the value 1 (one) upon failure.
+
+<P>
+
+<H2><A NAME="SECTION0012145000000000000000">
+Examples</A>
+</H2>
+
+<P>
+Here is a set of examples to show a sequence of operations using 
+<I>condor_config_val</I>.
+To request the <I>condor_schedd</I> daemon on host perdita
+to display the value of the <TT>MAX_JOBS_RUNNING</TT> configuration variable:
+<PRE>
+   % condor_config_val -name perdita -schedd MAX_JOBS_RUNNING
+   500
+</PRE>
+<P>
+To request the <I>condor_schedd</I> daemon on host perdita
+to set the value of the <TT>MAX_JOBS_RUNNING</TT> configuration variable
+to the value 10.
+<PRE>
+   % condor_config_val -name perdita -schedd -set "MAX_JOBS_RUNNING = 10"
+   Successfully set configuration "MAX_JOBS_RUNNING = 10" on 
+   schedd perdita.cs.wisc.edu &lt;128.105.73.32:52067&gt;.
+</PRE>
+<P>
+A command that will implement the change just set in the previous
+example.
+<PRE>
+   % condor_reconfig -schedd perdita
+   Sent "Reconfig" command to schedd perdita.cs.wisc.edu
+</PRE>
+<P>
+A re-check of the configuration variable reflects the change implemented:
+<PRE>
+   % condor_config_val -name perdita -schedd MAX_JOBS_RUNNING
+   10
+</PRE>
+<P>
+To set the configuration variable <TT>MAX_JOBS_RUNNING</TT>
+back to what it was before the command to set it to 10:
+<PRE>
+   % condor_config_val -name perdita -schedd -unset MAX_JOBS_RUNNING
+   Successfully unset configuration "MAX_JOBS_RUNNING" on 
+   schedd perdita.cs.wisc.edu &lt;128.105.73.32:52067&gt;.
+</PRE>
+<P>
+A command that will implement the change just set in the previous
+example.
+<PRE>
+   % condor_reconfig -schedd perdita
+   Sent "Reconfig" command to schedd perdita.cs.wisc.edu
+</PRE>
+<P>
+A re-check of the configuration variable reflects that variable
+has gone back to is value before initial set of the variable:
+<PRE>
+   % condor_config_val -name perdita -schedd MAX_JOBS_RUNNING
+   500
+</PRE>
+<P>
+
+<H2><A NAME="SECTION0012146000000000000000">
+Author</A>
+</H2> Center for High Throughput Computing, University of Wisconsin-Madison
+  
+<H2><A NAME="SECTION0012147000000000000000">
+Copyright</A>
+</H2> 
+  Copyright &#169; 1990-2015 Center for High Throughput Computing, 
+  Computer Sciences Department, 
+  University of Wisconsin-Madison, Madison, WI.  All Rights Reserved.  
+	Licensed under the Apache License, Version 2.0.  
+
+  <HR>
+<!--Navigation Panel-->
+<A NAME="tex2html3422"
+  HREF="condor_configure.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3416"
+  HREF="11_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3410"
+  HREF="condor_compile.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3418"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3420"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3423"
+  HREF="condor_configure.html">condor_configure</A>
+<B> Up:</B> <A NAME="tex2html3417"
+  HREF="11_Command_Reference.html">11. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3411"
+  HREF="condor_compile.html">condor_compile</A>
+ &nbsp; <B>  <A NAME="tex2html3419"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3421"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

@@ -1,0 +1,618 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+> Upgrade or Reconfigure Your Existing Frontend </TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Roll: Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE=" Installing a Rocks Cluster "
+HREF="installing.html"><LINK
+REL="PREVIOUS"
+TITLE=" Install Your Compute Nodes "
+HREF="install-compute-nodes.html"><LINK
+REL="NEXT"
+TITLE=" Installing a Frontend over the Network "
+HREF="frontend-wan.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Base Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="install-compute-nodes.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 2. Installing a Rocks Cluster</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="frontend-wan.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="UPGRADE-FRONTEND"
+>2.4. Upgrade or Reconfigure Your Existing Frontend</A
+></H1
+><P
+>This procedure describes how to use a Restore Roll to upgrade or
+reconfigure your existing Rocks cluster.</P
+><DIV
+CLASS="WARNING"
+><P
+></P
+><TABLE
+CLASS="WARNING"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/warning.png"
+HSPACE="5"
+ALT="Warning"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>If your Rocks frontend is running Rocks version 4.3 and you wish to
+upgrade it to version 5.0, you first need to install the
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks-devel-env</SAMP
+> package:</P
+><P
+>For i386, execute:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rpm -ivh --force http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-4.3/upgrade/rocks-devel-env-4.3-1.i386.rpm
+# rpm -ivh --force http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-4.3/upgrade/rocks-command-4.3-0.i386.rpm
+# rpm -ivh --force http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-4.3/upgrade/rocks-pylib-4.3-0.noarch.rpm</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>For x86_64, execute:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rpm -ivh --force http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-4.3/upgrade/rocks-devel-env-4.3-1.x86_64.rpm
+# rpm -ivh --force http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-4.3/upgrade/rocks-command-4.3-0.x86_64.rpm
+# rpm -ivh --force http://www.rocksclusters.org/ftp-site/pub/rocks/rocks-4.3/upgrade/rocks-pylib-4.3-0.noarch.rpm</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>Now we'll create a Restore Roll for your frontend.
+This roll will contain site-specific info that will be used to quickly
+reconfigure your frontend (see the section below for details).</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># cd /export/site-roll/rocks/src/roll/restore
+# make roll</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>The above command will output a roll ISO image that has the name of the form:
+<EM
+>hostname</EM
+>-restore-<EM
+>date</EM
+>-0.<EM
+>arch</EM
+>.disk1.iso.
+For example, on the i386-based frontend with the FQDN of <EM
+>rocks-45.sdsc.edu</EM
+>, the roll will be named like:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>rocks-45.sdsc.edu-restore-2006.07.24-0.i386.disk1.iso</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Burn your restore roll ISO image to a CD.</P
+><P
+>Reinstall the frontend by putting the Rocks Boot CD in the CD tray (generally,
+this is the Kernel/Boot Roll) and rebooting the frontend.</P
+><P
+>At the <SAMP
+CLASS="COMPUTEROUTPUT"
+>boot:</SAMP
+> prompt, type:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>frontend</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>At this point, the installation follows the same steps as a
+<EM
+>normal</EM
+> frontend installation (See
+the section: <A
+HREF="install-frontend.html"
+>Install Frontend</A
+>) -- with two exceptions:</P
+><P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>	On the first user-input screen (the screen that asks for 'local' and
+	'network' rolls), be sure to supply the Restore Roll that you just
+	created.
+	</P
+></LI
+><LI
+><P
+>	You will be forced to manually partition your frontend's root disk.
+	</P
+><DIV
+CLASS="WARNING"
+><P
+></P
+><TABLE
+CLASS="WARNING"
+WIDTH="90%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/warning.png"
+HSPACE="5"
+ALT="Warning"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	You must reformat your
+	<SAMP
+CLASS="COMPUTEROUTPUT"
+>/</SAMP
+> partition, your 
+	<SAMP
+CLASS="COMPUTEROUTPUT"
+>/var</SAMP
+> partition and your 
+	<SAMP
+CLASS="COMPUTEROUTPUT"
+>/boot</SAMP
+> partition (if it exists).
+	</P
+><P
+>	Also, be sure to assign the mountpoint of
+	<SAMP
+CLASS="COMPUTEROUTPUT"
+>/export</SAMP
+> to the partition that contains
+	the users' home areas. Do NOT erase or format this partition, or you will lose the
+	user home directories.
+	Generally, this is the largest partition on the first disk.
+	</P
+></TD
+></TR
+></TABLE
+></DIV
+></LI
+></OL
+><P
+>After your frontend completes its installation, the last step is to force
+a re-installation of all of your compute nodes.
+The following will force a PXE (network install) reboot of
+all your compute nodes.</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># ssh-agent $SHELL
+# ssh-add
+# tentakel -g compute '/boot/kickstart/cluster-kickstart-pxe'</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="UPGRADE-FRONTEND-INTERNALS"
+>2.4.1. Restore Roll Internals</A
+></H2
+><P
+>By default, the Restore Roll contains two sets of files: system files and
+user files, and some user scripts.
+The system files are listed in the 'FILES' directive in the file:
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>/export/site-roll/rocks/src/roll/restore/src/system-files/version.mk</SAMP
+>.</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>FILES           = /etc/passwd /etc/shadow /etc/gshadow /etc/group \
+                  /etc/exports /etc/auto.home /etc/motd</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>The user files are listed in the 'FILES' directive in the file:
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>/export/site-roll/rocks/src/roll/restore/version.mk</SAMP
+>.</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>FILES           += /etc/X11/xorg.conf</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>If you have other files you'd like saved and restored, then append them to
+the 'FILES' directive in the file
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>/export/site-roll/rocks/src/roll/restore/version.mk</SAMP
+>,
+then rebuild the restore roll.</P
+><P
+>If you'd like to add your own post sections, you can add the name of the script to the 'SCRIPTS'
+directive of the <SAMP
+CLASS="COMPUTEROUTPUT"
+>/export/site-roll/rocks/src/roll/restore/version.mk</SAMP
+> file.</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>SCRIPTS += /export/apps/myscript.sh /export/apps/myscript2.py</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>This will add the shell script <SAMP
+CLASS="COMPUTEROUTPUT"
+>/export/apps/myscript.sh</SAMP
+>, and the python
+script <SAMP
+CLASS="COMPUTEROUTPUT"
+>/export/apps/myscript2.py</SAMP
+> in the post section of the restore-user-files.xml file.
+<DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/note.png"
+HSPACE="5"
+ALT="Note"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>If you'd like to run the script in "nochroot" mode, add
+<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># nochroot</PRE
+></FONT
+></TD
+></TR
+></TABLE
+>
+as the first comment in your script file after the interpreter line, if one is present.</P
+><P
+>For example
+<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>#!/bin/bash
+#nochroot
+echo "This is myscript.sh"</PRE
+></FONT
+></TD
+></TR
+></TABLE
+>
+or
+<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>#nochroot
+echo "This is myscript.sh"</PRE
+></FONT
+></TD
+></TR
+></TABLE
+>
+will run the above code in the "nochroot" mode during installation.
+As opposed to
+<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>echo "This is myscript.sh"
+#nochroot</PRE
+></FONT
+></TD
+></TR
+></TABLE
+>
+or
+<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>#!/bin/bash
+echo "This is myscript.sh"</PRE
+></FONT
+></TD
+></TR
+></TABLE
+>
+will NOT run the script under "nochroot" mode.</P
+></TD
+></TR
+></TABLE
+></DIV
+></P
+><P
+>All the files under
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>/export/home/install/site-profiles</SAMP
+> are
+saved and restored.
+So, any user modifications that are added via the XML node method will be
+preserved.</P
+><P
+>The networking info for all node interfaces (e.g., the frontend, compute nodes,
+NAS appliances, etc.) are saved and restored.
+This is accomplished via the 'rocks dump' command.</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="install-compute-nodes.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="frontend-wan.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Install Your Compute Nodes</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="installing.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Installing a Frontend over the Network</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

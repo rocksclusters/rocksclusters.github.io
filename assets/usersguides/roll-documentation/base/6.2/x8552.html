@@ -1,0 +1,271 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Release 6.2 - changes from 6.1.1</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Release Notes"
+HREF="release-notes.html"><LINK
+REL="PREVIOUS"
+TITLE="Release Notes"
+HREF="release-notes.html"><LINK
+REL="NEXT"
+TITLE="Release 5.6/6.1_sp1 - changes from 5.6/6.1"
+HREF="x8590.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Base</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="release-notes.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Appendix B. Release Notes</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x8590.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="AEN8552"
+>B.1. Release 6.2 - changes from 6.1.1</A
+></H1
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN8554"
+>B.1.1. Enhancements and Bug Fixes</A
+></H2
+><P
+>	Base: rocks run roll now supports host flag to specify the hostname
+	</P
+><P
+>	Base: rocks create distro now spawns 8 worker threads to improve speed of distro rebuild 
+	</P
+><P
+>	Base: rocks add host verifies hostname is not an appliance name
+	</P
+><P
+>	Base: fix reverse path filtering on centos 6.x
+	</P
+><P
+>	Base: rocks set host bootflag now is applied to the local grub kickstart configuration
+	</P
+><P
+>	Base: security fix in kickstart.cgi and setPexboot.cgi
+	</P
+><P
+>	Base: rocks add appliance now supports specification of a distribution
+	</P
+><P
+>	Base: 411-alert-handler properly handles corrupted timestamp file
+	</P
+><P
+>	Base: creates rst files for roll commands
+	</P
+><P
+>	Base: properly apply MTU when using VLAN on an interface
+	</P
+><P
+>	Base: commands: fix report interface with IPMI interface 
+	</P
+><P
+>	Base: do not propagate group with GID &#60; 500 through 411
+	</P
+><P
+>	Base: set host ip now accepts NULL
+	</P
+><P
+>	Base: insert-ethers now verifies that required serivces are
+	running at startup (dhcpd, httpd, tftpd, channeld)
+	</P
+><P
+>	Base: rocks create distro sets proper umask before creating the distro
+	</P
+><P
+>	Base: login and frontend nodes install fail2ban
+	</P
+><P
+>	Base: it is now possible to reconfigure networking of frontend without reinstallation
+	(public/private ip setting, fqdn, gateway, etc.)
+	</P
+><P
+>	Base: &#60;file&#62; tag supports disabling RCS file generation
+	</P
+><P
+>	Base: &#60;file&#62; tag supports include attribute to simplify xml scripting
+	</P
+><P
+>	Base: firewall now supports SNAT
+	</P
+><P
+>	Base: Use NFSv4 for home directories and /share
+	</P
+><P
+>	KVM: CPU capabilites can be specified with attributes
+	</P
+><P
+>	KVM: support building virtual frontends on vm-containers when the container has a public interface
+	</P
+><P
+>	KVM: several plugins allow flexible configuration in several parts of KVM roll
+	(starting a VM, stopping a VM, creating libvirt xml)
+	</P
+><P
+>	KVM: physical container can suspend and resume virtual machine
+	when shutting down and when restarting
+	</P
+><P
+>	KVM: Virtual Machine can now mount ISOs as cdrom drive
+	</P
+><P
+>	KVM: virtual machine can now run on different appliances 
+	type (not just VM Container)
+	</P
+><P
+>	KVM: airboss client can now fetch private keys from ssh-agent
+	</P
+><P
+>	HPC: openmpi uses the proper BTL
+	</P
+><P
+>	ZFS: updated to 0.6.4.1 Support for the ZFS event Daemon is automatic.
+	</P
+><P
+>	ZFS: Bug Fix Properly rebuild ZFS modules when kernel is updated. 
+	</P
+><P
+>	HTCondor: updated to 8.2.8 
+	</P
+><P
+>	HTCondor: fixed UID_DOMAIN setting to be the local domain 
+	</P
+><P
+>	HTCondor: configuration now supports Condor's config directory structure. 
+	</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="release-notes.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x8590.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Release Notes</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="release-notes.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Release 5.6/6.1_sp1 - changes from 5.6/6.1</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

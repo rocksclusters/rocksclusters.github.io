@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>6.4 Chirp</TITLE>
+<META NAME="description" CONTENT="6.4 Chirp">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="6_5Command_Line.html">
+<LINK REL="previous" HREF="6_3HTCondor_User.html">
+<LINK REL="up" HREF="6_Application_Programming.html">
+<LINK REL="next" HREF="6_5Command_Line.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html2209"
+  HREF="6_5Command_Line.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2203"
+  HREF="6_Application_Programming.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2197"
+  HREF="6_3HTCondor_User.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2205"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2207"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2210"
+  HREF="6_5Command_Line.html">6.5 The Command Line</A>
+<B> Up:</B> <A NAME="tex2html2204"
+  HREF="6_Application_Programming.html">6. Application Programming Interfaces</A>
+<B> Previous:</B> <A NAME="tex2html2198"
+  HREF="6_3HTCondor_User.html">6.3 The HTCondor User</A>
+ &nbsp; <B>  <A NAME="tex2html2206"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2208"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00740000000000000000"></A><A NAME="API-Chirp"></A>
+<A NAME="53132"></A>
+<A NAME="53133"></A>
+<BR>
+6.4  Chirp
+</H1>
+
+<P>
+Chirp is a wire protocol and API that supports communication between a
+running job and a Chirp server.  The HTCondor system provides a Chirp
+server running in the <I>condor_starter</I> that allows a job to 
+
+<OL>
+<LI>perform file I/O to and from the submit machine
+</LI>
+<LI>update an attribute in its own job ClassAd
+</LI>
+<LI>append the job event log file
+</LI>
+</OL>
+This service is off by default; 
+it may be enabled by placing in the submit description file: 
+<PRE>
++WantIOProxy = True
+</PRE>
+This places the needed attribute into the job ClassAd.
+
+<P>
+The Chirp protocol is fully documented at 
+<A NAME="tex2html88"
+  HREF="http://www3.nd.edu/~ccl/software/chirp">http://www3.nd.edu/~ccl/software/chirp</A>.
+
+<P>
+To provide easier access to this wire protocol, the <I>condor_chirp</I> 
+command line tool is shipped with HTCondor.  
+This tool provides full access to the Chirp commands.
+<BR><HR>
+
+</BODY>
+</HTML>

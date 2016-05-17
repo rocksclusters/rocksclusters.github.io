@@ -1,0 +1,233 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Networking Configuration Examples</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Roll: Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE=" Defining and Modifying Networks and Network Interfaces "
+HREF="networking.html"><LINK
+REL="PREVIOUS"
+TITLE="Network Bridging for Virtual Machines"
+HREF="x717.html"><LINK
+REL="NEXT"
+TITLE=" Customizing your Rocks Installation "
+HREF="customization.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Base Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x717.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 3. Defining and Modifying Networks and Network Interfaces</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="customization.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="AEN757"
+>3.6. Networking Configuration Examples</A
+></H1
+><P
+>In this section, we describe some common networking configurations and how to use Rocks commands to set up various networking scenarios.</P
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN760"
+>3.6.1. Adding a public IP address the second ethernet adapter on a compute node</A
+></H2
+><P
+>Often, owners want the second ethernet adapter to be on the public network and for the default routing to
+be in the public network. Assuming that the public network is 1.2.3.0/255.255.255.0 and the default
+gateway for that network is 1.2.3.1, the following set of commands define the second interface of a compute
+to have address 1.2.3.25 with name mypublic.myuniversity.edu, update all required configuration files on the
+frontend, update all required configuration files on the node compute-0-0 and restart the network on compute-0-0.</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks set host interface ip  compute-0-0 iface=eth1 ip=1.2.3.25 
+# rocks set host interface gateway  compute-0-0 iface=eth1 ip=1.2.3.1 
+# rocks set host interface name  compute-0-0 iface=eth1 name=mypublic.myuniversity.edu
+# rocks sync config
+# rocks sync network compute-0-0 </PRE
+></FONT
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN764"
+>3.6.2. Adding an IP network for  local message passing.</A
+></H2
+><P
+>Often, users will want to use the second ethernet device for messaging passing. In this example, 
+we illustrate creating a named subnet and then scripting the IP assignment for a rack of 32 nodes
+with IP range of 192.168.1.10 ... 192.168.1.41. </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>rocks add network fast subnet=192.168.1.0 netmask=255.255.255.0
+IP=10
+NNODES=32
+NODE=0
+while [ $NODE -lt $NNODES ]; then \
+	rocks set host interface ip  compute-0-$NODE iface=eth1 ip=192.168.1.$IP; \
+	rocks set host interface subnet  compute-0-$NODE iface=eth1 subnet=fast; \
+	rocks set host interface name  compute-0-$NODE iface=eth1 name=compute-fast-0-$NODE; \
+	let IP++; \
+	let NODE++; \
+done
+rocks sync config
+rocks sync network compute</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>The above will add the named subnet called "fast", assign IP addresses sequentially, name the eth1
+interface on each node, rewrite the DNS configuration (sync config) and finally rewrite and restart the network
+configuration on each compute appliance. This additional network configuration is persistent across 
+re-installation of nodes.</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x717.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="customization.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Network Bridging for Virtual Machines</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="networking.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Customizing your Rocks Installation</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

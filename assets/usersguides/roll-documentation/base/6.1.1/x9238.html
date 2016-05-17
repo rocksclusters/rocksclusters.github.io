@@ -1,0 +1,191 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Release 2.1.2 - changes from 2.1.1</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Release Notes"
+HREF="release-notes.html"><LINK
+REL="PREVIOUS"
+TITLE="Release 2.2 - changes from 2.1.2"
+HREF="x9223.html"><LINK
+REL="NEXT"
+TITLE="Release 2.1.1 - changes from 2.1"
+HREF="x9248.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Base</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x9223.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Appendix B. Release Notes</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x9248.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="AEN9238"
+>B.19. Release 2.1.2 - changes from 2.1.1</A
+></H1
+><P
+>	Many network and storage drivers have been added to the installation
+	CD. For example, SMC 83c170 EPIC/100 (epic100.o), RTL8139 SMC EZ Card
+	Fast Ethernet (8139too.o) and the Promise SuperTrak Driver (pti_st.o)
+	have all been included (as well as about 100 more).
+	</P
+><P
+>	The cluster configuration web form has been simplified.
+	</P
+><P
+>	The initial kickstart file that is generated from the web form is
+	now streamed directly back to the user (rather than displaying the
+	kickstart file, and then asking the user to save the file).
+	This should finally kill the "I saved my kickstart file on Windows"
+	problem.
+	</P
+><P
+>	An option to manually partition a frontend disk has been
+	added to the cluster configuration web form.
+	</P
+><P
+>	The recursive directory /home/install/install/install/... has been
+	eliminated.
+	</P
+><P
+>	Ganglia's axon is now started before pbs-server, as the pbs-server
+	initialization script asks ganglia for the number of processor in
+	each node when it creates one of it's configuration files.
+	</P
+><P
+>	The latest "stable" release of Myricom's GM (1.5) and MPICH-GM 
+	(1.2.1..7) packages.
+	</P
+><P
+>	High-Performance Linpack is now precompiled for Myrinet and Ethernet.
+	</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x9223.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x9248.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Release 2.2 - changes from 2.1.2</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="release-notes.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Release 2.1.1 - changes from 2.1</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

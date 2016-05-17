@@ -1,0 +1,243 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>5.2 Connecting HTCondor Pools with Flocking</TITLE>
+<META NAME="description" CONTENT="5.2 Connecting HTCondor Pools with Flocking">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="5_3Grid_Universe.html">
+<LINK REL="previous" HREF="5_1Introduction.html">
+<LINK REL="up" HREF="5_Grid_Computing.html">
+<LINK REL="next" HREF="5_3Grid_Universe.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html2012"
+  HREF="5_3Grid_Universe.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2006"
+  HREF="5_Grid_Computing.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2000"
+  HREF="5_1Introduction.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2008"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2010"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2013"
+  HREF="5_3Grid_Universe.html">5.3 The Grid Universe</A>
+<B> Up:</B> <A NAME="tex2html2007"
+  HREF="5_Grid_Computing.html">5. Grid Computing</A>
+<B> Previous:</B> <A NAME="tex2html2001"
+  HREF="5_1Introduction.html">5.1 Introduction</A>
+ &nbsp; <B>  <A NAME="tex2html2009"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2011"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html2014"
+  HREF="5_2Connecting_HTCondor.html#SECTION00621000000000000000">5.2.1 Flocking Configuration</A>
+<LI><A NAME="tex2html2015"
+  HREF="5_2Connecting_HTCondor.html#SECTION00622000000000000000">5.2.2 Job Considerations</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00620000000000000000"></A><A NAME="sec:Flocking"></A>
+<A NAME="47177"></A>
+<A NAME="47178"></A>
+<BR>
+5.2 Connecting HTCondor Pools with Flocking
+</H1>
+
+<P>
+Flocking is HTCondor's way of allowing jobs that cannot immediately
+run within the pool of machines where the job was
+submitted to instead run on a different HTCondor pool. 
+If a machine within HTCondor pool A can send jobs to be run on HTCondor pool B,
+then we say that jobs from machine A flock to pool B.
+Flocking can occur in a one way manner,
+such as jobs from machine A flocking to pool B,
+or it can be set up to flock in both directions. 
+Configuration variables allow the
+<I>condor_schedd</I> daemon (which runs on each machine
+that may submit jobs) to implement flocking.
+
+<P>
+<U>NOTE</U>: Flocking to pools which use HTCondor's high availability mechanisms
+is not advised.
+See section&nbsp;<A HREF="3_11High_Availability.html#sec:HA-negotiator">3.11.2</A> 
+for a discussion of the issues.
+
+<P>
+
+<H2><A NAME="SECTION00621000000000000000"></A><A NAME="sec:Configure-Flocking"></A>
+<BR>
+5.2.1 Flocking Configuration
+</H2>
+
+<P>
+<A NAME="47182"></A>
+The simplest flocking configuration sets
+a few configuration variables.
+If jobs from machine A are to flock to pool B, 
+then in machine A's configuration,
+set the following configuration variables:
+<DL>
+<DT><STRONG><TT>FLOCK_TO</TT><A NAME="47220"></A><A NAME="47221"></A></STRONG></DT>
+<DD>is a comma separated list of the central
+  manager machines of the pools that jobs from machine A may flock to.
+  
+</DD>
+<DT><STRONG><TT>FLOCK_COLLECTOR_HOSTS</TT><A NAME="47225"></A><A NAME="47226"></A></STRONG></DT>
+<DD>is the list of <I>condor_collector</I> daemons within the pools
+  that jobs from machine A may flock to.
+  In most cases, it is the same as <TT>FLOCK_TO</TT>, and
+  it would be defined with 
+  <PRE>
+  FLOCK_COLLECTOR_HOSTS = $(FLOCK_TO)
+</PRE>
+  
+</DD>
+<DT><STRONG><TT>FLOCK_NEGOTIATOR_HOSTS</TT><A NAME="47233"></A><A NAME="47234"></A></STRONG></DT>
+<DD>is the list of <I>condor_negotiator</I> daemons within the pools
+  that jobs from machine A may flock to.
+  In most cases, it is the same as <TT>FLOCK_TO</TT>, and
+  it would be defined with 
+  <PRE>
+  FLOCK_NEGOTIATOR_HOSTS = $(FLOCK_TO)
+</PRE>
+  
+</DD>
+<DT><STRONG><TT>HOSTALLOW_NEGOTIATOR_SCHEDD</TT><A NAME="47241"></A><A NAME="47242"></A></STRONG></DT>
+<DD>provides an access level and authorization list for the
+  <I>condor_schedd</I> daemon to allow negotiation (for security
+  reasons) with the machines within the pools
+  that jobs from machine A may flock to.
+  This configuration variable will not likely need to change
+  from its default value as given in the sample configuration:
+  <FONT SIZE="-1">  </FONT><PRE>
+  ##  Now, with flocking we need to let the SCHEDD trust the other
+  ##  negotiators we are flocking with as well.  You should normally
+  ##  not have to change this either.
+ALLOW_NEGOTIATOR_SCHEDD = $(CONDOR_HOST), $(FLOCK_NEGOTIATOR_HOSTS), $(IP_ADDRESS)
+</PRE><FONT SIZE="-1">
+  </FONT>  This example configuration presumes that the <I>condor_collector</I>
+  and <I>condor_negotiator</I> daemons are running on the same machine.
+  See 
+  section&nbsp;<A HREF="3_6Security.html#sec:Security-Authorization">3.6.7</A> on
+  page&nbsp;<A HREF="3_6Security.html#sec:Security-Authorization"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for a discussion
+  of security macros and their use.
+</DD>
+</DL>
+
+<P>
+The configuration macros that must be set in 
+pool B are ones that authorize jobs from machine A
+to flock to pool B.
+
+<P>
+The configuration variables are more easily
+set by introducing a list of machines where the jobs may flock from. 
+<TT>FLOCK_FROM</TT><A NAME="47252"></A><A NAME="47253"></A> is a comma separated list of machines,
+and  it is used in the default configuration setting
+of the security macros that do authorization:
+<PRE>
+ALLOW_WRITE_COLLECTOR = $(ALLOW_WRITE), $(FLOCK_FROM)
+ALLOW_WRITE_STARTD    = $(ALLOW_WRITE), $(FLOCK_FROM)
+ALLOW_READ_COLLECTOR  = $(ALLOW_READ), $(FLOCK_FROM)
+ALLOW_READ_STARTD     = $(ALLOW_READ), $(FLOCK_FROM)
+</PRE>
+<P>
+Wild cards may be used when setting the <TT>FLOCK_FROM</TT>
+configuration variable.
+For example, <code>*.cs.wisc.edu</code> specifies all hosts
+from the <code>cs.wisc.edu</code> domain. 
+
+<P>
+Further, if using Kerberos or GSI authentication, then the setting
+becomes:
+<PRE>
+ALLOW_NEGOTIATOR = condor@$(UID_DOMAIN)/$(COLLECTOR_HOST)
+</PRE>
+<P>
+To enable flocking in both directions, consider each direction
+separately, following the guidelines given.
+
+<P>
+
+<H2><A NAME="SECTION00622000000000000000"></A><A NAME="sec:Jobs-Flocking"></A>
+<BR>
+5.2.2 Job Considerations
+</H2>
+
+<P>
+A particular job will only flock to another pool
+when it cannot currently run in the current pool.
+
+<P>
+The submission of jobs other than standard universe jobs must consider
+the location of input, output and error files.
+The common case will be that machines within separate pools
+do not have a shared file system.
+Therefore, when submitting jobs, the user will need to enable
+file transfer mechanisms.
+These mechanisms are discussed in
+section&nbsp;<A HREF="2_5Submitting_Job.html#sec:file-transfer">2.5.4</A> on page&nbsp;<A HREF="2_5Submitting_Job.html#sec:file-transfer"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html2012"
+  HREF="5_3Grid_Universe.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2006"
+  HREF="5_Grid_Computing.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2000"
+  HREF="5_1Introduction.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2008"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2010"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2013"
+  HREF="5_3Grid_Universe.html">5.3 The Grid Universe</A>
+<B> Up:</B> <A NAME="tex2html2007"
+  HREF="5_Grid_Computing.html">5. Grid Computing</A>
+<B> Previous:</B> <A NAME="tex2html2001"
+  HREF="5_1Introduction.html">5.1 Introduction</A>
+ &nbsp; <B>  <A NAME="tex2html2009"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2011"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

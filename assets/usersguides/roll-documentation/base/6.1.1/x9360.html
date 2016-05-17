@@ -1,0 +1,429 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Plugins</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="411 Secure Information Service Internals"
+HREF="service-411.html"><LINK
+REL="PREVIOUS"
+TITLE="411 Groups"
+HREF="four11-groups.html"><LINK
+REL="NEXT"
+TITLE="411get Configuration File"
+HREF="rocks-config411.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Base</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="four11-groups.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Appendix C. 411 Secure Information Service Internals</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="rocks-config411.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="AEN9360"
+>C.4. Plugins</A
+></H1
+><P
+>Starting with Rocks 5.4, file specific plugins have been introduced into
+the 411 system. These plugins manipulate the content of files before sending
+files on the frontend, and after reception of the file on the client nodes. The
+plugins also mangle name of the file, ownership and mode of the file.</P
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN9363"
+>C.4.1. Plugin API</A
+></H2
+><P
+>The 411 Plugin architecture follows a very simple API. Each plugin is
+written in Python and the plugins reside in <TT
+CLASS="FILENAME"
+>/opt/rocks/var/plugins/411/</TT
+>. All plugins inherit the
+<CODE
+CLASS="FUNCTION"
+>rocks.service411.Plugin</CODE
+> class.</P
+><P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+><CODE
+CLASS="FUNCTION"
+>get_filename</CODE
+>:This function returns
+	a the filename on the frontend on which this plugin will function. This
+	is the only required function in the plugin. All other functions are
+	optional.</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="PROGRAMLISTING"
+>import os
+import sys
+import stat
+import rocks.service411
+
+class Plugin(rocks.service411.Plugin):
+	def get_filename(self):
+			return '/etc/auto.master'</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+><CODE
+CLASS="FUNCTION"
+>filter_name</CODE
+>: This function mangles
+		the filename of the file at the destination, and returns the
+		mangled name
+		</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="PROGRAMLISTING"
+>def filter_name(self, fname):
+	if fname == '/etc/auto.master' &#38;&#38; self.attrs['os'] == 'sunos':
+		return '/etc/auto_master'</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+><CODE
+CLASS="FUNCTION"
+>filter_owner</CODE
+>: This function takes the Owner
+	UID and group ID of the file as a string argument and returns a mangled
+	version of the "UID.GID" string. This string is in the format that the
+	<B
+CLASS="COMMAND"
+>chown</B
+> command understands.
+	</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="PROGRAMLISTING"
+>def filter_owner(self, oid): 
+	if self.attrs['os'] == 'linux':
+		return oid
+	if self.attrs['os'] == 'sunos':
+		return '0.0'</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+><CODE
+CLASS="FUNCTION"
+>filter_mode</CODE
+>: This function takes
+	the mode information as a string, and returns a mangled mode information
+	string. This should be in the numerical format that the
+	<B
+CLASS="COMMAND"
+>chmod</B
+> command understands.</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="PROGRAMLISTING"
+>def filter_mode(self, mode):
+	return '010644'
+	</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+><CODE
+CLASS="FUNCTION"
+>filter_content</CODE
+>: This function takes
+	the contents of the file as a string, manipulates it and returns the
+	final string to be stored in the file. The example below illustrates
+	insertion of a blank line between every line of the input content.
+	</P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN9390"
+></A
+><P
+><B
+>Example C-1. filter_content</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="PROGRAMLISTING"
+>def filter_content(self, content):
+	new_content = []
+	for line in content.split('\n'):
+		new_content.append(line + '\n' + '\n')
+	return ''.join(new_content).strip()
+	</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></DIV
+></LI
+><LI
+><P
+><CODE
+CLASS="FUNCTION"
+>pre_send</CODE
+>: This function manipulates
+	the contents of the file before the file is made available for download
+	over 411. The example below illustrates deletion of all blank lines
+	from the content.
+	</P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN9396"
+></A
+><P
+><B
+>Example C-2. pre_send</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="PROGRAMLISTING"
+>def pre_send(self, content):
+	new_content = []
+	for line in content.split('\n'):
+		if line.strip() is '':
+			continue
+		else:
+			new_content.append(line)
+	return '\n'.join(new_content).strip()
+	</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></DIV
+></LI
+><LI
+><P
+><CODE
+CLASS="FUNCTION"
+>post</CODE
+>: This function is run after
+	the file is received, filtered and written to disk. The example below
+	illustrates restarting the autofs service after a file has been written to
+	disk. 
+	</P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN9402"
+></A
+><P
+><B
+>Example C-3. post</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="PROGRAMLISTING"
+>def post(self):
+	os.system("service autofs restart")
+	</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></DIV
+></LI
+></OL
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="four11-groups.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="rocks-config411.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>411 Groups</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="service-411.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>411get Configuration File</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

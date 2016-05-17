@@ -1,0 +1,221 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>uniq_pid_undertaker</TITLE>
+<META NAME="description" CONTENT="uniq_pid_undertaker">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="previous" HREF="uniq_pid_midwife.html">
+<LINK REL="up" HREF="9_Command_Reference.html">
+<LINK REL="next" HREF="10_Appendix_A.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html3986"
+  HREF="10_Appendix_A.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3980"
+  HREF="9_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3976"
+  HREF="uniq_pid_midwife.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3982"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3984"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3987"
+  HREF="10_Appendix_A.html">10. Appendix A: ClassAd</A>
+<B> Up:</B> <A NAME="tex2html3981"
+  HREF="9_Command_Reference.html">9. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3977"
+  HREF="uniq_pid_midwife.html">uniq_pid_midwife</A>
+ &nbsp; <B>  <A NAME="tex2html3983"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3985"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html3988"
+  HREF="uniq_pid_undertaker.html#SECTION0010571000000000000000">Synopsis</A>
+<LI><A NAME="tex2html3989"
+  HREF="uniq_pid_undertaker.html#SECTION0010572000000000000000">Description</A>
+<LI><A NAME="tex2html3990"
+  HREF="uniq_pid_undertaker.html#SECTION0010573000000000000000">Options</A>
+<LI><A NAME="tex2html3991"
+  HREF="uniq_pid_undertaker.html#SECTION0010574000000000000000">Exit Status</A>
+<LI><A NAME="tex2html3992"
+  HREF="uniq_pid_undertaker.html#SECTION0010575000000000000000">See Also</A>
+<LI><A NAME="tex2html3993"
+  HREF="uniq_pid_undertaker.html#SECTION0010576000000000000000">Author</A>
+<LI><A NAME="tex2html3994"
+  HREF="uniq_pid_undertaker.html#SECTION0010577000000000000000">Copyright</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION0010570000000000000000"></A><A NAME="man-uniq-pid-undertaker"></A>
+<BR>
+<I>uniq_pid_undertaker</I>
+</H1> determine whether a process has exited
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION0010571000000000000000">
+Synopsis</A>
+</H2><B><I>uniq_pid_undertaker</I></B>
+[<B>- -block</B>]
+[<B>- -file  </B><I>file</I>]
+[<B>- -precision  </B><I>seconds</I>]
+
+<P>
+<A NAME="79228"></A>
+<A NAME="79229"></A>
+
+<P>
+
+<H2><A NAME="SECTION0010572000000000000000">
+Description</A>
+</H2>
+<I>uniq_pid_undertaker</I> can examine an artifact file created by
+<I>uniq_pid_midwife</I> and determine whether the program started by
+the <I>midwife</I> has exited.
+
+<P>
+
+<H2><A NAME="SECTION0010573000000000000000">
+Options</A>
+</H2>
+  
+<P>
+  <DL>
+<DT><STRONG><B>- -block</B></STRONG></DT>
+<DD>If the process has not exited, block until it does.
+  
+<BR>  
+</DD>
+<DT><STRONG><B>- -file </B><I>file</I></STRONG></DT>
+<DD>The name of the <I>uniq_pid_midwife</I> created artifact file.
+    Defaults to <TT>pid.file</TT>.
+  
+<BR>  
+</DD>
+<DT><STRONG><B>- -precision </B><I>seconds</I></STRONG></DT>
+<DD>Uses <I>seconds</I> as the precision range within which the
+    operating system will provide a process's birthday.  Defaults to
+    an operating system specific value.  Only use this option if the
+    same <I>seconds</I> value was provided to
+    <I>uniq_pid_midwife</I>.
+  
+<BR>  
+</DD>
+</DL>
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION0010574000000000000000">
+Exit Status</A>
+</H2>
+<I>uniq_pid_undertaker</I> will exit with a status of 0 (zero) if
+the monitored process has exited, with a status of 1 (one) if the
+monitored process has definitely not exited, with a status of 2 if it
+is uncertain whether the process has exited (this is generally due to
+a failure by the <I>uniq_pid_midwife</I>), or with any other value
+for program failure.
+
+<P>
+
+<H2><A NAME="SECTION0010575000000000000000">
+See Also</A>
+</H2>
+<I>uniq_pid_midwife</I> (on page&nbsp;<A HREF="uniq_pid_midwife.html#man-uniq-pid-midwife"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>),
+<I>filelock_undertaker</I> (on page&nbsp;<A HREF="filelock_undertaker.html#man-filelock-undertaker"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>).
+
+<P>
+
+<H2><A NAME="SECTION0010576000000000000000">
+Author</A>
+</H2> Condor Team, University of Wisconsin-Madison
+  
+<H2><A NAME="SECTION0010577000000000000000">
+Copyright</A>
+</H2> 
+  Copyright &#169; 1990-2010 Condor Team, Computer Sciences Department, 
+  University of Wisconsin-Madison, Madison, WI.  All Rights Reserved.  
+	Licensed under the Apache License, Version 2.0.
+
+<P>
+See the <I>Condor Version 7.4.4 Manual</I> or
+	<A NAME="tex2html165"
+  HREF="http://www.condorproject.org/license">http://www.condorproject.org/license</A>
+for
+  additional notices. 
+
+
+<P>
+[LE,RO]
+  [RE]
+  [LO]
+  [C]Condor Version 7.4.4 Reference Manual
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html3986"
+  HREF="10_Appendix_A.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3980"
+  HREF="9_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3976"
+  HREF="uniq_pid_midwife.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3982"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3984"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3987"
+  HREF="10_Appendix_A.html">10. Appendix A: ClassAd</A>
+<B> Up:</B> <A NAME="tex2html3981"
+  HREF="9_Command_Reference.html">9. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3977"
+  HREF="uniq_pid_midwife.html">uniq_pid_midwife</A>
+ &nbsp; <B>  <A NAME="tex2html3983"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3985"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

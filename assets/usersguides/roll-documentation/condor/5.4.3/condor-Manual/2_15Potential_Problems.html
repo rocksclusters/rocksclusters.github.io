@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>2.15 Potential Problems</TITLE>
+<META NAME="description" CONTENT="2.15 Potential Problems">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="previous" HREF="2_14Special_Environment.html">
+<LINK REL="up" HREF="2_Users_Manual.html">
+<LINK REL="next" HREF="3_Administrators_Manual.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html868"
+  HREF="3_Administrators_Manual.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html862"
+  HREF="2_Users_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html858"
+  HREF="2_14Special_Environment.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html864"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html866"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html869"
+  HREF="3_Administrators_Manual.html">3. Administrators' Manual</A>
+<B> Up:</B> <A NAME="tex2html863"
+  HREF="2_Users_Manual.html">2. Users' Manual</A>
+<B> Previous:</B> <A NAME="tex2html859"
+  HREF="2_14Special_Environment.html">2.14 Special Environment Considerations</A>
+ &nbsp; <B>  <A NAME="tex2html865"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html867"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html870"
+  HREF="2_15Potential_Problems.html#SECTION003151000000000000000">2.15.1 Renaming of argv[0]</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION003150000000000000000">
+2.15 Potential Problems</A>
+</H1>
+
+<P>
+
+<H2><A NAME="SECTION003151000000000000000"></A><A NAME="sec:renaming-argv"></A>
+<BR>
+2.15.1 Renaming of argv[0]
+</H2>
+
+<P>
+<A NAME="7839"></A>
+When Condor starts up your job, it renames argv[0] (which usually
+contains the name of the program) to condor_exec.
+This is
+convenient when examining a machine's processes with the Unix
+command <I>ps</I>; the process
+is easily identified as a Condor job.  
+
+<P>
+Unfortunately, some programs read argv[0] expecting their own program
+name and get confused if they find something unexpected like
+condor_exec.
+
+<P>
+<A NAME="7843"></A>
+<A NAME="7844"></A>
+
+<P>
+<BR><HR>
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

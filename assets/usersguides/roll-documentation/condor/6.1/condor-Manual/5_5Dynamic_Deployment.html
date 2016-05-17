@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>5.5 Dynamic Deployment</TITLE>
+<META NAME="description" CONTENT="5.5 Dynamic Deployment">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="5_6Condor_Job.html">
+<LINK REL="previous" HREF="5_4Glidein.html">
+<LINK REL="up" HREF="5_Grid_Computing.html">
+<LINK REL="next" HREF="5_6Condor_Job.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html2047"
+  HREF="5_6Condor_Job.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2041"
+  HREF="5_Grid_Computing.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2035"
+  HREF="5_4Glidein.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2043"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2045"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2048"
+  HREF="5_6Condor_Job.html">5.6 The Condor Job</A>
+<B> Up:</B> <A NAME="tex2html2042"
+  HREF="5_Grid_Computing.html">5. Grid Computing</A>
+<B> Previous:</B> <A NAME="tex2html2036"
+  HREF="5_4Glidein.html">5.4 Glidein</A>
+ &nbsp; <B>  <A NAME="tex2html2044"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2046"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00650000000000000000"></A><A NAME="sec:Deployment"></A>
+<A NAME="47860"></A>
+<BR>
+5.5 Dynamic Deployment
+</H1>
+
+<P>
+See section&nbsp;<A HREF="3_2Installation.html#sec:Dynamic-Deployment">3.2.9</A>
+for a complete description of Condor's dynamic deployment tools.
+
+<P>
+Condor's dynamic deployment tools
+(<I>condor_cold_start</I> and <I>condor_glidein</I>)
+allow new pools of resources to be  incorporated on the fly.
+While Condor is able to manage compute jobs remotely 
+through Globus and other grid-computing protocols,
+dynamic deployment of Condor makes it possible to go one step further.
+Condor remotely installs and runs portions of itself.
+This process of Condor gliding in to inhabit computing resources
+on demand leverages the lowest common denominator of grid middleware systems,
+simple program  execution,
+to bind together resources in a heterogeneous computing grid,
+with different management policies and different job execution methods,
+into a full-fledged Condor system. 
+
+<P>
+The mobility of Condor services also benefits from
+the development  of Condor-C,
+which provides a richer tool set for interlinking Condor-managed computers.
+Condor-C is a protocol that allows one Condor scheduler
+to delegate jobs to another Condor scheduler.
+The second scheduler could be at a remote site and/or an entry point
+into a restricted network.
+Delegating details of managing a job
+achieves greater flexibility with respect to network architecture,
+as well as fault tolerance and scalability.
+In the  context of glide in deployments,
+the beach-head for each compute site is a dynamically deployed
+Condor scheduler which then serves as a target for Condor-C traffic.
+
+<P>
+In general,
+the mobility of the Condor scheduler and job execution agents,
+and the flexibility in how these are interconnected
+provide a uniform and feature-rich platform
+that can expand onto diverse resources and environments
+when the user requires it.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html2047"
+  HREF="5_6Condor_Job.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2041"
+  HREF="5_Grid_Computing.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2035"
+  HREF="5_4Glidein.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2043"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2045"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2048"
+  HREF="5_6Condor_Job.html">5.6 The Condor Job</A>
+<B> Up:</B> <A NAME="tex2html2042"
+  HREF="5_Grid_Computing.html">5. Grid Computing</A>
+<B> Previous:</B> <A NAME="tex2html2036"
+  HREF="5_4Glidein.html">5.4 Glidein</A>
+ &nbsp; <B>  <A NAME="tex2html2044"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2046"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

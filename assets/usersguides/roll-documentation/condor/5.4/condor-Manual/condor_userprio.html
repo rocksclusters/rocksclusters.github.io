@@ -1,0 +1,352 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>condor_userprio</TITLE>
+<META NAME="description" CONTENT="condor_userprio">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="condor_vacate.html">
+<LINK REL="previous" HREF="condor_userlog.html">
+<LINK REL="up" HREF="9_Command_Reference.html">
+<LINK REL="next" HREF="condor_vacate.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html3799"
+  HREF="condor_vacate.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3793"
+  HREF="9_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3787"
+  HREF="condor_userlog.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3795"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3797"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3800"
+  HREF="condor_vacate.html">condor_vacate</A>
+<B> Up:</B> <A NAME="tex2html3794"
+  HREF="9_Command_Reference.html">9. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3788"
+  HREF="condor_userlog.html">condor_userlog</A>
+ &nbsp; <B>  <A NAME="tex2html3796"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3798"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html3801"
+  HREF="condor_userprio.html#SECTION0010481000000000000000">Synopsis</A>
+<LI><A NAME="tex2html3802"
+  HREF="condor_userprio.html#SECTION0010482000000000000000">Description</A>
+<LI><A NAME="tex2html3803"
+  HREF="condor_userprio.html#SECTION0010483000000000000000">Options</A>
+<LI><A NAME="tex2html3804"
+  HREF="condor_userprio.html#SECTION0010484000000000000000">Exit Status</A>
+<LI><A NAME="tex2html3805"
+  HREF="condor_userprio.html#SECTION0010485000000000000000">Author</A>
+<LI><A NAME="tex2html3806"
+  HREF="condor_userprio.html#SECTION0010486000000000000000">Copyright</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION0010480000000000000000"></A><A NAME="man-condor-userprio"></A>
+<BR>
+<I>condor_userprio</I>
+</H1> Manage user priorities
+  
+<P>
+
+<H2><A NAME="SECTION0010481000000000000000">
+Synopsis</A>
+</H2><B><I>condor_userprio</I></B>
+[<B>-pool  </B><I>centralmanagerhostname[:portnumber]</I>]
+[<B>-all</B>]
+[<B>-usage</B>]
+[<B>-setprio  </B><I>username value</I>]
+[<B>-setfactor  </B><I>username value</I>]
+[<B>-setaccum  </B><I>username value</I>]
+[<B>-setbegin  </B><I>username value</I>]
+[<B>-setlast  </B><I>username value</I>]
+[<B>-resetusage  </B><I>username</I>]
+[<B>-resetall</B>]
+[<B>-delete  </B><I>username</I>]
+[<B>-getreslist  </B><I>username</I>]
+[<B>-allusers</B>]
+[<B>-activefrom  </B><I>month day year</I>]
+[<B>-l</B>]
+
+<P>
+<A NAME="76915"></A>
+<A NAME="76916"></A>
+
+<P>
+
+<H2><A NAME="SECTION0010482000000000000000">
+Description</A>
+</H2>
+<I>condor_userprio</I> with no arguments, lists the active users (see below) along with their
+priorities, in increasing priority order. The -all option can be used to display
+more detailed information about each user, which includes the following columns:
+
+<P>
+<DL>
+<DT><STRONG>Effective Priority</STRONG></DT>
+<DD>The effective priority value of the user, which is used to
+calculate the user's share when allocating resources. A lower value means a higher
+priority, and the minimum value (highest priority) is 0.5. The effective priority is
+calculated by multiplying the real priority by the priority factor.
+</DD>
+<DT><STRONG>Real Priority</STRONG></DT>
+<DD>The value of the real priority of the user. This value follows the
+user's resource usage.
+</DD>
+<DT><STRONG>Priority Factor</STRONG></DT>
+<DD>The system administrator can set this value for each user, thus 
+controlling a user's effective priority relative to other users. This can be used to
+create different classes of users.
+</DD>
+<DT><STRONG>Res Used</STRONG></DT>
+<DD>The number of resources currently used (e.g. the number of running jobs
+for that user).
+</DD>
+<DT><STRONG>Accumulated Usage</STRONG></DT>
+<DD>The accumulated number of resource-hours used by the user since
+the usage start time.
+</DD>
+<DT><STRONG>Usage Start Time</STRONG></DT>
+<DD>The time since when usage has been recorded for the user. This time
+is set when a user job runs for the first time. It is reset to the present time when the
+usage for the user is reset (with the -resetusage or -resetall options).
+</DD>
+<DT><STRONG>Last Usage Time</STRONG></DT>
+<DD>The most recent time a resource usage has been recorded for the user.
+</DD>
+</DL>
+
+<P>
+The -usage option displays the username, accumulated usage, usage start time and last usage time
+for each user, sorted on accumulated usage.
+
+<P>
+The -setprio, -setfactor options are used to change a user's real priority and priority factor.
+The -setaccum option sets a user's accumulated usage.
+The -setbegin, -setlast options are used to change a user's begin usage time and last usage time.
+The -setaccum option sets a user's accumulated usage.
+The -resetusage and -resetall options are used to reset the accumulated usage for users. The
+usage start time is set to the current time when the accumulated usage is reset. These
+options require administrator privileges.
+
+<P>
+By default only users for whom usage was recorded in the last 24 hours or whose priority is
+greater than the minimum are listed. The -activefrom and -allusers options can be used
+to display users who had some usage since a specified date, or ever. The summary line for 
+last usage time will show this date.
+
+<P>
+The -getreslist option is used to display the resources currently used by a user. The
+output includes the start time (the time the resource was allocated to the user), and
+the match time (how long has the resource been allocated to the user).
+
+<P>
+Note that when specifying user names on the command line, the name must include the
+UID domain (e.g. user@uid-domain - exactly the same way user names are listed by the
+userprio command).
+
+<P>
+The -pool option can be used to contact a different central-manager instead of
+the local one (the default).
+
+<P>
+For security purposes (authentication and authorization),
+this command requires an administrator's level of access.
+See
+section&nbsp;<A HREF="3_6Security.html#sec:Config-Security">3.6.1</A> on page&nbsp;<A HREF="3_6Security.html#sec:Config-Security"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>
+for further explanation.
+
+<P>
+
+<H2><A NAME="SECTION0010483000000000000000">
+Options</A>
+</H2>
+  
+<P>
+  <DL>
+<DT><STRONG><B>-pool </B><I>centralmanagerhostname[:portnumber]</I></STRONG></DT>
+<DD>Contact specified <I>centralmanagerhostname</I> with an
+	optional port number instead of the local central
+	manager. This can be used to check other pools.  NOTE: The
+	host name (and optionally port) specified refer to the host name
+	(and port) of the <I>condor_negotiator</I> to query for user
+	priorities.  This is slightly different than most Condor tools
+	that support -pool, which expect the host name (and optionally
+	port) of the <I>condor_collector</I>, instead.
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>-all</B></STRONG></DT>
+<DD>Display detailed information about each user.
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>-usage</B></STRONG></DT>
+<DD>Display usage information for each user.
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>-setprio </B><I>username value</I></STRONG></DT>
+<DD>Set the real priority of the specified user to the specified value.
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>-setfactor </B><I>username value</I></STRONG></DT>
+<DD>Set the priority factor of the specified user to the specified value.
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>-setaccum </B><I>username value</I></STRONG></DT>
+<DD>Set the accumulated usage of the specified user to the specified floating
+     point value.
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>-setbegin </B><I>username value</I></STRONG></DT>
+<DD>Set the begin usage time of the specified user to the specified value.
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>-setlast </B><I>username value</I></STRONG></DT>
+<DD>Set the last usage time of the specified user to the specified value.
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>-resetusage </B><I>username</I></STRONG></DT>
+<DD>Reset the accumulated usage of the specified user to zero.
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>-resetall</B></STRONG></DT>
+<DD>Reset the accumulated usage of all the users to zero.
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>-delete </B><I>username</I></STRONG></DT>
+<DD>Remove the specified <I>username</I> from Condor's accounting.
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>-getreslist </B><I>username</I></STRONG></DT>
+<DD>Display all the resources currently allocated to the specified user.
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>-allusers</B></STRONG></DT>
+<DD>Display information for all the users who have some recorded accumulated usage.
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>-activefrom </B><I>month day year</I></STRONG></DT>
+<DD>Display information for users who have some recorded accumulated usage since
+the specified date.
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>-l</B></STRONG></DT>
+<DD>Show the class-ad which was received from the central-manager in long format.
+<BR>
+<P>
+</DD>
+</DL>
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION0010484000000000000000">
+Exit Status</A>
+</H2>
+
+<P>
+<I>condor_userprio</I> will exit with a status value of 0 (zero) upon success,
+and it will exit with the value 1 (one) upon failure.
+
+<P>
+
+<H2><A NAME="SECTION0010485000000000000000">
+Author</A>
+</H2> Condor Team, University of Wisconsin-Madison
+  
+<H2><A NAME="SECTION0010486000000000000000">
+Copyright</A>
+</H2> 
+  Copyright &#169; 1990-2010 Condor Team, Computer Sciences Department, 
+  University of Wisconsin-Madison, Madison, WI.  All Rights Reserved.  
+	Licensed under the Apache License, Version 2.0.
+
+<P>
+See the <I>Condor Version 7.4.4 Manual</I> or
+	<A NAME="tex2html156"
+  HREF="http://www.condorproject.org/license">http://www.condorproject.org/license</A>
+for
+  additional notices. 
+
+
+  <HR>
+<!--Navigation Panel-->
+<A NAME="tex2html3799"
+  HREF="condor_vacate.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3793"
+  HREF="9_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3787"
+  HREF="condor_userlog.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3795"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3797"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3800"
+  HREF="condor_vacate.html">condor_vacate</A>
+<B> Up:</B> <A NAME="tex2html3794"
+  HREF="9_Command_Reference.html">9. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3788"
+  HREF="condor_userlog.html">condor_userlog</A>
+ &nbsp; <B>  <A NAME="tex2html3796"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3798"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

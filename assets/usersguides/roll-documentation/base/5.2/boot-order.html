@@ -1,0 +1,232 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Boot Order and PXE First</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Roll: Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Administration Examples"
+HREF="admin-examples.html"><LINK
+REL="PREVIOUS"
+TITLE="Introduction to the Rocks Command Line"
+HREF="commandline.html"><LINK
+REL="NEXT"
+TITLE="Support for PXE First"
+HREF="x1340.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Base Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="commandline.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 6. Administration Examples</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x1340.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="BOOT-ORDER"
+>6.2. Boot Order and PXE First</A
+></H1
+><P
+> Prior to Rocks 4.3, the BIOS-defined boot order of a compute node
+<EM
+>required</EM
+> that a network boot (known as PXE) come after
+local hard disk.  In particular the boot order in BIOS would be set as</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>  
+1. CDROM
+2. Hard Disk
+3. On-board Network Device (PXE)</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>A user would have to intercept the boot sequence (often by hitting the
+F12 key on an attached keyboard) to force a network boot.  Rocks also provided
+a small utility on each node
+(<SAMP
+CLASS="COMPUTEROUTPUT"
+>/boot/kickstart/cluster-kickstart-pxe</SAMP
+>) that would manipulate the two-bytes on the local hard disk to force BIOS to bypass
+booting from the local disk and try the next device on the boot list.  When the
+boot order was set as above, the node would PXE boot and therefore re-install. </P
+><P
+>The logic for this structure was that a frontend did not need to know the state
+of node (whether it had failed and should be reinstalled or had some other 
+intermediate state). Also it is not required that a frontend be up for a node
+to reboot itself. Another practical issue arises for PXE booting large 
+clusters. Since the PXE client is in NIC firmware, no assumptions about 
+timeouts, retries or other elements that figure into robustness could be made. 
+Large cluster reinstalls (or reboots) for a kernel that comes over PXE would
+often result in hung nodes because of the low level of robustness of TFTP
+(the underlying protocol used to transfer initial kernel and ramdisk image
+for nodes booting over the network). For wholesale re-installation of large
+clusters, PXE does not scale well. For this, Rocks provides the installation
+kernel and initial ramdisk image on the local hard drive. The commmand
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>/boot/kickstart/cluster-kickstart</SAMP
+> run
+on a local node will cause that node to re-install itself by using a local (hard disk) copy of the installation kernel and initial ramdisk.</P
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/note.png"
+HSPACE="5"
+ALT="Note"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>The above boot order and behaviour continues to be supported in Rocks 4.3. 
+That is, existing rocks clusters can be upgraded without requiring the cluster
+owner to change any BIOS settings.</P
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="commandline.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x1340.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Introduction to the Rocks Command Line</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="admin-examples.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Support for PXE First</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

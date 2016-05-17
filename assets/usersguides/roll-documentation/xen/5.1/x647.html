@@ -1,0 +1,703 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>list</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE=" Xen Roll: Users Guide "
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Command Reference"
+HREF="c288.html"><LINK
+REL="PREVIOUS"
+TITLE="dump"
+HREF="x615.html"><LINK
+REL="NEXT"
+TITLE="move"
+HREF="x845.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Xen Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/xen.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x615.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 4. Command Reference</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x845.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="AEN647"
+>4.4. list</A
+></H1
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-LIST-CLUSTER"
+>4.4.1. list cluster</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks list cluster</B
+>  [cluster...] [status=<TT
+CLASS="REPLACEABLE"
+><I
+>bool</I
+></TT
+>]</P
+><P
+>&#13;	Lists a cluster, that is, for each frontend, all nodes that are
+	associated with that frontend are listed.
+	
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>cluster</SPAN
+>]</DT
+><DD
+><P
+>&#13;	Zero, one or more frontend names. If no frontend names are supplied,
+	information for all clusters will be listed.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>status=<TT
+CLASS="REPLACEABLE"
+><I
+>bool</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	If true, then for each VM-based cluster node, output the VM's status
+	(e.g., 'active', 'paused', etc.).
+        
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks list cluster frontend-0-0</DT
+><DD
+><P
+>&#13;	List the cluster associated with the frontend named 'frontend-0-0'.
+	
+	</P
+></DD
+><DT
+>$ rocks list cluster</DT
+><DD
+><P
+>&#13;	List all clusters.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-LIST-HOST-VM"
+>4.4.2. list host vm</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks list host vm</B
+>  [host...] [showdisks=<TT
+CLASS="REPLACEABLE"
+><I
+>bool</I
+></TT
+>] [status=<TT
+CLASS="REPLACEABLE"
+><I
+>bool</I
+></TT
+>]</P
+><P
+>&#13;	Lists the VM configuration for hosts.
+	
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>host</SPAN
+>]</DT
+><DD
+><P
+>&#13;	Zero, one or more host names. If no host names are supplied,
+	information for all hosts will be listed.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>showdisks=<TT
+CLASS="REPLACEABLE"
+><I
+>bool</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	If true, then output VM disk configuration. The default is 'false'.
+        
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>status=<TT
+CLASS="REPLACEABLE"
+><I
+>bool</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	If true, then output each VM's status (e.g., 'active', 'paused', etc.).
+        
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks list host vm compute-0-0</DT
+><DD
+><P
+>&#13;	List the VM configuration for compute-0-0.
+	
+	</P
+></DD
+><DT
+>$ rocks list host vm compute-0-0 compute-0-1</DT
+><DD
+><P
+>&#13;	List the VM configuration for compute-0-0 and compute-0-1.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-LIST-HOST-VM-BOOT"
+>4.4.3. list host vm boot</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks list host vm boot</B
+>  [host...]</P
+><P
+>&#13;	Lists the names of the install and run bootprofiles for [host(s)] . 
+	
+	The a named profile describes the combination of kernel, ramdisk
+        args that would be used if that profile where referenced for by the 
+	The RunProfile references the combination when a VM is booted for
+	running (usually this is None). The InstallProfile references the 
+	combination when the nodes is booted in install mode. 
+	
+	When the RunProfile is None, the VM node will 
+	boot from the kernel defined in its image. 
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>host</SPAN
+>]</DT
+><DD
+><P
+>&#13;	Zero, one or more host names. If no host names are supplied, info about
+	all the known hosts is listed.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks list host vm boot compute-0-0-0</DT
+><DD
+><P
+>&#13;	List the active run and install profiles defined for compute-0-0-0.
+	
+	</P
+></DD
+><DT
+>$ rocks list host vm boot</DT
+><DD
+><P
+>&#13;	List the active run and install profiles defined all known VM hosts.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>related commands</B
+></P
+><DL
+><DT
+><A
+HREF="x290.html#ROCKS-ADD-HOST-VM-BOOTPROFILE"
+>add host vm bootprofile</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+><DT
+><A
+HREF="x647.html#ROCKS-LIST-HOST-VM-BOOTPROFILE"
+>list host vm bootprofile</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+><DT
+><A
+HREF="x895.html#ROCKS-REMOVE-HOST-VM-BOOTPROFILE"
+>remove host vm bootprofile</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+><DT
+><A
+HREF="x1104.html#ROCKS-SET-HOST-VM-BOOT"
+>set host vm boot</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+><DT
+><A
+HREF="x1104.html#ROCKS-SET-HOST-VM-BOOTPROFILE"
+>set host vm bootprofile</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-LIST-HOST-VM-BOOTPROFILE"
+>4.4.4. list host vm bootprofile</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks list host vm bootprofile</B
+>  [host...] [global=<TT
+CLASS="REPLACEABLE"
+><I
+>bool</I
+></TT
+>] [profile=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Lists the current VM Profiles available for hosts. 
+	For each host supplied on the command line print the 
+	hostname and defined profiles available to that host 
+	
+	The Profile describes the combination of kernel, ramdisk
+        args that would be used if that profile where referenced for by the 
+	Host as either a RunProfile or an InstallProfile
+	Usually, the RunProfile is empty and the VM node will 
+	boot from the kernel defined in its image. 
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>host</SPAN
+>]</DT
+><DD
+><P
+>&#13;	Zero, one or more host names. If no host names are supplied, info about
+	all the known hosts is listed.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>global=<TT
+CLASS="REPLACEABLE"
+><I
+>bool</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13; 	If true, ignore the list of hosts and only return information about 
+	global bootprofiles. Default is 'n'	
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>profile=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	List only the profile named 'profile'
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks list host vm bootprofile compute-0-0-0</DT
+><DD
+><P
+>&#13;	List the profiles available to compute-0-0-0.
+	
+	</P
+></DD
+><DT
+>$ rocks list host vm bootprofile</DT
+><DD
+><P
+>&#13;	List the profiles available for all known VM hosts.
+	
+	</P
+></DD
+><DT
+>$ rocks list host vm bootprofile global=yes</DT
+><DD
+><P
+>&#13;	List only the globally-defined profiles without generating a list
+	of hosts.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>related commands</B
+></P
+><DL
+><DT
+><A
+HREF="x290.html#ROCKS-ADD-HOST-VM-BOOTPROFILE"
+>add host vm bootprofile</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+><DT
+><A
+HREF="x647.html#ROCKS-LIST-HOST-VM-BOOT"
+>list host vm boot</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+><DT
+><A
+HREF="x895.html#ROCKS-REMOVE-HOST-VM-BOOTPROFILE"
+>remove host vm bootprofile</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+><DT
+><A
+HREF="x1104.html#ROCKS-SET-HOST-VM-BOOT"
+>set host vm boot</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+><DT
+><A
+HREF="x1104.html#ROCKS-SET-HOST-VM-BOOTPROFILE"
+>set host vm bootprofile</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x615.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x845.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>dump</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="c288.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>move</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

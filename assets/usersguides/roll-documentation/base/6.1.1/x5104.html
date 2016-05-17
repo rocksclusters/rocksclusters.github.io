@@ -1,0 +1,2534 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>remove</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Command Reference"
+HREF="c2310.html"><LINK
+REL="PREVIOUS"
+TITLE="open"
+HREF="x5072.html"><LINK
+REL="NEXT"
+TITLE="report"
+HREF="x5926.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Base</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x5072.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 9. Command Reference</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x5926.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="AEN5104"
+>9.11. remove</A
+></H1
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REMOVE-APPLIANCE"
+>9.11.1. remove appliance</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks remove appliance</B
+>  {name}</P
+><P
+>&#13;	Remove an appliance definition from the system. This can be
+	called with just the appliance or it can be further
+	qualified by supplying the root XML node name and/or the
+	graph XML file name.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>name</DT
+><DD
+><P
+>&#13;	The name of the appliance.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks remove appliance compute</DT
+><DD
+><P
+>&#13;	Removes the compute appliance from the database.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REMOVE-APPLIANCE-ATTR"
+>9.11.2. remove appliance attr</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks remove appliance attr</B
+>  {appliance} {attr} [attr=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Remove an attribute for an appliance.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>appliance</DT
+><DD
+><P
+>&#13;	One or more appliances
+	
+	</P
+></DD
+><DT
+>attr</DT
+><DD
+><P
+>&#13;	The attribute name that should be removed.
+ 	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>attr=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of the attr argument.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks remove appliance attr compute sge</DT
+><DD
+><P
+>&#13;	Removes the attribute sge for compute appliances
+	
+	</P
+></DD
+><DT
+># rocks remove appliance attr compute attr=sge</DT
+><DD
+><P
+>&#13;	Same as above.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REMOVE-APPLIANCE-ROUTE"
+>9.11.3. remove appliance route</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks remove appliance route</B
+>  {appliance} {address} [address=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Remove a static route for an appliance type.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>appliance</DT
+><DD
+><P
+>&#13;	Appliance name. This argument is required.
+	
+	</P
+></DD
+><DT
+>address</DT
+><DD
+><P
+>&#13;	The address of the static route to remove. This argument is required.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>address=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of the 'address' argument.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks remove appliance route compute 1.2.3.4</DT
+><DD
+><P
+>&#13;	Remove the static route for the 'compute' appliance that has the
+	network address '1.2.3.4'.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REMOVE-ATTR"
+>9.11.4. remove attr</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks remove attr</B
+>  {attr} [attr=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Remove a global attribute.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>attr</DT
+><DD
+><P
+>&#13;	The attribute name that should be removed.
+ 	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>attr=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of the attr argument.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks remove attr cpus</DT
+><DD
+><P
+>&#13;	Removes the global attribute named 'cpus'.
+	
+	</P
+></DD
+><DT
+># rocks remove attr attr=cpus</DT
+><DD
+><P
+>&#13;	Same as above.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REMOVE-BOOTACTION"
+>9.11.5. remove bootaction</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks remove bootaction</B
+>  [action=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Remove a boot action specification from the system.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>action=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The label name for the boot action. You can see the boot action label
+	names by executing: 'rocks list bootaction'.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks remove bootaction action=os</DT
+><DD
+><P
+>&#13;	Remove the 'os' boot action from the system.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REMOVE-DISTRIBUTION"
+>9.11.6. remove distribution</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks remove distribution</B
+>  {distribution}</P
+><P
+>&#13;	Remove a distribution specification from the database.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>distribution</DT
+><DD
+><P
+>&#13;	Distribution name.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks remove distribution rocks-optiputer</DT
+><DD
+><P
+>&#13;	Removes the distribution named "rocks-optiputer" from the database.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REMOVE-FIREWALL"
+>9.11.7. remove firewall</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks remove firewall</B
+>  [category=index] {rulename}</P
+><P
+>&#13;	Remove a named firewall rule
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>category=index</SPAN
+>]</DT
+><DD
+><P
+>&#13;	[global,os,appliance,host]=index.
+
+	Specify which version of rulename to remove
+	os=linux, appliance=login, or host=compute-0-0.
+        global, global=, and global=global all refer
+        to the global category.
+
+	cannot be wildcarded. Specifying just a rulename defaults to the global
+	category
+	
+	</P
+></DD
+><DT
+>rulename</DT
+><DD
+><P
+>&#13;	The particular rule to remove. Cannot be wildcarded
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks remove firewall global ZZDRACONIAN</DT
+><DD
+><P
+>&#13;	Remove the rule named ZZDRACONIAN from the global category
+	
+	</P
+></DD
+><DT
+># rocks remove firewall appliance=compute MYRULE</DT
+><DD
+><P
+>&#13;	Remove the rule named MYRULE from compute appliances
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>related commands</B
+></P
+><DL
+><DT
+><A
+HREF="x4253.html#ROCKS-LIST-FIREWALL"
+>list firewall</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+><DT
+><A
+HREF="x4253.html#ROCKS-LIST-HOST-FIREWALL"
+>list host firewall</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REMOVE-HOST"
+>9.11.8. remove host</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks remove host</B
+>  {host...}</P
+><P
+>&#13;	Remove a host from the database. This command will remove all
+	related database rows for each specified host.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	List of hosts to remove from the database.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks remove host compute-0-0</DT
+><DD
+><P
+>&#13;	Remove the compute-0-0 from the database.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REMOVE-HOST-ALIAS"
+>9.11.9. remove host alias</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks remove host alias</B
+>  {host} {name} [name=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Remove an alias for a host.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	One hosts.
+	
+	</P
+></DD
+><DT
+>name</DT
+><DD
+><P
+>&#13;	The alias name that should be removed.
+ 	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>name=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of the name argument.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks remove host alias compute-0-0 c-0-0</DT
+><DD
+><P
+>&#13;	Removes the alias c-0-0 for host compute-0-0.
+	
+	</P
+></DD
+><DT
+># rocks remove host alias compute-0-0 name=c-0-0</DT
+><DD
+><P
+>&#13;	Same as above.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REMOVE-HOST-ATTR"
+>9.11.10. remove host attr</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks remove host attr</B
+>  {host} {attr} [attr=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Remove an attribute for a host.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	One or more hosts
+	
+	</P
+></DD
+><DT
+>attr</DT
+><DD
+><P
+>&#13;	The attribute name that should be removed.
+ 	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>attr=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of the attr argument.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks remove host attr compute-0-0 cpus</DT
+><DD
+><P
+>&#13;	Removes the attribute cpus for host compute-0-0.
+	
+	</P
+></DD
+><DT
+># rocks remove host attr compute-0-0 attr=cpus</DT
+><DD
+><P
+>&#13;	Same as above.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REMOVE-HOST-BOOT"
+>9.11.11. remove host boot</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks remove host boot</B
+>  {host...}</P
+><P
+>&#13;	Removes the boot configuration for a host
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	One or more named hosts.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks remove host boot compute-0-0</DT
+><DD
+><P
+>&#13;	Removes the boot configuration for host compute-0-0.
+	
+	</P
+></DD
+><DT
+># rocks remove host boot compute-0-0 compute-0-1</DT
+><DD
+><P
+>&#13;	Removes the boot configuration for hosts compute-0-0 and
+	compute-0-1.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REMOVE-HOST-BOOTFLAGS"
+>9.11.12. remove host bootflags</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks remove host bootflags</B
+>  {host...}</P
+><P
+>&#13;	Remove the kernel boot flags for a list of hosts.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	List of hosts to remove kernel boot flag definitions. If no hosts are
+	listed, then the global definition is removed.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks remove host bootflags compute-0-0</DT
+><DD
+><P
+>&#13;	Remove the kernel boot flags definition for compute-0-0.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REMOVE-HOST-INTERFACE"
+>9.11.13. remove host interface</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks remove host interface</B
+>  {host} {iface} [iface=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Remove a network interface definition for a host.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	One or more named hosts.
+	
+	</P
+></DD
+><DT
+>iface</DT
+><DD
+><P
+>&#13; 	Interface that should be removed. This may be a logical interface or 
+ 	the mac address of the interface.
+ 	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>iface=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of the iface argument.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks remove host interface compute-0-0 eth1</DT
+><DD
+><P
+>&#13;	Removes the interface eth1 on host compute-0-0.
+	
+	</P
+></DD
+><DT
+># rocks remove host interface compute-0-0 compute-0-1 iface=eth1</DT
+><DD
+><P
+>&#13;	Removes the interface eth1 on hosts compute-0-0 and compute-0-1.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REMOVE-HOST-KEY"
+>9.11.14. remove host key</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks remove host key</B
+>  {host} [id=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Remove a public key for a host.
+	
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	A host name.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>id=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The ID of the key you wish to remove. To get the key id, execute:
+	"rocks list host key"
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REMOVE-HOST-PARTITION"
+>9.11.15. remove host partition</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks remove host partition</B
+>  {host...} [partition=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Remove a partition definitions from a host.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	A list of one or more host names.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>partition=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	A single partition to remove from this host. If no partition is
+	specified, then all partitions from the host are removed.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks remove host partition compute-0-0</DT
+><DD
+><P
+>&#13;	Remove all partitions from compute-0-0.
+	
+	</P
+></DD
+><DT
+># rocks remove host partition compute-0-0 partition=/export</DT
+><DD
+><P
+>&#13;	Remove only the /export partition from compute-0-0.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REMOVE-HOST-ROLL"
+>9.11.16. remove host roll</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks remove host roll</B
+>  {host} {name} {version} {arch} [arch=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [name=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [os=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [version=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Removes a roll assignment to a frontend appliance.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	Host name of a frontend machine.
+	
+	</P
+></DD
+><DT
+>name</DT
+><DD
+><P
+>&#13;	Name of the roll (e.g., 'base').
+	
+	</P
+></DD
+><DT
+>version</DT
+><DD
+><P
+>&#13;	Version of the roll (e.g., '5.2').
+	
+	</P
+></DD
+><DT
+>arch</DT
+><DD
+><P
+>&#13;	Architecture of the roll (e.g., 'x86_64').
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>arch=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Same as 'arch' argument.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>name=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Same as 'name' argument.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>os=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The OS version. The default is 'linux'.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>version=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Same as 'version' argument.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks remove host roll frontend-0-0-0 base 5.2 x86_64</DT
+><DD
+><P
+>&#13;	Removes the assignment of the roll with name/version/arch of
+	'base/5.2/x86_64' to frontend-0-0-0.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>related commands</B
+></P
+><DL
+><DT
+><A
+HREF="x4253.html#ROCKS-LIST-HOST-ROLL"
+>list host roll</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+><DT
+><A
+HREF="x6488.html#ROCKS-SET-HOST-ROLL"
+>set host roll</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REMOVE-HOST-ROUTE"
+>9.11.17. remove host route</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks remove host route</B
+>  {host} {address} [address=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Remove a static route for a host.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	Name of a host machine. This argument is required.
+	
+	</P
+></DD
+><DT
+>address</DT
+><DD
+><P
+>&#13;	The address of the static route to remove. This argument is required.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>address=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of the 'address' argument.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks remove host route compute-0-0 1.2.3.4</DT
+><DD
+><P
+>&#13;	Remove the static route for the host 'compute-0-0' that has the
+	network address '1.2.3.4'.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REMOVE-HOST-SEC_ATTR"
+>9.11.18. remove host sec_attr</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks remove host sec_attr</B
+>  {host} {attr}</P
+><P
+>&#13;	Delete an host specific named attribute from secure attributes table
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	Host name
+	
+	</P
+></DD
+><DT
+>attr</DT
+><DD
+><P
+>&#13;	The attribute you want to remove
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REMOVE-NETWORK"
+>9.11.19. remove network</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks remove network</B
+>  {network...}</P
+><P
+>&#13;	Remove network definition from the system. If there are still nodes
+	defined in the database that are assigned to the network name you
+	are trying to remove, the command will not remove the network
+	definition and print a message saying it cannot remove the network.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>network</DT
+><DD
+><P
+>&#13;	One or more network names.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks remove network private</DT
+><DD
+><P
+>&#13;	Remove network info for the network named 'private'.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REMOVE-OS"
+>9.11.20. remove os</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks remove os</B
+>  {os}</P
+><P
+>&#13;	Remove an OS definition from the system.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>os</DT
+><DD
+><P
+>&#13;	The OS type (e.g., "linux", "sunos").
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks remove os sunos</DT
+><DD
+><P
+>&#13;	Removes the OS type "sunos" from the database.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REMOVE-OS-ATTR"
+>9.11.21. remove os attr</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks remove os attr</B
+>  {os} {attr} [attr=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Remove an attribute for an OS.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>os</DT
+><DD
+><P
+>&#13;	One or more OS specifications (e.g., 'linux').
+	
+	</P
+></DD
+><DT
+>attr</DT
+><DD
+><P
+>&#13;	The attribute name that should be removed.
+ 	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>attr=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of the attr argument.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks remove os attr linux sge</DT
+><DD
+><P
+>&#13;	Removes the attribute sge for linux OS machines.
+	
+	</P
+></DD
+><DT
+># rocks remove os attr linux attr=sge</DT
+><DD
+><P
+>&#13;	Same as above.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REMOVE-OS-ROUTE"
+>9.11.22. remove os route</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks remove os route</B
+>  {os} [address=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [address=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Remove a static route for an OS type.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>os</DT
+><DD
+><P
+>&#13;	The OS type (e.g., 'linux', 'sunos', etc.). This argument is required.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>address=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of the 'address' argument.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>address=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The address of the static route to remove. This argument is required.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks remove os route linux 1.2.3.4</DT
+><DD
+><P
+>&#13;	Remove the static route for the OS 'linux' that has the
+	network address '1.2.3.4'.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REMOVE-ROLL"
+>9.11.23. remove roll</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks remove roll</B
+>  {roll...} [arch=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [version=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Remove a roll from both the database and filesystem.	
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>roll</DT
+><DD
+><P
+>&#13;	List of rolls. This should be the roll base name (e.g., base, hpc,
+	kernel).
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>arch=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The architecture of the roll to be removed. If no architecture is
+	supplied, then all architectures will be removed.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>version=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The version number of the roll to be removed. If no version number is
+	supplied, then all versions of a roll will be removed.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks remove roll kernel</DT
+><DD
+><P
+>&#13;	Remove all versions and architectures of the kernel roll
+	
+	</P
+></DD
+><DT
+># rocks remove roll ganglia version=5.0 arch=i386</DT
+><DD
+><P
+>&#13;	Remove version 5.0 of the Ganglia roll for i386 nodes
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>related commands</B
+></P
+><DL
+><DT
+><A
+HREF="x2312.html#ROCKS-ADD-ROLL"
+>add roll</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+><DT
+><A
+HREF="x3561.html#ROCKS-CREATE-ROLL"
+>create roll</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+><DT
+><A
+HREF="x3842.html#ROCKS-DISABLE-ROLL"
+>disable roll</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+><DT
+><A
+HREF="x4115.html#ROCKS-ENABLE-ROLL"
+>enable roll</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+><DT
+><A
+HREF="x4253.html#ROCKS-LIST-ROLL"
+>list roll</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REMOVE-ROUTE"
+>9.11.24. remove route</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks remove route</B
+>  {address} [address=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Remove a global static route.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>address</DT
+><DD
+><P
+>&#13;	The address of the static route to remove. This argument is required.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>address=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of the 'address' argument.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks remove route 1.2.3.4</DT
+><DD
+><P
+>&#13;	Remove the global static route that has the network address '1.2.3.4'.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REMOVE-SEC_ATTR"
+>9.11.25. remove sec_attr</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks remove sec_attr</B
+>  {attr}</P
+><P
+>&#13;	Delete the named attribute from the global secure attributes table
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>attr</DT
+><DD
+><P
+>&#13;	The attribute you want to remove
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REMOVE-VAR"
+>9.11.26. remove var</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks remove var</B
+>  {service} {component} [appliance=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [component=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [service=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Removes variables in the Rocks key/value database. Variables are
+	defined as a quad of (Appliance, Service, Component, Value).
+	Within a node XML file, values can be retrieved as
+	&#60;var name="Service_Component"/&#62;.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>service</DT
+><DD
+><P
+>&#13;	The 'service' of the variable to remove.
+	
+	</P
+></DD
+><DT
+>component</DT
+><DD
+><P
+>&#13;	The 'component' of the variable to remove.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>appliance=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	If supplied, remove the Service_Component variable that is
+	associated with this appliance.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>component=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of component argument.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>service=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of service argument.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks remove var service=Condor component=Master</DT
+><DD
+><P
+>&#13;	Remove the variable Condor_Master from the database.
+	
+	</P
+></DD
+><DT
+># rocks remove var service=Condor component=Master appliance=compute</DT
+><DD
+><P
+>&#13;	Remove the variable Condor_Master that is associated with the
+	compute appliance.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x5072.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x5926.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>open</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="c2310.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>report</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,510 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<link rel="canonical" href="http://research.cs.wisc.edu/htcondor/manual/current/condor_qsub.html">
+
+<TITLE>condor_qsub</TITLE>
+<META NAME="description" CONTENT="condor_qsub">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="condor_reconfig.html">
+<LINK REL="previous" HREF="condor_qedit.html">
+<LINK REL="up" HREF="11_Command_Reference.html">
+<LINK REL="next" HREF="condor_reconfig.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html3919"
+  HREF="condor_reconfig.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3913"
+  HREF="11_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3907"
+  HREF="condor_qedit.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3915"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3917"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3920"
+  HREF="condor_reconfig.html">condor_reconfig</A>
+<B> Up:</B> <A NAME="tex2html3914"
+  HREF="11_Command_Reference.html">11. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3908"
+  HREF="condor_qedit.html">condor_qedit</A>
+ &nbsp; <B>  <A NAME="tex2html3916"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3918"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html3921"
+  HREF="condor_qsub.html#SECTION0012381000000000000000">Synopsis</A>
+<LI><A NAME="tex2html3922"
+  HREF="condor_qsub.html#SECTION0012382000000000000000">Description</A>
+<LI><A NAME="tex2html3923"
+  HREF="condor_qsub.html#SECTION0012383000000000000000">Options</A>
+<LI><A NAME="tex2html3924"
+  HREF="condor_qsub.html#SECTION0012384000000000000000">Exit Status</A>
+<LI><A NAME="tex2html3925"
+  HREF="condor_qsub.html#SECTION0012385000000000000000">Author</A>
+<LI><A NAME="tex2html3926"
+  HREF="condor_qsub.html#SECTION0012386000000000000000">Copyright</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION0012380000000000000000"></A><A NAME="man-condor-qsub"></A>
+<BR>
+<I>condor_qsub</I>
+</H1> Queue jobs that use PBS/SGE-style submission
+  
+<P>
+
+<A NAME="76792"></A>
+<A NAME="76793"></A>
+
+<H2><A NAME="SECTION0012381000000000000000">
+Synopsis</A>
+</H2><B><I>condor_qsub</I></B>
+[<code>--</code><B>version</B>]
+
+<P>
+<B><I>condor_qsub</I></B>
+[<B>Specific options</B>]
+[<B>Directory options</B>]
+[<B>Environmental options</B>]
+[<B>File options</B>]
+[<B>Notification options</B>]
+[<B>Resource options</B>]
+[<B>Status options</B>]
+[<B>Submission options</B>]
+<I>commandfile</I>
+
+<P>
+
+<H2><A NAME="SECTION0012382000000000000000">
+Description</A>
+</H2>
+
+<P>
+<I>condor_qsub</I> submits an HTCondor job.
+This job is specified in a PBS/Torque style or an SGE style.
+<I>condor_qsub</I> permits the 
+submission of dependent jobs without the need to specify the full
+dependency graph at submission time.
+Doing things this way is neither as efficient
+as HTCondor's DAGMan, nor as functional as SGE's <I>qsub</I> or <I>qalter</I>.
+<I>condor_qsub</I> serves as a minimal translator to be able to use 
+software originally written to interact 
+with PBS, Torque, and SGE in an HTCondor pool. 
+
+<P>
+<I>condor_qsub</I> attempts to behave like <I>qsub</I>. 
+Less than half of the <I>qsub</I>
+functionality is implemented. 
+Option descriptions 
+describe the differences between the behavior of <I>qsub</I> and 
+<I>condor_qsub</I>.
+<I>qsub</I> options not listed here are not supported.
+Some concepts present in PBS and SGE do not apply to HTCondor,
+and so these options are not implemented.
+
+<P>
+For a full listing of <I>qsub</I> options, please see
+<DL>
+<DT><STRONG>POSIX</STRONG></DT>
+<DD>: <A NAME="tex2html528"
+  HREF="http://pubs.opengroup.org/onlinepubs/9699919799/utilities/qsub.html">http://pubs.opengroup.org/onlinepubs/9699919799/utilities/qsub.html</A>
+</DD>
+<DT><STRONG>SGE</STRONG></DT>
+<DD>: <A NAME="tex2html529"
+  HREF="http://gridscheduler.sourceforge.net/htmlman/htmlman1/qsub.html">http://gridscheduler.sourceforge.net/htmlman/htmlman1/qsub.html</A>
+</DD>
+<DT><STRONG>PBS/Torque</STRONG></DT>
+<DD>: <A NAME="tex2html530"
+  HREF="http://docs.adaptivecomputing.com/torque/4-1-3/Content/topics/commands/qsub.htm">http://docs.adaptivecomputing.com/torque/4-1-3/Content/topics/commands/qsub.htm</A>
+</DD>
+</DL>
+
+<P>
+<I>condor_qsub</I> accepts
+either command line options or the single file, <I>commandfile</I>,
+that contains all of the commands. 
+
+<P>
+<I>condor_qsub</I> does the opposite of job submission within the 
+<B>grid</B> universe 
+<B>batch</B> grid type,
+which takes HTCondor jobs submitted with HTCondor
+syntax and submits them to PBS, SGE, or LSF.
+
+<P>
+
+<H2><A NAME="SECTION0012383000000000000000">
+Options</A>
+</H2>
+  
+<P>
+  <DL>
+<DT><STRONG><B>-a </B><I>date_time</I></STRONG></DT>
+<DD>(Submission option)
+  Specify a deferred execution date and time.
+  The PBS/Torque syntax of <I>date_time</I> 
+  is a string in the form <I>[[[[CC]YY]MM]DD]hhmm[.SS]</I>.  
+  The portions of this string which are optional are
+  <I>CC</I>, <I>YY</I>, <I>MM</I>, <I>DD</I>, and <I>SS</I>.
+  For SGE, <I>MM</I> and <I>DD</I> are <I>not</I> optional. 
+  For PBS, <I>MM</I> and <I>DD</I> are optional. 
+  <I>condor_qsub</I> follows the PBS style. 
+<BR></DD>
+<DT><STRONG><B>-A </B><I>account_string</I></STRONG></DT>
+<DD>(Status option)
+  Uses group accounting
+  where the string <I>account_string</I> 
+  is the accounting group associated with this job. 
+  Unlike SGE, there is no default group of <TT>"sge"</TT>. 
+<BR></DD>
+<DT><STRONG><B>-b </B><I>y|n</I></STRONG></DT>
+<DD>(Submission option)
+  Using the SGE definition of its <I>-b</I> option,
+  a value of <I>y</I> causes <I>condor_qsub</I> to <I>not</I>
+  parse the file for additional <I>condor_qsub</I> commands.
+  The default value is <I>n</I>.
+  If the command line argument <B>-f </B><I>filename</I> is also specified,
+  it negates a value of <I>y</I>.  
+<BR></DD>
+<DT><STRONG><B>-c </B><I>checkpoint_option</I></STRONG></DT>
+<DD>(Submission option)  
+  For standard universe jobs only, 
+  controls the how HTCondor produces checkpoints.  <I>checkpoint_options</I>
+  may be one of
+  <DL>
+<DT><STRONG>n or N</STRONG></DT>
+<DD>Do not produce checkpoints.
+  
+</DD>
+<DT><STRONG>s or S</STRONG></DT>
+<DD>Do not produce periodic checkpoints.  A job will only produce a checkpoint when the job is evicted.
+  
+</DD>
+</DL>
+  More options may be implemented in the future. 
+<BR></DD>
+<DT><STRONG><B>--condor-keep-files</B></STRONG></DT>
+<DD>(Specific option)
+  Directs HTCondor to <I>not</I> remove temporary files
+  generated by <I>condor_qsub</I>,
+  such as HTCondor submit files and sentinel jobs.
+  These temporary files may be important for debugging. 
+<BR></DD>
+<DT><STRONG><B>-cwd</B></STRONG></DT>
+<DD>(Directory option)
+  Specifies the initial directory in which the job will run to be the current 
+  directory from which the job was submitted.
+  This sets <B>initialdir</B><A NAME="77304"></A> for <I>condor_submit</I>.  
+<BR></DD>
+<DT><STRONG><B>-d </B><I>path</I> or <B>-wd </B><I>path</I></STRONG></DT>
+<DD>(Directory option)
+  Specifies the initial directory in which the job will run to be <I>path</I>.
+  This sets <B>initialdir</B><A NAME="77327"></A> for <I>condor_submit</I>.  
+<BR></DD>
+<DT><STRONG><B>-e </B><I>filename</I></STRONG></DT>
+<DD>(File option)
+  Specifies the <I>condor_submit</I> command <B>error</B><A NAME="77348"></A>, the file 
+  where <TT>stderr</TT> is written. 
+  If not specified, set to the default name of 
+  <TT> &lt;commandfile&gt;.e&lt;ClusterId&gt;</TT>,
+  where <TT>&lt;commandfile&gt;</TT> is the <I>condor_qsub</I> argument,
+  and <TT> &lt;ClusterId&gt;</TT> is the job attribute <TT>ClusterId</TT> assigned
+  for the job.  
+<BR></DD>
+<DT><STRONG><B>--f </B><I>qsub_file</I></STRONG></DT>
+<DD>(Specific option)
+  Parse <I>qsub_file</I> to search for and set additional <I>condor_submit</I>
+  commands.
+  Within the file, 
+  commands will appear as <TT>#PBS</TT> or <TT>#SGE</TT>. 
+  <I>condor_qsub</I> will parse the batch file listed as <I>qsub_file</I>. 
+<BR>  </DD>
+<DT><STRONG><B>-h</B></STRONG></DT>
+<DD>(Status option)
+  Placed submitted job directly into the hold state.  
+<BR></DD>
+<DT><STRONG><B>--help</B></STRONG></DT>
+<DD>(Specific option)
+  Print usage information and exit.  
+<BR></DD>
+<DT><STRONG><B>-hold_jid </B><I>&lt;jid&gt;</I></STRONG></DT>
+<DD>(Status option)
+  Submits a job in the hold state.  This job is released only when a previously
+  submitted job, identified by its cluster ID as <I>&lt;jid&gt;</I>,
+  exits successfully.
+  Successful completion is defined as not exiting with exit code 100.
+  In implementation, there are three jobs that define this SGE feature.
+  The first job is the previously submitted job.
+  The second job is the newly submitted one that is waiting for the 
+  first to finish successfully.
+  The third job is what SGE calls a <I>sentinel</I> job;
+  this is an HTCondor local universe job that watches the history for the
+  first job's exit code.  This third job will exit once it has seen the
+  exit code and, for a successful termination of the first job, run
+  <I>condor_release</I> on the second job.
+  If the first job is an array job, the second job will only be 
+  released after all individual jobs of the first job have completed.
+<BR></DD>
+<DT><STRONG><B>-i </B><I> [hostname:]filename </I></STRONG></DT>
+<DD>(File option)
+  Specifies the <I>condor_submit</I> command <B>input</B><A NAME="77413"></A>, the file 
+  from which <TT>stdin</TT> is read.  
+<BR></DD>
+<DT><STRONG><B>-j </B><I>characters</I></STRONG></DT>
+<DD>(File option)
+  Acceptable characters for this option are <TT>e</TT>, <TT>o</TT>, and <TT>n</TT>.
+  The only sequence that is relevant is <TT>eo</TT>; it specifies that both
+  standard output and standard error are to be sent to the same file.
+  The file will be the one specified by the <B>-o</B> option,
+  if both the <B>-o</B> and <B>-e</B> options exist.  
+  The file will be the one specified by the <B>-e</B> option, 
+  if only the <B>-e</B> option is provided.
+  If neither the <B>-o</B> nor the <B>-e</B> options are provided,
+  the file will be the default used for the <B>-o</B> option.  
+<BR></DD>
+<DT><STRONG><B>-l </B><I>resource_spec</I></STRONG></DT>
+<DD>(Resource option)
+  Specifies requirements for the job, such as the amount of RAM and
+  the number of CPUs.
+  Only PBS-style resource requests are supported.
+  <I>resource_spec</I> is a comma separated list of key/value pairs.
+  Each pair is of the form
+  <TT>resource_name=value</TT>.
+<TT>resource_name</TT> and <TT>value</TT> may be
+
+<P>
+<TABLE CELLPADDING=3 BORDER="1" WIDTH=360>
+<TR><TD ALIGN="CENTER"><TT>resource_name</TT></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=72><TT>value</TT></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=216>Description</TD>
+</TR>
+<TR><TD ALIGN="CENTER">arch</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=72>string</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=216>Sets <TT>Arch</TT> machine attribute. Enclose in double quotes.</TD>
+</TR>
+<TR><TD ALIGN="CENTER">file</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=72>size</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=216>Disk space requested.</TD>
+</TR>
+<TR><TD ALIGN="CENTER">host</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=72>string</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=216>Host machine on which the job must run.</TD>
+</TR>
+<TR><TD ALIGN="CENTER">mem</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=72>size</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=216>Amount of memory requested.</TD>
+</TR>
+<TR><TD ALIGN="CENTER">nodes</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=72><TT>{&lt;node_count&gt; | &lt;hostname&gt;} [:ppn=&lt;ppn&gt;] [:gpus=&lt;gpu&gt;] [:&lt;property&gt; [:&lt;property&gt;] ...] [+ ...]</TT></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=216>Number and/or properties of nodes to be used. 
+For examples, please see
+ 
+<A NAME="tex2html531"
+  HREF="http://docs.adaptivecomputing.com/torque/4-1-3/Content/topics/2-jobs/requestingRes.htm#qsub">http://docs.adaptivecomputing.com/torque/4-1-3/Content/topics/2-jobs/requestingRes.htm#qsub</A></TD>
+</TR>
+<TR><TD ALIGN="CENTER">opsys</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=72>string</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=216>Sets <TT>OpSys</TT> machine attribute. Enclose in double quotes.</TD>
+</TR>
+<TR><TD ALIGN="CENTER">procs</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=72>integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=216>Number of CPUs requested.</TD>
+</TR>
+</TABLE>
+  A size value is an integer specified in bytes, 
+  following the PBS/Torque default.
+  Append <TT>Kb</TT>, <TT>Mb</TT>, <TT>Gb</TT>, or <TT>Tb</TT> 
+  to specify the value in powers of two quantities greater than bytes.
+
+<BR></DD>
+<DT><STRONG><B>-m </B><I>a|e|n</I></STRONG></DT>
+<DD>(Notification option)
+  Identify when HTCondor sends notification e-mail. 
+  If <I>a</I>, send e-mail when the job terminates abnormally.
+  If <I>e</I>, send e-mail when the job terminates.
+  If <I>n</I>, never send e-mail.
+  
+<BR></DD>
+<DT><STRONG><B>-M </B><I>e-mail_address</I></STRONG></DT>
+<DD>(Notification option)
+  Sets the destination address for HTCondor e-mail.  
+<BR></DD>
+<DT><STRONG><B>-o </B><I>filename</I></STRONG></DT>
+<DD>(File option)
+  Specifies the <I>condor_submit</I> command <B>output</B><A NAME="77540"></A>, the file 
+  where <TT>stdout</TT> is written. 
+  If not specified, set to the default name of 
+  <TT> &lt;commandfile&gt;.o&lt;ClusterId&gt;</TT>,
+  where <TT>&lt;commandfile&gt;</TT> is the <I>condor_qsub</I> argument,
+  and <TT> &lt;ClusterId&gt;</TT> is the job attribute <TT>ClusterId</TT> assigned
+  for the job.  
+<BR></DD>
+<DT><STRONG><B>-p </B><I>integer</I></STRONG></DT>
+<DD>(Status option)
+  Sets the <B>priority</B><A NAME="77557"></A> submit command for the job,
+  with 0 being the default. Jobs with higher numerical priority will
+  run before jobs with lower numerical priority. 
+<BR></DD>
+<DT><STRONG><B>--print</B></STRONG></DT>
+<DD>(Specific option) 
+  Send to <TT>stdout</TT> the contents of the HTCondor submit description
+  file that <I>condor_qsub</I> generates.
+<BR></DD>
+<DT><STRONG><B>-r </B><I>y|n</I></STRONG></DT>
+<DD>(Status option)
+  The default value of <I>y</I> implements the default HTCondor policy 
+  of assuming that jobs that do not complete are placed back in the queue 
+  to be run again. 
+  When <I>n</I>,
+  job submission is restricted to only running the job if the job
+  ClassAd attribute <TT>NumJobStarts</TT> is currently 0. 
+  This identifies the job as not re-runnable, limiting it to start once.  
+<BR></DD>
+<DT><STRONG><B>-S </B><I>shell</I></STRONG></DT>
+<DD>(Submission option)
+  Specifies the path and executable name of a shell.  
+  Alters the HTCondor submit description file produced, such that
+  the executable becomes a wrapper script.
+  Within the submit description file will be
+  <TT>executable = &lt;shell&gt;</TT> and <TT>arguments = &lt;commandfile&gt;</TT>.
+  
+<BR></DD>
+<DT><STRONG><B>-t </B><I>start [-stop:step] </I></STRONG></DT>
+<DD>(Submission option)
+  Queues a set of nearly identical jobs.
+  The SGE-style syntax is supported. <I>start</I>, 
+  <I>stop</I>, and <I>step</I> are all integers.
+  <I>start</I> is the starting index of the jobs,
+  <I>stop</I> is the ending index (inclusive) of the jobs,
+  and <I>step</I> is the step size through the indices.
+  Note that using more than one processor or 
+  node in a job will not work with this option. 
+<BR></DD>
+<DT><STRONG><B>--test</B></STRONG></DT>
+<DD>(Specific option)
+  With the intention of testing a potential job submission,
+  parse files and commands to generate error output.
+  Produces, but then removes the HTCondor submit description file.
+  Never submits the job, even if no errors are encountered. 
+<BR></DD>
+<DT><STRONG><B>-v </B><I>variable list</I></STRONG></DT>
+<DD>(Environmental option)
+  Used to set the submit command <B>environment</B><A NAME="77630"></A> for the job.
+  <I>variable list</I> is as that defined for the submit command.
+  Note that the syntax needed is specialized to deal with quote marks and 
+  white space characters.  
+<BR></DD>
+<DT><STRONG><B>-V</B></STRONG></DT>
+<DD>(Environmental option)
+  Sets <TT>getenv = True</TT> in the submit description file. 
+<BR></DD>
+<DT><STRONG><B>-W </B><I>attr_name=attr_value[,attr_name=attr_value...]</I></STRONG></DT>
+<DD>(File option)
+  PBS/Torque supports a number of attributes. 
+  However, <I>condor_qsub</I> only supports
+  the names <I>stagein</I> and <I>stageout</I> for <I>attr_name</I>.
+  The format of <I>attr_value</I> for <I>stagein</I> and <I>stageout</I> is
+  <TT>local_file@hostname:remote_file[,...]</TT> and we strip it to 
+  <TT>remote_file[,...]</TT>. 
+  HTCondor's file transfer mechanism is then used if needed.
+<BR></DD>
+<DT><STRONG><B>--version</B></STRONG></DT>
+<DD>(Specific option)
+  Print version information for the <I>condor_qsub</I> program and exit.
+  Note that <I>condor_qsub</I> has its own version numbers which are
+  separate from those of HTCondor.  
+<BR>  
+</DD>
+</DL>
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION0012384000000000000000">
+Exit Status</A>
+</H2>
+
+<P>
+<I>condor_qsub</I> will exit with a status value of 0 (zero) upon success,
+and it will exit with the value 1 (one) upon failure to submit a job. 
+
+<P>
+
+<H2><A NAME="SECTION0012385000000000000000">
+Author</A>
+</H2> Center for High Throughput Computing, University of Wisconsin-Madison
+  
+<H2><A NAME="SECTION0012386000000000000000">
+Copyright</A>
+</H2> 
+  Copyright &#169; 1990-2015 Center for High Throughput Computing, 
+  Computer Sciences Department, 
+  University of Wisconsin-Madison, Madison, WI.  All Rights Reserved.  
+	Licensed under the Apache License, Version 2.0.  
+
+<P>
+
+  <HR>
+<!--Navigation Panel-->
+<A NAME="tex2html3919"
+  HREF="condor_reconfig.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3913"
+  HREF="11_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3907"
+  HREF="condor_qedit.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3915"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3917"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3920"
+  HREF="condor_reconfig.html">condor_reconfig</A>
+<B> Up:</B> <A NAME="tex2html3914"
+  HREF="11_Command_Reference.html">11. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3908"
+  HREF="condor_qedit.html">condor_qedit</A>
+ &nbsp; <B>  <A NAME="tex2html3916"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3918"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

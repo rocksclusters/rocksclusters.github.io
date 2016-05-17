@@ -1,0 +1,2128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>10.4 Development Release Series 7.9</TITLE>
+<META NAME="description" CONTENT="10.4 Development Release Series 7.9">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="10_5Stable_Release.html">
+<LINK REL="previous" HREF="10_3Stable_Release.html">
+<LINK REL="up" HREF="10_Version_History.html">
+<LINK REL="next" HREF="10_5Stable_Release.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html2527"
+  HREF="10_5Stable_Release.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2521"
+  HREF="10_Version_History.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2515"
+  HREF="10_3Stable_Release.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2523"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2525"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2528"
+  HREF="10_5Stable_Release.html">10.5 Stable Release Series</A>
+<B> Up:</B> <A NAME="tex2html2522"
+  HREF="10_Version_History.html">10. Version History and</A>
+<B> Previous:</B> <A NAME="tex2html2516"
+  HREF="10_3Stable_Release.html">10.3 Stable Release Series</A>
+ &nbsp; <B>  <A NAME="tex2html2524"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2526"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html2529"
+  HREF="10_4Development_Release.html#SECTION001141000000000000000">Version 7.9.6</A>
+<LI><A NAME="tex2html2530"
+  HREF="10_4Development_Release.html#SECTION001142000000000000000">Version 7.9.5</A>
+<LI><A NAME="tex2html2531"
+  HREF="10_4Development_Release.html#SECTION001143000000000000000">Version 7.9.4</A>
+<LI><A NAME="tex2html2532"
+  HREF="10_4Development_Release.html#SECTION001144000000000000000">Version 7.9.3</A>
+<LI><A NAME="tex2html2533"
+  HREF="10_4Development_Release.html#SECTION001145000000000000000">Version 7.9.2</A>
+<LI><A NAME="tex2html2534"
+  HREF="10_4Development_Release.html#SECTION001146000000000000000">Version 7.9.1</A>
+<LI><A NAME="tex2html2535"
+  HREF="10_4Development_Release.html#SECTION001147000000000000000">Version 7.9.0</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION001140000000000000000"></A><A NAME="sec:History-7-9"></A>
+<BR>
+10.4 Development Release Series 7.9
+</H1>
+
+<P>
+This is the development release series of HTCondor.
+The details of each version are described below.
+
+<P>
+
+<H2><A NAME="SECTION001141000000000000000"></A><A NAME="sec:New-7-9-6"></A>
+<BR>
+Version 7.9.6
+</H2>
+
+<P>
+Release Notes:
+
+<P>
+
+<UL>
+<LI>HTCondor version 7.9.6 released on May 8, 2013.
+
+<P>
+</LI>
+</UL>
+
+<P>
+New Features:
+
+<P>
+
+<UL>
+<LI>The new <I>condor_ping</I> command line tool attempts one or more
+targeted security negotiations to see if it succeeds or fails,
+potentially helping to debug security configuration.
+<A NAME="tex2html214"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3371">(Ticket #3371).</A>
+<P>
+</LI>
+<LI>The <I>condor_schedd</I> will now also advertise demand by jobs for slots,
+weighted by the count of requested CPUs, if the configuration variable
+<TT>NEGOTIATOR_USE_WEIGHTED_DEMAND</TT> <A NAME="56490"></A> <A NAME="56491"></A> is set to <TT>True</TT>.
+The default value is <TT>False</TT>.
+<A NAME="tex2html215"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3574">(Ticket #3574).</A>
+<P>
+</LI>
+<LI>Negotiation under groups now prefers the specification of
+groups with the new submit commands <B>accounting_group</B> and
+<B>accounting_group_user</B>.
+See section&nbsp;<A HREF="3_4User_Priorities.html#sec:group-accounting">3.4.7</A> for details.
+<A NAME="tex2html216"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=2728">(Ticket #2728).</A>
+<P>
+</LI>
+<LI>The <B>vm</B> universe now supports <I>VMware Workstation</I>
+and <I>VMware Player</I>.
+<A NAME="tex2html217"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=740">(Ticket #740).</A>
+<P>
+</LI>
+<LI>On Linux platforms where cgroups are supported and enabled, the 
+<I>condor_starter</I> will now detect and trap if a vanilla universe job 
+would otherwise be killed by the system Out Of Memory (OOM) killer.  
+This situation is especially likely when a job sets <B>RequestMemory</B>
+lower than needed.  The job will now be put on hold.
+<A NAME="tex2html218"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=2992">(Ticket #2992).</A>
+<P>
+</LI>
+<LI>The new <B>-force-graceful</B> command-line option to <I>condor_off</I>
+allows administrators to issue a graceful shutdown command, even after
+issuing a <B>-peaceful</B> command. Previously, a peaceful <I>condor_off</I>
+command would preclude a <B>-graceful</B> off command.
+<A NAME="tex2html219"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=2949">(Ticket #2949).</A>
+<P>
+</LI>
+<LI>The <I>condor_gather_info</I> tool now includes the output of the Unix
+<I>uptime</I> and <I>free</I> programs, 
+as well as logs of the <I>condor_master</I>, <I>condor_startd</I>, and <I>condor_starter</I>
+of the machine where the job most recently ran, 
+if <I>condor_gather_info</I> has the necessary permissions to fetch those logs.
+<A NAME="tex2html220"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3246">(Ticket #3246).</A>
+<P>
+</LI>
+<LI>The rotation of a daemon log file can now be specified 
+in terms of time (seconds) or in terms of maximum size (bytes).
+Only size was allowed previously.
+<A NAME="tex2html221"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3560">(Ticket #3560).</A>
+<P>
+</LI>
+<LI>The new <I>condor_qsub</I> command line tool emulates submission to PBS, SGE, 
+and Torque-like systems. It handles both scripts and command line options.
+<A NAME="tex2html222"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=2699">(Ticket #2699).</A>
+<P>
+</LI>
+<LI>When submitting a grid universe job with a grid type of batch,
+the value of <B>request_memory</B> is now propagated to the batch system
+submission request.
+<A NAME="tex2html223"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3398">(Ticket #3398).</A>
+<P>
+</LI>
+<LI>The set of Python bindings introduced in HTCondor version 7.9.4 is now
+distributed as part of HTCondor, not as a contrib module.
+<A NAME="tex2html224"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3586">(Ticket #3586).</A>
+<P>
+</LI>
+<LI>Several improvements have been made to the
+<I>condor_gather_info</I> tool.  It now prints the name of the
+tarball it emits, and now also checks the history file for the
+job in question, and if found, uses and displays the information 
+there.
+<A NAME="tex2html225"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3239">(Ticket #3239).</A>
+<A NAME="tex2html226"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3240">(Ticket #3240).</A>
+<P>
+</LI>
+</UL>
+
+<P>
+Configuration Variable and ClassAd Attribute Additions and Changes:
+
+<P>
+
+<UL>
+<LI>The new configuration variable 
+<TT>GSI_DELEGATION_CLOCK_SKEW_ALLOWABLE</TT> <A NAME="56568"></A> <A NAME="56569"></A>, expressed in seconds,
+allows HTCondor to adjust the amount of
+allowable clock skew between two parties.
+This is relevant when delegating X.509 proxies.
+<A NAME="tex2html227"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3557">(Ticket #3557).</A>
+<P>
+</LI>
+<LI>The new configuration variable <TT>CheckpointPlatform</TT> <A NAME="56576"></A> <A NAME="56577"></A>
+is a string that may be set by
+an administrator to override the auto-detected
+platform used to determine if a standard universe job that produced 
+a checkpoint on one machine can be started on another.
+<A NAME="tex2html228"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3544">(Ticket #3544).</A>
+<P>
+</LI>
+<LI>The new Machine ClassAd attributes <TT>Has_sse4_1</TT>,
+<TT>Has_sse4_2</TT>, and <TT>Has_ssse3</TT> are set to <TT>True</TT>
+if the corresponding instruction set additions exist on that machine.
+These attributes will be undefined otherwise.
+<A NAME="tex2html229"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3544">(Ticket #3544).</A>
+<P>
+</LI>
+<LI>The name of the configuration variable <TT>MEMORY_LIMIT</TT>
+introduced in HTCondor version 7.9.2 has changed.
+This variable is now called <TT>CGROUP_MEMORY_LIMIT_POLICY</TT> <A NAME="56592"></A> <A NAME="56593"></A>.
+<A NAME="tex2html230"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3564">(Ticket #3564).</A>
+<P>
+</LI>
+<LI>The new configuration variable <TT>EXPIRE_INVALIDATED_ADS</TT> <A NAME="56600"></A> <A NAME="56601"></A>,
+when set to <TT>True</TT>, causes invalidated ClassAds that would have
+been removed from the <I>condor_collector</I> right away to instead
+be treated as expired ClassAds, such that they may become absent ClassAds.
+See section&nbsp;<A HREF="3_10Pool_Management.html#sec:Absent-Ads">3.10.4</A> for details on absent ClassAds.
+<A NAME="tex2html231"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3085">(Ticket #3085).</A>
+<P>
+</LI>
+<LI>The new configuration variable
+<TT>GLEXEC_HOLD_ON_INITIAL_FAILURE</TT> <A NAME="56611"></A> <A NAME="56612"></A> controls whether jobs are put
+on hold when a failure is encountered in the glexec setup phase of
+managing the job.  The default value is <TT>True</TT>, 
+which implements the previous behavior of putting a job on hold when
+there is a failure.
+<A NAME="tex2html232"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3569">(Ticket #3569).</A>
+<P>
+</LI>
+<LI>The new configuration variable
+<TT>NEGOTIATOR_CONSIDER_EARLY_PREEMPTION</TT> <A NAME="56620"></A> <A NAME="56621"></A> controls whether jobs
+can be matched to slots that still have retirement time remaining
+before the existing job can be evicted.  The default is <TT>False</TT>.
+The old behavior can be enabled by setting it to <TT>True</TT>.  The
+new default behavior is intended to improve scheduling behavior
+when <TT>MaxJobRetirementTime</TT> is used.
+<A NAME="tex2html233"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3539">(Ticket #3539).</A>
+<P>
+</LI>
+<LI>The new configuration variable <TT>SCHEDD_AUDIT_LOG</TT> <A NAME="56631"></A> <A NAME="56632"></A>
+defines a file name, such that the
+<I>condor_schedd</I> can now write an audit log that records all
+commands issued by users that modify the job queue.
+<A NAME="tex2html234"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3493">(Ticket #3493).</A>
+<P>
+</LI>
+<LI>The per-user file transfer I/O statistics now have a prefix of
+<TT>Owner_&lt;username&gt;_</TT>.  In HTCondor version 7.9.5, 
+they had a prefix of
+<TT>&lt;username&gt;_</TT>.  This can be configured via
+<TT>TRANSFER_QUEUE_USER_EXPR</TT> <A NAME="56643"></A> <A NAME="56644"></A>.
+<A NAME="tex2html235"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3496">(Ticket #3496).</A>
+<P>
+</LI>
+<LI>The new configuration variable
+<TT>BATCH_GAHP_CHECK_STATUS_ATTEMPTS</TT> <A NAME="56651"></A> <A NAME="56652"></A> controls how often the
+<I>condor_gridmanager</I> should retry a failed job status check when using
+the <I>batch_gahp</I>. The default is 5.
+<A NAME="tex2html236"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3533">(Ticket #3533).</A>
+<P>
+</LI>
+</UL>
+
+<P>
+Bugs Fixed:
+
+<P>
+
+<UL>
+<LI>Fixed a bug in the setting of <TT>ASSIGN_CPU_AFFINITY</TT> <A NAME="56662"></A> <A NAME="56663"></A>,
+when running on systems with partitionable slots.
+<A NAME="tex2html237"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3597">(Ticket #3597).</A>
+<P>
+</LI>
+<LI>Fixed a bug in the <I>condor_starter</I> in which file systems mounted by
+the automounter would not be seen by the job.
+<A NAME="tex2html238"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3601">(Ticket #3601).</A>
+<P>
+</LI>
+<LI>Fixed the <I>condor_updates_stats</I> tool such that it works with
+modern Perl interpreters.
+<A NAME="tex2html239"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3579">(Ticket #3579).</A>
+<P>
+</LI>
+<LI>Fixed a bug that caused the <I>condor_schedd</I> to crash when 
+<I>condor_rm</I> was used with the <B>-f</B> option on parallel universe jobs.
+<A NAME="tex2html240"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3561">(Ticket #3561).</A>
+<P>
+</LI>
+<LI>Fixed a bug that could cause HTCondor-C jobs to fail when they are
+part of a DAG. The jobs would be held with a hold reason of the form
+<PRE>
+Failed to initialize user log to /dev/null or &lt;DAG log path&gt;.
+</PRE><A NAME="tex2html241"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3474">(Ticket #3474).</A>
+<P>
+</LI>
+<LI>Fixed a severe leak of file descriptors in the <I>condor_ft-gahp</I>.
+<A NAME="tex2html242"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3559">(Ticket #3559).</A>
+<P>
+</LI>
+<LI>Fixed a bug that occurred when using privilege separation;
+the bug made it impossible for the <I>condor_startd</I> to clean
+up execute directories after a <I>condor_starter</I> was prematurely killed.
+<A NAME="tex2html243"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3573">(Ticket #3573).</A>
+<P>
+</LI>
+<LI>Fixed a bug that sometimes caused fetching user priorities 
+from the <I>condor_negotiator</I> daemon to take a long time,
+as the fetch potentially had to wait until the end of the negotiation cycle. 
+The fetch no longer needs to wait.
+<A NAME="tex2html244"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3535">(Ticket #3535).</A>
+<P>
+</LI>
+<LI>Fixed a bug that would cause parallel universe jobs to fail when 
+<TT>USE_NFS=True</TT>. This might have caused a potential issue with 
+doing a look up using <I>condor_chirp</I>, 
+although testing seems to show that this is not an issue.
+<A NAME="tex2html245"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3390">(Ticket #3390).</A>
+<P>
+</LI>
+<LI>Fixed a bug introduced in HTCondor version 7.9.4 that sometimes caused
+attributes
+<TT>ExitCode</TT> and <TT>ExitBySignal</TT> not to be set in the job
+ClassAd when the job terminated.  These attributes were correctly
+reported in the user log, but they were not propagated to the job ClassAd and
+were therefore not available for querying with <I>condor_history</I>.
+<A NAME="tex2html246"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3577">(Ticket #3577).</A>
+<P>
+</LI>
+<LI>Fixed a bug that caused the <I>condor_starter</I> to leak file descriptors 
+to file transfer plug-ins. 
+<A NAME="tex2html247"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3570">(Ticket #3570).</A>
+<P>
+</LI>
+<LI>Fixed a bug that caused the <I>batch_gahp</I> to leak file descriptors 
+when reading a job's X.509 proxy.
+<A NAME="tex2html248"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3558">(Ticket #3558).</A>
+<P>
+</LI>
+<LI>Fixed a bug with the dedicated scheduler reconnect mode.
+If the <I>condor_schedd</I> crashed with a parallel universe job running after the 
+job's first job lease duration interval, parallel universe jobs would 
+not successfully reconnect, and they
+would restart from the beginning.
+<A NAME="tex2html249"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=2291">(Ticket #2291).</A>
+<P>
+</LI>
+</UL>
+
+<P>
+Known Bugs:
+
+<P>
+
+<UL>
+<LI>Using <I>condor_userprio</I> with the <B>-grouprollup</B> option
+will fail to produce any output
+if the <I>condor_negotiator</I> it queries is of a version older 
+than HTCondor version 7.9.6 and the <I>condor_userprio</I> executable is 
+HTCondor version 7.9.6.
+<A NAME="tex2html250"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3600">(Ticket #3600).</A>
+<P>
+</LI>
+</UL>
+
+<P>
+Additions and Changes to the Manual:
+
+<P>
+
+<UL>
+<LI>None.
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<H2><A NAME="SECTION001142000000000000000"></A><A NAME="sec:New-7-9-5"></A>
+<BR>
+Version 7.9.5
+</H2>
+
+<P>
+Release Notes:
+
+<P>
+
+<UL>
+<LI>HTCondor version 7.9.5 released on April 17, 2013.
+
+<P>
+</LI>
+</UL>
+
+<P>
+New Features:
+
+<P>
+
+<UL>
+<LI>The new command line tool <I>condor_tail</I>
+displays files that are in the sandbox of a running job.
+See details in the manual page at
+section&nbsp;<A HREF="condor_tail.html#man-condor-tail">11</A>.
+<A NAME="tex2html251"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3522">(Ticket #3522).</A>
+<P>
+</LI>
+<LI>When there are multiple users
+waiting to transfer files within the limits set by
+configuration variables
+<TT>MAX_CONCURRENT_UPLOADS</TT> <A NAME="56752"></A> <A NAME="56753"></A> and/or
+<TT>MAX_CONCURRENT_DOWNLOADS</TT> <A NAME="56757"></A> <A NAME="56758"></A>, the scheduling algorithm
+now gives the users
+an equal share of the transfer slots.  How shares are counted can be
+configured with <TT>TRANSFER_QUEUE_USER_EXPR</TT> <A NAME="56762"></A> <A NAME="56763"></A>.
+<A NAME="tex2html252"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3487">(Ticket #3487).</A>
+<P>
+</LI>
+<LI>When using the <B>-remote</B> or <B>-spool</B> options to
+<I>condor_submit</I>, the job owner will now be set based
+upon how the job submitter was authenticated. 
+This will make it easier to submit jobs
+to a remote <I>condor_schedd</I> where the credentials may map to a different
+account name.
+<A NAME="tex2html253"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3370">(Ticket #3370).</A>
+<P>
+</LI>
+<LI>New functions are available in the Python Bindings contrib module.
+ClassAds now more closely mimic Python dictionaries and provide
+support for lists and values that are ClassAds. 
+<A NAME="tex2html254"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3494">(Ticket #3494).</A>
+<P>
+</LI>
+<LI>If a job is submitted specifying <B>keep_claim_idle</B>,
+the claim is kept not only when the job exits,
+but also when the job is removed.
+<A NAME="tex2html255"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3491">(Ticket #3491).</A>
+<P>
+</LI>
+<LI><I>condor_dagman</I> now publishes in its own job ClassAd,
+attributes with the DAG status,
+such as total number of nodes, nodes queued, and nodes finished.
+See section&nbsp;<A HREF="2_10DAGMan_Applications.html#sec:DAGStatusClassad">2.10.13</A> for more information.
+<A NAME="tex2html256"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=1782">(Ticket #1782).</A>
+<P>
+</LI>
+</UL>
+
+<P>
+Configuration Variable and ClassAd Attribute Additions and Changes:
+
+<P>
+
+<UL>
+<LI>The new configuration variable <TT>GSI_DELEGATION_KEYBITS</TT> <A NAME="56793"></A> <A NAME="56794"></A>
+allows the number of bits in a delegated proxy to be specified
+by the receiving side.
+<A NAME="tex2html257"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3503">(Ticket #3503).</A>
+<P>
+</LI>
+<LI>When using file transfer concurrency limits, additional I/O
+usage statistics are now published as attributes in the ClassAd of the
+<I>condor_schedd</I>.  This includes the sum and rate of bytes
+transferred as well as time spent reading and writing to files and
+to the network.  These statistics are reported for the sum of all
+users and, when increased verbosity is configured, individually for
+recently active users.  
+These ClassAd attributes are fully described 
+within the section on scheduler attributes at 
+section&nbsp;<A HREF="12_Appendix_A.html#sec:FT-Scheduler-ClassAd-Attributes"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+<A NAME="tex2html258"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3496">(Ticket #3496).</A>
+<P>
+<DL COMPACT>
+<DT><TT>FileTransferUploadBytes</TT></DT>
+<DD>
+</DD>
+<DT><TT>FileTransferUploadBytesPerSecond_&lt;timespan&gt;</TT></DT>
+<DD>
+</DD>
+<DT><TT>FileTransferDownloadBytes</TT></DT>
+<DD>
+</DD>
+<DT><TT>FileTransferDownloadBytesPerSecond_&lt;timespan&gt;</TT></DT>
+<DD>
+</DD>
+<DT><TT>FileTransferFileReadSeconds</TT></DT>
+<DD>
+</DD>
+<DT><TT>FileTransferFileReadLoad_&lt;timespan&gt;</TT></DT>
+<DD>
+</DD>
+<DT><TT>FileTransferFileWriteSeconds</TT></DT>
+<DD>
+</DD>
+<DT><TT>FileTransferFileWriteLoad_&lt;timespan&gt;</TT></DT>
+<DD>
+</DD>
+<DT><TT>FileTransferNetReadSeconds</TT></DT>
+<DD>
+</DD>
+<DT><TT>FileTransferNetReadLoad_&lt;timespan&gt;</TT></DT>
+<DD>
+</DD>
+<DT><TT>FileTransferNetWriteSeconds</TT></DT>
+<DD>
+</DD>
+<DT><TT>FileTransferNetWriteLoad_&lt;timespan&gt;</TT></DT>
+<DD>
+</DD>
+</DL>
+
+<P>
+</LI>
+<LI><TT>NOT_RESPONDING_TIMEOUT</TT> <A NAME="56818"></A> <A NAME="56819"></A> now internally adds some random skew
+to avoid synchronization of heartbeat messages, which can lead to UDP
+buffer overflow and incorrect determination that daemons are hung.
+<A NAME="tex2html259"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3510">(Ticket #3510).</A>
+<P>
+</LI>
+</UL>
+
+<P>
+Bugs Fixed:
+
+<P>
+
+<UL>
+<LI>The EC2 GAHP now treats OpenStack's <TT>stopped</TT> state as if it
+were <TT>shutoff</TT>, terminating instances which enter this state and
+preventing the instances from remaining in the queue forever.
+<A NAME="tex2html260"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3507">(Ticket #3507).</A>
+<P>
+</LI>
+<LI>Two EC2 GAHP bugs are fixed.
+It now correctly parses XML namespaces as returned for
+some installations of Eucalyptus.
+The second bug caused HTCondor to put the job on hold, 
+as it incorrectly believed that the cloud
+service had purged it.
+<A NAME="tex2html261"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3492">(Ticket #3492).</A>
+<P>
+</LI>
+<LI>The EC2 GAHP now reports the
+bidding status, defined at
+<A NAME="tex2html262"
+  HREF="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances-bid-status.html">http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances-bid-status.html</A>,
+for spot instances. 
+<A NAME="tex2html263"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3388">(Ticket #3388).</A>
+<P>
+</LI>
+<LI>The <I>condor_negotiator</I> now checks to see if 
+the time set by configuration variable 
+<TT>NEGOTIATOR_MAX_TIME_PER_SUBMITTER</TT> <A NAME="56841"></A> <A NAME="56842"></A>
+has been exceeded while negotiating with a single <I>condor_schedd</I> daemon.
+This configuration variable was previously only effective 
+if a submitter used multiple <I>condor_schedd</I> daemons.
+<A NAME="tex2html264"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3504">(Ticket #3504).</A>
+<P>
+</LI>
+<LI><I>condor_dagman</I> will now recover correctly in a DAG where a node has been 
+skipped because of a <TT>PRE_SKIP</TT> <A NAME="56855"></A> <A NAME="56856"></A> has triggered.
+<A NAME="tex2html265"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=2966">(Ticket #2966).</A>
+<P>
+</LI>
+<LI>Fixed a bug in the <I>condor_gridmanager</I> and <I>condor_ft-gahp</I> that
+could cause a crash when transferring files for grid universe jobs of 
+grid type batch going to a remote cluster.
+<A NAME="tex2html266"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3529">(Ticket #3529).</A>
+<P>
+</LI>
+<LI>Fixed a bug in which <I>condor_status</I> queries would not work,
+with output of <TT>"Access denied"</TT>, unless the <I>condor_collector</I>
+and the machine doing the query had synchronized clocks.
+<A NAME="tex2html267"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3360">(Ticket #3360).</A>
+<P>
+</LI>
+<LI>Fixed a Linux platform bug in which mount points were leaked
+to the greater namespace when the configuration set
+<TT>MOUNT_UNDER_SCRATCH</TT> for file systems
+that have been mounted with shared propagation enabled.
+<A NAME="tex2html268"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3505">(Ticket #3505).</A>
+<P>
+</LI>
+<LI>Fixed a bug in the logging code that was causing grid universe batch jobs
+to abort and drop a dprintf error file during file transfer once the log had
+grown large enough to rotate.
+<A NAME="tex2html269"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3528">(Ticket #3528).</A>
+<P>
+</LI>
+<LI>On Windows platforms, running the <I>condor_kbdd</I> no
+longer creates a visible console window.
+<A NAME="tex2html270"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=2805">(Ticket #2805).</A>
+<P>
+</LI>
+</UL>
+
+<P>
+Known Bugs:
+
+<P>
+
+<UL>
+<LI>Running <I>condor_rm</I> with the <B>-f</B> option on a parallel universe
+job can cause the <I>condor_schedd</I> to crash.
+<A NAME="tex2html271"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3561">(Ticket #3561).</A>
+<P>
+</LI>
+<LI>Using privilege separation may cause execute directories to be leaked,
+if the <I>condor_starter</I> is shut down prematurely; 
+for example, shut down may occur by a hard kill signal or power interruption.
+<A NAME="tex2html272"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3573">(Ticket #3573).</A>
+<P>
+</LI>
+<LI>If a job has any output files and uses the file transfer mechanism,
+the job ClassAd attribute <TT>ExitCode</TT> may be lost,
+causing its value to be reported as 0.
+<A NAME="tex2html273"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3577">(Ticket #3577).</A>
+<P>
+</LI>
+</UL>
+
+<P>
+Additions and Changes to the Manual:
+
+<P>
+
+<UL>
+<LI>None.
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<H2><A NAME="SECTION001143000000000000000"></A><A NAME="sec:New-7-9-4"></A>
+<BR>
+Version 7.9.4
+</H2>
+
+<P>
+Release Notes:
+
+<P>
+
+<UL>
+<LI>HTCondor version 7.9.4 released on February 20, 2013.
+
+<P>
+</LI>
+</UL>
+
+<P>
+New Features:
+
+<P>
+
+<UL>
+<LI>Per job PID namespaces are available for Linux RHEL 6 platforms.
+See section&nbsp;<A HREF="3_12Setting_Up.html#sec:PIDNamespaces">3.12.10</A> for details.
+<A NAME="tex2html274"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=1959">(Ticket #1959).</A>
+<P>
+</LI>
+<LI>The EC2 GAHP now batches requests for status updates, significantly
+reducing its resource requirements.
+<A NAME="tex2html275"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3436">(Ticket #3436).</A>
+<P>
+</LI>
+<LI>The maximum total size of file transfers for a job may now be
+specified using the new configuration variables
+<TT>MAX_TRANSFER_INPUT_MB</TT> <A NAME="56914"></A> <A NAME="56915"></A> and <TT>MAX_TRANSFER_OUTPUT_MB</TT> <A NAME="56919"></A> <A NAME="56920"></A> 
+and/or the new submit commands 
+<B>max_transfer_input_mb</B> and
+<B>max_transfer_output_mb</B>.
+<A NAME="tex2html276"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3333">(Ticket #3333).</A>
+<P>
+</LI>
+<LI>The <I>batch_gahp</I> no longer relies on programs
+<I>grid-proxy-info</I> and <I>grid-proxy-init</I> from the Globus
+Toolkit to handle the X.509 proxies of jobs.
+<A NAME="tex2html277"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3431">(Ticket #3431).</A>
+<P>
+</LI>
+<LI>When the job's executable is transferred, always set the execute
+bits on the copy.
+<A NAME="tex2html278"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3028">(Ticket #3028).</A>
+<P>
+</LI>
+<LI>By default, <I>condor_dagman</I> now issues a fatal error
+if any log file, which is either
+the default log file or the log file specified for a node job,
+is in <TT>/tmp</TT>, because this can cause DAGMan to fail.
+This error can be downgraded to a warning by setting the
+configuration variable
+<TT>DAGMAN_USE_STRICT</TT> value to 0.
+<A NAME="tex2html279"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=1419">(Ticket #1419).</A>
+<P>
+</LI>
+<LI>The <I>condor_collector</I> will accept and display collector ClassAds for
+multiple collectors from the same machine. For this to work, the
+collectors must configured with different values for configuration
+variable <TT>COLLECTOR_NAME</TT>.
+<A NAME="tex2html280"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3467">(Ticket #3467).</A>
+<P>
+</LI>
+<LI><I>condor_dagman</I> now will successfully set attributes for submitted jobs
+using the <I>condor_submit</I> syntax of placing a <TT>+</TT> sign just to the
+left of the attribute name. 
+See section&nbsp;<A HREF="2_10DAGMan_Applications.html#dagman:VARS">2.10.8</A> for more details.
+<A NAME="tex2html281"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3469">(Ticket #3469).</A>
+<P>
+</LI>
+<LI>The HTCondor contrib now includes a set of Python bindings in
+two modules.
+The <TT>htcondor</TT> module interacts with the <I>condor_schedd</I> and 
+<I>condor_collector</I> daemons. 
+The <TT>classad</TT> module provides an interface to work with ClassAds.
+<A NAME="tex2html282"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3407">(Ticket #3407).</A>
+<P>
+</LI>
+<LI>When using <I>condor_compile</I>, 
+Pthreads are not normally permitted to be used by standard universe jobs.
+However, <I>condor_compile</I> will now tell a user that they
+should be linking to the GNU Pth library,
+which is  built with the <code>--enable-pthread</code> flag.
+This will permit jobs that use Pthreads to be built with <I>condor_compile</I>.
+<A NAME="tex2html283"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3319">(Ticket #3319).</A>
+<P>
+</LI>
+</UL>
+
+<P>
+Configuration Variable and ClassAd Attribute Additions and Changes:
+
+<P>
+
+<UL>
+<LI>The new configuration variable <TT>USE_PID_NAMESPACES</TT> <A NAME="56977"></A> <A NAME="56978"></A>
+enables per job PID namespaces for Linux RHEL 6 platforms when <TT>True</TT>.
+<A NAME="tex2html284"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=1959">(Ticket #1959).</A>
+<P>
+</LI>
+<LI>The new configuration variable <TT>FLOCK_INCREMENT</TT> <A NAME="56986"></A> <A NAME="56987"></A> allows
+administrators to more aggressively flock to remote <I>condor_collector</I> daemons,
+as more pools will be considered.
+<A NAME="tex2html285"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3375">(Ticket #3375).</A>
+<P>
+</LI>
+<LI>The new configuration variable <TT>HOST_ALIAS</TT> <A NAME="56996"></A> <A NAME="56997"></A> specifies the
+  fully qualified host name that clients authenticating this daemon with 
+  GSI should
+  expect the daemon's certificate to match.  The alias is advertised
+  to the <I>condor_collector</I> as part of the address of the daemon.
+  When this is not set, clients validate the daemon's certificate
+  host name by matching it against DNS A records for the host they
+  are connected to.  See <TT>GSI_SKIP_HOST_CHECK</TT> <A NAME="57003"></A> <A NAME="57004"></A> for ways
+  to disable this validation step.
+<A NAME="tex2html286"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=1605">(Ticket #1605).</A>
+<P>
+</LI>
+<LI>The configuration variable <TT>DAGMAN_USE_STRICT</TT> now
+defaults to a value of 1, rather than 0.
+See the definition at section&nbsp;<A HREF="3_3Configuration.html#param:DAGManUseStrict">3.3.25</A>.
+<A NAME="tex2html287"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3418">(Ticket #3418).</A>
+<P>
+</LI>
+<LI>The new configuration variable <TT>GRACEFULLY_REMOVE_JOBS</TT> <A NAME="57015"></A> <A NAME="57016"></A>
+is a boolean value that controls whether jobs to be removed are 
+gracefully removed.
+The default is to do graceful removal.
+<A NAME="tex2html288"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3470">(Ticket #3470).</A>
+</LI>
+</UL>
+
+<P>
+Bugs Fixed:
+
+<P>
+
+<UL>
+<LI>When HTCondor creates a key pair at an EC2 job's request, it no
+longer fails to remove the private key from disk when the job leaves
+the queue.
+<A NAME="tex2html289"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3477">(Ticket #3477).</A>
+<P>
+</LI>
+<LI>The EC2 GAHP now recognizes the OpenStack <TT>shutoff</TT> state and
+terminates instances which enter this state, 
+preventing the instances from remaining in the queue forever.
+<A NAME="tex2html290"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3367">(Ticket #3367).</A>
+<P>
+</LI>
+<LI><I>condor_dagman</I> no longer does unnecessary sleeps for log file
+consistency when a single default/workflow log file is used.
+<A NAME="tex2html291"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3456">(Ticket #3456).</A>
+<P>
+</LI>
+<LI>Fixed a bug introduced in HTCondor version 7.9.0 that caused 
+the following configuration variables to not sort ClassAds properly 
+when they evaluated to <TT>True</TT> or <TT>False</TT>:
+<TT>NEGOTIATOR_PRE_JOB_RANK</TT> <A NAME="57037"></A> <A NAME="57038"></A>,
+<TT>NEGOTIATOR_POST_JOB_RANK</TT> <A NAME="57042"></A> <A NAME="57043"></A>, <TT>PREEMPTION_RANK</TT> <A NAME="57047"></A> <A NAME="57048"></A>, and
+<TT>SCHEDD_PREEMPTION_RANK</TT> <A NAME="57052"></A> <A NAME="57053"></A>.
+<A NAME="tex2html292"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3468">(Ticket #3468).</A>
+<P>
+</LI>
+<LI>Fixed a bug that can cause grid universe jobs of type <TT>batch</TT>
+to fail when submitted to an HTCondor cluster with a large history file.
+<A NAME="tex2html293"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3429">(Ticket #3429).</A>
+<P>
+</LI>
+<LI>Corrected the submission of interactive jobs for cases 
+in which the submit description file specified <B>Arguments</B>.
+<A NAME="tex2html294"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3455">(Ticket #3455).</A>
+<P>
+</LI>
+<LI>The semantics of signals sent to jobs were changed.
+They have been changed back to the semantics defined in version 7.6.   
+<A NAME="tex2html295"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3470">(Ticket #3470).</A>
+<P>
+</LI>
+</UL>
+
+<P>
+Known Bugs:
+
+<P>
+
+<UL>
+<LI>None.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Additions and Changes to the Manual:
+
+<P>
+
+<UL>
+<LI>None.
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<H2><A NAME="SECTION001144000000000000000"></A><A NAME="sec:New-7-9-3"></A>
+<BR>
+Version 7.9.3
+</H2>
+
+<P>
+Release Notes:
+
+<P>
+
+<UL>
+<LI>HTCondor version 7.9.3 released on January 16, 2013.
+
+<P>
+</LI>
+</UL>
+
+<P>
+New Features:
+
+<P>
+
+<UL>
+<LI>When the new configuration variable <TT>ASSIGN_CPU_AFFINITY</TT> <A NAME="57071"></A> <A NAME="57072"></A>
+is set to <TT>True</TT>, 
+the <I>condor_startd</I> will automatically set the CPU affinity
+mask jobs run with, so that a multi-threaded job will not use
+more cores than the number it requests.
+<A NAME="tex2html296"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3348">(Ticket #3348).</A>
+<P>
+</LI>
+<LI>When configuration variable <TT>NEGOTIATOR_CONSIDER_PREEMPTION</TT> <A NAME="57082"></A> <A NAME="57083"></A>
+is <TT>False</TT>, the <I>condor_negotiator</I>
+now fetches machine ClassAds more quickly from the <I>condor_collector</I>
+ by skipping most attributes of the busy machines.  
+This can make negotiation much faster in
+a very large pool of mostly claimed machines.
+<A NAME="tex2html297"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3366">(Ticket #3366).</A>
+<P>
+</LI>
+<LI>Round-robin scheduling is now used when there are multiple users
+waiting to transfer files in the limits set by
+<TT>MAX_CONCURRENT_UPLOADS</TT> <A NAME="57095"></A> <A NAME="57096"></A> and/or
+<TT>MAX_CONCURRENT_DOWNLOADS</TT> <A NAME="57100"></A> <A NAME="57101"></A>.  Previously, the file transfer
+queue was scheduled in first-in-first-out order, so one user with
+many files to transfer could delay other users for as long as it took
+to transfer those files.  Now, when choosing a new job to allow to
+transfer, the first job belonging to the user who has least
+recently been given an opportunity to transfer will be selected.
+The old behavior, or variations on the new behavior, can be achieved
+by configuring <TT>TRANSFER_QUEUE_USER_EXPR</TT> <A NAME="57105"></A> <A NAME="57106"></A>.
+<A NAME="tex2html298"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3333">(Ticket #3333).</A>
+<P>
+</LI>
+<LI><I>condor_dagman</I> will now try twice to write a POST script terminate
+event, rather than trying once and exiting. 
+If it is unable to write the event, <I>condor_dagman</I> exits, 
+writing a Rescue DAG. 
+<A NAME="tex2html299"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=965">(Ticket #965).</A>
+<P>
+</LI>
+<LI>The <I>condor_gridmanager</I> now cleans up temporary files and directories
+that are sometimes left by the <I>batch_gahp</I> when executing a grid
+universe job of grid type <B>batch</B>.
+<A NAME="tex2html300"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3276">(Ticket #3276).</A>
+<P>
+</LI>
+<LI>Added counts of nodes in various states to the <I>condor_dagman</I>
+node status file.  Refer to section&nbsp;<A HREF="2_10DAGMan_Applications.html#sec:DAG-node-status">2.10.11</A> for
+more information.
+<A NAME="tex2html301"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=2075">(Ticket #2075).</A>
+<P>
+</LI>
+<LI>When submitting jobs to a remote batch system (for example, Bosco),
+file transfer no longer requires a network connection from the remote machine
+back to the local one.
+<A NAME="tex2html302"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3293">(Ticket #3293).</A>
+<P>
+</LI>
+</UL>
+
+<P>
+Configuration Variable and ClassAd Attribute Additions and Changes:
+
+<P>
+
+<UL>
+<LI>The new expert-only configuration variable 
+<TT>STATISTICS_WINDOW_QUANTUM</TT> <A NAME="57135"></A> <A NAME="57136"></A>
+allows administrators to set the time interval, 
+known as a quantum, that divides a window over which statistics are
+kept into smaller pieces.  The window advances one quantum at a time. 
+<A NAME="tex2html303"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3288">(Ticket #3288).</A>
+<P>
+</LI>
+</UL>
+
+<P>
+Bugs Fixed:
+
+<P>
+
+<UL>
+<LI>Jobs of the EC2 grid type which make invalid requests of the
+service no longer go on hold when removed.
+An example of this is when a job specifies a nonexistent AMI. 
+<A NAME="tex2html304"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3287">(Ticket #3287).</A>
+<P>
+</LI>
+<LI>Jobs of the EC2 grid type which cannot authenticate with the
+service no longer go on hold when removed.
+<A NAME="tex2html305"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3387">(Ticket #3387).</A>
+<P>
+</LI>
+<LI>Fixed a problem with <I>glexec</I> that caused jobs not to start 
+due to permission errors on the execute directory.
+<A NAME="tex2html306"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3369">(Ticket #3369).</A>
+<P>
+</LI>
+<LI>A change was made to more accurately implement the
+minimum time defined by the configuration variable
+<TT>NEGOTIATOR_CYCLE_DELAY</TT> <A NAME="57153"></A> <A NAME="57154"></A>. 
+<A NAME="tex2html307"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3332">(Ticket #3332).</A>
+<P>
+</LI>
+<LI>The <I>batch_gahp</I> is no longer dependent on the Perl module 
+<TT>XML::Simple</TT> when submitting jobs to SGE.
+<A NAME="tex2html308"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3350">(Ticket #3350).</A>
+<P>
+</LI>
+<LI>The <I>batch_gahp</I> now properly handles job X.509 proxies that 
+are not in the old proxy format.
+<A NAME="tex2html309"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3362">(Ticket #3362).</A>
+<P>
+</LI>
+<LI>On 32-bit platforms,
+setting configuration variable <TT>STARTER_RLIMIT_AS</TT> <A NAME="57170"></A> <A NAME="57171"></A> to a value 
+larger than 4096 could cause jobs to abort on start up.
+Since values larger than 2047 have no real meaning on 32-bit platforms,
+the fix treats values larger than 2047 as no limit on 32-bit platforms.
+<A NAME="tex2html310"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3309">(Ticket #3309).</A>
+<P>
+</LI>
+<LI>Fixed a bug that can cause proxy refresh to fail for pbs, lsf,
+and sge grid jobs.
+<A NAME="tex2html311"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3383">(Ticket #3383).</A>
+<P>
+</LI>
+<LI>When doing remote pbs, lsf, or sge grid job submissions, the
+<I>condor_gridmanager</I> now ensures that no unusual characters are used in
+the name of the job sandbox directory it creates.
+<A NAME="tex2html312"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3294">(Ticket #3294).</A>
+<P>
+</LI>
+<LI>When a GAHP server fails to start, the <I>condor_gridmanager</I> now
+puts the affected jobs on hold.
+<A NAME="tex2html313"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3301">(Ticket #3301).</A>
+<P>
+</LI>
+<LI>Environment variable <TT>GLOBUS_LOCATION</TT> is now set for
+<I>batch_gahp</I>,
+allowing it to find proxy management that it needs for jobs that have an
+X.509 proxy.
+<A NAME="tex2html314"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3015">(Ticket #3015).</A>
+<P>
+</LI>
+<LI>The installation RPM now requires Security Enhanced Linux (SELinux) 
+scripts at post install time,
+so that the scripts can set the appropriate security contexts.
+<A NAME="tex2html315"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3313">(Ticket #3313).</A>
+<P>
+</LI>
+</UL>
+
+<P>
+Known Bugs:
+
+<P>
+
+<UL>
+<LI>None.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Additions and Changes to the Manual:
+
+<P>
+
+<UL>
+<LI>Initial documentation for EC2 spot instances can be found
+in section&nbsp;<A HREF="5_3Grid_Universe.html#sec:spot-instances">5.3.6</A>.
+<A NAME="tex2html316"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3209">(Ticket #3209).</A>
+<P>
+</LI>
+</UL>
+
+<P>
+
+<H2><A NAME="SECTION001145000000000000000"></A><A NAME="sec:New-7-9-2"></A>
+<BR>
+Version 7.9.2
+</H2>
+
+<P>
+Release Notes:
+
+<P>
+
+<UL>
+<LI>HTCondor version 7.9.2 released on December 11, 2012.
+This release contains all of the bug fixes in the version 7.8.6 
+stable release,
+and most of the bug fixes in the
+soon to be released version 7.8.7 stable release.
+
+<P>
+</LI>
+</UL>
+
+<P>
+New Features:
+
+<P>
+
+<UL>
+<LI>The permissions for the temporary execute directory of a job
+have been tightened for vanilla universe jobs, 
+such that only the owner of the job is allowed to see or
+modify the contents.
+<A NAME="tex2html317"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3315">(Ticket #3315).</A>
+<P>
+</LI>
+<LI>Added experimental support for EC2 spot instances.
+<A NAME="tex2html318"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3209">(Ticket #3209).</A>
+<P>
+</LI>
+<LI>(This feature was added in version 7.9.1.)  
+There are two new protocols for the submission of grid type EC2 jobs,
+<TT>euca3://</TT> and <TT>euca3s://</TT>.
+These protocols exist to work correctly when the resources do not support 
+the <TT>InstanceInitiatedShutdownBehavior</TT> parameter.
+<A NAME="tex2html319"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=2974">(Ticket #2974).</A>
+<P>
+</LI>
+<LI>(This feature was added in version 7.9.1.)  
+Added both a <B>-suppress_notification</B>,
+a <B>-dont_suppress_notification</B> command line option,
+and corresponding
+<TT>DAGMAN_SUPPRESS_NOTIFICATION</TT> <A NAME="57218"></A> <A NAME="57219"></A> configuration variable
+to <I>condor_dagman</I> and <I>condor_submit_dag</I>.
+This enables a user of DAGMan to stop email notification of job
+events for jobs submitted by <I>condor_dagman</I>. The value of
+<TT>DAGMAN_SUPPRESS_NOTIFICATION</TT> defaults to <TT>True</TT>,
+so that jobs submitted
+by <I>condor_dagman</I> will not send email notification. 
+<A NAME="tex2html320"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3352">(Ticket #3352).</A>
+<P>
+</LI>
+<LI>The default for job notification email has changed
+from <TT>Complete</TT> to <TT>Never</TT>. 
+There is also a new configuration variable, <TT>JOB_DEFAULT_NOTIFICATION</TT> <A NAME="57238"></A> <A NAME="57239"></A>,
+which permits administrators to change the default for all jobs.
+<A NAME="tex2html321"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=2155">(Ticket #2155).</A>
+<P>
+</LI>
+<LI>For platforms supporting cgroups,
+resource limits can now be applied per job,
+where a job may consist of multiple processes.
+See section&nbsp;<A HREF="3_12Setting_Up.html#sec:Resource-Limits-Cgroup">3.12.14</A> for details.
+<A NAME="tex2html322"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=2734">(Ticket #2734).</A>
+<P>
+</LI>
+</UL>
+
+<P>
+Configuration Variable and ClassAd Attribute Additions and Changes:
+
+<P>
+
+<UL>
+<LI>The new configuration variable <TT>MEMORY_LIMIT</TT> <A NAME="57249"></A> <A NAME="57250"></A>
+supports implementing memory resource limits on a per-job basis under cgroups.
+<A NAME="tex2html323"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=2734">(Ticket #2734).</A>
+<P>
+</LI>
+</UL>
+
+<P>
+Bugs Fixed:
+
+<P>
+
+<UL>
+<LI><I>condor_schedd</I> and <I>condor_shadow</I> were not respecting the
+<TT>DAGManNodesMask</TT> <A NAME="57261"></A> <A NAME="57262"></A> attribute. This caused extra events to be written to
+the DAGMan node log.
+<A NAME="tex2html324"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3311">(Ticket #3311).</A>
+<P>
+</LI>
+<LI>Removed a spurious newline from the output of <I>condor_submit</I>.
+<A NAME="tex2html325"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3316">(Ticket #3316).</A>
+<P>
+</LI>
+<LI>Fixed a bug that caused the <I>condor_shadow</I> to set job attribute
+<TT>X509UserProxySubject</TT> to the wrong value when the job's X.509
+proxy file was updated. It incorrectly set the value to be 
+the proxy's subject name, rather than to the correct value, which is
+its identity.
+<A NAME="tex2html326"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3265">(Ticket #3265).</A>
+<P>
+</LI>
+<LI>The <I>batch_gahp</I> no longer modifies the environment variable
+<TT>LD_LIBRARY_PATH</TT>.
+In some instances, modifying <TT>LD_LIBRARY_PATH</TT> caused the
+batch system's command line tools to fail when run by the <I>batch_gahp</I>.
+<A NAME="tex2html327"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3317">(Ticket #3317).</A>
+<P>
+</LI>
+<LI>Grid-type <B>batch</B> jobs now work properly on machines
+where the gLite software has been installed.
+<A NAME="tex2html328"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3269">(Ticket #3269).</A>
+<P>
+</LI>
+<LI>The <I>condor_shadow</I> would never print the allocated amount of
+partitionable resources in the job log.
+<A NAME="tex2html329"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3318">(Ticket #3318).</A>
+<P>
+</LI>
+<LI><I>condor_who</I> would sometimes incorrectly display blank or partial
+values in the PROGRAM column.
+<A NAME="tex2html330"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3314">(Ticket #3314).</A>
+<P>
+</LI>
+</UL>
+
+<P>
+Known Bugs:
+
+<P>
+
+<UL>
+<LI>None.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Additions and Changes to the Manual:
+
+<P>
+
+<UL>
+<LI>None.
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<H2><A NAME="SECTION001146000000000000000"></A><A NAME="sec:New-7-9-1"></A>
+<BR>
+Version 7.9.1
+</H2>
+
+<P>
+Release Notes:
+
+<P>
+
+<UL>
+<LI>Condor version 7.9.1 released on October 22, 2012.
+
+<P>
+</LI>
+<LI>Condor no longer looks for its main configuration file in the
+location <TT><TT>$(GLOBUS_LOCATION)</TT>/etc/condor_config</TT>.
+<A NAME="tex2html331"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=2830">(Ticket #2830).</A>
+<P>
+</LI>
+<LI><U><I>Security Item</I></U>: This version contains an important security bug fix.  See below
+for details of this and other bugs fixed.
+
+<P>
+</LI>
+</UL>
+
+<P>
+New Features:
+
+<P>
+
+<UL>
+<LI>There are two new protocols for the submission of grid type EC2 jobs,
+<TT>euca3://</TT> and <TT>euca3s://</TT>.
+These protocols exist to work correctly when the resources do not support 
+the <TT>InstanceInitiatedShutdownBehavior</TT> parameter.
+<A NAME="tex2html332"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=2974">(Ticket #2974).</A>
+<P>
+</LI>
+<LI><I>condor_job_router</I> can now submit the routed copy of jobs to a
+different <I>condor_schedd</I> than the one that serves as the source of
+jobs to be routed.  The spool directories of the two
+<I>condor_schedds</I> must still be directly accessible to
+<I>condor_job_router</I>.  This feature is enabled by using the new
+optional configuration settings:
+
+<P>
+
+<UL>
+<LI><TT>JOB_ROUTER_SCHEDD1_SPOOL</TT> <A NAME="57323"></A> <A NAME="57324"></A>
+See definition at section&nbsp;<A HREF="3_3Configuration.html#param:JobRouterSchedd1Spool">3.3.21</A>.
+</LI>
+<LI><TT>JOB_ROUTER_SCHEDD2_SPOOL</TT> <A NAME="57328"></A> <A NAME="57329"></A>
+See definition at section&nbsp;<A HREF="3_3Configuration.html#param:JobRouterSchedd2Spool">3.3.21</A>.
+</LI>
+<LI><TT>JOB_ROUTER_SCHEDD1_NAME</TT> <A NAME="57333"></A> <A NAME="57334"></A>
+See definition at section&nbsp;<A HREF="3_3Configuration.html#param:JobRouterSchedd1Name">3.3.21</A>.
+</LI>
+<LI><TT>JOB_ROUTER_SCHEDD2_NAME</TT> <A NAME="57338"></A> <A NAME="57339"></A>
+See definition at section&nbsp;<A HREF="3_3Configuration.html#param:JobRouterSchedd2Name">3.3.21</A>.
+</LI>
+<LI><TT>JOB_ROUTER_SCHEDD1_POOL</TT> <A NAME="57343"></A> <A NAME="57344"></A>
+See definition at section&nbsp;<A HREF="3_3Configuration.html#param:JobRouterSchedd1Pool">3.3.21</A>.
+</LI>
+<LI><TT>JOB_ROUTER_SCHEDD2_POOL</TT> <A NAME="57348"></A> <A NAME="57349"></A>
+See definition at section&nbsp;<A HREF="3_3Configuration.html#param:JobRouterSchedd2Pool">3.3.21</A>.
+</LI>
+</UL>
+<A NAME="tex2html333"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3030">(Ticket #3030).</A>
+<P>
+</LI>
+<LI>The <I>condor_job_router</I> can now optionally transform jobs in place,
+rather than creating a second transformed version (copy) of the job.
+<A NAME="tex2html334"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3185">(Ticket #3185).</A>
+<P>
+</LI>
+<LI>The <I>condor_defrag</I> daemon now has a policy option implemented
+by configuration to cancel the draining
+of a machine that is in the Draining mode.  This can be used to effect
+partial draining of machines.
+<A NAME="tex2html335"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=2993">(Ticket #2993).</A>
+<P>
+</LI>
+<LI>Communication between the <I>condor_c-gahp</I> and the <I>condor_schedd</I> has
+been improved. A large number of Condor-C jobs should no longer cause
+other clients of the remote <I>condor_schedd</I> to time out trying to get the
+<I>condor_schedd</I> daemon's attention.
+<A NAME="tex2html336"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=2575">(Ticket #2575).</A>
+<P>
+</LI>
+<LI><I>condor_history</I> and <I>condor_q</I> can now be told to read job records
+from a user log, instead of parsing the history file or querying the
+<I>condor_schedd</I>.  This can be used to monitor the status of jobs with
+reduced load on the <I>condor_schedd</I>.
+<A NAME="tex2html337"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3188">(Ticket #3188).</A>
+<P>
+</LI>
+<LI>Eucalyptus 3.x support has been added to the EC2 GAHP.
+<A NAME="tex2html338"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=2974">(Ticket #2974).</A>
+<P>
+</LI>
+<LI>File transfer remaps now support remapping directories.
+<A NAME="tex2html339"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3039">(Ticket #3039).</A>
+<P>
+</LI>
+<LI>The <I>condor_schedd</I> can now dynamically spawn a local <I>condor_startd</I>
+to manage local universe jobs.
+<A NAME="tex2html340"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3129">(Ticket #3129).</A>
+<P>
+</LI>
+<LI><I>condor_q</I> <B>-jobads</B> will now respect the <B>-constraint</B> option.
+<A NAME="tex2html341"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3191">(Ticket #3191).</A>
+<P>
+</LI>
+<LI>Added Bosco, a set of tools that makes it easy to use a Personal
+Condor to run jobs on remote batch systems without administrator
+assistance or manual installation of software on the remote systems.
+See <A NAME="tex2html342"
+  HREF="https://twiki.grid.iu.edu/bin/view/CampusGrids/BoSCO">https://twiki.grid.iu.edu/bin/view/CampusGrids/BoSCO</A>
+for more
+information about Bosco.
+<A NAME="tex2html343"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=2421">(Ticket #2421).</A>
+<P>
+</LI>
+</UL>
+
+<P>
+Configuration Variable and ClassAd Attribute Additions and Changes:
+
+<P>
+
+<UL>
+<LI>Dynamic slots now fill the values for attributes of with names
+that begin with
+<TT>TotalSlot</TT>, 
+for configured local resources in a way consistent with standard resources
+such as <TT>TotalSlotCpus</TT>.
+Previously those values were all given the value zero on dynamic slots.
+<A NAME="tex2html344"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3229">(Ticket #3229).</A>
+<P>
+</LI>
+<LI>The <I>condor_schedd</I> now advertises the value of configuration variable
+<TT>COLLECTOR_HOST</TT> as attribute <TT>CollectorHost</TT> in 
+its daemon ClassAd.  This allows one to determine if a given
+<I>condor_schedd</I> reporting to a <I>condor_collector</I> is flocking to that 
+<I>condor_collector</I> or not.
+<A NAME="tex2html345"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3202">(Ticket #3202).</A>
+<P>
+</LI>
+<LI>Added the attribute <TT>DAGManNodesMask</TT> to control the verboseness of
+the log referred to by <TT>DAGManNodesLog</TT>.
+<A NAME="tex2html346"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3351">(Ticket #3351).</A>
+<P>
+</LI>
+<LI>The new configuration variable
+<TT>QUEUE_SUPER_USER_MAY_IMPERSONATE</TT> <A NAME="57438"></A> <A NAME="57439"></A> specifies a regular
+expression that matches the user names that
+the queue super user may impersonate when managing jobs.  When not
+set, the default behavior is to allow impersonation of any user who
+has had a job in the queue during the life of the <I>condor_schedd</I>.  For
+proper functioning of the <I>condor_shadow</I>, the <I>condor_gridmanager</I>, and
+the <I>condor_job_router</I>, this expression, if set, must match the owner
+names of all jobs that these daemons will manage.
+<A NAME="tex2html347"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3030">(Ticket #3030).</A>
+<P>
+</LI>
+<LI>The new configuration variable <TT>DEFRAG_CANCEL_REQUIREMENTS</TT> <A NAME="57454"></A> <A NAME="57455"></A>
+is an expression that specifies which draining machines should have 
+draining be canceled.  
+This defaults to <TT>$(DEFRAG_WHOLE_MACHINE_EXPR)</TT>.  
+This could be used to drain partial rather than whole machines.
+<A NAME="tex2html348"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=2993">(Ticket #2993).</A>
+<P>
+</LI>
+<LI>The new submit command <B>use_x509userproxy</B> can be set
+to <TT>True</TT> to indicate that an X.509 user proxy is required for the job. 
+If <B>x509userproxy</B> is not set, 
+then the proxy file will be looked for in the standard locations.
+<A NAME="tex2html349"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3025">(Ticket #3025).</A>
+<P>
+</LI>
+<LI>If <I>condor_submit</I> is used to submit an interactive job,
+and the job is interrupted before the interactive job starts,
+an attempt is made to immediately remove the interactive job from the queue.
+Similarly, <I>condor_ssh_to_job</I> has a new option <B>-remove-on-interrupt</B>.
+<A NAME="tex2html350"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3242">(Ticket #3242).</A>
+<P>
+</LI>
+<LI>Changes to were made to the ClassAd machine attributes 
+<TT>OpSys</TT>, <TT>OpSysVer</TT>, <TT>Distro</TT>, as well as others,
+in order to do a better job of identifying the operating system.
+<A NAME="tex2html351"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=2366">(Ticket #2366).</A>
+<P>
+</LI>
+<LI><TT>GRIDMANAGER_MAX_SUBMITTED_JOBS_PER_RESOURCE</TT> <A NAME="57484"></A> <A NAME="57485"></A> can now be a
+list, specifying different values for different hosts.
+<A NAME="tex2html352"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3220">(Ticket #3220).</A>
+<P>
+</LI>
+<LI>The new configuration parameter <TT>GRIDMANAGER_JOB_PROBE_RATE</TT> <A NAME="57492"></A> <A NAME="57493"></A>
+limits the number of job status requests sent to each remote resource.
+<A NAME="tex2html353"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3023">(Ticket #3023).</A>
+<P>
+</LI>
+<LI>The default value of <TT>GRIDMANAGER_JOB_PROBE_INTERVAL</TT> <A NAME="57500"></A> <A NAME="57501"></A> has
+changed from 300 to 60.
+<A NAME="tex2html354"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3023">(Ticket #3023).</A>.
+
+<P>
+</LI>
+<LI>The configuration parameters <TT>CONDOR_JOB_POLL_INTERVAL</TT> <A NAME="57508"></A> <A NAME="57509"></A> and
+<TT>INFN_JOB_POLL_INTERVAL</TT> <A NAME="57513"></A> <A NAME="57514"></A> should no longer be used. Use
+<TT>GRIDMANAGER_JOB_PROBE_INTERVAL_CONDOR</TT> <A NAME="57518"></A> <A NAME="57519"></A> and
+<TT>GRIDMANAGER_JOB_PROBE_INTERVAL_BATCH</TT> <A NAME="57523"></A> <A NAME="57524"></A> instead.
+<A NAME="tex2html355"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3023">(Ticket #3023).</A>
+<P>
+</LI>
+</UL>
+
+<P>
+Bugs Fixed:
+
+<P>
+
+<UL>
+<LI><U><I>Security Item</I></U>: Fixed a bug which allowed jobs submitted to the standard
+universe to escalate privilege on the submit machine and execute code as 
+<TT>root</TT>.
+(CVE-2012-5390)
+<A NAME="tex2html356"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3268">(Ticket #3268).</A>
+<P>
+</LI>
+<LI>A fix only invokes Globus callouts when actually needed, 
+thereby avoiding a program segfault if
+the call out mechanism is misconfigured or broken.
+<A NAME="tex2html357"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=2104">(Ticket #2104).</A>
+<P>
+</LI>
+<LI>Fixed a bug in all daemons wherein the <TT>DaemonStartTime</TT> attribute 
+in the ClassAd for all daemons would be reset to the current time when they are
+reconfigured.
+<A NAME="tex2html358"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3235">(Ticket #3235).</A>
+<P>
+</LI>
+<LI>Fixed a bug wherein the <I>-dont_use_default_node_log</I> command line flag
+to <I>condor_submit_dag</I> had no effect.
+<A NAME="tex2html359"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3352">(Ticket #3352).</A>
+<P>
+</LI>
+<LI><U><I>Security Item</I></U>: Although not user-visible, 
+there were multiple updates that removed places
+in the code where potential buffer overruns could occur, 
+thus preventing potential attacks.  
+None of these overruns were known to be exploitable.
+
+<P>
+</LI>
+<LI><U><I>Security Item</I></U>: Although not user-visible, 
+there were updates to the code to improve
+the error checking of system calls,
+thereby removing some potential security threats.  
+None were known to be exploitable.
+
+<P>
+</LI>
+<LI><U><I>Security Item</I></U>: Although not user-visible, 
+removed some code that was no longer used.
+The presence of this code could have led to a Denial-of-Service attack,
+which would allow an attacker to stop another user's jobs from running.
+
+<P>
+</LI>
+<LI><U><I>Security Item</I></U>: Filesystem (FS) authentication was improved to check 
+the UNIX permissions of the directory used for authentication.  
+Without this, an attacker may have
+been able to impersonate another submitter on the same submit machine.
+
+<P>
+</LI>
+<LI>The <I>condor_negotiator</I> now checks the accountant log file for sanity
+once only on start up,  
+thereby increasing efficiency of iteration through 
+the accountant ClassAd log structure.
+<A NAME="tex2html360"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3011">(Ticket #3011).</A>
+<P>
+</LI>
+<LI>The ClassAd functions <TT>splitUserName()</TT> and 
+<TT>splitSlotName()</TT>
+no longer leak a small amount of memory each time they are evaluated.  
+This bug was introduced when these functions were added in Condor version 7.7.6.
+<A NAME="tex2html361"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3082">(Ticket #3082).</A>
+<P>
+</LI>
+<LI>There are several bug fixes for grid-type batch jobs:
+  
+<UL>
+<LI>Monitoring the status of jobs submitted to PBS and SGE has been
+    improved. <A NAME="tex2html362"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3067">(Ticket #3067).</A>
+<A NAME="tex2html363"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3157">(Ticket #3157).</A>
+<A NAME="tex2html364"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3181">(Ticket #3181).</A>
+</LI>
+<LI>Job command-line arguments containing 
+    left parenthesis, <code>(</code>, right parenthesis, <code>)</code>, 
+    and ampersand, <code>&amp;</code>, characters are now handled properly. 
+    <A NAME="tex2html365"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3057">(Ticket #3057).</A>
+</LI>
+<LI>Removing PBS jobs that have just completed no longer causes the jobs
+    to become held. <A NAME="tex2html366"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3016">(Ticket #3016).</A>
+</LI>
+<LI>Added a work-around for a bug when submitting jobs to
+    a Condor pool running Condor versions 7.7.6 through 7.8.2.
+    A bug in <I>condor_history</I> <B>-f</B> caused an error in determining
+    a job's status.
+    <A NAME="tex2html367"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3133">(Ticket #3133).</A>
+</LI>
+<LI>Improved the handling of job files when the batch system has a shared
+    file system. <A NAME="tex2html368"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3195">(Ticket #3195).</A>
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI>Changes introduced in Condor version 7.9.0 caused jobs submitted by
+<I>condor_dagman</I> in the local universe to not write to the default node log file,
+when <TT>DAGMAN_ALWAYS_USE_NODE_LOG</TT> <A NAME="57596"></A> <A NAME="57597"></A> was <TT>True</TT> (the default),
+and a user log was also defined. This is fixed. 
+<A NAME="tex2html369"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3111">(Ticket #3111).</A>
+<P>
+</LI>
+<LI>Fixed a bug introduced in Condor version 7.9.0 that caused grid type
+cream jobs to be held with a hold reason of 
+<PRE>
+  CREAM_Delegate Error: Cannot set credentials in the gsoap-plugin context.
+</PRE><A NAME="tex2html370"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3234">(Ticket #3234).</A>
+<P>
+</LI>
+<LI>Fixed a problem that could have caused the <I>condor_collector</I> to crash
+when receiving an invalid packet.
+<A NAME="tex2html371"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3161">(Ticket #3161).</A>
+<P>
+</LI>
+</UL>
+
+<P>
+Known Bugs:
+
+<P>
+
+<UL>
+<LI>None.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Additions and Changes to the Manual:
+
+<P>
+
+<UL>
+<LI>None.
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<H2><A NAME="SECTION001147000000000000000"></A><A NAME="sec:New-7-9-0"></A>
+<BR>
+Version 7.9.0
+</H2>
+
+<P>
+Release Notes:
+
+<P>
+
+<UL>
+<LI>Condor version 7.9.0 released on August 16, 2012.
+
+<P>
+</LI>
+</UL>
+
+<P>
+New Features:
+
+<P>
+
+<UL>
+<LI>Machine slots can now be configured to identify and
+divide customized local resources.
+Jobs may then request these resources.
+See section&nbsp;<A HREF="3_5Policy_Configuration.html#sec:Configuring-SMP">3.5.10</A> for details.
+<A NAME="tex2html372"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=2905">(Ticket #2905).</A>
+<P>
+</LI>
+<LI>Condor now supports and implements the caching of ClassAds 
+to reduce memory footprints. 
+This feature is experimental and is currently disabled by default.
+It can be enabled by setting
+the new configuration variable <TT>ENABLE_CLASSAD_CACHING</TT> <A NAME="57616"></A> <A NAME="57617"></A>
+to <TT>True</TT>.
+<A NAME="tex2html373"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=2541">(Ticket #2541).</A>
+<A NAME="tex2html374"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3127">(Ticket #3127).</A>
+<P>
+</LI>
+<LI><I>condor_status</I> now returns the <I>condor_schedd</I> ClassAd directly 
+from the <I>condor_schedd</I> daemon,
+if both options <B>-direct</B> and <B>-schedd</B> are given on the command line.
+<A NAME="tex2html375"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=2492">(Ticket #2492).</A>
+<P>
+</LI>
+<LI>The new <B>-status</B> and <B>-echo</B> command line options to 
+<I>condor_wait</I> command cause it to show job start and terminate information,
+and to print events to <TT>stdout</TT>.
+<A NAME="tex2html376"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=2926">(Ticket #2926).</A>
+<P>
+</LI>
+<LI>Added a <TT>DEBUG</TT> logging level output flag <TT>D_CATEGORY</TT>,
+which causes Condor to include the logging level
+flags in effect for each line of logged output.
+<A NAME="tex2html377"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=2712">(Ticket #2712).</A>
+<P>
+</LI>
+<LI><I>condor_status</I> and <I>condor_q</I> each have a new <B>-autoformat</B> option
+to make some output format specifications easier than the existing
+<B>-format</B> option.
+See the <I>condor_status</I> manual page located on page&nbsp;<A HREF="condor_status.html#man-condor-status"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>
+and the <I>condor_q</I> manual page located on page&nbsp;<A HREF="condor_q.html#man-condor-q"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> 
+for details.
+<A NAME="tex2html378"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=2941">(Ticket #2941).</A>
+<P>
+</LI>
+<LI>Enhanced the ClassAd log system to report the log line number 
+on parse failures, 
+and improved the ability to detect parse failures closer to 
+the point of corruption.
+<A NAME="tex2html379"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=2934">(Ticket #2934).</A>
+<P>
+</LI>
+<LI>Added an <B>-evaluate</B> option to <I>condor_config_val</I>, which causes the configured value queried from
+a given daemon to be evaluated with respect to that daemon's ClassAd.
+<A NAME="tex2html380"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=856">(Ticket #856).</A>
+<P>
+</LI>
+<LI>Added code to <I>condor_dagman</I>,
+such that a <TT>VARS</TT> assignment in a top-level DAG is applied to splices.
+<A NAME="tex2html381"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=1780">(Ticket #1780).</A>
+<P>
+</LI>
+<LI>Condor now uses libraries from Globus 5.2.1.
+<A NAME="tex2html382"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=2838">(Ticket #2838).</A>
+<P>
+</LI>
+<LI>When authenticating Condor daemons with GSI and
+configuration variable <TT>GSI_DAEMON_NAME</TT> is undefined, 
+Condor checks that the server name in the certificate matches the 
+host name that the client is connecting to. 
+When <TT>GSI_DAEMON_NAME</TT> is defined,
+the old behavior is preserved: only certificates matching
+<TT>GSI_DAEMON_NAME</TT> pass the authentication step, 
+and no host name check is performed.  
+The behavior of the host name check
+may be further controlled with the new configuration variables
+<TT>GSI_SKIP_HOST_CHECK</TT> and
+<TT>GSI_SKIP_HOST_CHECK_CERT_REGEX</TT>.
+<A NAME="tex2html383"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=1605">(Ticket #1605).</A>
+<P>
+</LI>
+<LI>Added new capability to <I>condor_submit</I> to allow recursive macros in
+submit description files. 
+This facility allows one to update variables recursively. 
+Before this new capability was added,
+recursive definition would send <I>condor_submit</I> into an
+infinite loop of expanding the macro,
+such that the expansion would fill up memory.
+See section&nbsp;<A HREF="condor_submit.html#macro-in-submit-description-file">11</A> for details.
+<A NAME="tex2html384"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=406">(Ticket #406).</A>
+<P>
+</LI>
+<LI>A DAGMan limitation and restriction has been removed.  
+It is now permitted to define a <B>log</B> command using a macro,
+within a node job's submit description file.
+<A NAME="tex2html385"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=2428">(Ticket #2428).</A>
+<P>
+</LI>
+<LI>To enforce the dependencies of a DAG,
+DAGMan now uses and watches only the default node
+user log of the <I>condor_dagman</I> job for events.  
+DAGMan requests the <I>condor_schedd</I> and <I>condor_shadow</I> daemons to write each
+event to this default log, 
+in addition to writing to a log specified by the node job.
+<I>condor_dagman</I> writes POST script terminate events only to its default log;
+these terminate events are not written to the user log.
+This behavior can be turned off by setting the configuration variable
+<TT>DAGMAN_ALWAYS_USE_NODE_LOG</TT> <A NAME="57718"></A> <A NAME="57719"></A> to <TT>False</TT>.
+For correct behavior,
+<TT>DAGMAN_ALWAYS_USE_NODE_LOG</TT> should be set to <TT>False</TT>
+if <I>condor_dagman</I> version 7.9.0 or later is submitting jobs 
+to an older version of
+a <I>condor_schedd</I> daemon or of a <I>condor_submit</I> executable.
+<A NAME="tex2html386"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=2807">(Ticket #2807).</A>
+<P>
+</LI>
+<LI><I>condor_submit</I> has a new <B>-interactive</B> option for
+platforms other than Windows,
+which schedules and runs a job that provides a shell prompt
+on the execute machine.
+<A NAME="tex2html387"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3088">(Ticket #3088).</A>
+<P>
+</LI>
+</UL>
+
+<P>
+Configuration Variable and ClassAd Attribute Additions and Changes:
+
+<P>
+
+<UL>
+<LI>The new configuration variables <TT>MACHINE_RESOURCE_NAMES</TT> <A NAME="57742"></A> <A NAME="57743"></A>
+(see section&nbsp;<A HREF="3_3Configuration.html#param:MachineResourceNames">3.3.10</A>)
+and <TT>MACHINE_RESOURCE_&lt;name&gt;</TT> <A NAME="57747"></A> <A NAME="57748"></A>
+(see section&nbsp;<A HREF="3_3Configuration.html#param:MachineResourceResourcename">3.3.10</A>)
+identify and specify the use of customized local machine resources.
+<A NAME="tex2html388"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=2905">(Ticket #2905).</A>
+<P>
+</LI>
+<LI>The new configuration variable <TT>ENABLE_CLASSAD_CACHING</TT>
+controls whether the new caching feature of ClassAds is used.
+The default value is <TT>False</TT>.
+<A NAME="tex2html389"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3127">(Ticket #3127).</A>
+<P>
+</LI>
+<LI>The new configuration variable <TT>CLASSAD_LOG_STRICT_PARSING</TT> <A NAME="57760"></A> <A NAME="57761"></A>
+controls whether ClassAd log files such as the job queue
+log are read with strict parse checking on ClassAd expressions.
+<A NAME="tex2html390"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3069">(Ticket #3069).</A>
+<P>
+</LI>
+<LI>The default value for configuration variable <TT>USE_PROCD</TT> <A NAME="57768"></A> <A NAME="57769"></A>
+is now <TT>True</TT> for the <I>condor_master</I> daemon.  
+This means that by
+default the <I>condor_master</I> will start a <I>condor_procd</I> daemon to be used 
+by it and all other daemons on that machine.
+<A NAME="tex2html391"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=2911">(Ticket #2911).</A>
+<P>
+</LI>
+<LI>There is a new configuration variable used by the <I>condor_starter</I>.
+If <TT>STARTER_RLIMIT_AS</TT> <A NAME="57785"></A> <A NAME="57786"></A> is set to an integer value, 
+the <I>condor_starter</I>
+will use the <TT>setrlimit()</TT> system call with the 
+<TT>RLIMIT_AS</TT> parameter to
+limit the virtual memory size of each process in the user job.  
+The value of this configuration variable is a ClassAd expression, 
+evaluated in the context of both the machine and job ClassAds, 
+where the machine ClassAd is the <TT>my</TT> ClassAd, 
+and the job ClassAd is the <TT>target</TT> ClassAd.
+<A NAME="tex2html392"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=1663">(Ticket #1663).</A>
+<P>
+</LI>
+<LI>New configuration variables were added to to the <I>condor_schedd</I> to
+define statistics that count subsets of jobs. 
+These variables have the form <TT>SCHEDD_COLLECT_STATS_BY_&lt;Name&gt;</TT> <A NAME="57801"></A> <A NAME="57802"></A>,
+and should be defined by a ClassAd expression that evaluates to a string.
+See section&nbsp;<A HREF="3_3Configuration.html#param:ScheddCollectStatsByName">3.3.11</A>
+for the complete definition.
+The optional configuration variable of the form
+<TT>SCHEDD_EXPIRE_STATS_BY_&lt;Name&gt;</TT> <A NAME="57806"></A> <A NAME="57807"></A> can be used to set an expiration time,
+in seconds, for each set of statistics.
+<A NAME="tex2html393"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=2862">(Ticket #2862).</A>
+<P>
+</LI>
+<LI>The new <B>batch_queue</B> submit description file command
+and new job ClassAd attribute <TT>BatchQueue</TT> specify which job
+queue to use for grid universe jobs of type
+<B>pbs</B>, <B>lsf</B>, and <B>sge</B>.
+<A NAME="tex2html394"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=2996">(Ticket #2996).</A>
+<P>
+</LI>
+<LI>The new configuration variable <TT>GSI_SKIP_HOST_CHECK</TT> <A NAME="57822"></A> <A NAME="57823"></A> is
+a boolean that controls whether a check is performed during
+GSI authentication of a Condor daemon.  
+When the default value <TT>False</TT>,
+the check is not skipped, so the daemon host name must match the
+host name in the daemon's certificate, unless otherwise exempted
+by values of <TT>GSI_DAEMON_NAME</TT> or
+<TT>GSI_SKIP_HOST_CHECK_CERT_REGEX</TT>.
+When <TT>True</TT>, this check is skipped, and hosts will not be rejected
+due to a mismatch of certificate and host name.
+<A NAME="tex2html395"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=1605">(Ticket #1605).</A>
+<P>
+</LI>
+<LI>The new configuration variable
+<TT>GSI_SKIP_HOST_CHECK_CERT_REGEX</TT> may be set to a
+regular expression.  GSI certificates of Condor daemons with a
+subject name that are matched in full by this regular expression
+are not required to have a matching daemon host name and certificate
+host name.  The default is an empty regular expression, which will
+not match any certificates, even if they have an empty subject name.
+<A NAME="tex2html396"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=1605">(Ticket #1605).</A>
+<P>
+</LI>
+</UL>
+
+<P>
+Bugs Fixed:
+
+<P>
+
+<UL>
+<LI>Fixed a bug in which usage of cgroups incorrectly included the page cache 
+in the maximum memory usage.
+This bug fix is also included in Condor version 7.8.2.
+<A NAME="tex2html397"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3003">(Ticket #3003).</A>
+<P>
+</LI>
+<LI>The EC2 GAHP will now respect the value of the environment variable
+<TT>X509_CERT_DIR</TT> and the configuration variable
+<TT>GSI_DAEMON_TRUSTED_CA_DIR</TT> <A NAME="57842"></A> <A NAME="57843"></A> for <I>all</I> secure connections.
+<A NAME="tex2html398"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=2823">(Ticket #2823).</A>
+<P>
+</LI>
+<LI>Condor will avoid selecting down (disabled) network interfaces.  Previously Condor could select a down interface over an up (active) interface.
+<A NAME="tex2html399"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=2893">(Ticket #2893).</A>
+<P>
+</LI>
+<LI>Made logic in the <I>condor_negotiator</I> that computes submitter limits 
+properly aware of the configuration variable
+<TT>NEGOTIATOR_CONSIDER_PREEMPTION</TT> <A NAME="57855"></A> <A NAME="57856"></A>.
+<A NAME="tex2html400"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=2952">(Ticket #2952).</A>
+<P>
+</LI>
+<LI>Condor no longer back-dates file modification times by 3 minutes
+when transferring job input files into the job spool directory or the job
+execute directory.
+<A NAME="tex2html401"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=2423">(Ticket #2423).</A>
+<P>
+</LI>
+<LI>Fixed a bug in which the use of a pipe in the configuration file 
+on Windows platforms would cause a visible console window 
+to show up whenever the configuration was read.
+<A NAME="tex2html402"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=1534">(Ticket #1534).</A>
+<P>
+</LI>
+</UL>
+
+<P>
+Known Bugs:
+
+<P>
+
+<UL>
+<LI>None.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Additions and Changes to the Manual:
+
+<P>
+
+<UL>
+<LI>Machine ClassAd attribute string values relating to <TT>OpSys</TT> have
+been documented for Scientific Linux platforms.
+<A NAME="tex2html403"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=2366">(Ticket #2366).</A>
+<P>
+</LI>
+</UL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html2527"
+  HREF="10_5Stable_Release.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2521"
+  HREF="10_Version_History.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2515"
+  HREF="10_3Stable_Release.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2523"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2525"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2528"
+  HREF="10_5Stable_Release.html">10.5 Stable Release Series</A>
+<B> Up:</B> <A NAME="tex2html2522"
+  HREF="10_Version_History.html">10. Version History and</A>
+<B> Previous:</B> <A NAME="tex2html2516"
+  HREF="10_3Stable_Release.html">10.3 Stable Release Series</A>
+ &nbsp; <B>  <A NAME="tex2html2524"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2526"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

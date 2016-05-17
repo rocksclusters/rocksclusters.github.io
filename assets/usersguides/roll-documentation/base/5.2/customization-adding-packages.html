@@ -1,0 +1,431 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+> Adding Packages to Compute Nodes </TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Roll: Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE=" Customizing your Rocks Installation "
+HREF="customization.html"><LINK
+REL="PREVIOUS"
+TITLE=" Customizing your Rocks Installation "
+HREF="customization.html"><LINK
+REL="NEXT"
+TITLE=" Customizing Configuration of Compute Nodes "
+HREF="customization-postconfig.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Base Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="customization.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 4. Customizing your Rocks Installation</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="customization-postconfig.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="CUSTOMIZATION-ADDING-PACKAGES"
+>4.1. Adding Packages to Compute Nodes</A
+></H1
+><P
+>Put the package you want to add in:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>/export/rocks/install/contrib/5.2/<EM
+>arch</EM
+>/RPMS</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Where <EM
+>arch</EM
+> is your architecture
+("i386" or "x86_64").</P
+><P
+>Create a new XML configuration file that will <EM
+>extend</EM
+>
+the current <SAMP
+CLASS="COMPUTEROUTPUT"
+>compute.xml</SAMP
+> configuration
+file:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># cd /export/rocks/install/site-profiles/5.2/nodes
+# cp skeleton.xml extend-compute.xml</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Inside <SAMP
+CLASS="COMPUTEROUTPUT"
+>extend-compute.xml</SAMP
+>, add
+the package name by changing the section from:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>&#60;package&#62; &#60;!-- insert your package name here --&#62; &#60;/package&#62;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+> to: </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>&#60;package&#62; <EM
+>your package </EM
+> &#60;/package&#62;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+> <DIV
+CLASS="CAUTION"
+><P
+></P
+><TABLE
+CLASS="CAUTION"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/caution.png"
+HSPACE="5"
+ALT="Caution"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>It is important that you enter the <EM
+>base name</EM
+> of the 
+package in <SAMP
+CLASS="COMPUTEROUTPUT"
+>extend-compute.xml</SAMP
+> and not
+the full name.</P
+><P
+>For example, if the package you are adding is named
+<EM
+>XFree86-100dpi-fonts-4.2.0-6.47.i386.rpm</EM
+>, 
+input <EM
+>XFree86-100dpi-fonts</EM
+> as the package name in
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>extend-compute.xml</SAMP
+>.</P
+></TD
+></TR
+></TABLE
+></DIV
+> </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>&#60;package&#62;XFree86-100dpi-fonts&#60;/package&#62;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>If you have multiple packages you'd like to add, you'll need a separate
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>&#60;package&#62;</SAMP
+> tag for each.
+For example, to add both the 100 and 75 dpi fonts, 
+the following lines should be in
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>extend-compute.xml</SAMP
+>:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>&#60;package&#62;XFree86-100dpi-fonts&#60;/package&#62;
+&#60;package&#62;XFree86-75dpi-fonts&#60;/package&#62;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Also, make sure that you remove any package lines which do not have a package in them.
+For example, the file should NOT contain any lines such as:
+<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>&#60;package&#62; &#60;!-- insert your package name here --&#62; &#60;/package&#62;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><P
+>Now build a new Rocks distribution.
+This will bind the new package into a RedHat compatible distribution in
+the directory <EM
+>/export/rocks/install/rocks-dist/...</EM
+>.</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># cd /export/rocks/install
+# rocks create distro</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Now, reinstall your compute nodes.</P
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="CUSTOMIZATION-ADDING-PACKAGES-ARCH"
+>4.1.1. Adding Specific Architecture Packages to Compute Nodes</A
+></H2
+><P
+>Often on x86_64-based clusters, one wants to add the x86_64 and i386 version
+of a package to compute nodes.
+To do this, in your <SAMP
+CLASS="COMPUTEROUTPUT"
+>extend-compute.xml</SAMP
+> file,
+supply the section:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>&#60;package&#62;pkg.x86_64&#60;/package&#62;
+&#60;package&#62;pkg.i386&#60;/package&#62;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Where <EM
+>pkg</EM
+> is the basename of the package.</P
+><P
+>Now build a new Rocks distribution.</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># cd /export/rocks/install
+# rocks create distro</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Now, reinstall your compute nodes.</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="customization.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="customization-postconfig.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Customizing your Rocks Installation</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="customization.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Customizing Configuration of Compute Nodes</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,263 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Managing SGE queues</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE=" SGE Roll: Users Guide "
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Using"
+HREF="using.html"><LINK
+REL="PREVIOUS"
+TITLE="Monitoring SGE Jobs"
+HREF="monitoring-sge.html"><LINK
+REL="NEXT"
+TITLE="Rocks Copyright"
+HREF="rocks-copyright.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>SGE Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/ge_logo.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="monitoring-sge.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 3. Using</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="rocks-copyright.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="MANAGING-QUEUES"
+>3.4. Managing SGE queues</A
+></H1
+><P
+>To display a list of queues within the Rocks cluster, use <B
+CLASS="COMMAND"
+>qconf -sql</B
+>.</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>[sysadm1@frontend-0 sysadm1]$ qconf -sql
+comp-pvfs-0-0.q
+comp-pvfs-0-1.q
+comp-pvfs-0-2.q
+frontend-0.q</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>If there is a need to disable a particular queue for some reason, e.g scheduling that node for maintenance, use <B
+CLASS="COMMAND"
+>qmod -d Q</B
+> where <TT
+CLASS="LITERAL"
+>Q</TT
+> is the queue name. You will need to be a SGE manager in order to disable a queue like the <TT
+CLASS="LITERAL"
+>root</TT
+> account. You can also use wildcards to select a particular range of queues.</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>[sysadm1@frontend-0 sysadm1]$ qstat -f
+queuename            qtype used/tot. load_avg arch      states
+----------------------------------------------------------------------------
+comp-pvfs-0-0.q      BIP   0/2       0.10     glinux      
+----------------------------------------------------------------------------
+comp-pvfs-0-1.q      BIP   0/2       0.58     glinux      
+----------------------------------------------------------------------------
+comp-pvfs-0-2.q      BIP   0/2       0.02     glinux      
+----------------------------------------------------------------------------
+frontend-0.q         BIP   0/2       0.01     glinux
+[sysadm1@frontend-0 sysadm1]$ su -
+Password:
+[root@frontend-0 root]# qmod -d comp-pvfs-0-0.q
+Queue "comp-pvfs-0-0.q" has been disabled by root@frontend-0.local
+[root@frontend-0 root]# qstat -f
+queuename            qtype used/tot. load_avg arch      states
+----------------------------------------------------------------------------
+comp-pvfs-0-0.q      BIP   0/2       0.10     glinux    d  
+----------------------------------------------------------------------------
+comp-pvfs-0-1.q      BIP   0/2       0.58     glinux      
+----------------------------------------------------------------------------
+comp-pvfs-0-2.q      BIP   0/2       0.02     glinux      
+----------------------------------------------------------------------------
+frontend-0.q         BIP   0/2       0.01     glinux</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>To enable back the queue, you can use <B
+CLASS="COMMAND"
+>qmod -e Q</B
+>. Here is an example of <TT
+CLASS="LITERAL"
+>Q</TT
+> being specified as range of queues via wildcards.</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>[root@frontend-0 root]# qmod -e comp-pvfs-*
+Queue "comp-pvfs-0-0.q" has been enabled by root@frontend-0.local
+root - queue "comp-pvfs-0-1.q" is already enabled
+root - queue "comp-pvfs-0-2.q" is already enabled
+[root@frontend-0 root]# qstat -f
+queuename            qtype used/tot. load_avg arch      states
+----------------------------------------------------------------------------
+comp-pvfs-0-0.q      BIP   0/2       0.10     glinux       
+----------------------------------------------------------------------------
+comp-pvfs-0-1.q      BIP   0/2       0.58     glinux      
+----------------------------------------------------------------------------
+comp-pvfs-0-2.q      BIP   0/2       0.02     glinux      
+----------------------------------------------------------------------------
+frontend-0.q         BIP   0/2       0.01     glinux&#13;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>For more information in using SGE, please refer to the SGE documentation and the man pages.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="monitoring-sge.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="rocks-copyright.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Monitoring SGE Jobs</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="using.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Rocks Copyright</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

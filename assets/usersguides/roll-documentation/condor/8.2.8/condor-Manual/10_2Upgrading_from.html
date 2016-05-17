@@ -1,0 +1,250 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>10.2 Upgrading from the 8.0 series to the 8.2 series of HTCondor</TITLE>
+<META NAME="description" CONTENT="10.2 Upgrading from the 8.0 series to the 8.2 series of HTCondor">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="10_3Stable_Release.html">
+<LINK REL="previous" HREF="10_1Introduction_HTCondor.html">
+<LINK REL="up" HREF="10_Version_History.html">
+<LINK REL="next" HREF="10_3Stable_Release.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html2548"
+  HREF="10_3Stable_Release.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2542"
+  HREF="10_Version_History.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2536"
+  HREF="10_1Introduction_HTCondor.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2544"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2546"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2549"
+  HREF="10_3Stable_Release.html">10.3 Stable Release Series</A>
+<B> Up:</B> <A NAME="tex2html2543"
+  HREF="10_Version_History.html">10. Version History and</A>
+<B> Previous:</B> <A NAME="tex2html2537"
+  HREF="10_1Introduction_HTCondor.html">10.1 Introduction to HTCondor</A>
+ &nbsp; <B>  <A NAME="tex2html2545"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2547"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION001120000000000000000"></A><A NAME="sec:to-8.2"></A>
+<BR>
+10.2 Upgrading from the 8.0 series to the 8.2 series of HTCondor
+</H1>
+
+<P>
+<A NAME="57408"></A>
+Upgrading from the 8.0 series of HTCondor to the 8.2 series 
+will bring new features introduced in the 8.1 series of HTCondor.
+These new features include:
+configuration is more powerful with new syntax and features, and
+the default configuration policy does not preempt jobs,
+monitoring is enhanced and now integrates with Ganglia,
+automated detection and management of GPUs,
+numerous scalability enhancements improve performance,
+an improved Python API including support for Python 3,
+new native packaging and ports are available for the latest Linux 
+distributions including Red Hat 7 Beta and Debian 7,
+cloud computing improvements including support for
+EC2 spot instances, OpenStack, and <I>condor_ssh_to_job</I> 
+directly into EC2 jobs,
+grid universe jobs can now target Google Compute Engine and BOINC servers,
+partitionable slots now are compatible with <I>condor_startd</I> <TT>RANK</TT>
+expressions, and consumption policies permit partitionable slots 
+to be split into dynamic slots at negotiation time,
+improved data management including dynamic adjustment of the level of 
+file transfer concurrency based on disk load 
+(see section&nbsp;<A HREF="3_3Configuration.html#param:FileTransferDiskLoadThrottle">3.3.11</A>), 
+and experimental support to allow the execution of a job to be overlaid 
+with the transfer of output files from the previous different job,
+and
+the new <I>condor_sos</I> tool helps administrators manage overloaded daemons. 
+
+<P>
+Upgrading from the 8.0 series of HTCondor to the 8.2 series will
+also introduce changes that administrators of sites running from an older
+HTCondor version should be aware of when planning an upgrade.  
+Here is a list of items that administrators should be aware of.
+
+<P>
+
+<UL>
+<LI>New configuration syntax and features change:
+  
+<UL>
+<LI>The interaction of comments and the line continuation character
+   has changed.  See  section&nbsp;<A HREF="3_3Configuration.html#sec:Other-Syntax">3.3.1</A> for the current
+   interaction. 
+</LI>
+<LI>The use of a colon character (<code>:</code>) instead of the
+   equals sign (<code>=</code>) in assigning a value to a configuration variable
+   causes tools that parse configuration to output a warning.
+   Therefore, any custom parsing of tool output may need to be updated to
+   handle this warning.
+   Previous versions of the default configuration set variable
+   <TT>RUNBENCHMARKS</TT> using a colon character;
+   HTCondor code explicitly suppresses the warning in this case.
+  
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI>The default user priority factor for new users has changed 
+from 1 to 1000.
+Therefore, unless the accountant log is discarded,
+existing users will still have a priority factor of 1,
+while new users will have a priority factor of 1000.
+Use <I>condor_userprio</I> to change the priority factor of existing users
+if the accountant log is maintained across the upgrade. 
+<A NAME="tex2html99"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=4282">(Ticket #4282).</A>
+<P>
+</LI>
+<LI>For Windows platforms,
+HTCondor has switched to use the newer 2012 Microsoft compiler,
+which uses the Visual C++ 2012 Runtime components.
+Therefore, the HTCondor MSI installer will acquire this Runtime,
+if it is not already installed.
+
+<P>
+</LI>
+<LI>The meaning of <TT>cpus=auto</TT> when there are more 
+slots than CPUs has changed within the configuration. 
+In the <TT>SLOT_TYPE_&lt;N&gt;</TT> configuration variable,
+<TT>cpus=auto</TT> previously resulted in 1 CPU per slot. 
+Now, all slots with <TT>cpu=auto</TT> get an equal share of the CPUs, 
+rounded down.
+<A NAME="tex2html100"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=3249">(Ticket #3249).</A>
+<P>
+</LI>
+<LI>The DAGMan node status file formatting has changed.
+The format of the DAG node status file is now New ClassAds,
+and the amount of information in the file has increased.
+
+<P>
+</LI>
+<LI>Setting configuration variable
+<TT>DAGMAN_ALWAYS_USE_NODE_LOG</TT><A NAME="57469"></A><A NAME="57470"></A> to <TT>False</TT>
+or using the corresponding <B>-dont_use_default_node_log</B> option
+to <I>condor_submit_dag</I> is no longer recommended.
+Note that at strictness setting 1 (the default), setting
+<TT>DAGMAN_ALWAYS_USE_NODE_LOG</TT> to <TT>False</TT>
+will cause a fatal error. 
+If the DAG must be run with <TT>DAGMAN_ALWAYS_USE_NODE_LOG</TT> 
+set to <TT>False</TT>,
+a good way to deal with upgrading is to use DAGMan Halt files 
+to cause all of the running DAGs to drain from the queue, 
+and then do the upgrade after the DAGs have stopped.  
+After the upgrade is done, 
+edit the per-DAG configuration files to have 
+<TT>DAGMAN_ALWAYS_USE_NODE_LOG</TT> set to <TT>True</TT>,
+or set <TT>DAGMAN_USE_STRICT</TT> to 0 and 
+re-submit the DAGs, which will then run the Rescue DAGs.
+
+<P>
+</LI>
+<LI>If using <TT>ENABLE_IPV6 = True</TT>, the configuration must
+also set <TT>ENABLE_IPV4 = False</TT>.
+If both are enabled simultaneously,
+daemons will listen on both IPv4 and IPv6, 
+but will only advertise one of the two addresses.
+
+<P>
+</LI>
+<LI>Globus 5.2.2 or a more recent version is now required 
+for grid universe jobs of grid-type nordugrid and cream.
+Globus version 5.2.5 is included in this 8.2.0 release of HTCondor.
+HTCondor will prefer to use libraries already installed in <TT>/usr/lib[64]</TT>,
+when present.
+<A NAME="tex2html101"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=4243">(Ticket #4243).</A>
+<P>
+</LI>
+<LI>If referencing attribute <TT>SubmittorUserPrio</TT> in
+configuration, such as in the <TT>PREEMPTION_REQUIREMENTS</TT> expression,
+you will need to change it to <TT>SubmitterUserPrio</TT> 
+Note the spelling difference in the ClassAd attribute name.
+<A NAME="tex2html102"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=4369">(Ticket #4369).</A>
+<P>
+</LI>
+<LI>HTCondor can not distinguish normal from abnormal job exit
+for Nordugrid ARC grids.
+Therefore, all grid-type nordugrid jobs will be recorded as 
+terminating normally, with an exit code from 0 to 255.
+<A NAME="tex2html103"
+  HREF="https://condor-wiki.cs.wisc.edu/index.cgi/tktview?tn=4342">(Ticket #4342).</A>
+<P>
+</LI>
+<LI>For configuration, parameter substitution now honors per-daemon 
+overrides.  This long standing bug's fix may result in subtle changes
+to the way that your configuration files are processed.
+
+<P>
+</LI>
+</UL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html2548"
+  HREF="10_3Stable_Release.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2542"
+  HREF="10_Version_History.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2536"
+  HREF="10_1Introduction_HTCondor.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2544"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2546"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2549"
+  HREF="10_3Stable_Release.html">10.3 Stable Release Series</A>
+<B> Up:</B> <A NAME="tex2html2543"
+  HREF="10_Version_History.html">10. Version History and</A>
+<B> Previous:</B> <A NAME="tex2html2537"
+  HREF="10_1Introduction_HTCondor.html">10.1 Introduction to HTCondor</A>
+ &nbsp; <B>  <A NAME="tex2html2545"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2547"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

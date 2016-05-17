@@ -1,0 +1,1078 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>report</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Roll: Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Command Reference"
+HREF="c1640.html"><LINK
+REL="PREVIOUS"
+TITLE="remove"
+HREF="x4814.html"><LINK
+REL="NEXT"
+TITLE="run"
+HREF="x6097.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Base Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x4814.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 8. Command Reference</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x6097.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="AEN5808"
+>8.13. report</A
+></H1
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REPORT-BUG"
+>8.13.1. report bug</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks report bug</B
+> </P
+><P
+>&#13;        Report info about the system to help debug issues.
+        
+        </P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks report bug</DT
+><DD
+><P
+>                
+        Report system info.
+        
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REPORT-DBHOST"
+>8.13.2. report dbhost</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks report dbhost</B
+> </P
+><P
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REPORT-DISTRO"
+>8.13.3. report distro</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks report distro</B
+> </P
+><P
+>&#13;	Output the path prefix for the location of the Rocks distribution.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks report distro</DT
+><DD
+><P
+>&#13;	Output the current path prefix to the distribution.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REPORT-HOST"
+>8.13.4. report host</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks report host</B
+> </P
+><P
+>&#13;	Report the host to IP address mapping in the form suitable for
+	/etc/hosts.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks report host</DT
+><DD
+><P
+>&#13;	Outputs data for /etc/hosts.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REPORT-HOST-ATTR"
+>8.13.5. report host attr</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks report host attr</B
+>  [host]</P
+><P
+>&#13;	Report the set of attributes for hosts.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>host</SPAN
+>]</DT
+><DD
+><P
+>&#13;	Host name of machine
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks report host attr compute-0-0</DT
+><DD
+><P
+>&#13;	Report the attributes for compute-0-0.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REPORT-HOST-BOOTFLAGS"
+>8.13.6. report host bootflags</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks report host bootflags</B
+>  [host...]</P
+><P
+>&#13;	Output the kernel boot flags for a specific host
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>host</SPAN
+>]</DT
+><DD
+><P
+>&#13;	Zero, one or more host names. If no host names are supplied, info about
+	all the known hosts is listed.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks report host bootflags compute-0-0</DT
+><DD
+><P
+>&#13;	Output the kernel boot flags for compute-0-0.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REPORT-HOST-DHCPD"
+>8.13.7. report host dhcpd</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks report host dhcpd</B
+>  {host}</P
+><P
+>&#13;	Output the DHCP server configuration file for a specific host.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	Create a DHCP server configuration for the machine named 'host'. If
+	no host name is supplied, then generate a DHCP configuration file
+	for this host.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks report host dhcpd frontend-0-0</DT
+><DD
+><P
+>&#13;	Output the DHCP server configuration file for frontend-0-0.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REPORT-HOST-FIREWALL"
+>8.13.8. report host firewall</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks report host firewall</B
+>  {host}</P
+><P
+>&#13;	Create a report that outputs the firewall rules for a host.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	Host name of machine
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks report host firewall compute-0-0</DT
+><DD
+><P
+>&#13;	Create a report of the firewall rules for compute-0-0.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REPORT-HOST-INTERFACE"
+>8.13.9. report host interface</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks report host interface</B
+>  {host} [iface=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Output the network configuration file for a host's interface.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	One host name.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>iface=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Output a configuration file for this host's interface (e.g. 'eth0').
+	If no 'iface' parameter is supplied, then configuration files
+	for every interface defined for the host will be output (and each
+	file will be delineated by &#60;file&#62; and &#60;/file&#62; tags).
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks report host interface compute-0-0 iface=eth0</DT
+><DD
+><P
+>&#13;	Output a network configuration file for compute-0-0's eth0 interface.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REPORT-HOST-NETWORK"
+>8.13.10. report host network</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks report host network</B
+>  {host}</P
+><P
+>&#13;	Outputs the network configuration file for a host (on RHEL-based
+	machines, this is the contents of the file /etc/sysconfig/network).
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	One host name.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks report host network compute-0-0</DT
+><DD
+><P
+>&#13;	Output the network configuration for compute-0-0.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REPORT-HOST-ROLL"
+>8.13.11. report host roll</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks report host roll</B
+>  [host]</P
+><P
+>&#13;	Create a report in XML format for a set of rolls that should be
+	applied to a frontend's configuration.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>host</SPAN
+>]</DT
+><DD
+><P
+>&#13;	Host name of machine
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks report host roll frontend-0-0-0</DT
+><DD
+><P
+>&#13;	Report the rolls assigned to frontend-0-0-0.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REPORT-HOST-ROUTE"
+>8.13.12. report host route</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks report host route</B
+>  {host}</P
+><P
+>&#13;	Create a report that contains the static routes for a host.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	Host name of machine
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks report host route compute-0-0</DT
+><DD
+><P
+>&#13;	Create a report of the static routes assigned to compute-0-0.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REPORT-NAMED"
+>8.13.13. report named</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks report named</B
+> </P
+><P
+>&#13;	Prints the nameserver daemon configuration file
+	for the system.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks report named</DT
+><DD
+><P
+>&#13;	Outputs /etc/named.conf
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REPORT-RESOLV"
+>8.13.14. report resolv</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks report resolv</B
+> </P
+><P
+>&#13;	Report for /etc/resolv.conf for public side nodes.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks report resolv</DT
+><DD
+><P
+>&#13;	Outputs data for /etc/resolv.conf for the frontend.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REPORT-RESOLV-PRIVATE"
+>8.13.15. report resolv private</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks report resolv private</B
+> </P
+><P
+>&#13;	Report for /etc/resolv.conf for private side nodes.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks report resolv private</DT
+><DD
+><P
+>&#13;	Outputs data for /etc/resolv.conf for compute nodes.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REPORT-SCRIPT"
+>8.13.16. report script</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks report script</B
+>  [arch=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [attrs=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [os=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Take STDIN XML input and create a shell script that can be executed
+	on a host.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>arch=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The architecture type.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>attrs=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Attributes to be used while building the output shell script.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>os=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The OS type.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks report host interface compute-0-0 | rocks report script</DT
+><DD
+><P
+>&#13;	Take the network interface XML output from 'rocks report host interface'
+	and create a shell script.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REPORT-TENTAKEL"
+>8.13.17. report tentakel</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks report tentakel</B
+> </P
+><P
+>&#13;        Create a report that can be used to configure tentakel.
+        
+        </P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks report tentakel</DT
+><DD
+><P
+>                
+        Create a tentakel configuration file.
+        
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REPORT-VERSION"
+>8.13.18. report version</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks report version</B
+> </P
+><P
+>&#13;	Output the version of Rocks.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks report version</DT
+><DD
+><P
+>&#13;	Output the current Rocks version.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x4814.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x6097.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>remove</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="c1640.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>run</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

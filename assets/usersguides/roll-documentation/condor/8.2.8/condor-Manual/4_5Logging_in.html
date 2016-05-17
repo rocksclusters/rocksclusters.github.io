@@ -1,0 +1,414 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>4.5 Logging in HTCondor</TITLE>
+<META NAME="description" CONTENT="4.5 Logging in HTCondor">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="previous" HREF="4_4Hooks.html">
+<LINK REL="up" HREF="4_Miscellaneous_Concepts.html">
+<LINK REL="next" HREF="5_Grid_Computing.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html1946"
+  HREF="5_Grid_Computing.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1940"
+  HREF="4_Miscellaneous_Concepts.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1936"
+  HREF="4_4Hooks.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1942"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1944"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1947"
+  HREF="5_Grid_Computing.html">5. Grid Computing</A>
+<B> Up:</B> <A NAME="tex2html1941"
+  HREF="4_Miscellaneous_Concepts.html">4. Miscellaneous Concepts</A>
+<B> Previous:</B> <A NAME="tex2html1937"
+  HREF="4_4Hooks.html">4.4 Hooks</A>
+ &nbsp; <B>  <A NAME="tex2html1943"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1945"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html1948"
+  HREF="4_5Logging_in.html#SECTION00551000000000000000">4.5.1 Job and Daemon Logs</A>
+<LI><A NAME="tex2html1949"
+  HREF="4_5Logging_in.html#SECTION00552000000000000000">4.5.2 DAGMan Logs</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00550000000000000000"></A><A NAME="sec:logging"></A>
+<A NAME="46739"></A>
+<BR>
+4.5 Logging in HTCondor
+</H1>
+HTCondor records many types of information in a variety of logs.
+Administration may require locating and using the
+contents of a log to debug issues.
+Listed here are details of the logs, to aid in identification.
+
+<P>
+
+<H2><A NAME="SECTION00551000000000000000"></A><A NAME="sec:job-systemlogs"></A>
+<BR>
+4.5.1 Job and Daemon Logs
+</H2>
+<DL>
+<DT><STRONG>job event log</STRONG></DT>
+<DD>The job event log is an optional, chronological list of events that occur
+  as a job runs.
+  The job event log is written on the submit machine.
+  The submit description file for the job requests a job event log with
+  the submit command <B>log</B><A NAME="46834"></A>.
+  The log is created and remains on the submit machine.
+  Contents of the log are detailed in section&nbsp;<A HREF="2_6Managing_Job.html#sec:job-log-events">2.6.7</A>.
+  Examples of events are that the job is running,
+  that the job  is placed on hold, or that the job completed.
+</DD>
+<DT><STRONG>daemon logs</STRONG></DT>
+<DD>Each daemon configured to have a log writes events relevant to that daemon.
+  Each event written consists of a timestamp and message.
+  The name of the log file is set by the value of configuration variable
+  <TT>&lt;SUBSYS&gt;_LOG</TT><A NAME="46836"></A><A NAME="46837"></A>, where <TT>&lt;SUBSYS&gt;</TT> is replaced by the name
+  of the daemon.
+  The log is not permitted to grow without bound;
+  log rotation takes place after a configurable maximum size or length of time
+  is encountered.
+  This maximum is specified by configuration variable 
+  <TT>MAX_&lt;SUBSYS&gt;_LOG</TT><A NAME="46842"></A><A NAME="46843"></A>.
+
+<P>
+Which events are logged for a particular daemon are determined by 
+  the value of configuration variable <TT>&lt;SUBSYS&gt;_DEBUG</TT><A NAME="46847"></A><A NAME="46848"></A>.
+  The possible values for <TT>&lt;SUBSYS&gt;_DEBUG</TT> categorize events,
+  such that it is possible to control the level and quantity of events
+  written to the daemon's log.
+
+<P>
+Configuration variables that affect daemon logs are 
+  <DL>
+<DT><STRONG><TT>MAX_NUM_&lt;SUBSYS&gt;_LOG</TT><A NAME="46853"></A><A NAME="46854"></A></STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG><TT>TRUNC_&lt;SUBSYS&gt;_LOG_ON_OPEN</TT><A NAME="46858"></A><A NAME="46859"></A></STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG><TT>&lt;SUBSYS&gt;_LOG_KEEP_OPEN</TT><A NAME="46863"></A><A NAME="46864"></A></STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG><TT>&lt;SUBSYS&gt;_LOCK</TT><A NAME="46868"></A><A NAME="46869"></A></STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG><TT>FILE_LOCK_VIA_MUTEX</TT><A NAME="46873"></A><A NAME="46874"></A></STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG><TT>TOUCH_LOG_INTERVAL</TT><A NAME="46878"></A><A NAME="46879"></A></STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG><TT>LOGS_USE_TIMESTAMP</TT><A NAME="46883"></A><A NAME="46884"></A></STRONG></DT>
+<DD>
+</DD>
+</DL>
+
+<P>
+Daemon logs are often investigated to accomplish administrative debugging.
+  <I>condor_config_val</I> can be used to determine the location and file name
+  of the daemon log.
+  For example, to display the location of the log for the <I>condor_collector</I> 
+  daemon, use
+<PRE>
+  condor_config_val COLLECTOR_LOG
+</PRE>
+
+<P>
+</DD>
+<DT><STRONG>job queue log</STRONG></DT>
+<DD>The job queue log is a transactional representation of the current job queue. 
+  If the <I>condor_schedd</I> crashes, the job queue can be rebuilt using
+  this log.
+  The file name is set by configuration variable <TT>JOB_QUEUE_LOG</TT><A NAME="46894"></A><A NAME="46895"></A>,
+  and defaults to <TT>$(SPOOL)/job_queue.log</TT>.
+
+<P>
+Within the log,
+  each transaction is identified with an integer value and followed where
+  appropriate with other values relevant to the transaction.
+  To reduce the size of the log and remove any transactions that are 
+  no longer relevant,
+  a copy of the log is kept
+  by renaming the log at each time interval defined by configuration variable
+  <TT>QUEUE_CLEAN_INTERVAL</TT>, 
+  and then a new log is written with only current and relevant transactions. 
+
+<P>
+Configuration variables that affect the job queue log are 
+  <DL>
+<DT><STRONG><TT>SCHEDD_BACKUP_SPOOL</TT><A NAME="46901"></A><A NAME="46902"></A></STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG><TT>ROTATE_HISTORY_DAILY</TT><A NAME="46906"></A><A NAME="46907"></A></STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG><TT>ROTATE_HISTORY_MONTHLY</TT><A NAME="46911"></A><A NAME="46912"></A></STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG><TT>QUEUE_CLEAN_INTERVAL</TT><A NAME="46916"></A><A NAME="46917"></A></STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG><TT>MAX_JOB_QUEUE_LOG_ROTATIONS</TT><A NAME="46921"></A><A NAME="46922"></A></STRONG></DT>
+<DD>
+</DD>
+</DL>
+
+<P>
+</DD>
+<DT><STRONG><I>condor_schedd</I> audit log</STRONG></DT>
+<DD>The optional <I>condor_schedd</I> audit log records user-initiated events
+  that modify the job queue, such as invocations of <I>condor_submit</I>,
+  <I>condor_rm</I>, <I>condor_hold</I> and <I>condor_release</I>.
+  Each event has a time stamp and a message that describes details of
+  the event.
+
+<P>
+This log exists to help administrators track the activities of pool users.
+
+<P>
+The file name is set by configuration variable <TT>SCHEDD_AUDIT_LOG</TT><A NAME="46938"></A><A NAME="46939"></A>.
+
+<P>
+Configuration variables that affect the audit log are 
+  <DL>
+<DT><STRONG><TT>MAX_SCHEDD_AUDIT_LOG</TT><A NAME="46943"></A><A NAME="46944"></A></STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG><TT>MAX_NUM_SCHEDD_AUDIT_LOG</TT><A NAME="46948"></A><A NAME="46949"></A></STRONG></DT>
+<DD>
+</DD>
+</DL>
+
+<P>
+</DD>
+<DT><STRONG>event log</STRONG></DT>
+<DD>The event log is an optional, chronological list of events that occur
+  for all jobs and all users.
+  The events logged are the same as those that would go into a job event
+  log.
+  The file name is set by configuration variable <TT>EVENT_LOG</TT><A NAME="46953"></A><A NAME="46954"></A>.
+  The log is created only if this configuration variable is set.
+
+<P>
+Configuration variables that affect the event log, 
+  setting details such as
+  the maximum size to which this log may grow and details of file rotation
+  and locking are
+  <DL>
+<DT><STRONG><TT>EVENT_LOG_MAX_SIZE</TT><A NAME="46958"></A><A NAME="46959"></A></STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG><TT>EVENT_LOG_MAX_ROTATIONS</TT><A NAME="46963"></A><A NAME="46964"></A></STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG><TT>EVENT_LOG_LOCKING</TT><A NAME="46968"></A><A NAME="46969"></A></STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG><TT>EVENT_LOG_FSYNC</TT><A NAME="46973"></A><A NAME="46974"></A></STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG><TT>EVENT_LOG_ROTATION_LOCK</TT><A NAME="46978"></A><A NAME="46979"></A></STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG><TT>EVENT_LOG_JOB_AD_INFORMATION_ATTRS</TT><A NAME="46983"></A><A NAME="46984"></A></STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG><TT>EVENT_LOG_USE_XML</TT><A NAME="46988"></A><A NAME="46989"></A></STRONG></DT>
+<DD>
+</DD>
+</DL>
+
+<P>
+</DD>
+<DT><STRONG>accountant log</STRONG></DT>
+<DD>The accountant log is a transactional representation of the 
+  <I>condor_negotiator</I> daemon's database of accounting information,
+  which are user priorities.
+  The file name of the accountant log is <TT>$(SPOOL)/Accountantnew.log</TT>.
+  Within the log, users are identified by  <code>username@uid_domain</code>. 
+
+<P>
+To reduce the size and remove information that is no longer relevant,
+  a copy of the log is made when its size hits the number of bytes
+  defined by configuration variable <TT>MAX_ACCOUNTANT_DATABASE_SIZE</TT>,
+  and then a new log is written in a more compact form. 
+
+<P>
+Administrators can change user priorities kept in this log by using
+  the command line tool <I>condor_userprio</I>.
+
+<P>
+</DD>
+<DT><STRONG>negotiator match log</STRONG></DT>
+<DD>The negotiator match log is a second daemon log from the <I>condor_negotiator</I>
+  daemon. 
+  Events written to this log are those with debug level of <TT>D_MATCH</TT>.
+  The file name is set by configuration variable 
+  <TT>NEGOTIATOR_MATCH_LOG</TT><A NAME="47002"></A><A NAME="47003"></A>,
+  and defaults to <TT>$(LOG)/MatchLog</TT>.
+
+<P>
+</DD>
+<DT><STRONG>history log</STRONG></DT>
+<DD>This optional log contains information about all jobs that have been
+  completed.
+  It is written by the <I>condor_schedd</I> daemon.
+  The file name is <TT>$(SPOOL)/history</TT>.
+
+<P>
+Administrators can change view this historical information by using
+  the command line tool <I>condor_history</I>.
+
+<P>
+Configuration variables that affect the history log, 
+  setting details such as
+  the maximum size to which this log may grow are
+  <DL>
+<DT><STRONG><TT>ENABLE_HISTORY_ROTATION</TT><A NAME="47013"></A><A NAME="47014"></A></STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG><TT>MAX_HISTORY_LOG</TT><A NAME="47018"></A><A NAME="47019"></A></STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG><TT>MAX_HISTORY_ROTATIONS</TT><A NAME="47023"></A><A NAME="47024"></A></STRONG></DT>
+<DD>
+</DD>
+</DL>
+
+<P>
+</DD>
+</DL>
+
+<P>
+
+<H2><A NAME="SECTION00552000000000000000"></A><A NAME="sec:DAGMan-logs"></A>
+<BR>
+4.5.2 DAGMan Logs
+</H2>
+<DL>
+<DT><STRONG>default node log</STRONG></DT>
+<DD>A job event log of all node jobs within a single DAG.
+  It is used to enforce the dependencies of the DAG.
+
+<P>
+The file name is set by configuration variable 
+  <TT>DAGMAN_DEFAULT_NODE_LOG</TT><A NAME="47028"></A><A NAME="47029"></A>, 
+  and the full path name of this file must be unique while any and 
+  all submitted DAGs  and other jobs from the submit host run.
+  The syntax used in the definition of this configuration variable is
+  different to enable the setting of a unique file name.
+  See section&nbsp;<A HREF="3_3Configuration.html#param:DAGManDefaultNodeLog">3.3.25</A> for the complete definition.
+
+<P>
+Configuration variables that affect this log are
+  <DL>
+<DT><STRONG><TT>DAGMAN_ALWAYS_USE_NODE_LOG</TT><A NAME="47033"></A><A NAME="47034"></A></STRONG></DT>
+<DD>
+</DD>
+</DL>
+
+<P>
+</DD>
+<DT><STRONG>the <TT>.dagman.out</TT> file</STRONG></DT>
+<DD>A log created or appended to for each DAG submitted with timestamped
+  events and extra information about the configuration applied to the DAG.
+  The name of this log is formed by appending <TT>.dagman.out</TT> to
+  the name of the DAG input file.  The file remains after the DAG completes.
+
+<P>
+This log may be helpful in debugging what has happened in the execution
+  of a DAG, as well as help to determine the final state of the DAG.
+
+<P>
+Configuration variables that affect this log are
+  <DL>
+<DT><STRONG><TT>DAGMAN_VERBOSITY</TT><A NAME="47040"></A><A NAME="47041"></A></STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG><TT>DAGMAN_PENDING_REPORT_INTERVAL</TT><A NAME="47045"></A><A NAME="47046"></A></STRONG></DT>
+<DD>
+</DD>
+</DL>
+
+<P>
+</DD>
+<DT><STRONG>the <TT>jobstate.log</TT> file</STRONG></DT>
+<DD>This optional, machine-readable log enables automated monitoring of DAG.
+  Section&nbsp;<A HREF="2_10DAGMan_Applications.html#sec:DAGJobstateLog">2.10.13</A> details this log.
+
+<P>
+</DD>
+</DL>
+
+<P>
+<A NAME="46827"></A>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1946"
+  HREF="5_Grid_Computing.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1940"
+  HREF="4_Miscellaneous_Concepts.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1936"
+  HREF="4_4Hooks.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1942"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1944"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1947"
+  HREF="5_Grid_Computing.html">5. Grid Computing</A>
+<B> Up:</B> <A NAME="tex2html1941"
+  HREF="4_Miscellaneous_Concepts.html">4. Miscellaneous Concepts</A>
+<B> Previous:</B> <A NAME="tex2html1937"
+  HREF="4_4Hooks.html">4.4 Hooks</A>
+ &nbsp; <B>  <A NAME="tex2html1943"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1945"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

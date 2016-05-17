@@ -1,0 +1,231 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+> Changing the Storage Partition Used by a PVFS2 Storage Server </TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE=" PVFS2 Roll: Users Guide "
+HREF="index.html"><LINK
+REL="UP"
+TITLE=" Customizing your PVFS2 Installation "
+HREF="customizing.html"><LINK
+REL="PREVIOUS"
+TITLE=" Changing the PVFS2 Mountpoint "
+HREF="customizing-mountpoint.html"><LINK
+REL="NEXT"
+TITLE="Command Reference"
+HREF="c266.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>PVFS2 Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/roll.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="customizing-mountpoint.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 4. Customizing your PVFS2 Installation</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="c266.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="CUSTOMIZING-PARTITIONS"
+>4.2. Changing the Storage Partition Used by a PVFS2 Storage Server</A
+></H1
+><P
+>The default partition used by PVFS2 storage servers (PVFS2 I/O Nodes and
+the PVFS2 Metadata Server) is 
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>/state/partition1</SAMP
+>.
+To change it, you'll need to run Rocks command line programs.</P
+><P
+>To check which partition a node is using, run the command:</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks list host pvfs partition pvfs2-io-0-0</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><P
+>This will produce output like:</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>PVFS PARTITION   
+/state/partition1</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><P
+>To change the partition to 
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>/mydata</SAMP
+>, execute the command:</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks set host pvfs partition pvfs2-io-0-0 part=/mydata</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><P
+>After you modify the PVFS2 partition info for a storage node, 
+you must apply the change to the cluster -- see the
+section <A
+HREF="configuring-finish.html"
+>Applying the Configuration</A
+> for details.</P
+><P
+>At this time, only one partition per storage node is supported.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="customizing-mountpoint.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="c266.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Changing the PVFS2 Mountpoint</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="customizing.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Command Reference</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

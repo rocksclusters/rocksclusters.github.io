@@ -1,0 +1,549 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Advanced Configuration</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE=" Kvm Users Guide "
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Using the KVM Roll"
+HREF="using.html"><LINK
+REL="PREVIOUS"
+TITLE="KVM Networking (Advanced)"
+HREF="network.html"><LINK
+REL="NEXT"
+TITLE="Tutorial on Advanced Configuration"
+HREF="tutorial.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Kvm</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/kvmbanner.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="network.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 3. Using the KVM Roll</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="tutorial.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="CONFIG"
+>3.7. Advanced Configuration</A
+></H1
+><P
+>In this section we present several enhancements introduced with Rocks 6.2
+which allow greater control of the virtualization functionalities.</P
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN411"
+>3.7.1. Startup and Shutdown Plugins</A
+></H2
+><P
+>The KVM roll allows users to define custom plugins which are invoked at each 
+VM startup and shutdown. The plugins can be used to re-allocate the VM on 
+a different physical container or to mount and unmount a storage system for 
+the VM images, or to change some hardware feature of the VM before it is 
+booted.</P
+><P
+>There are two different startup plugins which are triggered in different stages
+of the startup process.  They both reside in
+<TT
+CLASS="FILENAME"
+>/opt/rocks/lib/python2.6/site-packages/rocks/commands/start/host/vm</TT
+>
+and they must be called as indicated below.</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+><CODE
+CLASS="VARNAME"
+>plugin_allocate.py</CODE
+></DT
+><DD
+><P
+>	This script is invoked before the virtual machine is started and
+	at this stage it is still possible to make modifications to the Rocks database.
+	This means that it is still possible to modify the physical container of the 
+	virtual machine or its networking configuration.
+	</P
+></DD
+><DT
+><CODE
+CLASS="VARNAME"
+>plugin_preboot.py</CODE
+></DT
+><DD
+><P
+>	This script is invoked before the virtual machine is started but 
+	at this stage it is not possible to make modifications to the Rocks 
+	database. The virtual machine can not be relocated anymore to a different 
+	VM container. If this script returns a string it will be used as the libvirt 
+	XML startup. This means that it is still possible to make temporary changes 
+	to the hardware of the virtual machine.
+	</P
+></DD
+></DL
+></DIV
+><P
+>There is one shutdown plugin which should be placed in:
+<TT
+CLASS="FILENAME"
+>/opt/rocks/lib/python2.6/site-packages/rocks/commands/stop/host/vm</TT
+>
+The shutdown plugin must be called as indicated below.</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+><CODE
+CLASS="VARNAME"
+>plugin_disallocate.py</CODE
+></DT
+><DD
+><P
+>	This script is invoked after the virtual machine is shutdown and it should
+	release the resources allocated by the two previous scripts.
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN435"
+>3.7.2. Fine tuning of virtual hardware</A
+></H2
+><P
+>Several attributes can be used to customize the virtual hardware of the VM. </P
+><DIV
+CLASS="WARNING"
+><P
+></P
+><TABLE
+CLASS="WARNING"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/warning.png"
+HSPACE="5"
+ALT="Warning"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>Since attribute values will be used inside an XML file during the kickstart
+generation they need to be properly escaped following XML escaping rules 
+(only the characters  &#62;, &#60; and &#38; will be escaped).
+For this reason the attribute value might appear different when running 
+<B
+CLASS="COMMAND"
+>rocks list host attr</B
+>.</P
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="AEN441"
+>3.7.2.1. Defining Virtual CPU Types</A
+></H3
+><P
+>Using the attribute <TT
+CLASS="FILENAME"
+>cpu_mode</TT
+> it is now possible
+to configure a guest CPU to be as close to host CPU as possible. 
+The attribute value can have two values (which are taken from 
+<A
+HREF="http://libvirt.org/formatdomain.html#elementsCPU"
+TARGET="_top"
+>Libvirt Documentation</A
+>):</P
+><P
+></P
+><UL
+><LI
+><P
+>host-model: The host-model mode is essentially a shortcut to copying host CPU definition from 
+capabilities XML into domain XML. Since the CPU definition is copied just before starting a 
+domain, exactly the same XML can be used on different hosts while still providing the best 
+guest CPU each host supports. Use this mode if you need to migrate virtual machine.</P
+></LI
+><LI
+><P
+>host-passthrough: With this mode, the CPU visible to the guest should be exactly the same 
+as the host CPU even in the aspects that libvirt does not understand. Though the downside 
+of this mode is that the guest environment cannot be reproduced on different hardware.
+This is the default mode, if you don't need migration capabilities but just speed use this 
+mode.</P
+></LI
+></UL
+><P
+>The attribute <TT
+CLASS="FILENAME"
+>cpu_mode</TT
+> can also be used to specify a specific topology 
+or model type for the cpu.
+If the value of <TT
+CLASS="FILENAME"
+>cpu_mode</TT
+> attribute has a colon then the second part of the value
+(the one after the colon) will be used as a string to be inserted between the cpu tag.
+To better understand what tags can be used inside the cpu tag see the
+<A
+HREF="http://libvirt.org/formatdomain.html#elementsCPU"
+TARGET="_top"
+>Libvirt Documentation</A
+>.
+So for example if the <TT
+CLASS="FILENAME"
+>cpu_mode</TT
+> attribute value is: </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>exact: &#60;model fallback='allow'&#62;core2duo&#60;/model&#62;&#60;vendor&#62;Intel&#60;/vendor&#62;&#60;topology sockets='1' cores='2'/&#62;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Then the xml used for libvirt will be:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>&#60;cpu mode='exact'&#62;
+  &#60;model fallback='allow'&#62;core2duo&#60;/model&#62;&#60;vendor&#62;Intel&#60;/vendor&#62;&#60;topology sockets='1' cores='2'/&#62;
+&#60;/cpu&#62;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="AEN459"
+>3.7.2.2. Pinning CPUs</A
+></H3
+><P
+>Using the attribute <TT
+CLASS="FILENAME"
+>kvm_cpu_pinning</TT
+> it is 
+now possible to pin virtual CPUs to the physical CPUs.
+If the value of the attribute is <TT
+CLASS="FILENAME"
+>pin_all</TT
+>
+each virtual cpu will be automatically pinned to the corresponding 
+physical CPUs. This mode is good only if you have 1 VM for each 
+physical machine, since the pinning will always start from physical 
+core 0. 
+Every other value used in this attribute will be dumped in the final 
+libvirt xml as a child of the &#60;domain&#62; root tag.</P
+><P
+>For example the following command will pin virtual CPU 0 to physical CPU
+4, virtual CPU 1 to physical CPU 5, virtual CPU 2 to physical CPU 6 and 
+virtual CPU 3 to physical CPU 7 on VM called hosted-vm-0-2-0.</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>rocks set host attr hosted-vm-0-2-0 kvm_cpu_pinning value='&#60;cputune&#62;\
+    &#60;vcpupin vcpu="0" cpuset="4"/&#62;\
+    &#60;vcpupin vcpu="1" cpuset="5"/&#62;\
+    &#60;vcpupin vcpu="2" cpuset="6"/&#62;\
+    &#60;vcpupin vcpu="3" cpuset="7"/&#62;\
+  &#60;/cputune&#62;'</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="AEN466"
+>3.7.2.3. Defining Hardware Devices</A
+></H3
+><P
+>Using the attributes called <TT
+CLASS="FILENAME"
+>kvm_device_%d</TT
+> 
+where the %d can be an integer going from 0 up, it is possible 
+to add &#62;devices&#60; lines to a VM to fine tune the hardware 
+devices which will be presented to the VM (for more info on 
+the syntax which can be used please refer to the 
+<A
+HREF="http://libvirt.org/formatdomain.html#elementsDevices"
+TARGET="_top"
+>Libvirt Documentation</A
+>)</P
+><P
+>For example the following command will assign the PCI slot 2 bus 6 and function 0 
+to the VM hosted-vm-0-2-0.</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>rocks set host attr hosted-vm-0-2-0 kvm_device_0 value='&#60;hostdev mode='subsystem' type='pci' managed='yes'&#62;\
+  &#60;source&#62;\
+    &#60;address bus='0x06' slot='0x02' function='0x0'/&#62;\
+  &#60;/source&#62;\
+&#60;/hostdev&#62;'</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="AEN473"
+>3.7.2.4. Mounting CDROM</A
+></H3
+><P
+>Using the command <B
+CLASS="COMMAND"
+>rocks set host vm cdrom</B
+>
+it is now possible attach CDROM to VM. The path specified 
+in the cdrom attribute must exist on the physical container 
+of the Virtual Machine.
+When a CDROM is attached the boot order of the machine is 
+changed so that the CDROM will be first then it will try 
+the network and then the hard disk.
+After the CDROM path has been changed with 
+<B
+CLASS="COMMAND"
+>rocks set host vm cdrom</B
+>
+the virtual machine has to be powered off and restarted 
+with <B
+CLASS="COMMAND"
+>rocks start host vm</B
+> in order to make effective 
+the changes.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="AEN479"
+>3.7.2.5. Host Autorestart</A
+></H3
+><P
+>If a virtual machine has the attribute 
+<TT
+CLASS="FILENAME"
+>kvm_autostart</TT
+> defined with a value equal to true
+it will be automatically restart if the physical container is rebooted.
+
+If the physical container is properly shut down the Virtual Machine will 
+be paused and saved to disk, and when the physical container restarts
+the VM will be properly restored automatically.
+
+If the physical container is unplugged from the power (hard shutdown)
+the virtual machine will crash like the physical container and it will 
+be automatically restarted through a normal boot when the physical 
+container is restarted.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="KVM_ATTR"
+>3.7.2.6. Running VM on different appliances</A
+></H3
+><P
+>Starting with Rocks 6.2 it is possible to run virtual machine on every type
+of node, for example you can have compute nodes which runs virtual machines.
+VM Containers are automatically enabled but if the user wants to enable a generic
+node to run virtual machines it must set the attribute <TT
+CLASS="FILENAME"
+>kvm</TT
+> equal to 
+true, and then re-install the node. After the re-installation the node will be able to host
+virtual machines.</P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="network.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="tutorial.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>KVM Networking (Advanced)</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="using.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Tutorial on Advanced Configuration</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

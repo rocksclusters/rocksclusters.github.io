@@ -1,0 +1,345 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Installation Log Files</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Roll Developer's Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE=" Testing Your Roll "
+HREF="testing.html"><LINK
+REL="PREVIOUS"
+TITLE=" Post Installation Script Debugging"
+HREF="testing-post.html"><LINK
+REL="NEXT"
+TITLE="XML File Syntax"
+HREF="appendix-b.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Roll Developer's Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/developer.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="testing-post.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 4. Testing Your Roll</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="appendix-b.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="TESTING-LOG"
+>4.2. Installation Log Files</A
+></H1
+><P
+>After a node installs, there are several log files you can examine to 
+help you debug installation errors:</P
+><P
+></P
+><UL
+><LI
+><P
+>	<CODE
+CLASS="CONSTANT"
+>/root/install.log</CODE
+>
+	</P
+><P
+>	A list of all the RPMs that were installed.
+	This is the order in which the RPMs were installed and the
+	architecture of each package that was installed.
+	</P
+><P
+>	Example output:
+	</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>Installing words-3.0-9.1.noarch
+Installing libgcc-4.1.2-48.el5.i386
+Installing libgcc-4.1.2-48.el5.x86_64
+Installing glibc-2.5-49.el5_5.7.x86_64
+Installing glibc-2.5-49.el5_5.7.i686
+Installing chkconfig-1.3.30.2-2.el5.x86_64
+Installing zlib-1.2.3-3.x86_64</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>	<CODE
+CLASS="CONSTANT"
+>/root/anaconda.log</CODE
+>
+	</P
+><P
+>	The output of the ananconda installer.
+	It shows the steps the anaconda installer executed as well as the
+	output of the sub-commands anaconda executed.
+	</P
+><P
+>	Example output:
+	</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>18:58:53 INFO    : moving (1) to step partitionobjinit
+18:58:53 INFO    : ISCSID is /usr/sbin/iscsid
+18:58:53 INFO    : no initiator set18:58:53 INFO    : no /tmp/fcpconfig; not configuring zfcp
+18:58:53 DEBUG   : starting mpaths18:58:53 DEBUG   : self.driveList(): ['sda', 'sdb']
+18:58:53 DEBUG   : DiskSet.skippedDisks: []
+18:58:53 DEBUG   : DiskSet.skippedDisks: []
+18:58:53 DEBUG   : done starting mpaths.  Drivelist: ['sda', 'sdb']</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>	<CODE
+CLASS="CONSTANT"
+>/var/log/rocks-install.log</CODE
+>
+	</P
+><P
+>	Error messages from all the post sections will be found in this
+	log file.
+	In general, all you will see are "begin post section" and
+	"end post section" messages.
+	</P
+><P
+>	Example output:
+	</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>./nodes/411-client.xml: begin post section
+./nodes/411-client.xml: end post section
+./nodes/411-client.xml: begin post section
+./nodes/411-client.xml: end post section
+./nodes/411-client.xml: begin post section
+./nodes/411-client.xml: end post section</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>	<CODE
+CLASS="CONSTANT"
+>/root/syslog</CODE
+>
+	</P
+><P
+>	This is the syslog from the host during its installation phase.
+	</P
+><P
+>	Example output:
+	</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>&#60;6&#62;Checking 'hlt' instruction... OK.
+&#60;6&#62;SMP alternatives: switching to UP code
+&#60;6&#62;ACPI: Core revision 20060707
+&#60;4&#62;CPU0: Intel(R) Xeon(R) CPU           E5320  @ 1.86GHz stepping 07
+&#60;6&#62;SMP alternatives: switching to SMP code
+&#60;4&#62;Booting processor 1/1 eip 11000
+&#60;4&#62;CPU 1 irqstacks, hard=c0769000 soft=c0749000
+&#60;6&#62;Initializing CPU#1</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>	<CODE
+CLASS="CONSTANT"
+>/root/httpd.log</CODE
+>
+	</P
+><P
+>	A copy of the log messages from lighttpd.
+	Lighttpd is used on an installing node to execute key parts of
+	the Avalanche Installer.
+	You will see messages (in apache log format) that log the http
+	requests to lighttpd.
+	</P
+><P
+>	Example output:
+	</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>127.0.0.1 127.0.0.1 - [28/May/2010:10:45:11 -0700]
+"GET /install/rocks-dist/x86_64/RedHat/RPMS/dmraid-events-1.0.0.rc13-53.el5.x86_64.rpm HTTP/1.1"
+200 18083 "-" "urlgrabber/3.1.0 yum/3.2.22"
+
+127.0.0.1 127.0.0.1 - [28/May/2010:10:45:13 -0700]
+"GET /install/rocks-dist/x86_64/RedHat/RPMS/compat-libf2c-34-3.4.6-4.i386.rpm HTTP/1.1"
+200 2674 "-" "urlgrabber/3.1.0 yum/3.2.22"</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+></UL
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="testing-post.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="appendix-b.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Post Installation Script Debugging</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="testing.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>XML File Syntax</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

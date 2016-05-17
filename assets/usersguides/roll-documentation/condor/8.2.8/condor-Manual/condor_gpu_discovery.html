@@ -1,0 +1,313 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<link rel="canonical" href="http://research.cs.wisc.edu/htcondor/manual/current/condor_gpu_discovery.html">
+
+<TITLE>condor_gpu_discovery</TITLE>
+<META NAME="description" CONTENT="condor_gpu_discovery">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="condor_history.html">
+<LINK REL="previous" HREF="condor_gather_info.html">
+<LINK REL="up" HREF="11_Command_Reference.html">
+<LINK REL="next" HREF="condor_history.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html3610"
+  HREF="condor_history.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3604"
+  HREF="11_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3598"
+  HREF="condor_gather_info.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3606"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3608"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3611"
+  HREF="condor_history.html">condor_history</A>
+<B> Up:</B> <A NAME="tex2html3605"
+  HREF="11_Command_Reference.html">11. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3599"
+  HREF="condor_gather_info.html">condor_gather_info</A>
+ &nbsp; <B>  <A NAME="tex2html3607"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3609"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html3612"
+  HREF="condor_gpu_discovery.html#SECTION0012231000000000000000">Synopsis</A>
+<LI><A NAME="tex2html3613"
+  HREF="condor_gpu_discovery.html#SECTION0012232000000000000000">Description</A>
+<LI><A NAME="tex2html3614"
+  HREF="condor_gpu_discovery.html#SECTION0012233000000000000000">Options</A>
+<LI><A NAME="tex2html3615"
+  HREF="condor_gpu_discovery.html#SECTION0012234000000000000000">Exit Status</A>
+<LI><A NAME="tex2html3616"
+  HREF="condor_gpu_discovery.html#SECTION0012235000000000000000">Author</A>
+<LI><A NAME="tex2html3617"
+  HREF="condor_gpu_discovery.html#SECTION0012236000000000000000">Copyright</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION0012230000000000000000"></A><A NAME="man-condor-gpu-discovery"></A>
+<BR>
+<I>condor_gpu_discovery</I>
+</H1> Output GPU-related ClassAd attributes
+  
+<P>
+
+<A NAME="71404"></A>
+<A NAME="71405"></A>
+
+<P>
+
+<H2><A NAME="SECTION0012231000000000000000">
+Synopsis</A>
+</H2><B><I>condor_gpu_discovery</I></B>
+<B>-help</B>
+
+<P>
+<B><I>condor_gpu_discovery</I></B>
+[<B>&lt;options&gt;</B>]
+
+<P>
+
+<H2><A NAME="SECTION0012232000000000000000">
+Description</A>
+</H2>
+
+<P>
+<I>condor_gpu_discovery</I> runs discovery software to determine
+the host's GPU capabilities,
+which are output as ClassAd attributes.
+
+<P>
+This tool is not available for MAC OS platforms.
+
+<P>
+With no command line options, the single ClassAd attribute
+<TT>DetectedGPUs</TT> is printed.
+If the value is 0, no GPUs were detected.
+If one or more GPUS were detected, the value is 
+a string, presented as a comma and space separated list of the GPUs discovered,
+where each is given a name further used as the <I>prefix string</I> in other
+attribute names.
+Where there is more than one GPU of a particular type, 
+the <I>prefix string</I> includes an integer value numbering the device;
+these integer values monotonically increase from 0. 
+For example, a discovery of two GPUs may output
+<PRE>
+DetectedGPUs="CUDA0, CUDA1"
+</PRE>
+Further command line options use <TT>"CUDA"</TT> either with or without one of
+the integer values 0 or 1 as the <I>prefix string</I> in
+attribute names.
+
+<P>
+
+<H2><A NAME="SECTION0012233000000000000000">
+Options</A>
+</H2>
+  
+<P>
+  <DL>
+<DT><STRONG><B>-help</B></STRONG></DT>
+<DD>Print usage information and exit.
+  
+<BR>  
+</DD>
+<DT><STRONG><B>-properties</B></STRONG></DT>
+<DD>In addition to the <TT>DetectedGPUs</TT> attribute, display 
+    standard CUDA attributes.
+    Each of these attribute names will have a <I>prefix string</I>
+    at the beginning of its name.
+    For a host with more than one of the same GPU type,
+    those attribute values that are the same across all of the GPUs
+    will not have an integer value in the <I>prefix string</I>.
+    The attributes are
+    <TT>Capability</TT>, <TT>DeviceName</TT>, <TT>DriverVersion</TT>, 
+    <TT>ECCEnabled</TT>, <TT>GlobalMemoryMb</TT>, and <TT>RuntimeVersion</TT>.
+    The displayed standard Open CL attributes are
+    <TT>DeviceName</TT>, <TT>ECCEnabled</TT>, <TT>OpenCLVersion</TT>, and
+    <TT>GlobalMemoryMb</TT>.
+  
+<BR>  
+</DD>
+<DT><STRONG><B>-extra</B></STRONG></DT>
+<DD>Display the additional attributes of
+    Each of these attribute names will have a <I>prefix string</I>
+    at the beginning of its name.
+    <TT>ClockMhz</TT>, <TT>ComputeUnits</TT>, and <TT>CoresPerCU</TT>
+    for a CUDA device,
+    and
+    <TT>ClockMhz</TT> and <TT>ComputeUnits</TT> for an OCL device.
+  
+<BR>  
+</DD>
+<DT><STRONG><B>-dynamic</B></STRONG></DT>
+<DD>Display attributes of NVIDIA devices that change values as the GPU 
+    is working.
+    Each of these attribute names will have a <I>prefix string</I>
+    at the beginning of its name.
+    These are <TT>FanSpeedPct</TT>, <TT>BoardTempC</TT>, <TT>DieTempC</TT>, 
+    <TT>EccErrorsSingleBit</TT>, and <TT>EccErrorsDoubleBit</TT>.
+  
+<BR>  
+</DD>
+<DT><STRONG><B>-mixed</B></STRONG></DT>
+<DD>When displaying attribute values, assume that the machine has a
+    heterogeneous set of GPUs,
+    so always include the integer value in the <I>prefix string</I>.
+  
+<BR>  
+</DD>
+<DT><STRONG><B>-device </B><I>&lt;N&gt;</I></STRONG></DT>
+<DD>Display properties only for GPU device <I>&lt;N&gt;</I>, 
+    where <I>&lt;N&gt;</I> is the integer value defined for the <I>prefix string</I>.
+    Note that the attribute names in this output will <I>not</I> contain the 
+    value for <I>&lt;N&gt;</I>.
+  
+<BR>  
+</DD>
+<DT><STRONG><B>-tag </B><I>string</I></STRONG></DT>
+<DD>Set the resource tag portion of the intended machine ClassAd attribute
+    <TT>Detected&lt;ResourceTag&gt;</TT> to be <I>string</I>. 
+    If this option is not specified, the resource tag is <TT>"GPUs"</TT>,
+    resulting in attribute name <TT>DetectedGPUs</TT>.
+  
+<BR>  
+</DD>
+<DT><STRONG><B>-prefix </B><I>str</I></STRONG></DT>
+<DD>When naming attributes, use <I>str</I> as the <I>prefix string</I>.
+    When this option is not specified, 
+    the <I>prefix string</I> is either <TT>CUDA</TT> or <TT>OCL</TT>.
+  
+<BR>  
+</DD>
+<DT><STRONG><B>-simulate:D,N</B></STRONG></DT>
+<DD>For testing purposes, assume that N devices of type D were detected.
+    No discovery software is invoked.
+    If D is 0, it refers to GeForce GT 330, and a default value for N is 1.
+    If D is 1, it refers to GeForce GTX 480, and a default value for N is 2.
+  
+<BR>  
+</DD>
+<DT><STRONG><B>-opencl</B></STRONG></DT>
+<DD>Prefer detection via OpenCL rather than CUDA.
+    Without this option, CUDA detection software is invoked first,
+    and no further Open CL software is invoked if CUDA devices are detected.
+  
+<BR>  
+</DD>
+<DT><STRONG><B>-nvcuda</B></STRONG></DT>
+<DD>For Windows platforms only, use a CUDA driver rather than the
+    CUDA run time.
+  
+<BR>  
+</DD>
+<DT><STRONG><B>-config</B></STRONG></DT>
+<DD>This option is not yet implemented.
+    Future versions of HTCondor will output in the syntax of 
+    HTCondor configuration, instead of ClassAd language.
+  
+<BR>  
+</DD>
+<DT><STRONG><B>-verbose</B></STRONG></DT>
+<DD>For interactive use of the tool, output extra information to show 
+    detection while in progress.
+  
+<BR>  
+</DD>
+<DT><STRONG><B>-diagnostic</B></STRONG></DT>
+<DD>Show diagnostic information, to aid in tool development.
+  
+<BR>  
+</DD>
+</DL>
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION0012234000000000000000">
+Exit Status</A>
+</H2>
+
+<P>
+<I>condor_gpu_discovery</I> will exit with a status value of 0 (zero) upon success,
+and it will exit with the value 1 (one) upon failure.
+
+<P>
+
+<H2><A NAME="SECTION0012235000000000000000">
+Author</A>
+</H2> Center for High Throughput Computing, University of Wisconsin-Madison
+  
+<H2><A NAME="SECTION0012236000000000000000">
+Copyright</A>
+</H2> 
+  Copyright &#169; 1990-2015 Center for High Throughput Computing, 
+  Computer Sciences Department, 
+  University of Wisconsin-Madison, Madison, WI.  All Rights Reserved.  
+	Licensed under the Apache License, Version 2.0.  
+
+  <HR>
+<!--Navigation Panel-->
+<A NAME="tex2html3610"
+  HREF="condor_history.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3604"
+  HREF="11_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3598"
+  HREF="condor_gather_info.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3606"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3608"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3611"
+  HREF="condor_history.html">condor_history</A>
+<B> Up:</B> <A NAME="tex2html3605"
+  HREF="11_Command_Reference.html">11. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3599"
+  HREF="condor_gather_info.html">condor_gather_info</A>
+ &nbsp; <B>  <A NAME="tex2html3607"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3609"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

@@ -1,0 +1,254 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+> Customizing Ganglia Monitors </TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Ganglia Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Customizing the Ganglia Roll"
+HREF="customizing.html"><LINK
+REL="PREVIOUS"
+TITLE="Customizing the Ganglia Roll"
+HREF="customizing.html"><LINK
+REL="NEXT"
+TITLE=" Monitoring Multiple Clusters with Ganglia"
+HREF="x188.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Ganglia</B
+> Users Guide</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="customizing.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 4. Customizing the Ganglia Roll</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x188.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="CUSTOMIZATION-GANGLIA"
+>4.1. Customizing Ganglia Monitors</A
+></H1
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="CUSTOMIZATION-GANGLIA-FULL"
+>4.1.1. Enabling fully aware Ganglia daemons</A
+></H2
+><P
+>For maximum performance and scalability, the Ganglia <EM
+>gmond</EM
+>
+daemons on compute nodes in the cluster are run in "deaf" mode. While compute nodes
+report their own Ganglia data to the frontend, they do not listen for information from
+their peers. This reduces the resource footprint of compute nodes.</P
+><P
+>Running the compute node monitors in deaf mode means they cannot be queried for
+cluster state. This may be a problem if your parallel jobs use Ganglia data for
+performance analysis or fault tolerance purposes. If you would like to re-enable
+Ganglia's full functionality on your compute nodes, follow the instructions below.</P
+><DIV
+CLASS="TIP"
+><P
+></P
+><TABLE
+CLASS="TIP"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/tip.png"
+HSPACE="5"
+ALT="Tip"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>Ganglia daemons were switched to the deaf mode by default starting in the Matterhorn
+Rocks release 3.1.0.</P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+></P
+><UL
+><LI
+><P
+>	Add a new XML node file
+	called <TT
+CLASS="LITERAL"
+>replace-ganglia-client.xml</TT
+> (see section
+	"3.2. Customizing Configuration of Compute Nodes" in the Base Roll
+	Documentation for details on how to create a replacement XML node
+	file). 
+	</P
+><P
+>	Put the following contents in the new file:
+	</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>&#60;?xml version="1.0" standalone="no"?&#62;
+
+&#60;kickstart&#62;
+
+  &#60;description&#62;
+  UCB's Ganglia Monitor system for client nodes in the
+  cluster. 
+  &#60;/description&#62;
+
+&#60;post&#62;
+
+/sbin/chkconfig --add gmetad
+
+&#60;/post&#62;
+
+&#60;/kickstart&#62;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>	Reinstall your compute nodes. They will now have access to the full
+	monitoring tree. This procedure places the compute nodes on the same level
+	monitoring level as the frontend.
+	</P
+></LI
+></UL
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="customizing.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x188.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Customizing the Ganglia Roll</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="customizing.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Monitoring Multiple Clusters with Ganglia</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

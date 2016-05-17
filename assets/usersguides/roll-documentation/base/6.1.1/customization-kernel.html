@@ -1,0 +1,521 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+> Creating a Custom Kernel RPM </TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE=" Customizing your Rocks Installation "
+HREF="customization.html"><LINK
+REL="PREVIOUS"
+TITLE=" Compute Node Disk Partitioning "
+HREF="customization-partitioning.html"><LINK
+REL="NEXT"
+TITLE=" Enabling RSH on Compute Nodes "
+HREF="customization-rsh.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Base</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="customization-partitioning.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 5. Customizing your Rocks Installation</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="customization-rsh.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="CUSTOMIZATION-KERNEL"
+>5.6. Creating a Custom Kernel RPM</A
+></H1
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="CUSTOMIZATION-KERNEL-KERNEL-ORG"
+>5.6.1. Creating a Custom Kernel RPM using kernel.org's Source</A
+></H2
+><P
+></P
+><UL
+><LI
+><P
+>	On the frontend, check out the Rocks source code.
+	See <A
+HREF="source-access.html"
+>Access to Rocks Source Code</A
+> for details.
+	</P
+></LI
+><LI
+><P
+>	Change into the directory:
+	</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># cd rocks/src/roll/kernel/src/kernel.org</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>	Download the kernel source tarball from kernel.org.
+	For example:
+	</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># wget http://www.kernel.org/pub/linux/kernel/v2.6/linux-2.6.24.4.tar.gz</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>	Create a kernel "config" file and put it in
+	<SAMP
+CLASS="COMPUTEROUTPUT"
+>config-&#60;version&#62;</SAMP
+>
+	</P
+><P
+>	You can create the config file by using the following procedure:
+	</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># tar xzf linux-2.6.24.4.tar.gz
+# cd linux-2.6.24.4
+# make menuconfig</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>	Configure the kernel anyway you need, and after the configuration is
+	over choose to save the configuration in an alternative location.
+	Enter the name of
+	the file as <SAMP
+CLASS="COMPUTEROUTPUT"
+>../config-2.6.24.4</SAMP
+>.
+	Finally, exit the configuration and remove the linux-2.6.24.4
+	directory.
+	</P
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="90%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/note.png"
+HSPACE="5"
+ALT="Note"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	The <EM
+>&#60;version&#62;</EM
+> number must match the
+	version number of the kernel source.
+	For example, if you downloaded
+	<SAMP
+CLASS="COMPUTEROUTPUT"
+>linux-2.6.24.4.tar.gz</SAMP
+>, the name of
+	the config file must be 
+	<SAMP
+CLASS="COMPUTEROUTPUT"
+>config-2.6.24.4</SAMP
+>.
+	</P
+></TD
+></TR
+></TABLE
+></DIV
+></LI
+><LI
+><P
+>	Update <SAMP
+CLASS="COMPUTEROUTPUT"
+>version.mk</SAMP
+>.
+	</P
+><P
+>	The file <SAMP
+CLASS="COMPUTEROUTPUT"
+>version.mk</SAMP
+> has the
+	following contents:
+	</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>NAME            = kernel
+RELEASE         = 1
+
+VERSION         = 2.6.24.4
+PAE             = 0
+XEN             = 0</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>	The <SAMP
+CLASS="COMPUTEROUTPUT"
+>VERSION</SAMP
+> value must match that
+	of the linux kernel tarball you downloaded (e.g., 2.6.24.4).
+	</P
+><P
+>	If you are building a kernel for an i386 system that has more than
+	4 GB, you'll need to set the PAE (page address extension) flag. 
+	This will name the resulting kernel <EM
+>kernel-PAE*rpm</EM
+>.
+	If the anaconda installer detects more that 4 GB memory, then it
+	will install the kernel-PAE RPM and not the kernel RPM.
+	</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>PAE             = 1</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>	If you are building a kernel that contains Xen support, then set
+	the XEN flag.
+	This will name the resulting kernel <EM
+>kernel-xen*rpm</EM
+>.
+	</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>XEN             = 1</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>	It is illegal to set both the PAE and XEN flags.
+	</P
+><P
+>	If you want to build a kernel that the installer will use, then
+	you must unset both the PAE and XEN flags (the default configuration
+	of version.mk). 
+	This will name the resulting kernel <EM
+>kernel*rpm</EM
+>.
+	</P
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="90%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/note.png"
+HSPACE="5"
+ALT="Note"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	If you want to build a custom kernel for both the installer and for the
+	running system and the running system requires either the kernel-PAE
+	or kernel-xen RPM, then you'll have to execute this procedure twice:
+	once to build the installer kernel (PAE = 0 and XEN = 0) and once
+	to build the kernel that will be used on the running system
+	(PAE = 1 or XEN = 1).
+	</P
+></TD
+></TR
+></TABLE
+></DIV
+></LI
+><LI
+><P
+>	Build the kernel:
+	</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># make rpm</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>	Copy the resulting RPMs into the current distribution:
+	</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># cp ../../RPMS/&#60;arch&#62;/kernel*rpm /export/rocks/install/contrib/6.1.1/&#60;arch&#62;/RPMS/</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>	Where <EM
+>&#60;arch&#62;</EM
+> is i386 or x86_64.
+	</P
+></LI
+><LI
+><P
+>	Rebuild the distribution:	
+	</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># cd /export/rocks/install
+# rocks create distro</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>	Test the new kernel by reinstalling a compute node:
+	</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># shoot-node compute-0-0</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>	If the kernel works to your satisfaction, reinstall all the compute
+	nodes that you want to run the new kernel.
+	</P
+></LI
+></UL
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="customization-partitioning.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="customization-rsh.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Compute Node Disk Partitioning</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="customization.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Enabling RSH on Compute Nodes</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

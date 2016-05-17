@@ -1,0 +1,349 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>2.13 Special Environment Considerations</TITLE>
+<META NAME="description" CONTENT="2.13 Special Environment Considerations">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="2_14Potential_Problems.html">
+<LINK REL="previous" HREF="2_12Time_Scheduling.html">
+<LINK REL="up" HREF="2_Users_Manual.html">
+<LINK REL="next" HREF="2_14Potential_Problems.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html1180"
+  HREF="2_14Potential_Problems.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1174"
+  HREF="2_Users_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1168"
+  HREF="2_12Time_Scheduling.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1176"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1178"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1181"
+  HREF="2_14Potential_Problems.html">2.14 Potential Problems</A>
+<B> Up:</B> <A NAME="tex2html1175"
+  HREF="2_Users_Manual.html">2. Users' Manual</A>
+<B> Previous:</B> <A NAME="tex2html1169"
+  HREF="2_12Time_Scheduling.html">2.12 Time Scheduling for</A>
+ &nbsp; <B>  <A NAME="tex2html1177"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1179"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html1182"
+  HREF="2_13Special_Environment.html#SECTION003131000000000000000">2.13.1 AFS</A>
+<LI><A NAME="tex2html1183"
+  HREF="2_13Special_Environment.html#SECTION003132000000000000000">2.13.2 NFS</A>
+<LI><A NAME="tex2html1184"
+  HREF="2_13Special_Environment.html#SECTION003133000000000000000">2.13.3 HTCondor Daemons That Do Not Run as root</A>
+<LI><A NAME="tex2html1185"
+  HREF="2_13Special_Environment.html#SECTION003134000000000000000">2.13.4 Job Leases</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION003130000000000000000">
+2.13 Special Environment Considerations</A>
+</H1>
+
+<P>
+
+<H2><A NAME="SECTION003131000000000000000">
+2.13.1 AFS</A>
+</H2>
+
+<P>
+<A NAME="8488"></A>
+<A NAME="8489"></A>
+The HTCondor daemons do not run authenticated to AFS; they do not possess
+AFS tokens.
+Therefore, no child process of HTCondor will be AFS authenticated.
+The implication of this is that you must set file permissions so
+that your job can access any necessary files residing on an AFS volume
+without relying on having your AFS permissions.
+
+<P>
+If a job you submit to HTCondor needs to access files residing in AFS,
+you have the following choices:
+
+<OL>
+<LI>Copy the needed files from AFS to either a local hard disk where 
+HTCondor can access them using remote system calls (if
+this is a standard universe job), or copy them to an NFS volume.
+</LI>
+<LI>If the files must be kept on AFS, then set a host ACL
+(using the AFS <I>fs setacl</I> command) on the subdirectory to
+serve as the current working directory for the job.
+If this is a standard universe job, then the host ACL needs
+to give read/write permission to any process on the submit machine.
+If this is a vanilla universe job, then set the ACL such that any host 
+in the pool can access the files without being authenticated.
+If you do not know how to use an AFS host ACL, ask the person at your 
+site responsible for the AFS configuration.
+</LI>
+</OL>
+
+<P>
+The Center for High Throughput Computing hopes to improve upon how 
+HTCondor deals with AFS 
+authentication in a subsequent release.
+
+<P>
+Please see section&nbsp;<A HREF="#sec:Condor-AFS-Users"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> on
+page&nbsp;<A HREF="#sec:Condor-AFS-Users"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> in the Administrators Manual for
+further discussion of this problem.
+
+<P>
+
+<H2><A NAME="SECTION003132000000000000000">
+2.13.2 NFS</A>
+</H2>
+
+<P>
+<A NAME="8496"></A>
+<A NAME="8497"></A>
+If the current working directory when a job is submitted
+is accessed via an NFS automounter, HTCondor may have problems if the
+automounter later decides to unmount the volume before the job has
+completed.
+This is because <I>condor_submit</I> likely has stored the
+dynamic mount point as the job's initial current working directory, and
+this mount point could become automatically unmounted by the
+automounter.
+
+<P>
+There is a simple work around.
+When submitting the job,
+use the submit command <B>initialdir</B> to point to
+the stable access point.
+For example,
+suppose the NFS automounter is configured to mount a volume at mount point
+<TT>/a/myserver.company.com/vol1/johndoe</TT>
+whenever the directory <TT>/home/johndoe</TT> is accessed.
+Adding the following line to the
+submit description file solves the problem.
+<PRE>
+  initialdir = /home/johndoe
+</PRE>
+
+<P>
+<A NAME="8504"></A>
+<A NAME="8505"></A>
+HTCondor attempts to flush the NFS cache on a submit machine in order to
+refresh a job's initial working directory.
+This allows files written by the job into an NFS mounted 
+initial working directory to be immediately visible on the submit machine.
+Since the flush operation can require multiple round trips
+to the NFS server, it is expensive.
+Therefore, a job may disable the flushing by setting
+<PRE>
+  +IwdFlushNFSCache = False
+</PRE>
+in the job's submit description file.
+See page&nbsp;<A HREF="12_Appendix_A.html#IwdFlushNFSCache-job-attribute"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for a definition
+of the job ClassAd attribute.
+
+<P>
+
+<H2><A NAME="SECTION003133000000000000000">
+2.13.3 HTCondor Daemons That Do Not Run as root</A>
+</H2>
+
+<P>
+<A NAME="8510"></A>
+<A NAME="8511"></A>
+HTCondor is normally installed such that the HTCondor daemons have root
+permission.
+This allows HTCondor to run the <I>condor_shadow</I> 
+<A NAME="8513"></A>
+<A NAME="8514"></A>
+daemon and
+the job with the submitting user's UID and file access rights.
+When HTCondor
+is started as root, HTCondor jobs can access whatever files the
+user that submits the jobs can.
+
+<P>
+However, it is possible that the HTCondor installation 
+does not have root access, or
+has decided not to run the daemons as root.
+That is unfortunate,
+since HTCondor is designed to be run as root.
+To see if HTCondor is
+running as root on a specific machine, use the command
+<PRE>
+  condor_status -master -l &lt;machine-name&gt;
+</PRE>
+
+<P>
+where <code>&lt;machine-name&gt;</code> is the name of the specified machine.
+This command displays the full condor_master ClassAd; if the
+attribute <TT>RealUid</TT> equals zero,
+then the HTCondor daemons are indeed
+running with root access.  If the
+<TT>RealUid</TT> attribute is not zero, then the HTCondor daemons do not have
+root access.
+
+<P>
+<U>NOTE</U>: The Unix program <I>ps</I>
+is <I>not</I> an effective
+method of determining if HTCondor is running with root access.
+When using <I>ps</I>,
+it may often appear that the daemons are
+running as the condor user instead of root.
+However, note that the <I>ps</I>
+command shows the current <I>effective</I> owner of the
+process, not the <I>real</I> owner.  (See the <I>getuid</I>(2) and
+<I>geteuid</I>(2) Unix man pages for details.)  In Unix, a process
+running under the real UID of root may switch its effective UID.
+(See the <I>seteuid</I>(2) man page.)
+For security reasons, the daemons
+only set the effective UID to root when absolutely necessary,
+as it will be to perform a privileged operation.
+
+<P>
+If daemons are not running with root access, 
+make any and all files
+and/or directories that the job will touch readable and/or writable by
+the UID (user id) specified by the <TT>RealUid</TT> attribute.
+Often this may
+mean using the Unix command <code>chmod 777</code>
+on the directory from which the HTCondor job is submitted.
+
+<P>
+
+<H2><A NAME="SECTION003134000000000000000"></A><A NAME="sec:Job-Lease"></A>
+<A NAME="8534"></A>
+<BR>
+2.13.4 Job Leases
+</H2>
+
+<P>
+A <I>job lease</I> specifies how long a given job will attempt to run
+on a remote resource,
+even if that resource loses contact with the submitting machine.
+Similarly, it is the length of time the submitting machine will
+spend trying to reconnect to the (now disconnected) execution host,
+before the submitting machine gives up and tries to claim
+another resource to run the job.
+The goal aims at run only once semantics,
+so that the <I>condor_schedd</I> daemon does not allow the same job
+to run on multiple sites simultaneously.
+
+<P>
+If the submitting machine is alive,
+it periodically renews the job lease,
+and all is well.
+If the submitting machine is dead,
+or the network goes down, the job lease will no longer be renewed.
+Eventually the lease expires.
+While the lease has not expired,
+the execute host continues to try to run the job,
+in the hope that the submit machine will come back to life
+and reconnect.
+If the job completes and the lease has not expired, yet the 
+submitting machine is still dead,
+the <I>condor_starter</I> daemon will wait for a
+<I>condor_shadow</I> daemon to reconnect, 
+before sending final information on the job,
+and its output files.
+Should the lease expire, the <I>condor_startd</I> daemon
+kills off the <I>condor_starter</I> daemon and user job.
+
+<P>
+<A NAME="8541"></A>
+<A NAME="8542"></A>
+A default value equal to 20 minutes exists for a job's
+ClassAd attribute <TT>JobLeaseDuration</TT>, 
+or this attribute may be set in the submit description file,
+using <B>job_lease_duration</B>,
+to keep a job running in the case that the submit side no longer
+renews the lease.
+There is a trade off in setting the value of <B>job_lease_duration</B>. 
+Too small a value,
+and the job might get killed before the submitting machine has a
+chance to recover.
+Forward progress on the job will be lost.
+Too large a value,
+and an execute resource will be tied up waiting for the job lease to expire.
+The value should be chosen based on how long the user is willing to tie up
+the execute machines, how quickly submit machines come  back up,
+and how much work would be lost if the lease expires,
+the job is killed, and the job must start over from its beginning.
+
+<P>
+As a special case, a submit description file setting of
+<PRE>
+ job_lease_duration = 0
+</PRE>
+as well as utilizing submission other than <I>condor_submit</I>
+that do not set <TT>JobLeaseDuration</TT>
+(such as using the web services interface)
+results in the corresponding job ClassAd attribute to be explicitly
+undefined.
+This has the further effect of changing the duration of a claim lease,
+the amount of time that the execution machine waits before
+dropping a claim due to missing keep alive messages.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1180"
+  HREF="2_14Potential_Problems.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1174"
+  HREF="2_Users_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1168"
+  HREF="2_12Time_Scheduling.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1176"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1178"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1181"
+  HREF="2_14Potential_Problems.html">2.14 Potential Problems</A>
+<B> Up:</B> <A NAME="tex2html1175"
+  HREF="2_Users_Manual.html">2. Users' Manual</A>
+<B> Previous:</B> <A NAME="tex2html1169"
+  HREF="2_12Time_Scheduling.html">2.12 Time Scheduling for</A>
+ &nbsp; <B>  <A NAME="tex2html1177"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1179"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

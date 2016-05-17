@@ -1,0 +1,279 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+> Monitoring Multiple Clusters with Ganglia</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Ganglia Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Customizing the Ganglia Roll"
+HREF="customizing.html"><LINK
+REL="PREVIOUS"
+TITLE="Customizing the Ganglia Roll"
+HREF="customizing.html"><LINK
+REL="NEXT"
+TITLE="Frequently Asked Questions"
+HREF="faq.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Ganglia</B
+> Users Guide</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="customizing.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 4. Customizing the Ganglia Roll</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="faq.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="AEN111"
+>4.1. Monitoring Multiple Clusters with Ganglia</A
+></H1
+><P
+>Ganglia has the ability to track and present monitoring data from multiple clusters. A collection of monitored clusters is called a <EM
+>Grid</EM
+> in Ganglia's nomenclature. This section describes the steps required to setup a multi-cluster monitoring grid.</P
+><P
+>The essential idea is to instruct the gmetad daemon on one of your frontend nodes to track the second cluster in addition to its own. This procedure can be repeated to monitor a large set clusters from one location.</P
+><P
+>For this discussion, your two clusters are named "A" and "B". We will choose
+the frontend on cluster "A" to be the top-level monitor.</P
+><P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>On "A" frontend, add the line to /etc/gmetad.conf:</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>data_source "Cluster B" B.frontend.domain.name</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><P
+>Then restart the gmetad server on "A" frontend.</P
+></LI
+><LI
+><P
+>On "B" frontend, get the IP address of "A.frontend.domain.name" and edit
+/etc/ganglia/gmond.conf and change the section from:</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>tcp_accept_channel {
+	port = 8649
+	acl {
+		default = "deny"
+                access {
+                        ip = 127.0.0.1
+                        mask = 32
+                        action = "allow"
+                }
+		access {
+			ip = 10.0.0.0
+			mask = 8
+			action = "allow"
+		}
+	}
+}</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><P
+>to:</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>tcp_accept_channel {
+	port = 8649
+	acl {
+		default = "deny"
+                access {
+                        ip = 127.0.0.1
+                        mask = 32
+                        action = "allow"
+                }
+		access {
+			ip = 10.0.0.0
+			mask = 8
+			action = "allow"
+		}
+		access {
+			ip = ip-address-of-A.frontend
+			mask = 32
+			action = "allow"
+		}
+	}
+}</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><P
+>Then restart gmond server on "B" frontend.</P
+></LI
+><LI
+><P
+>Take a look at the Ganglia page on "A". It should include statistics for B, and a summary or "roll-up" view of both clusters.</P
+></LI
+></OL
+><P
+>This screenshot is from the iVDGL Physics Grid3 project. It is a very large grid monitored by Ganglia in a similar manner as specified here.</P
+><P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/ivdgl-ganglia.png"></P
+></DIV
+></P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="customizing.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="faq.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Customizing the Ganglia Roll</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="customizing.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Frequently Asked Questions</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

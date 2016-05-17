@@ -1,0 +1,247 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Programatically changing the Contents of condor_config.local</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE=" Condor Users Guide "
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Customizing the Condor Roll"
+HREF="customizing.html"><LINK
+REL="PREVIOUS"
+TITLE="Reconfiguring Condor after Installation "
+HREF="reconfiguring-condor.html"><LINK
+REL="NEXT"
+TITLE="Rocks Copyright"
+HREF="rocks-copyright.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Condor</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/condor.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="reconfiguring-condor.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 4. Customizing the Condor Roll</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="rocks-copyright.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="CONDOR-ADVANCED-CONFIGURATION"
+>4.5. Programatically changing the Contents of condor_config.local</A
+></H1
+><P
+>Condor configuration is localized into /opt/condor/etc/condor_config.local.
+This file is generated programatically from the output of 
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks report host condor config &#60;hostname&#62;</SAMP
+>.</P
+><P
+>The command <SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks report host condor config</SAMP
+>
+is defined by the Condor roll and is written in Python. This report command is 
+extensible through Rocks command plugins. </P
+><P
+>To see a sample Condor plugin, 
+view the file in location
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>/opt/rocks/lib/python2.4/site-packages/rocks/commands/report/host/condor/config/plugin_sample.py</SAMP
+>, which is reproduced here.
+<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># $Id: customizing.sgml,v 1.8 2010/12/08 16:58:03 phil Exp $
+import rocks.commands
+
+class Plugin(rocks.commands.Plugin):
+
+	def provides(self):
+		return 'sample'
+
+	def run(self, argv):
+		# Argv contains the hostname and the in memory key-value store
+	        # that is eventually written to 
+		# /opt/condor/etc/condor_config.local
+		# plugins can add/change/remove keys from the store
+
+		# 1. Get the hostname and the key-value store, which
+		#    is a python dictionary 
+		host, kvstore = argv 
+
+		# The following would add CONDOR_SAMPLE=Sample Plugin
+		# the key = value dictionary (kvstore)  that is written out
+		#
+		# Example 1. Read an attribute from the database and set 
+		# the values
+		value = self.db.getHostAttr(host, 'Condor_HostAllow')
+		kvstore['CONDOR_SAMPLE'] = value 
+		
+		# Example 2. Set the key CONDOR_SAMPLE to the hostname 
+		kvstore['CONDOR_SAMPLE'] = host 
+
+		# Example 3. Remove a key from the dictionary
+		if 'CONDOR_SAMPLE' in kvstore:
+			del kvstore['CONDOR_SAMPLE']
+
+RollName = "condor"</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><P
+>Users/Roll Developers can add their own plugins for the 
+"report host condor config" command to overwrite, add, and/or delete
+key,value pairs that are written into /opt/condor/etc/condor_config.local.</P
+><P
+>In the above code sample, the Condor report command driver passes
+the hostname and the dictionary of already defined key,value pairs
+(kvstore in the sample code).  The sample code shows several different 
+examples of changing the key 'CONDOR_SAMPLE'.</P
+><P
+>Plugins are written in Python, are called in random order,
+ and must be named "plugin_&#60;name&#62;.py".  </P
+><P
+>Plugins also enable any 
+desired configurations to be properly applied with the command
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks sync host condor config</SAMP
+>.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="reconfiguring-condor.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="rocks-copyright.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Reconfiguring Condor after Installation</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="customizing.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><SPAN
+CLASS="TRADEMARK"
+>Rocks</SPAN
+>&reg; Copyright</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

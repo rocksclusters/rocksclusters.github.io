@@ -1,0 +1,238 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>condor_compile</TITLE>
+<META NAME="description" CONTENT="condor_compile">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="condor_config_bind.html">
+<LINK REL="previous" HREF="condor_cold_stop.html">
+<LINK REL="up" HREF="9_Command_Reference.html">
+<LINK REL="next" HREF="condor_config_bind.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html2977"
+  HREF="condor_config_bind.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2971"
+  HREF="9_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2965"
+  HREF="condor_cold_stop.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2973"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2975"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2978"
+  HREF="condor_config_bind.html">condor_config_bind</A>
+<B> Up:</B> <A NAME="tex2html2972"
+  HREF="9_Command_Reference.html">9. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html2966"
+  HREF="condor_cold_stop.html">condor_cold_stop</A>
+ &nbsp; <B>  <A NAME="tex2html2974"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2976"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html2979"
+  HREF="condor_compile.html#SECTION001091000000000000000">Synopsis</A>
+<LI><A NAME="tex2html2980"
+  HREF="condor_compile.html#SECTION001092000000000000000">Description</A>
+<LI><A NAME="tex2html2981"
+  HREF="condor_compile.html#SECTION001093000000000000000">Exit Status</A>
+<LI><A NAME="tex2html2982"
+  HREF="condor_compile.html#SECTION001094000000000000000">Author</A>
+<LI><A NAME="tex2html2983"
+  HREF="condor_compile.html#SECTION001095000000000000000">Copyright</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION001090000000000000000"></A><A NAME="man-condor-compile"></A>
+<BR>
+<I>condor_compile</I>
+</H1> create a relinked executable for submission to the Standard Universe
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION001091000000000000000">
+Synopsis</A>
+</H2><B><I>condor_compile</I></B>
+<I>cc |  CC |  gcc |  f77 |  g++ |  ld |  make |  ... </I> 
+
+<P>
+
+<H2><A NAME="SECTION001092000000000000000">
+Description</A>
+</H2>
+
+<P>
+<A NAME="60488"></A>
+<A NAME="60489"></A>
+
+<P>
+Use <I>condor_compile</I> to relink a program with the Condor libraries for
+submission into Condor's Standard Universe.
+The Condor libraries provide the program with additional support, such
+as the capability to checkpoint, which is required in Condor's
+Standard Universe mode of operation.
+<I>condor_compile</I> requires access to the source or object code of the
+program to be submitted; if source or object code for the program is
+not available (i.e. only an executable binary, or if it is a shell
+script), then the program must submitted into Condor's Vanilla
+Universe.
+See the reference page for <I>condor_submit</I> and/or consult the "Condor
+Users and Administrators Manual" for further information.
+
+<P>
+To use <I>condor_compile</I>, simply enter "condor_compile" followed by
+whatever you would normally enter to compile or link your
+application.
+Any resulting executables will have the Condor libraries linked in.
+For example: 
+<PRE>
+        condor_compile cc -O -o myprogram.condor file1.c file2.c ...
+</PRE>
+will produce a binary "myprogram.condor" which is relinked for Condor,
+capable of checkpoint/migration/remote-system-calls, and ready to
+submit to the Standard Universe.  
+
+<P>
+If the Condor administrator has opted to fully install
+<I>condor_compile</I>, then <I>condor_compile</I> can be followed by practically
+any command or program, including make or shell-script programs.
+For example, the following would all work:
+<PRE>
+        condor_compile make 
+
+        condor_compile make install 
+
+        condor_compile f77 -O mysolver.f 
+
+        condor_compile /bin/csh compile-me-shellscript
+</PRE>
+
+<P>
+If the Condor administrator has opted to only do a partial install of
+<I>condor_compile</I>, the you are restricted to following <I>condor_compile</I>
+with one of these programs:  
+<PRE>
+        cc (the system C compiler) 
+
+        c89 (POSIX compliant C compiler, on some systems) 
+
+        CC (the system C++ compiler) 
+
+        f77 (the system FORTRAN compiler) 
+
+        gcc (the GNU C compiler) 
+
+        g++ (the GNU C++ compiler) 
+
+        g77 (the GNU FORTRAN compiler) 
+
+        ld (the system linker)
+</PRE>
+
+<P>
+<U>NOTE</U>: If you use explicitly call ``ld'' when you normally create
+your binary, simply use:
+<PRE>
+        condor_compile ld &lt;ld arguments and options&gt;
+</PRE>
+instead.  
+
+<P>
+
+<H2><A NAME="SECTION001093000000000000000">
+Exit Status</A>
+</H2>
+
+<P>
+<I>condor_compile</I> is a script that executes specified compilers and/or linkers.
+If an error is encountered before calling these other programs,
+<I>condor_compile</I> will exit with a status value of 1 (one).
+Otherwise, the exit status will be that given by the executed program.
+
+<P>
+
+<H2><A NAME="SECTION001094000000000000000">
+Author</A>
+</H2> Condor Team, University of Wisconsin-Madison
+  
+<H2><A NAME="SECTION001095000000000000000">
+Copyright</A>
+</H2> 
+  Copyright &#169; 1990-2011 Condor Team, Computer Sciences Department, 
+  University of Wisconsin-Madison, Madison, WI.  All Rights Reserved.  
+	Licensed under the Apache License, Version 2.0.
+
+<P>
+See the <I>Condor Version 7.6.2 Manual</I> or
+	<A NAME="tex2html117"
+  HREF="http://www.condorproject.org/license">http://www.condorproject.org/license</A>
+for
+  additional notices. 
+
+
+  <HR>
+<!--Navigation Panel-->
+<A NAME="tex2html2977"
+  HREF="condor_config_bind.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2971"
+  HREF="9_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2965"
+  HREF="condor_cold_stop.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2973"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2975"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2978"
+  HREF="condor_config_bind.html">condor_config_bind</A>
+<B> Up:</B> <A NAME="tex2html2972"
+  HREF="9_Command_Reference.html">9. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html2966"
+  HREF="condor_cold_stop.html">condor_cold_stop</A>
+ &nbsp; <B>  <A NAME="tex2html2974"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2976"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

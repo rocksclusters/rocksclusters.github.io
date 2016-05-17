@@ -1,0 +1,1216 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>6.7 Python Bindings</TITLE>
+<META NAME="description" CONTENT="6.7 Python Bindings">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="previous" HREF="6_6HTCondor_Perl.html">
+<LINK REL="up" HREF="6_Application_Programming.html">
+<LINK REL="next" HREF="7_Platform_Specific_Informa.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html2251"
+  HREF="7_Platform_Specific_Informa.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2245"
+  HREF="6_Application_Programming.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2241"
+  HREF="6_6HTCondor_Perl.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2247"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2249"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2252"
+  HREF="7_Platform_Specific_Informa.html">7. Platform-Specific Information</A>
+<B> Up:</B> <A NAME="tex2html2246"
+  HREF="6_Application_Programming.html">6. Application Programming Interfaces</A>
+<B> Previous:</B> <A NAME="tex2html2242"
+  HREF="6_6HTCondor_Perl.html">6.6 The HTCondor Perl</A>
+ &nbsp; <B>  <A NAME="tex2html2248"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2250"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html2253"
+  HREF="6_7Python_Bindings.html#SECTION00771000000000000000">6.7.1  <TT>htcondor</TT>  Module</A>
+<LI><A NAME="tex2html2254"
+  HREF="6_7Python_Bindings.html#SECTION00772000000000000000">6.7.2  Sample Code using the <TT>htcondor</TT> Python Module</A>
+<LI><A NAME="tex2html2255"
+  HREF="6_7Python_Bindings.html#SECTION00773000000000000000">6.7.3  ClassAd Module</A>
+<LI><A NAME="tex2html2256"
+  HREF="6_7Python_Bindings.html#SECTION00774000000000000000">6.7.4  Sample Code using the <TT>classad</TT> Module</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00770000000000000000"></A><A NAME="API-Python"></A>
+<A NAME="53438"></A>
+<A NAME="53439"></A>
+<BR>
+6.7  Python Bindings
+</H1>
+
+<P>
+The Python module provides bindings to the client-side APIs for HTCondor and
+the ClassAd language.
+
+<P>
+These Python bindings depend on loading the HTCondor shared libraries; this
+means the same code is used here as the HTCondor client tools.  It is more
+efficient in terms of memory and CPU to utilize these bindings than to parse
+the output of the HTCondor client tools when writing applications in Python.
+
+<P>
+Currently, the Python bindings are only available on Linux platforms.
+
+<P>
+
+<H2><A NAME="SECTION00771000000000000000"></A><A NAME="Python-OtherModule"></A>
+<BR>
+6.7.1  <TT>htcondor</TT>  Module
+</H2>
+The <TT>htcondor</TT> module provides a client interface to the various 
+HTCondor daemons. It tries to provide functionality similar to the HTCondor 
+command line tools.
+
+<P>
+<B><TT>htcondor</TT> module functions:</B>
+<DIV ALIGN="LEFT">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>platform( )</TT>
+
+<P>
+Returns the platform of HTCondor this module is running on.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>version( )</TT>
+
+<P>
+Returns the version of HTCondor this module is linked against.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>reload_config( )</TT>
+
+<P>
+Reload the HTCondor configuration from disk.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>send_command( ad, (DaemonCommands)dc, (str)target = None) </TT>
+
+<P>
+Send a command to an HTCondor daemon specified by a location ClassAd. 
+
+<P>
+<TT>ad</TT> is a ClassAd specifying the location of the daemon; 
+typically, found by using <TT>Collector.locate(...)</TT>.
+
+<P>
+<TT>dc</TT> is a command type; must be a member of the enum 
+<TT>DaemonCommands</TT>. 
+
+<P>
+<TT>target</TT> is an optional parameter, representing an additional command
+to send to a daemon.   Some commands require additional arguments; 
+for example, sending <TT>DaemonOff</TT> to a <I>condor_master</I> requires 
+one to specify which subsystem to turn off.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>read_events( file_obj, is_xml = True ) </TT>
+
+<P>
+Read and parse an HTCondor event log file.
+Returns a python iterator of ClassAds.
+
+<P>
+Parameter <TT>file_obj</TT> is a file object corresponding to an HTCondor
+event log.
+
+<P>
+The optional parameter <TT>is_xml</TT> specifies whether the event log is
+XML-formatted.
+
+<P></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>lock( file_obj, lock_type )</TT>
+
+<P>
+Take a lock on a file object using the HTCondor locking protocol,
+which is distinct from typical POSIX locks.
+Returns a context manager object; the lock is released as
+this context manager object is destroyed.
+
+<P>
+Parameter <TT>file_obj</TT> is a file object corresponding to the file
+which should be locked.
+
+<P>
+Parameter <TT>lock_type</TT> specifies the string
+<TT>"ReadLock"</TT> if the lock should be for reads 
+or <TT>"WriteLock"</TT> if the lock should be for writes.
+
+<P></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>enable_debug( )</TT>
+
+<P>
+Enable debugging output from HTCondor, where output is sent to <TT>stderr</TT>.
+The logging level is controlled by <TT>TOOL_DEBUG</TT>.
+
+<P></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>enable_log( )</TT>
+
+<P>
+Enable debugging output from HTCondor, where output is sent to a file.
+The log level is controlled by <TT>TOOL_DEBUG</TT>,
+and the file used is controlled by <TT>TOOL_LOG</TT>.</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<P>
+<B>The module object, <TT>param</TT></B>, is
+a dictionary-like object providing access to the configuration variables
+in the current HTCondor configuration.
+
+<P>
+<B>The <TT>Schedd</TT> class:</B>
+<DIV ALIGN="LEFT">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>__init__( classad )</TT>
+
+<P>
+Create an instance of the <TT>Schedd</TT> class.  
+
+<P>
+Optional parameter <TT>classad</TT> 
+describes the location of the remote <I>condor_schedd</I> daemon.
+If the parameter is omitted, the local <I>condor_schedd</I> daemon is used.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>transaction( flags = 0, continue_txn = False ) </TT>
+
+<P>
+Start a transaction with the <I>condor_schedd</I>.
+Returns a transaction context manager.
+Starting a new transaction while one is ongoing is an error. 
+
+<P>
+The optional parameter <TT>flags</TT> defaults to 0.
+Transaction flags are from the the enum <TT>htcondor.TransactionFlags</TT>,
+and the three flags are
+<TT>NonDurable</TT>, <TT>SetDirty</TT>, or <TT>ShouldLog</TT>. 
+<TT>NonDurable</TT> is used for performance, as it eliminates 
+extra <TT>fsync()</TT> calls.
+If the <I>condor_schedd</I> crashes before the transaction is written to disk,
+the transaction will be retried on restart of the  <I>condor_schedd</I>. 
+<TT>SetDirty</TT> marks the changed ClassAds as dirty,
+so an update notification is sent to the <I>condor_shadow</I> and 
+the <I>condor_gridmanager</I>. 
+<TT>ShouldLog</TT> causes changes to the job queue to be logged
+in the job event log file.
+
+<P>
+The optional parameter <TT>continue_txn</TT> defaults to <TT>false</TT>;
+set the value to <TT>true</TT> to extend an ongoing transaction.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>act( (JobAction)action, (object)job_spec )</TT>
+
+<P>
+Change status of job(s) in the <I>condor_schedd</I> daemon.
+The integer return value is a <TT>ClassAd</TT> object describing 
+the number of jobs changed.
+
+<P>
+Parameter <TT>action</TT> is the action to perform; must be of the
+enum <TT>JobAction</TT>.
+
+<P>
+Parameter <TT>job_spec</TT> is the job specification.
+It can either be a list of job IDs or a string specifying a constraint 
+to match jobs.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>edit( (object)job_spec, (str)attr, (object)value )</TT>
+
+<P>
+Edit one or more jobs in the queue.
+
+<P>
+Parameter <TT>job_spec</TT> is either a list of jobs, 
+with each given as <TT>ClusterId.ProcId</TT> 
+or a string containing a constraint to match jobs against.
+
+<P>
+Parameter <TT>attr</TT> is the attribute name of the attribute to edit.
+
+<P>
+Parameter <TT>value</TT> is the new value of the job attribute. 
+It should be a string, which will be converted to a ClassAd expression,
+or an <TT>ExprTree</TT> object.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>query( constraint = true, attr_list = [] )</TT>
+
+<P>
+Query the <I>condor_schedd</I> daemon for jobs.
+Returns a list of ClassAds representing the matching jobs,
+containing at least the requested attributes requested by the second parameter.
+
+<P>
+The optional parameter <TT>constraint</TT> provides a constraint for 
+filtering out jobs.
+It defaults to <TT>True</TT>.
+
+<P>
+Parameter <TT>attr_list</TT> is a list of attributes for the <I>condor_schedd</I>
+daemon to project along.  
+It defaults to having the <I>condor_schedd</I> daemon return all attributes.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>xquery( constraint = true, attr_list = [] )</TT>
+
+<P>
+Query the <I>condor_schedd</I> daemon for jobs.
+Returns an iterator of ClassAds representing the matching jobs
+containing at least the list of attributes requested by the second parameter.
+
+<P>
+The optional parameter <TT>constraint</TT> provides a constraint for
+filtering out jobs.
+It defaults to <TT>True</TT>.
+
+<P>
+Parameter <TT>attr_list</TT> is a list of attributes for the <I>condor_schedd</I>
+daemon to project along.
+It defaults to having the <I>condor_schedd</I> daemon return all attributes.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>history( (object) requirements, (list) projection, (int) match )</TT>
+
+<P>
+Request history records from the <I>condor_schedd</I> daemon.
+Returns an iterator to a set of ClassAds representing completed jobs.
+
+<P>
+Parameter <TT>requirements</TT> is either an <TT>ExprTree</TT> or a string 
+that can be parsed as an expression.
+The expression represents the requirements that all returned jobs should match. 
+
+<P>
+Parameter <TT>projection</TT> is a list of all the ClassAd attributes
+that are to be included for each job. 
+The empty list causes all attributes to be included.
+
+<P>
+Parameter <TT>match</TT> is an integer cap on the number of jobs to include.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>submit( ad, count = 1, spool = false, ad_results = None )</TT>
+
+<P>
+Submit one or more jobs to the <I>condor_schedd</I> daemon.
+Returns the newly created cluster ID.
+
+<P>
+This method requires the invoker to provide a ClassAd for the new job cluster;
+such a ClassAd contains attributes with different names than the commands in
+a submit description file.  As an example, the stdout file is referred to as
+<TT>output</TT> in the submit description file,
+but <TT>Out</TT> in the ClassAd.
+To generate an example ClassAd, 
+take a sample submit description file and invoke 
+
+<P>
+<TT>condor_submit -dump &lt;filename&gt; [cmdfile]</TT>
+
+<P>
+Then, load the resulting contents of &lt;filename&gt; into Python.
+
+<P>
+Parameter <TT>ad</TT> is the ClassAd describing the job cluster.
+
+<P>
+Parameter <TT>count</TT> is the number of jobs to submit to the cluster.
+Defaults to 1.
+
+<P>
+Parameter <TT>spool</TT> inserts the necessary attributes into the job for it
+to have the input files spooled to a remote <I>condor_schedd</I> daemon.
+This parameter is necessary for jobs submitted to a remote <I>condor_schedd</I>.
+
+<P>
+Parameter <TT>ad_results</TT>, if set to a list, 
+will contain the job ClassAds resulting from the job submission.
+These are useful for interacting with the job spool at a later time.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>spool( ad_list )</TT>
+
+<P>
+Spools the files specified in a list of job ClassAds to the <I>condor_schedd</I>.
+Throws a RuntimeError exception if there are any errors.
+
+<P>
+Parameter <TT>ad_list</TT> is a list of ClassAds containing job descriptions;
+typically, this is the list filled by the <TT>ad_results</TT> argument of the 
+<TT>submit</TT> method call.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>retrieve( job_spec )</TT>
+
+<P>
+Retrieve the output sandbox from one or more jobs.
+
+<P>
+Parameter <TT>job_spec</TT> is an expression string matching 
+the list of job output sandboxes to retrieve.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>refreshGSIProxy(cluster, proc, filename, lifetime)</TT>
+
+<P>
+Refresh the GSI proxy of a job with job identifier given
+by parameters <TT>cluster</TT> and <TT>proc</TT>.
+This will refresh the remote proxy with the contents of the file identified
+by parameter <TT>filename</TT>.  
+
+<P>
+Parameter <TT>lifetime</TT> indicates the desired
+lifetime (in seconds) of the delegated proxy.
+A value of 0 specifies to not shorten the proxy lifetime.
+A value of -1 specifies to use the value of configuration variable
+<TT>DELEGATE_JOB_GSI_CREDENTIALS_LIFETIME</TT>.
+Note that, depending on the lifetime
+of the proxy in <TT>filename</TT>, the resulting lifetime may be shorter
+than the desired lifetime.</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<P>
+<B>The <TT>Collector</TT> class:</B>
+<DIV ALIGN="LEFT">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>__init__( pool = None )</TT>
+
+<P>
+Create an instance of the <TT>Collector</TT> class.  
+
+<P>
+Optional parameter <TT>pool</TT> is a string with host:port pair specified or
+a list of pairs.
+If omitted, the value of configuration variable <TT>COLLECTOR_HOST</TT> 
+is used.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>locate( (DaemonTypes)daemon_type, (str)name )</TT>
+
+<P>
+Query the <I>condor_collector</I> for a particular daemon.
+Returns the ClassAd of the requested daemon.
+
+<P>
+Parameter <TT>daemon_type</TT> is the type of daemon; 
+must be of the enum <TT>DaemonTypes</TT>. 
+
+<P>
+Optional parameter <TT>name</TT> is the name of daemon to locate.  
+If not specified, it searches for the local daemon.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>locateAll( (DaemonTypes)daemon_type )</TT>
+
+<P>
+Query the <I>condor_collector</I> daemon for all ClassAds of a particular type.
+Returns a list of matching ClassAds.
+
+<P>
+Parameter <TT>daemon_type</TT> is the type of daemon; 
+must be of the enum <TT>DaemonTypes</TT>. 
+
+<P></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>query( (AdTypes)ad_type, constraint=True, attrs=[] )</TT>
+
+<P>
+Query the contents of a <I>condor_collector</I> daemon.
+Returns a list of ClassAds that match the <TT>constraint</TT> parameter.
+
+<P>
+Optional parameter <TT>ad_type</TT> is the type of ClassAd to return,
+where the types are from the enum <TT>AdTypes</TT>.
+If not specified, the type will be <TT>ANY_AD</TT>.
+
+<P>
+Optional parameter <TT>constraint</TT> is a constraint for the ClassAd query.
+It defaults to <TT>True</TT>.
+
+<P>
+Optional parameter <TT>attrs</TT> is a list of attributes.
+If specified, the returned ClassAds will be projected along these attributes.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>advertise( ad_list, command=UPDATE_AD_GENERIC, use_tcp = True )</TT>
+
+<P>
+Advertise a list of ClassAds into the <I>condor_collector</I>.
+
+<P>
+Parameter <TT>ad_list</TT> is the list of ClassAds to advertise.
+
+<P>
+Optional parameter <TT>command</TT> is a command for the <I>condor_collector</I>.
+It defaults to <TT>UPDATE_AD_GENERIC</TT>.
+Other commands, such as <TT>UPDATE_STARTD_AD</TT>,
+may require reduced authorization levels.  
+
+<P>
+Optional parameter <TT>use_tcp</TT> causes updates to be sent via TCP.
+Defaults to <TT>True</TT>.</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<P>
+<B>The <TT>Negotiator</TT> class:</B>
+<DIV ALIGN="LEFT">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>__init__( (ClassAd)ad = None ) </TT>
+
+<P>
+Create an instance of the <TT>Negotiator</TT> class.  
+
+<P>
+Optional parameter <TT>ad</TT> is a ClassAd containing the location of 
+the <I>condor_negotiator</I> daemon.
+If omitted, uses the local pool.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>deleteUser( (str)user )</TT>
+
+<P>
+Delete a user from the accounting.
+
+<P>
+<TT>user</TT> is a fully-qualified user name, <TT>"USER@DOMAIN"</TT>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>getPriorities( [(bool)rollup = False ] ) </TT>
+
+<P>
+Retrieve the pool accounting information.
+Returns a list of accounting ClassAds.
+
+<P>
+Optional parameter <TT>rollup</TT> identifies if accounting information,
+as applied to hierarchical group quotas,
+should be summed for groups and subgroups (<TT>True</TT>) 
+or not (<TT>False</TT>, the default).</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>getResourceUsage( (str)user ) </TT>
+
+<P>
+Get the resource usage for a specified user.
+Returns a list of ClassAd attributes.
+
+<P>
+Parameter <TT>user</TT> is a fully-qualified user name, <TT>"USER@DOMAIN"</TT>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>resetAllUsage(  ) </TT>
+
+<P>
+Reset all usage accounting.
+
+<P></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>resetUsage( (str)user )</TT>
+
+<P>
+Reset all usage accounting of the specified <TT>user</TT>.
+
+<P>
+Parameter <TT>user</TT> is a fully-qualified user name, 
+<TT>"USER@DOMAIN"</TT>; resets the usage of only this user.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>setBeginUsage( (str)user, (time_t)value ) </TT>
+
+<P>
+Initialize the time that a user begins using the pool.
+
+<P>
+Parameter <TT>user</TT> is a fully-qualified user name, <TT>"USER@DOMAIN"</TT>.
+Parameter <TT>value</TT> is the time of initial usage.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>setLastUsage( (str)user, (time_t)value ) </TT>
+
+<P>
+Set the time that a user last began using the pool.
+
+<P>
+Parameter <TT>user</TT> is a fully-qualified user name, <TT>"USER@DOMAIN"</TT>.
+Parameter <TT>value</TT> is the time of last usage.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>setFactor( (str)user, (float)factor ) </TT>
+
+<P>
+Set the priority factor of a specified user.
+
+<P>
+Parameter <TT>user</TT> is a fully-qualified user name, <TT>"USER@DOMAIN"</TT>.
+Parameter <TT>factor</TT> is the priority factor to be set for the user;
+must be greater than or equal to 1.0.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>setPriority( (str)user, (float)prio ) </TT>
+
+<P>
+Set the real priority of a specified user.
+
+<P>
+Parameter <TT>user</TT> is a fully-qualified user name, <TT>"USER@DOMAIN"</TT>.
+Parameter <TT>prio</TT> is the priority to be set for the user;
+must be greater than 0.0.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>setUsage( (str)user, (float)usage ) </TT>
+
+<P>
+Set the accumulated usage of a specified user.
+
+<P>
+Parameter <TT>user</TT> is a fully-qualified user name, <TT>"USER@DOMAIN"</TT>.
+Parameter <TT>usage</TT> is the usage to be set for the user.</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<P>
+<B>The <TT>SecMan</TT> class</B> accesses the internal security object.
+This class allows access to the security layer of HTCondor.
+
+<P>
+Currently, this is limited to resetting security sessions and doing
+test authorizations against remote daemons.
+
+<P>
+If a security session becomes invalid,
+for example, because the remote daemon restarts, reuses the same port, 
+and the client continues to use the session,
+then all future commands will fail with strange connection errors.
+This is the only mechanism to invalidate in-memory sessions.
+
+<P>
+<DIV ALIGN="LEFT">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>__init__( )</TT>
+
+<P>
+Create a <TT>SecMan</TT> object.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>invalidateAllSessions( )</TT>
+
+<P>
+Invalidate all security sessions.
+Any future connections to a daemon will cause a new security session 
+to be created.
+
+<P></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>ping ( (ClassAd)ad, (str)command )</TT>
+
+<P>
+or
+
+<P>
+<TT>ping ( (string)sinful, (str)command )</TT>
+
+<P>
+Perform a test authorization against a remote daemon for a given
+command.
+
+<P>
+Returns the ClassAd of the security session.
+
+<P>
+Parameter <TT>ad</TT> is the ClassAd of the daemon as returned by
+<TT>Collector.locate</TT>; alternately, the sinful string can be given
+directly as the first parameter.
+
+<P>
+Optional parameter <TT>command</TT> is the DaemonCore command to
+try; if not given, <TT>DC_NOP</TT> will be used.
+
+<P></TD>
+</TR>
+</TABLE>
+</DIV>
+
+<P>
+<B>Module enums:</B>
+<DIV ALIGN="LEFT">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>AdTypes</TT>
+
+<P>
+A list of types used as values for the <TT>MyType</TT> ClassAd attribute.  
+These types are only used by the HTCondor system, not the ClassAd language.
+Typically, these specify different kinds of daemons.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>DaemonCommands</TT>
+
+<P>
+A list of commands which can be sent to a remote daemon.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>DaemonTypes</TT>
+
+<P>
+A list of types of known HTCondor daemons.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>JobAction</TT>
+
+<P>
+A list of actions that can be performed on a job in a <I>condor_schedd</I>.</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<H2><A NAME="SECTION00772000000000000000"></A><A NAME="Python-Example"></A>
+<BR>
+6.7.2  Sample Code using the <TT>htcondor</TT> Python Module
+</H2>
+This sample code illustrates interactions with the <TT>htcondor</TT> Python Module. 
+
+<P>
+<PRE>
+$ python
+Python 2.6.6 (r266:84292, Jun 18 2012, 09:57:52) 
+[GCC 4.4.6 20110731 (Red Hat 4.4.6-3)] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+&gt;&gt;&gt; import htcondor
+&gt;&gt;&gt; import classad
+&gt;&gt;&gt; coll = htcondor.Collector("red-condor.unl.edu")
+&gt;&gt;&gt; results = coll.query(htcondor.AdTypes.Startd, "true", ["Name"])
+&gt;&gt;&gt; len(results)
+3812
+&gt;&gt;&gt; results[0]
+[ Name = "slot1@red-d20n35"; MyType = "Machine"; TargetType = "Job"; CurrentTime = time() ]
+&gt;&gt;&gt; scheddAd = coll.locate(htcondor.DaemonTypes.Schedd, "red-gw1.unl.edu")
+&gt;&gt;&gt; scheddAd["ScheddIpAddr"]
+'&lt;129.93.239.132:53020&gt;'
+&gt;&gt;&gt; schedd = htcondor.Schedd(scheddAd)
+&gt;&gt;&gt; results = schedd.query('Owner =?= "cmsprod088"', ["ClusterId", "ProcId"])
+&gt;&gt;&gt; len(results)
+63
+&gt;&gt;&gt; results[0]
+[ MyType = "Job"; TargetType = "Machine"; ServerTime = 1356722353; ClusterId = 674143; ProcId = 0; CurrentTime = time() ]
+&gt;&gt;&gt; htcondor.param["COLLECTOR_HOST"]
+'hcc-briantest.unl.edu'
+&gt;&gt;&gt; schedd = htcondor.Schedd() # Defaults to the local schedd.
+&gt;&gt;&gt; results = schedd.query()
+&gt;&gt;&gt; results[0]["RequestMemory"]
+ifthenelse(MemoryUsage isnt undefined,MemoryUsage,( ImageSize + 1023 ) / 1024)
+&gt;&gt;&gt; results[0]["RequestMemory"].eval()
+1L
+&gt;&gt;&gt; ad=classad.parse(open("test.submit.ad"))
+&gt;&gt;&gt; print schedd.submit(ad, 2) # Submits two jobs in the cluster; edit test.submit.ad to preference.
+110
+&gt;&gt;&gt; print schedd.act(htcondor.JobAction.Remove, ["111.0", "110.0"])'
+    [
+        TotalNotFound = 0; 
+        TotalPermissionDenied = 0; 
+        TotalAlreadyDone = 0; 
+        TotalJobAds = 2; 
+        TotalSuccess = 2; 
+        TotalChangedAds = 1; 
+        TotalBadStatus = 0; 
+        TotalError = 0
+    ]
+&gt;&gt;&gt; print schedd.act(htcondor.JobAction.Hold, "Owner =?= \"bbockelm\"")'
+    [
+        TotalNotFound = 0; 
+        TotalPermissionDenied = 0; 
+        TotalAlreadyDone = 0; 
+        TotalJobAds = 2; 
+        TotalSuccess = 2; 
+        TotalChangedAds = 1; 
+        TotalBadStatus = 0; 
+        TotalError = 0
+    ]
+&gt;&gt;&gt; schedd.edit('Owner =?= "bbockelm"', "Foo", classad.ExprTree('"baz"'))
+&gt;&gt;&gt; schedd.edit(["110.0"], "Foo", '"bar"')
+&gt;&gt;&gt; coll = htcondor.Collector()
+&gt;&gt;&gt; master_ad = coll.locate(htcondor.DaemonTypes.Master)
+&gt;&gt;&gt; htcondor.send_command(master_ad, htcondor.DaemonCommands.Reconfig) # Reconfigures the local master and all children
+&gt;&gt;&gt; htcondor.version()
+'$CondorVersion: 7.9.4 Jan 02 2013 PRE-RELEASE-UWCS $'
+&gt;&gt;&gt; htcondor.platform()
+'$CondorPlatform: X86_64-ScientificLinux_6.3 $'
+</PRE>
+<P>
+The bindings can use a dictionary where a ClassAd is expected.
+Here is an example that uses the ClassAd:
+<PRE>
+htcondor.Schedd().submit(classad.ClassAd({"Cmd": "/bin/echo"}))
+</PRE>This same example, using a dictionary instead of constructing a ClassAd:
+<PRE>
+htcondor.Schedd().submit({"Cmd": "/bin/echo"})
+</PRE>
+<P>
+
+<H2><A NAME="SECTION00773000000000000000"></A><A NAME="Python-ClassAd"></A>
+<BR>
+6.7.3  ClassAd Module
+</H2>
+
+<P>
+The <TT>classad</TT> module class provides a dictionary-like mechanism 
+for interacting with the ClassAd language. 
+<TT>classad</TT> objects implement the iterator interface to iterate 
+through the <TT>classad</TT>'s attributes.
+The constructor can take a dictionary,
+and the object can take lists, dictionaries, and ClassAds as values.
+
+<P>
+<B><TT>classad</TT> module functions:</B>
+<DIV ALIGN="LEFT">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>parse( input )</TT>
+
+<P>
+Parse input into a ClassAd.  
+Returns a ClassAd object.
+
+<P>
+Parameter <TT>input</TT> is a string-like object or a file pointer.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>parseOld( )</TT>
+
+<P>
+Parse old ClassAd format input into a ClassAd.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>version( )</TT>
+
+<P>
+Return the version of the linked ClassAd library.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>Attribute( name )</TT>
+
+<P>
+Given the string <TT>name</TT>, 
+return an <TT>ExprTree</TT> object which is a
+reference to an attribute of that name.
+The ClassAd expression <TT>foo == 1</TT> can be constructed 
+by the python <TT>Attribute("foo") == 1</TT>.
+
+<P></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>Function( name, arg1, arg2, ... )</TT>
+
+<P>
+Given function name <TT>name</TT>, and zero-or-more arguments, 
+construct an <TT>ExprTree</TT> which is a function call expression.  
+The function is not evaluated.
+The ClassAd expression <TT>strcat("hello ", "world")</TT> 
+can be constructed by the python 
+<TT>Function("strcat", "hello ", "world")</TT>.
+
+<P></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>Literal( obj )</TT>
+
+<P>
+Given python object <TT>obj</TT>, convert it to a ClassAd literal.
+Python strings, floats, integers, and booleans have equivalent literals.
+
+<P></TD>
+</TR>
+</TABLE>
+</DIV>
+
+<P>
+<B>Standard Python object methods for the <TT>ClassAd</TT> class:</B>
+<DIV ALIGN="LEFT">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>__init__( str )</TT>
+
+<P>
+Create a ClassAd object from string, <TT>str</TT>, passed as a parameter.
+The string must be formatted in the new ClassAd format.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>__len__( )</TT>
+
+<P>
+Returns the number of attributes in the ClassAd; 
+allows <TT>len(object)</TT> semantics for ClassAds.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>__str__( )</TT>
+
+<P>
+Converts the ClassAd to a string and returns the string;
+the formatting style is new ClassAd,
+with square brackets and semicolons.
+For example, <TT>[ Foo = "bar"; ]</TT> may be returned.
+
+<P></TD>
+</TR>
+</TABLE>
+</DIV>
+
+<P>
+<B>The <TT>classad</TT> object has the following dictionary-like methods:</B>
+<DIV ALIGN="LEFT">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>items( )</TT>
+
+<P>
+Returns an iterator of tuples. Each item returned by the iterator 
+is a tuple representing a pair (attribute,value) in the ClassAd object.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>values( )</TT>
+
+<P>
+Returns an iterator of objects. 
+Each item returned by the iterator is a value in the ClassAd. 
+
+<P>
+If the value is a literal, 
+it will be cast to a native Python object, 
+so a ClassAd string will be returned as a Python string.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>keys( )</TT>
+
+<P>
+Returns an iterator of strings. Each item returned by the iterator 
+is an attribute string in the ClassAd.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>get( attr, value )</TT>
+
+<P>
+Behaves like the corresponding Python dictionary method.
+Given the <TT>attr</TT> as key, returns either the value of that key,
+or if the key is not in the object, returns <TT>None</TT> or
+the optional second parameter when specified.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>__getitem__( attr )</TT>
+
+<P>
+Returns (as an object) the value corresponding to the attribute
+<TT>attr</TT> passed as a parameter.
+
+<P>
+ClassAd values will be returned as Python objects; 
+ClassAd expressions will be returned as <TT>ExprTree</TT> objects.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>__setitem__( attr, value )</TT>
+
+<P>
+Sets the ClassAd attribute <TT>attr</TT> to the <TT>value</TT>.
+
+<P>
+ClassAd values will be returned as Python objects; 
+ClassAd expressions will be returned as <TT>ExprTree</TT> objects.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>setdefault( attr, value )</TT>
+
+<P>
+Behaves like the corresponding Python dictionary method.
+If called with an attribute, <TT>attr</TT>, that is not set,
+it will set the attribute to the specified <TT>value</TT>.
+It returns the value of the attribute.  
+If called with an attribute that is already set,
+it does not change the object.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>update( object )</TT>
+
+<P>
+Behaves like the corresponding Python dictionary method.
+Updates the ClassAd with the key/value pairs of the given object.
+
+<P>
+Returns nothing.</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<P>
+<B>Additional methods:</B>
+<DIV ALIGN="LEFT">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>eval( attr )</TT>
+
+<P>
+Evaluate the value given a ClassAd attribute <TT>attr</TT>.
+Throws <TT>ValueError</TT> if unable to evaluate the object.
+
+<P>
+Returns the Python object corresponding to the evaluated ClassAd attribute.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>lookup( attr )</TT>
+
+<P>
+Look up the <TT>ExprTree</TT> object associated with attribute <TT>attr</TT>.
+No attempt will be made to convert to a Python object.
+
+<P>
+Returns an <TT>ExprTree</TT> object.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>printOld( )</TT>
+
+<P>
+Print the ClassAd in the old ClassAd format. 
+
+<P>
+Returns a string.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>quote( str )</TT>
+
+<P>
+Converts the Python string, <TT>str</TT>, into a ClassAd string literal.
+
+<P>
+Returns the string literal.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>unquote( str )</TT>
+
+<P>
+Converts the Python string, <TT>str</TT>, escaped as a ClassAd string back to a
+Python string.
+
+<P>
+Returns the Python string.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>parseAds( input )</TT>
+
+<P>
+Given <TT>input</TT> of a string or file, return an iterator of
+ClassAds where the ClassAds are in the New ClassAd format.
+
+<P>
+Returns an iterator.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>parseOldAds( input )</TT>
+
+<P>
+Given <TT>input</TT> of a string or file, return an iterator of
+ClassAds where the ClassAds are in the Old ClassAd format.
+
+<P>
+Returns an iterator.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>flatten( expression )</TT>
+
+<P>
+Given <TT>ExprTree</TT> object <TT>expression</TT>, 
+perform a partial evaluation.  
+All the attributes in <TT>expression</TT> and
+defined in this object are evaluated and expanded.  Any constant
+expressions, such as <TT>1 + 2</TT>, are evaluated.  
+
+<P>
+Returns a new <TT>ExprTree</TT> object.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>matches( ad )</TT>
+
+<P>
+Given <TT>ClassAd</TT> object <TT>ad</TT>, 
+check to see if this object matches the <TT>Requirements</TT> attribute 
+of <TT>ad</TT>.
+Returns <TT>true</TT> if it does.
+
+<P></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>symmetricMatch( ad )</TT>
+
+<P>
+Returns <TT>true</TT> if the given <TT>ad</TT> matches this and this matches
+<TT>ad</TT>.  Equivalent to <TT>self.matches(ad) and ad.matches(self)</TT>.</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<P>
+<B>The <TT>ExprTree</TT> class</B> object
+represents an expression in the ClassAd language.  The python operators
+for <TT>ExprTree</TT> have been overloaded so, if <TT>e1</TT> and <TT>e2</TT>
+are <TT>ExprTree</TT> objects, then <TT>e1 + e2</TT> is also a <TT>ExprTree</TT>
+object.  Lazy-evaluation is used, so an expression <TT>"foo" + 1</TT> does not
+produce an error until it is evaluated with a call to <TT>bool()</TT> or the
+<TT>.eval()</TT> class member.
+
+<P>
+<B><TT>ExprTree</TT> class methods:</B>
+<DIV ALIGN="LEFT">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>__init__( str )</TT>
+
+<P>
+Parse the string <TT>str</TT> to create an <TT>ExprTree</TT>.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>__str__( )</TT>
+
+<P>
+Represent and return the ClassAd expression as a string.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=454><TT>eval( )</TT>
+
+<P>
+Evaluate the expression and return as a ClassAd value, 
+typically a Python object.</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<H2><A NAME="SECTION00774000000000000000"></A><A NAME="Python-ClassAd-Example"></A>
+<BR>
+6.7.4  Sample Code using the <TT>classad</TT> Module
+</H2>
+This sample Python code illustrates interactions with the <TT>classad</TT> module. 
+
+<P>
+<PRE>
+$ python
+Python 2.6.6 (r266:84292, Jun 18 2012, 09:57:52) 
+[GCC 4.4.6 20110731 (Red Hat 4.4.6-3)] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+&gt;&gt;&gt; import classad
+&gt;&gt;&gt; ad = classad.ClassAd()
+&gt;&gt;&gt; expr = classad.ExprTree("2+2")
+&gt;&gt;&gt; ad["foo"] = expr
+&gt;&gt;&gt; print ad["foo"].eval()
+4
+&gt;&gt;&gt; ad["bar"] = 2.1
+&gt;&gt;&gt; ad["baz"] = classad.ExprTree("time() + 4")
+&gt;&gt;&gt; print list(ad)
+['bar', 'foo', 'baz']
+&gt;&gt;&gt; print dict(ad.items())
+{'baz': time() + 4, 'foo': 2 + 2, 'bar': 2.100000000000000E+00}
+&gt;&gt;&gt; print ad
+    [
+        bar = 2.100000000000000E+00; 
+        foo = 2 + 2; 
+        baz = time() + 4
+    ]
+&gt;&gt;&gt; ad2=classad.parse(open("test_ad", "r"));
+&gt;&gt;&gt; ad2["error"] = classad.Value.Error
+&gt;&gt;&gt; ad2["undefined"] = classad.Value.Undefined
+&gt;&gt;&gt; print ad2
+    [
+        error = error; 
+        bar = 2.100000000000000E+00; 
+        foo = 2 + 2; 
+        undefined = undefined; 
+        baz = time() + 4
+    ]
+&gt;&gt;&gt; ad2["undefined"]
+classad.Value.Undefined
+</PRE>
+<P>
+Here is an example that illustrates the dictionary properties of
+the constructor.
+<PRE>
+&gt;&gt;&gt; classad.ClassAd({"foo": "bar"})
+[ foo = "bar" ]
+&gt;&gt;&gt; ad = classad.ClassAd({"foo": [1, 2, 3]})
+&gt;&gt;&gt; ad
+[ foo = { 1,2,3 } ]
+&gt;&gt;&gt; ad["foo"][2]
+3L
+&gt;&gt;&gt; ad = classad.ClassAd({"foo": {"bar": 1}})
+&gt;&gt;&gt; ad
+[ foo = [ bar = 1 ] ]
+&gt;&gt;&gt; ad["foo"]["bar"]
+1L
+</PRE>
+<P>
+Here are examples that illustrate the <TT>get</TT> method.
+<PRE>
+&gt;&gt;&gt; ad = classad.ClassAd({"foo": "bar"})
+&gt;&gt;&gt; ad
+[ foo = "bar" ]
+&gt;&gt;&gt; ad["foo"]
+'bar'
+&gt;&gt;&gt; ad.get("foo")
+'bar'
+&gt;&gt;&gt; ad.get("foo", 2)
+'bar'
+&gt;&gt;&gt; ad.get("baz", 2)
+2
+&gt;&gt;&gt; ad.get("baz")
+&gt;&gt;&gt;
+</PRE>
+<P>
+Here are examples that illustrate the <TT>setdefault</TT> method.
+<PRE>
+&gt;&gt;&gt; ad = classad.ClassAd()
+&gt;&gt;&gt; ad
+[  ]
+&gt;&gt;&gt; ad["foo"]
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in &lt;module&gt;
+KeyError: 'foo'
+&gt;&gt;&gt; ad.setdefault("foo", 1)
+1
+&gt;&gt;&gt; ad
+[ foo = 1 ]
+&gt;&gt;&gt; ad.setdefault("foo", 2)
+1L
+&gt;&gt;&gt; ad
+[ foo = 1 ]
+</PRE>
+<P>
+Here is an example that illustrates the use of the iterator
+<TT>parseOldAds</TT> method on a history log.
+<PRE>
+&gt;&gt;&gt; import classad
+&gt;&gt;&gt; import os
+&gt;&gt;&gt; fd = os.popen("condor_history -l -match 4")
+&gt;&gt;&gt; ads = classad.parseOldAds(fd)
+&gt;&gt;&gt; print [ad["ClusterId"] for ad in ads]
+[23389L, 23388L, 23386L, 23387L]
+&gt;&gt;&gt;
+</PRE>
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html2251"
+  HREF="7_Platform_Specific_Informa.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2245"
+  HREF="6_Application_Programming.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2241"
+  HREF="6_6HTCondor_Perl.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2247"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2249"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2252"
+  HREF="7_Platform_Specific_Informa.html">7. Platform-Specific Information</A>
+<B> Up:</B> <A NAME="tex2html2246"
+  HREF="6_Application_Programming.html">6. Application Programming Interfaces</A>
+<B> Previous:</B> <A NAME="tex2html2242"
+  HREF="6_6HTCondor_Perl.html">6.6 The HTCondor Perl</A>
+ &nbsp; <B>  <A NAME="tex2html2248"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2250"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

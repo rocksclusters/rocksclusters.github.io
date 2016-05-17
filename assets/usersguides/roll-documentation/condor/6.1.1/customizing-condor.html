@@ -1,0 +1,263 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Customizing the Condor Roll</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE=" Condor Users Guide "
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Customizing the Condor Roll"
+HREF="customizing.html"><LINK
+REL="PREVIOUS"
+TITLE="Customizing the Condor Roll"
+HREF="customizing.html"><LINK
+REL="NEXT"
+TITLE="Using a pool password to secure Condor Communications"
+HREF="condor-password-security.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Condor</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/condor.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="customizing.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 4. Customizing the Condor Roll</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="condor-password-security.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="CUSTOMIZING-CONDOR"
+>4.1. Customizing the Condor Roll</A
+></H1
+><P
+>&#13;This section describes the default Condor configuration and some simple
+cusomizations that can be applied in Rocks with version &#62;= 5.4</P
+><P
+>By default, Condor execution daemons are only installed on Rocks
+<EM
+>compute</EM
+> appliances. For Rocks 5.2 and newer, the Condor
+roll makes use of <EM
+>attributes</EM
+>
+to enable Condor to be installed on any appliance.
+This may be particularly useful to groups who are including the Xen roll
+and would like Condor to install on VM Container appliances. </P
+><P
+>The basic customizations that can be applied without and scripting/programming
+by setting global, appliance, or host attributes. Please see the
+commands <SAMP
+CLASS="COMPUTEROUTPUT"
+> rocks set attr help </SAMP
+>
+and
+<SAMP
+CLASS="COMPUTEROUTPUT"
+> rocks list attr help </SAMP
+>&#13;</P
+><P
+>&#13;<DIV
+CLASS="TABLE"
+><A
+NAME="AEN157"
+></A
+><P
+><B
+>Table 4-1. Attributes Used in Condor Roll</B
+></P
+><TABLE
+BORDER="1"
+FRAME="border"
+RULES="all"
+CLASS="CALSTABLE"
+><COL><COL><THEAD
+><TR
+><TH
+ALIGN="CENTER"
+>Attibute Name</TH
+><TH
+ALIGN="CENTER"
+>Description</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>Condor_Client</TD
+><TD
+>Enable/Disable Condor Client Installation on any particular Appliance or Host</TD
+></TR
+><TR
+><TD
+>Condor_PasswordAuth </TD
+><TD
+> Use a shared pool password, instead of host-based 
+authentication. Default: no. </TD
+></TR
+><TR
+><TD
+>Condor_HostAllow </TD
+><TD
+>Comma separates list of allowed readers/writers for Condor. Translates to 
+HOSTALLOW directive in Condor Configuration file.</TD
+></TR
+><TR
+><TD
+>Condor_EnableMPI </TD
+><TD
+>Configure a local scheduler for MPI Universe Support</TD
+></TR
+><TR
+><TD
+>Condor_Master</TD
+><TD
+>Redefine the Condor Master that nodes use</TD
+></TR
+><TR
+><TD
+>Condor_Network </TD
+><TD
+>Define which network interface is used for Condor traffic. Default: frontends are set to public, clients are set to private.</TD
+></TR
+><TR
+><TD
+>Condor_PortHigh: </TD
+><TD
+>Upper Port range that Condor will use to communicate among 
+daemons. Removal of this Attribute will result in removal of the HIGHPORT entry in condor_config.local after syncing the configuration. Default: 50000</TD
+></TR
+><TR
+><TD
+>Condor_PortLow </TD
+><TD
+>Lower Port range that Condor will use to communicate among 
+daemons. Removal of this Attribute will result in removal of the LOWPORT entry in condor_config.local after syncing the configuration. Default: 40000</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>&#13;</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="customizing.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="condor-password-security.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Customizing the Condor Roll</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="customizing.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Using a pool password to secure Condor Communications</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

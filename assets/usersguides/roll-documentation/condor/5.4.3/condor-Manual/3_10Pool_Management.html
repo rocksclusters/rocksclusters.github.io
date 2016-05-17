@@ -1,0 +1,393 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>3.10 Pool Management</TITLE>
+<META NAME="description" CONTENT="3.10 Pool Management">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="3_11High_Availability.html">
+<LINK REL="previous" HREF="3_9DaemonCore.html">
+<LINK REL="up" HREF="3_Administrators_Manual.html">
+<LINK REL="next" HREF="3_11High_Availability.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html1322"
+  HREF="3_11High_Availability.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1316"
+  HREF="3_Administrators_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1310"
+  HREF="3_9DaemonCore.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1318"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1320"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1323"
+  HREF="3_11High_Availability.html">3.11 The High Availability</A>
+<B> Up:</B> <A NAME="tex2html1317"
+  HREF="3_Administrators_Manual.html">3. Administrators' Manual</A>
+<B> Previous:</B> <A NAME="tex2html1311"
+  HREF="3_9DaemonCore.html">3.9 DaemonCore</A>
+ &nbsp; <B>  <A NAME="tex2html1319"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1321"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html1324"
+  HREF="3_10Pool_Management.html#SECTION004101000000000000000">3.10.1 Upgrading - Installing a New Version on an Existing Pool</A>
+<LI><A NAME="tex2html1325"
+  HREF="3_10Pool_Management.html#SECTION004102000000000000000">3.10.2 Shutting Down and Restarting a Condor Pool</A>
+<LI><A NAME="tex2html1326"
+  HREF="3_10Pool_Management.html#SECTION004103000000000000000">3.10.3 Reconfiguring a Condor Pool</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION004100000000000000000"></A><A NAME="sec:Pool-Management"></A>
+<A NAME="33886"></A>
+<BR>
+3.10 Pool Management
+</H1>
+
+<P>
+Condor provides administrative tools to help with
+pool management.
+This section describes some of these tasks.
+
+<P>
+All of the commands described in this section are subject to the
+security policy chosen for the Condor pool.
+As such, the commands must be either run from a
+machine that has the proper authorization, 
+or run by a user that is authorized to issue the commands.
+Section&nbsp;<A HREF="3_6Security.html#sec:Security">3.6</A> on
+page&nbsp;<A HREF="3_6Security.html#sec:Security"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> details the implementation of 
+security in Condor.
+
+<P>
+
+<H2><A NAME="SECTION004101000000000000000"></A><A NAME="sec:Pool-Upgrade"></A>
+<A NAME="33890"></A>
+<A NAME="33891"></A>
+<BR>
+3.10.1 Upgrading - Installing a New Version on an Existing Pool
+</H2>
+
+<P>
+An upgrade changes the running version of Condor
+from the current installation to a newer version.
+The safe method
+to install and start running a newer version of Condor
+in essence is:
+shut down the current installation of Condor,
+install the newer version,
+and then restart Condor using the newer version.
+To allow for falling back to the current version,
+place the new version in a separate directory.
+Copy the existing configuration files,
+and modify the copy to point to and use the new version,
+as well as incorporate any configuration variables that are new or changed
+in the new version.
+Set the <TT>CONDOR_CONFIG</TT> environment variable
+to point to the new copy of the configuration,
+so the new version of Condor will use the new configuration when restarted.
+
+<P>
+When upgrading from a version of Condor earlier than 6.8 to more recent version,
+note that the configuration settings must be modified for security reasons.
+Specifically, the <TT>HOSTALLOW_WRITE</TT> <A NAME="33962"></A> <A NAME="33963"></A> configuration variable
+must be explicitly changed,
+or no jobs may be submitted,
+and error messages will be issued by Condor tools.
+
+<P>
+Another way to upgrade leaves Condor running. 
+Condor will automatically restart itself if the <I>condor_master</I> binary
+is updated,
+and this method takes advantage of this. 
+Download the newer version, placing it such that it does not 
+overwrite the currently running version.
+With the download will be a new set of configuration files;
+update this new set with any specializations implemented in the currently
+running version of Condor.
+Then, modify the currently running installation by changing its
+configuration such that the path to binaries points instead
+to the new binaries.
+One way to do that (under Unix) is to use a symbolic link that points 
+to the current Condor installation directory (for example, <TT>/opt/condor</TT>).
+Change the symbolic link to point to the new directory. 
+If Condor is configured to locate its binaries via the symbolic link, 
+then after the symbolic link changes, 
+the <I>condor_master</I> daemon notices the new binaries and restarts itself. 
+How frequently it checks is controlled by the configuration variable 
+<TT>MASTER_CHECK_NEW_EXEC_INTERVAL</TT> <A NAME="33972"></A> <A NAME="33973"></A>, which defaults 5 minutes.
+
+<P>
+When the <I>condor_master</I> notices new binaries, 
+it begins a graceful restart. 
+On an execute machine, 
+a graceful restart means that running jobs are preempted. 
+Standard universe jobs will attempt to take a checkpoint. 
+This could be a bottleneck if all machines in a large pool 
+attempt to do this at the same time. 
+If they do not complete within the cutoff time specified by the <TT>KILL</TT> 
+policy expression (defaults to 10 minutes), 
+then the jobs are killed without producing a checkpoint. 
+It may be appropriate to increase this cutoff time, 
+and a better approach may be to upgrade the pool in stages 
+rather than all at once. 
+
+<P>
+For universes other than the standard universe, jobs are preempted. 
+If jobs have been guaranteed a certain amount of uninterrupted run time 
+with <TT>MaxJobRetirementTime</TT>, 
+then the job is not killed until the specified amount of 
+retirement time has been exceeded (which is 0 by default). 
+The first step of killing the job is a soft kill signal, 
+which can be intercepted by the job so that it can exit gracefully, 
+perhaps saving its state. 
+If the job has not gone away once the <TT>KILL</TT> expression fires 
+(10 minutes by default), 
+then the job is forcibly hard-killed. 
+Since the graceful shutdown of jobs may rely on shared resources such as disks 
+where state is saved, 
+the same reasoning applies as for the standard universe: 
+it may be appropriate to increase the cutoff time 
+for large pools, 
+and a better approach may be to upgrade the pool in stages 
+to avoid jobs running out of time. 
+
+<P>
+Another time limit to be aware of is the configuration variable 
+<TT>SHUTDOWN_GRACEFUL_TIMEOUT</TT>. 
+This defaults to 30 minutes. 
+If the graceful restart is not completed within this time, 
+a fast restart ensues. 
+This causes jobs to be hard-killed. 
+
+<P>
+
+<H2><A NAME="SECTION004102000000000000000"></A><A NAME="sec:Pool-Shutdown-and-Restart"></A>
+<A NAME="33904"></A>
+<A NAME="33905"></A>
+<BR>
+3.10.2 Shutting Down and Restarting a Condor Pool
+</H2>
+
+<P>
+<DL>
+<DT><STRONG>Shutting Down Condor</STRONG></DT>
+<DD>There are a variety of ways to shut down all or parts of a Condor pool.
+All utilize the <I>condor_off</I> tool.
+
+<P>
+To stop a single execute machine from running jobs,
+the <I>condor_off</I> command specifies the machine by host name.
+<PRE>
+  condor_off -startd &lt;hostname&gt;
+</PRE>
+A running <B>standard</B> universe job will be allowed to 
+take a checkpoint before the job is killed.
+A running job under another universe will be killed.
+If it is instead desired that the machine stops running jobs
+only after the currently executing job completes, the command is
+<PRE>
+  condor_off -startd -peaceful &lt;hostname&gt;
+</PRE>
+Note that this waits indefinitely for the running job to finish,
+before the <I>condor_startd</I> daemon exits.
+
+<P>
+Th shut down all execution machines within the pool,
+<PRE>
+  condor_off -all -startd
+</PRE>
+
+<P>
+To wait indefinitely for each machine in the pool to finish its current
+Condor job,
+shutting down all of the execute machines as they no longer
+have a running job,
+<PRE>
+  condor_off -all -startd -peaceful
+</PRE>
+
+<P>
+To shut down Condor on a machine from which jobs are submitted,
+<PRE>
+  condor_off -schedd &lt;hostname&gt;
+</PRE>
+
+<P>
+If it is instead desired that the submit machine shuts down
+only after all jobs that are currently in the queue are finished,
+first disable new submissions to the queue 
+by setting the configuration variable
+<PRE>
+  MAX_JOBS_SUBMITTED = 0
+</PRE>
+See instructions below in section&nbsp;<A HREF="#sec:Reconfigure-Pool">3.10.3</A> for how
+to reconfigure a pool.
+After the reconfiguration, the command to wait for all jobs to complete
+and shut down the submission of jobs is
+<PRE>
+  condor_off -schedd -peaceful &lt;hostname&gt;
+</PRE>
+
+<P>
+Substitute the option <B>-all</B> for the host name,
+if all submit machines in the pool are to be shut down.
+
+<P>
+</DD>
+<DT><STRONG>Restarting Condor, If Condor Daemons Are Not Running</STRONG></DT>
+<DD>If Condor is not running,
+perhaps because one of the <I>condor_off</I> commands was used,
+then starting Condor daemons back up depends on which part of
+Condor is currently not running.
+
+<P>
+If no Condor daemons are running, then starting Condor is a matter
+of executing the <I>condor_master</I> daemon.
+The <I>condor_master</I> daemon will then invoke all other specified daemons
+on that machine.
+The <I>condor_master</I> daemon executes on every machine that is to run Condor.
+
+<P>
+If a specific daemon needs to be started up, and the <I>condor_master</I> daemon
+is already running, then issue the command on the specific machine with
+<PRE>
+  condor_on -subsystem &lt;subsystemname&gt;
+</PRE>
+where <code>&lt;subsystemname&gt;</code> is replaced by the daemon's subsystem
+name.
+Or, this command might be issued from another machine in the pool
+(which has administrative authority) with
+<PRE>
+  condor_on &lt;hostname&gt; -subsystem &lt;subsystemname&gt;
+</PRE>
+where <code>&lt;subsystemname&gt;</code> is replaced by the daemon's subsystem
+name, and <code>&lt;hostname&gt;</code> is replaced by the host name of the
+machine where this <I>condor_on</I> command is to be directed.
+
+<P>
+</DD>
+<DT><STRONG>Restarting Condor, If Condor Daemons Are Running</STRONG></DT>
+<DD>If Condor daemons are currently running, but need to be killed and
+newly invoked,
+the <I>condor_restart</I> tool does this.
+This would be the case for a new value of a configuration variable for
+which using <I>condor_reconfig</I> is inadequate.
+
+<P>
+To restart all daemons on all machines in the pool,
+<PRE>
+  condor_restart -all
+</PRE>
+
+<P>
+To restart all daemons on a single machine in the pool,
+<PRE>
+  condor_restart &lt;hostname&gt;
+</PRE>
+where <code>&lt;hostname&gt;</code> is replaced by the host name of the
+machine to be restarted.
+
+<P>
+</DD>
+</DL>
+
+<P>
+
+<H2><A NAME="SECTION004103000000000000000"></A><A NAME="sec:Reconfigure-Pool"></A>
+<A NAME="33945"></A>
+<BR>
+3.10.3 Reconfiguring a Condor Pool
+</H2>
+
+<P>
+To change a global configuration variable and have all the
+machines start to use the new setting, change the value within the file,
+and send a <I>condor_reconfig</I> command to each host.
+Do this with a <I>single</I> command,
+<PRE>
+  condor_reconfig -all
+</PRE>
+
+<P>
+If the global configuration file is not shared among all the machines,
+as it will be if using a shared file system,
+the change must be made to each copy of the global configuration file
+before issuing the <I>condor_reconfig</I> command.
+
+<P>
+Issuing a <I>condor_reconfig</I> command is inadequate for some
+configuration variables.
+For those, a restart of Condor is required.
+Those configuration variables that require a restart are listed in
+section&nbsp;<A HREF="3_3Configuration.html#sec:Macros-Requiring-Restart">3.3.1</A>
+on page&nbsp;<A HREF="3_3Configuration.html#sec:Macros-Requiring-Restart"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+The manual page for <I>condor_restart</I> is at
+&nbsp;<A HREF="condor_restart.html#man-condor-restart">9</A>.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1322"
+  HREF="3_11High_Availability.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1316"
+  HREF="3_Administrators_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1310"
+  HREF="3_9DaemonCore.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1318"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1320"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1323"
+  HREF="3_11High_Availability.html">3.11 The High Availability</A>
+<B> Up:</B> <A NAME="tex2html1317"
+  HREF="3_Administrators_Manual.html">3. Administrators' Manual</A>
+<B> Previous:</B> <A NAME="tex2html1311"
+  HREF="3_9DaemonCore.html">3.9 DaemonCore</A>
+ &nbsp; <B>  <A NAME="tex2html1319"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1321"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

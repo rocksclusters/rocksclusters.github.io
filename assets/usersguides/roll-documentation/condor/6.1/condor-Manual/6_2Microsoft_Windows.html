@@ -1,0 +1,1059 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>6.2 Microsoft Windows</TITLE>
+<META NAME="description" CONTENT="6.2 Microsoft Windows">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="6_3Macintosh_OS.html">
+<LINK REL="previous" HREF="6_1Linux.html">
+<LINK REL="up" HREF="6_Platform_Specific_Informa.html">
+<LINK REL="next" HREF="6_3Macintosh_OS.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html2125"
+  HREF="6_3Macintosh_OS.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2119"
+  HREF="6_Platform_Specific_Informa.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2113"
+  HREF="6_1Linux.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2121"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2123"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2126"
+  HREF="6_3Macintosh_OS.html">6.3 Macintosh OS X</A>
+<B> Up:</B> <A NAME="tex2html2120"
+  HREF="6_Platform_Specific_Informa.html">6. Platform-Specific Information</A>
+<B> Previous:</B> <A NAME="tex2html2114"
+  HREF="6_1Linux.html">6.1 Linux</A>
+ &nbsp; <B>  <A NAME="tex2html2122"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2124"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html2127"
+  HREF="6_2Microsoft_Windows.html#SECTION00721000000000000000">6.2.1 Limitations under Windows</A>
+<LI><A NAME="tex2html2128"
+  HREF="6_2Microsoft_Windows.html#SECTION00722000000000000000">6.2.2 Supported Features under Windows</A>
+<LI><A NAME="tex2html2129"
+  HREF="6_2Microsoft_Windows.html#SECTION00723000000000000000">6.2.3 Secure Password Storage</A>
+<LI><A NAME="tex2html2130"
+  HREF="6_2Microsoft_Windows.html#SECTION00724000000000000000">6.2.4 Executing Jobs as the Submitting User</A>
+<LI><A NAME="tex2html2131"
+  HREF="6_2Microsoft_Windows.html#SECTION00725000000000000000">6.2.5 The condor_credd Daemon</A>
+<LI><A NAME="tex2html2132"
+  HREF="6_2Microsoft_Windows.html#SECTION00726000000000000000">6.2.6 Executing Jobs with the User's Profile Loaded</A>
+<LI><A NAME="tex2html2133"
+  HREF="6_2Microsoft_Windows.html#SECTION00727000000000000000">6.2.7 Using Windows Scripts as Job Executables</A>
+<LI><A NAME="tex2html2134"
+  HREF="6_2Microsoft_Windows.html#SECTION00728000000000000000">6.2.8 How Condor for Windows Starts and Stops a Job</A>
+<LI><A NAME="tex2html2135"
+  HREF="6_2Microsoft_Windows.html#SECTION00729000000000000000">6.2.9 Security Considerations in Condor for Windows</A>
+<LI><A NAME="tex2html2136"
+  HREF="6_2Microsoft_Windows.html#SECTION007210000000000000000">6.2.10 Network files and Condor</A>
+<LI><A NAME="tex2html2137"
+  HREF="6_2Microsoft_Windows.html#SECTION007211000000000000000">6.2.11 Interoperability between Condor for Unix and Condor for Windows</A>
+<LI><A NAME="tex2html2138"
+  HREF="6_2Microsoft_Windows.html#SECTION007212000000000000000">6.2.12 Some differences between Condor for Unix -vs- Condor for Windows</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00720000000000000000"></A><A NAME="sec:platform-windows"></A>
+<A NAME="48307"></A>
+<BR>
+6.2 Microsoft Windows
+</H1>
+
+<P>
+Windows is a strategic platform for Condor,
+and therefore we have been working toward a complete
+port to Windows.
+Our goal is to make Condor every bit as capable on Windows as it is on
+Unix - or even more capable.
+
+<P>
+Porting Condor from Unix to Windows is a formidable task,
+because many
+components of Condor must interact closely with the underlying operating
+system.
+Provided is a clipped version of Condor for Windows.
+A clipped version is one in which there is no checkpointing
+and there are no remote system calls.
+
+<P>
+This section contains additional information specific to running
+Condor on Windows.
+In order to effectively use Condor, first read the overview
+chapter (section&nbsp;<A HREF="1_1High_Throughput_Computin.html#sec:overview">1.1</A>)
+and the user's manual (section&nbsp;<A HREF="2_1Welcome_Condor.html#sec:usermanual">2.1</A>).
+If administrating or customizing the policy and set up of Condor,
+also read the administrator's manual 
+chapter (section&nbsp;<A HREF="3_1Introduction.html#sec:Admin-Intro">3.1</A>).
+After reading these chapters,
+review the information in this chapter for
+important information and differences when using and administrating
+Condor on Windows.
+For information on installing Condor for Windows, see
+section&nbsp;<A HREF="3_2Installation.html#sec:Windows-Install">3.2.5</A>.
+
+<P>
+
+<H2><A NAME="SECTION00721000000000000000"></A>
+<A NAME="48313"></A>
+<BR>
+6.2.1 Limitations under Windows
+</H2>
+
+<P>
+In general, this release for Windows works the same as the 
+release of Condor for Unix.
+However, the following items are not supported in this version:
+
+<P>
+
+<UL>
+<LI>The standard job universe is not present.  This means
+transparent process checkpoint/migration and remote system calls are
+not supported.
+
+<P>
+</LI>
+<LI>For <B>grid</B> universe jobs, the only supported grid type is
+<B>condor</B>.
+
+<P>
+</LI>
+<LI>Accessing files via a network share that requires a Kerberos ticket
+(such as AFS) is not yet supported.
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<H2><A NAME="SECTION00722000000000000000">
+6.2.2 Supported Features under Windows</A>
+</H2>
+
+<P>
+Except for those items listed above, most everything works
+the same way in Condor as it does in the Unix release.
+This release is based on the Condor Version 7.8.5 source tree, and thus the
+feature set is the same as Condor Version 7.8.5 for Unix.  
+For instance, all of the following work in Condor:
+
+<UL>
+<LI>The ability to submit, run, and manage queues of jobs running on a
+cluster of Windows machines.
+
+<P>
+</LI>
+<LI>All tools such as <I>condor_q</I>, <I>condor_status</I>, <I>condor_userprio</I>,
+are included. Only <I>condor_compile</I> is
+<I>not</I> included.
+
+<P>
+</LI>
+<LI>The ability to customize job policy using ClassAds.
+The machine ClassAds contain all the information included in the Unix version,
+including current load average, RAM and virtual memory sizes, integer and
+floating-point performance, keyboard/mouse idle time, etc.  Likewise, job
+ClassAds contain a full complement of information, including system
+dependent entries such as dynamic updates of the job's image size and CPU
+usage.
+
+<P>
+</LI>
+<LI>Everything necessary to run a Condor central manager on Windows.
+
+<P>
+</LI>
+<LI>Security mechanisms.
+
+<P>
+</LI>
+<LI>Support for SMP machines.
+
+<P>
+</LI>
+<LI>Condor for Windows can run jobs at a lower operating system
+priority level.
+Jobs can be suspended, soft-killed by using a WM_CLOSE message,
+or hard-killed automatically based upon policy expressions.
+For example, Condor can automatically suspend a job
+whenever keyboard/mouse or non-Condor created CPU activity is detected, and
+continue the job after the machine has been idle for a specified amount
+of time.
+
+<P>
+</LI>
+<LI>Condor correctly manages jobs which create multiple processes.  For
+instance, if a Condor job spawns multiple processes and Condor
+needs to kill the job,
+all processes created by the job will be terminated.
+
+<P>
+</LI>
+<LI>In addition to interactive tools, users and administrators can receive
+information from Condor by e-mail (standard SMTP) and/or by log files.
+
+<P>
+</LI>
+<LI>Condor includes a friendly GUI installation and set up program,
+which can perform a full install or deinstall of Condor.
+Information specified by the user in the set up program is stored in the
+system registry.  
+The set up program can update a current installation with a
+new release using a minimal amount of effort.
+
+<P>
+</LI>
+<LI>Condor can give a job access to the running user's Registry hive.
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<H2><A NAME="SECTION00723000000000000000"></A><A NAME="sec:windows-sps"></A>
+<BR>
+6.2.3 Secure Password Storage
+</H2>
+
+<P>
+In order for Condor to operate properly, it must at times be able to
+act on behalf of users who submit jobs.  
+This is required on submit machines,
+so that Condor can access a job's input files, 
+create and access the job's output files, 
+and write to the job's log file from within the appropriate security context.
+On Unix systems, arbitrarily changing what user Condor performs its
+actions as is easily done when Condor is started with root privileges.
+On Windows, however, performing an action as a particular user
+or on behalf of a particular user requires knowledge of that user's password,
+even when running at the maximum privilege level.
+Condor provides secure password storage through the use of the 
+<I>condor_store_cred</I> tool.
+Passwords managed by Condor are encrypted and stored 
+in a secure location within the Windows registry.
+When Condor needs to perform an action as or on behalf of a particular user,
+it uses the securely stored password to do so.
+This implies that a password is stored for every user that will
+submit jobs from the Windows submit machine.
+
+<P>
+<A NAME="48504"></A>
+<A NAME="48505"></A>
+<A NAME="48330"></A>
+<A NAME="48331"></A>
+A further feature permits Condor to execute the job itself under the
+security context of its submitting user, specifying 
+the <B>run_as_owner</B> command in the job's
+submit description file. 
+With this feature, 
+it is necessary to configure and run a centralized <I>condor_credd</I> daemon
+to manage the secure password storage.
+This makes each user's password available, via an encrypted
+connection to the <I>condor_credd</I>, to any execute machine that may need it.
+
+<P>
+By default, the secure password store for a submit machine when no
+<I>condor_credd</I> is running is managed by the <I>condor_schedd</I>.
+This approach works in environments where
+the user's password is only needed on the submit machine.
+
+<P>
+
+<H2><A NAME="SECTION00724000000000000000"></A><A NAME="sec:windows-run-as-owner"></A>
+<A NAME="48338"></A>
+<BR>
+6.2.4 Executing Jobs as the Submitting User
+</H2>
+
+<P>
+By default, Condor executes jobs on Windows using dedicated run
+accounts that have minimal access rights and privileges,
+and which are recreated for each new job.
+As an alternative, Condor can be configured to allow users to run jobs using
+their Windows login accounts. 
+This may be useful if jobs need access to files on a network share,
+or to other resources that are not available to the low-privilege run account.
+
+<P>
+This feature requires use of a <I>condor_credd</I> daemon for secure
+password storage and retrieval. 
+With the <I>condor_credd</I> daemon running,
+the user's password must be stored, using the <I>condor_store_cred</I> tool.
+Then,
+a user that wants a job to run using their own account
+places into the job's submit description file
+<PRE>
+  run_as_owner = True
+</PRE>
+
+<P>
+
+<H2><A NAME="SECTION00725000000000000000"></A><A NAME="sec:credd"></A>
+<BR>
+6.2.5 The condor_credd Daemon
+</H2>
+<A NAME="48508"></A>
+<A NAME="48509"></A>
+<A NAME="48347"></A>
+The <I>condor_credd</I> daemon manages secure password storage.
+A single running instance of the <I>condor_credd</I> within a Condor pool
+is necessary in order to provide the feature described in 
+section <A HREF="#sec:windows-run-as-owner">6.2.4</A>,
+where a job runs as the submitting user, 
+instead of as a temporary user that has strictly limited access capabilities.
+
+<P>
+It is first necessary to select
+the single machine on which to run the <I>condor_credd</I>. 
+Often, the machine acting as the pool's central manager is a good choice.
+An important restriction, however, is that the <I>condor_credd</I> host must be a
+machine running Windows.
+
+<P>
+All configuration settings necessary to enable the <I>condor_credd</I> are
+contained in the example file <code>etc\condor_config.local.credd</code>
+from the Condor distribution. Copy these settings into a local
+configuration file for the machine that will run the <I>condor_credd</I>.
+Run <TT>condor_restart</TT> for these new settings to take effect, then
+verify (via Task Manager) that a <I>condor_credd</I> process is running.
+
+<P>
+A second set of configuration variables specify security for the
+communication among Condor daemons.
+These variables must be set for all machines in the pool.
+The following example settings are in the comments contained in the
+<code>etc\condor_config.local.credd</code> example file.
+These sample settings rely on the <TT>PASSWORD</TT> method for
+authentication among daemons, 
+including communication with the <I>condor_credd</I> daemon.
+The <TT>LOCAL_CREDD</TT> <A NAME="48567"></A> <A NAME="48568"></A> variable must be customized to point to the machine
+hosting the <I>condor_credd</I> and the <TT>ALLOW_CONFIG</TT> <A NAME="48574"></A> <A NAME="48575"></A> variable
+will be customized, if needed, to refer to an administrative account 
+that exists on all Condor nodes. 
+<PRE>
+CREDD_HOST = credd.cs.wisc.edu
+CREDD_CACHE_LOCALLY = True
+
+STARTER_ALLOW_RUNAS_OWNER = True
+
+ALLOW_CONFIG = Administrator@*
+SEC_CLIENT_AUTHENTICATION_METHODS = NTSSPI, PASSWORD
+SEC_CONFIG_NEGOTIATION = REQUIRED
+SEC_CONFIG_AUTHENTICATION = REQUIRED
+SEC_CONFIG_ENCRYPTION = REQUIRED
+SEC_CONFIG_INTEGRITY = REQUIRED
+</PRE>
+
+<P>
+In order for <TT>PASSWORD</TT> authenticated communication to work,
+a <I>pool password</I> must be chosen and distributed.
+The chosen pool password must be stored identically for each machine.
+The pool password first should be
+stored on the <I>condor_credd</I> host, then on the other machines in the pool.
+
+<P>
+To store the pool password on a Windows machine, run
+<PRE>
+  condor_store_cred add -c
+</PRE>
+when logged in with the administrative account on that machine,
+and enter the password when prompted. 
+If the administrative account is shared across all machines,
+that is if it is a domain account or has the same password on all machines,
+logging in separately to each machine in the pool can be avoided.
+Instead, the pool password can be securely pushed out for each Windows machine
+using a command of the form
+<PRE>
+  condor_store_cred add -c -n exec01.cs.wisc.edu
+</PRE>
+
+<P>
+Once the pool password is distributed, 
+but before submitting jobs,
+all machines must reevaluate their configuration,
+so execute
+<PRE>
+  condor_reconfig -all
+</PRE>
+from the central manager.
+This will cause each execute machine to test its ability
+to authenticate with the <I>condor_credd</I>.
+To see whether this test worked for each machine in the pool, run the command
+<PRE>
+  condor_status -f "%s\t" Name -f "%s\n" ifThenElse(isUndefined(LocalCredd),\"UNDEF\",LocalCredd)
+</PRE>Any rows in the output with the <TT>UNDEF</TT> string indicate machines where
+secure communication is not working properly. Verify that the pool password
+is stored correctly on these machines.
+
+<P>
+
+<H2><A NAME="SECTION00726000000000000000"></A><A NAME="sec:windows-load-profile"></A>
+<A NAME="48378"></A>
+<BR>
+6.2.6 Executing Jobs with the User's Profile Loaded
+</H2>
+Condor can be configured when using dedicated run accounts, 
+to load the account's profile.  A user's profile includes a set of personal 
+directories and a registry hive loaded under <TT>HKEY_CURRENT_USER</TT>.
+
+<P>
+This may be useful if the job requires direct access to the user's registry 
+entries.
+It also may be useful when the job requires an application, 
+and the application requires registry access. 
+This feature is always enabled on the <I>condor_startd</I>, 
+but it is limited to the dedicated run account.
+For security reasons, the profiles are
+removed after the job has completed and exited.  
+This ensures 
+that malicious jobs cannot discover what any previous job has done, nor 
+sabotage the registry for future jobs. It also ensures the next job has 
+a fresh registry hive.
+
+<P>
+A user that then wants a job to run with a profile uses the
+<B>load_profile</B> command in the job's submit description file:
+<PRE>
+load_profile = True
+</PRE>
+
+<P>
+This feature is currently not compatible with <B>run_as_owner</B>, 
+and will be ignored if both are specified.
+
+<P>
+
+<H2><A NAME="SECTION00727000000000000000"></A><A NAME="sec:windows-scripts-as-executables"></A>
+<BR>
+6.2.7 Using Windows Scripts as Job Executables
+</H2>
+
+<P>
+Condor has added support for scripting jobs on Windows.
+Previously, Condor jobs on Windows were limited to executables or batch files.
+With this new support,
+Condor determines how to interpret the script using 
+the file name's extension.
+Without a file name extension, 
+the file will be treated as it has been in the past:
+as a Windows executable.
+
+<P>
+This feature may not require any modifications to Condor's configuration.  
+An example that does not require administrative intervention
+are Perl scripts using <I>ActivePerl</I>.
+
+<P>
+<I>Windows Scripting Host</I> scripts do require
+configuration to work correctly.
+The configuration variables set values to be used in registry look up,
+which results in a command that invokes the correct interpreter,
+with the correct command line arguments for the specific scripting
+language.
+In Microsoft nomenclature, 
+<I>verbs</I> are actions that can be taken upon a given a file.
+The familiar examples of
+<B>Open</B>, <B>Print</B>, and <B>Edit</B>,
+can be found on the context menu when a user right clicks on a file.
+The command lines to be used for each of these verbs are stored in
+the registry under the <TT>HKEY_CLASSES_ROOT</TT> hive.
+In general, a registry look up uses the form:
+
+<P>
+<PRE>
+HKEY_CLASSES_ROOT\&lt;FileType&gt;\Shell\&lt;OpenVerb&gt;\Command
+</PRE>
+<P>
+Within this specification, 
+<code>&lt;FileType&gt;</code> is the name of a file type
+(and therefore a scripting language),
+and is obtained from the file name extension.
+<code>&lt;OpenVerb&gt;</code> identifies the verb,
+and is obtained from the Condor configuration.
+
+<P>
+The Condor configuration sets the selection of a verb,
+to aid in the registry look up.
+The file name extension sets the name of the Condor configuration variable.
+This variable name is of the form:
+<PRE>
+OPEN_VERB_FOR_&lt;EXT&gt;_FILES
+</PRE>
+<code>&lt;EXT&gt;</code> represents the file name extension.
+The following configuration example uses the <code>Open2</code> verb for
+a <I>Windows Scripting Host</I> registry look up for several scripting
+languages:
+
+<P>
+<PRE>
+OPEN_VERB_FOR_JS_FILES  = Open2
+OPEN_VERB_FOR_VBS_FILES = Open2
+OPEN_VERB_FOR_VBE_FILES = Open2
+OPEN_VERB_FOR_JSE_FILES = Open2
+OPEN_VERB_FOR_WSF_FILES = Open2
+OPEN_VERB_FOR_WSH_FILES = Open2
+</PRE>
+
+<P>
+In this example, Condor specifies the <code>Open2</code> verb,
+instead of the default <code>Open</code> verb,
+for a script with the file name extension of <code>wsh</code>.
+The <I>Windows Scripting Host</I>'s <code>Open2</code> verb allows standard input,
+standard output, and standard error to be redirected
+as needed for Condor jobs.
+
+<P>
+A common difficulty is encountered when
+a script interpreter requires access to the user's registry.
+Note that the user's registry is different than the root registry.
+If not given access to the user's registry,
+some scripts, such as <I>Windows Scripting Host</I> scripts,
+will fail.
+The failure error message appears as: 
+
+<P>
+<PRE>
+CScript Error: Loading your settings failed. (Access is denied.)
+</PRE>
+
+<P>
+The fix for this error is to give explicit access to the submitting
+user's registry hive.  This can be accomplished with the addition of
+the <B>load_profile</B> command in the job's submit description
+file:
+
+<P>
+<PRE>
+load_profile = True
+</PRE>
+
+<P>
+With this command,
+there should be no registry access errors.
+This command should also work for other interpreters.
+Note that not all interpreters will require access.
+For example,
+<I>ActivePerl</I> does not by default require access to the user's
+registry hive.
+
+<P>
+
+<H2><A NAME="SECTION00728000000000000000"></A>
+<A NAME="48409"></A>
+<BR>
+6.2.8 How Condor for Windows Starts and Stops a Job
+</H2>
+
+<P>
+This section provides some details on how Condor starts and stops jobs.
+This discussion is geared for the Condor administrator or advanced user who is
+already familiar with the material in the Administrator's Manual
+and wishes to know detailed information on what Condor does when
+starting and stopping jobs.
+
+<P>
+When Condor is about to start a job, the <I>condor_startd</I> on the execute
+machine spawns a <I>condor_starter</I> process.  The <I>condor_starter</I> then
+creates:
+
+<OL>
+<LI>a run account on the machine with a login name of
+<TT>condor-reuse-slot&lt;X&gt;</TT>, where <TT>&lt;X&gt;</TT> is the slot number of the
+<I>condor_starter</I>.  This account is added to group Users.  This step is
+skipped if the job is to be run using the submitting user's account,
+as specified in section <A HREF="#sec:windows-run-as-owner">6.2.4</A>.
+
+<P>
+</LI>
+<LI>a new temporary working directory for the job on the execute machine.
+This directory is
+named <TT>dir_XXX</TT>, where <TT>XXX</TT> is the process ID of the 
+<I>condor_starter</I>.
+The directory is created in the <TT>$(EXECUTE)</TT> directory,
+as specified in Condor's configuration file.  
+Condor then grants write
+permission to this directory for the user account newly created for the
+job.
+
+<P>
+</LI>
+<LI>a new, non-visible Window Station and Desktop for the job.
+Permissions are set so that only the account that will run the job has
+access rights to this Desktop.  Any windows created by this job are
+not seen by anyone; the job is run in the background.
+Setting <TT>USE_VISIBLE_DESKTOP</TT> <A NAME="48614"></A> <A NAME="48615"></A> to <TT>True</TT>
+will allow the job to access the
+default desktop instead of a newly created one.
+
+<P>
+</LI>
+</OL>
+
+<P>
+Next, the <I>condor_starter</I> daemon contacts the <I>condor_shadow</I> daemon, 
+which is running on the submitting machine, 
+and the <I>condor_starter</I> pulls over the job's executable and input files.
+These files are placed into the temporary working directory
+for the job.  After all files have been received, the <I>condor_starter</I> spawns
+the user's executable.  Its current working directory set to the
+temporary working directory.
+
+<P>
+While the job is running, the <I>condor_starter</I> closely monitors the CPU
+usage and image size of all processes started by the job.
+Every 20 minutes the <I>condor_starter</I> sends this information,
+along with the total size of all files contained in the job's
+temporary working directory, to the <I>condor_shadow</I>.
+The <I>condor_shadow</I> then
+inserts this information into the job's ClassAd so that policy and
+scheduling expressions can make use of this dynamic information.
+
+<P>
+If the job exits of its own accord (that is, the job completes),
+the <I>condor_starter</I>
+first terminates any processes started by the job which could still be
+around if the job did not clean up after itself.
+The <I>condor_starter</I> examines the job's temporary working directory for any
+files which have been created or modified and sends these files back
+to the <I>condor_shadow</I> running on the submit machine.
+The <I>condor_shadow</I>
+places these files into the <B>initialdir</B> specified in the
+submit description file; 
+if no <B>initialdir</B> was specified,
+the files go into the directory where the user invoked <I>condor_submit</I>.
+Once all the output files are safely transferred back,
+the job is removed from the queue.
+If, however, the <I>condor_startd</I> forcibly kills the job before all output files
+could be transferred, the job is not removed from the queue but instead
+switches back to the Idle state.  
+
+<P>
+If the <I>condor_startd</I> decides to vacate a job prematurely,
+the <I>condor_starter</I> sends a WM_CLOSE message to the job.
+If the job spawned multiple child processes, the WM_CLOSE message is only
+sent to the parent process.
+This is the one started by the <I>condor_starter</I>.
+The WM_CLOSE message is the preferred way to terminate a process on Windows,
+since this method allows the job to clean up and free any resources it may
+have allocated.
+When the job exits, the <I>condor_starter</I> cleans up any processes left behind.
+At this point, if <B>when_to_transfer_output</B> is set to
+<TT>ON_EXIT</TT> (the default) in the job's submit description file,
+the job switches states, from Running to Idle,
+and no files are transferred back.
+If <B>when_to_transfer_output</B> is set to <TT>ON_EXIT_OR_EVICT</TT>,
+then any files
+in the job's temporary working directory which were changed or modified are
+first sent back to the submitting machine.
+But this time, the <I>condor_shadow</I> places these
+intermediate files into a subdirectory created in the
+<TT>$(SPOOL)</TT> directory on the submitting machine.
+The job is then switched back to the Idle state until Condor finds
+a different machine on which to run.
+When the job is started again,
+Condor places into the job's temporary working directory the executable
+and input files as before,
+<I>plus</I> any files stored in the submit machine's <TT>$(SPOOL)</TT> directory for that job.  
+
+<P>
+<U>NOTE</U>: A Windows console process can intercept a WM_CLOSE message
+via the Win32 <TT>SetConsoleCtrlHandler()</TT> function,
+if it needs to do special cleanup work at vacate time; 
+a WM_CLOSE message generates a CTRL_CLOSE_EVENT.
+See <TT>SetConsoleCtrlHandler()</TT> in the Win32
+documentation for more info.
+
+<P>
+<U>NOTE</U>: The default handler in Windows for a WM_CLOSE message is for the
+process to exit.  Of course, the job could be coded to ignore it and not
+exit, but eventually the <I>condor_startd</I> will become impatient and hard-kill
+the job, if that is the policy desired by the administrator.
+
+<P>
+Finally, after the job has left and any files transferred back, 
+the <I>condor_starter</I> deletes the temporary working directory, 
+the temporary account if one was created,
+the Window Station and the Desktop before exiting. 
+If the <I>condor_starter</I> should terminate abnormally, 
+the <I>condor_startd</I> attempts the clean up.  
+If for some reason the <I>condor_startd</I> should disappear as well
+(that is, if the entire machine was power-cycled hard),
+the <I>condor_startd</I> will clean up when Condor is restarted.
+
+<P>
+
+<H2><A NAME="SECTION00729000000000000000">
+6.2.9 Security Considerations in Condor for Windows</A>
+</H2>
+
+<P>
+On the execute machine (by default), the user job is run using the
+access token of an account dynamically created by Condor which has
+bare-bones access rights and privileges.  For instance, if your
+machines are configured so that only Administrators have write access
+to
+<code>C:\WINNT</code>, then certainly no Condor job run on that machine
+would be able to write anything there.  The only files the job should
+be able to access on the execute machine are files accessible by the
+Users and Everyone groups, and files in the job's temporary working
+directory.  Of course, if the job is configured to run using the
+account of the submitting user (as described in section
+<A HREF="#sec:windows-run-as-owner">6.2.4</A>), it will be able to do anything that
+the user is able to do on the execute machine it runs on.
+
+<P>
+On the submit machine, Condor impersonates the submitting user, therefore
+the File Transfer mechanism has the same access rights as the submitting
+user.  For example, say only Administrators can write to
+<code>C:\WINNT</code>
+on the submit machine,
+and a user gives the following to <I>condor_submit</I> :
+<PRE>
+         executable = mytrojan.exe
+         initialdir = c:\winnt
+         output = explorer.exe
+         queue
+</PRE>
+Unless that user is in group Administrators, Condor will not permit
+<TT>explorer.exe</TT> to be overwritten.  
+
+<P>
+If for some reason the submitting user's account disappears between the time
+<I>condor_submit</I> was run and when the job runs, Condor is not able to check
+and see if the now-defunct submitting user has read/write access to a given
+file.  In this case, Condor will ensure that group ``Everyone'' has read or
+write access to any file the job subsequently tries to read or write.  This
+is in consideration for some network setups, where the user account only
+exists for as long as the user is logged in.
+
+<P>
+Condor also provides protection to the job queue.  It would be bad if the
+integrity of the job queue is compromised, because a malicious user could
+remove other user's jobs or even change what executable a user's job will
+run.  To guard against this, in Condor's default configuration all connections to the <I>condor_schedd</I> (the
+process which manages the job queue on a given machine) are authenticated
+using Windows' eSSPI security layer.  The user is then authenticated
+using the same challenge-response protocol that Windows uses to authenticate
+users to Windows file servers.  Once authenticated, the only users
+allowed to edit job entry in the queue are:
+
+<OL>
+<LI>the user who originally submitted that job (i.e. Condor allows users
+to remove or edit their own jobs)
+</LI>
+<LI>users listed in the <TT>condor_config</TT> file parameter
+<TT>QUEUE_SUPER_USERS</TT>.  In the default configuration, only the
+``SYSTEM'' (LocalSystem) account is listed here.  
+</LI>
+</OL>
+<U>WARNING</U>: Do not remove ``SYSTEM'' from <TT>QUEUE_SUPER_USERS</TT>, or
+Condor itself will not be able to access the job queue when needed.  If the
+LocalSystem account on your machine is compromised, you have all sorts of
+problems!
+
+<P>
+To protect the actual job queue files themselves, the Condor installation
+program will automatically set permissions on the entire Condor release
+directory so that only Administrators have write access.
+
+<P>
+Finally, Condor has all the IP/Host-based security mechanisms present
+in the full-blown version of Condor.  See section&nbsp;<A HREF="3_6Security.html#sec:Host-Security">3.6.9</A>
+starting on page&nbsp;<A HREF="3_6Security.html#sec:Host-Security"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for complete information
+on how to allow/deny access to Condor based upon machine host name or
+IP address.
+
+<P>
+
+<H2><A NAME="SECTION007210000000000000000"></A><A NAME="sec:network-files-solutions"></A>
+<BR>
+6.2.10 Network files and Condor
+</H2>
+
+<P>
+Condor can work well with a network file server.  The recommended
+approach to having jobs access files on network shares is to configure
+jobs to run using the security context of the submitting user (see
+section <A HREF="#sec:windows-run-as-owner">6.2.4</A>).  If this is done, the job
+will be able to access resources on the network in the same way as the
+user can when logged in interactively.
+
+<P>
+In some environments, running jobs as their submitting users is not a
+feasible option.  This section outlines some possible
+alternatives. The heart of the difficulty in this case is that on the
+execute machine, Condor creates a temporary user that will run the
+job.  The file server has never heard of this user before.
+
+<P>
+Choose one of these methods to make it work:
+
+<P>
+
+<UL>
+<LI>METHOD A: access the file server as a different user via a net use command
+with a login and password
+</LI>
+<LI>METHOD B: access the file server as guest
+</LI>
+<LI>METHOD C: access the file server with a "NULL" descriptor
+</LI>
+<LI>METHOD D: create and have Condor use a special account 
+</LI>
+</UL>
+
+<P>
+All of these methods have advantages and disadvantages.
+
+<P>
+Here are the methods in more detail:
+
+<P>
+METHOD A - access the file server as a different user via a net use command 
+with a login and password
+
+<P>
+Example: you want to copy a file off of a server before running it....
+
+<P>
+<PRE>
+   @echo off
+   net use \\myserver\someshare MYPASSWORD /USER:MYLOGIN
+   copy \\myserver\someshare\my-program.exe
+   my-program.exe
+</PRE>
+<P>
+The idea here is to simply authenticate to the file server with a different 
+login than the temporary Condor login.  This is easy with the "net use" 
+command as shown above.  Of course, the obvious disadvantage is this user's 
+password is stored and transferred as clear text.
+
+<P>
+METHOD B - access the file server as guest
+
+<P>
+Example: you want to copy a file off of a server before running it as GUEST
+
+<P>
+<PRE>
+   @echo off
+   net use \\myserver\someshare
+   copy \\myserver\someshare\my-program.exe
+   my-program.exe
+</PRE>
+
+<P>
+In this example, you'd contact the server MYSERVER as the Condor temporary 
+user.  However, if you have the GUEST account enabled on MYSERVER, you will 
+be authenticated to the server as user "GUEST".  If your file permissions 
+(ACLs) are setup so that either user GUEST (or group EVERYONE) has access 
+the share "someshare" and the directories/files that live there, you can 
+use this method.  The downside of this method is you need to enable the 
+GUEST account on your file server.   <U>WARNING</U>: This should be done *with 
+extreme caution* and only if your file server is well protected behind a 
+firewall that blocks SMB traffic.
+
+<P>
+METHOD C - access the file server with a "NULL" descriptor
+
+<P>
+One more option is to use NULL Security Descriptors.  In this way, you
+can specify which shares are accessible by NULL Descriptor by adding
+them to your registry.  You can then use the batch file wrapper like:
+
+<P>
+<PRE>
+net use z: \\myserver\someshare /USER:""
+z:\my-program.exe
+</PRE>
+
+<P>
+so long as 'someshare' is in the list of allowed NULL session shares.  To
+edit this list, run regedit.exe and navigate to the key:
+
+<P>
+<PRE>
+HKEY_LOCAL_MACHINE\
+   SYSTEM\
+     CurrentControlSet\
+       Services\
+         LanmanServer\
+           Parameters\
+             NullSessionShares
+</PRE>
+
+<P>
+and edit it.  unfortunately it is a binary value, so you'll then need to
+type in the hex ASCII codes to spell out your share.  each share is
+separated by a null (0x00) and the last in the list is terminated with
+two nulls.
+
+<P>
+although a little more difficult to set up, this method of sharing is a
+relatively safe way to have one quasi-public share without opening the
+whole guest account.  you can control specifically which shares can be 
+accessed or not via the registry value mentioned above.
+
+<P>
+METHOD D -  create and have Condor use a special account
+
+<P>
+Create a permanent account (called condor-guest in this description)
+under which Condor will run jobs.
+On all Windows machines, and on the file server, create the
+condor-guest account.
+
+<P>
+On the network file server, give the condor-guest user permissions
+to access files needed to run Condor jobs.
+
+<P>
+Securely store the password of the condor-guest user in the
+Windows registry using <I>condor_store_cred</I> on all Windows
+machines.
+
+<P>
+Tell Condor to use the condor-guest user as the owner of jobs,
+when required.
+Details for this are in 
+section&nbsp;<A HREF="3_6Security.html#sec:RunAsNobody">3.6.13</A>.
+
+<P>
+
+<H2><A NAME="SECTION007211000000000000000">
+6.2.11 Interoperability between Condor for Unix and Condor for Windows</A>
+</H2>
+
+<P>
+Unix machines and Windows machines running Condor can happily
+co-exist in the same Condor pool without any problems.
+Jobs submitted on Windows can run on Windows or Unix,
+and jobs submitted on Unix can run on Unix or Windows.
+Without any specification
+(using the <TT>requirements</TT> expression in the submit description file),
+the default behavior will be to 
+require the execute machine to be of the same architecture and operating
+system as the submit machine.
+
+<P>
+There is absolutely no need to run more than one Condor central manager,
+even if you have both Unix and Windows machines.  The Condor central manager
+itself can run on either Unix or Windows; there is no advantage to choosing
+one over the other.  Here at University of Wisconsin-Madison, for
+instance, we have hundreds of Unix and
+Windows machines in our Computer Science Department Condor pool.
+
+<P>
+
+<H2><A NAME="SECTION007212000000000000000">
+6.2.12 Some differences between Condor for Unix -vs- Condor for Windows</A>
+</H2>
+
+<P>
+
+<UL>
+<LI>On Unix, we recommend the creation of a ``<I>condor</I>'' account
+when installing Condor.  On Windows, this is not necessary, as Condor is
+designed to run as a system service as user LocalSystem.
+
+<P>
+</LI>
+<LI>On Unix, Condor finds the <TT>condor_config</TT> main configuration
+file by looking in ~condor, in /etc, or via an environment variable.
+On NT, the location of <TT>condor_config</TT> file is determined
+via the registry key <TT>HKEY_LOCAL_MACHINE/Software/Condor</TT>.
+You can override this value by setting an environment variable named
+<TT>CONDOR_CONFIG</TT>.
+
+<P>
+</LI>
+<LI>On Unix, in the VANILLA universe at job vacate time Condor sends the
+job a softkill signal defined in the submit-description file (defaults to
+SIGTERM).  On NT, Condor sends a WM_CLOSE message to the job at vacate
+time.
+
+<P>
+</LI>
+<LI>On Unix, if one of the Condor daemons has a fault, a core file
+will be created in the <TT>$(Log)</TT> directory.  On Condor NT, a
+``core'' file will also be created, but instead of a memory dump of the
+process it will be a very short ASCII text file which describes what
+fault occurred and where it happened.  This information can be used by
+the Condor developers to fix the problem.
+
+<P>
+</LI>
+</UL>
+
+<P>
+<A NAME="48501"></A>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html2125"
+  HREF="6_3Macintosh_OS.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2119"
+  HREF="6_Platform_Specific_Informa.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2113"
+  HREF="6_1Linux.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2121"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2123"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2126"
+  HREF="6_3Macintosh_OS.html">6.3 Macintosh OS X</A>
+<B> Up:</B> <A NAME="tex2html2120"
+  HREF="6_Platform_Specific_Informa.html">6. Platform-Specific Information</A>
+<B> Previous:</B> <A NAME="tex2html2114"
+  HREF="6_1Linux.html">6.1 Linux</A>
+ &nbsp; <B>  <A NAME="tex2html2122"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2124"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

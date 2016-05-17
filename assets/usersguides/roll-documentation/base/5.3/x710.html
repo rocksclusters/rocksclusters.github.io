@@ -1,0 +1,325 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Network Bridging for Virtual Machines</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Roll: Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE=" Defining and Modifying Networks and Network Interfaces "
+HREF="networking.html"><LINK
+REL="PREVIOUS"
+TITLE="Virtual LANs (VLANs) and Logical VLAN Bridges"
+HREF="x671.html"><LINK
+REL="NEXT"
+TITLE="Networking Configuration Examples"
+HREF="x750.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Base Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x671.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 3. Defining and Modifying Networks and Network Interfaces</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x750.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="AEN710"
+>3.5. Network Bridging for Virtual Machines</A
+></H1
+><P
+>Rocks support of Virtual Machines requires the proper setup of networking bridges. Rocks supports multiple
+network adapters for Virtual Machines, In this section, we describe the various kinds of bridging scenarios 
+for virtual machines and how to set them up. For these examples, the physical machine will be called
+vm-container-0-0,</P
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN713"
+>3.5.1. VM Network Bridging to Physical Devices</A
+></H2
+><P
+>When a VM is bridged to the physical device, it must be assigned in the same subnet as the physical device with 
+a compatible IP address</P
+><P
+>        <DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/PhysicalVMBridging.png"><DIV
+CLASS="CAPTION"
+><P
+> FIGURE: The Virtual machine is bridged to eth0. In this case eth0 of the
+			VM is in the same subnet (with a compatible IP) address. The VM and the container 
+			will be able to ping each other. This was the only configuration supported in Rocks
+			5.0 
+			</P
+></DIV
+></P
+></DIV
+></P
+><P
+>The following example shows this most basic of bridging scenarios. The guest (compute-0-0-1) and the
+container (vm-container-0-0)  are in the same IP subnet and will be able to ping each other. </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>[root@tranquil images]# rocks list host interface vm-container-0-0 compute-0-0-1
+HOST              SUBNET    IFACE    MAC               IP             NETMASK       MODULE NAME             VLAN
+compute-0-0-1:    private   eth0     00:16:3e:00:00:11 172.16.254.192 255.255.255.0 xennet compute-0-0-1    ------
+vm-container-0-0: private   eth0     00:09:6b:89:39:68 172.16.254.238 255.255.255.0 e1000  vm-container-0-0 ------&#13;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN724"
+>3.5.2. Logical VLAN Devices</A
+></H2
+><P
+>In this scenario, The guest (hosted-vm-0-0-2) and the host (vm-container-0-0) are not in the same logical
+network.</P
+><P
+>        <DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/VlanVMBridging.png"><DIV
+CLASS="CAPTION"
+><P
+> FIGURE: Guest VM is bridged through a logical VLAN device. 
+			</P
+></DIV
+></P
+></DIV
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>[root@rocks ~]# rocks list host interface vm-container-0-0 hosted-vm-0-0-0
+HOST              SUBNET  IFACE MAC               IP             NETMASK   MODULE NAME             VLAN
+hosted-vm-0-0-0:  ------- eth0  00:16:3e:00:00:05 -------------- --------- ------ hosted-vm-0-0-0  2    
+vm-container-0-0: private eth0  00:0e:0c:5d:7e:5e 10.255.255.254 255.0.0.0 e1000  vm-container-0-0 ------
+vm-container-0-0: private vlan2 ----------------- -------------- --------- ------ ---------------- 2    </PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+> 
+In the above configuration, Logical VLAN device vlan2 (with tag=2) will be on the physical network eth0 on
+vm-container-0-0.  The hosted-vm-0-0-0 (a Rocks "appliance" that simply holds a generic VM guest) will have
+have its interface on VLAN=2.  The physical machine must have a Logical vlan device with the same tag. </P
+><P
+> 
+Below we give a more complicated configuration and walk through exactly what is bridged where. </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>[root@rocks ~]# rocks list host interface vm-container-0-0
+SUBNET  IFACE   MAC               IP             NETMASK       MODULE NAME             VLAN
+private eth0    00:0e:0c:5d:7e:5e 10.255.255.254 255.0.0.0     e1000  vm-container-0-0 ------
+net10   eth1    00:10:18:31:74:84 192.168.1.10   255.255.255.0 tg3    vm-net10-0-0     ------
+net10   vlan100 ----------------- -------------- ------------- ------ ---------------- 100   
+private vlan2   ----------------- -------------- ------------- ------ ---------------- 2    
+
+[root@rocks ~]# rocks list host interface hosted-vm-0-0-0
+SUBNET IFACE MAC               IP NETMASK MODULE NAME            VLAN
+------ eth0  00:16:3e:00:00:05 -- ------- ------ hosted-vm-0-0-0 2    
+------ eth1  00:16:3e:00:00:80 -- ------- ------ --------------- 100   </PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>In the above scenario, if hosted-vm-0-0-0 (Xen guest, DomU)  were to be booted on physical host 
+vm-container-0-0 (Dom0), The packets from the guest on eth0 will be tagged with VLAN=2, and eth1 with
+VLAN=100.  The host machine must have Logical VLAN interfaces called "vlan*.".  To make the proper
+bridge configuration, Rocks will match the VLANs of the guest interfaces to the VLANs on the host. 
+On the host, logical interface vlan2 is labeled as being on the private network (eth0) and logical vlan100
+is labeled as being on the net10 network (eth1).</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="NETWORKING-VM-CLUSTER"
+>3.5.3. Networking for Virtual Clusters</A
+></H2
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/MultipleVMsVlanBridging.png"><DIV
+CLASS="CAPTION"
+><P
+> FIGURE: Multiple VMs communicating on a Logical VLAN interface.
+			</P
+></DIV
+></P
+></DIV
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/VirtualClusterVlan.png"><DIV
+CLASS="CAPTION"
+><P
+> FIGURE: Fully Virtualized cluster, including a virtual frontend.
+			</P
+></DIV
+></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x671.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x750.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Virtual LANs (VLANs) and Logical VLAN Bridges</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="networking.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Networking Configuration Examples</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

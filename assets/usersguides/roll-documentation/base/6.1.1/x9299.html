@@ -1,0 +1,208 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Release 2.0.1 - changes from 2.0</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Release Notes"
+HREF="release-notes.html"><LINK
+REL="PREVIOUS"
+TITLE="Release 2.1 - changes from 2.0.1"
+HREF="x9278.html"><LINK
+REL="NEXT"
+TITLE="411 Secure Information Service Internals"
+HREF="service-411.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Base</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x9278.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Appendix B. Release Notes</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="service-411.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="AEN9299"
+>B.22. Release 2.0.1 - changes from 2.0</A
+></H1
+><P
+>	Changed to new directory structure according to RedHat.
+	Existing users will have to delete their mirror of www.rocksclusters.org
+	and re-mirror to pickup the current RedHat directory naming scheme.
+	NOTE: you need the new cluster-dist from www.rocksclusters.org to
+	create a new mirror!
+	</P
+><P
+>	Added support to kickstart laptops (still working on this)
+	</P
+><P
+>	Frontend can now have either a DHCP or static address for the
+	external network.
+	For DHCP the DNS information provided from the
+	external DHCP server is inserted into the Rocks Database and
+	propagated to compute nodes.
+	</P
+><P
+>	Increased default DHCP lease time
+	</P
+><P
+>	Replaced Linux's useradd with create-account.
+	</P
+><P
+>	Force glibc-common RPM to be installed.
+	RedHat 7.0 doesn't install this due to errors in the RPM database.
+	</P
+><P
+>	NIS database gets rebuilt on the frontend once an hour.
+	</P
+><P
+>	Create directories on frontend/compute nodes before putting down
+	SSL and SSH keys.
+	Fixed permission on directories.
+	</P
+><P
+>	Ssh-agent now forwards through nodes
+	</P
+><P
+>	Ssh doesn't use privileged port (makes firewalls happy)
+	</P
+><P
+>cluster-kickstart set real and effect UID to root so all
+	members of the install group can run shoot-node.
+	Previously only root could do this.
+	</P
+><P
+>	Fixed reinstalls on IDE and SCSI hosts (only IDA host worked before,
+	thanks to a RedHat 7.0 change)
+	</P
+><P
+>	Fixed bssh bug
+	</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x9278.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="service-411.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Release 2.1 - changes from 2.0.1</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="release-notes.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>411 Secure Information Service Internals</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

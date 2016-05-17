@@ -1,0 +1,707 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Node XML Tags</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Roll Developer's Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="XML File Syntax"
+HREF="appendix-b.html"><LINK
+REL="PREVIOUS"
+TITLE="XML File Syntax"
+HREF="appendix-b.html"><LINK
+REL="NEXT"
+TITLE="Graph XML Tags"
+HREF="graph-xml.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Roll Developer's Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/developer.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="appendix-b.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Appendix A. XML File Syntax</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="graph-xml.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="NODE-XML-TAGS"
+>A.1. Node XML Tags</A
+></H1
+><P
+></P
+><UL
+><LI
+><P
+><B
+CLASS="COMMAND"
+>&#60;kickstart&#62;</B
+></P
+><P
+>Wraps an XML node file.</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>&#60;description&#62;</B
+></P
+><P
+>Text description of what this node does.</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>&#60;copyright&#62;</B
+></P
+><P
+>Text description of the copyright associated with this node file.</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>&#60;changelog&#62;</B
+></P
+><P
+>Text description of the changes made to this node file. Generally a "Log"
+CVS directive.&#13;</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>&#60;package&#62;</B
+></P
+><P
+>Specifies a single RPM package. Includes only the RPM name, not its version or
+release number. &#13;</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>type</DT
+><DD
+><P
+>Optional. Value is "meta". Used to describe RedHat meta packages.</P
+><P
+>Example:
+<CODE
+CLASS="CONSTANT"
+>&#60;package type="meta"&#62;gnome-desktop&#60;/package&#62;</CODE
+>.</P
+></DD
+><DT
+>disable</DT
+><DD
+><P
+>Optional. If this value is non-zero, the RPM will not be installed.</P
+><P
+>Example:
+<CODE
+CLASS="CONSTANT"
+>&#60;package disable="1"&#62;emacs&#60;/package&#62;</CODE
+>.</P
+></DD
+><DT
+>arch</DT
+><DD
+><P
+>Optional.
+This value can be "i386" or "x86_64".
+If "arch" matches the architecture of the host that is being installed, then
+the package will be installed, otherwise the package will be skipped.
+For example, if the value is "i386" and if the x86_64 version of Rocks is
+being installed on a host, then the package will be skipped.
+Or said another way, the package will only be installed on i386 hosts.</P
+><P
+>Example:
+<CODE
+CLASS="CONSTANT"
+>&#60;package arch="i386"&#62;nasm&#60;/package&#62;</CODE
+>.</P
+></DD
+><DT
+>os</DT
+><DD
+><P
+>Optional.
+Value is "linux" or "sunos".
+If this is specified, then the package will only be installed on 
+the specified OS.
+For example, if "linux" is specified, then the package will only be installed
+on Linux hosts (and the package will not be installed on Solaris hosts).</P
+><P
+>Example:
+<CODE
+CLASS="CONSTANT"
+>&#60;package os="linux"&#62;</CODE
+>.</P
+></DD
+></DL
+></DIV
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>&#60;eval&#62;</B
+></P
+><P
+>Replaced with the output of the script specified between these tags. The script
+is run on the host generating the kickstart file (generally the frontend).&#13;</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>shell</DT
+><DD
+><P
+>Optional. Specifies the script interpreter to use. Default "sh".</P
+><P
+>Example:
+<CODE
+CLASS="CONSTANT"
+>&#60;eval shell="/bin/bash"&#62;</CODE
+>.</P
+><P
+>Example:
+<CODE
+CLASS="CONSTANT"
+>&#60;eval shell="/opt/rocks/bin/python"&#62;</CODE
+>.</P
+></DD
+><DT
+>mode</DT
+><DD
+><P
+>Optional.
+Value is "quote" or "xml".
+If value is "quote", XML characters are escaped in the shell output.
+Default is "quote".</P
+><P
+>Example:
+<CODE
+CLASS="CONSTANT"
+>&#60;eval mode="xml"&#62;</CODE
+>.</P
+><P
+>Example:
+<CODE
+CLASS="CONSTANT"
+>&#60;eval shell="/bin/bash" mode='xml'&#62;</CODE
+>.</P
+></DD
+></DL
+></DIV
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>&#60;post&#62;</B
+></P
+><P
+>Wraps a post section.
+Configuration is generally carried out in
+post sections, making this a popular tag.
+The commands specified here
+correspond to an RPM post section, and they are executed on the client machine
+(not on the frontend, in contrast to the <CODE
+CLASS="CONSTANT"
+>&#60;eval&#62;</CODE
+> tag).</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>arch</DT
+><DD
+><P
+>Optional.
+This value can be "i386" or "x86_64".
+If "arch" matches the architecture of the host that is being installed, then
+this post section will be run, otherwise the post section will be skipped.</P
+><P
+>Example:
+<CODE
+CLASS="CONSTANT"
+>&#60;post arch="i386"&#62;</CODE
+>.</P
+></DD
+><DT
+>os</DT
+><DD
+><P
+>Optional.
+Value is "linux" or "sunos".
+If this is specified, then the post section will only be run during the
+installation of the specified OS.
+For example, if "linux" is specified, then the post section will be run when
+a Linux host is installed, but the post section will not be run when a Solaris
+host is installed.</P
+><P
+>Example:
+<CODE
+CLASS="CONSTANT"
+>&#60;post os="linux"&#62;</CODE
+>.</P
+></DD
+><DT
+>cond</DT
+><DD
+><P
+>Optional.
+If the value of the "cond" is true, then this post section will be executed.
+Values can be Rocks attributes or generic python expressions.</P
+><P
+>Example:
+<CODE
+CLASS="CONSTANT"
+>&#60;post cond="submit_host"&#62;</CODE
+>.</P
+><P
+>If the "submit_host" Rocks attribute is set to "true" for this host, then
+the post section will be executed, otherwise, this post section will be
+skipped.</P
+><P
+>Example:
+<CODE
+CLASS="CONSTANT"
+>&#60;post cond="not ssh_use_dns"&#62;</CODE
+>.</P
+><P
+>If the "ssh_use_dns" Rocks attribute is set to "false" for this host, then
+the post section will be executed (because of the python "not" operator).</P
+></DD
+><DT
+>interpreter</DT
+><DD
+><P
+>Optional. Specifies the script interpreter to use. Default "/bin/bash".</P
+><P
+>Example:
+<CODE
+CLASS="CONSTANT"
+>&#60;post interpreter="/opt/rocks/bin/python"&#62;</CODE
+>.</P
+></DD
+><DT
+>arg</DT
+><DD
+><P
+>Optional.
+Value can be "--nochroot".
+The "--nochroot" value means run this post section in the context of the
+installer, not in the context of the installing machine.
+The installer runs on a ramdisk on an installing machine, so if this argument
+is supplied, then the post section has access to the ramdisk file system as
+well as the mounted file systems for the installing node.</P
+><P
+>Example:
+<CODE
+CLASS="CONSTANT"
+>&#60;post arg="--nochroot"&#62;</CODE
+>.</P
+></DD
+></DL
+></DIV
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>&#60;pre&#62;</B
+></P
+><P
+>Wraps the pre section commands.
+All pre sections run before package installation, in contrast to
+commands from the post section.
+All pre sections are run in the context of the installation environment, that
+is, the root file system is a ramdisk.</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>&#60;file&#62;</B
+></P
+><P
+>Wraps the contents of a file.</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>name</DT
+><DD
+><P
+>Required. Specifies the name of this file, a full path. </P
+><P
+>Example:
+<CODE
+CLASS="CONSTANT"
+>&#60;file name="/etc/auto.master"&#62;</CODE
+>.</P
+></DD
+><DT
+>mode</DT
+><DD
+><P
+>Optional.
+Value is "append".
+If "append" is specified,
+the contents are appended to the end of an existing file.
+A record of the change is kept in a RCS
+repository in the same directory as the file.</P
+><P
+>Example:
+<CODE
+CLASS="CONSTANT"
+>&#60;file name="/etc/man.config" mode="append"&#62;</CODE
+>.</P
+></DD
+><DT
+>owner</DT
+><DD
+><P
+>Optional.
+The "user.group" that owns this file.
+Can be specified either as names "root.root" or numbers (guids) "0.0".</P
+><P
+>Example:
+<CODE
+CLASS="CONSTANT"
+>&#60;file name="/var/www/html/index.html" owner="root.apache"&#62;</CODE
+>.</P
+></DD
+><DT
+>perms</DT
+><DD
+><P
+>Optional.
+The permissions of this file.
+The value of this argument is passed to the "chmod" command, and accepts the
+same format.</P
+><P
+>Example:
+<CODE
+CLASS="CONSTANT"
+>&#60;file name="/etc/ssh/ssh_host_key.pub" perms="0444"&#62;</CODE
+>.</P
+></DD
+><DT
+>vars</DT
+><DD
+><P
+>Optional.
+Value is "literal" or "expanded".
+If "literal" no variable or backtick expansion is done on the contents of the
+file.
+If value is "expanded", standard shell variable expansion is performed, as
+well as running commands quoted with backticks.
+Default is "literal".</P
+><P
+>Example:
+<CODE
+CLASS="CONSTANT"
+>&#60;file name="/etc/motd" mode="append" vars="expanded"&#62;</CODE
+>.</P
+></DD
+><DT
+>expr</DT
+><DD
+><P
+>Optional.
+Specifies a command whose output is placed in the file.</P
+><P
+>Example:
+<CODE
+CLASS="CONSTANT"
+>&#60;file name="/etc/dhcpd.conf" expr="/opt/rocks/bin/rocks report host dhcpd"/&#62;</CODE
+>.</P
+></DD
+><DT
+>os</DT
+><DD
+><P
+>Optional.
+Value is "linux" or "sunos".
+If this is specified, then the file will only be created (or appended to )
+run during the installation of the specified OS.</P
+><P
+>Example:
+<CODE
+CLASS="CONSTANT"
+>&#60;file name="/etc/postfix/main.cf" mode="append" os="sunos"&#62;</CODE
+>.</P
+></DD
+></DL
+></DIV
+></LI
+></UL
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="NODE-MAIN-XML"
+>A.1.1. Kickstart Main Section</A
+></H2
+><P
+>These tags specify commands in the "main" section of a kickstart file.
+Each of these tags are wrapped in <CODE
+CLASS="CONSTANT"
+>&#60;main&#62;</CODE
+> tags.
+They appear in node XML files.
+Only the
+tags normally used in a cluster appliance kickstart file are presented here; for
+a full reference of all the kickstart options and their respective arguments,
+see
+<A
+HREF="http://docs.redhat.com/docs/en-US/Red_Hat_Enterprise_Linux/5/html-single/Installation_Guide/index.html#ch-kickstart2"
+TARGET="_top"
+>RHEL5 Documentation - Kickstart Installations</A
+>.</P
+><P
+><B
+CLASS="COMMAND"
+>&#60;main&#62;</B
+></P
+><P
+></P
+><UL
+><LI
+><P
+><B
+CLASS="COMMAND"
+>&#60;bootloader&#62;</B
+></P
+><P
+>Specifies the bootloader arguments. Default "--location=mbr"</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>&#60;interactive&#62;</B
+></P
+><P
+>Optional. Allows for inspection and modification of the kickstart values given,
+via the snack screen interface. Default: present.</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>&#60;url&#62;</B
+></P
+><P
+>Specifies the installation method with the <TT
+CLASS="LITERAL"
+>--url</TT
+> argument.
+Default is 
+<CODE
+CLASS="CONSTANT"
+>http://&#38;Kickstart_PrivateKickstartHost;/&#38;Kickstart_PrivateKickstartBasedir;/&#38;distribution;/&#38;arch;</CODE
+>,
+and when the kickstart file is
+generated, all the attributes are substituted with their respective values.</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>&#60;lang&#62;</B
+></P
+><P
+>The installation language to use. Default "en_US".</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>&#60;keyboard&#62;</B
+></P
+><P
+>Sets the system keyboard type. Default "us".</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>&#60;mouse&#62;</B
+></P
+><P
+>Specifies the system mouse type. Default "none".</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>&#60;timezone&#62;</B
+></P
+><P
+>Required. Sets the system timezone.
+The default is the timezone selected when a frontend is installed.</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>&#60;install&#62;</B
+></P
+><P
+>If present, perform a fresh install (not an upgrade). Default: present.</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>&#60;rootpw&#62;</B
+></P
+><P
+>Optional.
+Set the root password for the installing system.
+Default is 
+<CODE
+CLASS="CONSTANT"
+>&#60;rootpw&#62;--iscrypted &#38;Kickstart_PrivateRootPassword;&#60;/rootpw&#62;</CODE
+>,
+and when the kickstart file is
+generated, the attribute is substituted with its respective value.</P
+></LI
+></UL
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="appendix-b.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="graph-xml.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>XML File Syntax</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="appendix-b.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Graph XML Tags</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,367 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Fasta</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE=" Bio Users Guide "
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Using"
+HREF="using.html"><LINK
+REL="PREVIOUS"
+TITLE="Glimmer"
+HREF="glimmer_usage.html"><LINK
+REL="NEXT"
+TITLE="MrBayes"
+HREF="mrbayes_usage.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Bio</B
+> Users Guide: 	<DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/dna.png"></P
+></DIV
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="glimmer_usage.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 3. Using</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="mrbayes_usage.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="FASTA_USAGE"
+>3.7. Fasta</A
+></H1
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN280"
+>3.7.1. About Fasta</A
+></H2
+><P
+>FASTA is a program used to search in large Protein or DNA sequence data
+banks. It was developed at the University of Virginia by William R. Pearson,
+and D.J. Lippman.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN283"
+>3.7.2. Usage</A
+></H2
+><P
+>FASTA is installed in /opt/bio/fasta/.
+FASTA is run in a similar manner to NCBI Blast.</P
+><P
+></P
+><UL
+><LI
+><P
+>First create a test query file</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>[nostromo@xxx ~]$ cat &#62; test.txt
+&#62;Test
+AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC
+TTCTGAACTGGTTACCTGCCGTGAGTAAATTAAAATTTTATTGACTTAGGTCACTAAATACTTTAACCAA
+TATAGGCATAGCGCACAGACAGATAAAAATTACAGAGTACACAACATCCATGAAACGCATTAGCACCACC
+ATTACCACCACCATCACCATTACCACAGGTAACGGTGCGGGCTGACGCGTACAGGAAACACAGAAAAAAG
+CCCGCACCTGACAGTGCGGGCTTTTTTTTTCGACCAAAGGTAACGAGGTAACAACCATGCGAGTGTTGAA
+GTTCGGCGGTACATCAGTGGCAAATGCAGAACGTTTTCTGCGTGTTGCCGATATTCTGGAAAGCAATGCC
+AGGCAGGGGCAGGTGGCCACCGTCCTCTCTGCCCCCGCCAAAATCACCAACCACCTGGTGGCGATGATTG
+AAAAAACCATTAGCGGCCAGGATGCTTTACCCAATATCAGCGATGCCGAACGTATTTTTGCCGAACTTTT</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>The next step is to search for this against a database
+sequence. For this, we can download a DNA or protein sequence database or use
+the ones that are provided by the program. For this example, we will use the
+ones present along with the fasta program in /opt/bio/fasta/.</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>[nostromo@xxx ~]$ fasta35
+# fasta35
+FASTA searches a protein or DNA sequence data bank
+ version 35.04 Oct. 7, 2008
+Please cite:
+ W.R. Pearson &#38; D.J. Lipman PNAS (1988) 85:2444-2448
+
+ test sequence file name: test.txt
+ library file name: drosoph.nt
+ ktup? (1 to 6) [6] 
+Query: test.txt
+  1&#62;&#62;&#62;Test - 560 nt
+Library: drosoph.nt
+.......  Done!
+ 122655632 residues in  1170 sequences
+
+       opt      E()
+&#60; 20     0     0:
+  22     0     0:           one = represents 3 library sequences
+  24     0     0:
+  26     0     0:
+  28     0     0:
+  30     3     2:*
+  32    12     9:==*=
+  34    37    23:=======*=====
+  36    59    48:===============*====
+  38    90    79:==========================*===
+  40   110   110:====================================*
+  42   133   135:============================================*
+  44   147   149:=================================================*
+  46   151   151:==================================================*
+  48   129   145:===========================================     *
+  50   131   132:===========================================*
+  52   102   116:==================================    *
+  54    92    99:=============================== *
+  56    80    83:===========================*
+  58    68    68:======================*
+  60    43    55:===============   *
+  62    44    44:==============*
+  64    42    35:===========*==
+  66    30    28:=========*
+  68    25    22:=======*=
+  70    20    17:=====*=
+  72    18    13:====*=
+  74    14    10:===*=
+  76     7     8:==*
+  78     7     6:=*=
+  80     9     5:=*=
+  82     3     4:=*
+  84     0     3:*
+  86     0     2:*
+  88     2     2:*          inset = represents 1 library sequences
+  90     1     1:*
+  92     0     1:*         :*
+  94     0     1:*         :*
+  96     2     1:*         :*=
+  98     0     0:          *
+ 100     0     0:          *
+ 102     0     0:          *
+ 104     0     0:          *
+ 106     0     0:          *
+ 108     0     0:          *
+ 110     0     0:          *
+ 112     0     0:          *
+ 114     0     0:          *
+ 116     0     0:          *
+ 118     0     0:          *
+&#62;120     0     0:          *
+122902592 residues in  1611 sequences
+Statistics:  Expectation_n fit: rho(ln(x))= 7.6751+/-0.00204; mu= 6.7759+/- 0.231
+ mean_var=233.8700+/-93.821, 0's: 0 Z-trim: 0  B-trim: 0 in 0/53
+ Lambda= 0.083866
+ Kolmogorov-Smirnov  statistic: 0.0247 (N=27) at  38
+Algorithm: FASTA (3.5 Sept 2006) [optimized]
+Parameters: +5/-4 matrix (5:-4) ktup: 6
+ join: 52, opt: 37, open/ext: -12/-4, width:  16
+ Scan time: 10.680
+Enter filename for results []:  How many scores would you like to see? [20] 
+
+The best scores are:                                      opt bits E(1611)
+gi|10727961|gb|AE003541.2|AE003541 Drosophila  (265536) [r]  171 36.0       1
+gi|10728546|gb|AE003447.2|AE003447 Drosophila  (304085) [f]  171 36.0       1
+gi|7290382|gb|AE003426.1|AE003426 Drosophila m (300193) [f]  159 34.5     2.8
+gi|7290880|gb|AE003443.1|AE003443 Drosophila m (302357) [f]  157 34.3     3.3
+gi|10727731|gb|AE003838.2|AE003838 Drosophila  (263411) [r]  149 33.3     6.4
+gi|7291133|gb|AE003450.1|AE003450 Drosophila m (300732) [f]  148 33.2     6.9
+gi|7300931|gb|AE003741.1|AE003741 Drosophila m (233313) [r]  151 33.2     7.1
+gi|10726402|gb|AE003682.2|AE003682 Drosophila  (224400) [f]  147 33.1     7.5
+gi|10728339|gb|AE003512.2|AE003512 Drosophila  (301457) [f]  147 33.1     7.5
+gi|10728273|gb|AE003500.2|AE003500 Drosophila  (327446) [f]  145 32.8     8.9
+gi|10726452|gb|AE003691.2|AE003691 Drosophila  (226773) [f]  145 32.8     8.9
+gi|10727164|gb|AE003603.2|AE003603 Drosophila  (294914) [r]  144 32.6      10
+gi|7290252|gb|AE003423.1|AE003423 Drosophila m (291976) [r]  144 32.6      10
+gi|10727489|gb|AE003803.2|AE003803 Drosophila  (282567) [r]  143 32.6      10
+gi|10727489|gb|AE003803.2|AE003803 Drosophila  (282567) [r]  143 32.5      11
+gi|10727339|gb|AE003577.2|AE003577 Drosophila  (267662) [f]  142 32.3      13
+gi|7292734|gb|AE003488.1|AE003488 Drosophila m (302797) [f]  140 32.2      13
+gi|7298684|gb|AE003667.1|AE003667 Drosophila m (263704) [r]  139 31.9      17
+gi|10727995|gb|AE003546.2|AE003546 Drosophila  (281602) [f]  137 31.9      17
+gi|10728551|gb|AE003448.2|AE003448 Drosophila  (310364) [f]  137 31.9      18
+ More scores? [0] 
+ Display alignments also? (y/n) [n] 
+
+
+560 residues in 1 query   sequences
+122655632 residues in 1170 library sequences
+ Scomplib [35.04]
+ start: Wed Dec 10 19:45:41 2008 done: Wed Dec 10 19:46:04 2008
+ Total Scan time: 10.680 Total Display time:  0.000
+
+Function used was FASTA [version 35.04 Oct. 7, 2008]</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+></UL
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN293"
+>3.7.3. Further Information</A
+></H2
+><P
+>Further information about the usage of fasta can be obtained from
+/opt/bio/fasta/fasta3x.doc present on the frontend of your installation.</P
+><P
+>More information is also available at <A
+HREF="http://fasta.bioch.virginia.edu/"
+TARGET="_top"
+>the FASTA home page</A
+>.</P
+><P
+>For support, you are encouraged to join the FASTA mailing list at
+http://list.mail.virginia.edu/mailman/listinfo/fasta_list </P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="glimmer_usage.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="mrbayes_usage.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Glimmer</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="using.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>MrBayes</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

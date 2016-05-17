@@ -1,0 +1,248 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>2. Users' Manual</TITLE>
+<META NAME="description" CONTENT="2. Users' Manual">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="3_Administrators_Manual.html">
+<LINK REL="previous" HREF="1_Overview.html">
+<LINK REL="up" HREF="ref.html">
+<LINK REL="next" HREF="2_1Welcome_HTCondor.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html866"
+  HREF="2_1Welcome_HTCondor.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html860"
+  HREF="ref.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html854"
+  HREF="1_8Privacy_Notice.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html862"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html864"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html867"
+  HREF="2_1Welcome_HTCondor.html">2.1 Welcome to HTCondor</A>
+<B> Up:</B> <A NAME="tex2html861"
+  HREF="ref.html">HTCondor<SUP><SUP>TM</SUP></SUP> Version 8.2.8 Manual</A>
+<B> Previous:</B> <A NAME="tex2html855"
+  HREF="1_8Privacy_Notice.html">1.8 Privacy Notice</A>
+ &nbsp; <B>  <A NAME="tex2html863"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html865"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00300000000000000000"></A>
+<A NAME="user-manual"></A>
+<BR>
+2. Users' Manual
+</H1>
+
+<BR><HR>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html868"
+  HREF="2_1Welcome_HTCondor.html">2.1 Welcome to HTCondor</A>
+<LI><A NAME="tex2html869"
+  HREF="2_2Introduction.html">2.2 Introduction</A>
+<LI><A NAME="tex2html870"
+  HREF="2_3Matchmaking_with.html">2.3 Matchmaking with ClassAds</A>
+<UL>
+<LI><A NAME="tex2html871"
+  HREF="2_3Matchmaking_with.html#SECTION00331000000000000000">2.3.1 Inspecting Machine ClassAds with condor_status</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html872"
+  HREF="2_4Running_Job.html">2.4 Running a Job: the Steps To Take</A>
+<UL>
+<LI><A NAME="tex2html873"
+  HREF="2_4Running_Job.html#SECTION00341000000000000000">2.4.1 Choosing an HTCondor Universe</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html874"
+  HREF="2_5Submitting_Job.html">2.5 Submitting a Job</A>
+<UL>
+<LI><A NAME="tex2html875"
+  HREF="2_5Submitting_Job.html#SECTION00351000000000000000">2.5.1 Sample submit description files</A>
+<LI><A NAME="tex2html876"
+  HREF="2_5Submitting_Job.html#SECTION00352000000000000000">2.5.2 About Requirements and Rank</A>
+<LI><A NAME="tex2html877"
+  HREF="2_5Submitting_Job.html#SECTION00353000000000000000">2.5.3 Submitting Jobs Using a Shared File System</A>
+<LI><A NAME="tex2html878"
+  HREF="2_5Submitting_Job.html#SECTION00354000000000000000">2.5.4 Submitting Jobs Without a Shared File System:
+HTCondor's File Transfer Mechanism</A>
+<LI><A NAME="tex2html879"
+  HREF="2_5Submitting_Job.html#SECTION00355000000000000000">2.5.5 Environment Variables</A>
+<LI><A NAME="tex2html880"
+  HREF="2_5Submitting_Job.html#SECTION00356000000000000000">2.5.6 Heterogeneous Submit: Execution on Differing Architectures</A>
+<LI><A NAME="tex2html881"
+  HREF="2_5Submitting_Job.html#SECTION00357000000000000000">2.5.7 Jobs That Require GPUs</A>
+<LI><A NAME="tex2html882"
+  HREF="2_5Submitting_Job.html#SECTION00358000000000000000">2.5.8 Interactive Jobs</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html883"
+  HREF="2_6Managing_Job.html">2.6 Managing a Job</A>
+<UL>
+<LI><A NAME="tex2html884"
+  HREF="2_6Managing_Job.html#SECTION00361000000000000000">2.6.1 Checking on the progress of jobs</A>
+<LI><A NAME="tex2html885"
+  HREF="2_6Managing_Job.html#SECTION00362000000000000000">2.6.2 Removing a job from the queue</A>
+<LI><A NAME="tex2html886"
+  HREF="2_6Managing_Job.html#SECTION00363000000000000000">2.6.3 Placing a job on hold</A>
+<LI><A NAME="tex2html887"
+  HREF="2_6Managing_Job.html#SECTION00364000000000000000">2.6.4 Changing the priority of jobs</A>
+<LI><A NAME="tex2html888"
+  HREF="2_6Managing_Job.html#SECTION00365000000000000000">2.6.5 Why is the job not running?</A>
+<LI><A NAME="tex2html889"
+  HREF="2_6Managing_Job.html#SECTION00366000000000000000">2.6.6 Job in the Hold State</A>
+<LI><A NAME="tex2html890"
+  HREF="2_6Managing_Job.html#SECTION00367000000000000000">2.6.7 In the Job Event Log File</A>
+<LI><A NAME="tex2html891"
+  HREF="2_6Managing_Job.html#SECTION00368000000000000000">2.6.8 Job Completion</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html892"
+  HREF="2_7Priorities_Preemption.html">2.7 Priorities and Preemption</A>
+<UL>
+<LI><A NAME="tex2html893"
+  HREF="2_7Priorities_Preemption.html#SECTION00371000000000000000">2.7.1 Job Priority</A>
+<LI><A NAME="tex2html894"
+  HREF="2_7Priorities_Preemption.html#SECTION00372000000000000000">2.7.2 User priority</A>
+<LI><A NAME="tex2html895"
+  HREF="2_7Priorities_Preemption.html#SECTION00373000000000000000">2.7.3 Details About How HTCondor Jobs Vacate Machines</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html896"
+  HREF="2_8Java_Applications.html">2.8 Java Applications</A>
+<UL>
+<LI><A NAME="tex2html897"
+  HREF="2_8Java_Applications.html#SECTION00381000000000000000">2.8.1 A Simple Example Java Application</A>
+<LI><A NAME="tex2html898"
+  HREF="2_8Java_Applications.html#SECTION00382000000000000000">2.8.2 Less Simple Java Specifications</A>
+<LI><A NAME="tex2html899"
+  HREF="2_8Java_Applications.html#SECTION00383000000000000000">2.8.3 Chirp I/O</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html900"
+  HREF="2_9Parallel_Applications.html">2.9 Parallel Applications (Including MPI Applications)</A>
+<UL>
+<LI><A NAME="tex2html901"
+  HREF="2_9Parallel_Applications.html#SECTION00391000000000000000">2.9.1 How Parallel Jobs Run</A>
+<LI><A NAME="tex2html902"
+  HREF="2_9Parallel_Applications.html#SECTION00392000000000000000">2.9.2 Parallel Jobs and the Dedicated Scheduler</A>
+<LI><A NAME="tex2html903"
+  HREF="2_9Parallel_Applications.html#SECTION00393000000000000000">2.9.3 Submission Examples</A>
+<LI><A NAME="tex2html904"
+  HREF="2_9Parallel_Applications.html#SECTION00394000000000000000">2.9.4 MPI Applications Within HTCondor's Vanilla Universe</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html905"
+  HREF="2_10DAGMan_Applications.html">2.10 DAGMan Applications</A>
+<UL>
+<LI><A NAME="tex2html906"
+  HREF="2_10DAGMan_Applications.html#SECTION003101000000000000000">2.10.1 DAGMan Terminology</A>
+<LI><A NAME="tex2html907"
+  HREF="2_10DAGMan_Applications.html#SECTION003102000000000000000">2.10.2 The DAG Input File: the JOB, DATA, PARENT...CHILD, and SCRIPT Key Words</A>
+<LI><A NAME="tex2html908"
+  HREF="2_10DAGMan_Applications.html#SECTION003103000000000000000">2.10.3 Submit Description File Contents</A>
+<LI><A NAME="tex2html909"
+  HREF="2_10DAGMan_Applications.html#SECTION003104000000000000000">2.10.4 DAG Submission</A>
+<LI><A NAME="tex2html910"
+  HREF="2_10DAGMan_Applications.html#SECTION003105000000000000000">2.10.5 File Paths in DAGs</A>
+<LI><A NAME="tex2html911"
+  HREF="2_10DAGMan_Applications.html#SECTION003106000000000000000">2.10.6 Job Monitoring, Job Failure, and Job Removal</A>
+<LI><A NAME="tex2html912"
+  HREF="2_10DAGMan_Applications.html#SECTION003107000000000000000">2.10.7 Suspending a Running DAG</A>
+<LI><A NAME="tex2html913"
+  HREF="2_10DAGMan_Applications.html#SECTION003108000000000000000">2.10.8 Advanced Features of DAGMan</A>
+<LI><A NAME="tex2html914"
+  HREF="2_10DAGMan_Applications.html#SECTION003109000000000000000">2.10.9 The Rescue DAG</A>
+<LI><A NAME="tex2html915"
+  HREF="2_10DAGMan_Applications.html#SECTION0031010000000000000000">2.10.10 DAG Recovery</A>
+<LI><A NAME="tex2html916"
+  HREF="2_10DAGMan_Applications.html#SECTION0031011000000000000000">2.10.11 Visualizing DAGs with <I>dot</I></A>
+<LI><A NAME="tex2html917"
+  HREF="2_10DAGMan_Applications.html#SECTION0031012000000000000000">2.10.12 Capturing the Status of Nodes in a File</A>
+<LI><A NAME="tex2html918"
+  HREF="2_10DAGMan_Applications.html#SECTION0031013000000000000000">2.10.13 A Machine-Readable Event History, the jobstate.log File</A>
+<LI><A NAME="tex2html919"
+  HREF="2_10DAGMan_Applications.html#SECTION0031014000000000000000">2.10.14 Status Information for the DAG in a ClassAd</A>
+<LI><A NAME="tex2html920"
+  HREF="2_10DAGMan_Applications.html#SECTION0031015000000000000000">2.10.15 Utilizing the Power of DAGMan for Large Numbers of Jobs</A>
+<LI><A NAME="tex2html921"
+  HREF="2_10DAGMan_Applications.html#SECTION0031016000000000000000">2.10.16 Workflow Metrics</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html922"
+  HREF="2_11Virtual_Machine.html">2.11 Virtual Machine Applications</A>
+<UL>
+<LI><A NAME="tex2html923"
+  HREF="2_11Virtual_Machine.html#SECTION003111000000000000000">2.11.1 The Submit Description File</A>
+<LI><A NAME="tex2html924"
+  HREF="2_11Virtual_Machine.html#SECTION003112000000000000000">2.11.2 Checkpoints</A>
+<LI><A NAME="tex2html925"
+  HREF="2_11Virtual_Machine.html#SECTION003113000000000000000">2.11.3 Disk Images</A>
+<LI><A NAME="tex2html926"
+  HREF="2_11Virtual_Machine.html#SECTION003114000000000000000">2.11.4 Job Completion in the vm Universe</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html927"
+  HREF="2_12Time_Scheduling.html">2.12 Time Scheduling for Job Execution</A>
+<UL>
+<LI><A NAME="tex2html928"
+  HREF="2_12Time_Scheduling.html#SECTION003121000000000000000">2.12.1 Job Deferral</A>
+<LI><A NAME="tex2html929"
+  HREF="2_12Time_Scheduling.html#SECTION003122000000000000000">2.12.2 CronTab Scheduling</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html930"
+  HREF="2_13Special_Environment.html">2.13 Special Environment Considerations</A>
+<UL>
+<LI><A NAME="tex2html931"
+  HREF="2_13Special_Environment.html#SECTION003131000000000000000">2.13.1 AFS</A>
+<LI><A NAME="tex2html932"
+  HREF="2_13Special_Environment.html#SECTION003132000000000000000">2.13.2 NFS</A>
+<LI><A NAME="tex2html933"
+  HREF="2_13Special_Environment.html#SECTION003133000000000000000">2.13.3 HTCondor Daemons That Do Not Run as root</A>
+<LI><A NAME="tex2html934"
+  HREF="2_13Special_Environment.html#SECTION003134000000000000000">2.13.4 Job Leases</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html935"
+  HREF="2_14Potential_Problems.html">2.14 Potential Problems</A>
+<UL>
+<LI><A NAME="tex2html936"
+  HREF="2_14Potential_Problems.html#SECTION003141000000000000000">2.14.1 Renaming of argv[0]</A>
+</UL></UL>
+<!--End of Table of Child-Links-->
+<BR><HR>
+
+</BODY>
+</HTML>

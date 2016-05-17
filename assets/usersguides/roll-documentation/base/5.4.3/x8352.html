@@ -1,0 +1,353 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Release 5.3 - changes from 5.2</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Release Notes"
+HREF="release-notes.html"><LINK
+REL="PREVIOUS"
+TITLE="Release 5.4 - changes from 5.3"
+HREF="x8248.html"><LINK
+REL="NEXT"
+TITLE="Release 5.2 - changes from 5.1"
+HREF="x8410.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Base</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x8248.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Appendix B. Release Notes</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x8410.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="AEN8352"
+>B.3. Release 5.3 - changes from 5.2</A
+></H1
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN8354"
+>B.3.1. Enhancements</A
+></H2
+><P
+>OS: Based on CentOS release 5/update 4 and all updates as of
+	December 15, 2009.</P
+><P
+>Area51: chkrootkit updated to v0.49.</P
+><P
+>Base: Anaconda installer updated to v11.1.2.195.</P
+><P
+>Base: Added support HP's Smart Array controllers
+	(e.g., the 'cciss' driver) in the Rocks partitioning code.</P
+><P
+>Base: Moved JDK to the Base Roll (the Java Roll has been
+	discontinued).</P
+><P
+>Base: Added the 'ssh_use_dns' attribute (default setting is
+	'true'). If set to 'false', then DNS is not consulted when trying
+	to make an SSH connection. This speeds up SSH connections for
+	frontend's that don't have access to a functioning DNS server.
+	</P
+><P
+>Base: Added the 'Kickstart_DefaultLeaseTime' and
+	'Kickstart_MaxLeaseTime' attributes to give the user the ability to
+	control their own DHCP lease timeouts.
+	</P
+><P
+>Base: Added IMPI tools and configuration utilities.
+	</P
+><P
+>Base: Updated foundation-perl to v5.10.1.</P
+><P
+>Base: Updated foundation-perl-Tk to v804.028.</P
+><P
+>Base: Experimental CPAN support. This introduces a utility that
+	lets the user create Rocks RPMs directly from CPAN along with all
+	dependencies.
+	</P
+><P
+>Bio: Updated Emboss to v6.1.0.</P
+><P
+>Bio: Updated biopython to v1.52.</P
+><P
+>Bio: Updated clustalw to v2.0.12.</P
+><P
+>Bio: Updated fasta to v35.4.9.</P
+><P
+>Bio: Updated fftw to v3.2.2.</P
+><P
+>Bio: Updated gromacs to v4.0.5.</P
+><P
+>Bio: Updated iolib to v1.12.1.</P
+><P
+>Bio: Updated phylip to v3.69.</P
+><P
+>Bio: Updated t_coffee to v8.14.</P
+><P
+>Ganglia: Updated rrdtool to v1.3.8.</P
+><P
+>HPC: Updated iozone to v3.291.</P
+><P
+>HPC: Updated iperf to v2.0.4.</P
+><P
+>HPC: Updated MPICH2 to v1.1.1p1.</P
+><P
+>HPC: Updated OpenMPI to v1.3.3.</P
+><P
+>SGE: Updated to v6.2 update 4.</P
+><P
+>Viz: Updated nVidia driver to v190.42.</P
+><P
+>Web-server: Updated mediawiki to v1.15.1.</P
+><P
+>Web-server: Updated wordpress to v2.8.4.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN8385"
+>B.3.2. Bug Fixes</A
+></H2
+><P
+>Area51: tripwire is now correctly configured on the
+	frontend.</P
+><P
+>Base: Increase the amount of memory PHP can use from 64 MB
+	to 256 MB. This is essential for viewing Ganglia data for large
+	clusters.</P
+><P
+>Base: During installation, don't copy over the rocks-cdrom
+	block device file. On most systems, there is no issue, but there are
+	some systems where this code would copy over the entire contents of
+	the CD/DVD if the CD/DVD was still in the tray (which is shouldn't be,
+	because after the rolls are copied to the frontend, the CD/DVD is
+	umounted and ejected).
+	</P
+><P
+>Base: Set the '--utc' flag when hwclock is called. Without the
+	flag, the localtime is written to the hardware clock. Then, at first
+	boot, the system reads the hardware clock respecting the UTC settings
+	in /etc/sysconfig/clock. So the system time ends up being off by the
+	offset to UTC.
+	</P
+><P
+>Base: On first boot, Set the number of CPUs for the frontend in
+	the database to actual number of detected CPUs. In the past, this
+	value was hard-coded to 1.
+	</P
+><P
+>Base: Fix for frontend's that use DNS servers that are configured
+	to return a 'catch all' address for non-existant domain names. Do a
+	reverse lookup to get the IP address. In the previous release, one
+	would see an 'XXX' entry for the IP address of the frontend in
+	/etc/hosts.
+	</P
+><P
+>Base: Put double quotes around 'option domain-name', otherwise,
+	if the domain name was structured like xxx.yyy, then the DHCP service
+	would not start.
+	</P
+><P
+>Base: For tentakel, throttle the number of concurrent
+	connections to 100 (useful for large clusters).
+	</P
+><P
+>Base: Rewrite the pxelinux.cfg files after setting the
+	run/install action in the nodes table (e.g., 'rocks set host
+	installaction ...').
+	</P
+><P
+>Base: For 'rocks set password', make sure password changing
+	code accesses the Rocks foundation database.
+	</P
+><P
+>Base: For 'rocks sync host network', make sure to update the
+	static routes file.
+	</P
+><P
+>Base: Fixed 'insert-ethers --replace'. Before, it correctly
+	removed the node, but then readded it at 'the end' of namespace,
+	that is, it forgot the rack/rank of the replaced node.
+	</P
+><P
+>Base: Make tentakel more resilient to hanging nodes.
+	</P
+><P
+>Ganglia: Fix to save all RRD data on frontend shutdown.
+	</P
+><P
+>Ganglia: Fixes to physical views. Make sure all nodes are
+	positioned in rack/rank order.
+	</P
+><P
+>Ganglia: Fixes to rediscover all backend nodes after a
+	frontend reboot. Without this fix, if gmond was restarted on the
+	frontend, then it requires restarting gmond on all the compute nodes
+	in order to get metrics to report again.
+	</P
+><P
+>Kernel: Fixes to preserve the timestamp from RPMs on Rolls
+	that are installed via CD/DVD. Prior to this fix, all RPMS in Rolls
+	that were installed from CD/DVD would have the timestamp of the
+	time when the frontend was installed. This causes issues when trying
+	to update RPMs after the frontend was installed.
+	</P
+><P
+>SGE: When a host is removed (e.g., 'rocks remove host ...'),
+	make sure the queue associated with that node is also removed.
+	</P
+><P
+>SGE: Build the DRMAA library with Java support.
+	</P
+><P
+>Xen: Respect the MTU value of the physical interface when
+	bringing up Xen bridges.
+	</P
+><P
+>Xen: Fix to enable physical devices (partitions, LVM
+	partitions, etc.) to be used as devices for virtual disks.
+	</P
+><P
+>Xen: Fix to 'ip' address flag in 'rocks add host vm'. Without
+	the fix, if an IP address was specified on the command line, the
+	command would throw an exception.
+	</P
+><P
+>Xen: Fix to support for virtual compute nodes that are managed
+	by a physical frontend.
+	</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x8248.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x8410.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Release 5.4 - changes from 5.3</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="release-notes.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Release 5.2 - changes from 5.1</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

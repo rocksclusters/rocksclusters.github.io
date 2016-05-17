@@ -1,0 +1,376 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Commands</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="411 Secure Information Service Internals"
+HREF="service-411.html"><LINK
+REL="PREVIOUS"
+TITLE="411get Configuration File"
+HREF="rocks-config411.html"><LINK
+REL="NEXT"
+TITLE="Changes to Rocks Security Infrastructure"
+HREF="passwd_sec.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Base</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="rocks-config411.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Appendix C. 411 Secure Information Service Internals</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="passwd_sec.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="AEN9504"
+>C.6. Commands</A
+></H1
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN9506"
+>C.6.1. 411get</A
+></H2
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>411get [--all] [--master=url] [--conf] [--pub] [--shared] [--local] [file]</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Retrieves and decrypts 411 messages. Prints resulting file to stdout. When invoked with no files, 411get will list the available 411 messages.</P
+><P
+>The following options are available:</P
+><P
+></P
+><UL
+><LI
+><P
+><EM
+>--all</EM
+> Retrieves and writes all available 411 messages from the most attractive master. Does not print output to stdout, nor ask for confirmation before overwriting files.</P
+></LI
+><LI
+><P
+><EM
+>--master</EM
+> The url of a 411 master server to use. Defaults to
+"http://10.1.1.1:372/411.d/" or whatever is present in "/etc/411.conf". If
+given, this master takes precedence over those listed in the configuration file.</P
+></LI
+><LI
+><P
+><EM
+>--file, --local</EM
+> Assume the file is local, ie present in the
+current directory. Does not use http to retrieve the file. Decrypts and prints
+the file contents.</P
+></LI
+><LI
+><P
+><EM
+>--conf</EM
+> The configuration file to use. Defaults to "/etc/411.conf".</P
+></LI
+><LI
+><P
+><EM
+>--pub</EM
+> The location of the cluster public RSA key. Defaults
+to <TT
+CLASS="FILENAME"
+>/etc/411-security/master.pub</TT
+>.</P
+></LI
+><LI
+><P
+><EM
+>--shared</EM
+> The location of the cluster shared key. Defaults
+to <TT
+CLASS="FILENAME"
+>/etc/411-security/shared.key</TT
+></P
+></LI
+></UL
+><P
+>The master servers, along with their quality score, are listed in the
+<TT
+CLASS="FILENAME"
+>/etc/411.conf</TT
+> file on compute nodes.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN9534"
+>C.6.2. 411put</A
+></H2
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>411put [--411dir=dir] [--urldir=dir] [--see] [--noalert] [--alert=channel]
+[--411name] [--pub] [--priv] [--comment=char] [--chroot=dir] 
+[--chroot-here] [--group=group] file1 file2 ...</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Encrypts and publishes files using the 411 secure information service. Will send
+a broadcast message to client nodes by default, alerting them of a changed file.</P
+><P
+>The following options are available:</P
+><P
+></P
+><UL
+><LI
+><P
+><EM
+>--chroot=dir</EM
+> Turn "dir" into the root directory of the
+destination file. This allows files to be located in a different place on the
+master and clients.</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>Example:
+411put --chroot=/var/411/groups/compute /var/411/groups/compute/etc/passwd&#13;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><P
+>Will put "/var/411/groups/compute/etc/passwd" on compute nodes as "/etc/passwd". </P
+></LI
+><LI
+><P
+><EM
+>--chroot-here</EM
+> A convenience option, equivalent to --chroot=$PWD.</P
+></LI
+><LI
+><P
+><EM
+>--group=name</EM
+> A 411 group for this file. Clients will ignore 411 messages in groups which they are not a part of. Allows 411 files to be published to a subset of the cluster. Name is path-like: "Compute/green", or "/Compute/green". Spaces are ok: "a space/yellow" is a valid group name as well.</P
+></LI
+><LI
+><P
+><EM
+>--comment</EM
+> The comment character for this file. Used to place a descriptive header without disrupting normal operations. Often set to "#". Default is none.</P
+></LI
+><LI
+><P
+><EM
+>--411dir</EM
+> The local directory to place encrypted 411 messages. Defaults to "/etc/411.d/". Be careful about the permissions of this directory.</P
+></LI
+><LI
+><P
+><EM
+>--urldir</EM
+> The web directory where 411 messages are available. Defaults to "/411.d/".</P
+></LI
+><LI
+><P
+><EM
+>--see</EM
+> Shows the encrypted file contents on stdout.</P
+></LI
+><LI
+><P
+><EM
+>--noalert</EM
+> Suppresses alert message.</P
+></LI
+><LI
+><P
+><EM
+>--411name</EM
+> Prints the 411 message name for the file. Provided for convenience.</P
+></LI
+><LI
+><P
+><EM
+>--pub</EM
+> The location of the 411 master public RSA key.
+Defaults to a 1024 bit key in "/etc/411-security/master.pub". This file should
+have permissions 0444 (read by all) and be owned by root.</P
+></LI
+><LI
+><P
+><EM
+>--priv</EM
+> The location of the 411 master private RSA key.
+Defaults to a 1024 bit key in "/etc/411-security/master.key". This file should
+exist only on the master node and be owned by root and have permissions 0400
+(read only by root). </P
+></LI
+><LI
+><P
+><EM
+>--make-shared-key</EM
+> Generate a new random shared key. The key
+is a 256 random number encoded in base64.</P
+></LI
+></UL
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="rocks-config411.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="passwd_sec.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>411get Configuration File</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="service-411.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Changes to Rocks Security Infrastructure</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

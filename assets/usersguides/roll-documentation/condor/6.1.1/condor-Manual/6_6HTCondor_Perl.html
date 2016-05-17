@@ -1,0 +1,695 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>6.6 The HTCondor Perl Module</TITLE>
+<META NAME="description" CONTENT="6.6 The HTCondor Perl Module">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="6_7Python_Bindings.html">
+<LINK REL="previous" HREF="6_5Command_Line.html">
+<LINK REL="up" HREF="6_Application_Programming.html">
+<LINK REL="next" HREF="6_7Python_Bindings.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html2182"
+  HREF="6_7Python_Bindings.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2176"
+  HREF="6_Application_Programming.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2170"
+  HREF="6_5Command_Line.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2178"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2180"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2183"
+  HREF="6_7Python_Bindings.html">6.7 Python Bindings</A>
+<B> Up:</B> <A NAME="tex2html2177"
+  HREF="6_Application_Programming.html">6. Application Programming Interfaces</A>
+<B> Previous:</B> <A NAME="tex2html2171"
+  HREF="6_5Command_Line.html">6.5 The Command Line</A>
+ &nbsp; <B>  <A NAME="tex2html2179"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2181"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html2184"
+  HREF="6_6HTCondor_Perl.html#SECTION00761000000000000000">6.6.1 Subroutines</A>
+<LI><A NAME="tex2html2185"
+  HREF="6_6HTCondor_Perl.html#SECTION00762000000000000000">6.6.2 Examples</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00760000000000000000"></A><A NAME="sec:condor-pm"></A>
+<A NAME="50183"></A>
+<A NAME="50184"></A>
+<BR>
+6.6  The HTCondor Perl Module
+</H1>
+
+<P>
+The HTCondor Perl module facilitates automatic submitting and monitoring of
+HTCondor jobs, along with automated administration of HTCondor.
+The most common
+use of this module is the monitoring of HTCondor jobs.
+The HTCondor Perl module can be used as a meta scheduler for the submission
+of HTCondor jobs.
+
+<P>
+The HTCondor Perl module provides several subroutines.
+Some of the subroutines are used as callbacks;
+an event triggers the execution of a specific subroutine.
+Other of the subroutines denote actions to be taken by Perl.
+Some of these subroutines take other subroutines as arguments.
+
+<P>
+
+<H2><A NAME="SECTION00761000000000000000">
+6.6.1 Subroutines</A>
+</H2>
+<DL>
+<DT><STRONG><TT>Submit(submit_description_file)</TT></STRONG></DT>
+<DD>This subroutine takes the action of submitting a job to HTCondor.
+	The argument is the name of a submit description file.
+	The <I>condor_submit</I> program should be in the
+	path of the user.  If the user wishes to monitor the job with condor
+	they must specify a log file in the command file.  The cluster
+	submitted is returned. For more information
+	see the <I>condor_submit</I> man page.
+
+<P>
+</DD>
+<DT><STRONG><TT>Vacate(machine)</TT></STRONG></DT>
+<DD>This subroutine takes the action of sending a
+	<I>condor_vacate</I> command to the machine specified as an argument.
+	The machine may be specified
+	either by host name, or by <I>sinful string</I>.  For more information
+	see the <I>condor_vacate</I> man page.
+
+<P>
+</DD>
+<DT><STRONG><TT>Reschedule(machine)</TT></STRONG></DT>
+<DD>This subroutine takes the action of sending a
+	<I>condor_reschedule</I> command to the machine specified as an argument.
+	The machine may be specified either
+ 	by host name, or by <I>sinful string</I>.  For more information see
+	the <I>condor_reschedule</I> man page.
+
+<P>
+</DD>
+<DT><STRONG><TT>Monitor(cluster)</TT></STRONG></DT>
+<DD>Takes the action of monitoring this cluster.
+	It returns when all jobs in cluster terminate.
+
+<P>
+</DD>
+<DT><STRONG><TT>Wait()</TT></STRONG></DT>
+<DD>Takes the action of waiting until all monitor subroutines finish,
+	and then exits the Perl script.
+
+<P>
+</DD>
+<DT><STRONG><TT>DebugOn()</TT></STRONG></DT>
+<DD>Takes the action of turning debug messages on.
+	This may be useful when attempting to debug the Perl script.
+
+<P>
+</DD>
+<DT><STRONG><TT>DebugOff()</TT></STRONG></DT>
+<DD>Takes the action of turning debug messages off.
+
+<P>
+</DD>
+<DT><STRONG><TT>RegisterEvicted(sub)</TT></STRONG></DT>
+<DD>Register a subroutine (called <TT>sub</TT>)
+	to be used as a callback when a job from
+	a specified cluster is evicted.  The subroutine will be
+	called with two arguments: cluster and job. The cluster
+	and job are the cluster number and process number of the job that
+	was evicted.
+
+<P>
+</DD>
+<DT><STRONG><TT>RegisterEvictedWithCheckpoint(sub)</TT></STRONG></DT>
+<DD>Same as RegisterEvicted except that the handler is called when the 
+	evicted job was checkpointed.
+
+<P>
+</DD>
+<DT><STRONG><TT>RegisterEvictedWithoutCheckpoint(sub)</TT></STRONG></DT>
+<DD>Same as RegisterEvicted except that the handler is called when the
+	evicted job was not checkpointed.
+
+<P>
+</DD>
+<DT><STRONG><TT>RegisterExit(sub)</TT></STRONG></DT>
+<DD>Register a termination handler that is called when a job exits.
+	The termination handler will be called with two arguments: cluster and
+	job. The cluster and job are the cluster and process numbers of the
+	existing job. 
+
+<P>
+</DD>
+<DT><STRONG><TT>RegisterExitSuccess(sub)</TT></STRONG></DT>
+<DD>Register a termination handler that is called when a job exits without
+	errors. The termination handler will be called with two arguments: 
+	cluster and job  The cluster and job are the cluster and process
+	numbers of the existing job. 
+
+<P>
+</DD>
+<DT><STRONG><TT>RegisterExitFailure(sub)</TT></STRONG></DT>
+<DD>Register a termination handler that is called when a job exits with 
+	errors. The termination handler will be called with three arguments:
+	cluster, job and retval. The cluster and job are the cluster 
+	and process numbers of the existing job and the retval is the exit
+	code of the job.
+
+<P>
+</DD>
+<DT><STRONG><TT>RegisterExitAbnormal(sub)</TT></STRONG></DT>
+<DD>Register an termination handler that is called when a job abnormally
+	exits (segmentation fault, bus error, ...). The termination handler
+	will be called with four arguments: cluster, job  signal and
+	core. The cluster and job are the cluster and process numbers of 
+	the existing job. The signal indicates the signal that the job
+	died with and core indicates whether a core file was created and if 
+	so, what the full path to the core file is.
+
+<P>
+</DD>
+<DT><STRONG><TT>RegisterAbort(sub)</TT></STRONG></DT>
+<DD>Register a handler that is called when a job is aborted by a user.
+
+<P>
+</DD>
+<DT><STRONG><TT>RegisterJobErr(sub)</TT></STRONG></DT>
+<DD>Register a handler that is called when a job is not executable.
+
+<P>
+</DD>
+<DT><STRONG><TT>RegisterExecute(sub)</TT></STRONG></DT>
+<DD>Register an execution handler that is called whenever a job starts
+	running on a given host.  The handler is called with four arguments:
+	cluster, job  host, and sinful.  Cluster and job are the cluster and
+	process numbers for the job, host is the Internet address of the
+	machine running the job, and sinful is the Internet address and 
+	command port of the <I>condor_starter</I> supervising the job.
+
+<P>
+</DD>
+<DT><STRONG><TT>RegisterSubmit(sub)</TT></STRONG></DT>
+<DD>Register a submit handler that is called whenever a job is submitted
+	with the given cluster.  The handler is called with cluster, job 
+	host, and sinful. Cluster and job are the cluster and
+	process numbers for the job, host is the Internet address of the
+	machine running the job, and sinful is the Internet address and
+	command port of the <I>condor_schedd</I> responsible for the job.
+
+<P>
+</DD>
+<DT><STRONG><TT>Monitor(cluster)</TT></STRONG></DT>
+<DD>Begin monitoring this cluster. Returns when all jobs in cluster
+	terminate.  
+<BR>
+<P>
+</DD>
+<DT><STRONG><TT>Wait()</TT></STRONG></DT>
+<DD>Wait until all monitors finish and exit.
+
+<P>
+</DD>
+<DT><STRONG><TT>DebugOn()</TT></STRONG></DT>
+<DD>Turn debug messages on.  This may be useful if you don't understand
+	what your script is doing.	
+
+<P>
+</DD>
+<DT><STRONG><TT>DebugOff()</TT></STRONG></DT>
+<DD>Turn debug messages off.
+
+<P>
+</DD>
+<DT><STRONG><TT>TestSubmit(command_file)</TT></STRONG></DT>
+<DD>This subroutine submits a job to HTCondor for testing, and places
+  all variables from the command file into
+  the Perl hash <TT>%submit_info</TT>.
+  Does not reset the state of variables, so that testing preserves
+  callbacks.
+
+<P>
+</DD>
+<DT><STRONG><TT>SubmitDagman(DAG_file, DAGMan_args)</TT></STRONG></DT>
+<DD>Takes the action of submitting a DAG using <I>condor_dagman</I>.
+  The first argument is the name of the DAG input file, 
+  and the second argument is the command line arguments for 
+  <I>condor_dagman</I>.
+  Information from the submit description file generated by
+  <I>condor_dagman</I> is placed into the Perl hash <TT>%submit_info</TT>
+  for access during callbacks.
+
+<P>
+</DD>
+<DT><STRONG><TT>TestSubmitDagman(DAG_file, DAGMan_args)</TT></STRONG></DT>
+<DD>This subroutine submits a <I>condor_dagman</I> to HTCondor for testing,
+  and places information from the submit description file generated by
+  <I>condor_dagman</I> into the Perl hash <TT>%submit_info</TT>
+  for access during callbacks.
+  The first argument is the name of the DAG input file, 
+  and the second argument is the command line arguments for 
+  <I>condor_dagman</I>.
+  Does not reset the state of variables, so that testing preserves
+  callbacks.
+
+<P>
+</DD>
+<DT><STRONG><TT>RegisterEvictedWithRequeue(sub)</TT></STRONG></DT>
+<DD>Register a subroutine (called <TT>sub</TT>)
+  to be used as a callback when a job from
+  a specified cluster is requeued.  The subroutine will be
+  called with two arguments: cluster and job. The cluster
+  and job are the cluster number and process number of the job that
+  was requeued.
+
+<P>
+</DD>
+<DT><STRONG><TT>RegisterShadow(sub)</TT></STRONG></DT>
+<DD>Register a subroutine (called <TT>sub</TT>)
+  to be used as a callback when a shadow exception occurs.
+
+<P>
+</DD>
+<DT><STRONG><TT>RegisterHold(sub)</TT></STRONG></DT>
+<DD>Register a subroutine (called <TT>sub</TT>)
+  to be used as a callback when a job enters the hold state.
+
+<P>
+</DD>
+<DT><STRONG><TT>RegisterRelease(sub)</TT></STRONG></DT>
+<DD>Register a subroutine (called <TT>sub</TT>)
+  to be used as a callback when a job is released.
+
+<P>
+</DD>
+<DT><STRONG><TT>RegisterWantError(sub)</TT></STRONG></DT>
+<DD>Register a subroutine (called <TT>sub</TT>)
+  to be used as a callback when a system call invoked using <TT>runCommand</TT>
+  experiences an error.
+
+<P>
+</DD>
+<DT><STRONG><TT>runCommand(string)</TT></STRONG></DT>
+<DD><TT>string</TT> identifies a syscall that is invoked.
+  If the syscall exits abnormally or exits with an error, the callback
+  registered with <TT>RegisterWantError()</TT> is called, and
+  an error message is issued.
+
+<P>
+</DD>
+<DT><STRONG><TT>RegisterTimed(sub, seconds)</TT></STRONG></DT>
+<DD>Register a subroutine (called <TT>sub</TT>)
+  to be called back at a delay of <TT>seconds</TT> time from
+  this registration time.  Only one callback may be registered,
+  as subsequent calls modify the timer only.
+
+<P>
+</DD>
+<DT><STRONG><TT>RemoveTimed()</TT></STRONG></DT>
+<DD>Remove the single, timed callback registered with <TT>RegisterTimed()</TT>.
+
+<P>
+</DD>
+</DL>
+
+<P>
+
+<H2><A NAME="SECTION00762000000000000000"></A>
+<A NAME="50253"></A>
+<BR>
+6.6.2 Examples
+</H2>
+
+<P>
+The following is an example that uses the HTCondor Perl module.
+The example uses the submit description file 
+<TT>mycmdfile.cmd</TT> to specify the submission of a job.
+As the job is matched with a machine and begins to execute,
+a callback  subroutine (called <code>execute</code>)
+sends a <I>condor_vacate</I> signal to the job,
+and it increments a counter which keeps track of the
+number of times this callback executes.
+A second callback keeps a count of the number of times
+that the job was evicted before the job completes.
+After the job completes, the termination
+callback (called <code>normal</code>) prints out a summary of what happened.
+
+<P>
+<PRE>
+#!/usr/bin/perl
+use Condor;
+
+$CMD_FILE = 'mycmdfile.cmd';
+$evicts = 0;
+$vacates = 0;
+
+# A subroutine that will be used as the normal execution callback
+$normal = sub
+{
+    %parameters = @_;
+    $cluster = $parameters{'cluster'};
+    $job = $parameters{'job'};
+
+    print "Job $cluster.$job exited normally without errors.\n";
+    print "Job was vacated $vacates times and evicted $evicts times\n";
+    exit(0);
+};	
+
+$evicted = sub
+{
+    %parameters = @_;
+    $cluster = $parameters{'cluster'};
+    $job = $parameters{'job'};
+
+    print "Job $cluster, $job was evicted.\n";
+    $evicts++;
+    &amp;Condor::Reschedule();	
+};
+
+$execute = sub
+{
+    %parameters = @_;
+    $cluster = $parameters{'cluster'};
+    $job = $parameters{'job'};
+    $host = $parameters{'host'};
+    $sinful = $parameters{'sinful'};
+
+    print "Job running on $sinful, vacating...\n";
+    &amp;Condor::Vacate($sinful);
+    $vacates++;
+};
+
+$cluster = Condor::Submit($CMD_FILE);
+printf("Could not open. Access Denied\n");
+			break;
+&amp;Condor::RegisterExitSuccess($normal);
+&amp;Condor::RegisterEvicted($evicted);
+&amp;Condor::RegisterExecute($execute);
+&amp;Condor::Monitor($cluster);
+&amp;Condor::Wait();
+</PRE>
+<P>
+This example program will submit the command file 'mycmdfile.cmd' and attempt
+to vacate any machine that the job runs on. The termination
+handler then prints out a summary of what has happened.
+
+<P>
+A second example Perl script facilitates the meta-scheduling of
+two of HTCondor jobs.
+It submits a second job if the first job successfully completes.
+
+<P>
+<PRE>
+#!/s/std/bin/perl
+
+# tell Perl where to find the HTCondor library
+use lib '/unsup/condor/lib';
+# tell Perl to use what it finds in the HTCondor library
+use Condor;
+
+$SUBMIT_FILE1 = 'Asubmit.cmd';
+$SUBMIT_FILE2 = 'Bsubmit.cmd';
+
+# Callback used when first job exits without errors.
+$firstOK = sub
+{
+    %parameters = @_;
+    $cluster = $parameters{'cluster'};
+    $job = $parameters{'job'};
+
+    $cluster = Condor::Submit($SUBMIT_FILE2);
+    if (($cluster) == 0)
+    {
+        printf("Could not open $SUBMIT_FILE2.\n");
+    }
+
+    &amp;Condor::RegisterExitSuccess($secondOK);
+    &amp;Condor::RegisterExitFailure($secondfails);
+    &amp;Condor::Monitor($cluster);
+};	
+
+$firstfails = sub
+{
+    %parameters = @_;
+    $cluster = $parameters{'cluster'};
+    $job = $parameters{'job'};
+
+    print "The first job, $cluster.$job failed, exiting with an error. \n";
+    exit(0);
+};	
+
+# Callback used when second job exits without errors.
+$secondOK = sub
+{
+    %parameters = @_;
+    $cluster = $parameters{'cluster'};
+    $job = $parameters{'job'};
+
+    print "The second job, $cluster.$job successfully completed. \n";
+    exit(0);
+};	
+
+# Callback used when second job exits WITH an error.
+$secondfails = sub
+{
+    %parameters = @_;
+    $cluster = $parameters{'cluster'};
+    $job = $parameters{'job'};
+
+    print "The second job ($cluster.$job) failed. \n";
+    exit(0);
+};	
+
+
+$cluster = Condor::Submit($SUBMIT_FILE1);
+if (($cluster) == 0)
+{
+    printf("Could not open $SUBMIT_FILE1. \n");
+}
+&amp;Condor::RegisterExitSuccess($firstOK);
+&amp;Condor::RegisterExitFailure($firstfails);
+
+
+&amp;Condor::Monitor($cluster);
+&amp;Condor::Wait();
+</PRE>
+<P>
+Some notes are in order about this example.
+The same task could be accomplished using the HTCondor DAGMan
+metascheduler.
+The first job is the parent, and the second job is the child.
+The input file to DAGMan is significantly simpler than this
+Perl script.
+
+<P>
+A third example using the HTCondor Perl module
+expands upon the second example.
+Whereas the second example could have been more easily
+implemented using DAGMan, this third example shows
+the versatility of using Perl as a metascheduler.
+
+<P>
+In this example, the result generated from the successful completion of
+the first job are used to decide which subsequent job should be
+submitted.
+This is a very simple example of a branch and bound technique,
+to focus the search for a problem solution.
+
+<P>
+<PRE>
+#!/s/std/bin/perl
+
+# tell Perl where to find the HTCondor library
+use lib '/unsup/condor/lib';
+# tell Perl to use what it finds in the HTCondor library
+use Condor;
+
+$SUBMIT_FILE1 = 'Asubmit.cmd';
+$SUBMIT_FILE2 = 'Bsubmit.cmd';
+$SUBMIT_FILE3 = 'Csubmit.cmd';
+
+# Callback used when first job exits without errors.
+$firstOK = sub
+{
+    %parameters = @_;
+    $cluster = $parameters{'cluster'};
+    $job = $parameters{'job'};
+
+    # open output file from first job, and read the result
+    if ( -f "A.output" )
+    {
+        open(RESULTFILE, "A.output") or die "Could not open result file.";
+        $result = &lt;RESULTFILE&gt;;
+        close(RESULTFILE);
+        # next job to submit is based on output from first job
+        if ($result &lt; 100)
+        {
+            $cluster = Condor::Submit($SUBMIT_FILE2);
+            if (($cluster) == 0)
+            {
+                printf("Could not open $SUBMIT_FILE2.\n");
+            }
+
+            &amp;Condor::RegisterExitSuccess($secondOK);
+            &amp;Condor::RegisterExitFailure($secondfails);
+            &amp;Condor::Monitor($cluster);
+        }
+        else
+        {
+            $cluster = Condor::Submit($SUBMIT_FILE3);
+            if (($cluster) == 0)
+            {
+                printf("Could not open $SUBMIT_FILE3.\n");
+            }
+
+            &amp;Condor::RegisterExitSuccess($thirdOK);
+            &amp;Condor::RegisterExitFailure($thirdfails);
+            &amp;Condor::Monitor($cluster);
+        }
+    }
+    else
+    {
+        
+        printf("Results file does not exist.\n");
+    }
+};	
+
+$firstfails = sub
+{
+    %parameters = @_;
+    $cluster = $parameters{'cluster'};
+    $job = $parameters{'job'};
+
+    print "The first job, $cluster.$job failed, exiting with an error. \n";
+    exit(0);
+};	
+
+
+# Callback used when second job exits without errors.
+$secondOK = sub
+{
+    %parameters = @_;
+    $cluster = $parameters{'cluster'};
+    $job = $parameters{'job'};
+
+    print "The second job, $cluster.$job successfully completed. \n";
+    exit(0);
+};	
+
+
+# Callback used when third job exits without errors.
+$thirdOK = sub
+{
+    %parameters = @_;
+    $cluster = $parameters{'cluster'};
+    $job = $parameters{'job'};
+
+    print "The third job, $cluster.$job successfully completed. \n";
+    exit(0);
+};	
+
+
+# Callback used when second job exits WITH an error.
+$secondfails = sub
+{
+    %parameters = @_;
+    $cluster = $parameters{'cluster'};
+    $job = $parameters{'job'};
+
+    print "The second job ($cluster.$job) failed. \n";
+    exit(0);
+};	
+
+# Callback used when third job exits WITH an error.
+$thirdfails = sub
+{
+    %parameters = @_;
+    $cluster = $parameters{'cluster'};
+    $job = $parameters{'job'};
+
+    print "The third job ($cluster.$job) failed. \n";
+    exit(0);
+};	
+
+
+$cluster = Condor::Submit($SUBMIT_FILE1);
+if (($cluster) == 0)
+{
+    printf("Could not open $SUBMIT_FILE1. \n");
+}
+&amp;Condor::RegisterExitSuccess($firstOK);
+&amp;Condor::RegisterExitFailure($firstfails);
+
+
+&amp;Condor::Monitor($cluster);
+&amp;Condor::Wait();
+</PRE>
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html2182"
+  HREF="6_7Python_Bindings.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2176"
+  HREF="6_Application_Programming.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2170"
+  HREF="6_5Command_Line.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2178"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2180"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2183"
+  HREF="6_7Python_Bindings.html">6.7 Python Bindings</A>
+<B> Up:</B> <A NAME="tex2html2177"
+  HREF="6_Application_Programming.html">6. Application Programming Interfaces</A>
+<B> Previous:</B> <A NAME="tex2html2171"
+  HREF="6_5Command_Line.html">6.5 The Command Line</A>
+ &nbsp; <B>  <A NAME="tex2html2179"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2181"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

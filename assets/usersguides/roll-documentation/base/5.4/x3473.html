@@ -1,0 +1,818 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>dump</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Roll: Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Command Reference"
+HREF="c1640.html"><LINK
+REL="PREVIOUS"
+TITLE="disable"
+HREF="x3404.html"><LINK
+REL="NEXT"
+TITLE="enable"
+HREF="x3692.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Base Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x3404.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 8. Command Reference</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x3692.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="AEN3473"
+>8.6. dump</A
+></H1
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-DUMP"
+>8.6.1. dump</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks dump</B
+> </P
+><P
+>&#13;	The top level dump command is used to recursively call all the
+	dump commands in the correct order.  This is used to create the 
+	restore roll.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks dump</DT
+><DD
+><P
+>&#13;	Recursively call all dump commands.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-DUMP-APPLIANCE"
+>8.6.2. dump appliance</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks dump appliance</B
+>  [appliance...]</P
+><P
+>&#13;	Outputs info (as rocks commands) about the appliances defined in the
+	cluster database.
+	
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>appliance</SPAN
+>]</DT
+><DD
+><P
+>&#13;	Optional list of appliance names. If no appliance names are supplied,
+	then info about all appliances is output.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks dump appliance</DT
+><DD
+><P
+>&#13;	Dump all known appliances.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-DUMP-APPLIANCE-ATTR"
+>8.6.3. dump appliance attr</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks dump appliance attr</B
+>  [appliance]</P
+><P
+>&#13;	Dump the set of attributes for appliances.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>appliance</SPAN
+>]</DT
+><DD
+><P
+>&#13;	Name of appliance
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks dump appliance attr compute</DT
+><DD
+><P
+>&#13;	List the attributes for compute appliances
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-DUMP-APPLIANCE-FIREWALL"
+>8.6.4. dump appliance firewall</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks dump appliance firewall</B
+> </P
+><P
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-DUMP-APPLIANCE-ROUTE"
+>8.6.5. dump appliance route</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks dump appliance route</B
+> </P
+><P
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-DUMP-ATTR"
+>8.6.6. dump attr</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks dump attr</B
+> </P
+><P
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-DUMP-FIREWALL"
+>8.6.7. dump firewall</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks dump firewall</B
+> </P
+><P
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-DUMP-HOST"
+>8.6.8. dump host</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks dump host</B
+>  [host...]</P
+><P
+>&#13;	Dump the host information as rocks commands.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>host</SPAN
+>]</DT
+><DD
+><P
+>&#13;	Zero, one or more host names. If no host names are supplied, 
+	information for all hosts will be listed.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks dump host compute-0-0</DT
+><DD
+><P
+>&#13;	Dump host compute-0-0 information.
+	
+	</P
+></DD
+><DT
+>$ rocks dump host compute-0-0 compute-0-1</DT
+><DD
+><P
+>&#13;	Dump host compute-0-0 and compute-0-1 information.
+	
+	</P
+></DD
+><DT
+>$ rocks dump host</DT
+><DD
+><P
+>&#13;	Dump all hosts.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-DUMP-HOST-ATTR"
+>8.6.9. dump host attr</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks dump host attr</B
+>  [host]</P
+><P
+>&#13;	Dump the set of attributes for hosts.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>host</SPAN
+>]</DT
+><DD
+><P
+>&#13;	Host name of machine
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks dump host attr compute-0-0</DT
+><DD
+><P
+>&#13;	Dump the attributes for compute-0-0.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-DUMP-HOST-BOOT"
+>8.6.10. dump host boot</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks dump host boot</B
+> </P
+><P
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-DUMP-HOST-FIREWALL"
+>8.6.11. dump host firewall</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks dump host firewall</B
+> </P
+><P
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-DUMP-HOST-INTERFACE"
+>8.6.12. dump host interface</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks dump host interface</B
+>  [host...]</P
+><P
+>&#13;	Dump the host interface information as rocks commands.
+		
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>host</SPAN
+>]</DT
+><DD
+><P
+>&#13;	Zero, one or more host names. If no host names are supplied, 
+	information for all hosts will be listed.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks dump host interface compute-0-0</DT
+><DD
+><P
+>&#13;	Dump the interfaces for compute-0-0.
+	
+	</P
+></DD
+><DT
+>$ rocks dump host interface compute-0-0 compute-0-1</DT
+><DD
+><P
+>&#13;	Dump the interfaces for compute-0-0 and compute-0-1.
+	
+	</P
+></DD
+><DT
+>$ rocks dump host interface</DT
+><DD
+><P
+>&#13;	Dump all interfaces.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>related commands</B
+></P
+><DL
+><DT
+><A
+HREF="x1642.html#ROCKS-ADD-HOST-INTERFACE"
+>add host interface</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-DUMP-HOST-KEY"
+>8.6.13. dump host key</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks dump host key</B
+> </P
+><P
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-DUMP-HOST-ROLL"
+>8.6.14. dump host roll</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks dump host roll</B
+> </P
+><P
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-DUMP-HOST-ROUTE"
+>8.6.15. dump host route</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks dump host route</B
+> </P
+><P
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-DUMP-NETWORK"
+>8.6.16. dump network</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks dump network</B
+>  [network...]</P
+><P
+>&#13;	Dump the network information as rocks commands.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>network</SPAN
+>]</DT
+><DD
+><P
+>&#13;	Zero, one or more network names. If no network names are supplied, 
+	information for all networks will be listed.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks dump network</DT
+><DD
+><P
+>&#13;	Dump all network info.
+	
+	</P
+></DD
+><DT
+>$ rocks dump network public</DT
+><DD
+><P
+>&#13;	Dump network info the 'public' network.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-DUMP-OS-ATTR"
+>8.6.17. dump os attr</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks dump os attr</B
+> </P
+><P
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-DUMP-OS-FIREWALL"
+>8.6.18. dump os firewall</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks dump os firewall</B
+> </P
+><P
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-DUMP-OS-ROUTE"
+>8.6.19. dump os route</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks dump os route</B
+> </P
+><P
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-DUMP-ROUTE"
+>8.6.20. dump route</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks dump route</B
+> </P
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x3404.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x3692.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>disable</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="c1640.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>enable</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

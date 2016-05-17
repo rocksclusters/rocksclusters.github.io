@@ -1,0 +1,180 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<link rel="canonical" href="http://research.cs.wisc.edu/condor/manual/current/condor_check_userlogs.html">
+
+<TITLE>condor_check_userlogs</TITLE>
+<META NAME="description" CONTENT="condor_check_userlogs">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="condor_checkpoint.html">
+<LINK REL="previous" HREF="condor_advertise.html">
+<LINK REL="up" HREF="10_Command_Reference.html">
+<LINK REL="next" HREF="condor_checkpoint.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html3246"
+  HREF="condor_checkpoint.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3240"
+  HREF="10_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3234"
+  HREF="condor_advertise.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3242"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3244"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3247"
+  HREF="condor_checkpoint.html">condor_checkpoint</A>
+<B> Up:</B> <A NAME="tex2html3241"
+  HREF="10_Command_Reference.html">10. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3235"
+  HREF="condor_advertise.html">condor_advertise</A>
+ &nbsp; <B>  <A NAME="tex2html3243"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3245"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html3248"
+  HREF="condor_check_userlogs.html#SECTION001131000000000000000">Synopsis</A>
+<LI><A NAME="tex2html3249"
+  HREF="condor_check_userlogs.html#SECTION001132000000000000000">Description</A>
+<LI><A NAME="tex2html3250"
+  HREF="condor_check_userlogs.html#SECTION001133000000000000000">Exit Status</A>
+<LI><A NAME="tex2html3251"
+  HREF="condor_check_userlogs.html#SECTION001134000000000000000">Author</A>
+<LI><A NAME="tex2html3252"
+  HREF="condor_check_userlogs.html#SECTION001135000000000000000">Copyright</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION001130000000000000000"></A><A NAME="man-condor-check-userlogs"></A>
+<BR>
+<I>condor_check_userlogs</I>
+</H1> Check user log files for errors
+  
+<P>
+
+<H2><A NAME="SECTION001131000000000000000">
+Synopsis</A>
+</H2><B><I>condor_check_userlogs</I></B>
+<I>UserLogFile1</I>
+[<I>UserLogFile2 ... UserLogFileN </I>]
+
+<P>
+<A NAME="60236"></A>
+<A NAME="60237"></A>
+
+<P>
+
+<H2><A NAME="SECTION001132000000000000000">
+Description</A>
+</H2>
+
+<P>
+<I>condor_check_userlogs</I> is a program for checking a user log or
+set of users logs for errors.  
+Output includes an indication that no errors were found
+within a log file,
+or a list of errors such as an
+execute or terminate event without a corresponding submit event,
+or multiple terminated events for the same job.
+
+<P>
+<I>condor_check_userlogs</I> is especially useful for debugging
+<I>condor_dagman</I> problems.  If <I>condor_dagman</I> reports an error
+it is often useful to run <I>condor_check_userlogs</I> on the relevant
+log files.
+
+<P>
+
+<H2><A NAME="SECTION001133000000000000000">
+Exit Status</A>
+</H2>
+
+<P>
+<I>condor_check_userlogs</I> will exit with a status value of 0 (zero)
+upon success, and it will exit with the value 1 (one) upon failure.
+
+<P>
+
+<H2><A NAME="SECTION001134000000000000000">
+Author</A>
+</H2> Condor Team, University of Wisconsin-Madison
+  
+<H2><A NAME="SECTION001135000000000000000">
+Copyright</A>
+</H2> 
+  Copyright &#169; 1990-2012 Condor Team, Computer Sciences Department, 
+  University of Wisconsin-Madison, Madison, WI.  All Rights Reserved.  
+	Licensed under the Apache License, Version 2.0.
+
+<P>
+See the <I>Condor Version 7.8.5 Manual</I> or
+	<A NAME="tex2html406"
+  HREF="http://www.condorproject.org/license">http://www.condorproject.org/license</A>
+for
+  additional notices. 
+
+
+  <HR>
+<!--Navigation Panel-->
+<A NAME="tex2html3246"
+  HREF="condor_checkpoint.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3240"
+  HREF="10_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3234"
+  HREF="condor_advertise.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3242"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3244"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3247"
+  HREF="condor_checkpoint.html">condor_checkpoint</A>
+<B> Up:</B> <A NAME="tex2html3241"
+  HREF="10_Command_Reference.html">10. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3235"
+  HREF="condor_advertise.html">condor_advertise</A>
+ &nbsp; <B>  <A NAME="tex2html3243"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3245"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,407 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>condor_dagman</TITLE>
+<META NAME="description" CONTENT="condor_dagman">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="condor_fetchlog.html">
+<LINK REL="previous" HREF="condor_convert_history.html">
+<LINK REL="up" HREF="9_Command_Reference.html">
+<LINK REL="next" HREF="condor_fetchlog.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html3079"
+  HREF="condor_fetchlog.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3073"
+  HREF="9_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3067"
+  HREF="condor_convert_history.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3075"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3077"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3080"
+  HREF="condor_fetchlog.html">condor_fetchlog</A>
+<B> Up:</B> <A NAME="tex2html3074"
+  HREF="9_Command_Reference.html">9. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3068"
+  HREF="condor_convert_history.html">condor_convert_history</A>
+ &nbsp; <B>  <A NAME="tex2html3076"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3078"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html3081"
+  HREF="condor_dagman.html#SECTION0010141000000000000000">Synopsis</A>
+<LI><A NAME="tex2html3082"
+  HREF="condor_dagman.html#SECTION0010142000000000000000">Description</A>
+<LI><A NAME="tex2html3083"
+  HREF="condor_dagman.html#SECTION0010143000000000000000">Options</A>
+<LI><A NAME="tex2html3084"
+  HREF="condor_dagman.html#SECTION0010144000000000000000">Exit Status</A>
+<LI><A NAME="tex2html3085"
+  HREF="condor_dagman.html#SECTION0010145000000000000000">Examples</A>
+<LI><A NAME="tex2html3086"
+  HREF="condor_dagman.html#SECTION0010146000000000000000">Author</A>
+<LI><A NAME="tex2html3087"
+  HREF="condor_dagman.html#SECTION0010147000000000000000">Copyright</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION0010140000000000000000"></A><A NAME="man-condor-dagman"></A>
+<BR>
+<I>condor_dagman</I>
+</H1> meta scheduler of the jobs submitted as the nodes of a DAG or DAGs
+  
+<P>
+
+<H2><A NAME="SECTION0010141000000000000000">
+Synopsis</A>
+</H2><B><I>condor_dagman</I></B>
+[<B>-debug  </B><I>level</I>]
+[<B>-rescue  </B><I>filename</I>]
+[<B>-maxidle  </B><I>numberOfJobs</I>]
+[<B>-maxjobs  </B><I>numberOfJobs</I>]
+[<B>-maxpre  </B><I>NumberOfPREscripts</I>]
+[<B>-maxpost  </B><I>NumberOfPOSTscripts</I>]
+[<B>-noeventchecks</B>]
+[<B>-allowlogerror</B>]
+[<B>-usedagdir</B>]
+<B>-lockfile </B><I>filename</I>
+[<B>-waitfordebug</B>]
+[<B>-autorescue  </B><I>0|1</I>]
+[<B>-dorescuefrom  </B><I>number</I>]
+<B>-csdversion </B><I>version_string</I>
+[<B>-allowversionmismatch</B>]
+[<B>-DumpRescue</B>]
+<B>-dag </B><I>dag_file</I>
+[<I><B>-dag </B><I>dag_file_2</I> ... <B>-dag </B><I>dag_file_n</I> </I>]
+
+<P>
+<A NAME="61736"></A>
+<A NAME="61737"></A>
+
+<P>
+
+<H2><A NAME="SECTION0010142000000000000000">
+Description</A>
+</H2>
+<I>condor_dagman</I> is a meta scheduler for the Condor jobs within
+a DAG (directed acyclic graph) (or multiple DAGs).
+In typical usage,
+a submitter of jobs that are organized into a DAG submits the
+DAG using <I>condor_submit_dag</I>.
+<I>condor_submit_dag</I> does error checking on aspects of the DAG
+and then submits <I>condor_dagman</I> as a Condor job.
+<I>condor_dagman</I> uses log files to coordinate the further 
+submission of the jobs within the DAG.
+
+<P>
+As part of <I>daemoncore</I>, the set of command-line arguments
+given in
+section&nbsp;<A HREF="3_9DaemonCore.html#sec:DaemonCore-Arguments">3.9.2</A>
+work for <I>condor_dagman</I>.
+
+<P>
+Arguments to <I>condor_dagman</I> are either automatically set
+by <I>condor_submit_dag</I> 
+or they are specified as command-line arguments to <I>condor_submit_dag</I>
+and passed on to <I>condor_dagman</I>.
+The method by which the arguments are set is
+given in their description below.
+
+<P>
+<I>condor_dagman</I> can run multiple, independent DAGs.  This is done
+by specifying multiple <B>-dag </B><I>a</I>rguments.
+Pass multiple
+DAG input files as command-line arguments to <I>condor_submit_dag</I>.
+
+<P>
+Debugging output may be obtained by using the
+<B>-debug </B><I>level</I> option.
+Level values and what they produce is described as
+
+<UL>
+<LI>level = 0; never produce output, 
+        except for usage info 
+</LI>
+<LI>level = 1; very quiet, output severe errors 
+</LI>
+<LI>level = 2; normal output, errors and warnings
+</LI>
+<LI>level = 3; output errors, as well as all warnings
+</LI>
+<LI>level = 4; internal debugging output
+</LI>
+<LI>level = 5; internal debugging output; outer loop debugging
+</LI>
+<LI>level = 6; internal debugging output; inner loop debugging
+</LI>
+<LI>level = 7; internal debugging output; rarely used
+</LI>
+</UL>
+
+<P>
+
+<H2><A NAME="SECTION0010143000000000000000">
+Options</A>
+</H2>
+  
+<P>
+  <DL>
+<DT><STRONG><B>-debug </B><I>level</I></STRONG></DT>
+<DD>An integer level of debugging output.
+       <I>level</I> is an integer, with values of 0-7 inclusive,
+       where 7 is the most verbose output.
+       This command-line option to <I>condor_submit_dag</I>
+       is passed to <I>condor_dagman</I> or
+       defaults to the value 3, as set by <I>condor_submit_dag</I>.
+<BR>    
+</DD>
+<DT><STRONG><B>-rescue </B><I>filename</I></STRONG></DT>
+<DD>Sets the file name of
+       the rescue DAG to write in the case of a failure.
+       As passed by <I>condor_submit_dag</I>, the name of the file
+       will be the name of the DAG input file concatenated with
+       the string <TT>.rescue</TT>.  This argument is now optional,
+       and in general it is preferred to not specify it.  This allows
+       <I>condor_dagman</I> to automatically generate an appropriate
+       rescue DAG name.
+<BR>    
+</DD>
+<DT><STRONG><B>-maxidle </B><I>NumberOfJobs</I></STRONG></DT>
+<DD>Sets the maximum number of idle
+       jobs allowed before <I>condor_dagman</I> stops submitting more jobs.  Once
+       idle jobs start to run, <I>condor_dagman</I> will resume submitting jobs.
+       <I>NumberOfJobs</I> is a positive integer.
+       This command-line option to <I>condor_submit_dag</I> is passed to
+       <I>condor_dagman</I>.
+       If not specified, the number of idle jobs is unlimited.  
+<BR>    
+</DD>
+<DT><STRONG><B>-maxjobs </B><I>numberOfJobs</I></STRONG></DT>
+<DD>Sets the maximum number of jobs
+       within the DAG that will be submitted to Condor at one time.
+       <I>numberOfJobs</I> is a positive integer.
+       This command-line option to <I>condor_submit_dag</I> is passed to
+       <I>condor_dagman</I>.
+       If not specified, the default number of jobs is unlimited.  
+<BR>    
+</DD>
+<DT><STRONG><B>-maxpre </B><I>NumberOfPREscripts</I></STRONG></DT>
+<DD>Sets the maximum number
+       of PRE
+       scripts within the DAG that may be running at one time.
+       <I>NumberOfPREScripts</I> is a positive integer. 
+        This command-line option to <I>condor_submit_dag</I> is passed to
+        <I>condor_dagman</I>.
+       If not specified,
+       the default number of PRE scripts is unlimited.
+<BR>    
+</DD>
+<DT><STRONG><B>-maxpost </B><I>NumberOfPOSTscripts</I></STRONG></DT>
+<DD>Sets the maximum number of
+       POST scripts within the DAG that may be running at one time.
+       <I>NumberOfPOSTScripts</I> is a positive integer. 
+        This command-line option to <I>condor_submit_dag</I> is passed to
+        <I>condor_dagman</I>.
+       If not specified,
+       the default number of POST scripts is unlimited.
+<BR>    
+</DD>
+<DT><STRONG><B>-noeventchecks</B></STRONG></DT>
+<DD>This argument is no longer used;
+       it is now ignored.  Its functionality is now implemented by
+       the <TT>DAGMAN_ALLOW_EVENTS</TT> configuration macro
+       (see section&nbsp;<A HREF="3_3Configuration.html#param:DAGManAllowEvents">3.3.26</A>).
+<BR>    
+</DD>
+<DT><STRONG><B>-allowlogerror</B></STRONG></DT>
+<DD>This optional argument has 
+       <I>condor_dagman</I> try to run the specified DAG, even in the case
+       of detected errors in the user log specification.
+       As of version 7.3.2, this argument has an effect only on
+       DAGs containing Stork job nodes.
+<BR>    
+</DD>
+<DT><STRONG><B>-usedagdir</B></STRONG></DT>
+<DD>This optional argument causes
+       <I>condor_dagman</I> to run each specified DAG as if the directory
+       containing that DAG file was the current working directory.  This
+       option is most useful when running multiple DAGs in a single
+       <I>condor_dagman</I>.
+<BR>    
+</DD>
+<DT><STRONG><B>-lockfile </B><I>filename</I></STRONG></DT>
+<DD>Names the file
+       created and used as a lock file.
+       The lock file prevents execution of two of the 
+       same DAG, as defined by a DAG input file.
+       A default lock file ending with the suffix <TT>.dag.lock</TT>
+       is passed to <I>condor_dagman</I> by <I>condor_submit_dag</I>.  
+<BR>    
+</DD>
+<DT><STRONG><B>-waitfordebug</B></STRONG></DT>
+<DD>This optional argument causes
+       <I>condor_dagman</I> to wait at startup until someone attaches to
+       the process with a debugger and sets the wait_for_debug
+       variable in main_init() to false.
+<BR>    
+</DD>
+<DT><STRONG><B>-autorescue </B><I>0|1</I></STRONG></DT>
+<DD>Whether to automatically run
+       the newest rescue DAG for the given DAG file, if one exists
+       (0 = <TT>false</TT>, 1 = <TT>true</TT>).
+<BR>    
+</DD>
+<DT><STRONG><B>-dorescuefrom </B><I>number</I></STRONG></DT>
+<DD>Forces <I>condor_dagman</I> to
+       run the specified rescue DAG number for the given DAG.  A value
+       of 0 is the same as not specifying this option.  Specifying a
+       non-existant rescue DAG is a fatal error.
+<BR>    
+</DD>
+<DT><STRONG><B>-csdversion </B><I>version_string</I></STRONG></DT>
+<DD><I>version_string</I>
+       is the version of the <I>condor_submit_dag</I> program.  At startup,
+       <I>condor_dagman</I> checks for a version mismatch with the
+       <I>condor_submit_dag</I> version in this argument.
+<BR>    
+</DD>
+<DT><STRONG><B>-allowversionmismatch</B></STRONG></DT>
+<DD>This optional argument causes
+       <I>condor_dagman</I> to allow a version mismatch between
+       <I>condor_dagman</I> itself and the <TT>.condor.sub</TT> file produced
+       by <I>condor_submit_dag</I> (or, in other words, between 
+       <I>condor_submit_dag</I> and <I>condor_dagman</I>).  WARNING!  This option
+       should be used only if absolutely necessary.  Allowing version
+       mismatches can cause subtle problems when running DAGs.
+       (Note that, starting with version 7.4.0, <I>condor_dagman</I> no longer
+       requires an exact version match between itself and the
+       <TT>.condor.sub</TT> file.  Instead, a "minimum compatible version"
+       is defined, and any <TT>.condor.sub</TT> file of that version or
+       newer is accepted.)
+<BR>    
+</DD>
+<DT><STRONG><B>-DumpRescue</B></STRONG></DT>
+<DD>This optional argument causes
+       <I>condor_dagman</I> to immediately dump a rescue DAG and then exit,
+       as opposed to actually running the DAG.  (This feature is mainly
+       intended for testing.)
+<BR>    
+</DD>
+<DT><STRONG><B>-dag </B><I>filename</I></STRONG></DT>
+<DD><I>filename</I> is the name of the
+       DAG input file that is set as an argument to <I>condor_submit_dag</I>,
+       and passed to <I>condor_dagman</I>.
+<BR>  
+</DD>
+</DL>
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION0010144000000000000000">
+Exit Status</A>
+</H2>
+
+<P>
+<I>condor_dagman</I> will exit with a status value of 0 (zero) upon success,
+and it will exit with the value 1 (one) upon failure.
+
+<P>
+
+<H2><A NAME="SECTION0010145000000000000000">
+Examples</A>
+</H2>
+
+<P>
+<I>condor_dagman</I> is normally not run directly, but submitted as a Condor
+job by running condor_submit_dag.  See the condor_submit_dag manual
+page&nbsp;<A HREF="condor_submit_dag.html#man-condor-submit-dag"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for examples.
+
+<P>
+
+<H2><A NAME="SECTION0010146000000000000000">
+Author</A>
+</H2> Condor Team, University of Wisconsin-Madison
+  
+<H2><A NAME="SECTION0010147000000000000000">
+Copyright</A>
+</H2> 
+  Copyright &#169; 1990-2010 Condor Team, Computer Sciences Department, 
+  University of Wisconsin-Madison, Madison, WI.  All Rights Reserved.  
+	Licensed under the Apache License, Version 2.0.
+
+<P>
+See the <I>Condor Version 7.4.4 Manual</I> or
+	<A NAME="tex2html116"
+  HREF="http://www.condorproject.org/license">http://www.condorproject.org/license</A>
+for
+  additional notices. 
+
+
+  <HR>
+<!--Navigation Panel-->
+<A NAME="tex2html3079"
+  HREF="condor_fetchlog.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3073"
+  HREF="9_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3067"
+  HREF="condor_convert_history.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3075"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3077"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3080"
+  HREF="condor_fetchlog.html">condor_fetchlog</A>
+<B> Up:</B> <A NAME="tex2html3074"
+  HREF="9_Command_Reference.html">9. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3068"
+  HREF="condor_convert_history.html">condor_convert_history</A>
+ &nbsp; <B>  <A NAME="tex2html3076"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3078"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

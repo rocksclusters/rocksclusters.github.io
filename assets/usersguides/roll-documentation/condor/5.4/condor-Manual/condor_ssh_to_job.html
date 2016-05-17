@@ -1,0 +1,392 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>condor_ssh_to_job</TITLE>
+<META NAME="description" CONTENT="condor_ssh_to_job">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="condor_stats.html">
+<LINK REL="previous" HREF="condor_set_shutdown.html">
+<LINK REL="up" HREF="9_Command_Reference.html">
+<LINK REL="next" HREF="condor_stats.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html3606"
+  HREF="condor_stats.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3600"
+  HREF="9_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3594"
+  HREF="condor_set_shutdown.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3602"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3604"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3607"
+  HREF="condor_stats.html">condor_stats</A>
+<B> Up:</B> <A NAME="tex2html3601"
+  HREF="9_Command_Reference.html">9. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3595"
+  HREF="condor_set_shutdown.html">condor_set_shutdown</A>
+ &nbsp; <B>  <A NAME="tex2html3603"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3605"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html3608"
+  HREF="condor_ssh_to_job.html#SECTION0010391000000000000000">Synopsis</A>
+<LI><A NAME="tex2html3609"
+  HREF="condor_ssh_to_job.html#SECTION0010392000000000000000">Description</A>
+<LI><A NAME="tex2html3610"
+  HREF="condor_ssh_to_job.html#SECTION0010393000000000000000">Options</A>
+<LI><A NAME="tex2html3611"
+  HREF="condor_ssh_to_job.html#SECTION0010394000000000000000">Examples</A>
+<LI><A NAME="tex2html3612"
+  HREF="condor_ssh_to_job.html#SECTION0010395000000000000000">Exit Status</A>
+<LI><A NAME="tex2html3613"
+  HREF="condor_ssh_to_job.html#SECTION0010396000000000000000">Author</A>
+<LI><A NAME="tex2html3614"
+  HREF="condor_ssh_to_job.html#SECTION0010397000000000000000">Copyright</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION0010390000000000000000"></A><A NAME="man-condor-ssh-to-job"></A>
+<BR>
+<I>condor_ssh_to_job</I>
+</H1> create an ssh session to a running job
+  
+<P>
+
+<H2><A NAME="SECTION0010391000000000000000">
+Synopsis</A>
+</H2><B><I>condor_ssh_to_job</I></B>
+[<B>-help</B>]
+
+<P>
+<B><I>condor_ssh_to_job</I></B>
+
+[<B>-debug</B>]
+
+[<B>-name  </B><I>schedd-name</I>]
+[<B>-pool  </B><I>pool-name</I>]
+[<B>-ssh  </B><I>ssh-command</I>]
+[<B>-keygen-options  </B><I>ssh-keygen-options</I>]
+[<B>-shells  </B><I>shell1,shell2,...</I>]
+[<B>-auto-retry</B>]
+<I>cluster | cluster.process | cluster.process.node </I>
+[<I>remote-command</I>]
+
+<P>
+<A NAME="70149"></A>
+<A NAME="70150"></A>
+
+<P>
+
+<H2><A NAME="SECTION0010392000000000000000">
+Description</A>
+</H2>
+
+<P>
+<I>condor_ssh_to_job</I> creates an <I>ssh</I> session to a running job.
+The job is specified with the argument.
+If only the job <I>cluster</I> id is given,
+then the job <I>process</I> id defaults to the value 0.
+
+<P>
+It is available in Unix Condor distributions, 
+and it works for vanilla, java, local, and parallel universe jobs.
+The user must be the owner of the job or must be a queue super user, 
+and both the <I>condor_schedd</I> and <I>condor_starter</I> daemons
+must allow <I>condor_ssh_to_job</I> access.
+If no <I>remote-command</I> is specified, an interactive shell is created.
+An alternate <I>ssh</I> program such as <I>sftp</I> may be specified,
+using the <B>-ssh</B> option for uploading and downloading files.
+
+<P>
+The remote command or shell runs with the same user id as the running job,
+and it is initialized with the same working directory.
+The environment is initialized to be the same as that of the job,
+plus any changes made by the shell setup scripts
+and any environment variables passed by the <I>ssh</I> client.
+In addition, the environment variable
+<TT>_CONDOR_JOB_PIDS</TT> is defined.  
+It is a space-separated list of PIDs associated with the job.
+At a minimum, the list will contain the
+PID of the process started when the job was launched,
+and it will be the first item in the list.
+It may contain additional PIDs of other processes that the job has created.
+
+<P>
+The <I>ssh</I> session and all processes it creates are treated by Condor as
+though they are processes belonging to the job.
+If the slot is preempted or suspended,
+the <I>ssh</I> session is killed or suspended along with the job.
+If the job exits before the <I>ssh</I> session finishes,
+the slot remains in the Claimed Busy state and is treated as though not
+all job processes have exited until all <I>ssh</I> sessions are closed.
+Multiple <I>ssh</I> sessions may be created to the same job at the
+same time.  Resource consumption of the <I>sshd</I> process and all processes
+spawned by it are monitored by the <I>condor_starter</I> as though these
+processes belong to the job, so any policies such as <TT>PREEMPT</TT> that
+enforce a limit on resource consumption also take into account resources
+consumed by the <I>ssh</I> session.
+
+<P>
+<I>condor_ssh_to_job</I> stores ssh keys in temporary files within a newly
+created and uniquely named directory.
+The newly created directory will be within the directory defined
+by the environment variable <TT>TMPDIR</TT>. 
+When the ssh session is finished, this directory and the ssh keys
+contained within it are removed.
+
+<P>
+See section&nbsp;<A HREF="3_3Configuration.html#sec:Config-ssh-to-job">3.3.34</A>
+for details of the configuration variables related to <I>condor_ssh_to_job</I>.
+
+<P>
+An <I>ssh</I> session works by first authenticating and authorizing
+a secure connection between <I>condor_ssh_to_job</I> and the <I>condor_starter</I>
+daemon, using Condor protocols.
+The <I>condor_starter</I> generates an ssh key
+pair and sends it securely to <I>condor_ssh_to_job</I>.
+Then the <I>condor_starter</I> spawns <I>sshd</I> in inetd mode with its
+stdin and stdout attached to the TCP connection from <I>condor_ssh_to_job</I>.
+<I>condor_ssh_to_job</I> acts as a proxy
+for the <I>ssh</I> client to communicate with <I>sshd</I>,
+using the existing connection authorized by Condor.
+<I>At no point is <I>sshd</I>
+listening on the network for connections or running with any privileges
+other than that of the user identity running the job.</I>
+If CCB is being used to enable connectivity to the execute node from
+outside of a firewall or private network, <I>condor_ssh_to_job</I> is
+able to make use of CCB in order to form the <I>ssh</I> connection.
+
+<P>
+The login shell of the user id running the job is used to run the
+requested command, <I>sshd</I> subsystem, or interactive shell.  This
+is hard-coded behavior in <I>OpenSSH</I> and cannot be overridden by
+configuration.  This means that <I>condor_ssh_to_job</I> access is
+effectively disabled if the login shell disables access,
+as in the example programs
+<I>/bin/true</I> and <I>/sbin/nologin</I>.
+
+<P>
+<I>condor_ssh_to_job</I> is intended to work with <I>OpenSSH</I>
+as installed in typical environments.
+It does not work on Windows platforms.
+If the <I>ssh</I> programs are installed in non-standard locations,
+then the paths to
+these programs will need to be customized within the Condor configuration.
+Versions of <I>ssh</I> other than <I>OpenSSH</I> may work,
+but they will likely
+require additional configuration of command-line arguments,
+changes to the <I>sshd</I> configuration template file,
+and possibly modification of the
+<code>$(LIBEXEC)/condor_ssh_to_job_sshd_setup</code> script 
+used by the <I>condor_starter</I> to set up <I>sshd</I>.
+
+<P>
+
+<H2><A NAME="SECTION0010393000000000000000">
+Options</A>
+</H2>
+  
+<P>
+  <DL>
+<DT><STRONG><B>-help</B></STRONG></DT>
+<DD>Display brief usage information and exit. 
+<BR>  
+</DD>
+<DT><STRONG><B>-debug</B></STRONG></DT>
+<DD>Causes debugging information to be sent to
+<TT>stderr</TT>, based on the value of the configuration variable
+<TT>TOOL_DEBUG</TT>
+<BR>
+  
+</DD>
+<DT><STRONG><B>-name </B><I>schedd-name</I></STRONG></DT>
+<DD>Specify an alternate <I>condor_schedd</I>,
+    if the default (local) one is not desired.
+<BR>  
+</DD>
+<DT><STRONG><B>-pool </B><I>pool-name</I></STRONG></DT>
+<DD>Specify an alternate Condor pool,
+    if the default one is not desired.
+<BR>  
+</DD>
+<DT><STRONG><B>-ssh </B><I>ssh-command</I></STRONG></DT>
+<DD>Specify an alternate <I>ssh</I> program
+    to run in place of <I>ssh</I>, for example <I>sftp</I> or <I>scp</I>.
+    Additional arguments are specified as <I>ssh-command</I>.
+    Since the arguments are delimited by spaces,
+    place double quote marks around the whole command,
+    to prevent the shell from splitting it into multiple arguments
+    to <I>condor_ssh_to_job</I>.
+    If any arguments must contain spaces, enclose them within single quotes.
+<BR>  
+</DD>
+<DT><STRONG><B>-keygen-options </B><I>ssh-keygen-options</I></STRONG></DT>
+<DD>Specify additional
+    arguments to the <I>ssh_keygen</I> program,
+    for creating the ssh key that is used for the duration of the session.
+    For example, a different number of bits could be used,
+    or a different key type than the default.
+<BR>  
+</DD>
+<DT><STRONG><B>-shells </B><I>shell1,shell2,...</I></STRONG></DT>
+<DD>Specify a comma-separated list
+    of shells to attempt to launch.
+    If the first shell does not exist on the remote machine,
+    then the following ones in the list will be tried.
+    If none of the specified shells can be found, <I>/bin/sh</I> is used
+    by default.
+    If this option is not specified, it defaults to the environment variable
+    <TT>SHELL</TT> from within the <I>condor_ssh_to_job</I> environment.
+<BR>  
+</DD>
+<DT><STRONG><B>-auto-retry</B></STRONG></DT>
+<DD>Specifies that if the job is not yet running,
+    <I>condor_ssh_to_job</I> should keep trying periodically until it succeeds 
+    or encounters some other error.
+<BR>  
+</DD>
+</DL>
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION0010394000000000000000">
+Examples</A>
+</H2>
+<PRE>
+% condor_ssh_to_job 32.0
+Welcome to slot2@tonic.cs.wisc.edu!
+Your condor job is running with pid(s) 65881.
+% gdb -p 65881
+(gdb) where
+...
+% logout
+Connection to condor-job.tonic.cs.wisc.edu closed.
+</PRE>
+<P>
+To upload or download files interactively with <I>sftp</I>:
+<PRE>
+% condor_ssh_to_job -ssh sftp 32.0
+Connecting to condor-job.tonic.cs.wisc.edu...
+sftp&gt; ls
+...
+sftp&gt; get outputfile.dat
+</PRE>
+<P>
+This example shows downloading a file from the job with <I>scp</I>.
+The string "remote" is used in place of a host name in this example.
+It is not necessary to insert the correct remote host name, or even
+a valid one, because the connection to the job is created automatically.
+Therefore, the placeholder string "remote" is perfectly fine.
+<PRE>
+% condor_ssh_to_job -ssh scp 32 remote:outputfile.dat .
+</PRE>
+<P>
+This example uses <I>condor_ssh_to_job</I> to accomplish the
+task of running <I>rsync</I> to synchronize a local file with
+a remote file in the job's working directory.
+Job id 32.0 is used in place of a host name in this example.
+This causes <I>rsync</I> to insert the expected job id in the
+arguments to <I>condor_ssh_to_job</I>.
+<PRE>
+% rsync -v -e "condor_ssh_to_job" 32.0:outputfile.dat .
+</PRE>
+<P>
+
+<H2><A NAME="SECTION0010395000000000000000">
+Exit Status</A>
+</H2>
+
+<P>
+<I>condor_ssh_to_job</I> will exit with a non-zero status value if it fails
+to set up an ssh session.  If it succeeds, it will exit with the
+status value of the remote command or shell.
+
+<P>
+
+<H2><A NAME="SECTION0010396000000000000000">
+Author</A>
+</H2> Condor Team, University of Wisconsin-Madison
+  
+<H2><A NAME="SECTION0010397000000000000000">
+Copyright</A>
+</H2> 
+  Copyright &#169; 1990-2010 Condor Team, Computer Sciences Department, 
+  University of Wisconsin-Madison, Madison, WI.  All Rights Reserved.  
+	Licensed under the Apache License, Version 2.0.
+
+<P>
+See the <I>Condor Version 7.4.4 Manual</I> or
+	<A NAME="tex2html146"
+  HREF="http://www.condorproject.org/license">http://www.condorproject.org/license</A>
+for
+  additional notices. 
+
+
+  <HR>
+<!--Navigation Panel-->
+<A NAME="tex2html3606"
+  HREF="condor_stats.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3600"
+  HREF="9_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3594"
+  HREF="condor_set_shutdown.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3602"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3604"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3607"
+  HREF="condor_stats.html">condor_stats</A>
+<B> Up:</B> <A NAME="tex2html3601"
+  HREF="9_Command_Reference.html">9. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3595"
+  HREF="condor_set_shutdown.html">condor_set_shutdown</A>
+ &nbsp; <B>  <A NAME="tex2html3603"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3605"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

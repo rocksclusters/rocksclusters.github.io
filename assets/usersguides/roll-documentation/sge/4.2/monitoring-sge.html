@@ -1,0 +1,268 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Monitoring SGE Jobs</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE=" SGE Roll: Users Guide "
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Using the SGE Roll"
+HREF="using.html"><LINK
+REL="PREVIOUS"
+TITLE="Submitting Batch Jobs to SGE"
+HREF="submitting-batch-jobs.html"><LINK
+REL="NEXT"
+TITLE="Managing SGE queues"
+HREF="managing-queues.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>SGE Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/ge_logo.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="submitting-batch-jobs.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 3. Using the SGE Roll</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="managing-queues.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="MONITORING-SGE"
+>3.4. Monitoring SGE Jobs</A
+></H1
+><P
+>To monitor jobs under SGE, use the <B
+CLASS="COMMAND"
+>qstat</B
+> command. When executed with no arguments, it will display a summarized list of jobs </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>[sysadm1@frontend-0 sysadm1]$ qstat
+job-ID  prior name       user         state submit/start at     queue      master  ja-task-ID
+---------------------------------------------------------------------------------------------
+     20     0 sleep.sh   sysadm1      t     12/23/2003 23:22:09 frontend-0 MASTER
+     21     0 sleep.sh   sysadm1      t     12/23/2003 23:22:09 frontend-0 MASTER
+     22     0 sleep.sh   sysadm1      qw    12/23/2003 23:22:06&#13;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Use <B
+CLASS="COMMAND"
+>qstat -f</B
+> to display a more detailed list of jobs within SGE.</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>[sysadm1@frontend-0 sysadm1]$ qstat -f
+queuename            qtype used/tot. load_avg arch      states
+----------------------------------------------------------------------------
+comp-pvfs-0-0.q      BIP   0/2       0.18     glinux    
+----------------------------------------------------------------------------
+comp-pvfs-0-1.q      BIP   0/2       0.00     glinux    
+----------------------------------------------------------------------------
+comp-pvfs-0-2.q      BIP   0/2       0.05     glinux    
+----------------------------------------------------------------------------
+frontend-0.q         BIP   2/2       0.00     glinux
+     23     0 sleep.sh   sysadm1      t     12/23/2003 23:23:40 MASTER
+     24     0 sleep.sh   sysadm1      t     12/23/2003 23:23:40 MASTER
+                                                                                                                                                                              
+############################################################################
+ - PENDING JOBS - PENDING JOBS - PENDING JOBS - PENDING JOBS - PENDING JOBS
+############################################################################
+     25     0 linpack.sh sysadm1      qw    12/23/2003 23:23:32&#13;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>You can also use <B
+CLASS="COMMAND"
+>qstat</B
+> to query the status of a job, given it's job id. For this, you would use the <VAR
+CLASS="LITERAL"
+>-j N</VAR
+> option where <VAR
+CLASS="LITERAL"
+>N</VAR
+> would be the job id.</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>[sysadm1@frontend-0 sysadm1]$ qsub -pe mpich 1 single-xhpl.sh
+your job 28 ("single-xhpl.sh") has been submitted
+[sysadm1@frontend-0 sysadm1]$ qstat -j 28
+job_number:                 28
+exec_file:                  job_scripts/28
+submission_time:            Wed Dec 24 01:00:59 2003
+owner:                      sysadm1
+uid:                        502
+group:                      sysadm1
+gid:                        502
+sge_o_home:                 /home/sysadm1
+sge_o_log_name:             sysadm1
+sge_o_path:                 /opt/sge/bin/glinux:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/usr/X11R6/bin:/opt/ganglia/bin:/opt/maui/bin:/opt/OpenPBS/bin:/opt/OpenPBS/sbin:/opt/rocks/bin:/opt/rocks/sbin:/home/sysadm1/bin
+sge_o_mail:                 /var/spool/mail/sysadm1
+sge_o_shell:                /bin/bash
+sge_o_workdir:              /home/sysadm1
+sge_o_host:                 frontend-0
+account:                    sge
+cwd:                        /home/sysadm1
+path_aliases:               /tmp_mnt/ * * /
+merge:                      y
+mail_list:                  sysadm1@frontend-0.public
+notify:                     FALSE
+job_name:                   single-xhpl.sh
+shell_list:                 /bin/bash
+script_file:                single-xhpl.sh
+parallel environment:  mpich range: 1
+scheduling info:            queue "comp-pvfs-0-1.q" dropped because it is temporarily not available
+                            queue "comp-pvfs-0-2.q" dropped because it is temporarily not available
+                            queue "comp-pvfs-0-0.q" dropped because it is temporarily not available&#13;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="submitting-batch-jobs.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="managing-queues.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Submitting Batch Jobs to SGE</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="using.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Managing SGE queues</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

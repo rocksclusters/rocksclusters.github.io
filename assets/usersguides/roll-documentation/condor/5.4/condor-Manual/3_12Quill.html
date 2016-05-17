@@ -1,0 +1,3184 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>3.12 Quill</TITLE>
+<META NAME="description" CONTENT="3.12 Quill">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="3_13Setting_Up.html">
+<LINK REL="previous" HREF="3_11High_Availability.html">
+<LINK REL="up" HREF="3_Administrators_Manual.html">
+<LINK REL="next" HREF="3_13Setting_Up.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html1338"
+  HREF="3_13Setting_Up.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1332"
+  HREF="3_Administrators_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1326"
+  HREF="3_11High_Availability.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1334"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1336"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1339"
+  HREF="3_13Setting_Up.html">3.13 Setting Up for</A>
+<B> Up:</B> <A NAME="tex2html1333"
+  HREF="3_Administrators_Manual.html">3. Administrators' Manual</A>
+<B> Previous:</B> <A NAME="tex2html1327"
+  HREF="3_11High_Availability.html">3.11 The High Availability</A>
+ &nbsp; <B>  <A NAME="tex2html1335"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1337"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html1340"
+  HREF="3_12Quill.html#SECTION004121000000000000000">3.12.1 Installation and Configuration</A>
+<LI><A NAME="tex2html1341"
+  HREF="3_12Quill.html#SECTION004122000000000000000">3.12.2 Four Usage Examples</A>
+<LI><A NAME="tex2html1342"
+  HREF="3_12Quill.html#SECTION004123000000000000000">3.12.3 Quill and Security</A>
+<LI><A NAME="tex2html1343"
+  HREF="3_12Quill.html#SECTION004124000000000000000">3.12.4 Quill and Its RDBMS Schema</A>
+<UL>
+<LI><A NAME="tex2html1344"
+  HREF="3_12Quill.html#SECTION004124100000000000000">3.12.4.1 Administrative Tables</A>
+<LI><A NAME="tex2html1345"
+  HREF="3_12Quill.html#SECTION004124200000000000000">3.12.4.2 Daemon Tables</A>
+<LI><A NAME="tex2html1346"
+  HREF="3_12Quill.html#SECTION004124300000000000000">3.12.4.3 Files Tables</A>
+<LI><A NAME="tex2html1347"
+  HREF="3_12Quill.html#SECTION004124400000000000000">3.12.4.4 Interface Tables</A>
+<LI><A NAME="tex2html1348"
+  HREF="3_12Quill.html#SECTION004124500000000000000">3.12.4.5 Jobs Tables</A>
+<LI><A NAME="tex2html1349"
+  HREF="3_12Quill.html#SECTION004124600000000000000">3.12.4.6 Machines Tables</A>
+<LI><A NAME="tex2html1350"
+  HREF="3_12Quill.html#SECTION004124700000000000000">3.12.4.7 Matchmaking Tables</A>
+<LI><A NAME="tex2html1351"
+  HREF="3_12Quill.html#SECTION004124800000000000000">3.12.4.8 Runtime Tables</A>
+<LI><A NAME="tex2html1352"
+  HREF="3_12Quill.html#SECTION004124900000000000000">3.12.4.9 System Tables</A>
+</UL></UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION004120000000000000000"></A><A NAME="sec:Quill"></A>
+<A NAME="32278"></A>
+<BR>
+3.12 Quill
+</H1>
+
+<P>
+<A NAME="32470"></A>
+<A NAME="32471"></A>
+<A NAME="32281"></A>
+<A NAME="32472"></A>
+<A NAME="32473"></A>
+<A NAME="32284"></A>
+Quill is an optional component of Condor that maintains a mirror 
+of Condor operational data
+in a relational database.  The <I>condor_quill</I> daemon updates
+the data in the relation database, and the <I>condor_dbmsd</I> daemon
+maintains the database itself.
+
+<P>
+
+<H2><A NAME="SECTION004121000000000000000"></A><A NAME="sec:Quill-Installation"></A>
+<BR>
+3.12.1 Installation and Configuration
+</H2>
+
+<P>
+Quill uses the <I>PostgreSQL</I> database management system.
+Quill uses the <I>PostgreSQL</I> server as its back end
+and client library, 
+<I>libpq</I> to talk to the server.
+We <B>strongly recommend</B> the use of version 
+8.2 or later due to its integrated facilities of certain key 
+database maintenance tasks, and stronger security features.
+
+<P>
+Obtain <I>PostgreSQL</I> from
+
+<P>
+<A NAME="tex2html53"
+  HREF="http://www.postgresql.org/ftp/source/">http://www.postgresql.org/ftp/source/</A>
+<P>
+Installation instructions are detailed in:
+<A NAME="tex2html54"
+  HREF="http://www.postgresql.org/docs/8.2/static/installation.html">http://www.postgresql.org/docs/8.2/static/installation.html</A>
+<P>
+Configure <I>PostgreSQL</I> after installation:
+
+<P>
+
+<OL>
+<LI>Initialize the database with the <I>PostgreSQL</I> command 
+<code>initdb</code>.
+
+<P>
+</LI>
+<LI>Configure to accept TCP/IP connections.
+For <I>PostgreSQL</I> version 8,
+use the <TT>listen_addresses</TT> variable in 
+<TT>postgresql.conf</TT> file as a guide.
+For example,
+<TT>listen_addresses = '*'</TT>
+means listen on any IP interface.
+
+<P>
+</LI>
+<LI>Configure automatic vacuuming.
+Ensure that these variables with these defaults are
+commented in and/or set properly in the 
+<TT>postgresql.conf</TT> configuration file:
+<PRE>
+# Turn on/off automatic vacuuming
+autovacuum = on
+
+# time between autovacuum runs, in secs
+autovacuum_naptime = 60
+
+# min # of tuple updates before vacuum
+autovacuum_vacuum_threshold = 1000
+
+# min # of tuple updates before analyze
+autovacuum_analyze_threshold = 500
+
+# fraction of rel size before vacuum
+autovacuum_vacuum_scale_factor = 0.4 
+
+# fraction of rel size before analyze
+autovacuum_analyze_scale_factor = 0.2
+
+# default vacuum cost delay for 
+   # autovac, -1 means use 
+   # vacuum_cost_delay
+autovacuum_vacuum_cost_delay = -1  
+
+# default vacuum cost limit for 
+   # autovac, -1 means use
+   # vacuum_cost_limit
+autovacuum_vacuum_cost_limit = -1
+</PRE>
+
+<P>
+</LI>
+<LI>Configure <I>PostgreSQL</I> to accept TCP/IP connections from 
+specific hosts.
+Modify the <TT>pg_hba.conf</TT> file 
+(which usually resides in the <I>PostgreSQL</I> server's data directory).
+Access is required by the <I>condor_quill</I> daemon,
+as well as the database users
+``<B>quillreader</B>'' and ``<B>quillwriter</B>''.
+For example, to give
+database users ``<B>quillreader</B>'' and ``<B>quillwriter</B>''
+password-enabled access to all databases on current machine from any
+machine in the 128.105.0.0/16 subnet, add the following:
+
+<P>
+<TABLE CELLPADDING=3>
+<TR><TD ALIGN="LEFT">host</TD>
+<TD ALIGN="LEFT">all</TD>
+<TD ALIGN="LEFT">quillreader</TD>
+<TD ALIGN="LEFT">128.105.0.0</TD>
+<TD ALIGN="LEFT">255.255.0.0</TD>
+<TD ALIGN="LEFT">md5</TD>
+</TR>
+<TR><TD ALIGN="LEFT">host</TD>
+<TD ALIGN="LEFT">all</TD>
+<TD ALIGN="LEFT">quillwriter</TD>
+<TD ALIGN="LEFT">128.105.0.0</TD>
+<TD ALIGN="LEFT">255.255.0.0</TD>
+<TD ALIGN="LEFT">md5</TD>
+</TR>
+</TABLE>
+
+<P>
+Note that in addition to the database specified by
+the configuration variable <TT>QUILL_DB_NAME</TT>,
+the <I>condor_quill</I> daemon also needs access to the database
+"template1".
+In order to create the database in the first place, 
+the <I>condor_quill</I> daemon needs to connect to the database.
+
+<P>
+</LI>
+<LI>Start the <I>PostgreSQL</I> server service. See the
+installation instructions for the appropriate method to start the service at
+<A NAME="tex2html55"
+  HREF="http://www.postgresql.org/docs/8.2/static/installation.html">http://www.postgresql.org/docs/8.2/static/installation.html</A>
+<P>
+</LI>
+<LI>The <I>condor_quill</I> and <I>condor_dbmsd</I> daemons and client tools connect
+to the database as users ``<B>quillreader</B>'' and 
+``<B>quillwriter</B>''.
+These are database users, not operating system users.
+The two types of users are quite different from each other.
+If these database users do not exist,
+add them using the 
+<I>createuser</I> command supplied with the installation.
+Assign them with appropriate passwords;
+these passwords will be used by the Quill tools to connect
+to the database in a secure way.
+User ``<B>quillreader</B>'' should not be allowed to create
+more databases nor create more users.
+User ``<B>quillwriter</B>'' should
+not be allowed to create more users,
+however it should be allowed to create more databases.
+The following commands create the two users
+with the appropriate permissions,
+and be ready to enter the corresponding passwords when prompted.
+
+<P>
+<PRE>
+/path/to/postgreSQL/bin/directory/createuser quillreader \
+	--no-createdb --no-createrole --pwprompt
+
+/path/to/postgreSQL/bin/directory/createuser quillwriter \
+	--createdb --no-createrole --pwprompt
+</PRE>
+<P>
+Answer ``no'' to the question about the ability for role creation.
+
+<P>
+</LI>
+<LI>Create a database for Quill to store data in
+with the <code>createdb</code> command. 
+Create this database with the ``<B>quillwriter</B>'' user as the owner.
+A sample command to do this is
+<PRE>
+createdb -O quillwriter quill
+</PRE><code>quill</code> is the database name to use with the <TT>QUILL_DB_NAME</TT>
+configuration variable.
+
+<P>
+</LI>
+<LI>The <I>condor_quill</I> and <I>condor_dbmsd</I> daemons need read and write access
+to the database.
+They connect as user ``<B>quillwriter</B>'',
+which has owner privileges to the database.
+Since this gives all access to the ``<B>quillwriter</B>'' user,
+its password cannot be stored in a public place 
+(such as in a ClassAd).
+For this reason, the ``<B>quillwriter</B>'' password is stored
+in a file named <TT>.pgpass</TT> in the Condor spool directory.
+Appropriate protections on this file guarantee secure access to the database.
+This file must be created and protected by the site administrator;
+if this file does not exist as and where expected, the <I>condor_quill</I>
+and <I>condor_dbmsd</I> daemons log an error and exit.
+The <TT>.pgpass</TT> file contains a single line that
+has fields separated by colons and is properly terminated by
+an operating system specific newline character (Unix) or CRLF (Windows).
+The first field may be either the machine name and fully qualified domain,
+or it may be a dotted quad IP address.
+This is followed by four fields containing:
+the TCP port number, 
+the name of the database,
+the "quillwriter" user name,
+and the password.
+The form used in the first field must exactly match the value set for 
+the configuration variable <TT>QUILL_DB_IP_ADDR</TT> <A NAME="32548"></A> <A NAME="32549"></A>.
+Condor uses a string comparison between the two, and it does not resolve the
+host names to compare IP addresses.
+Example:
+<PRE>
+machinename.cs.wisc.edu:5432:quill:quillwriter:password
+</PRE>
+<P>
+</LI>
+</OL>
+
+<P>
+After the <I>PostgreSQL</I> database is initialized and running, 
+the Quill schema
+must be loaded into it.  First, load the plsql programming language
+into the server:
+
+<P>
+<PRE>
+createlang plpgsql [databasename]
+</PRE>
+
+<P>
+Then, load the Quill schema from the sql files in the <TT>sql</TT> subdirectory
+of the Condor release directory:
+
+<P>
+<PRE>
+psql [databasename] [username] &lt; common_createddl.sql
+psql [databasename] [username] &lt; pgsql_createddl.sql
+</PRE>
+where <code>[username]</code> will be <code>quillwriter</code>.
+
+<P>
+After <I>PostgreSQL</I> is configured and running, Condor must also be
+configured to use Quill, since by default Quill is configured to be off.
+
+<P>
+<DL>
+<DT></DT>
+<DD>Add the file <TT>.pgpass</TT> to the 
+  <TT>VALID_SPOOL_FILES</TT> variable, since <I>condor_preen</I> must
+  be told not to delete this file.
+  This step may not be necessary, depending on which version of Condor 
+  you are upgrading from. 
+
+<P>
+</DD>
+<DT></DT>
+<DD>Set up configuration variables that are specific to the installation,
+and check that the <TT>HISTORY</TT> variable is set.
+<PRE>
+HISTORY                 = $(SPOOL)/history
+QUILL_ENABLED           = TRUE
+QUILL_USE_SQL_LOG       = FALSE
+QUILL_NAME              = some-unique-quill-name.cs.wisc.edu
+QUILL_DB_USER           = quillwriter
+QUILL_DB_NAME           = database-for-some-unique-quill-name
+QUILL_DB_IP_ADDR        = databaseIPaddress:port
+# the following parameter's units is in seconds
+QUILL_POLLING_PERIOD    = 10
+QUILL_HISTORY_DURATION 	= 30
+QUILL_MANAGE_VACUUM     = FALSE
+QUILL_IS_REMOTELY_QUERYABLE = TRUE
+QUILL_DB_QUERY_PASSWORD =  password-for-database-user-quillreader
+QUILL_ADDRESS_FILE      = $(LOG)/.quill_address
+QUILL_DB_TYPE           = PGSQL
+# The Purge and Reindex intervals are in seconds
+DATABASE_PURGE_INTERVAL	= 86400
+DATABASE_REINDEX_INTERVAL = 86400
+# The History durations are all in days 
+QUILL_RESOURCE_HISTORY_DURATION  = 7
+QUILL_RUN_HISTORY_DURATION = 7
+QUILL_JOB_HISTORY_DURATION = 3650
+#The DB Size limit is in gigabytes
+QUILL_DBSIZE_LIMIT      = 20
+QUILL_MAINTAIN_DB_CONN  = TRUE
+SCHEDD_SQLLOG           = $(LOG)/schedd_sql.log
+SCHEDD_DAEMON_AD_FILE   = $(LOG)/.schedd_classad
+</PRE>
+<P>
+</DD>
+</DL>
+
+<P>
+The default Condor configuration file should already contain definitions
+for <TT>QUILL</TT> and <TT>QUILL_LOG</TT>.  
+When upgrading from a previous version that did not have Quill to
+a new one that does, define these two configuration variables.
+
+<P>
+One machine should run the <I>condor_dbmsd</I> daemon.  
+On this machine, add it to the <TT>DAEMON_LIST</TT> configuration variable.
+All Quill-enabled machines should also run the <I>condor_quill</I> daemon.
+The machine running the <I>condor_dbmsd</I> daemon can also 
+run a <I>condor_quill</I> daemon.  An example <TT>DAEMON_LIST</TT>
+for a machine running both daemons,
+and acting as both a submit machine and a central manager might 
+look like the following:
+
+<P>
+<PRE>
+DAEMON_LIST  = MASTER, SCHEDD, COLLECTOR, NEGOTIATOR, DBMSD, QUILL
+</PRE>
+<P>
+The <I>condor_dbmsd</I> daemon will need configuration file entries
+common to all daemons.
+If not already in the configuration file, add the following entries:
+
+<P>
+<PRE>
+DBMSD = $(SBIN)/condor_dbmsd
+DBMSD_ARGS = -f
+DBMSD_LOG = $(LOG)/DbmsdLog
+MAX_DBMSD_LOG = 10000000
+</PRE>
+
+<P>
+Descriptions of these and other configuration variables are in
+section&nbsp;<A HREF="3_3Configuration.html#sec:Quill-Config-File-Entries">3.3.31</A>.
+Here are further brief details:
+
+<P>
+<DL>
+<DT><STRONG><TT>QUILL_DB_NAME</TT> <A NAME="32575"></A> <A NAME="32576"></A> and <TT>QUILL_DB_IP_ADDR</TT> <A NAME="32580"></A> <A NAME="32581"></A></STRONG></DT>
+<DD>These two variables are used to determine the location of the database
+server that this Quill would talk to, and the name of the database that
+it creates.  More than one Quill server can talk to the same database
+server.  This can be accomplished by letting all the 
+<TT>QUILL_DB_IP_ADDR</TT> values point to the same database server.
+
+<P>
+</DD>
+<DT><STRONG><TT>QUILL_DB_USER</TT> <A NAME="32586"></A> <A NAME="32587"></A></STRONG></DT>
+<DD>This is the <I>PostgreSQL</I> user that Quill will connect as to the database.
+We recommend ``<B>quillwriter</B>'' for this setting. 
+There is no default setting for <TT>QUILL_DB_USER</TT>, so it must
+be specified in the configuration file. 
+
+<P>
+</DD>
+<DT><STRONG><TT>QUILL_NAME</TT> <A NAME="32594"></A> <A NAME="32595"></A></STRONG></DT>
+<DD>Each <I>condor_quill</I> daemon in the pool has to be uniquely named.
+
+<P>
+</DD>
+<DT><STRONG><TT>QUILL_POLLING_PERIOD</TT> <A NAME="32601"></A> <A NAME="32602"></A></STRONG></DT>
+<DD>This controls the frequency with which Quill polls the
+<TT>job_queue.log</TT> file.  By default, it is 10 seconds.  Since Quill
+works by periodically sniffing the log file for updates and then sending
+those updates to the database, this variable controls the trade off between
+the currency of query results and Quill's load on the system, which
+is usually negligible.
+
+<P>
+</DD>
+<DT><STRONG> <TT>QUILL_RESOURCE_HISTORY_DURATION</TT> <A NAME="32607"></A> <A NAME="32608"></A>, 
+		<TT>QUILL_RUN_HISTORY_DURATION</TT> <A NAME="32612"></A> <A NAME="32613"></A>, and
+		<TT>QUILL_JOB_HISTORY_DURATION</TT> <A NAME="32617"></A> <A NAME="32618"></A></STRONG></DT>
+<DD>These three variables control the deletion of historical information from the
+database. 
+<TT>QUILL_RESOURCE_HISTORY_DURATION</TT> is the number of days
+historical information about the state of a resource will be kept in the 
+database. 
+The default for resource history is 7 days.
+An example of a resource is the ClassAd for a compute slot.
+<TT>QUILL_RUN_HISTORY_DURATION</TT> is the number of days
+after completion that auxiliary information about a  given job will stay in 
+the database.  
+This includes user log events, file transfers performed by the job, the matches
+that were made for a job, et cetera. 
+The default for run history is 7 days.
+<TT>QUILL_JOB_HISTORY_DURATION</TT> is the number of days
+after completion that a given job will stay in the database.  
+A more precise definition is the number of days since the history ad got 
+into the history database; those two might be different,
+if a job is completed but stays in the queue for a while.
+The default for job history is 3,650 days (about 10 years.)
+
+<P>
+</DD>
+<DT><STRONG><TT>DATABASE_PURGE_INTERVAL</TT> <A NAME="32625"></A> <A NAME="32626"></A></STRONG></DT>
+<DD>As scanning the entire database for old jobs can be expensive,
+the other variable <TT>DATABASE_PURGE_INTERVAL</TT>
+is the number of seconds between two successive scans.  
+<TT>DATABASE_PURGE_INTERVAL</TT> is set to 86400 seconds, or one day.
+
+<P>
+</DD>
+<DT><STRONG><TT>DATABASE_REINDEX_INTERVAL</TT> <A NAME="32632"></A> <A NAME="32633"></A></STRONG></DT>
+<DD><I>PostgreSQL</I> does not aggressively maintain the index structures for
+deleted tuples. This can lead to bloated index structures.
+Quill can periodically reindex the database, which is controlled by the
+variable <TT>DATABASE_REINDEX_INTERVAL</TT>.
+<TT>DATABASE_PURGE_INTERVAL</TT> is set to 86400 seconds, or one day.
+
+<P>
+</DD>
+<DT><STRONG><TT>QUILL_DBSIZE_LIMIT</TT> <A NAME="32640"></A> <A NAME="32641"></A></STRONG></DT>
+<DD>Quill can estimate the size of the database, and send email to the Condor
+administrator if the database size exceeds this threshold. 
+The estimate is checked after every <TT>DATABASE_PURGE_INTERVAL</TT>.
+The limit is given as gigabytes, and the default is 20.
+
+<P>
+</DD>
+<DT><STRONG><TT>QUILL_MAINTAIN_DB_CONN</TT> <A NAME="32646"></A> <A NAME="32647"></A></STRONG></DT>
+<DD>Quill can maintain an open connection the database server, which speeds up
+updates to the database. 
+However, each open connection consumes resources at the database server.
+The default is TRUE, but for large pools we recommend setting this 
+FALSE.
+
+<P>
+</DD>
+<DT><STRONG><TT>QUILL_MANAGE_VACUUM</TT> <A NAME="32651"></A> <A NAME="32652"></A></STRONG></DT>
+<DD>Set to <TT>False</TT> by default, this variable determines whether Quill is to 
+perform vacuuming tasks on its tables or not. Vacuuming is a maintenance 
+task that needs to be performed on tables in <I>PostgreSQL</I>. The 
+frequency with which a table is vacuumed typically depends on the number 
+of updates (inserts/deletes) performed on the table. Fortunately, with 
+<I>PostgreSQL</I> version 8.1, vacuuming tasks can be configured to be 
+performed automatically by the database server. We recommend that users 
+upgrade to 8.1 and use the integrated vacuuming facilities of the database 
+server, instead of having Quill do them. If the user does prefer having 
+Quill perform those vacuuming tasks, it can be achieved by setting this 
+variable to ExprTrue. However, it cannot be overstated that Quill's vacuuming 
+policy is quite rudimentary as compared to the integrated facilities 
+of the database server, and under high update workloads, can prove to 
+be a bottleneck on the Quill daemon. As such, setting this variable to 
+ExprTrue results in some warning messages in the log file regarding this 
+issue.
+
+<P>
+</DD>
+<DT><STRONG><TT>QUILL_IS_REMOTELY_QUERYABLE</TT> <A NAME="32659"></A> <A NAME="32660"></A></STRONG></DT>
+<DD>Thanks to 
+<I>PostgreSQL</I>,
+one can now remotely query both the job queue and the
+history tables. This variable controls whether this remote querying 
+feature should be enabled.  By default it is <TT>True</TT>.  Note that even if 
+this is <TT>False</TT>, one can still query the job queue 
+at the remote <I>condor_schedd</I> daemon.
+This variable only controls whether the database tables are remotely queryable.
+
+<P>
+</DD>
+<DT><STRONG><TT>QUILL_DB_QUERY_PASSWORD</TT> <A NAME="32669"></A> <A NAME="32670"></A></STRONG></DT>
+<DD>In order for the query tools to connect to a database, they need to provide
+the password that is assigned to the database user ``<B>quillreader</B>''. 
+This variable is then advertised by the <I>condor_quill</I> daemon
+to the <I>condor_collector</I>.  
+This facility enables remote querying: remote <I>condor_q</I> query tools first 
+ask the <I>condor_collector</I> for
+the password associated with a particular Quill database, 
+and then query that database.  Users who do not have access to the 
+<I>condor_collector</I> 
+cannot view the password, and as such cannot query the database.  Again, this 
+password only provides read access to the database.
+
+<P>
+</DD>
+<DT><STRONG><TT>QUILL_ADDRESS_FILE</TT> <A NAME="32685"></A> <A NAME="32686"></A></STRONG></DT>
+<DD>When Quill starts up, it can place its address (IP and port)
+into a file.  This way, tools running on the local machine do not
+need to query the central manager to find Quill.  This 
+feature can be turned off by commenting out the variable.
+
+<P>
+</DD>
+</DL>
+
+<P>
+
+<H2><A NAME="SECTION004122000000000000000"></A><A NAME="sec:Quill-Example"></A>
+<BR>
+3.12.2 Four Usage Examples
+</H2>
+
+<P>
+
+<OL>
+<LI>Query a remote Quill daemon on <TT>regular.cs.wisc.edu</TT>
+for all the jobs in the queue
+<PRE>
+	condor_q -name quill@regular.cs.wisc.edu
+	condor_q -name schedd@regular.cs.wisc.edu
+</PRE>
+There are two ways to get to a Quill daemon: directly using its name as 
+specified in the <TT>QUILL_NAME</TT> configuration variable, or indirectly
+by querying the <I>condor_schedd</I> daemon using its name.
+In the latter case, <I>condor_q</I> will detect 
+if that <I>condor_schedd</I> daemon is being serviced by a database, and if so, directly query it.
+In both cases, the IP address and port of the database server hosting the data of 
+this particular remote Quill daemon can be figured out by the <TT>QUILL_DB_IP_ADDR</TT> 
+and <TT>QUILL_DB_NAME</TT> variables specified in the <TT>QUILL_AD</TT>
+sent by the quill daemon to the collector and in the <TT>SCHEDD_AD</TT> sent by
+the <I>condor_schedd</I> daemon.  
+
+<P>
+</LI>
+<LI>Query a remote Quill daemon on <TT>regular.cs.wisc.edu</TT> for all historical 
+jobs belonging to owner einstein.
+<PRE>
+	condor_history -name quill@regular.cs.wisc.edu einstein
+</PRE>
+
+<P>
+</LI>
+<LI>Query the local Quill daemon for the average time spent in the queue 
+for all non-completed jobs. 
+<PRE>
+	condor_q -avgqueuetime
+</PRE>
+The average queue time is defined as the average of
+<TT>(currenttime - jobsubmissiontime)</TT> over all jobs which are neither
+completed <TT>(JobStatus == 4)</TT> or removed <TT>(JobStatus == 3)</TT>.
+
+<P>
+</LI>
+<LI>Query the local Quill daemon for all historical jobs completed since 
+Apr 1, 2005 at 13h 00m.
+<PRE>
+	condor_history -completedsince '04/01/2005 13:00'
+</PRE>
+It fetches all jobs
+which got into the 'Completed' state on or after the
+specified time stamp.  It use the <I>PostgreSQL</I> date/time
+syntax rules, as it encompasses most format options.  See
+<A NAME="tex2html56"
+  HREF="http://www.postgresql.org/docs/8.2/static/datatype-datetime.html">http://www.postgresql.org/docs/8.2/static/datatype-datetime.html</A>
+for the various time stamp formats.
+
+<P>
+</LI>
+</OL>
+
+<P>
+
+<H2><A NAME="SECTION004123000000000000000"></A><A NAME="sec:Quill-Security"></A>
+<BR>
+3.12.3 Quill and Security
+</H2>
+
+<P>
+There are several layers of security in Quill, some provided by Condor and
+others provided by the database.  First, all accesses to the database
+are password-protected.
+
+<P>
+
+<OL>
+<LI>The query tools, <I>condor_q</I> and
+<I>condor_history</I> connect to the database as user ``<B>quillreader</B>''.
+The password for this user can vary from one database to another and
+as such, each Quill daemon advertises this password to the collector.
+The query tools then obtain this password from the collector and
+connect successfully to the database.  Access to the database by the
+``<B>quillreader</B>'' user is read-only, as this is sufficient for the
+query tools.  The <I>condor_quill</I> daemon ensures this protected access using the sql
+GRANT command when it first creates the tables in the database.  Note that
+access to the ``<B>quillreader</B>'' password itself can be blocked by
+blocking access to the collector, a feature already supported in Condor.
+
+<P>
+</LI>
+<LI>The <I>condor_quill</I> and <I>condor_dbmsd</I> daemons, on the other hand,
+need read and write access to the database.
+As such, they connect as user ``<B>quillwriter</B>'',
+who has owner privileges to the database.  Since this gives all
+access to the ``<B>quillwriter</B>'' user, this password cannot
+be stored in a public place (such as the collector).  For this
+reason, the ``<B>quillwriter</B>'' password is stored in a file called
+<TT>.pgpass</TT> in the Condor spool directory.
+Appropriate protections on this file guarantee secure access to the database.
+This file must be created and protected by the site administrator;
+if this file does not exist as and where expected, the <I>condor_quill</I>
+daemon logs an error and exits.
+
+<P>
+</LI>
+<LI>The <TT>IsRemotelyQueryable</TT> attribute in the Quill ClassAd advertised
+by the Quill daemon to the collector can be used by site administrators
+to disallow the database from being read by all remote Condor query tools.
+
+<P>
+</LI>
+</OL>
+
+<P>
+
+<H2><A NAME="SECTION004124000000000000000"></A><A NAME="sec:Quill-Schema"></A>
+<BR>
+3.12.4 Quill and Its RDBMS Schema
+</H2>
+
+<P>
+
+<P>
+<B>Notes:</B>
+
+<UL>
+<LI>The type ``timestamp(<I>precision</I>) with timezone'' is
+abbreviated ``ts(<I>precision</I>) w tz.''
+</LI>
+<LI>The column O. Type is an abbreviation for Oracle Type.
+</LI>
+<LI>The column P. Type is an abbreviation for PostgreSQL Type.
+</LI>
+</UL>
+Although the current version of Condor does not support Oracle, we
+anticipate supporting it in the future, so Oracle support in this
+schema document is for future reference.
+<BR>
+<BR>
+<BR>
+
+<P>
+
+<H3><A NAME="SECTION004124100000000000000">
+3.12.4.1 Administrative Tables</A>
+</H3>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=4><B>Attributes of currencies Table</B></TD>
+</TR>
+<TR><TH ALIGN="LEFT"><B>Name</B></TH>
+<TD ALIGN="LEFT"><B>O. Type</B></TD>
+<TD ALIGN="LEFT"><B>P. Type</B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=238><B>Description</B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">datasource</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=238>Identifier of the data source.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">lastupdate</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=238>Time of the last update sent to the database from the data source.</TD>
+</TR>
+</TABLE>
+<BR>
+<BR>
+<BR>
+</DIV>
+<P>
+<DIV ALIGN="CENTER"><TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=4><B>Attributes of error_sqllogs Table</B></TD>
+</TR>
+<TR><TH ALIGN="LEFT"><B>Name</B></TH>
+<TD ALIGN="LEFT"><B>O. Type</B></TD>
+<TD ALIGN="LEFT"><B>P. Type</B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230><B>Description</B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">logname</TD>
+<TD ALIGN="LEFT">varchar(100)</TD>
+<TD ALIGN="LEFT">varchar(100)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>Name of the SQL log file causing a SQL error.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">host</TD>
+<TD ALIGN="LEFT">varchar(50)</TD>
+<TD ALIGN="LEFT">varchar(50)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>The host where the SQL log resides.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">lastmodified</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>The last modified time of the SQL log.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">errorsql</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">text</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>The SQL statement causing an error.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">logbody</TD>
+<TD ALIGN="LEFT">clob</TD>
+<TD ALIGN="LEFT">text</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>The body of the SQL log.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">errormessage</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>The description of the error.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" COLSPAN=4><B>INDEX:</B> Index named error_sqllog_idx on (logname, host, lastmodified)</TD>
+</TR>
+</TABLE>
+<BR>
+<BR>
+<BR>
+</DIV>
+<P>
+<DIV ALIGN="CENTER"><TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=4><B>Attributes of maintenance_log Table</B></TD>
+</TR>
+<TR><TH ALIGN="LEFT"><B>Name</B></TH>
+<TD ALIGN="LEFT"><B>O. Type</B></TD>
+<TD ALIGN="LEFT"><B>P. Type</B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=245><B>Description</B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">eventts</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=245>Time the event occurred.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">eventmsg</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=245>Message describing the event.</TD>
+</TR>
+</TABLE>
+<BR>
+<BR>
+<BR>
+</DIV>
+<P>
+<DIV ALIGN="CENTER"><TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=4><B>Attributes of quilldbmonitor Table</B></TD>
+</TR>
+<TR><TH ALIGN="LEFT"><B>Name</B></TH>
+<TD ALIGN="LEFT"><B>O. Type</B></TD>
+<TD ALIGN="LEFT"><B>P. Type</B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=295><B>Description</B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">dbsize</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=295>Size of the database in megabytes.</TD>
+</TR>
+</TABLE>
+<BR>
+<BR>
+<BR>
+</DIV>
+<P>
+<DIV ALIGN="CENTER"><TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=4><B>Attributes of quill_schema_version Table</B></TD>
+</TR>
+<TR><TH ALIGN="LEFT"><B>Name</B></TH>
+<TD ALIGN="LEFT"><B>O. Type</B></TD>
+<TD ALIGN="LEFT"><B>P. Type</B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=259><B>Description</B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">major</TD>
+<TD ALIGN="LEFT">int</TD>
+<TD ALIGN="LEFT">int</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=259>Major version number.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">minor</TD>
+<TD ALIGN="LEFT">int</TD>
+<TD ALIGN="LEFT">int</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=259>Minor version number.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">back_to_major</TD>
+<TD ALIGN="LEFT">int</TD>
+<TD ALIGN="LEFT">int</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=259>The major number of the old version this version is compatible to.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">back_to_minor</TD>
+<TD ALIGN="LEFT">int</TD>
+<TD ALIGN="LEFT">int</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=259>The minor number of the old version this version is compatible to.</TD>
+</TR>
+</TABLE>
+<BR>
+<BR>
+<BR>
+</DIV>
+<P>
+<DIV ALIGN="CENTER"><TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=4><B>Attributes of throwns Table</B></TD>
+</TR>
+<TR><TH ALIGN="LEFT"><B>Name</B></TH>
+<TD ALIGN="LEFT"><B>O. Type</B></TD>
+<TD ALIGN="LEFT"><B>P. Type</B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230><B>Description</B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">filename</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>The name of the log that was truncated.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">machine_id</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>The machine where the truncated log resides.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">log_size</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>The size of the truncated log.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">throwtime</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>The time when the truncation occurred.</TD>
+</TR>
+</TABLE>
+<BR>
+<BR>
+<BR>
+
+</DIV>
+
+<P>
+
+<H3><A NAME="SECTION004124200000000000000">
+3.12.4.2 Daemon Tables</A>
+</H3>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=4><B>Attributes of daemons_horizontal Table</B></TD>
+</TR>
+<TR><TH ALIGN="LEFT"><B>Name</B></TH>
+<TD ALIGN="LEFT"><B>O. Type</B></TD>
+<TD ALIGN="LEFT"><B>P. Type</B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=166><B>Description</B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">mytype</TD>
+<TD ALIGN="LEFT">varchar(100)</TD>
+<TD ALIGN="LEFT">varchar(100)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=166>The type of daemon ClassAd, e.g. ``Master''</TD>
+</TR>
+<TR><TD ALIGN="LEFT">name</TD>
+<TD ALIGN="LEFT">varchar(500)</TD>
+<TD ALIGN="LEFT">varchar(500)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=166>The name identifier of the daemon ClassAd.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">lastreportedtime</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=166>Time when the daemon last reported to Quill.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">monitorselftime</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=166>The time when the daemon last collected information about itself.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">monitorselfcpuusage</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=166>The amount of CPU this daemon has used.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">monitorselfimagesize</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=166>The amount of virtual memory this daemon has used.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">monitorselfresidentsetsize</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=166>The amount of physical memory this daemon has used.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">monitorselfage</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=166>How long the daemon has been running.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">updatesequencenumber</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=166>The sequence number associated with the update.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">updatestotal</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=166>The number of updates received from the daemon.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">updatessequenced</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=166>The number of updates that were in order.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">updateslost</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=166>The number of updates that were lost.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">updateshistory</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=166>Bitmask of the last 32 updates.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">lastreportedtime_epoch</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=166>The equivalent epoch time of last heard from.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" COLSPAN=4><B>PRIMARY KEY:</B> (mytype, name)</TD>
+</TR>
+<TR><TD ALIGN="LEFT" COLSPAN=4><B>NOT NULL:</B> mytype and name cannot be null</TD>
+</TR>
+</TABLE>
+<BR>
+<BR>
+<BR>
+</DIV>
+<P>
+<DIV ALIGN="CENTER"><TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=4><B>Attributes of daemons_horizontal_history Table</B></TD>
+</TR>
+<TR><TH ALIGN="LEFT"><B>Name</B></TH>
+<TD ALIGN="LEFT"><B>O. Type</B></TD>
+<TD ALIGN="LEFT"><B>P. Type</B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=166><B>Description</B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">mytype</TD>
+<TD ALIGN="LEFT">varchar(100)</TD>
+<TD ALIGN="LEFT">varchar(100)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=166>The type of daemon ClassAd, e.g. ``Master''</TD>
+</TR>
+<TR><TD ALIGN="LEFT">name</TD>
+<TD ALIGN="LEFT">varchar(500)</TD>
+<TD ALIGN="LEFT">varchar(500)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=166>The name identifier of the daemon ClassAd.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">lastreportedtime</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=166>Time when the daemon last reported to Quill.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">monitorselftime</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=166>The time when the daemon last collected information about itself.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">monitorselfcpuusage</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=166>The amount of CPU this daemon has used.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">monitorselfimagesize</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=166>The amount of virtual memory this daemon has used.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">monitorselfresidentsetsize</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=166>The amount of physical memory this daemon has used.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">monitorselfage</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=166>How long the daemon has been running.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">updatesequencenumber</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=166>The sequence number associated with the update.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">updatestotal</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=166>The number of updates received from the daemon.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">updatessequenced</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=166>The number of updates that were in order.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">updateslost</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=166>The number of updates that were lost.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">updateshistory</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=166>Bitmask of the last 32 updates.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">endtime</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=166>End of when the ClassAd is valid.</TD>
+</TR>
+</TABLE>
+<BR>
+<BR>
+<BR>
+</DIV>
+<P>
+<DIV ALIGN="CENTER"><TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=4><B>Attributes of daemons_vertical Table</B></TD>
+</TR>
+<TR><TH ALIGN="LEFT"><B>Name</B></TH>
+<TD ALIGN="LEFT"><B>O. Type</B></TD>
+<TD ALIGN="LEFT"><B>P. Type</B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=223><B>Description</B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">mytype</TD>
+<TD ALIGN="LEFT">varchar(100)</TD>
+<TD ALIGN="LEFT">varchar(100)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=223>The type of daemon ClassAd, e.g. ``Master''</TD>
+</TR>
+<TR><TD ALIGN="LEFT">name</TD>
+<TD ALIGN="LEFT">varchar(500)</TD>
+<TD ALIGN="LEFT">varchar(500)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=223>The name identifier of the daemon ClassAd.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">attr</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=223>Attribute name.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">val</TD>
+<TD ALIGN="LEFT">clob</TD>
+<TD ALIGN="LEFT">text</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=223>Attribute value.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">lastreportedtime</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=223>Time when the daemon last reported to Quill.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" COLSPAN=4><B>PRIMARY KEY:</B> (mytype, name, attr)</TD>
+</TR>
+<TR><TD ALIGN="LEFT" COLSPAN=4><B>NOT NULL:</B> mytype, name, and attr cannot be null</TD>
+</TR>
+</TABLE>
+<BR>
+<BR>
+<BR>
+</DIV>
+<P>
+<DIV ALIGN="CENTER"><TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=4><B>Attributes of daemons_vertical_history Table</B></TD>
+</TR>
+<TR><TH ALIGN="LEFT"><B>Name</B></TH>
+<TD ALIGN="LEFT"><B>O. Type</B></TD>
+<TD ALIGN="LEFT"><B>P. Type</B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=223><B>Description</B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">mytype</TD>
+<TD ALIGN="LEFT">varchar(100)</TD>
+<TD ALIGN="LEFT">varchar(100)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=223>The type of daemon ClassAd, e.g. ``Master''</TD>
+</TR>
+<TR><TD ALIGN="LEFT">name</TD>
+<TD ALIGN="LEFT">varchar(500)</TD>
+<TD ALIGN="LEFT">varchar(500)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=223>The name identifier of the daemon ClassAd.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">lastreportedtime</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=223>Time when the daemon last reported to Quill.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">attr</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=223>Attribute name.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">val</TD>
+<TD ALIGN="LEFT">clob</TD>
+<TD ALIGN="LEFT">text</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=223>Attribute value.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">endtime</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=223>End of when the ClassAd is valid.</TD>
+</TR>
+</TABLE>
+<BR>
+<BR>
+<BR>
+</DIV>
+<P>
+<DIV ALIGN="CENTER"><TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=4><B>Attributes of submitters_horizontal table</B></TD>
+</TR>
+<TR><TH ALIGN="LEFT"><B>Name</B></TH>
+<TD ALIGN="LEFT"><B>O. Type</B></TD>
+<TD ALIGN="LEFT"><B>P. Type</B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=223><B>Description</B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">name</TD>
+<TD ALIGN="LEFT">varchar(500)</TD>
+<TD ALIGN="LEFT">varchar(500)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=223>Name of the submitter ClassAd.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">scheddname</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=223>Name of the schedd where the submitter ad is from.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">lastreportedtime</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=223>Last time a submitter ClassAd was sent to Quill.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">idlejobs</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=223>Number of idle jobs of the submitter.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">runningjobs</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=223>Number of running jobs of the submitter.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">heldjobs</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=223>Number of held jobs of the submitter.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">flockedjobs</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=223>Number of flocked jobs of the submitter.</TD>
+</TR>
+</TABLE>
+<BR>
+<BR>
+<BR>
+</DIV>
+<P>
+<DIV ALIGN="CENTER"><TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=4><B>Attributes of submitters_horizontal_history table</B></TD>
+</TR>
+<TR><TH ALIGN="LEFT"><B>Name</B></TH>
+<TD ALIGN="LEFT"><B>O. Type</B></TD>
+<TD ALIGN="LEFT"><B>P. Type</B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=223><B>Description</B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">name</TD>
+<TD ALIGN="LEFT">varchar(500)</TD>
+<TD ALIGN="LEFT">varchar(500)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=223>Name of the submitter ClassAd.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">scheddname</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=223>Name of the schedd where the submitter ad is from.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">lastreportedtime</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=223>Last time a submitter ClassAd was sent to Quill.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">idlejobs</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=223>Number of idle jobs of the submitter.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">runningjobs</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=223>Number of running jobs of the submitter.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">heldjobs</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=223>Number of held jobs of the submitter.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">flockedjobs</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=223>Number of flocked jobs of the submitter.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">endtime</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=223>End of when the ClassAd is valid.</TD>
+</TR>
+</TABLE>
+<BR>
+<BR>
+<BR>
+
+</DIV>
+
+<P>
+
+<H3><A NAME="SECTION004124300000000000000">
+3.12.4.3 Files Tables</A>
+</H3>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=4><B>Attributes of files Table</B></TD>
+</TR>
+<TR><TH ALIGN="LEFT"><B>Name</B></TH>
+<TD ALIGN="LEFT"><B>O. Type</B></TD>
+<TD ALIGN="LEFT"><B>P. Type</B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230><B>Description</B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">file_id</TD>
+<TD ALIGN="LEFT">int</TD>
+<TD ALIGN="LEFT">int</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>Unique numeric identifier of the file.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">name</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>File name.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">host</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>Name of machine where the file is located.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">path</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>Directory path to the file.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">acl_id</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>Not yet used, null.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">lastmodified</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>Timestamp of the file.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">filesize</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>Size of the file in bytes.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">checksum</TD>
+<TD ALIGN="LEFT">varchar(32)</TD>
+<TD ALIGN="LEFT">varchar(32)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>MD5 checksum of the file.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" COLSPAN=4><B>PRIMARY KEY:</B> file_id</TD>
+</TR>
+<TR><TD ALIGN="LEFT" COLSPAN=4><B>NOT NULL:</B> file_id cannot be null</TD>
+</TR>
+</TABLE>
+<BR>
+<BR>
+<BR>
+</DIV>
+<P>
+<DIV ALIGN="CENTER"><TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=4><B>Attributes of fileusages Table</B></TD>
+</TR>
+<TR><TH ALIGN="LEFT"><B>Name</B></TH>
+<TD ALIGN="LEFT"><B>O. Type</B></TD>
+<TD ALIGN="LEFT"><B>P. Type</B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230><B>Description</B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">globaljobid</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>Global identifier of the job that used the file.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">file_id</TD>
+<TD ALIGN="LEFT">int</TD>
+<TD ALIGN="LEFT">int</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>Numeric identifier of the file.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">usagetype</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>Type of use of the file by the job, e.g., input, output, command.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" COLSPAN=4><B>REFERENCE:</B> file_id references files(file_id)</TD>
+</TR>
+</TABLE>
+<BR>
+<BR>
+<BR>
+</DIV>
+<P>
+<DIV ALIGN="CENTER"><TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=4><B>Attributes of transfers Table</B></TD>
+</TR>
+<TR><TH ALIGN="LEFT"><B>Name</B></TH>
+<TD ALIGN="LEFT"><B>O. Type</B></TD>
+<TD ALIGN="LEFT"><B>P. Type</B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173><B>Description</B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">globaljobid</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Unique global identifier for the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">src_name</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Name of the file on the source machine.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">src_host</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Name of the source machine.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">src_port</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Source port number used for the transfer.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">src_path</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Path to the file on the source machine.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">src_daemon</TD>
+<TD ALIGN="LEFT">varchar(30)</TD>
+<TD ALIGN="LEFT">varchar(30)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Condor demon performing the transfer on the source machine.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">src_protocol</TD>
+<TD ALIGN="LEFT">varchar(30)</TD>
+<TD ALIGN="LEFT">varchar(30)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>The protocol used on the source machine.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">src_credential_id</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Not yet used, null.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">src_acl_id</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Not yet used, null.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">dst_name</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Name of the file on the destination machine.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">dst_host</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Name of the destination machine.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">dst_port</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Destination port number used for the transfer.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">dst_path</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Path to the file on the destination machine.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">dst_daemon</TD>
+<TD ALIGN="LEFT">varchar(30)</TD>
+<TD ALIGN="LEFT">varchar(30)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Condor daemon receiving the transfer on the destination machine.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">dst_protocol</TD>
+<TD ALIGN="LEFT">varchar(30)</TD>
+<TD ALIGN="LEFT">varchar(30)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>The protocol used on the destination machine.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">dst_credential_id</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Not yet used, null.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">dst_acl_id</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Not yet used, null.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">transfer_intermediary_id</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Not yet used, null; will use someday if a proxy is used.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">transfer_size_bytes</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT">numeric (38)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Size of the data transfered in bytes.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">elapsed</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Number of seconds that elapsed during the transfer.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">checksum</TD>
+<TD ALIGN="LEFT">varchar(256)</TD>
+<TD ALIGN="LEFT">varchar(256)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Checksum of the file.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">transfer_time</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Time when the transfer took place.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">last_modified</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Last modified time for the file that was transfered.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">is_encrypted</TD>
+<TD ALIGN="LEFT">varchar(5)</TD>
+<TD ALIGN="LEFT">varchar(5)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>(boolean) True if the file is encrypted.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">delegation_method_id</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Not yet used, null.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">completion_code</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Indicates whether the transfer failed or succeeded.</TD>
+</TR>
+</TABLE>
+<BR>
+<BR>
+<BR>
+
+</DIV>
+
+<P>
+
+<H3><A NAME="SECTION004124400000000000000">
+3.12.4.4 Interface Tables</A>
+</H3>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=4><B>Attributes of cdb_users Table</B></TD>
+</TR>
+<TR><TH ALIGN="LEFT"><B>Name</B></TH>
+<TD ALIGN="LEFT"><B>O. Type</B></TD>
+<TD ALIGN="LEFT"><B>P. Type</B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=245><B>Description</B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">userid</TD>
+<TD ALIGN="LEFT">varchar(30)</TD>
+<TD ALIGN="LEFT">varchar(30)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=245>Unique identifier of the user</TD>
+</TR>
+<TR><TD ALIGN="LEFT">password</TD>
+<TD ALIGN="LEFT">character(32)</TD>
+<TD ALIGN="LEFT">character(32)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=245>Encrypted password</TD>
+</TR>
+<TR><TD ALIGN="LEFT">admin</TD>
+<TD ALIGN="LEFT">varchar(5)</TD>
+<TD ALIGN="LEFT">varchar(5)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=245>(boolean) True if the user has administrator privileges</TD>
+</TR>
+</TABLE>
+<BR>
+<BR>
+<BR>
+<BR>
+</DIV>
+<P>
+<DIV ALIGN="CENTER"><TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=4><B>Attributes of l_eventtype Table</B></TD>
+</TR>
+<TR><TH ALIGN="LEFT"><B>Name</B></TH>
+<TD ALIGN="LEFT"><B>O. Type</B></TD>
+<TD ALIGN="LEFT"><B>P. Type</B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230><B>Description</B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">eventtype</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>Numeric type code of the event.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">description</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>Description of the type of event associated with the eventtype code.</TD>
+</TR>
+</TABLE>
+<BR>
+<BR>
+<BR>
+</DIV>
+<P>
+<DIV ALIGN="CENTER"><TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=4><B>Attributes of l_jobstatus Table</B></TD>
+</TR>
+<TR><TH ALIGN="LEFT"><B>Name</B></TH>
+<TD ALIGN="LEFT"><B>O. Type</B></TD>
+<TD ALIGN="LEFT"><B>P. Type</B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230><B>Description</B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">jobstatus</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>Numeric code for job status.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">abbrev</TD>
+<TD ALIGN="LEFT">char(1)</TD>
+<TD ALIGN="LEFT">char(1)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>Single letter code for job status.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">description</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>Description of job status.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" COLSPAN=4><B>PRIMARY KEY:</B> jobstatus</TD>
+</TR>
+<TR><TD ALIGN="LEFT" COLSPAN=4><B>NOT NULL:</B> jobstatus cannot be null</TD>
+</TR>
+</TABLE>
+<BR>
+<BR>
+<BR>
+
+</DIV>
+
+<P>
+
+<H3><A NAME="SECTION004124500000000000000">
+3.12.4.5 Jobs Tables</A>
+</H3>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=4><B>Attributes of clusterads_horizontal Table</B></TD>
+</TR>
+<TR><TH ALIGN="LEFT"><B>Name</B></TH>
+<TD ALIGN="LEFT"><B>O. Type</B></TD>
+<TD ALIGN="LEFT"><B>P. Type</B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187><B>Description</B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">scheddname</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Name of the schedd the job is submitted to.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">cluster_id</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Cluster identifier for the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">owner</TD>
+<TD ALIGN="LEFT">varchar(30)</TD>
+<TD ALIGN="LEFT">varchar(30)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>User who submitted the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">jobstatus</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Current status of the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">jobprio</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Priority for this job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">imagesize</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Estimate of memory image size of the job in kilobytes.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">qdate</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Time the job was submitted to the job queue.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">remoteusercpu</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Total number of seconds of user CPU time the job used on remote machines.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">remotewallclocktime</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Committed cumulative number of seconds the job has been allocated to a machine.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">cmd</TD>
+<TD ALIGN="LEFT">clob</TD>
+<TD ALIGN="LEFT">text</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Path to and filename of the job to be executed.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">args</TD>
+<TD ALIGN="LEFT">clob</TD>
+<TD ALIGN="LEFT">text</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Arguments passed to the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">jobuniverse</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>The Condor universe used by the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" COLSPAN=4><B>PRIMARY KEY:</B> (scheddname, cluster_id)</TD>
+</TR>
+<TR><TD ALIGN="LEFT" COLSPAN=4><B>NOT NULL:</B> scheddname and cluster_id cannot be null</TD>
+</TR>
+</TABLE>
+<BR>
+<BR>
+<BR>
+</DIV>
+<P>
+<DIV ALIGN="CENTER"><TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=4><B>Attributes of clusterads_vertical Table</B></TD>
+</TR>
+<TR><TH ALIGN="LEFT"><B>Name</B></TH>
+<TD ALIGN="LEFT"><B>O. Type</B></TD>
+<TD ALIGN="LEFT"><B>P. Type</B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230><B>Description</B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">scheddname</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>Name of the schedd that the job is submitted to.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">cluster_id</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>Cluster identifier for the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">attr</TD>
+<TD ALIGN="LEFT">varchar(2000)</TD>
+<TD ALIGN="LEFT">varchar(2000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>Attribute name.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">val</TD>
+<TD ALIGN="LEFT">clob</TD>
+<TD ALIGN="LEFT">text</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>Attribute value.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" COLSPAN=4><B>PRIMARY KEY:</B> (scheddname, cluster_id, attr)</TD>
+</TR>
+</TABLE>
+<BR>
+<BR>
+<BR>
+</DIV>
+<P>
+<DIV ALIGN="CENTER"><TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=4><B>Attributes of jobs_horizontal_history Table - Part 1 of 3</B></TD>
+</TR>
+<TR><TH ALIGN="LEFT"><B>Name</B></TH>
+<TD ALIGN="LEFT"><B>O. Type</B></TD>
+<TD ALIGN="LEFT"><B>P. Type</B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173><B>Description</B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">scheddname</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Name of the schedd that submitted the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">scheddbirthdate</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>The birth date of the schedd where the job is submitted.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">cluster_id</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Cluster identifier for the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">proc_id</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Process identifier for the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">qdate</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Time the job was submitted to the job queue.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">owner</TD>
+<TD ALIGN="LEFT">varchar(30)</TD>
+<TD ALIGN="LEFT">varchar(30)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>User who submitted the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">globaljobid</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Unique global identifier for the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">numckpts</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Number of checkpoints written by the job during its lifetime.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">numrestarts</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Number of restarts from a checkpoint attempted by the job in its lifetime.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">numsystemholds</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Number of times Condor-G placed the job on hold.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">condorversion</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Version of Condor that ran the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">condorplatform</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Platform of the computer where the schedd runs.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">rootdir</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Root directory on the system where the job is submitted from.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">iwd</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Initial working directory of the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">jobuniverse</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>The Condor universe used by the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">cmd</TD>
+<TD ALIGN="LEFT">clob</TD>
+<TD ALIGN="LEFT">text</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Path to and filename of the job to be executed.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">minhosts</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Minimum number of hosts that must be in the claimed state for this job, before the job may enter the running state.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">maxhosts</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Maximum number of hosts this job would like to claim.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">jobprio</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Priority for this job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">negotiation_user_name</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>User name in which the job is negotiated.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">env</TD>
+<TD ALIGN="LEFT">clob</TD>
+<TD ALIGN="LEFT">text</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Environment under which the job ran.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">userlog</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>User log where the job events are written to.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">coresize</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Maximum allowed size of the core file.</TD>
+</TR>
+<TR><TD ALIGN="CENTER" COLSPAN=4><B>Table Continues on Next Page</B></TD>
+</TR>
+</TABLE>
+<BR>
+<BR>
+<BR>
+</DIV>
+<P>
+<DIV ALIGN="CENTER"><TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=4><B>Attributes of jobs_horizontal_history Table - Part 2 of 3</B></TD>
+</TR>
+<TR><TH ALIGN="LEFT"><B>Name</B></TH>
+<TD ALIGN="LEFT"><B>O. Type</B></TD>
+<TD ALIGN="LEFT"><B>P. Type</B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187><B>Description</B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">killsig</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Signal to be sent if the job is put on hold.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">stdin</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>The file used as stdin.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">transferin</TD>
+<TD ALIGN="LEFT">varchar(5)</TD>
+<TD ALIGN="LEFT">varchar(5)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>(boolean) For globus universe jobs. True if input should be transferred to the remote machine.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">stdout</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>The file used as stdout.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">transferout</TD>
+<TD ALIGN="LEFT">varchar(5)</TD>
+<TD ALIGN="LEFT">varchar(5)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>(boolean) For globus universe jobs. True if output should be transferred back to the submit machine.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">stderr</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>The file used as stderr.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">transfererr</TD>
+<TD ALIGN="LEFT">varchar(5)</TD>
+<TD ALIGN="LEFT">varchar(5)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>(boolean) For globus universe jobs. True if error output should be transferred back to the submit machine.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">shouldtransferfiles</TD>
+<TD ALIGN="LEFT">varchar (4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Whether Condor should transfer files to and from the machine where the job runs.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">transferfiles</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Depreciated. Similar to shouldtransferfiles.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">executablesize</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Size of the executable in kilobytes.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">diskusage</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Size of the executable and input files to be transferred.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">filesystemdomain</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Name of the networked file system used by the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">args</TD>
+<TD ALIGN="LEFT">clob</TD>
+<TD ALIGN="LEFT">text</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Arguments passed to the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">lastmatchtime</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Time when the job was last successfully matched with a resource.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">numjobmatches</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Number of times the negotiator matches the job with a resource.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">jobstartdate</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Time when the job first began running.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">jobcurrentstartdate</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Time when the job's current run started.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">jobruncount</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Number of times a shadow has been started for the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">filereadcount</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Number of read(2) calls the job made (only standard universe).</TD>
+</TR>
+<TR><TD ALIGN="LEFT">filereadbytes</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Number of bytes read by the job (only standard universe).</TD>
+</TR>
+<TR><TD ALIGN="LEFT">filewritecount</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Number of write calls the job made (only standard universe).</TD>
+</TR>
+<TR><TD ALIGN="LEFT">filewritebytes</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Number of bytes written by the job (only standard universe).</TD>
+</TR>
+<TR><TD ALIGN="CENTER" COLSPAN=4><B>Table Continues on Next Page</B></TD>
+</TR>
+</TABLE>
+<BR>
+<BR>
+<BR>
+</DIV>
+<P>
+<DIV ALIGN="CENTER"><TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=4><B>Attributes of jobs_horizontal_history Table - Part 3 of 3</B></TD>
+</TR>
+<TR><TH ALIGN="LEFT"><B>Name</B></TH>
+<TD ALIGN="LEFT"><B>O. Type</B></TD>
+<TD ALIGN="LEFT"><B>P. Type</B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187><B>Description</B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">fileseekcount</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Number of seek calls that this job made (only standard universe).</TD>
+</TR>
+<TR><TD ALIGN="LEFT">totalsuspensions</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Number of times the job has been suspended during its lifetime</TD>
+</TR>
+<TR><TD ALIGN="LEFT">imagesize</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Estimate of memory image size of the job in kilobytes.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">exitstatus</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>No longer used by Condor.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">localusercpu</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Number of seconds of user CPU time the job used on the submit machine.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">localsyscpu</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Number of seconds of system CPU time the job used on the submit machine.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">remoteusercpu</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Number of seconds of user CPU time the job used on remote machines.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">remotesyscpu</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Number of seconds of system CPU time the job used on remote machines.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">bytessent</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Number of bytes sent to the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">bytesrecvd</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Number of bytes received by the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">rscbytessent</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Number of remote system call bytes sent to the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">rscbytesrecvd</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Number of remote system call bytes received by the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">exitcode</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Exit return code of the user job. Used when a job exits by means other than a signal.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">jobstatus</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Current status of the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">enteredcurrentstatus</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Time the job entered into its current status.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">remotewallclocktime</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Cumulative number of seconds the job has been allocated to a machine.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">lastremotehost</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>The remote host for the last run of the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">completiondate</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Time when the job completed; 0 if job has not yet completed.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">enteredhistorytable</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Time when the job entered the history table.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" COLSPAN=4><B>PRIMARY KEY:</B> (scheddname, scheddbirthdate, cluster_id, proc_id)</TD>
+</TR>
+<TR><TD ALIGN="LEFT" COLSPAN=4><B>NOT NULL:</B> scheddname, scheddbirthdate, cluster_id, and proc_id cannot be null</TD>
+</TR>
+<TR><TD ALIGN="LEFT" COLSPAN=4><B>INDEX:</B> Index named hist_h_i_owner on owner</TD>
+</TR>
+</TABLE>
+<BR>
+<BR>
+<BR>
+</DIV>
+<P>
+<DIV ALIGN="CENTER"><TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=4><B>Attributes of jobs_vertical_history Table</B></TD>
+</TR>
+<TR><TH ALIGN="LEFT"><B>Name</B></TH>
+<TD ALIGN="LEFT"><B>O. Type</B></TD>
+<TD ALIGN="LEFT"><B>P. Type</B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=209><B>Description</B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">scheddname</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=209>Name of the schedd that submitted the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">scheddbirthdate</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=209>The birth date of the schedd where the job is submitted.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">cluster_id</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=209>Cluster identifier for the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">proc_id</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=209>Process identifier for the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">attr</TD>
+<TD ALIGN="LEFT">varchar(2000)</TD>
+<TD ALIGN="LEFT">varchar(2000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=209>Attribute name.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">val</TD>
+<TD ALIGN="LEFT">clob</TD>
+<TD ALIGN="LEFT">text</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=209>Attribute value.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" COLSPAN=4><B>PRIMARY KEY:</B> (scheddname, scheddbirthdate, cluster_id, proc_id, attr)</TD>
+</TR>
+<TR><TD ALIGN="LEFT" COLSPAN=4><B>NOT NULL:</B> scheddname, scheddbirthdate, cluster_id, proc_id, and attr cannot be null</TD>
+</TR>
+</TABLE>
+<BR>
+<BR>
+<BR>
+</DIV>
+<P>
+<DIV ALIGN="CENTER"><TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=4><B>Attributes of procads_horizontal Table</B></TD>
+</TR>
+<TR><TH ALIGN="LEFT"><B>Name</B></TH>
+<TD ALIGN="LEFT"><B>O. Type</B></TD>
+<TD ALIGN="LEFT"><B>P. Type</B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187><B>Description</B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">scheddname</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Name of the schedd that submitted the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">cluster_id</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Cluster identifier for the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">proc_id</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Process identifier for the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">jobstatus</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Current status of the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">imagesize</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Estimate of memory image size of the job in kilobytes.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">remoteusercpu</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Total number of seconds of user CPU time the job used on remote machines.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">remotewallclocktime</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Cumulative number of seconds the job has been allocated to a machine.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">remotehost</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Name of the machine running the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">globaljobid</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Unique global identifier for the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">jobprio</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Priority of the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">args</TD>
+<TD ALIGN="LEFT">clob</TD>
+<TD ALIGN="LEFT">text</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Arguments passed to the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">shadowbday</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>The time when the shadow was started.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">enteredcurrentstatus</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Time the job entered its current status.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">numrestarts</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Number of times the job has restarted.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" COLSPAN=4><B>PRIMARY KEY:</B> (scheddname, cluster_id, proc_id)</TD>
+</TR>
+<TR><TD ALIGN="LEFT" COLSPAN=4><B>NOT NULL:</B> scheddname, cluster_id, and proc_id cannot be null</TD>
+</TR>
+</TABLE>
+<BR>
+<BR>
+<BR>
+</DIV>
+<P>
+<DIV ALIGN="CENTER"><TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=4><B>Attributes of procads_vertical Table</B></TD>
+</TR>
+<TR><TH ALIGN="LEFT"><B>Name</B></TH>
+<TD ALIGN="LEFT"><B>O. Type</B></TD>
+<TD ALIGN="LEFT"><B>P. Type</B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230><B>Description</B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">scheddname</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>Name of the schedd that submitted the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">cluster_id</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>Cluster identifier for the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">proc_id</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>Process identifier for the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">attr</TD>
+<TD ALIGN="LEFT">varchar(2000)</TD>
+<TD ALIGN="LEFT">varchar(2000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>Attribute name.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">val</TD>
+<TD ALIGN="LEFT">clob</TD>
+<TD ALIGN="LEFT">text</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>Attribute value.</TD>
+</TR>
+</TABLE>
+<BR>
+<BR>
+<BR>
+
+</DIV>
+
+<P>
+
+<H3><A NAME="SECTION004124600000000000000">
+3.12.4.6 Machines Tables</A>
+</H3>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=4><B>Attributes of machines_horizontal Table - Part 1 of 2</B></TD>
+</TR>
+<TR><TH ALIGN="LEFT"><B>Name</B></TH>
+<TD ALIGN="LEFT"><B>O. Type</B></TD>
+<TD ALIGN="LEFT"><B>P. Type</B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173><B>Description</B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">machine_id</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Unique identifier of the machine.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">opsys</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Operating system running on the machine.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">arch</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Architecture of the machine.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">state</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Condor state of the machine.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">activity</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Condor job activity on the machine.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">keyboardidle</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Number of seconds since activity has been detected on any keyboard or mouse associated with the machine.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">consoleidle</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Number of seconds since activity has been detected on the console keyboard or mouse.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">loadavg</TD>
+<TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Current load average of the machine.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">condorloadavg</TD>
+<TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Portion of load average generated by Condor</TD>
+</TR>
+<TR><TD ALIGN="LEFT">totalloadavg</TD>
+<TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">virtualmemory</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Amount of currently available virtual memory in kilobytes.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">memory</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Amount of RAM in megabytes.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">totalvirtualmemory</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">cpubusytime</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Time in seconds since cpuisbusy became true.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">cpuisbusy</TD>
+<TD ALIGN="LEFT">varchar(5)</TD>
+<TD ALIGN="LEFT">varchar(5)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>(boolean) True when the CPU is busy.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">currentrank</TD>
+<TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>The machine owner's affinity for running the Condor job which it is currently hosting.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">clockmin</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Number of minutes passed since midnight.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">clockday</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>The day of the week.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">lastreportedtime</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Time when the Condor central manager last received a status update from this machine.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">enteredcurrentactivity</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Time when the machine entered the current activity.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">enteredcurrentstate</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Time when the machine entered the current state.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">updatesequencenumber</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Each update includes a sequence number.</TD>
+</TR>
+<TR><TD ALIGN="CENTER" COLSPAN=4><B>Table Continues on Next Page</B></TD>
+</TR>
+</TABLE>
+<BR>
+<BR>
+<BR>
+</DIV>
+<P>
+<DIV ALIGN="CENTER"><TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=4><B>Attributes of machines_horizontal Table - Part 2 of 2</B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">updatestotal</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>The number of updates received from the daemon.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">updatessequenced</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>The number of updates that were in order.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">updateslost</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>The number of updates that were lost.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">globaljobid</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Unique global identifier for the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">lastreportedtime_epoch</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>The equivalent epoch time of lastreportedtime.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" COLSPAN=4><B>PRIMARY KEY:</B> machine_id</TD>
+</TR>
+</TABLE>
+<BR>
+<BR>
+<BR>
+</DIV>
+<P>
+<DIV ALIGN="CENTER"><TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=4><B>Attributes of machines_horizontal_history Table - Part 1 of 2</B></TD>
+</TR>
+<TR><TH ALIGN="LEFT"><B>Name</B></TH>
+<TD ALIGN="LEFT"><B>O. Type</B></TD>
+<TD ALIGN="LEFT"><B>P. Type</B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173><B>Description</B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">machine_id</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Unique identifier of the machine.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">opsys</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Operating system running on the machine.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">arch</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Architecture of the machine.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">state</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Condor state of the machine.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">activity</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Condor job activity on the machine.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">keyboardidle</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Number of seconds since activity has been detected on any keyboard or mouse associated with the machine.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">consoleidle</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Number of seconds since activity has been detected on the console keyboard or mouse.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">loadavg</TD>
+<TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Current load average of the machine.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">condorloadavg</TD>
+<TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Portion of load average generated by Condor</TD>
+</TR>
+<TR><TD ALIGN="LEFT">totalloadavg</TD>
+<TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">virtualmemory</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Amount of currently available virtual memory in kilobytes.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">memory</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Amount of RAM in megabytes.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">totalvirtualmemory</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">cpubusytime</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Time in seconds since cpuisbusy became true.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">cpuisbusy</TD>
+<TD ALIGN="LEFT">varchar(5)</TD>
+<TD ALIGN="LEFT">varchar(5)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>(boolean) True when the CPU is busy.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">currentrank</TD>
+<TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>The machine owner's affinity for running the Condor job which it is currently hosting.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">clockmin</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Number of minutes passed since midnight.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">clockday</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>The day of the week.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">lastreportedtime</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Time when the Condor central manager last received a status update from this machine.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">enteredcurrentactivity</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Time when the machine entered the current activity.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">enteredcurrentstate</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Time when the machine entered the current state.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">updatesequencenumber</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=173>Each update includes a sequence number.</TD>
+</TR>
+<TR><TD ALIGN="CENTER" COLSPAN=4><B>Table Continues on Next Page</B></TD>
+</TR>
+</TABLE>
+<BR>
+<BR>
+<BR>
+</DIV>
+<P>
+<DIV ALIGN="CENTER"><TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=4><B>Attributes of machines_horizontal_history Table - Part 2 of 2</B></TD>
+</TR>
+<TR><TH ALIGN="LEFT"><B>Name</B></TH>
+<TD ALIGN="LEFT"><B>O. Type</B></TD>
+<TD ALIGN="LEFT"><B>P. Type</B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=194><B>Description</B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">updatestotal</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=194>The number of updates received from the daemon.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">updatessequenced</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=194>The number of updates that were in order.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">updateslost</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=194>The number of updates that were lost.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">globaljobid</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=194>Unique global identifier for the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">end_time</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=194>The end of when the ClassAd is valid.</TD>
+</TR>
+</TABLE>
+<BR>
+<BR>
+<BR>
+</DIV>
+<P>
+<DIV ALIGN="CENTER"><TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=4><B>Attributes of machines_vertical Table</B></TD>
+</TR>
+<TR><TH ALIGN="LEFT"><B>Name</B></TH>
+<TD ALIGN="LEFT"><B>O. Type</B></TD>
+<TD ALIGN="LEFT"><B>P. Type</B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230><B>Description</B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">machine_id</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>Unique identifier of the machine.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">attr</TD>
+<TD ALIGN="LEFT">varchar(2000)</TD>
+<TD ALIGN="LEFT">varchar(2000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>Attribute name.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">val</TD>
+<TD ALIGN="LEFT">clob</TD>
+<TD ALIGN="LEFT">text</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>Attribute value.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">start_time</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>Time when this attribute-value pair became valid.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" COLSPAN=4><B>PRIMARY KEY:</B> (machine_id, attr)</TD>
+</TR>
+<TR><TD ALIGN="LEFT" COLSPAN=4><B>NOT NULL:</B> machine_id and attr cannot be null</TD>
+</TR>
+</TABLE>
+<BR>
+<BR>
+<BR>
+</DIV>
+<P>
+<DIV ALIGN="CENTER"><TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=4><B>Attributes of machines_vertical_history Table</B></TD>
+</TR>
+<TR><TH ALIGN="LEFT"><B>Name</B></TH>
+<TD ALIGN="LEFT"><B>O. Type</B></TD>
+<TD ALIGN="LEFT"><B>P. Type</B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230><B>Description</B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">machine_id</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>Unique identifier of the machine.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">attr</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>Attribute name.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">val</TD>
+<TD ALIGN="LEFT">clob</TD>
+<TD ALIGN="LEFT">text</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>Attribute value.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">start_time</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>Time when this attribute-value pair became valid.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">end_time</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>Time when this attribute-value pair became invalid.</TD>
+</TR>
+</TABLE>
+<BR>
+<BR>
+<BR>
+
+</DIV>
+
+<P>
+
+<H3><A NAME="SECTION004124700000000000000">
+3.12.4.7 Matchmaking Tables</A>
+</H3>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=4><B>Attributes of matches Table</B></TD>
+</TR>
+<TR><TH ALIGN="LEFT"><B>Name</B></TH>
+<TD ALIGN="LEFT"><B>O. Type</B></TD>
+<TD ALIGN="LEFT"><B>P. Type</B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=216><B>Description</B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">match_time</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=216>Time the match was made.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">username</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=216>User who submitted the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">scheddname</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=216>Name of the schedd that the job is submitted to.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">cluster_id</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=216>Cluster identifier for the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">proc_id</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=216>Process identifier for the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">globaljobid</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=216>Unique global identifier for the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">machine_id</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=216>Identifier of the machine the job matched with.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">remote_user</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=216>User that was preempted.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">remote_priority</TD>
+<TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT">real</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=216>The preempted user's priority.</TD>
+</TR>
+</TABLE>
+<BR>
+<BR>
+<BR>
+</DIV>
+<P>
+<DIV ALIGN="CENTER"><TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=4><B>Attributes of rejects Table</B></TD>
+</TR>
+<TR><TH ALIGN="LEFT"><B>Name</B></TH>
+<TD ALIGN="LEFT"><B>O. Type</B></TD>
+<TD ALIGN="LEFT"><B>P. Type</B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230><B>Description</B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">reject_time</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>Time when the job was rejected.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">username</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>User who submitted the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">scheddname</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>Name of the schedd that submitted the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">cluster_id</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>Cluster identifier for the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">proc_id</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>Process identifier for the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">globaljobid</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>Unique global identifier for the job.</TD>
+</TR>
+</TABLE>
+<BR>
+<BR>
+<BR>
+
+</DIV>
+
+<P>
+
+<H3><A NAME="SECTION004124800000000000000">
+3.12.4.8 Runtime Tables</A>
+</H3>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=4><B>Attributes of events Table</B></TD>
+</TR>
+<TR><TH ALIGN="LEFT"><B>Name</B></TH>
+<TD ALIGN="LEFT"><B>O. Type</B></TD>
+<TD ALIGN="LEFT"><B>P. Type</B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230><B>Description</B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">scheddname</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>Name of the schedd that submitted the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">cluster_id</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>Cluster identifier for the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">proc_id</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>Process identifier for the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">globaljobid</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>Global identifier of the job that generated the event.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">run_id</TD>
+<TD ALIGN="LEFT">numeric(12,0)</TD>
+<TD ALIGN="LEFT">numeric(12,0)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>Identifier of the run that the event is associated with.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">eventtype</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>Numeric type code of the event.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">eventtime</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>Time the event occurred.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">description</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>Description of the event.</TD>
+</TR>
+</TABLE>
+<BR>
+<BR>
+<BR>
+</DIV>
+<P>
+<DIV ALIGN="CENTER"><TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=4><B>Attributes of generic_messages Table</B></TD>
+</TR>
+<TR><TH ALIGN="LEFT"><B>Name</B></TH>
+<TD ALIGN="LEFT"><B>O. Type</B></TD>
+<TD ALIGN="LEFT"><B>P. Type</B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=238><B>Description</B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">eventtype</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=238>The type of event.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">eventkey</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=238>The key of the event.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">eventtime</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=238>The time of the event.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">eventloc</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=238>The location of the event.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">attname</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=238>The attribute name.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">attval</TD>
+<TD ALIGN="LEFT">clob</TD>
+<TD ALIGN="LEFT">text</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=238>The attribute value.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">attrtype</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=238>The attribute type.</TD>
+</TR>
+</TABLE>
+<BR>
+<BR>
+<BR>
+</DIV>
+<P>
+<DIV ALIGN="CENTER"><TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=4><B>Attributes of runs Table</B></TD>
+</TR>
+<TR><TH ALIGN="LEFT"><B>Name</B></TH>
+<TD ALIGN="LEFT"><B>O. Type</B></TD>
+<TD ALIGN="LEFT"><B>P. Type</B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=180><B>Description</B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">run_id</TD>
+<TD ALIGN="LEFT">numeric(12)</TD>
+<TD ALIGN="LEFT">numeric(12)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=180>Unique identifier of the run.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">machine_id</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=180>Identifier of the machine where the job ran.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">scheddname</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=180>Name of the schedd that submitted the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">cluster_id</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=180>Cluster identifier for the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">proc_id</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=180>Process identifier for the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">spid</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=180>Subprocess identifier for the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">globaljobid</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=180>Identifier of the job that was run.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">startts</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=180>Time when the job started.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">endts</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT">ts(3) w tz</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=180>Time when the job ended.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">endtype</TD>
+<TD ALIGN="LEFT">smallint</TD>
+<TD ALIGN="LEFT">smallint</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=180>The type of ending event.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">endmessage</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=180>The ending message.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">wascheckpointed</TD>
+<TD ALIGN="LEFT">varchar(7)</TD>
+<TD ALIGN="LEFT">varchar(7)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=180>Whether the run was checkpointed.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">imagesize</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=180>The image size of the executable.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">runlocalusageuser</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=180>The time the job spent in usermode on execute machines (only standard universe).</TD>
+</TR>
+<TR><TD ALIGN="LEFT">runlocalusagesystem</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=180>The time the job was in system calls.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">runremoteusageuser</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=180>The time the shadow spent working for the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">runremoteusagesystem</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=180>The time the shadow spent in system calls for the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">runbytessent</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=180>Number of bytes sent to the run.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">runbytesreceived</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=180>Number of bytes received from the run.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" COLSPAN=4><B>PRIMARY KEY:</B> run_id</TD>
+</TR>
+<TR><TD ALIGN="LEFT" COLSPAN=4><B>NOT NULL:</B> run_id cannot be null</TD>
+</TR>
+</TABLE>
+<BR>
+<BR>
+<BR>
+
+</DIV>
+
+<P>
+
+<H3><A NAME="SECTION004124900000000000000">
+3.12.4.9 System Tables</A>
+</H3>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=4><B>Attributes of dummy_single_row_table Table</B></TD>
+</TR>
+<TR><TH ALIGN="LEFT"><B>Name</B></TH>
+<TD ALIGN="LEFT"><B>O. Type</B></TD>
+<TD ALIGN="LEFT"><B>P. Type</B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=288><B>Description</B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">a</TD>
+<TD ALIGN="LEFT">varchar(1)</TD>
+<TD ALIGN="LEFT">varchar(1)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=288>A dummy column.</TD>
+</TR>
+</TABLE>
+<BR>
+<BR>
+<BR>
+</DIV>
+<P>
+<DIV ALIGN="CENTER"><TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=4><B>Attributes of history_jobs_to_purge Table</B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">scheddname</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>Name of the schedd that submitted the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">cluster_id</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>Cluster identifier for the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">proc_id</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>Process identifier for the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">globaljobid</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=230>Unique global identifier for the job.</TD>
+</TR>
+</TABLE>
+<BR>
+<BR>
+<BR>
+</DIV>
+<P>
+<DIV ALIGN="CENTER"><TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER" COLSPAN=4><B>Attributes of jobqueuepollinginfo Table</B></TD>
+</TR>
+<TR><TH ALIGN="LEFT"><B>Name</B></TH>
+<TD ALIGN="LEFT"><B>O. Type</B></TD>
+<TD ALIGN="LEFT"><B>P. Type</B></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187><B>Description</B></TD>
+</TR>
+<TR><TD ALIGN="LEFT">scheddname</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>Name of the schedd that submitted the job.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">last_file_mtime</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>The last modification time of the file.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">last_file_size</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT">numeric(38)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>The last size of the file in bytes.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">last_next_cmd_offset</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>The last offset for the next command.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">last_cmd_offset</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT">integer</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>The last offset of the current command.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">last_cmd_type</TD>
+<TD ALIGN="LEFT">smallint</TD>
+<TD ALIGN="LEFT">smallint</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>The last type of command.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">last_cmd_key</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>The last key of the command.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">last_cmd_mytype</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>The last my ClassAd type of the command.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">last_cmd_targettype</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>The last target ClassAd type.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">last_cmd_name</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>The attribute name of the command.</TD>
+</TR>
+<TR><TD ALIGN="LEFT">last_cmd_value</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT">varchar(4000)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=187>The attribute value of the command.</TD>
+</TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1338"
+  HREF="3_13Setting_Up.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1332"
+  HREF="3_Administrators_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1326"
+  HREF="3_11High_Availability.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1334"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1336"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1339"
+  HREF="3_13Setting_Up.html">3.13 Setting Up for</A>
+<B> Up:</B> <A NAME="tex2html1333"
+  HREF="3_Administrators_Manual.html">3. Administrators' Manual</A>
+<B> Previous:</B> <A NAME="tex2html1327"
+  HREF="3_11High_Availability.html">3.11 The High Availability</A>
+ &nbsp; <B>  <A NAME="tex2html1335"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1337"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,1346 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>4.3 Computing On Demand (COD)</TITLE>
+<META NAME="description" CONTENT="4.3 Computing On Demand (COD)">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="4_4Hooks.html">
+<LINK REL="previous" HREF="4_2HTCondor_s_Checkpoint.html">
+<LINK REL="up" HREF="4_Miscellaneous_Concepts.html">
+<LINK REL="next" HREF="4_4Hooks.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html1896"
+  HREF="4_4Hooks.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1890"
+  HREF="4_Miscellaneous_Concepts.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1884"
+  HREF="4_2HTCondor_s_Checkpoint.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1892"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1894"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1897"
+  HREF="4_4Hooks.html">4.4 Hooks</A>
+<B> Up:</B> <A NAME="tex2html1891"
+  HREF="4_Miscellaneous_Concepts.html">4. Miscellaneous Concepts</A>
+<B> Previous:</B> <A NAME="tex2html1885"
+  HREF="4_2HTCondor_s_Checkpoint.html">4.2 HTCondor's Checkpoint Mechanism</A>
+ &nbsp; <B>  <A NAME="tex2html1893"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1895"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html1898"
+  HREF="4_3Computing_On.html#SECTION00531000000000000000">4.3.1 Overview of How COD Works</A>
+<LI><A NAME="tex2html1899"
+  HREF="4_3Computing_On.html#SECTION00532000000000000000">4.3.2 Authorizing Users to Create and Manage COD Claims</A>
+<LI><A NAME="tex2html1900"
+  HREF="4_3Computing_On.html#SECTION00533000000000000000">4.3.3 Defining a COD Application</A>
+<UL>
+<LI><A NAME="tex2html1901"
+  HREF="4_3Computing_On.html#SECTION00533100000000000000">4.3.3.1 COD Application Attributes</A>
+<LI><A NAME="tex2html1902"
+  HREF="4_3Computing_On.html#SECTION00533200000000000000">4.3.3.2 Defining Attributes in the HTCondor Configuration Files</A>
+<LI><A NAME="tex2html1903"
+  HREF="4_3Computing_On.html#SECTION00533300000000000000">4.3.3.3 Defining Attributes with the <I>condor_cod</I> Tool</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1904"
+  HREF="4_3Computing_On.html#SECTION00534000000000000000">4.3.4 Managing COD Resource Claims</A>
+<UL>
+<LI><A NAME="tex2html1905"
+  HREF="4_3Computing_On.html#SECTION00534100000000000000">4.3.4.1 Request</A>
+<LI><A NAME="tex2html1906"
+  HREF="4_3Computing_On.html#SECTION00534200000000000000">4.3.4.2 Activate</A>
+<LI><A NAME="tex2html1907"
+  HREF="4_3Computing_On.html#SECTION00534300000000000000">4.3.4.3 Suspend</A>
+<LI><A NAME="tex2html1908"
+  HREF="4_3Computing_On.html#SECTION00534400000000000000">4.3.4.4 Renew</A>
+<LI><A NAME="tex2html1909"
+  HREF="4_3Computing_On.html#SECTION00534500000000000000">4.3.4.5 Resume</A>
+<LI><A NAME="tex2html1910"
+  HREF="4_3Computing_On.html#SECTION00534600000000000000">4.3.4.6 Deactivate</A>
+<LI><A NAME="tex2html1911"
+  HREF="4_3Computing_On.html#SECTION00534700000000000000">4.3.4.7 Release</A>
+<LI><A NAME="tex2html1912"
+  HREF="4_3Computing_On.html#SECTION00534800000000000000">4.3.4.8 Delegate proxy</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1913"
+  HREF="4_3Computing_On.html#SECTION00535000000000000000">4.3.5 Limitations of COD Support in HTCondor</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00530000000000000000"></A><A NAME="sec:cod"></A>
+<A NAME="44789"></A>
+<A NAME="44790"></A>
+<BR>
+4.3 Computing On Demand (COD)
+</H1>
+
+<P>
+<A NAME="44791"></A> 
+Computing On Demand (COD) extends HTCondor's high throughput
+computing abilities to include
+a method for running short-term jobs on instantly-available resources.
+
+<P>
+The motivation for COD extends HTCondor's job management to
+include interactive, compute-intensive jobs,
+giving these jobs immediate access to the
+compute power they need over a relatively short period of time.
+COD provides
+computing power <I>on demand</I>, 
+switching predefined resources from working on HTCondor jobs
+to working on the COD jobs. 
+These COD jobs (applications) cannot use the batch
+scheduling functionality of HTCondor, since the COD jobs require
+interactive response-time.
+Many of the applications that are well-suited to HTCondor's
+COD capabilities involve a cycle:
+application blocked on user input, computation burst to compute
+results, block again on user input, computation burst, etc.
+When the resources are not being used for the bursts of computation to
+service the application, they should continue to execute
+long-running batch jobs.
+
+<P>
+Here are examples of applications that may benefit from COD capability:
+
+<P>
+
+<UL>
+<LI>A giant spreadsheet with a large number of highly complex
+  formulas which take a lot of compute power to recalculate.
+  The spreadsheet application (as a COD application) predefines
+  a claim on resources within the HTCondor pool.
+  When the user presses a <code>recalculate</code> button, 
+  the predefined HTCondor resources (nodes) 
+  work on the computation and send the results
+  back to the master application providing the user interface and
+  displaying the data.
+  Ideally, while the user is entering new data or modifying formulas,
+  these nodes work on non-COD jobs.
+  
+<P>
+</LI>
+<LI>A graphics rendering application that waits for user
+  input to select an image to render.
+  The rendering requires a huge burst
+  of computation to produce the image.
+  Examples are various Computer-Aided Design (CAD) tools, fractal
+  rendering programs, and ray-tracing tools.
+
+<P>
+</LI>
+<LI>Visualization tools for data mining.
+
+<P>
+</LI>
+</UL>
+
+<P>
+The way HTCondor helps these kinds of applications is to provide an
+infrastructure to use HTCondor batch resources for the types of compute
+nodes described above.
+HTCondor does <I>NOT</I> provide tools to parallelize existing GUI
+applications.
+The COD functionality is an interface to allow these compute nodes to
+interact with long-running HTCondor batch jobs.
+The user provides both the compute node applications and the
+interactive master application that controls them.
+HTCondor only provides a mechanism to allow these interactive (and often
+parallelized) applications to seamlessly interact with the HTCondor
+batch system.
+
+<P>
+
+<H2><A NAME="SECTION00531000000000000000"></A><A NAME="sec:cod-overview"></A>
+<A NAME="44797"></A>
+<BR>
+4.3.1 Overview of How COD Works
+</H2> 
+
+<P>
+The resources of an HTCondor pool (nodes)
+run jobs.
+When a high-priority COD job appears at a node,
+the lower-priority (currently running) batch job is
+suspended.
+The COD job runs immediately, while the batch job remains suspended.
+When the COD job completes, the batch job instantly resumes execution.
+
+<P>
+Administratively,
+an interactive COD application puts claims on nodes.
+While the COD application does not need the nodes to run the
+COD jobs,  the claims are suspended, allowing batch jobs to run.
+
+<P>
+
+<H2><A NAME="SECTION00532000000000000000"></A><A NAME="sec:cod-authorizing"></A>
+<A NAME="44799"></A>
+<BR>
+4.3.2 Authorizing Users to Create and Manage COD Claims
+</H2> 
+
+<P>
+Claims on nodes are assigned to users.
+A user with a claim on a resource can then suspend and
+resume a COD job at will.
+This gives the user a great deal of power on the claimed resource,
+even if it is owned by another user.
+Because of this, it is essential that users allowed to claim
+COD resources can be
+trusted not to abuse this power.
+Users are authorized to have access to the privilege
+of creating and using a COD claim on a machine.
+This privilege is granted when the HTCondor administrator places a given
+user name in the <TT>VALID_COD_USERS</TT><A NAME="45142"></A><A NAME="45143"></A> list in the HTCondor
+configuration for the machine (usually in a local configuration file).
+
+<P>
+In addition, the tools to request and manage COD claims
+require that the user issuing the commands be authenticated. 
+Use one of the strong authentication methods described
+in section&nbsp;<A HREF="3_6Security.html#sec:Config-Security">3.6.1</A> on HTCondor's Security Model.
+If one of these methods cannot be used,
+then file system authentication may be used
+when directly logging in to that machine (to be claimed)
+and issuing the command locally.
+
+<P>
+
+<H2><A NAME="SECTION00533000000000000000"></A><A NAME="sec:cod-setup"></A>
+<A NAME="44803"></A>
+<BR>
+4.3.3 Defining a COD Application
+</H2> 
+
+<P>
+To run an application on a claimed COD resource,
+an authorized user defines 
+characteristics of the application.
+Examples of characteristics are the executable or script to use,
+the directory in which to run the application,
+command-line arguments, and
+files to use for standard input and output.
+COD users specify a ClassAd that describes these characteristics
+for their application.  
+There are two ways for a user to define a COD application's ClassAd:
+
+<P>
+
+<OL>
+<LI>in the HTCondor configuration files of the COD resources
+</LI>
+<LI>when they use the <I>condor_cod</I> command-line tool to launch the
+application itself
+</LI>
+</OL>
+
+<P>
+These two methods for defining the ClassAd can be used together.
+For example, the user can define some attributes
+in the configuration file, and only provide a few dynamically defined
+attributes with the <I>condor_cod</I> tool.
+
+<P>
+Independent of how the COD application's ClassAd is defined,
+the application's executable and input
+data must be pre-staged at the node.
+This is a current limitation of HTCondor's support.
+There is no mechanism to transfer files for a COD application, 
+and all I/O must be handled locally or put onto a network
+file system that is accessible by a node.
+
+<P>
+The following three sections detail defining the attributes.
+The first lists the attributes that can be used to define a COD
+application.
+The second describes how to define these attributes in an HTCondor
+configuration file.
+The third explains how to define these attributes using the <I>condor_cod</I> tool.
+
+<P>
+
+<H3><A NAME="SECTION00533100000000000000"></A><A NAME="sec:cod-application-attributes"></A>
+<BR>
+4.3.3.1 COD Application Attributes
+</H3>
+
+<P>
+<A NAME="44810"></A> 
+<A NAME="44811"></A>
+
+<P>
+Attributes for a COD application are either required
+or optional.
+The following attributes are <I>required</I>:
+<A NAME="44813"></A> 
+
+<P>
+<DL>
+<DT><STRONG><TT>Cmd</TT></STRONG></DT>
+<DD>This attribute 
+<A NAME="44816"></A> 
+   defines the full path to the executable program to be run as a
+   COD application.
+   Since HTCondor does not currently provide any mechanism to transfer
+   files on behalf of COD applications, this path should be a valid
+   path on the machine where the application will be run.
+   It is a string attribute, and must therefore be enclosed in
+   quotation marks (<code>"</code>).
+   There is no default.
+
+<P>
+</DD>
+<DT><STRONG><TT>Owner</TT></STRONG></DT>
+<DD>If the <I>condor_startd</I> daemon is executing as root on
+<A NAME="44819"></A> 
+   the resource where a COD application will run, the user must also
+   define <TT>Owner</TT> to specify what user name the application will
+   run as.
+   On Windows, the <I>condor_startd</I> daemon always runs as an Administrator
+   service, which is equivalent to running as root on Unix platforms.
+   If the user specifies any COD application attributes with the
+   <I>condor_cod</I> <I>activate</I> command-line tool, the <TT>Owner</TT>
+   attribute will be defined as the user name that ran
+   <I>condor_cod</I> <I>activate</I>.
+   However, if the user defines all attributes of their COD
+   application in the HTCondor configuration files, and does not define
+   any attributes with the <I>condor_cod</I> <I>activate</I> command-line tool,
+   there is no default,
+    and <TT>Owner</TT> must be specified in the configuration file.
+   <TT>Owner</TT> must contain a valid user
+   name on the given COD resource. 
+   It is a string attribute, and must therefore be enclosed in 
+   quotation marks (<code>"</code>).
+
+<P>
+</DD>
+<DT><STRONG><TT>RequestCpus</TT></STRONG></DT>
+<DD>Required when running on a <I>condor_startd</I>
+<A NAME="44833"></A> 
+that uses partitionable slots.  
+It specifies the number of CPU cores from the partitionable slot
+allocated for this job.
+
+<P>
+</DD>
+<DT><STRONG><TT>RequestDisk</TT></STRONG></DT>
+<DD>Required when running on a <I>condor_startd</I>
+<A NAME="44836"></A> 
+that uses partitionable slots.  
+It specifies the disk space, in Megabytes,
+from the partitionable slot allocated for this job.
+
+<P>
+</DD>
+<DT><STRONG><TT>RequestMemory</TT></STRONG></DT>
+<DD>Required when running on a <I>condor_startd</I>
+<A NAME="44839"></A> 
+that uses partitionable slots.  
+It specifies the memory, in Megabytes,
+from the partitionable slot allocated for this job.
+
+<P>
+</DD>
+</DL>
+
+<P>
+<A NAME="44841"></A> 
+<A NAME="44842"></A>
+
+<P>
+The following list of attributes are <I>optional</I>:
+
+<P>
+<DL>
+<DT><STRONG><TT>JobUniverse</TT></STRONG></DT>
+<DD>This attribute defines what HTCondor job
+<A NAME="44846"></A> 
+   universe to use for the given COD application.
+   The only tested universes are vanilla and java.
+   This attribute must be an integer, with vanilla using the value 5,
+   and java using the value 10.
+
+<P>
+</DD>
+<DT><STRONG><TT>IWD</TT></STRONG></DT>
+<DD>IWD is an acronym for Initial Working Directory.
+<A NAME="44848"></A> 
+   It defines the full path to the directory where a given COD
+   application are to be run.
+   Unless the application changes its current working directory, any
+   relative path names used by the application will be relative to
+   the IWD.
+   If any other attributes that define file names (for example,
+   <TT>In</TT>, <TT>Out</TT>, and so on) do not contain a full path, the
+   <TT>IWD</TT> will automatically be pre-pended to those file names.
+   It is a string attribute, and must therefore be enclosed in 
+   quotation marks (<code>"</code>).
+   If the <TT>IWD</TT> is not specified, the temporary execution sandbox
+   created by the <I>condor_starter</I> will be used as the initial working
+   directory.
+
+<P>
+</DD>
+<DT><STRONG><TT>In</TT></STRONG></DT>
+<DD>This string defines the path to the file on the
+<A NAME="44855"></A> 
+   COD resource that should be used as standard input (<TT>stdin</TT>) for 
+   the COD application.
+   This file (and all parent directories) must be readable by whatever
+   user the COD application will run as.
+   If not specified, the default is <TT>/dev/null</TT>.
+   It is a string attribute, and must therefore be enclosed in 
+   quotation marks (<code>"</code>).
+
+<P>
+</DD>
+<DT><STRONG><TT>Out</TT></STRONG></DT>
+<DD>This string defines the path to the file on the
+<A NAME="44859"></A> 
+   COD resource that should be used as standard output (<TT>stdout</TT>)
+   for the COD application.
+   This file must be writable (and all parent directories readable) by
+   whatever user the COD application will run as.
+   If not specified, the default is <TT>/dev/null</TT>.
+   It is a string attribute, and must therefore be enclosed in 
+   quotation marks (<code>"</code>).
+
+<P>
+</DD>
+<DT><STRONG><TT>Err</TT></STRONG></DT>
+<DD>This string defines the path to the file on the
+<A NAME="44863"></A> 
+   COD resource that should be used as standard error (<TT>stderr</TT>)
+   for the COD application.
+   This file must be writable (and all parent directories readable) by
+   whatever user the COD application will run as.
+   If not specified, the default is <TT>/dev/null</TT>.
+   It is a string attribute, and must therefore be enclosed in 
+   quotation marks (<code>"</code>).
+
+<P>
+</DD>
+<DT><STRONG><TT>Env</TT></STRONG></DT>
+<DD>This string defines environment variables to
+<A NAME="44867"></A> 
+   set for a given COD application.
+   Each environment variable has the form <code>NAME=value</code>.
+   Multiple variables are delimited with a semicolon.
+   An example: <code>Env = "PATH=/usr/local/bin:/usr/bin;TERM=vt100"</code> 
+   It is a string attribute, and must therefore be enclosed in 
+   quotation marks (<code>"</code>).
+
+<P>
+</DD>
+<DT><STRONG><TT>Args</TT></STRONG></DT>
+<DD>This string attribute defines the list of
+<A NAME="44869"></A> 
+   arguments to be supplied to the program on the command-line.
+   The arguments are delimited (separated) by space characters. 
+   There is no default. 
+   If the <TT>JobUniverse</TT> corresponds to the Java
+   universe, the first argument must be the name of the class
+   containing <TT>main</TT>.
+   It is a string attribute, and must therefore be enclosed in 
+   quotation marks (<code>"</code>).
+
+<P>
+</DD>
+<DT><STRONG><TT>JarFiles</TT></STRONG></DT>
+<DD>This string attribute is only used if
+<A NAME="44873"></A> 
+   <TT>JobUniverse</TT> is 10 (the Java universe).
+   If a given COD application is a Java program, specify the
+   JAR files that the program requires with this attribute.
+   There is no default.
+   It is a string attribute, and must therefore be enclosed in 
+   quotation marks (<code>"</code>).
+   Multiple file names may be delimited with either commas or white space
+   characters, and
+   therefore, file names can not contain spaces.
+
+<P>
+</DD>
+<DT><STRONG><TT>KillSig</TT></STRONG></DT>
+<DD>This attribute specifies what signal should be
+<A NAME="44876"></A> 
+   sent whenever the HTCondor system needs to gracefully shutdown the
+   COD application.
+   It can either be specified as a string containing the signal name
+   (for example <code>KillSig = "SIGQUIT"</code>), or as an integer
+   (<code>KillSig = 3</code>)
+   The default is to use SIGTERM.
+
+<P>
+</DD>
+<DT><STRONG><TT>StarterUserLog</TT></STRONG></DT>
+<DD>This string specifies a file name for a
+<A NAME="44878"></A> 
+   log file that the <I>condor_starter</I> daemon can write with entries
+   for relevant 
+   events in the life of a given COD application.
+   It is similar to the job event log file specified for regular HTCondor
+   jobs with the <B>Log</B><A NAME="45211"></A> command in a submit description
+   file.
+   However, certain attributes that are placed in a job event log
+   do not make sense in the COD environment, and are therefore
+   omitted.
+   The default is not to write this log file.
+   It is a string attribute, and must therefore be enclosed in 
+   quotation marks (<code>"</code>).
+
+<P>
+</DD>
+<DT><STRONG><TT>StarterUserLogUseXML</TT></STRONG></DT>
+<DD>If the <TT>StarterUserLog</TT>
+<A NAME="44883"></A> 
+   attribute is defined, the default format is a
+   human-readable format.
+   However, HTCondor can write out this log in an XML representation,
+   instead.
+   To enable the XML format for this job event log, the
+   <TT>StarterUserLogUseXML</TT> boolean is set to <code>TRUE</code>.
+   The default if not specified is <code>FALSE</code>.
+
+<P>
+</DD>
+</DL>
+
+<P>
+If any attribute that specifies a path (<TT>Cmd</TT>, <TT>In</TT>,
+<TT>Out</TT>,<TT>Err</TT>, <TT>StarterUserLog</TT>) is not a full path name,
+HTCondor automatically prepends the value of <TT>IWD</TT>.
+
+<P>
+<A NAME="44892"></A>
+<A NAME="44893"></A>
+
+<P>
+The final set of attributes define an identification for a COD application.
+The job ID is made up of both the <TT>ClusterId</TT> and <TT>ProcId</TT>
+attributes.
+This job ID is similar to the job ID that is created whenever a
+regular HTCondor batch job is submitted.
+For regular HTCondor batch jobs, the job ID is assigned automatically by
+the <I>condor_schedd</I> whenever a new job is submitted into the
+persistent job queue.
+However, since there is no persistent job queue for COD, the usual
+mechanism to identify jobs does not exist.
+Moreover, commands that require the job ID for batch jobs such as
+<I>condor_q</I> and <I>condor_rm</I> do not exist for COD.
+Instead, the claim ID is the unique identifier for COD jobs and
+COD-related commands.
+
+<P>
+When using COD, the job ID is only used to identify the job in various
+log messages and in the COD-specific output of <I>condor_status</I>.
+The COD job ID is part of the information included in all
+events written to the <TT>StarterUserLog</TT>
+regarding a given job.
+The COD job ID is also used in the HTCondor debugging logs described in
+section&nbsp;<A HREF="3_3Configuration.html#sec:Daemon-Logging-Config-File-Entries">3.3.4</A> on
+page&nbsp;<A HREF="3_3Configuration.html#sec:Daemon-Logging-Config-File-Entries"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+For example, in the <I>condor_starter</I> daemon's log file for COD jobs
+(called <TT>StarterLog.cod</TT> by default) or in the <I>condor_startd</I>
+daemon's log
+file (called <TT>StartLog</TT> by default).
+
+<P>
+These COD job IDs are optional.
+The job ID is useful to define where it helps a
+user with the accounting or debugging of their own application.
+In this case, it is the user's responsibility to ensure uniqueness,
+if so desired.
+
+<P>
+<DL>
+<DT><STRONG><TT>ClusterId</TT></STRONG></DT>
+<DD>This integer defines the
+<A NAME="44909"></A> 
+   cluster identifier for a COD job.
+   The default value is 1.
+   The <TT>ClusterId</TT> can also be defined with the
+<A NAME="44911"></A> 
+   <I>condor_cod</I> <I>activate</I> command-line tool using the <B>-cluster</B>
+   option.
+
+<P>
+</DD>
+<DT><STRONG><TT>ProcId</TT></STRONG></DT>
+<DD>This integer defines the
+<A NAME="44916"></A> 
+   process identifier (within a cluster) for a COD job.
+   The default value is 0.
+   The <TT>ProcId</TT> can also be defined with the
+   <I>condor_cod</I> <I>activate</I> command-line tool using the <B>-cluster</B>
+   option.
+
+<P>
+</DD>
+</DL>
+
+<P>
+Note that the <TT>ClusterId</TT> and <TT>ProcId</TT> identifiers can 
+also be specified as
+command-line arguments to the <I>condor_cod</I> <I>activate</I> when
+spawning a given COD application.
+See section&nbsp;<A HREF="#sec:cod-claim-activate">4.3.4</A> below for details on using
+<I>condor_cod</I> <I>activate</I>. 
+
+<P>
+
+<H3><A NAME="SECTION00533200000000000000"></A><A NAME="sec:cod-config-attrs"></A>
+<A NAME="44930"></A>
+<BR>
+4.3.3.2 Defining Attributes in the HTCondor Configuration Files
+</H3> 
+
+<P>
+To define COD attributes in the HTCondor configuration file for a given
+application, the user selects a keyword to uniquely name 
+ClassAd attributes of the application.
+This case-insensitive keyword is used as a prefix for the various
+configuration file variable names.
+When a user wishes to spawn a given application, the
+keyword is given as an argument to the <I>condor_cod</I> tool, and the keyword
+is used at the remote COD resource to find attributes which define the
+application.
+
+<P>
+Any of the ClassAd attributes described in the previous section can be
+specified in the configuration file with the keyword prefix followed
+by an underscore character (<code>"_"</code>).
+
+<P>
+For example, if the user's keyword for a given fractal generation
+application is <TT>FractGen</TT>, the resulting entries in the HTCondor
+configuration file may appear as:
+
+<P>
+<PRE>
+FractGen_Cmd = "/usr/local/bin/fractgen"
+FractGen_Iwd = "/tmp/cod-fractgen"
+FractGen_Out = "/tmp/cod-fractgen/output"
+FractGen_Err = "/tmp/cod-fractgen/error"
+FractGen_Args = "mandelbrot -0.65865,-0.56254 -0.45865,-0.71254"
+</PRE>
+
+<P>
+In this example, the executable may create other files.
+The <TT>Out</TT> and <TT>Err</TT> attributes specified in the
+configuration file are only for standard output and standard error
+redirection.
+
+<P>
+When the user wishes to spawn an instance of this application,
+the command line 
+  <code>condor_cod  activate</code>
+appears with the
+  <code>-keyword FractGen</code>
+option.
+
+<P>
+<U>NOTE</U>: If a user is defining all attributes of their COD application in
+the HTCondor configuration files, and the <I>condor_startd</I> daemon on the COD
+resource they are using is running as root, the user must also define
+<TT>Owner</TT> to be the user that the COD application should run as.
+
+<P>
+
+<H3><A NAME="SECTION00533300000000000000"></A><A NAME="sec:cod-command-line-attrs"></A> 
+<A NAME="44941"></A>
+<BR>
+4.3.3.3 Defining Attributes with the <I>condor_cod</I> Tool
+</H3> 
+
+<P>
+COD users may define attributes dynamically (at the time they spawn a
+COD application).
+In this case, the user writes the ClassAd attributes into a file, and the
+file name is passed to the <I>condor_cod</I> <I>activate</I> command  using the
+<B>-jobad</B> option.
+These attributes are read by the <I>condor_cod</I> tool and passed through
+the system to the <I>condor_starter</I> daemon, which spawns the COD application. 
+If the file name given is <TT>-</TT>, the <I>condor_cod</I> tool will read
+from standard input (<TT>stdin</TT>).
+
+<P>
+Users should not add a keyword prefix 
+when defining attributes with <I>condor_cod</I> <I>activate</I>.
+The attribute names can be used in the file directly.
+
+<P>
+<U>WARNING</U>: The current syntax for this file is not the same as the syntax
+in the file used with <I>condor_submit</I>.
+
+<P>
+<U>NOTE</U>: Users should not define the <TT>Owner</TT> attribute
+when using <I>condor_cod</I> <I>activate</I> on the command line, since HTCondor
+will automatically insert the correct value based on what user runs the
+<I>condor_cod</I> command and how that user authenticates to the
+COD resource.
+If a user defines an attribute that does not match the authenticated
+identity, HTCondor treats this case as an error, and it will fail to launch the
+application.
+
+<P>
+
+<H2><A NAME="SECTION00534000000000000000"></A><A NAME="sec:cod-managing-claims"></A>
+<A NAME="44958"></A>
+<BR>
+4.3.4 Managing COD Resource Claims
+</H2> 
+
+<P>
+Separate commands are provided by HTCondor to manage COD
+claims on batch resources.
+Once created, each COD claim has a unique identifying string, called the
+claim ID.
+Most commands require a claim ID to specify which claim you wish to
+act on. 
+These commands are the means by which COD applications interact with
+the rest of the HTCondor system.
+They should be issued by the controller application to manage its
+compute nodes.
+Here is a list of the commands:
+
+<P>
+<DL>
+<DT><STRONG>Request</STRONG></DT>
+<DD>Create a new COD claim on a given resource.
+
+<P>
+</DD>
+<DT><STRONG>Activate</STRONG></DT>
+<DD>Spawn a specific application on a specific COD claim.
+
+<P>
+</DD>
+<DT><STRONG>Suspend</STRONG></DT>
+<DD>Suspend a running application within a specific COD claim.
+
+<P>
+</DD>
+<DT><STRONG>Renew</STRONG></DT>
+<DD>Renew the lease to a COD claim.
+
+<P>
+</DD>
+<DT><STRONG>Resume</STRONG></DT>
+<DD>Resume a suspended application on a specific COD claim.
+
+<P>
+</DD>
+<DT><STRONG>Deactivate</STRONG></DT>
+<DD>Shut down an application, but hold onto the COD claim
+  for future use.
+
+<P>
+</DD>
+<DT><STRONG>Release</STRONG></DT>
+<DD>Destroy a specific COD claim, and shut down any job that is
+  currently running on it.
+
+<P>
+</DD>
+<DT><STRONG>Delegate proxy</STRONG></DT>
+<DD>Send an x509 proxy credential to the specific
+  COD claim (optional, only required in rare cases like using glexec
+  to spawn the <I>condor_starter</I> at the execute machine where the COD
+  job is running).
+
+<P>
+</DD>
+</DL>
+
+<P>
+To issue these commands, a user or application invokes the 
+<I>condor_cod</I> tool.
+A command may be specified as the first argument to this tool, 
+as
+<PRE>
+condor_cod request -name c02.cs.wisc.edu
+</PRE>
+or
+the <I>condor_cod</I> tool can be installed in such a way that the same
+binary is used for a set of names, as
+<PRE>
+condor_cod_request -name c02.cs.wisc.edu
+</PRE>
+
+<P>
+Other than the command name itself (which must be included in full)
+additional options supported by each tool can be abbreviated to the
+shortest unambiguous value.
+For example, <B>-name</B> can also be specified as <B>-n</B>.
+However, for a command like <I>condor_cod_activate</I> that supports both
+<B>-classad</B> and <B>-cluster</B>, the user must use at least
+<B>-cla</B> or <B>-clu</B>.
+If the user specifies an ambiguous option, the <I>condor_cod</I> tool will
+exit with an error message.
+
+<P>
+In addition, there is a <B>-cod</B> option to <I>condor_status</I>.
+
+<P>
+The following sections describe each option in greater detail.
+
+<P>
+
+<H3><A NAME="SECTION00534100000000000000"></A><A NAME="sec:cod-claim-request"></A>
+<A NAME="44979"></A>
+<BR>
+4.3.4.1 Request
+</H3> 
+
+<P>
+A user must be granted authorization to create COD
+claims on a specific machine.
+In addition, when the user uses these COD claims, the application
+binary or script they wish to run (and any input data) must be
+pre-staged on the machine.
+Therefore, a user cannot simply request a COD claim at random.
+
+<P>
+The user specifies the resource on which to make a COD claim.
+This is accomplished by specifying the name of the
+<I>condor_startd</I> daemon desired by invoking
+<I>condor_cod_request</I> with the <B>-name</B> option and the
+resource name (usually the host name).
+For example:
+<PRE>
+condor_cod_request -name c02.cs.wisc.edu
+</PRE>
+
+<P>
+If the <I>condor_startd</I> daemon desired belongs to a different HTCondor
+pool than the one where executing the COD commands,
+use the <B>-pool</B> option to provide the name of the central manager
+machine of the other pool.  For example:
+<PRE>
+condor_cod_request -name c02.cs.wisc.edu -pool condor.cs.wisc.edu
+</PRE>
+
+<P>
+An alternative is to provide the IP address and port number
+where the <I>condor_startd</I> daemon is listening
+with the <B>-addr</B> option.
+This information can be found in the <I>condor_startd</I> ClassAd as the
+attribute <TT>StartdIpAddr</TT> or by reading the log file when the
+<I>condor_startd</I> first starts up.
+For example:
+<PRE>
+condor_cod_request -addr "&lt;128.105.146.102:40967&gt;"
+</PRE>
+
+<P>
+If neither <B>-name</B> or <B>-addr</B> are specified,
+<I>condor_cod_request</I> attempts to connect to the <I>condor_startd</I>
+daemon running
+on the local machine (where the request command was issued).
+
+<P>
+If the <I>condor_startd</I> daemon to be used for the COD claim is an SMP
+machine and has multiple slots, specify which resource on
+the machine to use for COD by providing the full name of the resource,
+not just the host name.
+For example:
+<PRE>
+condor_cod_request -name slot2@c02.cs.wisc.edu
+</PRE>
+
+<P>
+A constraint on what slot is desired may be provided,
+instead of specifying it by name.  
+For example, to run on machine c02.cs.wisc.edu,
+not caring which slot is used,
+so long as it the machine is not currently running a job,
+use something like:
+<PRE>
+condor_cod_request -name c02.cs.wisc.edu -requirements 'State!="Claimed"'
+</PRE>
+
+<P>
+In general, be careful with shell quoting issues, so that
+your shell is not confused by the ClassAd expression syntax (in
+particular if the expression includes a string).
+The safest method is to enclose any requirement expression
+within single quote marks (as shown above).
+
+<P>
+Once a given <I>condor_startd</I> daemon has been contacted to request a new COD
+claim, the <I>condor_startd</I> daemon checks for proper
+authorization of the user
+issuing the command.
+If the user has the authority, and the <I>condor_startd</I> daemon
+finds a
+resource that matches any given requirements,
+the <I>condor_startd</I> daemon
+creates a new COD claim and gives it a unique identifier,
+the claim ID.
+This ID is used to identify COD claims when using other commands.
+If <I>condor_cod_request</I> succeeds, the claim ID for the new claim is printed
+out to the screen.
+All other commands to manage this claim require the claim ID to be
+provided as a command-line option.
+
+<P>
+When the <I>condor_startd</I> daemon assigns a COD claim,
+the ClassAd describing the resource is returned to the user that
+requested the claim. 
+This ClassAd is a snap-shot of 
+the output of <code>condor_status -long</code> for the given machine.
+If <I>condor_cod_request</I> is invoked with the <B>-classad</B> option
+(which takes a file name as an argument), this ClassAd will be written
+out to the given file.
+Otherwise, the ClassAd is printed to the screen.
+The only essential piece of information in this ClassAd is the Claim
+ID, so that is printed to the screen, even if the whole ClassAd is
+also being written to a file.
+
+<P>
+The claim ID as given after listing the machine ClassAd appears as
+this example:
+<PRE>
+ID of new claim is: "&lt;128.105.121.21:49973&gt;#1073352104#4"
+</PRE>When using this claim ID in further commands, include the quote
+marks as well as all the characters in between the quote marks.
+
+<P>
+<U>NOTE</U>: Once a COD claim is created, there is no persistent record of it
+kept by the <I>condor_startd</I> daemon.
+So, if the <I>condor_startd</I> daemon is restarted for any reason, all existing
+COD claims will be destroyed and the new <I>condor_startd</I> daemon will not
+recognize any attempts to use the previous claims.
+
+<P>
+Also note that it is your responsibility to ensure that the claim is
+eventually removed (see section&nbsp;<A HREF="#sec:cod-claim-release">4.3.4</A>).  Failure
+to remove the COD claim will result in the <I>condor_startd</I> continuing
+to hold a record of the claim for as long as <I>condor_startd</I> continues
+running.  If a very large number of such claims are accumulated by the
+<I>condor_startd</I>, this can impact its performance.  Even worse: if a
+COD claim is unintentionally left in an activated state, this results
+in the suspension of any batch job running on the same resource for as
+long as the claim remains activated.  For this reason, an optional
+<B>-lease</B> argument is supported by <I>condor_cod_request</I>.  This
+tells the <I>condor_startd</I> to automatically release the COD claim after
+the specified number of seconds unless the lease is renewed with
+<I>condor_cod_renew</I>.  The default lease is infinitely long.
+
+<P>
+
+<H3><A NAME="SECTION00534200000000000000"></A><A NAME="sec:cod-claim-activate"></A>
+<A NAME="45027"></A>
+<BR>
+4.3.4.2 Activate
+</H3> 
+
+<P>
+Once a user has created a valid COD claim and has the claim ID, the
+next step is to spawn a COD job using the claim.
+The way to do this is to activate the claim, using the
+<I>condor_cod_activate</I> command.
+Once a COD application is active on a COD claim, the COD claim will
+move into the <code>Running</code> state, and any batch HTCondor job
+on the same resource will be suspended.
+Whenever the COD application is inactive (either suspended, removed
+from the machine, or if it exits on its own), the state of the COD
+claim changes. The new state depends on why the application
+became inactive. 
+The batch HTCondor job then resumes.
+
+<P>
+To activate a COD claim, first define attributes about
+the job to be run in either the local configuration of the COD
+resource, or in a separate file as described in this manual section.
+Invoke the
+<I>condor_cod_activate</I> command to launch a specific instance of the
+job on a given COD claim ID.
+The options given to <I>condor_cod_activate</I> vary depending on if the
+job attributes are defined in the configuration file or are
+passed via a file to the <I>condor_cod_activate</I> tool itself.
+However, the <B>-id</B> option is always required by
+<I>condor_cod_activate</I>, and this option should be followed
+by a COD claim ID that
+the user acquired via <I>condor_cod_request</I>.
+
+<P>
+If the application is defined in the configuration files for the COD
+resource, the user provides the keyword (described in
+section&nbsp;<A HREF="#sec:cod-config-attrs">4.3.3</A>) that uniquely identifies the
+application's configuration attributes.
+To continue the example from that section, the user would spawn their
+job by specifying <code>-keyword FractGen</code>, for example:
+<PRE>
+condor_cod_activate -id "&lt;claim_id&gt;" -keyword FractGen
+</PRE>
+Substitute the <code>&lt;claim_id&gt;</code> with the valid Cod Claim Id.
+Using the same example as given above, this example would be:
+<PRE>
+condor_cod_activate -id "&lt;128.105.121.21:49973&gt;#1073352104#4" -keyword FractGen
+</PRE>
+<P>
+If the job attributes are placed into a file to be passed to the
+<I>condor_cod_activate</I> tool,
+the user must provide the
+name of the file using the <B>-jobad</B> option.
+For example, if the job attributes were defined in a file named
+<TT>cod-fractgen.txt</TT>, the user spawns the job using the
+command:
+<PRE>
+condor_cod_activate -id "&lt;claim_id&gt;" -jobad cod-fractgen.txt
+</PRE>
+Alternatively, if the filename specified with <B>-jobad</B> is
+<TT>-</TT>, the <I>condor_cod_activate</I> tool reads the job ClassAd from
+standard input (<TT>stdin</TT>).
+
+<P>
+Regardless of how the job attributes are defined, there are
+other options that <I>condor_cod_activate</I> accepts.
+These options specify the job ID for the application to be run.
+The job ID can either be specified in the job's ClassAd, 
+or it can be
+specified on the command line to <I>condor_cod_activate</I>.
+These options are <B>-cluster</B> and <B>-proc</B>.
+For example, to launch a COD job with keyword <code>foo</code>
+as cluster 23, proc 5, or 23.5,
+the user invokes:
+<PRE>
+condor_cod_activate -id "&lt;claim_id&gt;" -key foo -cluster 23 -proc 5
+</PRE>
+The <B>-cluster</B> and <B>-proc</B> arguments are optional,
+since the job ID is not required for COD.
+If not specified, the job ID defaults to <code>1.0</code>.
+
+<P>
+
+<H3><A NAME="SECTION00534300000000000000"></A><A NAME="sec:cod-claim-suspend"></A>
+<A NAME="45058"></A>
+<BR>
+4.3.4.3 Suspend
+</H3> 
+
+<P>
+Once a COD application has been activated with <I>condor_cod_activate</I>
+and is running on a COD resource, it may be temporarily suspended
+using <I>condor_cod_suspend</I>.
+In this case, the claim state becomes <code>Suspended</code>.
+Once a given COD job is suspended, if there are no other running COD
+jobs on the resource, an HTCondor batch job can use the resource.
+By suspending the COD application, the batch job is allowed to run.
+If a resource is idle when a COD application is first spawned,
+suspension of the COD job makes the batch resource available
+for use in the HTCondor system.
+Therefore, whenever a COD application has no work to perform, it should be
+suspended to prevent the resource from being wasted.
+
+<P>
+The interface of <I>condor_cod_suspend</I>
+supports the single option <B>-id</B>, to specify the COD claim ID
+to be suspended.
+For example:
+<PRE>
+condor_cod_suspend -id "&lt;claim_id&gt;"
+</PRE>
+
+<P>
+If the user attempts to suspend a COD job that is not running,
+<I>condor_cod_suspend</I> exits with an error message.
+The COD job may not be running 
+because it is already suspended or because the job was never spawned on
+the given COD claim in the first place.
+
+<P>
+
+<H3><A NAME="SECTION00534400000000000000"></A><A NAME="sec:cod-claim-resume"></A>
+<A NAME="45067"></A>
+<BR>
+4.3.4.4 Renew
+</H3> 
+
+<P>
+This command tells the <I>condor_startd</I> to renew the lease on the COD
+claim for the amount of lease time specified when the claim was
+created.  See section&nbsp;<A HREF="#sec:cod-claim-request">4.3.4</A> for more information
+on using leases.
+
+<P>
+The <I>condor_cod_renew</I> tool supports only the <B>-id</B> option to
+specify the COD claim ID the user wishes to renew.
+For example:
+<PRE>
+condor_cod_renew -id "&lt;claim_id&gt;"
+</PRE>
+
+<P>
+If the user attempts to renew a COD job that no longer exists,
+<I>condor_cod_renew</I> exits with an error message.
+
+<P>
+
+<H3><A NAME="SECTION00534500000000000000"></A><A NAME="sec:cod-claim-resume"></A>
+<A NAME="45076"></A>
+<BR>
+4.3.4.5 Resume
+</H3> 
+
+<P>
+Once a COD application has been suspended with <I>condor_cod_suspend</I>,
+it can be resumed using <I>condor_cod_resume</I>.
+In this case, the claim state returns to <code>Running</code>.
+If there is a regular batch job running on the same resource, it will
+automatically be suspended if a COD application is resumed.
+
+<P>
+The <I>condor_cod_resume</I> tool supports only the <B>-id</B> option to
+specify the COD claim ID the user wishes to resume.
+For example:
+<PRE>
+condor_cod_resume -id "&lt;claim_id&gt;"
+</PRE>
+
+<P>
+If the user attempts to resume a COD job that is not suspended,
+<I>condor_cod_resume</I> exits with an error message.
+
+<P>
+
+<H3><A NAME="SECTION00534600000000000000"></A><A NAME="sec:cod-claim-deactivate"></A>
+<A NAME="45085"></A>
+<BR>
+4.3.4.6 Deactivate
+</H3> 
+
+<P>
+If a given COD application does not exit on its own and needs to be
+removed manually, invoke the <I>condor_cod_deactivate</I>
+command to kill the job, but leave the COD claim ID valid for future
+COD jobs.
+The user must specify the claim ID they wish to deactivate using the
+<B>-id</B> option.
+For example:
+<PRE>
+condor_cod_deactivate -id "&lt;claim_id&gt;"
+</PRE>
+
+<P>
+By default, <I>condor_cod_deactivate</I> attempts to gracefully cleanup
+the COD application and give it time to exit.
+In this case the COD claim goes into the <code>Vacating</code> state and the
+<I>condor_starter</I> process controlling the job will send it the 
+<TT>KillSig</TT> defined for the job (SIGTERM by default).
+This allows the COD job to catch the signal and do whatever final work
+is required to exit cleanly.
+
+<P>
+However, if the program is stuck or if the user does not want to give
+the application time to clean itself up, the user may use the
+<B>-fast</B> option to tell the <I>condor_starter</I> to quickly kill the
+job and all its descendants using SIGKILL.
+In this case the COD claim goes into the <code>Killing</code> state.
+For example:
+<PRE>
+condor_cod_deactivate -id "&lt;claim_id&gt;" -fast
+</PRE>
+
+<P>
+In either case, once the COD job has finally exited, the COD claim
+will go into the <code>Idle</code> state and will be available for future
+COD applications.
+If there are no other active COD jobs on the same resource, the
+resource would become available for batch HTCondor jobs. 
+Whenever the user wishes to spawn another COD application, they can
+reuse this idle COD claim by using the same claim ID, without having
+to go through the process of running <I>condor_cod_request</I>.
+
+<P>
+If the user attempts a <I>condor_cod_deactivate</I> request on a COD claim
+that is neither <code>Running</code> nor <code>Suspended</code>, the <I>condor_cod</I>
+tool exits with an error message.
+
+<P>
+
+<H3><A NAME="SECTION00534700000000000000"></A><A NAME="sec:cod-claim-release"></A>
+<A NAME="45101"></A>
+<BR>
+4.3.4.7 Release
+</H3> 
+
+<P>
+If users no longer wish to use a given COD claim,
+they can release the claim with the <I>condor_cod_release</I> command.
+If there is a COD job running on the claim,
+the job will first be shut down (as if <I>condor_cod_deactivate</I> was
+used),
+and then the claim itself is removed from the resource and the claim
+ID is destroyed. 
+Further attempts to use the claim ID for any COD commands will fail.
+
+<P>
+The <I>condor_cod_release</I> command always prints out the state the
+COD claim was in when the request was received.
+This way, users can know what state a given COD application was in
+when the claim was destroyed.
+
+<P>
+Like most COD commands, <I>condor_cod_release</I> requires the claim ID to
+be specified using <B>-id</B>.
+In addition, <I>condor_cod_release</I> supports the <B>-fast</B> option
+(described above in the section about <I>condor_cod_deactivate</I>).
+If there is a job running or suspended on the claim when it is
+released with <code>condor_cod_release -fast</code>, the job will be
+immediately killed. 
+If <B>-fast</B> is not specified, the default behavior is to use a
+graceful shutdown, sending whatever signal is specified in the
+<TT>KillSig</TT> attribute for the job (SIGTERM by default).
+
+<P>
+
+<H3><A NAME="SECTION00534800000000000000"></A><A NAME="sec:cod-claim-delegate"></A>
+<A NAME="45113"></A>
+<BR>
+4.3.4.8 Delegate proxy
+</H3> 
+
+<P>
+In some cases, a user will want to delegate a copy of their user
+credentials (in the form of an x509 proxy) to the machine where one of
+their COD jobs will run.
+For example, sites wishing to spawn the <I>condor_starter</I> using glexec
+will need a copy of this credential before the claim can be activated.
+Therefore, beginning with HTCondor version 6.9.2, COD users have access
+to a the command <code>delegate_proxy</code>.
+If users do not specifically require this proxy delegation, this
+command should not be used and the rest of this section can be skipped.
+
+<P>
+The <code>delegate_proxy</code> command optionally takes a <B>-x509proxy</B>
+argument to specify the path to the proxy file to use.
+Otherwise, it uses the same discovery logic that <I>condor_submit</I> uses
+to find the user's currently active proxy.
+
+<P>
+Just like every other COD command (except <code>request</code>), this
+command requires a valid COD claim id (specified with <B>-id</B>) to
+indicate what COD claim you wish to delegate the credentials to.
+
+<P>
+This command can only be sent to idle COD claims, so it should be done
+before <code>activate</code> is run for the first time.
+However, once a proxy has been delegated, it can be reused by
+successive claim activations, so normally this step only has to happen
+once, not before every activate.
+If a proxy is going to expire, and a new one should be sent, this
+should only happen after the existing COD claim has been deactivated.
+
+<P>
+
+<H2><A NAME="SECTION00535000000000000000"></A><A NAME="sec:cod-limitations"></A>
+<A NAME="45119"></A>
+<BR>
+4.3.5 Limitations of COD Support in HTCondor
+</H2> 
+
+<P>
+HTCondor's support for COD has a few limitations:
+
+<P>
+
+<UL>
+<LI>Applications and data must be pre-staged at a given machine. 
+
+<P>
+</LI>
+<LI>There is no way to define limits for how long a given COD claim
+  can be active and how often it is run.
+
+<P>
+</LI>
+<LI>There is no accounting done for applications run under COD claims.
+  Therefore, use of a lot of COD resources in a given HTCondor pool
+  does not adversely affect user priority.
+
+<P>
+</LI>
+<LI>COD claims are not persistent on a given <I>condor_startd</I> daemon.
+
+<P>
+</LI>
+<LI>HTCondor does not provide a mechanism to parallelize a graphic
+  application to take advantage of COD.  
+  The HTCondor Team is not in the business of developing applications,
+  we only provide mechanisms to execute them.
+
+<P>
+</LI>
+</UL>
+<A NAME="45123"></A>
+
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1896"
+  HREF="4_4Hooks.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1890"
+  HREF="4_Miscellaneous_Concepts.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1884"
+  HREF="4_2HTCondor_s_Checkpoint.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1892"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1894"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1897"
+  HREF="4_4Hooks.html">4.4 Hooks</A>
+<B> Up:</B> <A NAME="tex2html1891"
+  HREF="4_Miscellaneous_Concepts.html">4. Miscellaneous Concepts</A>
+<B> Previous:</B> <A NAME="tex2html1885"
+  HREF="4_2HTCondor_s_Checkpoint.html">4.2 HTCondor's Checkpoint Mechanism</A>
+ &nbsp; <B>  <A NAME="tex2html1893"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1895"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

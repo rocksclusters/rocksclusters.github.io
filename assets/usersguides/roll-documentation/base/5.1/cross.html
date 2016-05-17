@@ -1,0 +1,272 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+> Cross Kickstarting </TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Roll: Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE=" Advanced Tasks "
+HREF="advanced-tasks.html"><LINK
+REL="PREVIOUS"
+TITLE=" Frontend Central Server "
+HREF="central.html"><LINK
+REL="NEXT"
+TITLE=" Adding Kernel Boot Parameters "
+HREF="bootflags.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Base Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="central.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 7. Advanced Tasks</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="bootflags.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="CROSS"
+>7.3. Cross Kickstarting</A
+></H1
+><P
+>Rocks supports heterogeneous clusters that contain nodes of different hardware
+architectures with a process called cross-kickstarting.  To support an
+architecture different than its own, a frontend needs to expand its local
+distribution with additional packages.  This section describes how to install
+distributions for other architectures on your frontend.</P
+><P
+>Start with a frontend node, as described by <A
+HREF="install-frontend.html"
+>Install Frontend</A
+>,
+or <A
+HREF="upgrade-frontend.html"
+>Upgrade Frontend</A
+>. Follow the instructions below for every
+desired architecture. </P
+><P
+>For this example, we assume the frontend is an x86 (32-bit) and the
+compute nodes are x86_64 CPUs (64-bit).</P
+><P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>Retrieve the required Rocks rolls for x86_64 (and optional rolls as desired)</P
+><P
+>For each roll, add it to the frontend's roll repository:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks add roll &#60;roll-name&#62;.iso</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>Rebuild your distribution for the new architecture with the following flags. </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># cd /export/rocks/install
+# rocks create distro
+# rocks create distro arch=x86_64</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>The above assumes your frontend is running the i386 version of Rocks.
+If your frontend is running the x86_64 version of Rocks and you want to support
+i386-based nodes with the frontend, you'll execute:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># cd /export/rocks/install
+# rocks create distro
+# rocks create distro arch=i386</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+></OL
+><P
+>Now your frontend is prepared to cross-kickstart compute nodes and other
+cluster appliances of different architectures.</P
+><DIV
+CLASS="CAUTION"
+><P
+></P
+><TABLE
+CLASS="CAUTION"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/caution.png"
+HSPACE="5"
+ALT="Caution"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>Rocks does not currently support PXE cross-kickstart installs; you must boot
+non-native compute nodes from a native-architecture Rocks CD that
+contains the Kernel Roll.
+In the above example you must install a x86_64 compute node from an
+x86_64 boot media instead of PXE.</P
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="central.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="bootflags.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Frontend Central Server</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="advanced-tasks.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Adding Kernel Boot Parameters</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

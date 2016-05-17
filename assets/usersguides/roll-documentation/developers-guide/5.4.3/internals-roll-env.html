@@ -1,0 +1,219 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+> Roll Development Environment </TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Roll Developer's Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE=" Roll Internals "
+HREF="internals.html"><LINK
+REL="PREVIOUS"
+TITLE=" Roll Internals "
+HREF="internals.html"><LINK
+REL="NEXT"
+TITLE="Packages"
+HREF="internals-packages.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Roll Developer's Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/developer.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="internals.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 2. Roll Internals</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="internals-packages.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="INTERNALS-ROLL-ENV"
+>2.1. Roll Development Environment</A
+></H1
+><P
+>In this section, we'll build an example roll (the Valgrind Roll) from the
+ground up.</P
+><P
+>First, we need to create a development environment that can be used to build
+the Valgrind Roll.
+On a Rocks frontend, execute:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># mkdir -p /export/src/roll
+# cd /export/src/roll
+# rocks create new roll name=valgrind</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>There are several more options you can supply to
+<CODE
+CLASS="CONSTANT"
+>"rocks create new roll"</CODE
+> (execute
+<CODE
+CLASS="CONSTANT"
+>"rocks create new roll help"</CODE
+> to see all the options).</P
+><P
+>The command <CODE
+CLASS="CONSTANT"
+>"rocks create new roll name=valgrind"</CODE
+>
+creates the following file system:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>valgrind -+
+          |
+          +- graphs -+
+          |
+          +- nodes -+
+          |
+          +- src -+
+          |
+          +- version.mk
+          |
+          +- Makefile</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Now we are ready to add packages to the Valgrind Roll.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="internals.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="internals-packages.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Roll Internals</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="internals.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Packages</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

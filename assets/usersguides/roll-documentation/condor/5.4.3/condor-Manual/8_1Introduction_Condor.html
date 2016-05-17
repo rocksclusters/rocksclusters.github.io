@@ -1,0 +1,226 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>8.1 Introduction to Condor Versions</TITLE>
+<META NAME="description" CONTENT="8.1 Introduction to Condor Versions">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="8_2Upgrading_from.html">
+<LINK REL="previous" HREF="8_Version_History.html">
+<LINK REL="up" HREF="8_Version_History.html">
+<LINK REL="next" HREF="8_2Upgrading_from.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html2217"
+  HREF="8_2Upgrading_from.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2211"
+  HREF="8_Version_History.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2205"
+  HREF="8_Version_History.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2213"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2215"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2218"
+  HREF="8_2Upgrading_from.html">8.2 Upgrading from the</A>
+<B> Up:</B> <A NAME="tex2html2212"
+  HREF="8_Version_History.html">8. Version History and</A>
+<B> Previous:</B> <A NAME="tex2html2206"
+  HREF="8_Version_History.html">8. Version History and</A>
+ &nbsp; <B>  <A NAME="tex2html2214"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2216"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html2219"
+  HREF="8_1Introduction_Condor.html#SECTION00911000000000000000">8.1.1 Condor Version Number Scheme</A>
+<LI><A NAME="tex2html2220"
+  HREF="8_1Introduction_Condor.html#SECTION00912000000000000000">8.1.2 The Stable Release Series</A>
+<LI><A NAME="tex2html2221"
+  HREF="8_1Introduction_Condor.html#SECTION00913000000000000000">8.1.3 The Development Release Series</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00910000000000000000"></A><A NAME="sec:History-Intro"></A>
+<BR>
+8.1 Introduction to Condor Versions
+</H1>
+
+<P>
+This chapter provides descriptions of what features have been added or
+bugs fixed for each version of Condor.
+The first section describes the Condor version numbering scheme, what
+the numbers mean, and what the different <I>release series</I> are.
+The rest of the sections each describe a specific release series, and
+all the Condor versions found in that series.
+
+<P>
+
+<H2><A NAME="SECTION00911000000000000000"></A><A NAME="sec:Version-Number-Scheme"></A>
+<BR>
+8.1.1 Condor Version Number Scheme
+</H2>
+
+<P>
+Starting with version 6.0.1, Condor adopted a new, hopefully easy to
+understand version numbering scheme.
+It reflects the fact that Condor is both a production system and a
+research project.
+The numbering scheme was primarily taken from the Linux kernel's
+version numbering, so if you are familiar with that, it should seem
+quite natural.
+
+<P>
+There will usually be two Condor versions available at any given time,
+the <I>stable</I> version, and the <I>development</I> version.
+Gone are the days of ``patch level 3'', ``beta2'', or any other random
+words in the version string.
+All versions of Condor now have exactly three numbers, separated by
+``.''   
+
+<P>
+
+<UL>
+<LI>The first number represents the major version number, and will
+change very infrequently.
+
+<P>
+</LI>
+<LI><I>The thing that determines whether a version of Condor is
+<I>stable</I> or <I>development</I> is the second digit.
+Even numbers represent stable versions, while odd numbers represent
+development versions.</I>
+
+<P>
+</LI>
+<LI>The final digit represents the minor version number, which
+defines a particular version in a given release series.
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<H2><A NAME="SECTION00912000000000000000"></A><A NAME="sec:Stable-Series"></A>
+<BR>
+8.1.2 The Stable Release Series
+</H2>
+
+<P>
+People expecting the stable, production Condor system should download
+the stable version, denoted with an even number in the second digit of
+the version string.
+Most people are encouraged to use this version.  
+We will only offer our paid support for versions of Condor from the
+stable release series.
+
+<P>
+<I>On the stable series, new minor version releases will only
+be made for bug fixes and to support new platforms.</I>
+No new features will be added to the stable series.
+People are encouraged to install new stable versions of Condor when
+they appear, since they probably fix bugs you care about.
+Hopefully, there will not be many minor version releases for any given
+stable series.
+
+<P>
+
+<H2><A NAME="SECTION00913000000000000000"></A><A NAME="sec:Developement-Series"></A>
+<BR>
+8.1.3 The Development Release Series
+</H2>
+
+<P>
+Only people who are interested in the latest research, new features
+that haven't been fully tested, etc, should download the development
+version, denoted with an odd number in the second digit of the version
+string.  
+We will make a best effort to ensure that the development series will
+work, but we make no guarantees.
+
+<P>
+On the development series, new minor version releases will probably
+happen frequently.
+People should not feel compelled to install new minor versions unless
+they know they want features or bug fixes from the newer development
+version.
+
+<P>
+<I>Most sites will probably never want to install a development
+version of Condor for any reason.</I>
+Only if you know what you are doing (and like pain), or were
+explicitly instructed to do so by someone on the Condor Team, should
+you install a development version at your site.
+
+<P>
+After the feature set of the development series is satisfactory to the
+Condor Team, we will put a code freeze in place, and from that point
+forward, only bug fixes will be made to that development series.
+When we have fully tested this version, we will release a new stable
+series, resetting the minor version number, and start work on a new
+development release from there.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html2217"
+  HREF="8_2Upgrading_from.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2211"
+  HREF="8_Version_History.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2205"
+  HREF="8_Version_History.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2213"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2215"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2218"
+  HREF="8_2Upgrading_from.html">8.2 Upgrading from the</A>
+<B> Up:</B> <A NAME="tex2html2212"
+  HREF="8_Version_History.html">8. Version History and</A>
+<B> Previous:</B> <A NAME="tex2html2206"
+  HREF="8_Version_History.html">8. Version History and</A>
+ &nbsp; <B>  <A NAME="tex2html2214"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2216"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

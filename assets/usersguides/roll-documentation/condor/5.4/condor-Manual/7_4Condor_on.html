@@ -1,0 +1,665 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>7.4 Condor on Windows</TITLE>
+<META NAME="description" CONTENT="7.4 Condor on Windows">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="7_5Grid_Computing.html">
+<LINK REL="previous" HREF="7_3Running_Condor.html">
+<LINK REL="up" HREF="7_Frequently_Asked.html">
+<LINK REL="next" HREF="7_5Grid_Computing.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html2063"
+  HREF="7_5Grid_Computing.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2057"
+  HREF="7_Frequently_Asked.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2051"
+  HREF="7_3Running_Condor.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2059"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2061"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2064"
+  HREF="7_5Grid_Computing.html">7.5 Grid Computing</A>
+<B> Up:</B> <A NAME="tex2html2058"
+  HREF="7_Frequently_Asked.html">7. Frequently Asked Questions</A>
+<B> Previous:</B> <A NAME="tex2html2052"
+  HREF="7_3Running_Condor.html">7.3 Running Condor Jobs</A>
+ &nbsp; <B>  <A NAME="tex2html2060"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2062"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html2065"
+  HREF="7_4Condor_on.html#SECTION00841000000000000000">Will Condor work on a network of mixed Unix and Windows machines?</A>
+<LI><A NAME="tex2html2066"
+  HREF="7_4Condor_on.html#SECTION00842000000000000000">What versions of Windows will Condor run on?</A>
+<LI><A NAME="tex2html2067"
+  HREF="7_4Condor_on.html#SECTION00843000000000000000">My Windows program works fine when executed on its own, but it
+does not work when submitted to Condor.</A>
+<LI><A NAME="tex2html2068"
+  HREF="7_4Condor_on.html#SECTION00844000000000000000">Why is the <I>condor_master</I> daemon failing to start, giving an error about
+<BR>   	"In StartServiceCtrlDispatcher, Error number: 1063"?</A>
+<LI><A NAME="tex2html2069"
+  HREF="7_4Condor_on.html#SECTION00845000000000000000">Jobs submitted from Windows give an error referring to a credential.</A>
+<LI><A NAME="tex2html2070"
+  HREF="7_4Condor_on.html#SECTION00846000000000000000">Jobs submitted from Unix to execute on Windows do not work properly.</A>
+<LI><A NAME="tex2html2071"
+  HREF="7_4Condor_on.html#SECTION00847000000000000000">When I run <I>condor_status</I> I get a communication error, or the Condor daemon log files report a failure to bind.</A>
+<LI><A NAME="tex2html2072"
+  HREF="7_4Condor_on.html#SECTION00848000000000000000">My job starts but exits right away with status 128.</A>
+<LI><A NAME="tex2html2073"
+  HREF="7_4Condor_on.html#SECTION00849000000000000000">How can I access network files with Condor on Windows?</A>
+<LI><A NAME="tex2html2074"
+  HREF="7_4Condor_on.html#SECTION008410000000000000000">What is wrong when <I>condor_off</I> cannot find my host, and <I>condor_status</I> does not give me a complete host name?</A>
+<LI><A NAME="tex2html2075"
+  HREF="7_4Condor_on.html#SECTION008411000000000000000">Does <TT>USER_JOB_WRAPPER</TT> work on Windows machines?</A>
+<LI><A NAME="tex2html2076"
+  HREF="7_4Condor_on.html#SECTION008412000000000000000"><I>condor_store_cred</I> is failing, and I'm sure I'm typing my password correctly.</A>
+<LI><A NAME="tex2html2077"
+  HREF="7_4Condor_on.html#SECTION008413000000000000000">My submit machine cannot have more than 120 jobs running concurrently. Why?</A>
+<LI><A NAME="tex2html2078"
+  HREF="7_4Condor_on.html#SECTION008414000000000000000">Why do Condor daemons exit after logging a 10038 (WSAENOTSOCK) error on some machines?</A>
+<LI><A NAME="tex2html2079"
+  HREF="7_4Condor_on.html#SECTION008415000000000000000">Why do Condor daemons exit with "Unexpected performance counter size", "unable to spawn the ProcD" or "loadavg thread died, restarting. (exit code=2)" errors?</A>
+<LI><A NAME="tex2html2080"
+  HREF="7_4Condor_on.html#SECTION008416000000000000000">Why does the Windows Installer fail with ``Error 2738. Could not access VBScript run time for custom action''?</A>
+<LI><A NAME="tex2html2081"
+  HREF="7_4Condor_on.html#SECTION008417000000000000000">Why does Condor sometimes fail to parse floating point numbers?</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00840000000000000000">
+7.4 Condor on Windows</A>
+</H1>
+
+<P>
+<A NAME="47245"></A>
+
+<H2><A NAME="SECTION00841000000000000000">
+Will Condor work on a network of mixed Unix and Windows machines?</A>
+</H2>
+
+<P>
+You can have a Condor pool that consists of both Unix and Windows machines.
+
+<P>
+Your central manager can be either Windows or Unix.  For example,
+even if you had a pool consisting strictly of Unix machines, you could
+use a Windows box for your central manager, and vice versa.
+
+<P>
+Submitted jobs can originate from either a 
+Windows <B>or</B> a Unix machine,
+and be destined to run on Windows
+<B>or</B> a Unix machine.
+Note that there are still restrictions on the supported universes
+for jobs executed on Windows machines.
+
+<P>
+So, in summary:
+
+<P>
+
+<OL>
+<LI>A single Condor pool can consist of both Windows and Unix
+machines.
+
+<P>
+</LI>
+<LI>It does not matter at all if your Central Manager is Unix or Windows.
+
+<P>
+</LI>
+<LI>Unix machines can submit jobs to run on other Unix or Windows
+machines.
+
+<P>
+</LI>
+<LI>Windows machines can submit jobs to run on other Windows
+or Unix machines.
+
+<P>
+</LI>
+</OL>
+
+<P>
+
+<H2><A NAME="SECTION00842000000000000000">
+What versions of Windows will Condor run on?</A>
+</H2>
+
+<P>
+See Section&nbsp;<A HREF="1_5Availability.html#sec:Availability">1.5</A>, on
+page&nbsp;<A HREF="1_5Availability.html#sec:Availability"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+
+<H2><A NAME="SECTION00843000000000000000">
+My Windows program works fine when executed on its own, but it
+does not work when submitted to Condor.</A>
+</H2>
+
+<P>
+<U>First</U>, make sure that the program really does work
+outside of Condor under Windows,
+that the disk is not full,
+and that the system is not out of user resources.
+
+<P>
+<U>As the next consideration</U>,
+know that 
+some Windows programs do not run properly because they are dynamically linked,
+and they cannot find the <TT>.dll</TT> files that they depend on.
+Version 6.4.x of Condor sets the <TT>PATH</TT> to be empty when
+running a job.
+To avoid these difficulties, do one of the following
+
+<OL>
+<LI>statically link the application
+</LI>
+<LI>wrap the job in a script that sets up the environment
+</LI>
+<LI>submit the job from a correctly-set environment with the command
+<PRE>
+getenv = true
+</PRE>
+in the submit description file.
+This will copy your environment into the job's environment.
+</LI>
+<LI>send the required <TT>.dll</TT> files along with the job
+using the submit description file command <B>transfer_input_files</B>.
+</LI>
+</OL>
+
+<P>
+
+<H2><A NAME="SECTION00844000000000000000">
+Why is the <I>condor_master</I> daemon failing to start, giving an error about
+<BR>   	"In StartServiceCtrlDispatcher, Error number: 1063"?</A>
+</H2>
+In Condor for Windows, the <I>condor_master</I> daemon is started as a service.
+Therefore,
+starting the <I>condor_master</I> daemon as you would on Unix will not work.
+Start Condor on Windows machines using either
+<PRE>
+	net start condor
+</PRE>
+or start the Condor service from the Service Control Manager located in
+the Windows Control Panel.
+
+<P>
+
+<H2><A NAME="SECTION00845000000000000000">
+Jobs submitted from Windows give an error referring to a credential.</A>
+</H2>
+
+<P>
+Jobs submitted from a Windows machine require a stashed password in
+order for Condor to perform certain operations on the user's behalf.
+Refer to section <A HREF="6_2Microsoft_Windows.html#sec:windows-sps">6.2.3</A> for information about password
+storage on Windows.  The command which stashes a password for a user
+is <I>condor_store_cred</I>.  See the manual page on on
+page&nbsp;<A HREF="condor_store_cred.html#man-condor-store-cred"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for usage details.
+<A NAME="47278"></A>
+
+<P>
+The error message that Condor gives if a user has not stashed a
+password is of the form:
+<PRE>
+ERROR: No credential stored for username@machinename
+
+        Correct this by running:
+	        condor_store_cred add
+</PRE>
+<P>
+
+<H2><A NAME="SECTION00846000000000000000">
+Jobs submitted from Unix to execute on Windows do not work properly.</A>
+</H2>
+
+<P>
+A difficulty with defaults causes jobs submitted from Unix for execution
+on a Windows platform to remain in the queue, but make no progress.
+For jobs with this problem, log files will contain error messages
+pointing to shadow exceptions.
+
+<P>
+This difficulty stems from the defaults for whether file transfer
+takes place.
+The workaround for this problem is to place the line
+<PRE>
+   TRANSFER_FILES  = ALWAYS
+</PRE>
+into the submit description file for jobs submitted from a Unix
+machine for execution on a Windows machine.
+
+<P>
+
+<H2><A NAME="SECTION00847000000000000000">
+When I run <I>condor_status</I> I get a communication error, or the Condor daemon log files report a failure to bind.</A>
+</H2>
+
+<P>
+Condor uses the first network interface it sees on your machine.
+This problem usually means you have an extra, inactive network
+interface (such as a RAS dial up interface) defined before the
+regular network interface.
+
+<P>
+To solve this problem, either change the order of the network
+interfaces in the Control Panel, or explicitly set which network
+interface Condor should use by adding the following definition to the
+Condor configuration file:
+
+<P>
+<PRE>
+NETWORK_INTERFACE = &lt;ip-address&gt;
+</PRE>
+
+<P>
+Where <code>&lt;ip-address&gt;</code> is the IP address of the interface that
+Condor is to use.
+
+<P>
+
+<H2><A NAME="SECTION00848000000000000000">
+My job starts but exits right away with status 128.</A>
+</H2>
+<A NAME="47288"></A>
+
+<P>
+This can occur when the machine your job is running on is missing a
+DLL (Dynamically Linked Library) required by your program.
+The solution is to find the DLL file the program needs and put it in
+the TRANSFER_INPUT_FILES list in the job's submit file.
+
+<P>
+To find out what DLLs your program depends on, right-click the program
+in Explorer, choose Quickview, and look under ``Import List''.
+
+<P>
+
+<H2><A NAME="SECTION00849000000000000000">
+How can I access network files with Condor on Windows?</A>
+</H2>
+
+<P>
+Five methods for making access of network files work with Condor
+are given in 
+section&nbsp;<A HREF="6_2Microsoft_Windows.html#sec:network-files-solutions">6.2.9</A>.
+
+<P>
+
+<H2><A NAME="SECTION008410000000000000000">
+What is wrong when <I>condor_off</I> cannot find my host, and <I>condor_status</I> does not give me a complete host name?</A>
+</H2>
+
+<P>
+Given the command
+<PRE>
+  condor_off hostname2
+</PRE>
+an error message of the form
+<PRE>
+  Can't find address for master hostname2.somewhere.edu
+</PRE>
+appears.
+Yet, when looking at the host names with
+<PRE>
+  condor_status -master
+</PRE>
+the output is of the form 
+<PRE>
+  hostname1.somewhere.edu
+  hostname2
+  hostname3.somewhere.edu
+</PRE>
+
+<P>
+To correct this incomplete host name, add an entry to the
+configuration file for
+<TT>DEFAULT_DOMAIN_NAME</TT> <A NAME="47720"></A> <A NAME="47721"></A> 
+that specifies the domain name to be used.
+For the example given, the configuration entry will be
+<PRE>
+  DEFAULT_DOMAIN_NAME = somewhere.edu
+</PRE>
+
+<P>
+After adding this configuration file entry, use <I>condor_restart</I>
+to restart the Condor daemons and effect the change.
+
+<P>
+
+<H2><A NAME="SECTION008411000000000000000">
+Does <TT>USER_JOB_WRAPPER</TT> work on Windows machines?</A>
+</H2>
+The <TT>USER_JOB_WRAPPER</TT> <A NAME="47728"></A> <A NAME="47729"></A> configuration variable
+does work on Windows machines.
+The wrapper must be either a
+batch script with a file name extension of <TT>.bat</TT> or <TT>.cmd</TT>,
+or an
+executable with a file name extension of <TT>.exe</TT> or <TT>.com</TT>.
+
+<P>
+An example of a batch script sets environment variables:
+<PRE>
+REM set some environment variables
+set LICENSE_SERVER=192.168.1.202:5012
+set MY_PARAMS=2
+
+REM Run the actual job now
+%*
+</PRE>
+<P>
+
+<H2><A NAME="SECTION008412000000000000000">
+<I>condor_store_cred</I> is failing, and I'm sure I'm typing my password correctly.</A>
+</H2>
+
+<P>
+First, make sure the <I>condor_schedd</I> daemon is running.
+
+<P>
+Next, check the log file written by the <I>condor_schedd</I> daemon.
+It will contain more detailed information about the failure.
+Frequently, the error is a result of 
+<code>PERMISSION DENIED</code> errors.
+More information about proper configuration of 
+security settings is on page&nbsp;<A HREF="3_6Security.html#sec:Host-Security"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+
+<H2><A NAME="SECTION008413000000000000000">
+My submit machine cannot have more than 120 jobs running concurrently. Why?</A>
+</H2>
+
+<P>
+<A NAME="47318"></A>
+Windows is likely to be running out of desktop heap. 
+Confirm this to be the case
+by looking in the log for the <I>condor_schedd</I> daemon
+to see if <I>condor_shadow</I> daemons are immediately
+exiting with status 128.
+If this is the case, increase the desktop heap size.
+Open the registry key:
+
+<P>
+<PRE>
+HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\SubSystems\Windows
+</PRE>
+<P>
+The SharedSection value can have three values separated by commas.
+The third value controls the desktop heap size for non-interactive desktops,
+which the Condor service uses.
+The default is 512 (Kbytes).
+60 <I>condor_shadow</I> daemons consume about 256 Kbytes,
+hence 120 shadows can run with the default value.
+To be able to run a maximum of 300 <I>condor_shadow</I> daemons,
+set this value at 1280.
+
+<P>
+Reboot the system for the changes to take effect.
+For more information,
+see Microsoft Article Q184802.
+
+<P>
+
+<H2><A NAME="SECTION008414000000000000000">
+Why do Condor daemons exit after logging a 10038 (WSAENOTSOCK) error on some machines?</A>
+</H2>
+
+<P>
+Usually when Condor daemons exit in this manner, it is because the system in
+question has a non-standard Winsock Layered Service Provider (LSP) installed
+on it. An LSP is, in effect, a plug-in for the TCP/IP protocol stack.
+LSPs have been 
+installed as part of anti-virus software and other security-related
+packages.
+
+<P>
+There are several tools available to check your system for the
+presence of LSPs. One with which we have had success is <I>LSP-Fix</I>,
+available at <A NAME="tex2html95"
+  HREF="http://www.cexx.org/lspfix.htm">http://www.cexx.org/lspfix.htm</A>.
+Any non-Microsoft LSPs identified by
+this tool may potentially be causing the WSAENOTSOCK error in Condor.
+Although the <I>LSP-Fix</I> tool allows the direct removal of an LSP,
+it is likely advisable to completely remove the application for which
+the LSP is a part via the Control Panel.
+
+<P>
+Another approach is to completely reset the TCP/IP stack to its
+original state.  This can be done using the <code>netsh</code> tool:
+<PRE>
+netsh int ip reset reset-stack.log
+</PRE>
+The command will return the TCP/IP stack back to the state is was
+in when the OS was first installed.  The log file defined above will
+record all the configuration changes made by <code>netsh</code>.
+
+<P>
+
+<H2><A NAME="SECTION008415000000000000000">
+Why do Condor daemons exit with "Unexpected performance counter size", "unable to spawn the ProcD" or "loadavg thread died, restarting. (exit code=2)" errors?</A>
+</H2>
+
+<P>
+Condor on Windows platforms relies on built-in performance counters
+for its operation. 
+If performance counters that Condor requires are disabled,
+daemons may exit with a message such as
+
+<P>
+<PRE>
+1/26 09:16:42 (fd:2) (pid:5732) ERROR: "Unexpected performance counter
+    size for total CPU: 0 (expected: 8)" at line 2846 in file
+    ..\src\condor_procapi\procapi.cpp
+</PRE>
+<P>
+or
+
+<P>
+<PRE>
+1/20 15:29:14 (pid:2484) ERROR "unable to spawn the ProcD" at line 136
+    in file ..\src\condor_c++_util\proc_family_proxy.C
+</PRE>
+<P>
+and even
+
+<P>
+<PRE>
+4/16 10:49:13 loadavg thread died, restarting. (exit code=2)
+</PRE>
+<P>
+To enable the performance counters, check the registry key
+<PRE>
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\PerfProc\Performance
+</PRE>If a value for <code>Disable Performance Counters</code> exists, delete it or set
+it to <code>0</code>.
+
+<P>
+
+<H2><A NAME="SECTION008416000000000000000">
+Why does the Windows Installer fail with ``Error 2738. Could not access VBScript run time for custom action''?</A>
+</H2>
+
+<P>
+This error results when the VBScript engine is not registered.
+Since Condor's installer depends on the VBScript engine for custom steps,
+the installer will fail if it cannot find the VBScript engine.
+
+<P>
+The fix is to register the VMScript engine.
+With Administrative privilege:
+
+<P>
+
+<OL>
+<LI>Launch the Command Prompt (<I>cmd.exe</I>) as the Administrator. 
+</LI>
+<LI>At the Command Prompt, change directories to the <TT>System32</TT> folder, 
+within the Windows folder.
+</LI>
+<LI>Issue the command 
+<PRE>
+  regsvr32 vbscript.dll
+</PRE>
+</LI>
+</OL>
+
+<P>
+If successful, the message
+<PRE>
+  DllRegisterServer in vbscript.dll succeeded.
+</PRE>
+is printed.
+
+<P>
+
+<H2><A NAME="SECTION008417000000000000000">
+Why does Condor sometimes fail to parse floating point numbers?</A>
+</H2>
+
+<P>
+Condor assumes that all floating point numbers are of the form x.y, which,
+depending on a computer's current locale, may not always be the case. This
+problem occurs even if Condor is running under an account that has had the
+locale configured correctly.  The problem lies in the template user account
+which is used to create Condor's dynamic accounts. Even if the entire
+system is configured to use a new locale, this template account seems to
+retain the original system locale. The following steps can be used fix
+this problem.
+
+<P>
+To create a default user profile, you must be logged on as 
+<B>Administrator</B> or be a member of the <B>Administrators</B> group.
+Create a new user profile for all new user accounts on a computer to be
+based on. To create subsequent profiles, you can use the new user account
+as a template. Here is how to use the new user profile as a template account
+to use as a new user's profile:
+
+<OL>
+<LI><B>Log on</B> to the computer as the new user, and customize the
+desktop if appropriate. 
+</LI>
+<LI>Optionally, install and configure any applications to be shared
+by user accounts made from this template. 
+</LI>
+<LI><B>Log off</B>, and then log on as the <B>Administrator</B>. 
+</LI>
+<LI>In the <B>Control Panel</B>, open the <B>System</B> Control Panel
+ applet. 
+ 
+<UL>
+<LI>On <B>Vista</B> click on the 
+ <B>Advanced system settings</B> <B>Task</B> listed in the left pane.
+ 
+</LI>
+</UL> 
+</LI>
+<LI>On the <B>Advanced</B> tab, under <B>User Profiles</B>, 
+click <B>Settings</B>. 
+</LI>
+<LI>Under <B>Profiles stored on this computer</B>, select the user
+you created to be the template, and then click <B>Copy To</B>. 
+</LI>
+<LI>To create the default user profile for the computer, type the path
+to the default user:
+ 
+<UL>
+<LI>On Windows 2000: <code>%WinDir%\Profiles\Default</code>;
+</LI>
+<LI>On Windows XP: <code>%SystemDrive%\Documents and Settings\Defualt</code>;
+</LI>
+<LI>On Vista: <code>%SystemDrive%\Users\Default</code>.
+ 
+</LI>
+</UL>
+</LI>
+<LI>In the <B>Copy To</B> dialog box, under <B>Permitted to use</B>,
+click <B>Change</B>. 
+</LI>
+<LI>In the <B>Select User or Group</B> dialog box, in the 
+<B>Enter the object name to select</B> text box, type: <B>Everyone</B>
+and click <B>OK</B>.
+</LI>
+<LI>Click <B>OK</B> to dismiss the <B>Copy To</B> dialog box.
+</LI>
+<LI>Click <B>OK</B> again to dismiss the <B>User Profiles</B> dialog box.
+</LI>
+<LI>Finally, click <B>OK</B> one last time to dismiss the
+<B>System Properties</B> dialog.
+</LI>
+</OL>
+
+<P>
+If Condor has already created some dynamic accounts, you will need to remove
+them so that Condor can re-create them with the new template account.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html2063"
+  HREF="7_5Grid_Computing.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2057"
+  HREF="7_Frequently_Asked.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2051"
+  HREF="7_3Running_Condor.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2059"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2061"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2064"
+  HREF="7_5Grid_Computing.html">7.5 Grid Computing</A>
+<B> Up:</B> <A NAME="tex2html2058"
+  HREF="7_Frequently_Asked.html">7. Frequently Asked Questions</A>
+<B> Previous:</B> <A NAME="tex2html2052"
+  HREF="7_3Running_Condor.html">7.3 Running Condor Jobs</A>
+ &nbsp; <B>  <A NAME="tex2html2060"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2062"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

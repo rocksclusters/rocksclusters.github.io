@@ -1,0 +1,208 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Release 2.2 - changes from 2.1.2</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Release Notes"
+HREF="release-notes.html"><LINK
+REL="PREVIOUS"
+TITLE="Release 2.2.1 - changes from 2.2"
+HREF="x8715.html"><LINK
+REL="NEXT"
+TITLE="Release 2.1.2 - changes from 2.1.1"
+HREF="x8735.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Base</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x8715.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Appendix B. Release Notes</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x8735.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="AEN8720"
+>B.14. Release 2.2 - changes from 2.1.2</A
+></H1
+><P
+>	Based on RedHat 7.2.
+	</P
+><P
+>	Upgraded Ganglia (provided by Matt Massie of UC Berkeley) to 2.1.1.
+	</P
+><P
+>	Incorporated PVFS RPMs that were graciously provided to us
+	from Najib Ninaba and Laurence Liew who work at
+	Scalable Systems Pte Ltd in Singapore.
+	</P
+><P
+>	insert-ethers looks to see if a Rocks distribution exists. If it
+	doesn't, insert-ethers rebuilds it.
+	</P
+><P
+>	Upgraded MPICH-GM to version 1.2.1..7b.
+	</P
+><P
+>	Added the "stream" memory bandwidth benchmark.
+	</P
+><P
+>	Added functionality to rocks-dist so distributions can be rebuilt
+	without having to mirror the entire distribution.
+	</P
+><P
+>	Implemented a "greedy" partitioning scheme on compute nodes. The
+	default partitioning is: 4 GB root partition, then /state/partition1
+	is the remainder of the first drive. The second drive, if present,
+	will have one partition labeled "/state/partition2".
+	The third drive, if present, will have one partition labeled
+	"/state/partition3", etc.
+	</P
+><P
+>	Bug fix - added a "watchdog" timer to kickstart. This reboots a
+	kickstarting node if it can't find a kickstart file. This problem
+	was reported by folks trying to kickstart multiple nodes at the
+	same time.
+	</P
+><P
+>	Bug fix - increased the polling intervals for maui so it won't time
+	out when asking PBS about node status on larger clusters.
+	</P
+><P
+>	Bug fix - makedhcp now adds the full pathname to pxelinux.0 when
+	it builds dhcpd.conf.
+	</P
+><P
+>	Bug fix - create a device node for /dev/cdrom.
+	</P
+><P
+>	Bug fix - /var/log/messages is now appropriately rotated.
+	</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x8715.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x8735.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Release 2.2.1 - changes from 2.2</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="release-notes.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Release 2.1.2 - changes from 2.1.1</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

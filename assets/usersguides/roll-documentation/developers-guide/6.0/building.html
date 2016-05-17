@@ -1,0 +1,393 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+> Building Your Roll </TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Roll Developer's Guide"
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE="Configuring Software with XML Files"
+HREF="internals-xml-files.html"><LINK
+REL="NEXT"
+TITLE=" Testing Your Roll "
+HREF="testing.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="CHAPTER"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Roll Developer's Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/developer.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="internals-xml-files.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="testing.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="CHAPTER"
+><H1
+><A
+NAME="BUILDING"
+></A
+>Chapter 3.  Building Your Roll </H1
+><P
+>In this section, we'll show you how to build your roll and we'll examine
+some of the files that are created when you build your roll.</P
+><P
+>Building your roll is rather simple.
+To build the example Valgrind Roll that we developed in the previous
+section, execute:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># cd /export/src/roll/valgrind
+# make roll</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>This will take several minutes to build.
+When it completes, the most important file is
+<CODE
+CLASS="CONSTANT"
+>valgrind-1.0-0.x86_64.disk1.iso</CODE
+> --
+this is the Valgrind Roll in an ISO image.
+You can burn this ISO to a CD/DVD or you can transport it to a frontend and
+install it like you would any other roll.</P
+><P
+>When you execute "make roll", it will descend into the
+<CODE
+CLASS="CONSTANT"
+>src</CODE
+> directory and try to build every package.
+In the case of the Valgrind Roll, there are two subdirectories under
+<CODE
+CLASS="CONSTANT"
+>src</CODE
+>: <CODE
+CLASS="CONSTANT"
+>usersguide</CODE
+> and
+<CODE
+CLASS="CONSTANT"
+>valgrind</CODE
+>.
+The "make roll" process will go into each of those directories and execute
+"make rpm", 
+and as decribed in the section <A
+HREF="internals-packages.html#INTERNALS-PACKAGES-SRC"
+>Create an RPM from a Source Code Tarball</A
+>, the
+resulting RPMs will be placed in
+<CODE
+CLASS="CONSTANT"
+>/export/src/roll/valgrind/RPMS/x86_64</CODE
+>.</P
+><P
+>Also, all the node XML files and the graph XML file will be bundled into
+a package called
+<CODE
+CLASS="CONSTANT"
+>roll-valgrind-kickstart-1.0-0.noarch.rpm</CODE
+>.
+To see this, execute:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># cd /export/src/roll/valgrind
+# rpm -qlp RPMS/noarch/roll-valgrind-kickstart-1.0-0.noarch.rpm 
+/export/profile
+/export/profile/graphs
+/export/profile/graphs/default
+/export/profile/graphs/default/valgrind.xml
+/export/profile/nodes
+/export/profile/nodes/valgrind-base.xml
+/export/profile/nodes/valgrind-client.xml
+/export/profile/nodes/valgrind-server.xml
+/export/profile/roll-valgrind.xml</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Above we see the graph XML file (
+<CODE
+CLASS="CONSTANT"
+>/export/profile/graphs/default/valgrind.xml</CODE
+>)
+and the node XML files:
+(<CODE
+CLASS="CONSTANT"
+>/export/profile/nodes/valgrind-base.xml</CODE
+>,
+<CODE
+CLASS="CONSTANT"
+>/export/profile/nodes/valgrind-client.xml</CODE
+>,
+<CODE
+CLASS="CONSTANT"
+>/export/profile/nodes/valgrind-server.xml</CODE
+>).
+The file <CODE
+CLASS="CONSTANT"
+>/export/profile/roll-valgrind.xml</CODE
+> contains
+info that describes how the roll was built.</P
+><P
+>After the Roll is built, you can add a file to the Valgrind Roll that will
+help you determine if all the expected packages were built.
+We do this with the "manifest-check.py" program.</P
+><P
+>The "manifest-check.py" program looks at file called "manifest" in the
+base directory of the Roll and then looks at the RPMs under the directory
+"disk1".
+The "manifest-check.py" program expects that only the RPMs listed in
+"manifest" will be present.
+If there is an entry in "manifest" and if the RPM doesn't exist
+under "disk1", you will see an error message like:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>ERROR - the following packages were not built:
+        roll-condor-usersguide</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>And if there is package that was built, but there is no entry in
+"manifest" for it, you'll see an error message like:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>ERROR - the following packages were built but not in manifest:
+        foundation-perl-Statistics-Descriptive
+        foundation-perl-Spreadsheet-ParseExcel</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>For the Valgrind Roll, create a file named "manifest":</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># cd /export/src/roll/valgrind
+# vi manifest</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Then put the following package names in it:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>roll-valgrind-kickstart
+roll-valgrind-usersguide
+valgrind</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Now run "manifest-check.py" to verify that all the expected packages have
+been built:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># /opt/rocks/share/devel/src/roll/bin/manifest-check.py</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/note.png"
+HSPACE="5"
+ALT="Note"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>Everytime you add a new package to your Roll, make sure to add the package's
+base name to the "manifest" file.</P
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="internals-xml-files.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="testing.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Configuring Software with XML Files</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Testing Your Roll</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,354 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Virtual LANs (VLANs) and Logical VLAN Bridges</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Roll: Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE=" Defining and Modifying Networks and Network Interfaces "
+HREF="networking.html"><LINK
+REL="PREVIOUS"
+TITLE="Host Interfaces"
+HREF="x659.html"><LINK
+REL="NEXT"
+TITLE="Network Bridging for Virtual Machines"
+HREF="x712.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Base Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x659.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 3. Defining and Modifying Networks and Network Interfaces</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x712.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="AEN673"
+>3.4. Virtual LANs (VLANs) and Logical VLAN Bridges</A
+></H1
+><P
+>Linux supports VLAN tagging on virtual interfaces (i.e., IEEE 802.1Q).
+For example, if a host has physical interface eth0 (untagged), then the
+kernel can send and receive a tagged packets if a properly 
+defined interface named eth0.&#60;vlan&#62; has been created and properly configured. Tagging allows the same 
+physical network to be partitioned into many different networks. A key feature of VLAN tagging is that
+a broadcast packet (e.g. a DHCPDISCOVER packet) only broadcasts on the tagged VLAN in which is was initially 
+sent.</P
+><P
+>Rocks supports two types of VLAN interfaces - the first is an explicit device name like eth0.10 that is defined
+on a particular physical interface. The second is a logical device name of the form "vlan*".  In Rocks, the physical VLAN device can also have an IP address associated with it, however a logical VLAN device cannot.  
+We use logical VLANs to construct bridges suitable for virtual clusters. </P
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/note.png"
+HSPACE="5"
+ALT="Note"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>			Explicit VLAN Devices of the form &#60;interface&#62;.&#60;vlan&#62; 
+			can have IP addresses assigned
+		</P
+></LI
+><LI
+><P
+>			Rocks-Specific: Logical VLAN Devices of the form "vlan*" 
+			CANNOT have IP address assigned
+		</P
+></LI
+></OL
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="NETWORKING-PHYSICAL-VLAN"
+>3.4.1. Physical VLAN Devices</A
+></H2
+><P
+>Physical VLAN devices are interfaces associated with specific physical interfaces. While eth0 is used as
+an example, any physical IP interface can have a VLAN associated with it.</P
+><P
+>        <DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/PhysicalVlans.png"><DIV
+CLASS="CAPTION"
+><P
+> FIGURE: Physical VLAN device called eth0.2. This device may be assigned an
+			IP and a network name (e.g. "net") that is unrelated to the network name of the 
+			physical device (eth0).  All packets sent on this interface will be tagged
+			with VLAN=2. Multiple Physical VLAN devices can be defined. 
+			</P
+></DIV
+></P
+></DIV
+></P
+><P
+>Use the following example to add a physical VLAN device, assign a tag, and an IP address:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>[root@rocks ~]# rocks add host interface compute-0-0-1 iface=eth0.2 subnet=net2 ip=10.2.1.10
+[root@rocks ~]# rocks set host interface vlan compute-0-0-1 iface=eth0.2 vlan=2 
+[root@rocks ~]# rocks list host interface compute-0-0-1
+SUBNET  IFACE  MAC               IP             NETMASK       MODULE NAME          VLAN
+private eth0   00:16:3e:00:00:11 172.16.254.192 255.255.255.0 xennet compute-0-0-1 ------
+net2    eth0.2 ----------------- 10.2.1.10      255.255.255.0 ------ ------------- 2   </PRE
+></FONT
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="NETWORKING-LOGICAL-VLAN"
+>3.4.2. Logical VLAN Devices</A
+></H2
+><P
+>The second kind of VLAN interface that Rocks supports is what we call a
+<EM
+>logical VLAN device</EM
+>. The Virtual
+VLAN gives the ability of having a raw interface with no IP address assigned that is generally used as a bridge
+for virtual machines. Virtual VLAN devices have their subnet=&#60;subnet of physical&#62;</P
+><P
+>        <DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/LogicalVlans.png"><DIV
+CLASS="CAPTION"
+><P
+> FIGURE: Virtual VLAN devices called vlan2 and
+			vlan3. These types of devices may NOT have an IP
+			address (This is a Rocks-specific construction). 
+			</P
+></DIV
+></P
+></DIV
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>[root@rocks ~]# rocks add host interface compute-0-0-1 vlan2
+[root@rocks ~]# rocks add host interface compute-0-0-1 vlan3
+[root@rocks ~]# rocks set host interface vlan compute-0-0-1 vlan2 2
+[root@rocks ~]# rocks set host interface vlan compute-0-0-1 vlan3 3
+[root@rocks ~]# rocks list host interface compute-0-0-1
+SUBNET  IFACE MAC               IP             NETMASK       MODULE NAME          VLAN
+private eth0  00:16:3e:00:00:11 172.16.254.192 255.255.255.0 xennet compute-0-0-1 ------
+------- vlan2 ----------------- -------------- ------------- ------ ------------- 2     
+------- vlan3 ----------------- -------------- ------------- ------ ------------- 3     </PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+> 
+At this stage, the vlan interfaces are not currently associated with any physical network device.  Linux
+will not configure these devices on the node without the association. We overload the meaning of subnet in
+this case to mean: "associate the logical vlan device with the physical device that is in subnet 'x'". As an 
+example, we can associate both vlan2 and vlan3 to be tagged packet interfaces on the the subnet named private.
+<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>[root@tranquil ~]# rocks set host interface subnet compute-0-0-1 vlan2 subnet=private
+[root@tranquil ~]# rocks set host interface subnet compute-0-0-1 vlan3 subnet=private
+[root@tranquil ~]# rocks list host interface compute-0-0-1 
+SUBNET  IFACE MAC               IP             NETMASK       MODULE NAME          VLAN
+private eth0  00:16:3e:00:00:11 172.16.254.192 255.255.255.0 xennet compute-0-0-1 ------
+private vlan2 ----------------- -------------- ------------- ------ ------------- 2     
+private vlan3 ----------------- -------------- ------------- ------ ------------- 3     </PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/LogicalVlansAssociated.png"><DIV
+CLASS="CAPTION"
+><P
+> FIGURE: Virtual VLAN devices called vlan2 and vlan3 are associated
+			with the physical device that is desigated as subnet private.  Notice, that 
+			no netmask is associated with the vlan2 and vlan3 devices. These are raw, tagged
+			packet interfaces and are mostly used for bridges when hosting VMs.  
+			</P
+></DIV
+></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x659.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x712.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Host Interfaces</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="networking.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Network Bridging for Virtual Machines</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

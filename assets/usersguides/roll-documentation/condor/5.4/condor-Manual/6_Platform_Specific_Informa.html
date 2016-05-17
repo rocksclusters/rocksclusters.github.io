@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>6. Platform-Specific Information</TITLE>
+<META NAME="description" CONTENT="6. Platform-Specific Information">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="7_Frequently_Asked.html">
+<LINK REL="previous" HREF="5_Grid_Computing.html">
+<LINK REL="up" HREF="ref.html">
+<LINK REL="next" HREF="6_1Linux.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html1803"
+  HREF="6_1Linux.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1797"
+  HREF="ref.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1791"
+  HREF="5_6Condor_Job.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1799"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1801"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1804"
+  HREF="6_1Linux.html">6.1 Linux</A>
+<B> Up:</B> <A NAME="tex2html1798"
+  HREF="ref.html">CondorVersion 7.4.4 Manual</A>
+<B> Previous:</B> <A NAME="tex2html1792"
+  HREF="5_6Condor_Job.html">5.6 The Condor Job</A>
+ &nbsp; <B>  <A NAME="tex2html1800"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1802"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00700000000000000000"></A>
+<A NAME="platforms"></A>
+<BR>
+6. Platform-Specific Information
+</H1>
+The Condor Team strives to make Condor work the same way across all
+supported platforms.
+However, because Condor is a very low-level system which interacts
+closely with the internals of the operating systems on which it runs,
+this goal is not always possible to achieve.
+The following sections provide detailed information about using Condor
+on different computing platforms and operating systems.
+
+<P>
+<BR><HR>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html1805"
+  HREF="6_1Linux.html">6.1 Linux</A>
+<UL>
+<LI><A NAME="tex2html1806"
+  HREF="6_1Linux.html#SECTION00711000000000000000">6.1.1 Linux Kernel-specific Information</A>
+<LI><A NAME="tex2html1807"
+  HREF="6_1Linux.html#SECTION00712000000000000000">6.1.2 Red Hat</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1808"
+  HREF="6_2Microsoft_Windows.html">6.2 Microsoft Windows</A>
+<UL>
+<LI><A NAME="tex2html1809"
+  HREF="6_2Microsoft_Windows.html#SECTION00721000000000000000">6.2.1 Limitations under Windows</A>
+<LI><A NAME="tex2html1810"
+  HREF="6_2Microsoft_Windows.html#SECTION00722000000000000000">6.2.2 Supported Features under Windows</A>
+<LI><A NAME="tex2html1811"
+  HREF="6_2Microsoft_Windows.html#SECTION00723000000000000000">6.2.3 Secure Password Storage</A>
+<LI><A NAME="tex2html1812"
+  HREF="6_2Microsoft_Windows.html#SECTION00724000000000000000">6.2.4 Executing Jobs as the Submitting User</A>
+<LI><A NAME="tex2html1813"
+  HREF="6_2Microsoft_Windows.html#SECTION00725000000000000000">6.2.5 Executing Jobs with the User's Profile Loaded</A>
+<LI><A NAME="tex2html1814"
+  HREF="6_2Microsoft_Windows.html#SECTION00726000000000000000">6.2.6 Using Windows Scripts as Job Executables</A>
+<LI><A NAME="tex2html1815"
+  HREF="6_2Microsoft_Windows.html#SECTION00727000000000000000">6.2.7 Details on how Condor for Windows starts/stops a job</A>
+<LI><A NAME="tex2html1816"
+  HREF="6_2Microsoft_Windows.html#SECTION00728000000000000000">6.2.8 Security Considerations in Condor for Windows</A>
+<LI><A NAME="tex2html1817"
+  HREF="6_2Microsoft_Windows.html#SECTION00729000000000000000">6.2.9 Network files and Condor</A>
+<LI><A NAME="tex2html1818"
+  HREF="6_2Microsoft_Windows.html#SECTION007210000000000000000">6.2.10 Interoperability between Condor for Unix and Condor for Windows</A>
+<LI><A NAME="tex2html1819"
+  HREF="6_2Microsoft_Windows.html#SECTION007211000000000000000">6.2.11 Some differences between Condor for Unix -vs- Condor for Windows</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1820"
+  HREF="6_3Macintosh_OS.html">6.3 Macintosh OS X</A>
+<LI><A NAME="tex2html1821"
+  HREF="6_4AIX.html">6.4 AIX</A>
+<UL>
+<LI><A NAME="tex2html1822"
+  HREF="6_4AIX.html#SECTION00741000000000000000">6.4.1 AIX 5.2L</A>
+<LI><A NAME="tex2html1823"
+  HREF="6_4AIX.html#SECTION00742000000000000000">6.4.2 AIX 5.1L</A>
+</UL></UL>
+<!--End of Table of Child-Links-->
+<BR><HR>
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

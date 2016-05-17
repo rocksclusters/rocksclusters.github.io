@@ -1,0 +1,240 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>6.2 The DRMAA API</TITLE>
+<META NAME="description" CONTENT="6.2 The DRMAA API">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="6_3HTCondor_User.html">
+<LINK REL="previous" HREF="6_1Web_Service.html">
+<LINK REL="up" HREF="6_Application_Programming.html">
+<LINK REL="next" HREF="6_3HTCondor_User.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html2169"
+  HREF="6_3HTCondor_User.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2163"
+  HREF="6_Application_Programming.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2157"
+  HREF="6_1Web_Service.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2165"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2167"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2170"
+  HREF="6_3HTCondor_User.html">6.3 The HTCondor User</A>
+<B> Up:</B> <A NAME="tex2html2164"
+  HREF="6_Application_Programming.html">6. Application Programming Interfaces</A>
+<B> Previous:</B> <A NAME="tex2html2158"
+  HREF="6_1Web_Service.html">6.1 Web Service</A>
+ &nbsp; <B>  <A NAME="tex2html2166"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2168"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html2171"
+  HREF="6_2DRMAA_API.html#SECTION00721000000000000000">6.2.1  Implementation Details</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00720000000000000000"></A><A NAME="API-DRMAA"></A>
+<A NAME="50793"></A>
+<A NAME="50794"></A>
+<A NAME="50795"></A>
+<BR>
+6.2  The DRMAA API
+</H1>
+
+<P>
+The following quote from the DRMAA Specification 1.0 abstract
+nicely describes the purpose of the API:
+
+<P>
+The Distributed Resource Management Application API (DRMAA),
+developed by a working group of the Global Grid Forum (GGF),
+<BLOCKQUOTE>
+provides a generalized API to distributed resource management systems
+(DRMSs) in order to facilitate integration of application programs.
+The scope of DRMAA is limited to job submission,
+job monitoring and control,
+and the retrieval of the finished job status.
+DRMAA provides application developers and
+distributed resource management builders
+with a programming model that enables
+the development of distributed applications
+tightly coupled to an underlying DRMS.
+For deployers of such distributed applications,
+DRMAA preserves flexibility and choice in system design.
+
+</BLOCKQUOTE>
+
+<P>
+The API allows users who write programs using DRMAA functions
+and link to a DRMAA library to submit,
+control, and retrieve information about jobs to a Grid system.
+The HTCondor implementation of a portion of the API
+allows programs (applications) to use the library
+functions provided to submit, monitor and control
+HTCondor jobs.
+
+<P>
+See the DRMAA site 
+(<A NAME="tex2html87"
+  HREF="http://www.drmaa.org">http://www.drmaa.org</A>) to find the
+API specification for DRMA 1.0 for further details on the API.
+
+<P>
+
+<H2><A NAME="SECTION00721000000000000000"></A><A NAME="DRMAA-Implementation"></A>
+<BR>
+6.2.1  Implementation Details
+</H2>
+
+<P>
+The library was developed from the DRMA API Specification 1.0 of January 2004
+and the DRMAA C Bindings v0.9 of September 2003.
+It is a static C library that expects a POSIX thread model
+on Unix systems and a Windows thread model on Windows systems.
+Unix systems that do not support POSIX threads
+are not guaranteed thread safety when calling the library's functions.
+
+<P>
+The object library file is called <TT>libcondordrmaa.a</TT>,
+and it is located within the <TT>$(LIB)</TT> directory.
+Its header file  is <TT>$(INCLUDE)/drmaa.h</TT>, 
+and file <TT>$(INCLUDE)/README</TT> 
+gives further details on the implementation.
+
+<P>
+Use of the library requires that a
+local <I>condor_schedd</I> daemon  must be running,
+and the program linked to the library must have
+sufficient spool space.
+This space should be in <TT>/tmp</TT>
+or specified by the environment variables
+<TT>TEMP</TT>, <TT>TMP</TT>, or <TT>SPOOL</TT>.
+The program linked to the library and the local <I>condor_schedd</I> daemon
+must have read, write, and traverse rights to the spool space.
+
+<P>
+The library currently supports the following specification-defined
+job attributes:
+<DL>
+<DT></DT>
+<DD>DRMAA_REMOTE_COMMAND
+</DD>
+<DT></DT>
+<DD>DRMAA_JS_STATE
+</DD>
+<DT></DT>
+<DD>DRMAA_NATIVE_SPECIFICATION
+</DD>
+<DT></DT>
+<DD>DRMAA_BLOCK_EMAIL
+</DD>
+<DT></DT>
+<DD>DRMAA_INPUT_PATH
+</DD>
+<DT></DT>
+<DD>DRMAA_OUTPUT_PATH
+</DD>
+<DT></DT>
+<DD>DRMAA_ERROR_PATH
+</DD>
+<DT></DT>
+<DD>DRMAA_V_ARGV
+</DD>
+<DT></DT>
+<DD>DRMAA_V_ENV
+</DD>
+<DT></DT>
+<DD>DRMAA_V_EMAIL
+</DD>
+</DL>
+
+<P>
+The attribute <TT>DRMAA_NATIVE_SPECIFICATION</TT> can be used
+to direct all commands supported within
+submit description files.  
+See the <I>condor_submit</I> manual page at
+section&nbsp;<A HREF="condor_submit.html#man-condor-submit">11</A> for a complete list.
+Multiple commands can be specified if separated by newlines.  
+
+<P>
+As in the normal submit file,
+arbitrary attributes can be added to the job's ClassAd
+by prefixing the attribute with +.  In this case, you will need to put
+string values in quotation marks, the same as in a submit file.
+
+<P>
+Thus to tell HTCondor that the job will likely use 64 megabytes of memory (65536
+kilobytes), to more highly rank machines with more memory, and to add the
+arbitrary attribute of department set to chemistry, you would set
+AttrDRMAA_NATIVE_SPECIFICATION to the C string:
+
+<P>
+<PRE>
+  drmaa_set_attribute(jobtemplate, DRMAA_NATIVE_SPECIFICATION,
+      "image_size=65536\nrank=Memory\n+department=\"chemistry\"",
+      err_buf, sizeof(err_buf)-1);
+</PRE>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html2169"
+  HREF="6_3HTCondor_User.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2163"
+  HREF="6_Application_Programming.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2157"
+  HREF="6_1Web_Service.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2165"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2167"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2170"
+  HREF="6_3HTCondor_User.html">6.3 The HTCondor User</A>
+<B> Up:</B> <A NAME="tex2html2164"
+  HREF="6_Application_Programming.html">6. Application Programming Interfaces</A>
+<B> Previous:</B> <A NAME="tex2html2158"
+  HREF="6_1Web_Service.html">6.1 Web Service</A>
+ &nbsp; <B>  <A NAME="tex2html2166"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2168"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

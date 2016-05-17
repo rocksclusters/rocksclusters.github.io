@@ -1,0 +1,370 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<link rel="canonical" href="http://research.cs.wisc.edu/condor/manual/current/condor_run.html">
+
+<TITLE>condor_run</TITLE>
+<META NAME="description" CONTENT="condor_run">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="condor_set_shutdown.html">
+<LINK REL="previous" HREF="condor_router_rm.html">
+<LINK REL="up" HREF="10_Command_Reference.html">
+<LINK REL="next" HREF="condor_set_shutdown.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html4020"
+  HREF="condor_set_shutdown.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html4014"
+  HREF="10_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html4008"
+  HREF="condor_router_rm.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html4016"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html4018"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4021"
+  HREF="condor_set_shutdown.html">condor_set_shutdown</A>
+<B> Up:</B> <A NAME="tex2html4015"
+  HREF="10_Command_Reference.html">10. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html4009"
+  HREF="condor_router_rm.html">condor_router_rm</A>
+ &nbsp; <B>  <A NAME="tex2html4017"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html4019"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html4022"
+  HREF="condor_run.html#SECTION0011401000000000000000">Synopsis</A>
+<LI><A NAME="tex2html4023"
+  HREF="condor_run.html#SECTION0011402000000000000000">Description</A>
+<LI><A NAME="tex2html4024"
+  HREF="condor_run.html#SECTION0011403000000000000000">Options</A>
+<LI><A NAME="tex2html4025"
+  HREF="condor_run.html#SECTION0011404000000000000000">Examples</A>
+<LI><A NAME="tex2html4026"
+  HREF="condor_run.html#SECTION0011405000000000000000">Files</A>
+<LI><A NAME="tex2html4027"
+  HREF="condor_run.html#SECTION0011406000000000000000">General Remarks</A>
+<LI><A NAME="tex2html4028"
+  HREF="condor_run.html#SECTION0011407000000000000000">Exit Status</A>
+<LI><A NAME="tex2html4029"
+  HREF="condor_run.html#SECTION0011408000000000000000">Author</A>
+<LI><A NAME="tex2html4030"
+  HREF="condor_run.html#SECTION0011409000000000000000">Copyright</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION0011400000000000000000"></A><A NAME="man-condor-run"></A>
+<BR>
+<I>condor_run</I>
+</H1> Submit a shell command-line as a Condor job
+  
+<P>
+
+<H2><A NAME="SECTION0011401000000000000000">
+Synopsis</A>
+</H2><B><I>condor_run</I></B>
+[<B>-u  </B><I>universe</I>]
+<I>"shell command"</I>
+
+<P>
+<A NAME="74154"></A>
+<A NAME="74155"></A>
+
+<P>
+
+<H2><A NAME="SECTION0011402000000000000000">
+Description</A>
+</H2>
+<I>condor_run</I> bundles a shell command line into a Condor
+job and submits the job.
+The <I>condor_run</I> command waits for the Condor job to complete,
+writes the job's output to the terminal,
+and exits with the exit status of the Condor job.
+No output appears until the job completes.
+
+<P>
+Enclose the shell command line in double quote marks,
+so it may be passed to
+<I>condor_run</I> without modification.
+<I>condor_run</I> will not read input from the terminal while the job
+executes.  If the shell command line requires input,
+redirect the input from a file, as illustrated by the example
+<PRE>
+% condor_run "myprog &lt; input.data"
+</PRE>
+
+<P>
+<I>condor_run</I> jobs rely on a shared file system for
+access to any necessary input files.
+The current working directory of the job must be
+accessible to the machine within the Condor pool where the job runs.
+
+<P>
+Specialized environment variables may be used to specify
+requirements for the machine where the job may run.
+
+<P>
+<DL>
+<DT><STRONG>CONDOR_ARCH</STRONG></DT>
+<DD>Specifies the architecture of the required
+  platform. Values will be the same as the <TT>Arch</TT>
+  machine ClassAd attribute.
+</DD>
+<DT><STRONG>CONDOR_OPSYS</STRONG></DT>
+<DD>Specifies the operating system of the required
+  platform. Values will be the same as the <TT>OpSys</TT>
+  machine ClassAd attribute.
+</DD>
+<DT><STRONG>CONDOR_REQUIREMENTS</STRONG></DT>
+<DD>Specifies any additional requirements for
+  the Condor job.  It is recommended that the value defined for
+  <TT>CONDOR_REQUIREMENTS</TT> be enclosed in parenthesis.
+</DD>
+</DL>
+
+<P>
+When one or more of these environment variables is specified, the job is
+submitted with:
+
+<P>
+<PRE>
+Requirements = $CONDOR_REQUIREMENTS &amp;&amp; Arch == $CONDOR_ARCH &amp;&amp; \
+   OpSys == $CONDOR_OPSYS
+</PRE>
+
+<P>
+Without these environment variables, 
+the job receives the default requirements expression, which
+requests a machine of the same platform as
+the machine on which <I>condor_run</I> is executed.
+
+<P>
+All environment variables set when <I>condor_run</I> is executed will be
+included in the environment of the Condor job.
+
+<P>
+<I>condor_run</I> removes the Condor job from the queue and
+deletes its temporary files, if <I>condor_run</I> is killed before the 
+Condor job completes.
+
+<P>
+
+<H2><A NAME="SECTION0011403000000000000000">
+Options</A>
+</H2>
+  
+<P>
+  <DL>
+<DT><STRONG><B>-u </B><I>universe</I></STRONG></DT>
+<DD>Submit the job under the specified universe. The default is vanilla.
+  While any universe may be specified, only the vanilla, standard,
+  scheduler, and local universes result in a submit description
+  file that may work properly.
+<BR>
+<P>
+</DD>
+</DL>
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION0011404000000000000000">
+Examples</A>
+</H2>
+
+<P>
+<I>condor_run</I> may be used to compile an executable on
+a different platform.
+As an example, first set the environment variables for
+the required platform:
+
+<P>
+<PRE>
+% setenv CONDOR_ARCH "SUN4u"
+% setenv CONDOR_OPSYS "SOLARIS28"
+</PRE>
+
+<P>
+Then, use <I>condor_run</I> to submit the compilation as in the
+following three examples.
+<PRE>
+% condor_run "f77 -O -o myprog myprog.f"
+</PRE>
+or
+<PRE>
+% condor_run "make"
+</PRE>
+or
+<PRE>
+% condor_run "condor_compile cc -o myprog.condor myprog.c"
+</PRE>
+
+<P>
+
+<H2><A NAME="SECTION0011405000000000000000">
+Files</A>
+</H2>
+
+<P>
+<I>condor_run</I> creates the following temporary files in the user's
+working directory.
+The placeholder &lt;pid&gt; is replaced by the process id
+of <I>condor_run</I>.
+<DL>
+<DT><STRONG><TT>.condor_run.&lt;pid&gt;</TT></STRONG></DT>
+<DD>A shell script containing the shell
+  command line.
+</DD>
+<DT><STRONG><TT>.condor_submit.&lt;pid&gt;</TT></STRONG></DT>
+<DD>The submit description file for
+  the job.
+</DD>
+<DT><STRONG><TT>.condor_log.&lt;pid&gt;</TT></STRONG></DT>
+<DD>The Condor job's log file; it is
+  monitored by <I>condor_run</I>, to determine when the job exits.
+</DD>
+<DT><STRONG><TT>.condor_out.&lt;pid&gt;</TT></STRONG></DT>
+<DD>The output of the Condor
+  job before it is output to the terminal.
+</DD>
+<DT><STRONG><TT>.condor_error.&lt;pid&gt;</TT></STRONG></DT>
+<DD>Any error messages for the Condor
+  job  before they are output to the terminal.
+</DD>
+</DL>
+<I>condor_run</I> removes these files when the job completes.  However, if
+<I>condor_run</I> fails, it is possible that these files will remain in the
+user's working directory, and the Condor job may remain in the queue.
+
+<P>
+
+<H2><A NAME="SECTION0011406000000000000000">
+General Remarks</A>
+</H2>
+
+<P>
+<I>condor_run</I> is intended for submitting simple shell command lines to
+Condor.  It does not provide the full functionality of
+<I>condor_submit</I>.  Therefore, some <I>condor_submit</I> errors and
+system failures may not be handled correctly. 
+
+<P>
+All processes specified within the single shell command line
+will be executed on the single machine
+matched with the job.  Condor will not distribute multiple
+processes of a command line pipe across multiple machines.
+
+<P>
+<I>condor_run</I> will use the shell specified in the <TT>SHELL</TT> <A NAME="74351"></A> <A NAME="74352"></A> environment
+variable, if one exists.  Otherwise, it will use <I>/bin/sh</I> to execute
+the shell command-line.
+
+<P>
+By default, <I>condor_run</I> expects Perl to be installed in
+<TT>/usr/bin/perl</TT>.  If Perl is installed in another path, 
+ask the Condor administrator to edit the path in the <I>condor_run</I>
+script, or explicitly call Perl from the command line:
+
+<P>
+<PRE>
+% perl path-to-condor/bin/condor_run "shell-cmd"
+</PRE>
+
+<P>
+
+<H2><A NAME="SECTION0011407000000000000000">
+Exit Status</A>
+</H2>
+
+<P>
+<I>condor_run</I> exits with a status value of 0 (zero) upon complete success.
+The exit status of <I>condor_run</I> will be non-zero upon failure.
+The exit status in the case of a single error due to a system call
+will be the error number (<TT>errno</TT>) of the failed call.
+
+<P>
+
+<H2><A NAME="SECTION0011408000000000000000">
+Author</A>
+</H2> Condor Team, University of Wisconsin-Madison
+  
+<H2><A NAME="SECTION0011409000000000000000">
+Copyright</A>
+</H2> 
+  Copyright &#169; 1990-2012 Condor Team, Computer Sciences Department, 
+  University of Wisconsin-Madison, Madison, WI.  All Rights Reserved.  
+	Licensed under the Apache License, Version 2.0.
+
+<P>
+See the <I>Condor Version 7.8.5 Manual</I> or
+	<A NAME="tex2html448"
+  HREF="http://www.condorproject.org/license">http://www.condorproject.org/license</A>
+for
+  additional notices. 
+
+
+  <HR>
+<!--Navigation Panel-->
+<A NAME="tex2html4020"
+  HREF="condor_set_shutdown.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html4014"
+  HREF="10_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html4008"
+  HREF="condor_router_rm.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html4016"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html4018"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4021"
+  HREF="condor_set_shutdown.html">condor_set_shutdown</A>
+<B> Up:</B> <A NAME="tex2html4015"
+  HREF="10_Command_Reference.html">10. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html4009"
+  HREF="condor_router_rm.html">condor_router_rm</A>
+ &nbsp; <B>  <A NAME="tex2html4017"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html4019"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

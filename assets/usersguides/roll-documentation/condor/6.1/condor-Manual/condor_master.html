@@ -1,0 +1,207 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<link rel="canonical" href="http://research.cs.wisc.edu/condor/manual/current/condor_master.html">
+
+<TITLE>condor_master</TITLE>
+<META NAME="description" CONTENT="condor_master">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="condor_off.html">
+<LINK REL="previous" HREF="condor_hold.html">
+<LINK REL="up" HREF="10_Command_Reference.html">
+<LINK REL="next" HREF="condor_off.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html3647"
+  HREF="condor_off.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3641"
+  HREF="10_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3635"
+  HREF="condor_hold.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3643"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3645"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3648"
+  HREF="condor_off.html">condor_off</A>
+<B> Up:</B> <A NAME="tex2html3642"
+  HREF="10_Command_Reference.html">10. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3636"
+  HREF="condor_hold.html">condor_hold</A>
+ &nbsp; <B>  <A NAME="tex2html3644"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3646"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html3649"
+  HREF="condor_master.html#SECTION0011221000000000000000">Synopsis</A>
+<LI><A NAME="tex2html3650"
+  HREF="condor_master.html#SECTION0011222000000000000000">Description</A>
+<LI><A NAME="tex2html3651"
+  HREF="condor_master.html#SECTION0011223000000000000000">Options</A>
+<LI><A NAME="tex2html3652"
+  HREF="condor_master.html#SECTION0011224000000000000000">Author</A>
+<LI><A NAME="tex2html3653"
+  HREF="condor_master.html#SECTION0011225000000000000000">Copyright</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION0011220000000000000000"></A><A NAME="man-condor-master"></A>
+<BR>
+<I>condor_master</I>
+</H1> The master Condor Daemon
+  
+<P>
+
+<P>
+<A NAME="68820"></A>
+<A NAME="68849"></A>
+<A NAME="68822"></A>
+<A NAME="68850"></A>
+
+<H2><A NAME="SECTION0011221000000000000000">
+Synopsis</A>
+</H2><B><I>condor_master</I></B>
+
+<P>
+
+<H2><A NAME="SECTION0011222000000000000000">
+Description</A>
+</H2>
+
+<P>
+This daemon is responsible for keeping all the
+rest of the Condor daemons running on each machine in your pool.  It  
+spawns the other daemons, and periodically checks to see if there are
+new binaries installed for any of them.  If there are,
+the <I>condor_master</I> will restart the affected daemons.
+In addition, if any daemon crashes, the
+<I>condor_master</I> will send e-mail to the Condor Administrator of your pool and 
+restart the daemon.  The <I>condor_master</I> also supports various
+administrative commands that let you start, stop or reconfigure
+daemons remotely.  The <I>condor_master</I> will run on every machine in 
+your Condor pool, regardless of what functions each machine are
+performing.
+
+<P>
+Section&nbsp;<A HREF="3_1Introduction.html#sec:Condor-Daemons">3.1.2</A> in the Administrator's Manual
+has more information
+about the <I>condor_master</I> and other Condor daemons.
+See Section&nbsp;<A HREF="3_9DaemonCore.html#sec:DaemonCore-Arguments">3.9.2</A>
+for documentation on
+command line arguments for <I>condor_master</I>.
+
+<P>
+The <TT>DAEMON_LIST</TT> <A NAME="68936"></A> <A NAME="68937"></A> configuration macro is used by the
+<I>condor_master</I> to provide a per-machine list of daemons that
+should be started and kept running.
+For daemons that are specified in the <TT>DC_DAEMON_LIST</TT>
+configuration macro,
+the <I>condor_master</I> daemon will spawn them automatically
+appending a <I>-f</I> argument.
+For those listed in <TT>DAEMON_LIST</TT>, but not in <TT>DC_DAEMON_LIST</TT>,
+there will be no <I>-f</I> argument.
+
+<P>
+
+<H2><A NAME="SECTION0011223000000000000000">
+Options</A>
+</H2>
+  
+<P>
+  <DL>
+<DT><STRONG><B>-n </B><I>name</I></STRONG></DT>
+<DD>Provides an alternate name for the <I>condor_master</I>
+            to override that given by the <TT>MASTER_NAME</TT> <A NAME="68960"></A> <A NAME="68961"></A>
+	    configuration variable.
+            
+<BR>  
+</DD>
+</DL>
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION0011224000000000000000">
+Author</A>
+</H2> Condor Team, University of Wisconsin-Madison
+  
+<H2><A NAME="SECTION0011225000000000000000">
+Copyright</A>
+</H2> 
+  Copyright &#169; 1990-2012 Condor Team, Computer Sciences Department, 
+  University of Wisconsin-Madison, Madison, WI.  All Rights Reserved.  
+	Licensed under the Apache License, Version 2.0.
+
+<P>
+See the <I>Condor Version 7.8.5 Manual</I> or
+	<A NAME="tex2html429"
+  HREF="http://www.condorproject.org/license">http://www.condorproject.org/license</A>
+for
+  additional notices. 
+
+
+  <HR>
+<!--Navigation Panel-->
+<A NAME="tex2html3647"
+  HREF="condor_off.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3641"
+  HREF="10_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3635"
+  HREF="condor_hold.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3643"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3645"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3648"
+  HREF="condor_off.html">condor_off</A>
+<B> Up:</B> <A NAME="tex2html3642"
+  HREF="10_Command_Reference.html">10. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3636"
+  HREF="condor_hold.html">condor_hold</A>
+ &nbsp; <B>  <A NAME="tex2html3644"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3646"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

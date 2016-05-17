@@ -1,0 +1,654 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Graph XML Tags</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Roll Developer's Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="XML File Syntax"
+HREF="appendix-b.html"><LINK
+REL="PREVIOUS"
+TITLE="Node XML Tags"
+HREF="node-xml-tags.html"><LINK
+REL="NEXT"
+TITLE="Rocks Copyright and Trademark"
+HREF="rocks-copyright.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Roll Developer's Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/developer.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="node-xml-tags.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Appendix A. XML File Syntax</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="rocks-copyright.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="GRAPH-XML"
+>A.2. Graph XML Tags</A
+></H1
+><P
+>Edges in the kickstart graph are specified with the XML tags below. Order
+tags give control of the graph traversal (the order nodes appear in the final 
+kickstart file). </P
+><P
+>Both the edge and order tags appear in kickstart graph files.</P
+><P
+></P
+><UL
+><LI
+><P
+><B
+CLASS="COMMAND"
+>&#60;graph&#62;</B
+></P
+><P
+>Wraps an XML graph file.</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>&#60;description&#62;</B
+></P
+><P
+>Text description of what this part of the graph does.</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>&#60;copyright&#62;</B
+></P
+><P
+>Text description of the copyright associated with this graph file.</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>&#60;changelog&#62;</B
+></P
+><P
+>Text description of the changes made to this node file. Generally a "Log"
+CVS directive.</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>&#60;edge&#62;</B
+></P
+><P
+>Specifies an edge in the kickstart graph, links graph nodes together.
+Can be specified as a singleton tag: </P
+><P
+><CODE
+CLASS="CONSTANT"
+>&#60;edge from="base" to="ganglia"/&#62;</CODE
+>,
+or a standard tag that wraps <CODE
+CLASS="CONSTANT"
+>&#60;to&#62;</CODE
+> or
+<CODE
+CLASS="CONSTANT"
+>&#60;from&#62;</CODE
+> tags.</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>from</DT
+><DD
+><P
+>Optional.
+Specifies the beginning of an edge, a node name.</P
+><P
+>Example:
+<CODE
+CLASS="CONSTANT"
+>&#60;edge from="server"&#62;</CODE
+>.</P
+></DD
+><DT
+>to</DT
+><DD
+><P
+>Optional.
+Specifies the end of an edge, a node name.</P
+><P
+>Example:
+<CODE
+CLASS="CONSTANT"
+>&#60;edge to="client"&#62;</CODE
+>.</P
+></DD
+><DT
+>cond</DT
+><DD
+><P
+>Optional.
+If the value of the "cond" is true, then this edge will be traversed.
+Values can be Rocks attributes or generic python expressions.</P
+><P
+>Example:
+<CODE
+CLASS="CONSTANT"
+>&#60;edge from="client" to="x11" cond="x11"/&#62;</CODE
+>.</P
+><P
+>If the "x11" Rocks attribute is set to "true", then this edge will be
+traversed.</P
+></DD
+><DT
+>arch</DT
+><DD
+><P
+>Optional.
+Specifies which architectures should follow this edge.
+Same format as arch attribute in node files.
+The edge is ignored if the client's architecture does not match this list.</P
+><P
+>Example:
+<CODE
+CLASS="CONSTANT"
+>&#60;edge from="client" to="x11" arch="x86_64"/&#62;</CODE
+>.</P
+></DD
+></DL
+></DIV
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>&#60;to&#62;</B
+></P
+><P
+>Wraps a node name.
+Specifies the end of a directed edge in the graph.
+Used inside an edge tag with the "from" attribute:</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>&#60;edge from="compute"&#62;
+	&#60;to&#62;compute-appliance&#60;/to&#62;
+&#60;/edge&#62;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>arch</DT
+><DD
+><P
+>Optional.
+Specifies which architectures should follow this edge.
+The entire edge is ignored if the client's architecture does not match this
+list.</P
+><P
+>Example:
+<CODE
+CLASS="CONSTANT"
+>&#60;to arch="i386"&#62;pvm&#60;/to&#62;</CODE
+>.</P
+></DD
+></DL
+></DIV
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>&#60;from&#62;</B
+></P
+><P
+>Wraps a node name. Specifies the beginning of a directed edge. Used like 
+"to" tag.</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>&#60;edge to="client"&#62;
+        &#60;from&#62;compute-appliance&#60;/from&#62;
+&#60;/edge&#62;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>arch</DT
+><DD
+><P
+>Optional. Specifies which architectures should follow this edge. The entire
+edge is ignored if the client's architecture does not match this list.&#13;</P
+></DD
+></DL
+></DIV
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>&#60;order&#62;</B
+></P
+><P
+>Specifies a ordering between nodes in the graph.
+While the <CODE
+CLASS="CONSTANT"
+>&#60;edge&#62;</CODE
+> tags specify a "membership" in the
+kickstart file, the <CODE
+CLASS="CONSTANT"
+>&#60;order&#62;</CODE
+> tags give a
+"relative ordering" between nodes. </P
+><P
+>The ordering is affected by a topological sort of nodes using order edges.
+While the kickstart graph allows cycles, the set of order tags must specify a
+directed-acyclic graph (DAG).
+Any nodes not touched by an order edge have a random order in the resultant
+kickstart file.</P
+><P
+>Can be used to wrap <CODE
+CLASS="CONSTANT"
+>&#60;head&#62;</CODE
+> and
+<CODE
+CLASS="CONSTANT"
+>&#60;tail&#62;</CODE
+> tags in the same fashion as
+the <CODE
+CLASS="CONSTANT"
+>&#60;to&#62;</CODE
+> and
+<CODE
+CLASS="CONSTANT"
+>&#60;from&#62;</CODE
+> tags for "edge".</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>arch</DT
+><DD
+><P
+>Optional. Specifies which architectures should follow this edge. Same format as
+arch attribute in node files. The edge is ignored if the client's architecture
+does not match this list.</P
+></DD
+><DT
+>head</DT
+><DD
+><P
+>Optional.
+Specifies the beginning of this edge, a node name.
+The node specified by the <CODE
+CLASS="CONSTANT"
+>&#60;order head="node"&#62;</CODE
+>
+tag should be ordered before all child <CODE
+CLASS="CONSTANT"
+>&#60;tail&#62;</CODE
+> tags.</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>&#60;order head="grub"&#62;
+	&#60;tail&#62;grub-client&#60;/tail&#62;
+	&#60;tail&#62;grub-server&#60;/tail&#62;
+&#60;/order&#62;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><P
+>Special name "TAIL" is allowed, which specifies the node be placed last.
+Ordering among nodes with TAIL ordering is undefined.</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>&#60;order head="TAIL"&#62;
+	&#60;tail&#62;install&#60;/tail&#62;
+	&#60;tail&#62;pxeboot&#60;/tail&#62;
+	&#60;tail&#62;compute&#60;/tail&#62;
+&#60;/order&#62;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><P
+>In the above example, the node files are "install", "pxeboot" and "compute"
+will all be at the end of the kickstart file.</P
+></DD
+><DT
+>tail</DT
+><DD
+><P
+>Optional.
+Specifies the end of this edge, a node name.
+The node specified by the <CODE
+CLASS="CONSTANT"
+>&#60;order tail="node"&#62;</CODE
+>
+tag should be ordered after all child <CODE
+CLASS="CONSTANT"
+>&#60;head&#62;</CODE
+> tags.</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>&#60;order tail="server-firewall"&#62;
+	&#60;head&#62;networking-server&#60;/head&#62;
+	&#60;head&#62;database-data&#60;/head&#62;
+&#60;/order&#62;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><P
+>Special node name "HEAD" is allowed, which specifies the node is placed at
+the beginning of the kickstart file.
+Ordering among nodes with HEAD ordering is undefined.</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>&#60;order tail="HEAD"&#62;
+	&#60;head&#62;python-development&#60;/head&#62;
+	&#60;head&#62;rlo&#60;/head&#62;
+&#60;/order&#62;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+></DD
+></DL
+></DIV
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>&#60;head&#62;</B
+></P
+><P
+>Wraps a node name.
+This tag is a child of an
+<CODE
+CLASS="CONSTANT"
+>&#60;order tail="some-node-name"&#62;</CODE
+> tag.
+All nodes wrapped by <CODE
+CLASS="CONSTANT"
+>&#60;head&#62;</CODE
+> tags are guaranteed
+to execute prior to the node specified in the 
+<CODE
+CLASS="CONSTANT"
+>&#60;order tail="some-node-name"&#62;</CODE
+> tag.</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>&#60;order tail="server-firewall"&#62;
+	&#60;head&#62;networking-server&#60;/head&#62;
+	&#60;head&#62;database-data&#60;/head&#62;
+&#60;/order&#62;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><P
+>In the example above, "networking-server" and "database-data" are guaranteed
+to execute before "server-firewall".</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>&#60;tail&#62;</B
+></P
+><P
+>Wraps a node name.
+This tag is a child of an
+<CODE
+CLASS="CONSTANT"
+>&#60;order head="some-node-name"&#62;</CODE
+> tag.
+All nodes wrapped by <CODE
+CLASS="CONSTANT"
+>&#60;tail&#62;</CODE
+> tags are guaranteed
+to execute after to the node specified in the 
+<CODE
+CLASS="CONSTANT"
+>&#60;order head="some-node-name"&#62;</CODE
+> tag.</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>&#60;order head="grub"&#62;
+	&#60;tail&#62;grub-client&#60;/tail&#62;
+	&#60;tail&#62;grub-server&#60;/tail&#62;
+&#60;/order&#62;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><P
+>In the example above, "grub-client" and "grub-server" are guaranteed
+to execute after "grub".</P
+></LI
+></UL
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="node-xml-tags.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="rocks-copyright.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Node XML Tags</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="appendix-b.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><SPAN
+CLASS="TRADEMARK"
+>Rocks</SPAN
+>&reg; Copyright and Trademark</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

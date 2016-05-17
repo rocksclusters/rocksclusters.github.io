@@ -1,0 +1,2472 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>5.3 The Grid Universe</TITLE>
+<META NAME="description" CONTENT="5.3 The Grid Universe">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="5_4Glidein.html">
+<LINK REL="previous" HREF="5_2Connecting_Condor.html">
+<LINK REL="up" HREF="5_Grid_Computing.html">
+<LINK REL="next" HREF="5_4Glidein.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html1746"
+  HREF="5_4Glidein.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1740"
+  HREF="5_Grid_Computing.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1734"
+  HREF="5_2Connecting_Condor.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1742"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1744"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1747"
+  HREF="5_4Glidein.html">5.4 Glidein</A>
+<B> Up:</B> <A NAME="tex2html1741"
+  HREF="5_Grid_Computing.html">5. Grid Computing</A>
+<B> Previous:</B> <A NAME="tex2html1735"
+  HREF="5_2Connecting_Condor.html">5.2 Connecting Condor Pools</A>
+ &nbsp; <B>  <A NAME="tex2html1743"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1745"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html1748"
+  HREF="5_3Grid_Universe.html#SECTION00631000000000000000">5.3.1 Condor-C, The condor Grid Type </A>
+<UL>
+<LI><A NAME="tex2html1749"
+  HREF="5_3Grid_Universe.html#SECTION00631100000000000000">5.3.1.1 Condor-C Configuration</A>
+<LI><A NAME="tex2html1750"
+  HREF="5_3Grid_Universe.html#SECTION00631200000000000000">5.3.1.2 Condor-C Job Submission</A>
+<LI><A NAME="tex2html1751"
+  HREF="5_3Grid_Universe.html#SECTION00631300000000000000">5.3.1.3 Condor-C Jobs Between Differing Platforms</A>
+<LI><A NAME="tex2html1752"
+  HREF="5_3Grid_Universe.html#SECTION00631400000000000000">5.3.1.4 Current Limitations in Condor-C</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1753"
+  HREF="5_3Grid_Universe.html#SECTION00632000000000000000">5.3.2 Condor-G, the gt2, gt4, and gt5 Grid Types</A>
+<UL>
+<LI><A NAME="tex2html1754"
+  HREF="5_3Grid_Universe.html#SECTION00632100000000000000">5.3.2.1 Globus Protocols and Terminology</A>
+<LI><A NAME="tex2html1755"
+  HREF="5_3Grid_Universe.html#SECTION00632200000000000000">5.3.2.2 The gt2 Grid Type</A>
+<LI><A NAME="tex2html1756"
+  HREF="5_3Grid_Universe.html#SECTION00632300000000000000">5.3.2.3 The gt4 Grid Type</A>
+<LI><A NAME="tex2html1757"
+  HREF="5_3Grid_Universe.html#SECTION00632400000000000000">5.3.2.4 The gt5 Grid Type</A>
+<LI><A NAME="tex2html1758"
+  HREF="5_3Grid_Universe.html#SECTION00632500000000000000">5.3.2.5 Credential Management with <I>MyProxy</I></A>
+<LI><A NAME="tex2html1759"
+  HREF="5_3Grid_Universe.html#SECTION00632600000000000000">5.3.2.6 The Grid Monitor</A>
+<LI><A NAME="tex2html1760"
+  HREF="5_3Grid_Universe.html#SECTION00632700000000000000">5.3.2.7 Limitations of Condor-G</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1761"
+  HREF="5_3Grid_Universe.html#SECTION00633000000000000000">5.3.3 The nordugrid Grid Type </A>
+<LI><A NAME="tex2html1762"
+  HREF="5_3Grid_Universe.html#SECTION00634000000000000000">5.3.4 The unicore Grid Type </A>
+<LI><A NAME="tex2html1763"
+  HREF="5_3Grid_Universe.html#SECTION00635000000000000000">5.3.5 The pbs Grid Type </A>
+<LI><A NAME="tex2html1764"
+  HREF="5_3Grid_Universe.html#SECTION00636000000000000000">5.3.6 The lsf Grid Type </A>
+<LI><A NAME="tex2html1765"
+  HREF="5_3Grid_Universe.html#SECTION00637000000000000000">5.3.7 The amazon Grid Type </A>
+<UL>
+<LI><A NAME="tex2html1766"
+  HREF="5_3Grid_Universe.html#SECTION00637100000000000000">5.3.7.1 Amazon EC2 Job Submission</A>
+<LI><A NAME="tex2html1767"
+  HREF="5_3Grid_Universe.html#SECTION00637200000000000000">5.3.7.2 Amazon EC2 Configuration Parameters</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1768"
+  HREF="5_3Grid_Universe.html#SECTION00638000000000000000">5.3.8 The cream Grid Type </A>
+<LI><A NAME="tex2html1769"
+  HREF="5_3Grid_Universe.html#SECTION00639000000000000000">5.3.9 The deltacloud Grid Type </A>
+<UL>
+<LI><A NAME="tex2html1770"
+  HREF="5_3Grid_Universe.html#SECTION00639100000000000000">5.3.9.1 Deltacloud Job Submission</A>
+<LI><A NAME="tex2html1771"
+  HREF="5_3Grid_Universe.html#SECTION00639200000000000000">5.3.9.2 Configuration for Deltacloud</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1772"
+  HREF="5_3Grid_Universe.html#SECTION006310000000000000000">5.3.10 Matchmaking in the Grid Universe</A>
+<UL>
+<LI><A NAME="tex2html1773"
+  HREF="5_3Grid_Universe.html#SECTION006310100000000000000">5.3.10.1 Job Submission</A>
+<LI><A NAME="tex2html1774"
+  HREF="5_3Grid_Universe.html#SECTION006310200000000000000">5.3.10.2 Advertising Grid Resources to Condor</A>
+<LI><A NAME="tex2html1775"
+  HREF="5_3Grid_Universe.html#SECTION006310300000000000000">5.3.10.3 Advanced usage</A>
+</UL></UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00630000000000000000"></A><A NAME="sec:GridUniverse"></A>
+<BR>
+5.3 The Grid Universe
+</H1>
+
+<P>
+<A NAME="46683"></A>
+
+<P>
+
+<H2><A NAME="SECTION00631000000000000000"></A><A NAME="sec:Condor-C"></A>
+<BR>
+5.3.1 Condor-C, The condor Grid Type 
+</H2>
+
+<P>
+<A NAME="46685"></A>
+Condor-C allows jobs in one machine's job queue to
+be moved to another machine's job queue.
+These machines may be far removed from each other,
+providing powerful grid computation mechanisms,
+while requiring only Condor software and its configuration.
+
+<P>
+Condor-C is highly resistant to network disconnections and machine failures on both the submission and remote sides.
+An expected usage
+sets up Personal Condor on a laptop,
+submits some jobs that are sent to a Condor pool,
+waits until the jobs are staged on the pool,
+then turns off the laptop.
+When the laptop reconnects at a later time,
+any results can be pulled back.
+
+<P>
+Condor-C scales gracefully when compared with Condor's flocking
+mechanism.
+The machine upon which jobs are submitted
+maintains a single process and network connection to a remote machine,
+without regard to the number
+of jobs queued or running.
+
+<P>
+
+<H3><A NAME="SECTION00631100000000000000"></A><A NAME="sec:Condor-C-Config"></A>
+<A NAME="46687"></A>
+<BR>
+5.3.1.1 Condor-C Configuration
+</H3>
+There are two aspects to configuration to enable the
+submission and execution of Condor-C jobs.
+These two aspects correspond to the endpoints of the 
+communication: there is the machine from which jobs are
+submitted, and there is the remote machine upon which the
+jobs are placed in the queue (executed).
+
+<P>
+Configuration of a machine from which jobs are submitted
+requires a few extra configuration variables:
+
+<P>
+<PRE>
+CONDOR_GAHP=$(SBIN)/condor_c-gahp
+C_GAHP_LOG=/tmp/CGAHPLog.$(USERNAME)
+C_GAHP_WORKER_THREAD_LOG=/tmp/CGAHPWorkerLog.$(USERNAME)
+</PRE>
+<P>
+<A NAME="46690"></A>
+<A NAME="46691"></A>
+The acronym GAHP stands for Grid ASCII Helper Protocol.
+A GAHP server provides grid-related services for a
+variety of underlying middle-ware systems.
+The configuration variable <TT>CONDOR_GAHP</TT> <A NAME="46797"></A> <A NAME="46798"></A>
+gives a full path to the GAHP server utilized by Condor-C.
+The configuration variable <TT>C_GAHP_LOG</TT> <A NAME="46802"></A> <A NAME="46803"></A> defines
+the location of the log that the Condor GAHP server writes.
+The log for the Condor GAHP is written as the user on whose
+behalf it is running; thus the
+<TT>C_GAHP_LOG</TT> <A NAME="46807"></A> <A NAME="46808"></A> configuration variable must point to a location the end
+user can write to.
+
+<P>
+A submit machine must also have a <I>condor_collector</I> daemon to which the
+<I>condor_schedd</I> daemon can submit a query.
+The query is for the location (IP address and port)
+of the intended remote machine's <I>condor_schedd</I> daemon.
+This facilitates communication between the two machines.
+This <I>condor_collector</I> does not need to be the same collector
+that the local <I>condor_schedd</I> daemon reports to.
+
+<P>
+The machine upon which jobs are executed 
+must also be configured correctly.
+This machine must be running a <I>condor_schedd</I> daemon.
+Unless specified explicitly in a submit file, 
+<TT>CONDOR_HOST</TT> must point to a 
+<I>condor_collector</I> daemon that it can write to,
+and the machine upon which jobs are submitted can read from.
+This facilitates communication between the two machines.
+
+<P>
+An important aspect of configuration is the security 
+configuration relating to authentication.
+Condor-C on the remote machine relies on an
+authentication protocol to
+know the identity of the user under which to run a job.
+The following is a working example
+of the security configuration for authentication.
+This authentication method, CLAIMTOBE, 
+trusts the identity claimed by a host or IP address.
+
+<P>
+<PRE>
+SEC_DEFAULT_NEGOTIATION = OPTIONAL
+SEC_DEFAULT_AUTHENTICATION_METHODS = CLAIMTOBE
+</PRE>
+<P>
+
+<H3><A NAME="SECTION00631200000000000000"></A><A NAME="sec:Condor-C-Submit"></A>
+<A NAME="46706"></A>
+<A NAME="46707"></A>
+<BR>
+5.3.1.2 Condor-C Job Submission
+</H3>
+Job submission of Condor-C jobs is the same as for any Condor job.
+The <B>universe</B> is <B>grid</B>.
+<B>grid_resource</B> specifies the remote <I>condor_schedd</I> daemon to which
+the job should be submitted, and its value consists of three fields.
+The first field is the grid type, which is <B>condor</B>.
+The second field is the name of the remote <I>condor_schedd</I> daemon.
+Its value is the
+same as the <I>condor_schedd</I> ClassAd attribute <TT>Name</TT> on the
+remote machine.
+The third field is the name of the remote pool's <I>condor_collector</I>.
+
+<P>
+The following represents a minimal submit description file for
+a job.
+
+<P>
+<PRE>
+# minimal submit description file for a Condor-C job
+universe = grid
+executable = myjob
+output = myoutput
+error = myerror
+log = mylog
+
+grid_resource = condor joe@remotemachine.example.com remotecentralmanager.example.com
++remote_jobuniverse = 5
++remote_requirements = True
++remote_ShouldTransferFiles = "YES"
++remote_WhenToTransferOutput = "ON_EXIT"
+queue
+</PRE>
+<P>
+The remote machine needs to understand the attributes of the job.
+These are specified in the submit description file using the '+'
+syntax, followed by the string <B>remote_</B>.
+At a minimum, this will be the job's <B>universe</B> and the job's
+<B>requirements</B>.
+It is likely that other attributes specific to the
+job's <B>universe</B> (on the remote pool) will also be necessary.
+Note that attributes set with '+' are inserted directly into
+the job's ClassAd.  
+Specify attributes as they 
+must appear in the job's ClassAd, not the submit description file. 
+For example,
+the <B>universe</B> is specified using an integer assigned for
+a job ClassAd <TT>JobUniverse</TT>.
+Similarly, place quotation marks around string 
+expressions.
+As an example, a submit description file would ordinarily contain
+<PRE>
+when_to_transfer_output = ON_EXIT
+</PRE>This must appear in the Condor-C job submit description file as
+<PRE>
++remote_WhenToTransferOutput = "ON_EXIT"
+</PRE>
+<P>
+For convenience, the specific entries of 
+<B>universe</B>, 
+<B>remote_grid_resource</B>, 
+<B>globus_rsl</B>, and
+<B>globus_xml</B>
+may be specified as <B>remote_</B> commands
+without the leading '+'. 
+Instead of 
+<PRE>
++remote_universe = 5
+</PRE>
+<P>
+the submit description file command may appear as
+
+<P>
+<PRE>
+remote_universe = vanilla
+</PRE>
+<P>
+Similarly, the command
+<PRE>
++remote_gridresource = "condor schedd.example.com cm.example.com"
+</PRE>
+<P>
+may be given as
+
+<P>
+<PRE>
+remote_grid_resource = condor schedd.example.com cm.example.com
+</PRE>
+<P>
+For the given example,
+the job is to be run as a <B>vanilla</B> 
+<B>universe</B> job at the remote pool.
+The (remote pool's) <I>condor_schedd</I> daemon is likely to
+place its job queue data on a local disk 
+and execute the job on another machine within the pool of machines.
+This implies that the file systems for the resulting submit machine
+(the machine specified by <B>remote_schedd</B>) and
+the execute machine (the machine that runs the job) will
+<I>not</I> be shared.
+Thus,
+the two inserted ClassAds
+<PRE>
++remote_ShouldTransferFiles = "YES"
++remote_WhenToTransferOutput = "ON_EXIT"
+</PRE>are used to invoke Condor's file transfer mechanism. 
+
+<P>
+As Condor-C is a recent addition to Condor,
+the universes, associated integer assignments,
+and notes about the existence of functionality are given in 
+Table&nbsp;<A HREF="#working-remote-universes">5.1</A>.
+The note "untested" implies that
+submissions under the given universe have not yet
+been throughly tested.
+They may already work.
+
+<P>
+<DIV ALIGN="CENTER">
+</DIV>
+<BR><P></P>
+<DIV ALIGN="CENTER"><A NAME="46792"></A>
+<TABLE>
+<CAPTION><STRONG>Table 5.1:</STRONG>
+Functionality of remote job universes with Condor-C</CAPTION>
+<TR><TD><TABLE CELLPADDING=3 BORDER="1">
+<TR><TH ALIGN="LEFT"><B>Universe Name</B></TH>
+<TH ALIGN="LEFT"><B>Value</B></TH>
+<TH ALIGN="LEFT"><B>Notes</B></TH>
+</TR>
+<TR><TD ALIGN="LEFT">standard</TD>
+<TD ALIGN="LEFT">1</TD>
+<TD ALIGN="LEFT">untested</TD>
+</TR>
+<TR><TD ALIGN="LEFT">vanilla</TD>
+<TD ALIGN="LEFT">5</TD>
+<TD ALIGN="LEFT">works well</TD>
+</TR>
+<TR><TD ALIGN="LEFT">scheduler</TD>
+<TD ALIGN="LEFT">7</TD>
+<TD ALIGN="LEFT">works well</TD>
+</TR>
+<TR><TD ALIGN="LEFT">grid</TD>
+<TD ALIGN="LEFT">9</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">grid_resource is condor</TD>
+<TD ALIGN="LEFT">works well</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">grid_resource is cream</TD>
+<TD ALIGN="LEFT">untested</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">grid_resource is gt2</TD>
+<TD ALIGN="LEFT">works well</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">grid_resource is gt4</TD>
+<TD ALIGN="LEFT">untested</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">grid_resource is gt5</TD>
+<TD ALIGN="LEFT">untested</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">grid_resource is nordugrid</TD>
+<TD ALIGN="LEFT">untested</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">grid_resource is unicore</TD>
+<TD ALIGN="LEFT">untested</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">grid_resource is lsf</TD>
+<TD ALIGN="LEFT">works well</TD>
+</TR>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">grid_resource is pbs</TD>
+<TD ALIGN="LEFT">works well</TD>
+</TR>
+<TR><TD ALIGN="LEFT">java</TD>
+<TD ALIGN="LEFT">10</TD>
+<TD ALIGN="LEFT">untested</TD>
+</TR>
+<TR><TD ALIGN="LEFT">parallel</TD>
+<TD ALIGN="LEFT">11</TD>
+<TD ALIGN="LEFT">untested</TD>
+</TR>
+<TR><TD ALIGN="LEFT">local</TD>
+<TD ALIGN="LEFT">12</TD>
+<TD ALIGN="LEFT">works well</TD>
+</TR>
+</TABLE>
+</TD></TR>
+</TABLE>
+</DIV><P></P>
+<BR>
+<DIV ALIGN="CENTER">
+</DIV>
+
+<P>
+For communication between <I>condor_schedd</I> daemons on the submit
+and remote machines,
+the location of the remote <I>condor_schedd</I> daemon is needed.
+This information resides in the <I>condor_collector</I> of the remote
+machine's pool.
+The third field of the <B>grid_resource</B> command in the submit description file
+says which <I>condor_collector</I> should be queried for the remote <I>condor_schedd</I>
+daemon's location.
+An example of this submit command is
+<PRE>
+grid_resource = condor schedd.example.com machine1.example.com
+</PRE>If the remote <I>condor_collector</I> is not listening on the standard port
+(9618), then the port it <I>is</I> listening on needs to be specified:
+<PRE>
+grid_resource = condor schedd.example.comd machine1.example.com:12345
+</PRE>
+<P>
+File transfer of a job's executable, <TT>stdin</TT>, <TT>stdout</TT>, and
+<TT>stderr</TT> are automatic.
+When other files need to be transferred using Condor's file transfer
+mechanism
+(see section&nbsp;<A HREF="2_5Submitting_Job.html#sec:file-transfer">2.5.4</A> on page&nbsp;<A HREF="2_5Submitting_Job.html#sec:file-transfer"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>),
+the mechanism is applied based on the resulting job universe on the
+remote machine.
+
+<P>
+
+<H3><A NAME="SECTION00631300000000000000"></A><A NAME="sec:Condor-C-CrossPlatform"></A>
+<BR>
+5.3.1.3 Condor-C Jobs Between Differing Platforms
+</H3>
+
+<P>
+Condor-C jobs given to a remote machine running Windows
+must specify the Windows domain of the remote machine.
+This is accomplished by defining a ClassAd attribute for the job.
+Where the Windows domain is different at the submit machine
+from the remote machine, the submit description file 
+defines the Windows domain of the remote machine with
+<PRE>
+  +remote_NTDomain = "DomainAtRemoteMachine"
+</PRE>
+
+<P>
+A Windows machine not part of a domain
+defines the Windows domain as the machine name.
+
+<P>
+
+<H3><A NAME="SECTION00631400000000000000"></A><A NAME="sec:Condor-C-Limits"></A>
+<A NAME="46782"></A>
+<BR>
+5.3.1.4 Current Limitations in Condor-C
+</H3>
+Submitting jobs to run under the grid universe has not yet
+been perfected.
+The following is a list of known limitations with Condor-C:
+
+<P>
+
+<OL>
+<LI>Authentication methods other than
+  <TT>CLAIMTOBE</TT>, such as <TT>GSI</TT> and <TT>KERBEROS</TT>, are 
+  untested, and may not yet work.
+
+<P>
+</LI>
+</OL>
+
+<P>
+<A NAME="46788"></A>
+
+<P>
+<A NAME="46994"></A>
+
+<P>
+
+<H2><A NAME="SECTION00632000000000000000"></A><A NAME="sec:Condor-G"></A>
+<BR>
+5.3.2 Condor-G, the gt2, gt4, and gt5 Grid Types
+</H2>
+
+<P>
+Condor-G is the name given to Condor when <B>grid</B>
+<B>universe</B> jobs are sent to grid resources utilizing
+Globus software for job execution.
+The Globus Toolkit provides a framework for building grid systems
+and applications.
+See the Globus Alliance web page at
+<A NAME="tex2html78"
+  HREF="http://www.globus.org">http://www.globus.org</A>
+for descriptions and details of the Globus software.
+
+<P>
+Condor provides the same job management capabilities for Condor-G
+jobs as for other jobs.
+From Condor, a user may effectively submit jobs, manage jobs,
+and have jobs execute on widely distributed machines.
+
+<P>
+It may appear that Condor-G is a simple replacement
+for the Globus Toolkit's <I>globusrun</I> command.
+However, Condor-G does much more.
+It allows the submission of many jobs at once,
+along with the monitoring of those jobs with a convenient interface.
+There is notification when jobs complete or fail
+and maintenance of Globus credentials
+that may expire while a job is running.
+On top of this, Condor-G is a fault-tolerant system;
+if a machine crashes,
+all of these functions are again available as the machine returns.
+
+<P>
+
+<H3><A NAME="SECTION00632100000000000000"></A><A NAME="sec:Globus-Protocols"></A>
+<BR>
+5.3.2.1 Globus Protocols and Terminology
+</H3>
+The Globus software provides a well-defined set of protocols
+that allow authentication, data transfer, and remote job execution.
+Authentication is a mechanism by which an identity is verified.
+Given proper authentication, authorization to use a resource
+is required.
+Authorization is a policy that determines who is allowed to do what. 
+
+<P>
+Condor (and Globus) utilize the following protocols and terminology.
+The protocols allow Condor to interact with grid machines toward
+the end result of executing jobs.
+<DL>
+<DT><STRONG>GSI</STRONG></DT>
+<DD><A NAME="47018"></A>
+The Globus Toolkit's Grid Security Infrastructure (GSI) provides essential
+<A NAME="47019"></A>
+building blocks for other grid protocols and Condor-G.
+This authentication and authorization system
+makes it possible to authenticate a user just once,
+using public key infrastructure (PKI) mechanisms to verify
+a user-supplied grid credential.
+GSI then handles the mapping of the grid credential to the
+diverse local credentials and authentication/authorization mechanisms that
+apply at each site. 
+</DD>
+<DT><STRONG>GRAM</STRONG></DT>
+<DD>The Grid Resource Allocation and Management (GRAM) protocol supports remote
+<A NAME="47020"></A>
+<A NAME="47021"></A>
+submission of a computational request (for example, to run a program)
+to a remote computational resource,
+and it supports subsequent monitoring and control of the computation. 
+GRAM is the Globus protocol that Condor-G uses to talk to remote Globus
+  jobmanagers.
+</DD>
+<DT><STRONG>GASS</STRONG></DT>
+<DD>The Globus Toolkit's Global Access to Secondary Storage (GASS) service provides
+<A NAME="47022"></A>
+<A NAME="47023"></A>
+mechanisms for transferring data to and from a remote HTTP, FTP, or GASS server. 
+GASS is used by Condor for the 
+<B>gt2</B> grid type
+to transfer a job's files
+to and from the machine where the job is submitted and the remote resource.
+</DD>
+<DT><STRONG>GridFTP</STRONG></DT>
+<DD>GridFTP is an extension of FTP that provides strong security and 
+high-performance options for large data transfers.
+It is used with the <B>gt4</B> grid type
+to transfer the job's files between the machine where the job
+is submitted and the remote resource.
+</DD>
+<DT><STRONG>RSL</STRONG></DT>
+<DD>RSL (Resource Specification Language)  is the language GRAM 
+accepts to specify job information.
+</DD>
+<DT><STRONG>gatekeeper</STRONG></DT>
+<DD>A gatekeeper is a software daemon executing on a remote machine on
+the grid.
+It is relevant only to the <B>gt2</B> grid type,
+and this daemon handles the initial communication between
+Condor and a remote resource.
+</DD>
+<DT><STRONG>jobmanager</STRONG></DT>
+<DD>A jobmanager is
+the Globus service that is initiated at a remote resource to submit,
+keep track of, and manage grid I/O for jobs running on 
+an underlying batch system.
+There is a specific jobmanager for each type of
+batch system supported by Globus (examples are Condor, LSF, and PBS).
+
+<P>
+</DD>
+</DL>
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:condorg"></A><A NAME="47238"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 5.1:</STRONG>
+Condor-G interaction with Globus-managed resources</CAPTION>
+<TR><TD>
+<DIV ALIGN="CENTER"><IMG
+ WIDTH="580" HEIGHT="451" ALIGN="BOTTOM" BORDER="0"
+ SRC="img32.png"
+ ALT="\includegraphics{grids/gfig1.eps}">
+</DIV></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+Figure&nbsp;<A HREF="#fig:condorg">5.1</A> shows how Condor interacts with Globus software
+towards running jobs.
+The diagram is specific to the <B>gt2</B> type of grid.
+Condor contains a GASS server, used to transfer the executable,
+<TT>stdin</TT>, <TT>stdout</TT>, and <TT>stderr</TT> to and from
+the remote job execution site.
+Condor uses the GRAM protocol to contact the remote gatekeeper
+and request that a new jobmanager be started.
+The GRAM protocol is also used to when monitoring the job's progress.
+Condor detects and intelligently handles cases
+such as if the remote resource crashes.
+
+<P>
+There are now three different versions of the GRAM protocol.
+Condor supports both the <B>gt2</B> and <B>gt4</B>
+protocols.  It does not support <B>gt3</B>.
+<DL>
+<DT><STRONG>gt2</STRONG></DT>
+<DD>This initial GRAM protocol is used in Globus Toolkit versions 1 and 2.
+It is still used by many production systems.
+Where available in the other, more recent versions of the protocol,
+<B>gt2</B> is referred to as the pre-web services GRAM 
+(or pre-WS GRAM).
+</DD>
+<DT><STRONG>gt3</STRONG></DT>
+<DD><B>gt3</B> corresponds to
+Globus Toolkit version 3 as part of
+Globus' shift to web services-based protocols.
+It is replaced by  the Globus Toolkit version 4.
+An installation of the Globus Toolkit version 3 
+(or OSGA GRAM) may also
+include the the pre-web services GRAM.
+</DD>
+<DT><STRONG>gt4</STRONG></DT>
+<DD>This GRAM protocol was introduced in Globus Toolkit version 4.0 as a more
+standards-compliant version of the GT3 web services-based GRAM.
+It is also called WS GRAM. A slightly different version of this GRAM
+protocol was introduced in Globus Toolkit 4.2 due to a change in the
+underlying Web Services standards.
+An installation of the Globus Toolkit version 4 may also
+include the the pre-web services GRAM.
+</DD>
+<DT><STRONG>gt5</STRONG></DT>
+<DD>This new GRAM5 protocol is still in alpha testing.
+It is an extension of the pre-WS GRAM protocol,
+and it attempts to fix lingering problems.
+</DD>
+</DL>
+
+<P>
+
+<H3><A NAME="SECTION00632200000000000000"></A><A NAME="sec:Using-gt2"></A>
+<BR>
+5.3.2.2 The gt2 Grid Type
+</H3>
+
+<P>
+<A NAME="47045"></A>
+<A NAME="47046"></A>
+Condor-G supports submitting jobs to remote resources running
+the Globus Toolkit versions 1 and 2, also called the pre-web
+services GRAM (or pre-WS GRAM).
+These Condor-G jobs are submitted the same as any other Condor job.
+The <B>universe</B> is <B>grid</B>,
+and the pre-web services GRAM protocol is specified by
+setting the type of grid as <B>gt2</B> in the <B>grid_resource</B>
+command.
+
+<P>
+<A NAME="47051"></A>
+<A NAME="47052"></A>
+<A NAME="47053"></A>
+Under Condor, successful job submission to the <B>grid</B> 
+<B>universe</B> with <B>gt2</B>
+requires credentials.
+<A NAME="47057"></A>
+An X.509 certificate is used to create a proxy,
+and an account, authorization, or allocation to use a grid resource
+is required.
+For general information on proxies and certificates,
+please consult the Globus page at 
+
+<P>
+<A NAME="tex2html80"
+  HREF="http://www-unix.globus.org/toolkit/docs/4.0/security/key-index.html">http://www-unix.globus.org/toolkit/docs/4.0/security/key-index.html</A>
+<P>
+Before submitting a job to Condor under the <B>grid</B> universe,
+use <I>grid-proxy-init</I> to create a proxy.
+
+<P>
+Here is a simple submit description file.
+<A NAME="47061"></A>
+The example specifies a <B>gt2</B> job to be run on
+an NCSA machine.
+
+<P>
+<PRE>
+executable = test
+universe = grid
+grid_resource = gt2 modi4.ncsa.uiuc.edu/jobmanager
+output = test.out
+log = test.log
+queue
+</PRE> 
+
+<P>
+The 
+<B>executable</B>
+for this example is
+transferred from the local machine to the remote machine.
+By default, Condor transfers the executable, as well as any
+files specified by an <B>input</B> command.
+Note that the executable must be compiled for its intended platform.
+
+<P>
+<A NAME="47067"></A>
+The command <B>grid_resource</B> is a required command
+for grid universe jobs.
+The second field specifies the scheduling software
+to be used on the remote resource.
+There is a specific jobmanager for each type of
+batch system supported by Globus.
+The full syntax for this command line appears as
+<PRE>
+grid_resource = gt2 machinename[:port]/jobmanagername[:X.509 distinguished name]
+</PRE>The portions of this syntax specification enclosed within
+square brackets ([ and ]) are optional.
+On a machine where the jobmanager is listening on a nonstandard port,
+include the port number.
+The <code>jobmanagername</code> is a site-specific string.
+The most common one is <code>jobmanager-fork</code>, but others are
+<PRE>
+jobmanager
+jobmanager-condor
+jobmanager-pbs
+jobmanager-lsf
+jobmanager-sge
+</PRE>
+The Globus software running on the remote resource
+uses this string to identify and select the correct service
+to perform.
+Other <code>jobmanagername</code> strings are used,
+where additional services are defined and implemented.
+
+<P>
+No input file is specified for this example job.
+Any output (file specified by an <B>output</B> command)
+or error (file specified by an <B>error</B> command)
+is transferred 
+from the remote machine to the local machine as it is generated.
+This implies that these files may be incomplete in the case
+where the executable does not finish running on the remote resource.
+The ability to transfer standard output and standard error as
+they are produced may be disabled by adding to the submit
+description file:
+<PRE>
+stream_output = False
+stream_error  = False
+</PRE>
+As a result, standard output and standard error will be transferred
+only after the job completes.
+
+<P>
+The job log file is maintained on the submit machine.
+
+<P>
+Example output from 
+<I>condor_q</I> for this submission looks like:
+<PRE>
+% condor_q
+
+
+-- Submitter: wireless48.cs.wisc.edu : &lt;128.105.48.148:33012&gt; : wireless48.cs.wi
+
+ ID      OWNER         SUBMITTED     RUN_TIME ST PRI SIZE CMD
+   7.0   smith        3/26 14:08   0+00:00:00 I  0   0.0  test
+
+1 jobs; 1 idle, 0 running, 0 held
+</PRE>
+<P>
+After a short time, the Globus resource accepts the job.
+Again running <I>condor_q</I> will now result in
+
+<P>
+<PRE>
+% condor_q
+
+
+-- Submitter: wireless48.cs.wisc.edu : &lt;128.105.48.148:33012&gt; : wireless48.cs.wi
+
+ ID      OWNER         SUBMITTED     RUN_TIME ST PRI SIZE CMD
+   7.0   smith        3/26 14:08   0+00:01:15 R  0   0.0  test
+
+1 jobs; 0 idle, 1 running, 0 held
+</PRE>
+<P>
+Then, very shortly after that, the queue will be empty again,
+because the job has finished:
+
+<P>
+<PRE>
+% condor_q
+
+
+-- Submitter: wireless48.cs.wisc.edu : &lt;128.105.48.148:33012&gt; : wireless48.cs.wi
+
+ ID      OWNER            SUBMITTED     RUN_TIME ST PRI SIZE CMD
+
+0 jobs; 0 idle, 0 running, 0 held
+</PRE>
+<P>
+A second example of a submit description file runs the Unix <I>ls</I>
+program on a different Globus resource.
+
+<P>
+<PRE>
+executable = /bin/ls
+transfer_executable = false
+universe = grid
+grid_resource = gt2 vulture.cs.wisc.edu/jobmanager
+output = ls-test.out
+log = ls-test.log
+queue
+</PRE><FONT SIZE="-1"> 
+</FONT>
+<P>
+In this example, the executable (the binary) has been pre-staged.
+The executable is on the remote machine, and it is not to
+be transferred before execution.
+Note that the required 
+<B>grid_resource</B> and <B>universe</B>
+commands are present.
+The command
+<PRE>
+transfer_executable = false
+</PRE>
+within the submit description file identifies the executable
+as being pre-staged.
+In this case, the 
+<B>executable</B>
+command gives the path to the executable on the remote machine.
+
+<P>
+A third example submits a Perl script to be run as a submitted
+Condor job.
+The Perl script both lists and sets
+environment variables for a job.
+Save the following Perl script with the name <TT>env-test.pl</TT>,
+to be used as a Condor job executable.
+
+<P>
+<PRE>
+#!/usr/bin/env perl
+
+foreach $key (sort keys(%ENV))
+{
+   print "$key = $ENV{$key}\n"
+}
+
+exit 0;
+</PRE>
+
+<P>
+Run the Unix command
+<PRE>
+chmod 755 env-test.pl
+</PRE>
+to make the Perl script executable.
+
+<P>
+Now create the following submit description file.
+Replace <TT>example.cs.wisc.edu/jobmanager</TT> with a resource
+you are authorized to use.
+
+<P>
+<PRE>
+executable = env-test.pl
+universe = grid
+grid_resource = gt2 example.cs.wisc.edu/jobmanager
+environment = foo=bar; zot=qux
+output = env-test.out
+log = env-test.log
+queue
+</PRE>
+<P>
+When the job has completed, the output file, <TT>env-test.out</TT>,
+should contain something like this:
+
+<P>
+<PRE>
+GLOBUS_GRAM_JOB_CONTACT = https://example.cs.wisc.edu:36213/30905/1020633947/
+GLOBUS_GRAM_MYJOB_CONTACT = URLx-nexus://example.cs.wisc.edu:36214
+GLOBUS_LOCATION = /usr/local/globus
+GLOBUS_REMOTE_IO_URL = /home/smith/.globus/.gass_cache/globus_gass_cache_1020633948
+HOME = /home/smith
+LANG = en_US
+LOGNAME = smith
+X509_USER_PROXY = /home/smith/.globus/.gass_cache/globus_gass_cache_1020633951
+foo = bar
+zot = qux
+</PRE>
+<P>
+Of particular interest is the <TT>GLOBUS_REMOTE_IO_URL</TT>
+environment variable.
+Condor-G automatically starts up a GASS remote I/O
+server on the submit machine.
+Because of the potential for either side of the connection to fail,
+the URL for the server cannot be passed directly to the job.
+Instead, it is placed into a file, and the <TT>GLOBUS_REMOTE_IO_URL</TT>
+environment variable points to this file.
+Remote jobs can read this file and use the URL it contains
+to access the remote GASS server running inside Condor-G.
+If the location
+of the GASS server changes (for example, if Condor-G restarts),
+Condor-G will contact the Globus gatekeeper and update this file on
+the machine where the job is running.
+It is therefore important that all accesses to
+the remote GASS server check this file for the latest location.
+
+<P>
+The following example is a Perl script that uses the GASS server in Condor-G
+to copy input files to the execute machine.
+In this example, the remote job
+counts the number of lines in a file.
+
+<P>
+<PRE>
+#!/usr/bin/env perl
+use FileHandle;
+use Cwd;
+
+STDOUT-&gt;autoflush();
+$gassUrl = `cat $ENV{GLOBUS_REMOTE_IO_URL}`;
+chomp $gassUrl;
+
+$ENV{LD_LIBRARY_PATH} = $ENV{GLOBUS_LOCATION}. "/lib";
+$urlCopy = $ENV{GLOBUS_LOCATION}."/bin/globus-url-copy";
+
+# globus-url-copy needs a full path name
+$pwd = getcwd();
+print "$urlCopy $gassUrl/etc/hosts file://$pwd/temporary.hosts\n\n";
+`$urlCopy $gassUrl/etc/hosts file://$pwd/temporary.hosts`;
+
+open(file, "temporary.hosts");
+while(&lt;file&gt;) {
+print $_;
+}
+
+exit 0;
+</PRE>
+<P>
+The submit description file used to submit the Perl script as
+a Condor job appears as:
+
+<P>
+<PRE>
+executable = gass-example.pl
+universe = grid
+grid_resource = gt2 example.cs.wisc.edu/jobmanager
+output = gass.out
+log = gass.log
+queue
+</PRE>
+<P>
+There are two optional submit description file commands
+of note:
+<B>x509userproxy</B> and
+<B>globus_rsl</B>.
+The <B>x509userproxy</B> command specifies the path to
+an X.509 proxy.
+The command is of the form:
+<PRE>
+x509userproxy = /path/to/proxy
+</PRE>
+If this optional command is not present in the submit description file,
+then Condor-G checks the value of the environment variable
+<TT>X509_USER_PROXY</TT> for the location of the proxy.
+If this environment variable is not present, then Condor-G
+looks for the proxy in the file
+<TT>/tmp/x509up_uXXXX</TT>,
+where the characters <code>XXXX</code> in this file name are
+replaced with the Unix user id.
+
+<P>
+The <B>globus_rsl</B> command is used to add additional
+attribute settings to a job's RSL string.
+The format of the <B>globus_rsl</B> command is
+<PRE>
+globus_rsl = (name=value)(name=value)
+</PRE>
+Here is an example of this command from a submit description file:
+<PRE>
+globus_rsl = (project=Test_Project)
+</PRE>
+This example's attribute name for the additional RSL is
+<TT>project</TT>, and the value assigned is <TT>Test_Project</TT>.
+
+<P>
+
+<H3><A NAME="SECTION00632300000000000000"></A><A NAME="sec:Using-gt4"></A>
+<A NAME="47126"></A>
+<A NAME="47127"></A>
+<BR>
+5.3.2.3 The gt4 Grid Type
+</H3>
+
+<P>
+Condor-G supports submitting jobs to remote resources running
+the Globus Toolkit version 4, which speak a protocol called
+WS GRAM.
+Please note that this Globus Toolkit version
+is <I>not</I> compatible with the Globus Toolkit version 3.0 or 3.2.
+Globus Toolkit versions 4.0 and 4.2 use slightly different (and
+incompatible) versions of WS GRAM, due to a change in the underlying
+Web Services standards. Condor is able to detect the difference and
+use the appropriate version for each remote resource automatically.
+See
+<A NAME="tex2html81"
+  HREF="http://www-unix.globus.org/toolkit/docs/4.2/index.html">http://www-unix.globus.org/toolkit/docs/4.2/index.html</A>
+for more information about the Globus Toolkit version 4.2.
+
+<P>
+For grid jobs destined for <B>gt4</B>,
+the submit description file is much the same as for
+<B>gt2</B> jobs.
+<A NAME="47132"></A>
+The <B>grid_resource</B> command is still required,
+and is given in the form of a URL. 
+The syntax follows the form:
+<PRE>
+grid_resource = gt4 [https://]hostname[:port][/wsrf/services/ManagedJobFactoryService] scheduler-string
+</PRE>
+<P>
+or
+<PRE>
+grid_resource = gt4 [https://]IPaddress[:port][/wsrf/services/ManagedJobFactoryService] scheduler-string
+</PRE>The portions of this syntax specification enclosed within
+square brackets ([ and ]) are optional.
+
+<P>
+The <B>scheduler-string</B> field of <B>grid_resource</B>
+indicates which job execution
+system should to be used on the remote system, to execute the job. One of
+these values is substituted for <B>scheduler-string</B>:
+<PRE>
+Fork
+Condor
+PBS
+LSF
+SGE
+</PRE>
+
+<P>
+The <B>globus_xml</B> command can be used to add additional
+attributes to the XML-based RSL string that Condor writes to submit the
+job to GRAM.
+Here is an example of this command from a submit description file:
+<PRE>
+globus_xml = &lt;project&gt;Test_Project&lt;/project&gt;
+</PRE>
+This example's attribute name for the additional RSL is
+<TT>project</TT>, and the value assigned is <TT>Test_Project</TT>.
+
+<P>
+File transfer occurs as expected for a Condor job 
+(for the executable, <TT>input</TT>, and <TT>output</TT>), except that all
+output files other than <TT>stdout</TT> and <TT>stderr</TT> must be
+explicitly listed using <B>transfer_output_files</B>.
+The underlying transfer mechanism requires a <I>GridFTP</I> server
+to be running on the machine where the job
+is submitted. Condor will start one automatically. It will appear in the
+job queue as an additional job. It will leave the queue when there are
+no more <B>gt4</B> jobs in the queue.
+If the submit machine has a permanent <I>GridFTP</I> server running,
+instruct Condor to use it by setting the <TT>GRIDFTP_URL_BASE</TT> <A NAME="47322"></A> <A NAME="47323"></A>
+configuration variable.  Here is an example setting:
+<PRE>
+  GRIDFTP_URL_BASE = gsiftp://mycomp.foo.edu
+</PRE>
+
+<P>
+On the submit machine,
+there is no requirement for any Globus Toolkit 4.0 components.
+Condor itself installs all necessary framework within the directory 
+<TT><TT>$(LIB)</TT>/lib/gt4</TT>.
+The machine where the job is submitted
+is required to
+have Java 1.5.0 or a higher version installed.
+You should not use the GNU Java interpreter (GCJ).
+The configuration variable <TT>JAVA</TT> <A NAME="47330"></A> <A NAME="47331"></A>
+must identify the location of the installation.
+See page&nbsp;<A HREF="3_3Configuration.html#param:Java"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> within
+section&nbsp;<A HREF="3_3Configuration.html#sec:Configuring-Condor">3.3</A>
+for the complete description of the configuration variable <TT>JAVA</TT>.
+
+<P>
+
+<H3><A NAME="SECTION00632400000000000000"></A><A NAME="sec:Using-gt5"></A>
+<BR>
+5.3.2.4 The gt5 Grid Type
+</H3>
+
+<P>
+<A NAME="47165"></A>
+<A NAME="47166"></A>
+
+<P>
+The Globus GRAM5 protocol works the same as the gt2 grid type.
+Its implementation differs from gt2 in the following 3 items:
+
+<UL>
+<LI>The Grid Monitor is disabled.
+</LI>
+<LI>Globus job managers are not stopped and restarted. 
+</LI>
+<LI>The configuration variable <TT>GRIDMANAGER_MAX_JOBMANAGERS_PER_RESOURCE</TT> <A NAME="47336"></A> <A NAME="47337"></A> 
+is not applied (for gt5 jobs).
+</LI>
+</UL>
+
+<P>
+
+<H3><A NAME="SECTION00632500000000000000"></A><A NAME="sec:My-Proxy"></A>
+<BR>
+5.3.2.5 Credential Management with <I>MyProxy</I>
+</H3>
+<A NAME="47244"></A>
+Condor-G can use <I>MyProxy</I>
+software to automatically renew GSI proxies for
+<B>grid</B>
+<B>universe</B> jobs with grid type
+<B>gt2</B>.
+<I>MyProxy</I> is a software component developed at
+NCSA and used widely throughout the grid community.
+For more information see:
+<A NAME="tex2html82"
+  HREF="http://myproxy.ncsa.uiuc.edu/">http://myproxy.ncsa.uiuc.edu/</A>
+<P>
+Difficulties with proxy expiration occur in two cases.
+The first case are long running jobs, which do not complete
+before the proxy expires.
+The second case occurs when great numbers of jobs are submitted.
+Some of the jobs may not yet be started
+or not yet completed before the proxy expires.
+One proposed solution to these difficulties is to generate
+longer-lived proxies.
+This, however, presents a greater security problem.
+Remember that a GSI proxy is sent to the remote Globus resource.
+If a proxy falls into the hands of a malicious user at the remote site,
+the malicious user can impersonate the proxy owner
+for the duration of the proxy's lifetime.
+The longer the proxy's lifetime,
+the more time a malicious user has to misuse the owner's credentials.
+To minimize the
+window of opportunity of a
+malicious user, 
+it is recommended that proxies have a short lifetime
+(on the order of several hours).
+
+<P>
+The <I>MyProxy</I> software generates proxies using credentials
+(a user certificate or a long-lived proxy) located on a secure
+<I>MyProxy</I> server.
+Condor-G talks to the MyProxy server,
+renewing a proxy as it is about to expire.
+Another advantage that this presents is it relieves the user
+from having to store a GSI user certificate and private key
+on the machine where jobs are submitted.
+This may be particularly important if a shared Condor-G
+submit machine is used by several users.
+
+<P>
+In the a typical case, the following steps occur:
+
+<P>
+
+<OL>
+<LI>The user creates a long-lived credential
+on a secure <I>MyProxy</I> server, using the
+<I>myproxy-init</I> command.
+Each organization generally has their own <I>MyProxy</I> server.
+
+<P>
+</LI>
+<LI>The user creates a short-lived proxy
+on a local submit machine,
+using
+<I>grid-proxy-init</I> or <I>myproxy-get-delegation</I>.
+
+<P>
+</LI>
+<LI>The user submits
+a Condor-G job,
+specifying:
+<DL>
+<DT></DT>
+<DD><I>MyProxy</I> server name (host:port)
+</DD>
+<DT></DT>
+<DD><I>MyProxy</I> credential name (optional)
+</DD>
+<DT></DT>
+<DD><I>MyProxy</I> password
+</DD>
+</DL>
+
+<P>
+</LI>
+<LI>At the short-lived proxy expiration
+Condor-G talks to
+the <I>MyProxy</I> server to refresh the proxy.
+
+<P>
+</LI>
+</OL>
+
+<P>
+Condor-G keeps track of the password to the <I>MyProxy</I> server
+for credential renewal.
+Although Condor-G tries to keep the password encrypted and secure,
+it is still possible (although highly unlikely) for the password
+to be intercepted from the Condor-G machine
+(more precisely, from the machine that the
+<I>condor_schedd</I> daemon that manages the grid universe jobs runs on,
+which may be distinct from the machine from where jobs are submitted).
+The following safeguard practices are recommended.
+
+<P>
+
+<OL>
+<LI>Provide time limits
+for credentials on the <I>MyProxy</I> server.
+The default is one week, but you may want to make it shorter.
+
+<P>
+</LI>
+<LI>Create several different <I>MyProxy</I> credentials,
+maybe as many as one for each submitted job.
+Each credential has a unique name,
+which is identified with the
+<TT>MyProxyCredentialName</TT> command in the submit description file.
+
+<P>
+</LI>
+<LI>Use the following options
+when initializing the credential on the <I>MyProxy</I> server:
+
+<P>
+<PRE>
+myproxy-init -s &lt;host&gt; -x -r &lt;cert subject&gt; -k &lt;cred name&gt;
+</PRE>
+<P>
+The option <B>-x -r </B><I>&lt;cert subject&gt;</I>
+essentially tells the <I>MyProxy</I> server to require two forms
+of authentication:
+  
+<OL>
+<LI>a password (initially set with <I>myproxy-init</I>)
+</LI>
+<LI>an existing proxy (the proxy to be renewed)
+  
+</LI>
+</OL>
+
+<P>
+</LI>
+<LI>A submit description file may include the password.
+An example contains commands of the form:
+<PRE>
+executable      = /usr/bin/my-executable
+universe        = grid
+grid_resource   = gt4 condor-unsup-7
+MyProxyHost     = example.cs.wisc.edu:7512
+MyProxyServerDN = /O=doesciencegrid.org/OU=People/CN=Jane Doe 25900
+MyProxyPassword = password
+MyProxyCredentialName = my_executable_run
+queue
+</PRE>Note that placing the password within the submit file
+is not really secure,
+as it relies upon whatever file system security there is.
+This may still be better than option 5.
+
+<P>
+</LI>
+<LI>Use the <B>-p</B> option to <I>condor_submit</I>.
+The submit command appears as
+<PRE>
+condor_submit -p mypassword /home/user/myjob.submit
+</PRE>The argument list for <I>condor_submit</I> defaults to
+being publicly available.
+An attacker with a log in to the local machine could
+generate a simple shell script
+to watch for the password. 
+
+<P>
+</LI>
+</OL>
+
+<P>
+Currently, Condor-G calls the
+<I>myproxy-get-delegation</I> command-line tool,
+passing it the necessary arguments.
+The location of the
+<I>myproxy-get-delegation</I> executable is determined by the
+configuration variable
+<TT>MYPROXY_GET_DELEGATION</TT> <A NAME="47383"></A> <A NAME="47384"></A> in the configuration file
+on the Condor-G machine.
+This variable is read by the <I>condor_gridmanager</I>.
+If
+<I>myproxy-get-delegation</I>
+is a dynamically-linked executable
+(verify this with <TT>ldd myproxy-get-delegation</TT>),
+point
+<TT>MYPROXY_GET_DELEGATION</TT>
+to a wrapper shell script that sets
+<TT>LD_LIBRARY_PATH</TT> to the correct <I>MyProxy</I>
+library or Globus library directory and then
+calls <I>myproxy-get-delegation</I>.
+Here is an example of such a wrapper script:
+
+<P>
+<PRE>
+#!/bin/sh
+export LD_LIBRARY_PATH=/opt/myglobus/lib
+exec /opt/myglobus/bin/myproxy-get-delegation $@
+</PRE>
+<H3><A NAME="SECTION00632600000000000000"></A><A NAME="sec:Condor-G-GridMonitor"></A>
+<A NAME="47600"></A>
+<A NAME="47601"></A>
+<A NAME="47602"></A>
+<BR>
+5.3.2.6 The Grid Monitor
+</H3>
+
+<P>
+Condor's Grid Monitor is designed to improve the scalability of
+machines running Globus Toolkit 2 gatekeepers.
+Normally, this gatekeeper runs a jobmanager process for 
+every job submitted to the gatekeeper.
+This includes both currently running jobs and jobs waiting in the queue.
+Each jobmanager runs a Perl script at
+frequent intervals (every 10 seconds) to poll the state of
+its job in the local batch system.
+For example, with 400 jobs submitted to a gatekeeper,
+there will be 400 jobmanagers running,
+each regularly starting a Perl script.
+When a large number of jobs
+have been submitted to a single gatekeeper,
+this frequent polling can heavily load the gatekeeper.
+When the gatekeeper is under heavy load,
+the system can become non-responsive, and a variety of problems can occur.
+
+<P>
+Condor's Grid Monitor temporarily replaces these jobmanagers.
+It is named the Grid Monitor, because it replaces the monitoring
+(polling) duties previously done by jobmanagers.
+When the Grid Monitor runs,
+Condor attempts to start a single
+process to poll all of a user's jobs at a given gatekeeper.
+While a job is waiting in the queue, but not yet running,
+Condor shuts down the associated jobmanager,
+and instead relies on the Grid Monitor to report changes in status.
+The jobmanager started to add the job to the remote
+batch system queue is shut down.
+The jobmanager restarts when the job begins running.
+
+<P>
+By default, standard output and standard error are streamed back
+to the submitting machine while the job is running.
+Streamed I/O requires the jobmanager.
+As a result, the Grid Monitor cannot
+replace the jobmanager for jobs that use streaming.
+If possible,
+disable streaming for all jobs;
+this is accomplished by placing the
+following lines in each job's submit description file:
+
+<P>
+<PRE>
+stream_output = False
+stream_error  = False
+</PRE>
+
+<P>
+The Grid Monitor requires that the gatekeeper support the fork
+jobmanager with the name <I>jobmanager-fork</I>.
+If the gatekeeper does not support the fork jobmanager,
+the Grid Monitor will not be used for that site.
+The <I>condor_gridmanager</I> log file reports any problems
+using the Grid Monitor.
+
+<P>
+The Grid Monitor is enabled by default,
+and the
+configuration macro <TT>GRID_MONITOR</TT> <A NAME="47623"></A> <A NAME="47624"></A> identifies
+the location of the executable.
+
+<P>
+
+<H3><A NAME="SECTION00632700000000000000"></A><A NAME="sec:Condor-G-Limits"></A>
+<A NAME="47609"></A>
+<BR>
+5.3.2.7 Limitations of Condor-G
+</H3>
+Submitting jobs to run under the grid universe has not yet
+been perfected.
+The following is a list of known limitations:
+
+<P>
+
+<OL>
+<LI>No checkpoints.
+</LI>
+<LI>No job exit codes.
+Job exit codes are not available when using
+<B>gt2</B>.
+</LI>
+<LI>Limited platform availability.
+Windows support is not yet available.
+</LI>
+</OL>
+
+<P>
+<A NAME="47616"></A>
+
+<P>
+
+<P>
+
+<H2><A NAME="SECTION00633000000000000000"></A><A NAME="sec:NorduGrid"></A>
+<A NAME="47649"></A>
+<A NAME="47650"></A>
+<BR>
+5.3.3 The nordugrid Grid Type 
+</H2>
+
+<P>
+NorduGrid is a project to develop free grid middleware named
+the Advanced  Resource Connector (ARC).
+See the NorduGrid web page (<A NAME="tex2html83"
+  HREF="http://www.nordugrid.org">http://www.nordugrid.org</A>)
+for more information about NorduGrid software.
+
+<P>
+Condor jobs may be submitted to
+NorduGrid resources using the <B>grid</B> universe.
+The <B>grid_resource</B> command specifies the name of the
+NorduGrid resource as follows:
+<PRE>
+grid_resource = nordugrid ng.example.com
+</PRE>
+
+<P>
+NorduGrid uses X.509 credentials for authentication,
+usually in the form a proxy certificate. 
+For more information about proxies and certificates,
+please consult the Alliance PKI pages at
+<A NAME="tex2html84"
+  HREF="http://archive.ncsa.uiuc.edu/SCD/Alliance/GridSecurity/">http://archive.ncsa.uiuc.edu/SCD/Alliance/GridSecurity/</A>.
+<I>condor_submit</I> looks in default locations for the proxy. 
+The submit description file command <B>x509userproxy</B>
+is used to give the full path name to the directory containing the proxy,
+when the proxy is not in a default location.
+If this optional command is not present in the submit description file,
+then the value of the environment variable
+<TT>X509_USER_PROXY</TT> is checked for the location of the proxy.
+If this environment variable is not present, then 
+the proxy in the file
+<TT>/tmp/x509up_uXXXX</TT> is used,
+where the characters <code>XXXX</code> in this file name are
+replaced with the Unix user id.
+
+<P>
+NorduGrid uses RSL syntax to describe jobs.
+The submit description file command
+<B>nordugrid_rsl</B>
+adds additional attributes to the job RSL that Condor
+constructs. 
+The format this submit description file command is
+<PRE>
+nordugrid_rsl = (name=value)(name=value)
+</PRE>
+
+<P>
+
+<H2><A NAME="SECTION00634000000000000000"></A><A NAME="sec:Unicore"></A>
+<A NAME="47688"></A>
+<A NAME="47689"></A>
+<BR>
+5.3.4 The unicore Grid Type 
+</H2>
+
+<P>
+Unicore is a Java-based grid scheduling system.
+See <A NAME="tex2html85"
+  HREF="http://unicore.sourceforge.net">http://unicore.sourceforge.net</A>
+for more information about Unicore.
+
+<P>
+Condor jobs may be submitted to
+Unicore resources using the <B>grid</B> universe.
+The <B>grid_resource</B> command specifies the name of the
+Unicore resource as follows:
+<PRE>
+grid_resource = unicore usite.example.com vsite
+</PRE>
+<B>usite.example.com</B> is the host name of the Unicore gateway
+machine to which the Condor job is to be submitted.
+<B>vsite</B> is the name of the Unicore virtual resource to which
+the Condor job is to be submitted.
+
+<P>
+Unicore uses certificates stored in a Java keystore file for
+authentication. 
+The following submit description file commands
+are required to properly use the keystore file.
+
+<P>
+<DL>
+<DT><STRONG><B>keystore_file</B></STRONG></DT>
+<DD>Specifies the complete path and file name of the Java keystore file to use. 
+</DD>
+<DT><STRONG><B>keystore_alias</B></STRONG></DT>
+<DD>A string that specifies which certificate in the
+  Java keystore file to use. 
+</DD>
+<DT><STRONG><B>keystore_passphrase_file</B></STRONG></DT>
+<DD>Specifies the complete path and file name of the 
+  file containing the passphrase protecting the certificate in the  
+  Java keystore file.
+</DD>
+</DL>
+
+<P>
+
+<H2><A NAME="SECTION00635000000000000000"></A><A NAME="sec:PBS"></A>
+<A NAME="47723"></A>
+<A NAME="47724"></A>
+<BR>
+5.3.5 The pbs Grid Type 
+</H2>
+
+<P>
+The popular PBS (Portable Batch System) comes in
+several varieties: OpenPBS (<A NAME="tex2html86"
+  HREF="http://www.openpbs.org">http://www.openpbs.org</A>),
+PBS Pro (<A NAME="tex2html87"
+  HREF="http://www.altair.com/software/pbspro.htm">http://www.altair.com/software/pbspro.htm</A>), and
+Torque
+(<A NAME="tex2html88"
+  HREF="http://www.clusterresources.com/pages/products/torque-resource-manager.php">http://www.clusterresources.com/pages/products/torque-resource-manager.php</A>).
+
+<P>
+Condor jobs are submitted to a local PBS system
+using the <B>grid</B> universe and the
+<B>grid_resource</B> command by placing the following
+into the submit description file.
+<PRE>
+grid_resource = pbs
+</PRE>
+
+<P>
+The pbs grid type requires two variables to be set in the Condor
+configuration file.
+<TT>PBS_GAHP</TT> <A NAME="47754"></A> <A NAME="47755"></A> is the path to the PBS GAHP server binary that is to be
+used to submit PBS jobs.
+<TT>GLITE_LOCATION</TT> <A NAME="47759"></A> <A NAME="47760"></A> is the path to the directory containing the GAHP's
+configuration file and auxillary binaries.
+In the Condor distribution, these files are located in 
+<TT><TT>$(LIB)</TT>/glite</TT>.
+The PBS GAHP's configuration file is in
+<TT><TT>$(GLITE_LOCATION)</TT>/etc/batch_gahp.config</TT>.
+The PBS GAHP's auxillary binaries
+are to be in the directory <TT><TT>$(GLITE_LOCATION)</TT>/bin</TT>.
+The Condor configuration file appears
+
+<P>
+<PRE>
+GLITE_LOCATION = $(LIB)/glite
+PBS_GAHP       = $(GLITE_LOCATION)/bin/batch_gahp
+</PRE>
+<P>
+The PBS GAHP's configuration file contains two variables that must be
+modified to tell it where to find PBS on the local system.
+<TT>pbs_binpath</TT> is the directory that contains the PBS binaries.
+<TT>pbs_spoolpath</TT> is the PBS spool directory.
+
+<P>
+
+<H2><A NAME="SECTION00636000000000000000"></A><A NAME="sec:LSF"></A>
+<A NAME="47791"></A>
+<A NAME="47792"></A>
+<BR>
+5.3.6 The lsf Grid Type 
+</H2>
+
+<P>
+Condor jobs may be submitted to the Platform LSF batch system.
+See the Products page of the Platform web page at
+<A NAME="tex2html89"
+  HREF="http://www.platform.com/Products/">http://www.platform.com/Products/</A>
+for more information about Platform LSF.
+
+<P>
+Condor jobs are submitted to a local Platform LSF system
+using the <B>grid</B> universe and the
+<B>grid_resource</B> command  by placing the following
+into the submit description file.
+<PRE>
+grid_resource = lsf
+</PRE>
+
+<P>
+The lsf grid type requires two variables to be set in the Condor
+configuration file.
+<TT>LSF_GAHP</TT> <A NAME="47816"></A> <A NAME="47817"></A> is the path to the LSF GAHP server binary that is to be
+used to submit Platform LSF jobs.
+<TT>GLITE_LOCATION</TT> <A NAME="47821"></A> <A NAME="47822"></A> is the path to the directory containing the GAHP's
+configuration file and auxillary binaries.
+In the Condor distribution, these files are located in 
+<TT><TT>$(LIB)</TT>/glite</TT>.
+The LSF GAHP's configuration file is in
+<TT><TT>$(GLITE_LOCATION)</TT>/etc/batch_gahp.config</TT>.
+The LSF GAHP's auxillary binaries
+are to be in the directory <TT><TT>$(GLITE_LOCATION)</TT>/bin</TT>.
+The Condor configuration file appears
+
+<P>
+<PRE>
+GLITE_LOCATION = $(LIB)/glite
+LSF_GAHP       = $(GLITE_LOCATION)/bin/batch_gahp
+</PRE>
+<P>
+The LSF GAHP's configuration file contains two variables that must be
+modified to tell it where to find LSF on the local system.
+<TT>lsf_binpath</TT> is the directory that contains the LSF binaries.
+<TT>lsf_confpath</TT> is the location of the LSF configuration file.
+
+<H2><A NAME="SECTION00637000000000000000"></A><A NAME="sec:Amazon"></A>
+<A NAME="47853"></A>
+<A NAME="47854"></A>
+<BR>
+5.3.7 The amazon Grid Type 
+</H2>
+
+<P>
+Condor jobs may be submitted to Amazon's Elastic Compute Cloud (EC2)
+service.
+EC2 is an on-line commercial service that allows the rental of computers
+by the hour to run computational applications.
+EC2 runs virtual machine images that have been uploaded to Amazon's
+online storage service (S3).
+See the Amazon EC2 web page at <A NAME="tex2html90"
+  HREF="http://aws.amazon.com/ec2">http://aws.amazon.com/ec2</A>
+for more
+information about EC2.
+
+<P>
+
+<H3><A NAME="SECTION00637100000000000000"></A><A NAME="sec:Amazon-submit"></A>
+<BR>
+5.3.7.1 Amazon EC2 Job Submission
+</H3>
+
+<P>
+Condor jobs are submitted to EC2
+using the <B>grid</B> universe and the
+<B>grid_resource</B> command  by placing the following
+into the submit description file.
+<PRE>
+grid_resource = amazon https://ec2.amazonaws.com/
+</PRE>
+
+<P>
+There many providers other than Amazon who support the EC2 interface.
+To use one of these others, substitute their EC2 URL for Amazon's in the
+<B>grid_resource</B> line.
+
+<P>
+Since the job is a virtual machine image,
+most of the submit description file commands
+specifying input or output files are not applicable.
+The <B>executable</B> command is still required,
+but its value is ignored. 
+It can be used to identify different jobs in the output of <I>condor_q</I>.
+
+<P>
+The VM image for the job must already reside in Amazon's storage
+service (S3) and be registered with EC2.
+In the submit description file,
+provide the identifier for the image using the
+<B>amazon_ami_id</B> attribute.
+Also specify the files containing the X.509 certificate and
+private key used to authenticate with the EC2 service:
+
+<P>
+<PRE>
+amazon_public_key = /path/to/x509/cert
+amazon_private_key = /path/to/private/key
+</PRE>
+
+<P>
+Condor and EC2 can create an ssh keypair to allow secure log in
+to the virtual machine once it is running.
+If the command
+<B>amazon_keypair_file</B> is set in the submit description file,
+Condor will write an ssh private key into the indicated file.
+The key can be used to log into the virtual machine.
+Note that modification will also be needed of the firewall
+rules for the job to all incoming ssh connections.
+
+<P>
+EC2 uses a firewall to restrict network access to the virtual machine
+instances it runs. By default, no incoming connections are allowed.
+One can define sets of firewall rules and give them names.
+EC2 calls these security groups. 
+Then tell Condor what set of security
+groups should be applied to each VM using the
+<B>amazon_security_groups</B> submit description file command.
+If not provided, Condor uses the security group <B>default</B>.
+
+<P>
+EC2 offers several hardware configurations for instances to run on, with
+varying prices. 
+Select which configuration to use with the
+<B>amazon_instance_type</B> submit description file command.
+Condor will use a default value of
+<B>m1.small</B> if not specified.
+
+<P>
+Each virtual machine instance can be given up to 16Kbytes of unique data, 
+accessible by the instance connecting to a well-known address.
+This makes it easy for many instances to share the same VM image,
+but perform different work.
+This data can be specified to Condor in one of two ways.
+First, the data can be provided directly in the submit description file 
+using the <B>amazon_user_data</B> command.
+Second, the data can be
+stored in a file, and the file name is specified with the
+<B>amazon_user_data_file</B> submit description file command.
+This second option allows the use of binary data.
+If both options are used, the two blocks of
+data are concatenated, with the data from <B>amazon_user_data</B>
+occurring first.
+Condor performs the base64 encoding that EC2 expects on the data.
+
+<P>
+
+<H3><A NAME="SECTION00637200000000000000"></A><A NAME="sec:Amazon-config"></A>
+<BR>
+5.3.7.2 Amazon EC2 Configuration Parameters
+</H3>
+
+<P>
+The amazon grid type requires several configuration variables 
+to be set in the Condor configuration file:
+
+<P>
+<PRE>
+AMAZON_GAHP=$(SBIN)/amazon_gahp
+AMAZON_GAHP_LOG=/tmp/AmazonGahpLog.$(USERNAME)
+</PRE>
+<P>
+If an HTTP proxy is needed to reach EC2, tell Condor to use it
+via the <TT>AMAZON_HTTP_PROXY</TT> <A NAME="47900"></A> <A NAME="47901"></A> configuration variable.
+
+<P>
+
+<H2><A NAME="SECTION00638000000000000000"></A><A NAME="sec:CREAM"></A>
+<A NAME="47939"></A>
+<A NAME="47940"></A>
+<BR>
+5.3.8 The cream Grid Type 
+</H2>
+
+<P>
+CREAM is a job submission interface being developed at INFN for the
+gLite software stack. 
+The CREAM homepage is <A NAME="tex2html91"
+  HREF="http://grid.pd.infn.it/cream/">http://grid.pd.infn.it/cream/</A>.
+The protocol is based on web services.
+
+<P>
+The protocol requires an X.509 proxy for the job,
+so the submit description file command <B>x509userproxy</B>
+will be used.
+
+<P>
+A CREAM resource specification is of the form:
+<PRE>
+grid_resource = cream &lt;web-services-address&gt; &lt;batch-system&gt; &lt;queue-name&gt;
+</PRE>The <code>&lt;web-services-address&gt;</code> appears the same for most servers,
+differing only in the host name, as
+<PRE>
+&lt;machinename[:port]&gt;/ce-cream/services/CREAM2
+</PRE>
+Future versions of Condor may require only the host name, 
+filling in other aspects of the web service for the user.
+
+<P>
+The <code>&lt;batch-system&gt;</code> is the name of the batch system that sits behind
+the CREAM server,
+into which it submits the jobs.
+Normal values are <code>pbs</code>, <code>lsf</code>, and <code>condor</code>.
+
+<P>
+The <code>&lt;queue-name&gt;</code> identifies which queue within the batch system
+should be used.
+Values for this will vary by site, with no typical values.
+
+<P>
+A full example for the specification of a CREAM <B>grid_resource</B> is
+<PRE>
+grid_resource = cream https://cream-12.pd.infn.it:8443/ce-cream/services/CREAM2
+   pbs cream_1
+</PRE>This is a single line within the submit description file,
+although it is shown here on two lines for formatting reasons.
+
+<H2><A NAME="SECTION00639000000000000000"></A><A NAME="sec:Deltacloud"></A>
+<A NAME="47978"></A>
+<A NAME="47979"></A>
+<BR>
+5.3.9 The deltacloud Grid Type 
+</H2>
+
+<P>
+Condor jobs may be submitted to Deltacloud services.
+Deltacloud is a translation service for cloud services.
+Cloud services allow the rental of computers by the hour to run
+computation applications.
+Many cloud services define their own protocol for users to communicate
+with them.
+Deltacloud defines its own simple protocol and translates a user's
+commands into the appropriate protocol for the cloud service the user
+specifies.
+Anyone can set up a Deltacloud service and configure it to translate
+for a specific cloud service.
+See the Deltacloud web page at <A NAME="tex2html92"
+  HREF="http://incubator.apache.org/deltacloud">http://incubator.apache.org/deltacloud</A>
+for more information about Deltacloud.
+
+<P>
+
+<H3><A NAME="SECTION00639100000000000000"></A><A NAME="sec:Deltacloud-submit"></A>
+<BR>
+5.3.9.1 Deltacloud Job Submission
+</H3>
+
+<P>
+Condor jobs are submitted to Deltacloud
+using the <B>grid</B> universe and the
+<B>grid_resource</B> command
+into the submit description file
+following this example:
+<PRE>
+grid_resource = deltacloud https://deltacloud.foo.org/api
+</PRE>
+
+<P>
+The URL in this example will be replaced with the URL of the
+Deltacloud service desired.
+
+<P>
+Since the job is a virtual machine image,
+most of the submit description file commands
+specifying input or output files are not applicable.
+The <B>executable</B> command is still required,
+but its value is ignored. 
+It can be used to identify different jobs in the output of <I>condor_q</I>.
+
+<P>
+The VM image for the job must already be stored and registered with the
+cloud service.
+In the submit description file,
+provide the identifier for the image using the
+<B>deltacloud_image_id</B> command.
+
+<P>
+To authenticate with Deltacloud, Condor needs your credentials for
+the cloud service that the Deltacloud server is representing. 
+The credentials are
+presented as a user name and the name of a file that holds a secret key.
+Both are specified in the submit description file:
+
+<P>
+<PRE>
+deltacloud_username = your_username
+deltacloud_password_file = /path/to/password/file
+</PRE>
+
+<P>
+You can create and register an SSH key pair with the cloud service,
+which you can then use to securely log in to virtual machines,
+once running.
+The command <B>deltacloud_keyname</B> in the
+submit description file specifies the identifier of the SSH key pair
+to use.
+
+<P>
+The cloud service may have multiple locations where the virtual
+machine can run. 
+The submit description file command <B>deltacloud_realm_id</B>
+selects one.
+If not specified, the service will select a sensible default.
+
+<P>
+The cloud service may offer several hardware configurations for
+instances to run on.
+Select which configuration to use with the
+<B>deltacloud_hardware_profile</B> submit description file command. 
+If not specified, the cloud service will select a sensible default.
+The optional commands <B>deltacloud_hardware_profile_memory</B>,
+<B>deltacloud_hardware_profile_cpu</B>, and
+<B>deltacloud_hardware_profile_storage</B>
+customize the selected hardware profile.
+
+<P>
+Each virtual machine instance can be given some unique data, 
+accessible by the instance connecting to a well-known address.
+This makes it easy for many instances to share the same VM image,
+but perform different work.
+This data can be specified with the submit description file command
+<B>deltacloud_user_data</B>.
+The amount of data that can be provided depends on the cloud service.
+EC2 services allow up to 16Kb of data.
+
+<P>
+
+<H3><A NAME="SECTION00639200000000000000"></A><A NAME="sec:Deltacloud-config"></A>
+<BR>
+5.3.9.2 Configuration for Deltacloud
+</H3>
+
+<P>
+The deltacloud grid type requires one configuration variable 
+to be set,
+to specify the path and executable of the <I>deltacloud_gahp</I>:
+
+<P>
+<PRE>
+DELTACLOUD_GAHP=$(SBIN)/deltacloud_gahp
+</PRE>
+<H2><A NAME="SECTION006310000000000000000"></A><A NAME="sec:Grid-Matchmaking"></A>
+<A NAME="48056"></A>
+<A NAME="48057"></A>
+<BR>
+5.3.10 Matchmaking in the Grid Universe
+</H2>
+
+<P>
+In a simple usage, the grid universe allows users to specify a single
+grid site as a destination for jobs.
+This is sufficient when a user knows exactly which
+grid site they wish to use,
+or a higher-level resource broker
+(such as the European Data Grid's resource broker)
+has decided which grid site should be used.
+
+<P>
+When a user has a variety of grid sites to choose from,
+Condor allows matchmaking of grid universe jobs
+to decide which grid resource a job should run on. 
+Please note that this form of matchmaking is relatively new.
+There are some rough edges as continual improvement occurs.
+
+<P>
+To facilitate Condor's matching of jobs with grid resources,
+both the jobs and the grid resources are involved.
+The job's submit description file provides all commands
+needed to make the
+job work on a matched grid resource.
+The grid resource identifies itself to Condor by advertising
+a ClassAd.
+This ClassAd specifies all necessary attributes, such that Condor
+can properly make matches.
+The grid resource identification is accomplished by 
+using <I>condor_advertise</I> to send a ClassAd representing the
+grid resource, which is then used by Condor to make matches.
+
+<P>
+
+<H3><A NAME="SECTION006310100000000000000">
+5.3.10.1 Job Submission</A>
+</H3>
+
+<P>
+To submit a grid universe job intended for a single, specific
+<B>gt2</B> resource,
+the submit description file for the job explicitly specifies
+the resource:
+
+<P>
+<PRE>
+grid_resource = gt2 grid.example.com/jobmanager-pbs
+</PRE>
+<P>
+If there were multiple <B>gt2</B> resources that
+might be matched to the job,
+the submit description file changes:
+
+<P>
+<PRE>
+grid_resource   = $$(resource_name)
+requirements    = TARGET.resource_name =!= UNDEFINED
+</PRE>
+<P>
+The <B>grid_resource</B> command uses a substitution
+macro.
+The substitution macro defines the value 
+of <TT>resource_name</TT> using attributes
+as specified by the matched grid resource.
+The <B>requirements</B> command further restricts that
+the job may only run on a machine (grid resource) that
+defines <TT>grid_resource</TT>.
+Note that this attribute name is invented for this example.
+To make matchmaking work in this way,
+both the job (as used here within the submit description file)
+and the grid resource (in its created and advertised ClassAd)
+must agree upon the name of the attribute.
+
+<P>
+As a more complex example,
+consider a job that wants
+to run not only
+on a <B>gt2</B> resource,
+but on one that has the Bamboozle software installed.
+The complete submit description file might appear:
+
+<P>
+<PRE>
+universe        = grid
+executable      = analyze_bamboozle_data
+output          = aaa.$(Cluster).out
+error           = aaa.$(Cluster).err
+log             = aaa.log
+grid_resource   = $$(resource_name)
+requirements    = (TARGET.HaveBamboozle == True) &amp;&amp; (TARGET.resource_name =!= UNDEFINED)
+queue
+</PRE>
+<P>
+Any grid resource which has the
+<TT>HaveBamboozle</TT> attribute defined as well as
+set to <TT>True</TT> is further checked to have the
+<TT>resource_name</TT> attribute defined.
+Where this occurs, a match may be made (from the
+job's point of view).
+A grid resource that has one of these attributes defined,
+but not the other results in no match being made.
+
+<P>
+Note that the entire value of <B>grid_resource</B> comes from
+the grid resource's ad. This means that the job can be matched with
+a resource of any type, not just <B>gt2</B>.
+
+<P>
+
+<H3><A NAME="SECTION006310200000000000000">
+5.3.10.2 Advertising Grid Resources to Condor</A>
+</H3>
+
+<P>
+Any grid resource that wishes to be matched by Condor with
+a job must advertise itself to Condor using a ClassAd.
+To properly advertise, a ClassAd is sent
+periodically to the <I>condor_collector</I> daemon.
+A ClassAd is a list of pairs, where each pair consists of
+an attribute name and value that describes an entity.
+There are two entities relevant to Condor:
+a job, and a machine.
+A grid resource is a machine.
+The ClassAd describes the grid resource, as well
+as identifying the capabilities of the grid resource.
+It may also state both requirements and preferences
+(called <B>rank</B>) for the jobs it will run.
+See
+Section&nbsp;<A HREF="2_3Matchmaking_with.html#sec:matchmaking-with-classads">2.3</A> for an overview
+of the interaction between matchmaking and ClassAds.
+A list of common machine ClassAd attributes is given in
+the Appendix on page&nbsp;<A HREF="10_Appendix_A.html#sec:Machine-ClassAd-Attributes"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+To advertise a grid site, place the attributes
+in a file.
+Here is a sample ClassAd that describes a grid resource
+that is capable of running a
+<B>gt2</B> job.
+
+<P>
+<PRE>
+# example grid resource ClassAd for a gt2 job
+MyType         = "Machine"
+TargetType     = "Job"
+Name           = "Example1_Gatekeeper"
+Machine        = "Example1_Gatekeeper"
+resource_name  = "gt2 grid.example.com/jobmanager-pbs"
+UpdateSequenceNumber  = 4
+Requirements   = (TARGET.JobUniverse == 9)
+Rank           = 0.000000
+CurrentRank    = 0.000000
+</PRE>
+<P>
+Some attributes are defined as expressions, while
+others are integers, floating point values, or strings.
+The type is important, and must be correct for the
+ClassAd to be effective.
+The attributes
+<PRE>
+MyType         = "Machine"
+TargetType     = "Job"
+</PRE>
+identify the grid resource as a machine,
+and that the machine is to be matched with a job.
+In Condor, machines are matched with jobs, and jobs are matched with
+machines.
+These attributes are strings.
+Strings are surrounded by double quote marks.
+
+<P>
+The attributes <TT>Name</TT> and <TT>Machine</TT>
+are likely to be defined to be the same string value as in the
+example:
+<PRE>
+Name           = "Example1_Gatekeeper"
+Machine        = "Example1_Gatekeeper"
+</PRE>
+<P>
+Both give the fully qualified host name for the resource.
+The <TT>Name</TT> may be different on an SMP machine,
+where the individual CPUs are given names that can
+be distinguished from each other.
+Each separate grid resource must have a unique name.
+
+<P>
+Where the job depends on the resource to specify the
+value of the <B>grid_resource</B> command by
+the use of the substitution macro,
+the ClassAd for the grid resource (machine)
+defines this value.
+The example given as
+<PRE>
+grid_resource = "gt2 grid.example.com/jobmanager-pbs"
+</PRE>defines this value.
+Note that the invented name of this variable must match the
+one utilized within the submit description file.
+To make the matchmaking work,
+both the job (as used within the submit description file)
+and the grid resource (in this created and advertised ClassAd)
+must agree upon the name of the attribute.
+
+<P>
+A machine's ClassAd information can be time sensitive,
+and may change over time.
+Therefore, ClassAds expire and are thrown away.
+In addition, the communication method by which ClassAds
+are sent implies that entire ads may be lost without notice
+or may arrive out of order.
+Out of order arrival leads to the definition of an
+attribute which provides an ordering.
+This positive integer value is given in the example
+ClassAd as
+<PRE>
+UpdateSequenceNumber  = 4
+</PRE>This value must increase for each subsequent ClassAd.
+If state information for the ClassAd is kept in a file,
+a script executed each time the ClassAd is to be sent
+may use a counter for this value.
+An alternative for a stateless implementation sends
+the current time in seconds (since the epoch, as given by
+the C <TT>time()</TT> function call).
+
+<P>
+The requirements that the grid resource sets for any job
+that it will accept are given as
+<PRE>
+Requirements     = (TARGET.JobUniverse == 9)
+</PRE>This set of requirements state that any job is
+required to be for the <B>grid</B> universe.
+
+<P>
+The attributes
+<PRE>
+Rank             = 0.000000
+CurrentRank      = 0.000000
+</PRE>are both necessary for Condor's negotiation to proceed,
+but are not relevant to grid matchmaking.
+Set both to the floating point value 0.0.
+
+<P>
+The example machine ClassAd becomes more complex
+for the case where the grid resource allows matches with more
+than one job:
+<PRE>
+# example grid resource ClassAd for a gt2 job
+MyType         = "Machine"
+TargetType     = "Job"
+Name           = "Example1_Gatekeeper"
+Machine        = "Example1_Gatekeeper"
+resource_name  = "gt2 grid.example.com/jobmanager-pbs"
+UpdateSequenceNumber  = 4
+Requirements   = (CurMatches &lt; 10) &amp;&amp; (TARGET.JobUniverse == 9)
+Rank           = 0.000000
+CurrentRank    = 0.000000
+WantAdRevaluate = True
+CurMatches     = 1
+</PRE>
+<P>
+In this example, the two attributes <TT>WantAdRevaluate</TT>
+and <TT>CurMatches</TT> appear, and the <TT>Requirements</TT>
+expression has changed.
+
+<P>
+<TT>WantAdRevaluate</TT> is a boolean value, and may be set to
+either <TT>True</TT> or <TT>False</TT>.
+When <TT>True</TT> in the ClassAd and a match is made (of a job
+to the grid resource), the machine (grid resource)
+is not removed from the set of machines to be considered for
+further matches.
+This implements the ability for a single grid resource to
+be matched to more than one job at a time.
+Note that the spelling of this attribute is incorrect,
+and remains incorrect to maintain backward compatibility.
+
+<P>
+To limit the number of matches made to the single grid resource,
+the resource must have the ability to keep track of the number 
+of Condor jobs it has.
+This integer value is given as the <TT>CurMatches</TT> attribute
+in the advertised ClassAd.
+It is then compared in order to limit the number of jobs matched
+with the grid resource.
+<PRE>
+Requirements   = (CurMatches &lt; 10) &amp;&amp; (TARGET.JobUniverse == 9)
+CurMatches     = 1
+</PRE>
+<P>
+This example assumes that the grid resource already has
+one job, and is willing to accept a maximum of 9 jobs.
+If <TT>CurMatches</TT> does not appear in the ClassAd,
+Condor uses a default value of 0.
+
+<P>
+<A NAME="48186"></A> <A NAME="48187"></A>
+<A NAME="48190"></A> <A NAME="48191"></A>
+For multiple matching of a site ClassAd to work correctly,
+it is also necessary to add the following to the configuration file
+read by the <I>condor_negotiator</I>:
+
+<P>
+<PRE>
+NEGOTIATOR_MATCHLIST_CACHING = False
+NEGOTIATOR_IGNORE_USER_PRIORITIES = True
+</PRE>
+
+<P>
+This ClassAd (likely in a file)
+is to be periodically sent to the <I>condor_collector</I> daemon
+using <I>condor_advertise</I>.
+A recommended implementation uses a script to create or modify
+the ClassAd together with
+<I>cron</I> to send the ClassAd every five minutes.
+The <I>condor_advertise</I> program must be installed on the 
+machine sending the ClassAd, but the remainder of Condor
+does not need to be installed.
+The required argument for the <I>condor_advertise</I> command
+is <I>UPDATE_STARTD_AD</I>.
+
+<P>
+<I>condor_advertise</I> uses UDP to transmit the ClassAd.
+Where this is insufficient,
+specify the <B>-tcp</B> option to <I>condor_advertise</I>
+to use TCP for communication. 
+
+<P>
+
+<H3><A NAME="SECTION006310300000000000000">
+5.3.10.3 Advanced usage</A>
+</H3>
+
+<P>
+What if a job fails to run at a grid site due to an error? It will be
+returned to the queue, and Condor will attempt to match it and
+re-run it at another site. Condor isn't very clever about avoiding
+sites that may be bad, but you can give it some assistance. Let's say
+that you want to avoid running at the last grid site you ran at. You
+could add this to your job description:
+
+<P>
+<PRE>
+match_list_length = 1
+Rank              = TARGET.Name != LastMatchName0
+</PRE>
+<P>
+This will prefer to run at a grid site that was not just tried, but it
+will allow the job to be run there if there is no other option. 
+
+<P>
+When you specify <B>match_list_length</B>, you provide an integer N, and
+Condor will keep track of the last N matches. The oldest match will be
+LastMatchName0, and next oldest will be LastMatchName1, and so on. (See
+the <I>condor_submit</I> manual page for more details.) The Rank expression
+allows you to specify a numerical ranking for different matches. When
+combined with <B>match_list_length</B>, you can prefer to avoid sites that
+you have already run at. 
+
+<P>
+In addition, <I>condor_submit</I> has two options to help control
+grid universe job resubmissions and rematching.  
+See the definitions of the submit description file commands
+<B>globus_resubmit</B> and <B>globus_rematch</B> at 
+page <A HREF="condor_submit.html#condor-submit-globus-rematch"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> and
+page <A HREF="condor_submit.html#condor-submit-globus-resubmit"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+These options are independent of <B>match_list_length</B>.
+
+<P>
+There are some new attributes that will be added to the Job ClassAd,
+and may be useful to you when you write your rank, requirements,
+globus_resubmit or globus_rematch option. Please refer to
+the Appendix on page&nbsp;<A HREF="10_Appendix_A.html#sec:Job-ClassAd-Attributes"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> 
+to see a list containing the following attributes:
+
+<P>
+
+<UL>
+<LI>NumJobMatches
+</LI>
+<LI>NumGlobusSubmits
+</LI>
+<LI>NumSystemHolds
+</LI>
+<LI>HoldReason
+</LI>
+<LI>ReleaseReason
+</LI>
+<LI>EnteredCurrentStatus
+</LI>
+<LI>LastMatchTime
+</LI>
+<LI>LastRejMatchTime
+</LI>
+<LI>LastRejMatchReason
+</LI>
+</UL>
+
+<P>
+The following example of a command within the submit description file
+releases jobs 5 minutes after being held,
+increasing the time between releases by 5 minutes each time.
+It will continue to retry up to 4 times per Globus
+submission, plus 4.
+The plus 4 is necessary in case
+the job goes on hold before being submitted to Globus, although
+this is unlikely.
+
+<P>
+<PRE>
+periodic_release = ( NumSystemHolds &lt;= ((NumGlobusSubmits * 4) + 4) ) \
+   &amp;&amp; (NumGlobusSubmits &lt; 4) &amp;&amp; \
+   ( HoldReason != "via condor_hold (by user $ENV(USER))" ) &amp;&amp; \
+   ((CurrentTime - EnteredCurrentStatus) &gt; ( NumSystemHolds *60*5 ))
+</PRE>
+<P>
+The following example forces Globus resubmission after a job has
+been held 4 times per Globus submission.
+
+<P>
+<PRE>
+globus_resubmit = NumSystemHolds == (NumGlobusSubmits + 1) * 4
+</PRE>
+<P>
+If you are concerned about unknown or malicious grid sites reporting
+to your <I>condor_collector</I>, you should use Condor's security options,
+documented in Section&nbsp;<A HREF="3_6Security.html#sec:Security">3.6</A>.
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1746"
+  HREF="5_4Glidein.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1740"
+  HREF="5_Grid_Computing.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1734"
+  HREF="5_2Connecting_Condor.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1742"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1744"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1747"
+  HREF="5_4Glidein.html">5.4 Glidein</A>
+<B> Up:</B> <A NAME="tex2html1741"
+  HREF="5_Grid_Computing.html">5. Grid Computing</A>
+<B> Previous:</B> <A NAME="tex2html1735"
+  HREF="5_2Connecting_Condor.html">5.2 Connecting Condor Pools</A>
+ &nbsp; <B>  <A NAME="tex2html1743"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1745"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

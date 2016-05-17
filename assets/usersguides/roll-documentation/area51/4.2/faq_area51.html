@@ -1,0 +1,689 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Area51 FAQ</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE=" Area51 Roll: Users Guide "
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE="Using chkrootkit"
+HREF="using-chkrootkit.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="CHAPTER"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Area51 Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/area51.jpg"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="using-chkrootkit.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+>&nbsp;</TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="CHAPTER"
+><H1
+><A
+NAME="FAQ_AREA51"
+></A
+>Chapter 4. Area51 FAQ</H1
+><DIV
+CLASS="QANDASET"
+><DL
+><DT
+>4.1. <A
+HREF="faq_area51.html#EMAIL"
+>How do I change the email addresses that receive the daily Tripwire report?</A
+></DT
+><DT
+>4.2. <A
+HREF="faq_area51.html#TRIPWIRE_MD5"
+>The MD5 Sums for My Policy/Config/Tripwire Executable Files at Installation
+are different than what my Latest Report tells me. How could this happen?</A
+></DT
+><DT
+>4.3. <A
+HREF="faq_area51.html#TRIPWIRE_MANY_MD5S"
+>My Tripwire Report is suddenly many megabytes. What happened?</A
+></DT
+><DT
+>4.4. <A
+HREF="faq_area51.html#TRIPWIRE_COMPILE"
+>Is tripwire compiled statically?</A
+></DT
+><DT
+>4.5. <A
+HREF="faq_area51.html#TRIPWIRE_VERSION"
+>What version of Tripwire is Used.</A
+></DT
+><DT
+>4.6. <A
+HREF="faq_area51.html#MORE_ON_TRIPWIRE"
+>How do I find out more about Tripwire and how it works?</A
+></DT
+><DT
+>4.7. <A
+HREF="faq_area51.html#UPDATE"
+>I've checked all the problems that my Tripwire Report has flagged. How do I
+clear these for the next report?</A
+></DT
+><DT
+>4.8. <A
+HREF="faq_area51.html#DATABASE_PASSWORD"
+>What is the password for the database so that I can selectively update Tripwire entries?</A
+></DT
+><DT
+>4.9. <A
+HREF="faq_area51.html#INTERACTIVE"
+>How do I setup Tripwire so that I can selectively update entries?</A
+></DT
+><DT
+>4.10. <A
+HREF="faq_area51.html#ADD_FILES_TO_BE_CHECKED"
+>How do I add Files/Directories for Tripwire to Check? </A
+></DT
+><DT
+>4.11. <A
+HREF="faq_area51.html#TRIPWIRE_ROLLS"
+>How should rolls add files for Tripwire to watch?</A
+></DT
+></DL
+><DIV
+CLASS="QANDAENTRY"
+><DIV
+CLASS="QUESTION"
+><P
+><A
+NAME="EMAIL"
+></A
+><B
+>4.1. </B
+>How do I change the email addresses that receive the daily Tripwire report?</P
+></DIV
+><DIV
+CLASS="ANSWER"
+><P
+><B
+> </B
+>To have tripwire email its report to a different email address. Simply
+run the <SAMP
+CLASS="COMPUTEROUTPUT"
+>/opt/tripwire/etc/tw-email-to -set address1 [address2]</SAMP
+>.
+For example, say you want to email the tripwire reports to go to
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>wopr@wargames.org</SAMP
+> and 
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>root</SAMP
+>.</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>/opt/tripwire/etc/tw-email-to -set wopr@wargames.org root@`hostname`</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>To view the set of addresses for the Tripwire Daily Report</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>/opt/tripwire/etc/tw-email-to</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="QANDAENTRY"
+><DIV
+CLASS="QUESTION"
+><P
+><A
+NAME="TRIPWIRE_MD5"
+></A
+><B
+>4.2. </B
+>The MD5 Sums for My Policy/Config/Tripwire Executable Files at Installation
+are different than what my Latest Report tells me. How could this happen?</P
+></DIV
+><DIV
+CLASS="ANSWER"
+><P
+><B
+> </B
+>Rocks calculates MD5s Policy, Config, and Tripwire files after it initializes.
+If you have knowingly changed any of these, then the difference is OK.
+These might have changed  if you reinitialized Tripwire interactively or
+in batch mode after initial installation. If you
+have NOT knowingly changed any of these items, then your computer may be
+at risk. Be very suspect of the Tripwire executable whose MD5 Sum has changed.</P
+></DIV
+></DIV
+><DIV
+CLASS="QANDAENTRY"
+><DIV
+CLASS="QUESTION"
+><P
+><A
+NAME="TRIPWIRE_MANY_MD5S"
+></A
+><B
+>4.3. </B
+>My Tripwire Report is suddenly many megabytes. What happened?</P
+></DIV
+><DIV
+CLASS="ANSWER"
+><P
+><B
+> </B
+>Newer versions of Enterprise Linux run a utility called 
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>prelink</SAMP
+>.  Prelink is an optimization that 
+modifies ELF binaries and shared libraries to speed up loading.  Prelink is usually run as a cron job by the system. The Rocks Tripwire configuration runs 
+this cron job before is creates its database. However, prelink may decide to relink already prelinked libraries. It is reasonable to use rpm to reverify all
+installed RPMS
+<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rpm -qa --verify</PRE
+></FONT
+></TD
+></TR
+></TABLE
+>
+RPM is prelink-aware where Tripwire is not. If RPM reports very many fewer errors than Tripwire, then likely prelink ran and relinked. You should reinitialize tripwire.</P
+></DIV
+></DIV
+><DIV
+CLASS="QANDAENTRY"
+><DIV
+CLASS="QUESTION"
+><P
+><A
+NAME="TRIPWIRE_COMPILE"
+></A
+><B
+>4.4. </B
+>Is tripwire compiled statically?</P
+></DIV
+><DIV
+CLASS="ANSWER"
+><P
+><B
+> </B
+>Yes. Ideally the tripwire executable should be on a physically read-only
+file system. This is not very practical. Compiling statically guards against
+changed shared libraries. </P
+></DIV
+></DIV
+><DIV
+CLASS="QANDAENTRY"
+><DIV
+CLASS="QUESTION"
+><P
+><A
+NAME="TRIPWIRE_VERSION"
+></A
+><B
+>4.5. </B
+>What version of Tripwire is Used.</P
+></DIV
+><DIV
+CLASS="ANSWER"
+><P
+><B
+> </B
+>Rocks uses the open source Tripwire for Linux Version 2.3.1-2 with
+community supplied patches to enable it to compile on the most recent
+version of kernel/c-libraries. Currently only and x86 version is compiled.
+This version will run properly on x86_64 hosts also.</P
+></DIV
+></DIV
+><DIV
+CLASS="QANDAENTRY"
+><DIV
+CLASS="QUESTION"
+><P
+><A
+NAME="MORE_ON_TRIPWIRE"
+></A
+><B
+>4.6. </B
+>How do I find out more about Tripwire and how it works?</P
+></DIV
+><DIV
+CLASS="ANSWER"
+><P
+><B
+> </B
+><A
+HREF="http://sourceforge.net/projects/tripwire"
+TARGET="_top"
+>Sourceforge Tripwire Homepage</A
+> is a good starting point.</P
+></DIV
+></DIV
+><DIV
+CLASS="QANDAENTRY"
+><DIV
+CLASS="QUESTION"
+><P
+><A
+NAME="UPDATE"
+></A
+><B
+>4.7. </B
+>I've checked all the problems that my Tripwire Report has flagged. How do I
+clear these for the next report?</P
+></DIV
+><DIV
+CLASS="ANSWER"
+><P
+><B
+> </B
+>As root, you need to re-initialize the Tripwire database. The Tripwire
+database is signed with a randomly generated key and the MD5 sum of this
+signature is reported each time the report runs. These MD5 sums should not
+change unless you re-initialize. To clear the flagged problems do</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># cd /opt/tripwire/etc
+# make initialize-batch</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="QANDAENTRY"
+><DIV
+CLASS="QUESTION"
+><P
+><A
+NAME="DATABASE_PASSWORD"
+></A
+><B
+>4.8. </B
+>What is the password for the database so that I can selectively update Tripwire entries?</P
+></DIV
+><DIV
+CLASS="ANSWER"
+><P
+><B
+> </B
+>The default setup generates a random password for signing and then throws it
+away. Selective update requires an interactive initializion.</P
+></DIV
+></DIV
+><DIV
+CLASS="QANDAENTRY"
+><DIV
+CLASS="QUESTION"
+><P
+><A
+NAME="INTERACTIVE"
+></A
+><B
+>4.9. </B
+>How do I setup Tripwire so that I can selectively update entries?</P
+></DIV
+><DIV
+CLASS="ANSWER"
+><P
+><B
+> </B
+>As root, you need to re-initialize the Tripwire database interactively
+with your self-selected site and local passphrases. 
+You will first need to delete your site key
+and host keys then create a new one. Do the following and follow the on-screen
+directions. </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># cd /opt/tripwire/etc
+# /bin/rm *.key
+# make initialize-interactive
+# make check</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Once you have initialized the database. Future Tripwire warnings can be 
+addressed interactively with the following </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># cd /opt/tripwire/etc
+# make update </PRE
+></FONT
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="QANDAENTRY"
+><DIV
+CLASS="QUESTION"
+><P
+><A
+NAME="ADD_FILES_TO_BE_CHECKED"
+></A
+><B
+>4.10. </B
+>How do I add Files/Directories for Tripwire to Check? </P
+></DIV
+><DIV
+CLASS="ANSWER"
+><P
+><B
+> </B
+>The Tripwire Policy file 
+(<SAMP
+CLASS="COMPUTEROUTPUT"
+>/opt/tripwire/etc/twpol.txt</SAMP
+>)
+is a monolithic text file that defines the files/directories to be 
+Checked. Rocks builds this file in pieces from component files located in
+the directory <SAMP
+CLASS="COMPUTEROUTPUT"
+>/opt/tripwire/etc/twpol-parts</SAMP
+>. 
+The Area51 roll creates files in the subdirectory 
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>/opt/tripwire/etc/twpol-parts/base</SAMP
+>. 
+The 
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>/opt/tripwire/etc/twpol-parts/addon</SAMP
+>
+is where you should put new rules using the identical names of files
+in the base directory. You should the files in the base directory as a guide.
+Once you have added the files to watch you need to rebuild the tripwire
+database.</P
+><P
+>If you are using that basic setup provided by Rocks, then  </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># cd /opt/tripwire/etc
+# make initialize-batch</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>If you have interactively setup Tripwire. Then  </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># cd /opt/tripwire/etc
+# make updatedb</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="QANDAENTRY"
+><DIV
+CLASS="QUESTION"
+><P
+><A
+NAME="TRIPWIRE_ROLLS"
+></A
+><B
+>4.11. </B
+>How should rolls add files for Tripwire to watch?</P
+></DIV
+><DIV
+CLASS="ANSWER"
+><P
+><B
+> </B
+>Rolls to should append to files in 
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>/opt/tripwire/etc/twpol-parts/addon</SAMP
+>
+using the files in 
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>/opt/tripwire/etc/twpol-parts/base</SAMP
+>
+as a template. For example, if an application Roll creates the directory
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>/opt/myapp</SAMP
+> then it would be appropriate
+to add the following to 
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>/opt/tripwire/etc/twpol-parts/base/appinfo</SAMP
+>
+in post configuration section for your roll.
+<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>&#60;post&#62;
+&#60;file name="/opt/tripwire/etc/twpol-parts/base/appinfo" mode="append"&#62;
+/opt/myapp  -&#62; $(SEC_CRIT) (recurse = 1) ;
+&#60;/file&#62;
+&#60;/post&#62;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><P
+><DIV
+CLASS="CAUTION"
+><P
+></P
+><TABLE
+CLASS="CAUTION"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/caution.png"
+HSPACE="5"
+ALT="Caution"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>Tripwire requires pathnames to be absolute pathnames</P
+></TD
+></TR
+></TABLE
+></DIV
+></P
+></DIV
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="using-chkrootkit.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>&nbsp;</TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Using chkrootkit</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>&nbsp;</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

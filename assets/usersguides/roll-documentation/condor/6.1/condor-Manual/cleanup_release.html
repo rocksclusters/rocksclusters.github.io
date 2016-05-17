@@ -1,0 +1,199 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>cleanup_release</TITLE>
+<META NAME="description" CONTENT="cleanup_release">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="condor_advertise.html">
+<LINK REL="previous" HREF="10_Command_Reference.html">
+<LINK REL="up" HREF="10_Command_Reference.html">
+<LINK REL="next" HREF="condor_advertise.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html3203"
+  HREF="condor_advertise.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3197"
+  HREF="10_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3191"
+  HREF="10_Command_Reference.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3199"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3201"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3204"
+  HREF="condor_advertise.html">condor_advertise</A>
+<B> Up:</B> <A NAME="tex2html3198"
+  HREF="10_Command_Reference.html">10. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3192"
+  HREF="10_Command_Reference.html">10. Command Reference Manual</A>
+ &nbsp; <B>  <A NAME="tex2html3200"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3202"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html3205"
+  HREF="cleanup_release.html#SECTION001111000000000000000">Synopsis</A>
+<LI><A NAME="tex2html3206"
+  HREF="cleanup_release.html#SECTION001112000000000000000">Description</A>
+<LI><A NAME="tex2html3207"
+  HREF="cleanup_release.html#SECTION001113000000000000000">Options</A>
+<LI><A NAME="tex2html3208"
+  HREF="cleanup_release.html#SECTION001114000000000000000">Exit Status</A>
+<LI><A NAME="tex2html3209"
+  HREF="cleanup_release.html#SECTION001115000000000000000">See Also</A>
+<LI><A NAME="tex2html3210"
+  HREF="cleanup_release.html#SECTION001116000000000000000">Author</A>
+<LI><A NAME="tex2html3211"
+  HREF="cleanup_release.html#SECTION001117000000000000000">Copyright</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION001110000000000000000"></A><A NAME="man-cleanup-release"></A>
+<BR>
+<I>cleanup_release</I>
+</H1> uninstall a previously installed software release installed by <I>install_release</I>  
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION001111000000000000000">
+Synopsis</A>
+</H2><B>cleanup_release</B>
+[<B>-help</B>]
+
+<P>
+<B>cleanup_release</B>
+<I>install-log-name</I>
+
+<P>
+<A NAME="59751"></A>
+<A NAME="59752"></A>
+
+<P>
+
+<H2><A NAME="SECTION001112000000000000000">
+Description</A>
+</H2><I>cleanup_release</I> uninstalls a previously installed
+software release installed by <I>install_release</I>.  The program
+works through the install log in reverse order, removing files as it goes.
+Each delete is logged in the install log to allow recovery from a
+crash.  The install log name is provided as the <I>install-log-name</I>
+argument to this program.
+
+<P>
+
+<H2><A NAME="SECTION001113000000000000000">
+Options</A>
+</H2>
+  
+<P>
+  <DL>
+<DT><STRONG><B>-help</B></STRONG></DT>
+<DD>Display brief usage information and exit.
+  
+<BR>  
+</DD>
+</DL>
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION001114000000000000000">
+Exit Status</A>
+</H2>
+<I>cleanup_release</I> will exit with a status of 0 (zero) upon success,
+and non-zero otherwise.
+
+<P>
+
+<H2><A NAME="SECTION001115000000000000000">
+See Also</A>
+</H2>
+<I>install_release</I> (on page&nbsp;<A HREF="install_release.html#man-install-release"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>).
+
+<P>
+
+<H2><A NAME="SECTION001116000000000000000">
+Author</A>
+</H2> Condor Team, University of Wisconsin-Madison
+  
+<H2><A NAME="SECTION001117000000000000000">
+Copyright</A>
+</H2> 
+  Copyright &#169; 1990-2012 Condor Team, Computer Sciences Department, 
+  University of Wisconsin-Madison, Madison, WI.  All Rights Reserved.  
+	Licensed under the Apache License, Version 2.0.
+
+<P>
+See the <I>Condor Version 7.8.5 Manual</I> or
+	<A NAME="tex2html404"
+  HREF="http://www.condorproject.org/license">http://www.condorproject.org/license</A>
+for
+  additional notices. 
+
+
+  <HR>
+<!--Navigation Panel-->
+<A NAME="tex2html3203"
+  HREF="condor_advertise.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3197"
+  HREF="10_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3191"
+  HREF="10_Command_Reference.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3199"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3201"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3204"
+  HREF="condor_advertise.html">condor_advertise</A>
+<B> Up:</B> <A NAME="tex2html3198"
+  HREF="10_Command_Reference.html">10. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3192"
+  HREF="10_Command_Reference.html">10. Command Reference Manual</A>
+ &nbsp; <B>  <A NAME="tex2html3200"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3202"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

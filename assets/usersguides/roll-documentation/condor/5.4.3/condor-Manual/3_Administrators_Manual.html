@@ -1,0 +1,435 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>3. Administrators' Manual</TITLE>
+<META NAME="description" CONTENT="3. Administrators' Manual">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="4_Miscellaneous_Concepts.html">
+<LINK REL="previous" HREF="2_Users_Manual.html">
+<LINK REL="up" HREF="ref.html">
+<LINK REL="next" HREF="3_1Introduction.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html883"
+  HREF="3_1Introduction.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html877"
+  HREF="ref.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html871"
+  HREF="2_15Potential_Problems.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html879"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html881"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html884"
+  HREF="3_1Introduction.html">3.1 Introduction</A>
+<B> Up:</B> <A NAME="tex2html878"
+  HREF="ref.html">CondorVersion 7.6.2 Manual</A>
+<B> Previous:</B> <A NAME="tex2html872"
+  HREF="2_15Potential_Problems.html">2.15 Potential Problems</A>
+ &nbsp; <B>  <A NAME="tex2html880"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html882"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00400000000000000000"></A>
+<A NAME="admin-manual"></A><A NAME="7984"></A>
+<BR>
+3. Administrators' Manual
+</H1>
+
+<P>
+<BR><HR>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html885"
+  HREF="3_1Introduction.html">3.1 Introduction</A>
+<UL>
+<LI><A NAME="tex2html886"
+  HREF="3_1Introduction.html#SECTION00411000000000000000">3.1.1 The Different Roles a Machine Can Play</A>
+<LI><A NAME="tex2html887"
+  HREF="3_1Introduction.html#SECTION00412000000000000000">3.1.2 The Condor Daemons</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html888"
+  HREF="3_2Installation.html">3.2 Installation</A>
+<UL>
+<LI><A NAME="tex2html889"
+  HREF="3_2Installation.html#SECTION00421000000000000000">3.2.1 Obtaining Condor</A>
+<LI><A NAME="tex2html890"
+  HREF="3_2Installation.html#SECTION00422000000000000000">3.2.2 Preparation</A>
+<LI><A NAME="tex2html891"
+  HREF="3_2Installation.html#SECTION00423000000000000000">3.2.3 Newer Unix Installation Procedure</A>
+<LI><A NAME="tex2html892"
+  HREF="3_2Installation.html#SECTION00424000000000000000">3.2.4 Starting Condor Under Unix After Installation</A>
+<LI><A NAME="tex2html893"
+  HREF="3_2Installation.html#SECTION00425000000000000000">3.2.5 Installation on Windows</A>
+<LI><A NAME="tex2html894"
+  HREF="3_2Installation.html#SECTION00426000000000000000">3.2.6  RPMs</A>
+<LI><A NAME="tex2html895"
+  HREF="3_2Installation.html#SECTION00427000000000000000">3.2.7  Debian Packages</A>
+<LI><A NAME="tex2html896"
+  HREF="3_2Installation.html#SECTION00428000000000000000">3.2.8 Upgrading - Installing a Newer
+Version of Condor</A>
+<LI><A NAME="tex2html897"
+  HREF="3_2Installation.html#SECTION00429000000000000000">3.2.9 Installing the CondorView Client Contrib Module</A>
+<LI><A NAME="tex2html898"
+  HREF="3_2Installation.html#SECTION004210000000000000000">3.2.10 Dynamic Deployment</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html899"
+  HREF="3_3Configuration.html">3.3 Configuration</A>
+<UL>
+<LI><A NAME="tex2html900"
+  HREF="3_3Configuration.html#SECTION00431000000000000000">3.3.1 Introduction to
+Configuration Files</A>
+<LI><A NAME="tex2html901"
+  HREF="3_3Configuration.html#SECTION00432000000000000000">3.3.2 Special Macros</A>
+<LI><A NAME="tex2html902"
+  HREF="3_3Configuration.html#SECTION00433000000000000000">3.3.3 Condor-wide Configuration File Entries</A>
+<LI><A NAME="tex2html903"
+  HREF="3_3Configuration.html#SECTION00434000000000000000">3.3.4 Daemon Logging Configuration File Entries</A>
+<LI><A NAME="tex2html904"
+  HREF="3_3Configuration.html#SECTION00435000000000000000">3.3.5 DaemonCore Configuration File Entries</A>
+<LI><A NAME="tex2html905"
+  HREF="3_3Configuration.html#SECTION00436000000000000000">3.3.6 Network-Related Configuration File Entries</A>
+<LI><A NAME="tex2html906"
+  HREF="3_3Configuration.html#SECTION00437000000000000000">3.3.7 Shared File System Configuration File Macros</A>
+<LI><A NAME="tex2html907"
+  HREF="3_3Configuration.html#SECTION00438000000000000000">3.3.8 Checkpoint Server Configuration File Macros</A>
+<LI><A NAME="tex2html908"
+  HREF="3_3Configuration.html#SECTION00439000000000000000">3.3.9 condor_master Configuration File Macros</A>
+<LI><A NAME="tex2html909"
+  HREF="3_3Configuration.html#SECTION004310000000000000000">3.3.10 condor_startd
+Configuration File Macros</A>
+<LI><A NAME="tex2html910"
+  HREF="3_3Configuration.html#SECTION004311000000000000000">3.3.11 condor_schedd
+Configuration File Entries</A>
+<LI><A NAME="tex2html911"
+  HREF="3_3Configuration.html#SECTION004312000000000000000">3.3.12 condor_shadow
+Configuration File Entries</A>
+<LI><A NAME="tex2html912"
+  HREF="3_3Configuration.html#SECTION004313000000000000000">3.3.13 condor_starter
+Configuration File Entries</A>
+<LI><A NAME="tex2html913"
+  HREF="3_3Configuration.html#SECTION004314000000000000000">3.3.14 condor_submit
+Configuration File Entries</A>
+<LI><A NAME="tex2html914"
+  HREF="3_3Configuration.html#SECTION004315000000000000000">3.3.15 condor_preen
+Configuration File Entries</A>
+<LI><A NAME="tex2html915"
+  HREF="3_3Configuration.html#SECTION004316000000000000000">3.3.16 condor_collector
+Configuration File Entries</A>
+<LI><A NAME="tex2html916"
+  HREF="3_3Configuration.html#SECTION004317000000000000000">3.3.17 condor_negotiator
+Configuration File Entries</A>
+<LI><A NAME="tex2html917"
+  HREF="3_3Configuration.html#SECTION004318000000000000000">3.3.18 condor_procd
+Configuration File Macros</A>
+<LI><A NAME="tex2html918"
+  HREF="3_3Configuration.html#SECTION004319000000000000000">3.3.19 condor_credd
+Configuration File Macros</A>
+<LI><A NAME="tex2html919"
+  HREF="3_3Configuration.html#SECTION004320000000000000000">3.3.20 condor_gridmanager
+Configuration File Entries</A>
+<LI><A NAME="tex2html920"
+  HREF="3_3Configuration.html#SECTION004321000000000000000">3.3.21 condor_job_router
+Configuration File Entries</A>
+<LI><A NAME="tex2html921"
+  HREF="3_3Configuration.html#SECTION004322000000000000000">3.3.22 condor_lease_manager
+Configuration File Entries</A>
+<LI><A NAME="tex2html922"
+  HREF="3_3Configuration.html#SECTION004323000000000000000">3.3.23 condor_hdfs
+Configuration File Entries</A>
+<LI><A NAME="tex2html923"
+  HREF="3_3Configuration.html#SECTION004324000000000000000">3.3.24 Grid Monitor
+Configuration File Entries</A>
+<LI><A NAME="tex2html924"
+  HREF="3_3Configuration.html#SECTION004325000000000000000">3.3.25 Configuration File
+Entries Relating to Grid Usage and Glidein</A>
+<LI><A NAME="tex2html925"
+  HREF="3_3Configuration.html#SECTION004326000000000000000">3.3.26 Configuration File 
+Entries for DAGMan</A>
+<LI><A NAME="tex2html926"
+  HREF="3_3Configuration.html#SECTION004327000000000000000">3.3.27 Configuration File Entries
+Relating to Security</A>
+<LI><A NAME="tex2html927"
+  HREF="3_3Configuration.html#SECTION004328000000000000000">3.3.28 Configuration File Entries
+Relating to PrivSep</A>
+<LI><A NAME="tex2html928"
+  HREF="3_3Configuration.html#SECTION004329000000000000000">3.3.29 Configuration File Entries
+Relating to Virtual Machines</A>
+<LI><A NAME="tex2html929"
+  HREF="3_3Configuration.html#SECTION004330000000000000000">3.3.30 Configuration File Entries
+Relating to High Availability</A>
+<LI><A NAME="tex2html930"
+  HREF="3_3Configuration.html#SECTION004331000000000000000">3.3.31 Configuration File
+Entries Relating to Quill</A>
+<LI><A NAME="tex2html931"
+  HREF="3_3Configuration.html#SECTION004332000000000000000">3.3.32 MyProxy
+Configuration File Macros</A>
+<LI><A NAME="tex2html932"
+  HREF="3_3Configuration.html#SECTION004333000000000000000">3.3.33 Configuration File Macros Affecting APIs</A>
+<LI><A NAME="tex2html933"
+  HREF="3_3Configuration.html#SECTION004334000000000000000">3.3.34 Configuration File Entries
+Relating to <I>condor_ssh_to_job</I></A>
+<LI><A NAME="tex2html934"
+  HREF="3_3Configuration.html#SECTION004335000000000000000">3.3.35 <I>condor_rooster</I> Configuration File Macros</A>
+<LI><A NAME="tex2html935"
+  HREF="3_3Configuration.html#SECTION004336000000000000000">3.3.36 <I>condor_shared_port</I> Configuration File Macros</A>
+<LI><A NAME="tex2html936"
+  HREF="3_3Configuration.html#SECTION004337000000000000000">3.3.37 Configuration File Entries Relating to Hooks</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html937"
+  HREF="3_4User_Priorities.html">3.4 User Priorities and Negotiation</A>
+<UL>
+<LI><A NAME="tex2html938"
+  HREF="3_4User_Priorities.html#SECTION00441000000000000000">3.4.1 Real User Priority (RUP)</A>
+<LI><A NAME="tex2html939"
+  HREF="3_4User_Priorities.html#SECTION00442000000000000000">3.4.2 Effective User Priority (EUP)</A>
+<LI><A NAME="tex2html940"
+  HREF="3_4User_Priorities.html#SECTION00443000000000000000">3.4.3 Priorities in Negotiation and Preemption</A>
+<LI><A NAME="tex2html941"
+  HREF="3_4User_Priorities.html#SECTION00444000000000000000">3.4.4 Priority Calculation</A>
+<LI><A NAME="tex2html942"
+  HREF="3_4User_Priorities.html#SECTION00445000000000000000">3.4.5 Negotiation</A>
+<LI><A NAME="tex2html943"
+  HREF="3_4User_Priorities.html#SECTION00446000000000000000">3.4.6 The Layperson's Description of the Pie Spin and Pie Slice</A>
+<LI><A NAME="tex2html944"
+  HREF="3_4User_Priorities.html#SECTION00447000000000000000">3.4.7 Group Accounting</A>
+<LI><A NAME="tex2html945"
+  HREF="3_4User_Priorities.html#SECTION00448000000000000000">3.4.8 Hierarchical Group Quotas</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html946"
+  HREF="3_5Policy_Configuration.html">3.5 Policy Configuration for the <I>condor_startd</I></A>
+<UL>
+<LI><A NAME="tex2html947"
+  HREF="3_5Policy_Configuration.html#SECTION00451000000000000000">3.5.1 Startd ClassAd Attributes</A>
+<LI><A NAME="tex2html948"
+  HREF="3_5Policy_Configuration.html#SECTION00452000000000000000">3.5.2 The <TT>START</TT> expression</A>
+<LI><A NAME="tex2html949"
+  HREF="3_5Policy_Configuration.html#SECTION00453000000000000000">3.5.3 The <TT>IS_VALID_CHECKPOINT_PLATFORM</TT>   expression</A>
+<LI><A NAME="tex2html950"
+  HREF="3_5Policy_Configuration.html#SECTION00454000000000000000">3.5.4 The <TT>RANK</TT>   expression</A>
+<LI><A NAME="tex2html951"
+  HREF="3_5Policy_Configuration.html#SECTION00455000000000000000">3.5.5  Machine States</A>
+<LI><A NAME="tex2html952"
+  HREF="3_5Policy_Configuration.html#SECTION00456000000000000000">3.5.6 Machine Activities</A>
+<LI><A NAME="tex2html953"
+  HREF="3_5Policy_Configuration.html#SECTION00457000000000000000">3.5.7 State and Activity Transitions</A>
+<LI><A NAME="tex2html954"
+  HREF="3_5Policy_Configuration.html#SECTION00458000000000000000">3.5.8 State/Activity Transition Expression Summary</A>
+<LI><A NAME="tex2html955"
+  HREF="3_5Policy_Configuration.html#SECTION00459000000000000000">3.5.9 Policy Settings</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html956"
+  HREF="3_6Security.html">3.6 Security</A>
+<UL>
+<LI><A NAME="tex2html957"
+  HREF="3_6Security.html#SECTION00461000000000000000">3.6.1 Condor's Security Model</A>
+<LI><A NAME="tex2html958"
+  HREF="3_6Security.html#SECTION00462000000000000000">3.6.2 Security Negotiation</A>
+<LI><A NAME="tex2html959"
+  HREF="3_6Security.html#SECTION00463000000000000000">3.6.3 Authentication</A>
+<LI><A NAME="tex2html960"
+  HREF="3_6Security.html#SECTION00464000000000000000">3.6.4 The Unified Map File for Authentication</A>
+<LI><A NAME="tex2html961"
+  HREF="3_6Security.html#SECTION00465000000000000000">3.6.5 Encryption</A>
+<LI><A NAME="tex2html962"
+  HREF="3_6Security.html#SECTION00466000000000000000">3.6.6 Integrity</A>
+<LI><A NAME="tex2html963"
+  HREF="3_6Security.html#SECTION00467000000000000000">3.6.7 Authorization</A>
+<LI><A NAME="tex2html964"
+  HREF="3_6Security.html#SECTION00468000000000000000">3.6.8 Security Sessions</A>
+<LI><A NAME="tex2html965"
+  HREF="3_6Security.html#SECTION00469000000000000000">3.6.9 Host-Based Security in
+Condor</A>
+<LI><A NAME="tex2html966"
+  HREF="3_6Security.html#SECTION004610000000000000000">3.6.10 Examples of Security Configuration</A>
+<LI><A NAME="tex2html967"
+  HREF="3_6Security.html#SECTION004611000000000000000">3.6.11 Changing the Security Configuration</A>
+<LI><A NAME="tex2html968"
+  HREF="3_6Security.html#SECTION004612000000000000000">3.6.12 Using 
+Condor w/ Firewalls, Private Networks, and NATs</A>
+<LI><A NAME="tex2html969"
+  HREF="3_6Security.html#SECTION004613000000000000000">3.6.13 User Accounts in Condor on Unix Platforms</A>
+<LI><A NAME="tex2html970"
+  HREF="3_6Security.html#SECTION004614000000000000000">3.6.14 Privilege Separation</A>
+<LI><A NAME="tex2html971"
+  HREF="3_6Security.html#SECTION004615000000000000000">3.6.15 Support for <I>glexec</I></A>
+</UL>
+<BR>
+<LI><A NAME="tex2html972"
+  HREF="3_7Networking_includes.html">3.7 Networking (includes sections on Port Usage, CCB, and GCB)</A>
+<UL>
+<LI><A NAME="tex2html973"
+  HREF="3_7Networking_includes.html#SECTION00471000000000000000">3.7.1 Port Usage in Condor</A>
+<LI><A NAME="tex2html974"
+  HREF="3_7Networking_includes.html#SECTION00472000000000000000">3.7.2 Reducing Port Usage with the <I>condor_shared_port</I> Daemon</A>
+<LI><A NAME="tex2html975"
+  HREF="3_7Networking_includes.html#SECTION00473000000000000000">3.7.3 Configuring Condor for
+Machines With Multiple Network Interfaces </A>
+<LI><A NAME="tex2html976"
+  HREF="3_7Networking_includes.html#SECTION00474000000000000000">3.7.4 Condor Connection Brokering (CCB)</A>
+<LI><A NAME="tex2html977"
+  HREF="3_7Networking_includes.html#SECTION00475000000000000000">3.7.5 Generic Connection Brokering (GCB)</A>
+<LI><A NAME="tex2html978"
+  HREF="3_7Networking_includes.html#SECTION00476000000000000000">3.7.6 Using TCP to Send Updates to
+the <I>condor_collector</I></A>
+</UL>
+<BR>
+<LI><A NAME="tex2html979"
+  HREF="3_8Checkpoint_Server.html">3.8  The Checkpoint Server</A>
+<UL>
+<LI><A NAME="tex2html980"
+  HREF="3_8Checkpoint_Server.html#SECTION00481000000000000000">3.8.1  Preparing to Install
+a Checkpoint Server</A>
+<LI><A NAME="tex2html981"
+  HREF="3_8Checkpoint_Server.html#SECTION00482000000000000000">3.8.2 Installing the Checkpoint Server Module</A>
+<LI><A NAME="tex2html982"
+  HREF="3_8Checkpoint_Server.html#SECTION00483000000000000000">3.8.3  
+Configuring the Pool to Use Multiple Checkpoint Servers</A>
+<LI><A NAME="tex2html983"
+  HREF="3_8Checkpoint_Server.html#SECTION00484000000000000000">3.8.4  
+Checkpoint Server Domains</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html984"
+  HREF="3_9DaemonCore.html">3.9 DaemonCore</A>
+<UL>
+<LI><A NAME="tex2html985"
+  HREF="3_9DaemonCore.html#SECTION00491000000000000000">3.9.1 DaemonCore and Unix signals</A>
+<LI><A NAME="tex2html986"
+  HREF="3_9DaemonCore.html#SECTION00492000000000000000">3.9.2 DaemonCore and
+Command-line Arguments</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html987"
+  HREF="3_10Pool_Management.html">3.10 Pool Management</A>
+<UL>
+<LI><A NAME="tex2html988"
+  HREF="3_10Pool_Management.html#SECTION004101000000000000000">3.10.1 Upgrading - Installing a New Version on an Existing Pool</A>
+<LI><A NAME="tex2html989"
+  HREF="3_10Pool_Management.html#SECTION004102000000000000000">3.10.2 Shutting Down and Restarting a Condor Pool</A>
+<LI><A NAME="tex2html990"
+  HREF="3_10Pool_Management.html#SECTION004103000000000000000">3.10.3 Reconfiguring a Condor Pool</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html991"
+  HREF="3_11High_Availability.html">3.11 The High Availability of Daemons</A>
+<UL>
+<LI><A NAME="tex2html992"
+  HREF="3_11High_Availability.html#SECTION004111000000000000000">3.11.1  High Availability of the Job Queue</A>
+<LI><A NAME="tex2html993"
+  HREF="3_11High_Availability.html#SECTION004112000000000000000">3.11.2  High Availability of the
+Central Manager</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html994"
+  HREF="3_12Quill.html">3.12 Quill</A>
+<UL>
+<LI><A NAME="tex2html995"
+  HREF="3_12Quill.html#SECTION004121000000000000000">3.12.1 Installation and Configuration</A>
+<LI><A NAME="tex2html996"
+  HREF="3_12Quill.html#SECTION004122000000000000000">3.12.2 Four Usage Examples</A>
+<LI><A NAME="tex2html997"
+  HREF="3_12Quill.html#SECTION004123000000000000000">3.12.3 Quill and Security</A>
+<LI><A NAME="tex2html998"
+  HREF="3_12Quill.html#SECTION004124000000000000000">3.12.4 Quill and Its RDBMS Schema</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html999"
+  HREF="3_13Setting_Up.html">3.13 Setting Up for Special
+Environments</A>
+<UL>
+<LI><A NAME="tex2html1000"
+  HREF="3_13Setting_Up.html#SECTION004131000000000000000">3.13.1 Using Condor with AFS</A>
+<LI><A NAME="tex2html1001"
+  HREF="3_13Setting_Up.html#SECTION004132000000000000000">3.13.2 Using Condor with the Hadoop File System</A>
+<LI><A NAME="tex2html1002"
+  HREF="3_13Setting_Up.html#SECTION004133000000000000000">3.13.3 Enabling the Transfer of Files Specified by a URL</A>
+<LI><A NAME="tex2html1003"
+  HREF="3_13Setting_Up.html#SECTION004134000000000000000">3.13.4 Configuring Condor for
+Multiple Platforms</A>
+<LI><A NAME="tex2html1004"
+  HREF="3_13Setting_Up.html#SECTION004135000000000000000">3.13.5 Full Installation of
+condor_compile</A>
+<LI><A NAME="tex2html1005"
+  HREF="3_13Setting_Up.html#SECTION004136000000000000000">3.13.6 The <I>condor_kbdd</I></A>
+<LI><A NAME="tex2html1006"
+  HREF="3_13Setting_Up.html#SECTION004137000000000000000">3.13.7 Configuring The CondorView Server</A>
+<LI><A NAME="tex2html1007"
+  HREF="3_13Setting_Up.html#SECTION004138000000000000000">3.13.8 Running Condor Jobs within a Virtual Machine</A>
+<LI><A NAME="tex2html1008"
+  HREF="3_13Setting_Up.html#SECTION004139000000000000000">3.13.9 Configuring The Startd for SMP Machines</A>
+<LI><A NAME="tex2html1009"
+  HREF="3_13Setting_Up.html#SECTION0041310000000000000000">3.13.10 Condor's Dedicated Scheduling</A>
+<LI><A NAME="tex2html1010"
+  HREF="3_13Setting_Up.html#SECTION0041311000000000000000">3.13.11 Configuring Condor for Running Backfill Jobs</A>
+<LI><A NAME="tex2html1011"
+  HREF="3_13Setting_Up.html#SECTION0041312000000000000000">3.13.12 Group ID-Based Process Tracking</A>
+<LI><A NAME="tex2html1012"
+  HREF="3_13Setting_Up.html#SECTION0041313000000000000000">3.13.13 Limiting Resource Usage</A>
+<LI><A NAME="tex2html1013"
+  HREF="3_13Setting_Up.html#SECTION0041314000000000000000">3.13.14 Concurrency Limits</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1014"
+  HREF="3_14Java_Support.html">3.14 Java Support Installation</A>
+<LI><A NAME="tex2html1015"
+  HREF="3_15Virtual_Machines.html">3.15 Virtual Machines</A>
+<UL>
+<LI><A NAME="tex2html1016"
+  HREF="3_15Virtual_Machines.html#SECTION004151000000000000000">3.15.1 Configuration Variables</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1017"
+  HREF="3_16Power_Management.html">3.16 Power Management</A>
+<UL>
+<LI><A NAME="tex2html1018"
+  HREF="3_16Power_Management.html#SECTION004161000000000000000">3.16.1 Entering a Low Power State</A>
+<LI><A NAME="tex2html1019"
+  HREF="3_16Power_Management.html#SECTION004162000000000000000">3.16.2 Returning From a Low Power State</A>
+<LI><A NAME="tex2html1020"
+  HREF="3_16Power_Management.html#SECTION004163000000000000000">3.16.3 Keeping a ClassAd for a Hibernating Machine</A>
+<LI><A NAME="tex2html1021"
+  HREF="3_16Power_Management.html#SECTION004164000000000000000">3.16.4 Linux Platform Details</A>
+<LI><A NAME="tex2html1022"
+  HREF="3_16Power_Management.html#SECTION004165000000000000000">3.16.5 Windows Platform Details</A>
+</UL></UL>
+<!--End of Table of Child-Links-->
+<BR><HR>
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

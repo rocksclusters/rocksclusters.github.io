@@ -1,0 +1,344 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>9.2 Using HTCondor with the Hadoop File System</TITLE>
+<META NAME="description" CONTENT="9.2 Using HTCondor with the Hadoop File System">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="9_3Quill.html">
+<LINK REL="previous" HREF="9_1Introduction.html">
+<LINK REL="up" HREF="9_Contrib_Source.html">
+<LINK REL="next" HREF="9_3Quill.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html2355"
+  HREF="9_3Quill.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2349"
+  HREF="9_Contrib_Source.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2343"
+  HREF="9_1Introduction.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2351"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2353"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2356"
+  HREF="9_3Quill.html">9.3 Quill</A>
+<B> Up:</B> <A NAME="tex2html2350"
+  HREF="9_Contrib_Source.html">9. Contrib and Source</A>
+<B> Previous:</B> <A NAME="tex2html2344"
+  HREF="9_1Introduction.html">9.1 Introduction</A>
+ &nbsp; <B>  <A NAME="tex2html2352"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2354"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html2357"
+  HREF="9_2Using_HTCondor.html#SECTION001021000000000000000">9.2.1 condor_hdfs
+Configuration File Entries</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION001020000000000000000"></A><A NAME="sec:HTCondor-HDFS"></A>
+<A NAME="51757"></A>
+<BR>
+9.2 Using HTCondor with the Hadoop File System
+</H1>
+
+<P>
+The Hadoop project is an Apache project,
+headquartered at <A NAME="tex2html87"
+  HREF="http://hadoop.apache.org">http://hadoop.apache.org</A>, 
+which implements an open-source, distributed file system across a large set
+of machines.  
+The file system proper is called the Hadoop File System, or HDFS,
+and there are several Hadoop-provided tools which use the file system,
+most notably databases and tools which use 
+the map-reduce distributed programming style.  
+
+<P>
+Distributed with the HTCondor source code,
+HTCondor provides a way to manage the daemons which implement an HDFS,
+but no direct support for the high-level tools which run atop this file system.
+There are two types of daemons, which together create an instance of 
+a Hadoop File System.
+The first is called the Name node, 
+which is like the central manager for a Hadoop cluster.
+There is only one active Name node per HDFS.
+If the Name node is not running, no files can be accessed.
+The HDFS does not support fail over of the Name node,
+but it does support a hot-spare for the Name node,
+called the Backup node.
+HTCondor can configure one node to be running as a Backup node.
+The second kind of daemon is the Data node,
+and there is one Data node per machine in the distributed file system.
+As these are both implemented in Java,
+HTCondor cannot directly manage these daemons.
+Rather, HTCondor provides a small DaemonCore daemon,
+called <I>condor_hdfs</I>,
+which reads the HTCondor configuration file, 
+responds to HTCondor commands like <I>condor_on</I> and <I>condor_off</I>,
+and runs the Hadoop Java code.
+It translates entries in the HTCondor configuration file 
+to an XML format native to HDFS.
+These configuration items are listed with the 
+<I>condor_hdfs</I> daemon in section&nbsp;<A HREF="#sec:HDFS-Config-File-Entries">9.2.1</A>. 
+So, to configure HDFS in HTCondor,
+the HTCondor configuration file should specify one machine in the
+pool to be the HDFS Name node, and others to be the Data nodes.
+
+<P>
+Once an HDFS is deployed, 
+HTCondor jobs can directly use it in a vanilla universe job,
+by transferring input files directly from the HDFS by specifying 
+a URL within the job's submit description file command
+<B>transfer_input_files</B>. 
+See section&nbsp;<A HREF="3_12Setting_Up.html#sec:URL-transfer">3.12.2</A> for the administrative details
+to set up transfers specified by a URL.
+It requires that a plug-in is accessible and defined to handle
+<TT>hdfs</TT> protocol transfers. 
+
+<P>
+
+<H2><A NAME="SECTION001021000000000000000"></A><A NAME="sec:HDFS-Config-File-Entries"></A>
+<BR>
+9.2.1 condor_hdfs
+Configuration File Entries
+</H2>
+
+<P>
+<A NAME="51769"></A>
+These macros affect the <I>condor_hdfs</I> daemon.
+Many of these variables determine how the <I>condor_hdfs</I> daemon sets
+the HDFS XML configuration.
+
+<P>
+<DL>
+<DD><A NAME="param:HDFSHome"></A></DD>
+<DT><STRONG><TT>HDFS_HOME</TT> <A NAME="51875"></A> <A NAME="51876"></A></STRONG></DT>
+<DD>The directory path for the Hadoop file system installation directory.
+Defaults to <TT><TT>$(RELEASE_DIR)</TT>/libexec</TT>.
+  This directory is required to contain 
+
+<P>
+
+<UL>
+<LI>directory <TT>lib</TT>,
+  containing all necessary jar files for the execution of a Name node
+  and Data nodes.
+</LI>
+<LI>directory <TT>conf</TT>,
+  containing default Hadoop file system configuration files with names that
+  conform to <TT>*-site.xml</TT>.
+</LI>
+<LI>directory <TT>webapps</TT>,
+  containing JavaServer pages (jsp) files for the Hadoop file 
+  system's embedded server.
+  
+</LI>
+</UL>
+
+<P>
+<A NAME="param:HDFSNamenode"></A></DD>
+<DT><STRONG><TT>HDFS_NAMENODE</TT> <A NAME="51887"></A> <A NAME="51888"></A></STRONG></DT>
+<DD>The host and port number for the HDFS Name node.
+  There is no default value for this required variable.
+  Defines the value of <TT>fs.default.name</TT> in the HDFS XML configuration.
+
+<P>
+<A NAME="param:HDFSNamenodeWeb"></A></DD>
+<DT><STRONG><TT>HDFS_NAMENODE_WEB</TT> <A NAME="51893"></A> <A NAME="51894"></A></STRONG></DT>
+<DD>The IP address and port number for the HDFS embedded web server within the
+  Name node with the syntax of <TT>a.b.c.d:portnumber</TT>.
+  There is no default value for this required variable.
+  Defines the value of <TT>dfs.http.address</TT> in the HDFS XML configuration.
+
+<P>
+<A NAME="param:HDFSDatanodeWeb"></A></DD>
+<DT><STRONG><TT>HDFS_DATANODE_WEB</TT> <A NAME="51900"></A> <A NAME="51901"></A></STRONG></DT>
+<DD>The IP address and port number for the HDFS embedded web server within the
+  Data node with the syntax of <TT>a.b.c.d:portnumber</TT>.
+  The default value for this optional variable is 0.0.0.0:0, which means
+  bind to the default interface on a dynamic port.
+  Defines the value of <TT>dfs.datanode.http.address</TT> in 
+  the HDFS XML configuration.
+
+<P>
+<A NAME="param:HDFSNamenodeDir"></A></DD>
+<DT><STRONG><TT>HDFS_NAMENODE_DIR</TT> <A NAME="51907"></A> <A NAME="51908"></A></STRONG></DT>
+<DD>The path to the directory on a local file system where the Name node will
+  store its meta-data for file blocks.
+  There is no default value for this variable; it is required to be defined
+  for the Name node machine.
+  Defines the value of <TT>dfs.name.dir</TT> in the HDFS XML configuration.
+
+<P>
+<A NAME="param:HDFSDatanodeDir"></A></DD>
+<DT><STRONG><TT>HDFS_DATANODE_DIR</TT> <A NAME="51913"></A> <A NAME="51914"></A></STRONG></DT>
+<DD>The path to the directory on a local file system where the Data node will
+  store file blocks.
+  There is no default value for this variable; it is required to be defined
+  for a Data node machine.
+  Defines the value of <TT>dfs.data.dir</TT> in the HDFS XML configuration.
+
+<P>
+<A NAME="param:HDFSDatanodeAddress"></A></DD>
+<DT><STRONG><TT>HDFS_DATANODE_ADDRESS</TT> <A NAME="51919"></A> <A NAME="51920"></A></STRONG></DT>
+<DD>The IP address and port number of this machine's Data node.
+  There is no default value for this variable; it is required to be defined
+  for a Data node machine, and may be given the value <TT>0.0.0.0:0</TT>
+  as a Data node need not be running on a known port.
+  Defines the value of <TT>dfs.datanode.address</TT> in the HDFS XML
+  configuration.
+
+<P>
+<A NAME="param:HDFS"></A></DD>
+<DT><STRONG><TT>HDFS_NODETYPE</TT> <A NAME="51926"></A> <A NAME="51927"></A></STRONG></DT>
+<DD>This parameter specifies the type of
+  HDFS service provided by this machine.  Possible values are
+  <TT>HDFS_NAMENODE</TT> and <TT>HDFS_DATANODE</TT>.  The default value
+  is <TT>HDFS_DATANODE</TT>.
+
+<P>
+<A NAME="param:HDFSBackupnode"></A></DD>
+<DT><STRONG><TT>HDFS_BACKUPNODE</TT> <A NAME="51934"></A> <A NAME="51935"></A></STRONG></DT>
+<DD>The host address and port number for the HDFS Backup node.
+  There is no default value.
+  It defines the value of the HDFS dfs.namenode.backup.address
+  field in the HDFS XML configuration file.
+
+<P>
+<A NAME="param:HDFSBackupnodeWeb"></A></DD>
+<DT><STRONG><TT>HDFS_BACKUPNODE_WEB</TT> <A NAME="51939"></A> <A NAME="51940"></A></STRONG></DT>
+<DD>The address and port number for the HDFS embedded web server 
+  within the Backup node,
+  with the syntax of hdfs://&lt;host_address&gt;:&lt;portnumber&gt;.
+  There is no default value for this required variable. 
+  It defines the value of dfs.namenode.backup.http-address in the 
+  HDFS XML configuration. 
+
+<P>
+<A NAME="param:HDFSNamenodeRole"></A></DD>
+<DT><STRONG><TT>HDFS_NAMENODE_ROLE</TT> <A NAME="51944"></A> <A NAME="51945"></A></STRONG></DT>
+<DD>If this machine is selected to be the Name node,
+  then the role must be defined. 
+  Possible values are <TT>ACTIVE</TT>, <TT>BACKUP</TT>, <TT>CHECKPOINT</TT>, 
+  and <TT>STANDBY</TT>.
+  The default value is <TT>ACTIVE</TT>.
+  The <TT>STANDBY</TT> value exists for future expansion.
+  If <TT>HDFS_NODETYPE</TT> is selected to be Data node
+  (<TT>HDFS_DATANODE</TT>), then this variable is ignored.  
+
+<P>
+<A NAME="param:HDFSLog4j"></A></DD>
+<DT><STRONG><TT>HDFS_LOG4J</TT> <A NAME="51957"></A> <A NAME="51958"></A></STRONG></DT>
+<DD>Used to set the configuration for the HDFS debugging level.
+  Currently one of  <TT>OFF</TT>, <TT>FATAL</TT>, <TT>ERROR</TT>, <TT>WARN</TT>,
+  <TT>INFODEBUG</TT>, <TT>ALL</TT> or <TT>INFO</TT>.
+  Debugging output is written to <TT><TT>$(LOG)</TT>/hdfs.log</TT>.
+  The default value is <TT>INFO</TT>.
+
+<P>
+<A NAME="param:HDFSAllow"></A></DD>
+<DT><STRONG><TT>HDFS_ALLOW</TT> <A NAME="51973"></A> <A NAME="51974"></A></STRONG></DT>
+<DD>A comma separated list of hosts that are authorized with read and write
+  access to the invoked HDFS.
+  Note that this configuration variable name is likely to change to
+  <TT>HOSTALLOW_HDFS</TT>.
+
+<P>
+<A NAME="param:HDFSDeny"></A></DD>
+<DT><STRONG><TT>HDFS_DENY</TT> <A NAME="51979"></A> <A NAME="51980"></A></STRONG></DT>
+<DD>A comma separated list of hosts that are denied access to the invoked HDFS.
+  Note that this configuration variable name is likely to change to
+  <TT>HOSTDENY_HDFS</TT>.
+
+<P>
+<A NAME="param:HDFSNamenodeClass"></A></DD>
+<DT><STRONG><TT>HDFS_NAMENODE_CLASS</TT> <A NAME="51985"></A> <A NAME="51986"></A></STRONG></DT>
+<DD>An optional value that specifies the class to invoke.
+  The default value is <code>org.apache.hadoop.hdfs.server.namenode.NameNode</code>.
+
+<P>
+<A NAME="param:HDFSDatanodeClass"></A></DD>
+<DT><STRONG><TT>HDFS_DATANODE_CLASS</TT> <A NAME="51990"></A> <A NAME="51991"></A></STRONG></DT>
+<DD>An optional value that specifies the class to invoke.
+  The default value is <code>org.apache.hadoop.hdfs.server.datanode.DataNode</code>.
+
+<P>
+<A NAME="param:HDFSSiteFile"></A></DD>
+<DT><STRONG><TT>HDFS_SITE_FILE</TT> <A NAME="51995"></A> <A NAME="51996"></A></STRONG></DT>
+<DD>The optional value that specifies the HDFS XML configuration file to generate.
+  The default value is <TT>hdfs-site.xml</TT>.
+
+<P>
+<A NAME="param:HDFSReplication"></A></DD>
+<DT><STRONG><TT>HDFS_REPLICATION</TT> <A NAME="52001"></A> <A NAME="52002"></A></STRONG></DT>
+<DD>An integer value that facilitates setting the replication factor of an HDFS,
+  defining the value of <TT>dfs.replication</TT> in the HDFS XML
+  configuration.  This configuration variable is optional, as the HDFS has
+  its own default value of 3 when not set through configuration.
+
+<P>
+</DD>
+</DL>
+
+          <HR>
+<!--Navigation Panel-->
+<A NAME="tex2html2355"
+  HREF="9_3Quill.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2349"
+  HREF="9_Contrib_Source.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2343"
+  HREF="9_1Introduction.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2351"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2353"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2356"
+  HREF="9_3Quill.html">9.3 Quill</A>
+<B> Up:</B> <A NAME="tex2html2350"
+  HREF="9_Contrib_Source.html">9. Contrib and Source</A>
+<B> Previous:</B> <A NAME="tex2html2344"
+  HREF="9_1Introduction.html">9.1 Introduction</A>
+ &nbsp; <B>  <A NAME="tex2html2352"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2354"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

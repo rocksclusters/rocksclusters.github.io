@@ -1,0 +1,501 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>T_Coffee</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE=" Bio Roll: Users Guide "
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Using"
+HREF="using.html"><LINK
+REL="PREVIOUS"
+TITLE="Phylip"
+HREF="phylip_usage.html"><LINK
+REL="NEXT"
+TITLE="TIGR Assembler v2"
+HREF="tigr_usage.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Bio Roll: Users Guide: 	<DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/dna.png"></P
+></DIV
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="phylip_usage.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 3. Using</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="tigr_usage.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="T_COFFEE_USAGE"
+>3.10. T_Coffee</A
+></H1
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN391"
+>3.10.1. About</A
+></H2
+><P
+>T_Coffee is a multiple sequence alignment package. The version included with this distribution of Rocks is v8.14</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN394"
+>3.10.2. Usage</A
+></H2
+><P
+>T-coffee is used for standard alignments and alignment combinations. It
+is installed at /opt/bio/tcoffee/ on the Rocks distribution. To
+use T-Coffee, just type t_coffee at the command line for a list of all
+possible
+parameters that can be used. T-coffee recognizes formats such as fasta,
+clustalw, blast, etc. Example input files are available at
+/opt/bio/tcoffee/example/</P
+><P
+>A simple sequence alignment example is shown below about. It is run
+against a sample fasta file present in the example directory. Parts of the
+output are deleted for the sake of brevity. Where missing, output is
+substituted by ellipses (.....)</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>[nostromo@xxx ~]$ t_coffee /opt/bio/tcoffee/example/sample_aln2.fasta 
+
+PROGRAM: T-COFFEE (Version_8.14)
+-full_log       S       [0] 
+-run_name       S       [0] 
+-mem_mode       S       [0]     mem
+-extend         D       [1]     1 
+-extend_mode    S       [0]     very_fast_triplet
+-max_n_pair     D       [0]     10 
+-seq_name_for_quadruplet        S       [0]     all
+-compact        S       [0]     default
+-clean          S       [0]     no
+-do_self        FL      [0]     0
+-do_normalise   D       [0]     1000 
+-template_file  S       [0] 
+-template_mode  S       [0] 
+-remove_template_file   D       [0]     0 
+-profile_template_file  S       [0] 
+-in             S       [0] 
+-seq            S       [1]     /opt/bio/tcoffee/example/sample_aln2.fasta
+-aln            S       [0] 
+-method_limits  S       [0] 
+-method         S       [0] 
+-lib            S       [0] 
+-profile        S       [0] 
+-profile1       S       [0] 
+-profile2       S       [0] 
+-pdb            S       [0] 
+-relax_lib      D       [0]     1 
+-filter_lib     D       [0]     0 
+-shrink_lib     D       [0]     0 
+-out_lib        W_F     [0]     no
+-out_lib_mode   S       [0]     primary
+-lib_only       D       [0]     0 
+-outseqweight   W_F     [0]     no
+-dpa            FL      [0]     0
+-seq_source     S       [0]     ANY
+-cosmetic_penalty       D       [0]     0 
+-gapopen        D       [0]     0 
+-gapext         D       [0]     0 
+-fgapopen       D       [0]     0 
+-fgapext        D       [0]     0 
+-nomatch        D       [0]     0 
+-newtree        W_F     [0]     default
+-tree           W_F     [0]     NO
+-usetree        R_F     [0] 
+-tree_mode      S       [0]     nj
+-distance_matrix_mode   S       [0]     ktup
+-distance_matrix_sim_mode       S       [0]     idmat_sim1
+-quicktree      FL      [0]     0
+-outfile        W_F     [0]     default
+-maximise       FL      [1]     1
+-output         S       [0]     aln     html
+-infile         R_F     [0] 
+-matrix         S       [0]     default
+-tg_mode        D       [0]     1 
+-profile_mode   S       [0]     cw_profile_profile
+-profile_comparison     S       [0]     profile
+-dp_mode        S       [0]     linked_pair_wise
+-ktuple         D       [0]     1 
+-ndiag          D       [0]     0 
+-diag_threshold D       [0]     0 
+-diag_mode      D       [0]     0 
+-sim_matrix     S       [0]     vasiliky
+-transform      S       [0] 
+-outorder       S       [0]     input
+-inorder        S       [0]     aligned
+-seqnos         S       [0]     off
+-case           S       [0]     keep
+-cpu            D       [0]     0 
+-maxnseq        D       [0]     1000 
+-maxlen         D       [0]     -1 
+-weight         S       [0]     default
+-seq_weight     S       [0]     t_coffee
+-align          FL      [1]     1
+-mocca          FL      [0]     0
+-domain         FL      [0]     0
+-start          D       [0]     0 
+-len            D       [0]     0 
+-scale          D       [0]     0 
+-mocca_interactive      FL      [0]     0
+-method_evaluate_mode   S       [0]     default
+-evaluate_mode  S       [0]     t_coffee_fast
+-get_type       FL      [0]     0
+-clean_aln      D       [0]     0 
+-clean_threshold        D       [1]     1 
+-clean_iteration        D       [1]     1 
+-clean_evaluate_mode    S       [0]     t_coffee_fast
+-extend_matrix  FL      [0]     0
+-prot_min_sim   D       [0]     0 
+-prot_max_sim   D       [90]    90 
+-prot_min_cov   D       [0]     0 
+-pdb_min_sim    D       [35]    35 
+-pdb_max_sim    D       [100]   100 
+-pdb_min_cov    D       [50]    50 
+-pdb_blast_server       W_F     [0]     EBI
+-blast          W_F     [0] 
+-blast_server   W_F     [0]     EBI
+-pdb_db         W_F     [0]     pdb
+-protein_db     W_F     [0]     uniprot
+-method_log     W_F     [0]     no
+-struc_to_use   S       [0] 
+-cache          W_F     [0]     use
+-align_pdb_param_file   W_F     [0]     no
+-align_pdb_hasch_mode   W_F     [0]     hasch_ca_trace_bubble
+-external_aligner       S       [0]     NO
+-msa_mode       S       [0]     tree
+-one2all        S       [0] 
+-subset2all     S       [0] 
+-lalign_n_top   D       [0]     10 
+-iterate        D       [0]     0 
+-trim           D       [0]     0 
+-split          D       [0]     0 
+-trimfile       S       [0]     default
+-split          D       [0]     0 
+-split_nseq_thres       D       [0]     0 
+-split_score_thres      D       [0]     0 
+-check_pdb_status       D       [0]     0 
+-clean_seq_name D       [0]     0 
+-seq_to_keep    S       [0] 
+-dpa_master_aln S       [0] 
+-dpa_maxnseq    D       [0]     0 
+-dpa_min_score1 D       [0] 
+-dpa_min_score2 D       [0] 
+-dpa_keep_tmpfile       FL      [0]     0
+-dpa_debug      D       [0]     0 
+-multi_core     S       [0]     templates_jobs_relax_msa
+-n_core         D       [0]     0 
+-lib_list       S       [0] 
+-prune_lib_mode S       [0]     5
+-tip            S       [0]     one
+-rna_lib        S       [0] 
+-no_warning     D       [0]     0 
+-run_local_script       D       [0]     0 
+-plugins        S       [0]     default
+-proxy          S       [0]     unset
+-email          S       [0] 
+-clean_overaln  D       [0]     0 
+-overaln_param  S       [0] 
+-overaln_mode   S       [0] 
+-overaln_model  S       [0] 
+-overaln_threshold      D       [0]     0 
+-overaln_target D       [0]     0 
+-overaln_P1     D       [0]     0 
+-overaln_P2     D       [0]     0 
+-overaln_P3     D       [0]     0 
+-overaln_P4     D       [0]     0 
+-exon_boundaries        S       [0] 
+
+INPUT FILES
+        Input File (S) /opt/bio/tcoffee/example/sample_aln2.fasta  Format clustal_aln
+        Input File (M) proba_pair 
+
+INPUT SEQUENCES: 6 SEQUENCES  [PROTEIN]
+  Input File /opt/bio/tcoffee/example/sample_aln2.fasta Seq 1cms   Length  175 type PROTEIN Struct Unchecked
+  Input File /opt/bio/tcoffee/example/sample_aln2.fasta Seq 4pep   Length  174 type PROTEIN Struct Unchecked
+  Input File /opt/bio/tcoffee/example/sample_aln2.fasta Seq 4ape   Length  178 type PROTEIN Struct Unchecked
+  Input File /opt/bio/tcoffee/example/sample_aln2.fasta Seq 3app   Length  174 type PROTEIN Struct Unchecked
+  Input File /opt/bio/tcoffee/example/sample_aln2.fasta Seq 2apr   Length  178 type PROTEIN Struct Unchecked
+  Input File /opt/bio/tcoffee/example/sample_aln2.fasta Seq 1cms_1 Length  148 type PROTEIN Struct Unchecked
+
+COMPUTE PAIRWISE SIMILARITY [dp_mode: ] [distance_matrix_mode: ktup][Similarity Measure: idmat_sim1] 
+
+        Seq: 1cms
+        Seq: 1cms_1
+        Seq: 2apr
+        Seq: 3app
+        Seq: 4ape
+        Seq: 4pep
+
+READ/MAKE LIBRARIES:[2]
+
+        proba_pair [method]
+
+        Multi Core Mode: 2 processors [subset]
+
+                [Submit   Job][TOT=    8][100 %][ELAPSED TIME:    0 sec.]
+MANUAL PENALTIES: gapopen=0 gapext=0
+
+        Library Total Size: [6175]
+
+Library Relaxation: Multi_proc [2] 
+                [Submit   Job][TOT= 3087][100 %][ELAPSED TIME:    0 sec.]
+Total Relaxation: [6175]---&#62;[5092] Entries
+
+        #### File Type=     WEIGHT Format=  tc_weight Name= no | NOT PRODUCED [WARNING:T-COFFEE:Version_8.14]
+
+
+WEIGHTED MODE:t_coffee
+
+          1cms 1.00
+        1cms_1 1.10
+          2apr 1.00
+          3app 0.96
+          4ape 0.95
+          4pep 0.99
+
+
+MAKE GUIDE TREE 
+        [MODE=nj][DONE]
+
+PROGRESSIVE_ALIGNMENT [Tree Based]
+
+        Group    8: [Group    5 (   1 seq)] with [Group    4 (   1 seq)]--&#62;[Score=  83][Len=  179][PID:17999]
+        Group    7: [Group    6 (   1 seq)] with [Group    1 (   1 seq)]--&#62;[Score=  92][Len=  176][PID:17998]
+        Group    9: [Group    8 (   2 seq)] with [Group    3 (   1 seq)]--&#62;[Score=  74][Len=  186][PID:17999]
+        Group   10: [Group    9 (   3 seq)] with [Group    7 (   2 seq)]--&#62;[Score=  77][Len=  186][PID:17976][Forked]
+        Group   11: [Group    2 (   1 seq)] with [Group   10 (   5 seq)]--&#62;[Score=  24][Len=  209][PID:17976]
+
+CLUSTAL FORMAT for T-COFFEE Version_8.14 [http://www.tcoffee.org] [MODE:  ], CPU=0.15 sec, SCORE=72, Nseq=6, Len=209 
+
+1cms            GE---VASVPLTNY------LDSQYFGKIYLGTPPQEFTVLFDTGSSDFWVPSIYCKSNA
+4pep            -----IGDEPLENY------LDTEYFGTIGIGTPAQDFTVIFDTGSSNLWVPSVYCSSLA
+4ape            S-TGSATTTPID-S------LDDAYITPVQIGTPAQTLNLDFDTGSSDLWVFSSETTASE
+3app            AASGVATNTPTA--------NDEEYITPVTIGG--TTLNLNFDTGSADLWVFSTELPASQ
+2apr            AG---VGTVPMTDY-----GNDIEYYGQVTIGTPGKKFNLDFDTGSSDLWIASTLCTN-C
+1cms_1          Y-TGSLHWVPVTVQQYWQFTVDSVTISGVVVACEG-GCQAILDTGTSKLVGPSSD-----
+                         *           *      : :.         :***::.:   *       
+
+1cms            CKNHQRFDPRKSSTFQ-NLGKPLSIHYGTGS-MQGILGYDTVTVSNIVDIQQTVGLSTQE
+4pep            CSDHNQFNPDDSSTFE-ATSQELSITYGTGS-MTGILGYDTVQVGGISDTNQIFGLSETE
+4ape            VDGQTIYTPSKSTTAKLLSGATWSISYGDGSSSSGDVYTDTVSVGGLTVTGQAVESAKKV
+3app            QSGHSVYNPSATG-KE-LSGYTWSISYGDGSSASGNVFTDSVTVGGVTAHGQAVQAAQQI
+2apr            GSGQTKYDPNQSSTYQ-ADGRTWSISYGDGSSASGILAKDNVNLGGLLIKGQTIELAKRE
+1cms_1          ----------------------------------------------ILNIQQAIGATQNQ
+                                                              :    * .  :   
+
+1cms            PGDVFTYAEFD--------GILGMAYPSLASEY-------SIPVFDNM-MNRHLVA----
+4pep            PGSFLYYAPFD--------GILGLAYPSISASG-------ATPVFDNL-WDQGLVS----
+4ape            SSSFTEDSTID--------GLLGLAFSTLNTVSPTQ----QKTFFDNA---KASLD----
+3app            SAQFQQDTNND--------GLLGLAFSSINTVQPQS----QTTFFDTV---KSSLA----
+2apr            AASFAS-GPND--------GLLGLGFDTITTVRG------VKTPMDNL-ISQGLIS----
+1cms_1          YGEFDIDCDNLSYMPTVVFEINGKMYPLTPSAYTSQDQGFCTSGFQSENHSQKWILGDVF
+                 ...                : *  :    :           . ::.    :  :     
+
+1cms            -QDLFSVYMDRN-G-QESMLTLGAIDPSY
+4pep            -QDLFSVYLSSN-DDSGSVVLLGGIDSSY
+4ape            -SPVFTADLGY---HAPGTYNFGFIDTTA
+3app            -QPLFAVALKH---QQPGVYDFGFIDSSK
+2apr            -RPIFGVYLGKAKNGGGGEYIFGGYDSTK
+1cms_1          IREYYSVFDR--------ANNLVGLAKAI
+                    : .              :     : 
+
+
+
+
+
+OUTPUT RESULTS
+        #### File Type= GUIDE_TREE Format=     newick Name= sample_aln2.dnd
+        #### File Type=        MSA Format=        aln Name= sample_aln2.aln
+        #### File Type=        MSA Format=       html Name= sample_aln2.html
+
+
+# TIP :See The Full Documentation on www.tcoffee.org
+# TIP  1:  Get the most accurate protein alignments with: t_coffee &#60;yourseq&#62; -special_mode accurate [Slow]
+# TIP  4:  -special_mode=expresso to fetch your structures automatically
+
+# Command Line: t_coffee /opt/bio/tcoffee/example/sample_aln2.fasta  [PROGRAM:T-COFFEE]
+# T-COFFEE Memory Usage: Current= 11.819 Mb, Max= 13.181 Mb
+# T-COFFEE CPU Usage: 160 millisec
+# Results Produced with T-COFFEE (Version_8.14)
+# T-COFFEE is available from http://www.tcoffee.org</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN399"
+>3.10.3. Further Information</A
+></H2
+><P
+>Further information about t_coffee is available at -</P
+><P
+></P
+><UL
+><LI
+><P
+><A
+HREF="http://www.tcoffee.org/Projects_home_page/t_coffee_home_page.html"
+TARGET="_top"
+>The
+T-coffee home page</A
+></P
+></LI
+><LI
+><P
+>On your cluster head node at
+/opt/bio/tcoffee/doc/</P
+></LI
+><LI
+><P
+><A
+HREF="http://www.tcoffee.org/Documentation/t_coffee/t_coffee_technical.htm"
+TARGET="_top"
+>T-Coffee
+Documentation</A
+></P
+></LI
+></UL
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="phylip_usage.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="tigr_usage.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Phylip</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="using.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>TIGR Assembler v2</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

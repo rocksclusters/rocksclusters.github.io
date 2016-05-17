@@ -1,0 +1,3470 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>4.5 Application Program Interfaces</TITLE>
+<META NAME="description" CONTENT="4.5 Application Program Interfaces">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="previous" HREF="4_4Hooks.html">
+<LINK REL="up" HREF="4_Miscellaneous_Concepts.html">
+<LINK REL="next" HREF="5_Grid_Computing.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html1875"
+  HREF="5_Grid_Computing.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1869"
+  HREF="4_Miscellaneous_Concepts.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1865"
+  HREF="4_4Hooks.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1871"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1873"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1876"
+  HREF="5_Grid_Computing.html">5. Grid Computing</A>
+<B> Up:</B> <A NAME="tex2html1870"
+  HREF="4_Miscellaneous_Concepts.html">4. Miscellaneous Concepts</A>
+<B> Previous:</B> <A NAME="tex2html1866"
+  HREF="4_4Hooks.html">4.4 Hooks</A>
+ &nbsp; <B>  <A NAME="tex2html1872"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1874"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html1877"
+  HREF="4_5Application_Program.html#SECTION00551000000000000000">4.5.1  Web Service</A>
+<UL>
+<LI><A NAME="tex2html1878"
+  HREF="4_5Application_Program.html#SECTION00551100000000000000">4.5.1.1  Transactions</A>
+<LI><A NAME="tex2html1879"
+  HREF="4_5Application_Program.html#SECTION00551200000000000000">4.5.1.2  Job Submission</A>
+<LI><A NAME="tex2html1880"
+  HREF="4_5Application_Program.html#SECTION00551300000000000000">4.5.1.3  File Transfer</A>
+<LI><A NAME="tex2html1881"
+  HREF="4_5Application_Program.html#SECTION00551400000000000000">4.5.1.4  Implementation Details</A>
+<LI><A NAME="tex2html1882"
+  HREF="4_5Application_Program.html#SECTION00551500000000000000">4.5.1.5  Get These Items Correct</A>
+<LI><A NAME="tex2html1883"
+  HREF="4_5Application_Program.html#SECTION00551600000000000000">4.5.1.6  Methods for Transaction Management</A>
+<LI><A NAME="tex2html1884"
+  HREF="4_5Application_Program.html#SECTION00551700000000000000">4.5.1.7  Methods for Job Submission</A>
+<LI><A NAME="tex2html1885"
+  HREF="4_5Application_Program.html#SECTION00551800000000000000">4.5.1.8  Methods for File Transfer</A>
+<LI><A NAME="tex2html1886"
+  HREF="4_5Application_Program.html#SECTION00551900000000000000">4.5.1.9  Methods for Job Management</A>
+<LI><A NAME="tex2html1887"
+  HREF="4_5Application_Program.html#SECTION005511000000000000000">4.5.1.10  Methods for ClassAd Management</A>
+<LI><A NAME="tex2html1888"
+  HREF="4_5Application_Program.html#SECTION005511100000000000000">4.5.1.11  Methods for Version Information</A>
+<LI><A NAME="tex2html1889"
+  HREF="4_5Application_Program.html#SECTION005511200000000000000">4.5.1.12  Common Data Structures</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1890"
+  HREF="4_5Application_Program.html#SECTION00552000000000000000">4.5.2  The DRMAA API</A>
+<UL>
+<LI><A NAME="tex2html1891"
+  HREF="4_5Application_Program.html#SECTION00552100000000000000">4.5.2.1  Implementation Details</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1892"
+  HREF="4_5Application_Program.html#SECTION00553000000000000000">4.5.3 The Condor User and Job Log Reader API</A>
+<UL>
+<LI><A NAME="tex2html1893"
+  HREF="4_5Application_Program.html#SECTION00553100000000000000">4.5.3.1 Constants and Enumerated Types</A>
+<LI><A NAME="tex2html1894"
+  HREF="4_5Application_Program.html#SECTION00553200000000000000">4.5.3.2 Constructors and Destructors</A>
+<LI><A NAME="tex2html1895"
+  HREF="4_5Application_Program.html#SECTION00553300000000000000">4.5.3.3 Initializers</A>
+<LI><A NAME="tex2html1896"
+  HREF="4_5Application_Program.html#SECTION00553400000000000000">4.5.3.4 Primary Methods</A>
+<LI><A NAME="tex2html1897"
+  HREF="4_5Application_Program.html#SECTION00553500000000000000">4.5.3.5 Accessors</A>
+<LI><A NAME="tex2html1898"
+  HREF="4_5Application_Program.html#SECTION00553600000000000000">4.5.3.6 Methods for saving and restoring persistent reader state</A>
+<LI><A NAME="tex2html1899"
+  HREF="4_5Application_Program.html#SECTION00553700000000000000">4.5.3.7 Save state to persistent storage</A>
+<LI><A NAME="tex2html1900"
+  HREF="4_5Application_Program.html#SECTION00553800000000000000">4.5.3.8 Restore state from persistent storage</A>
+<LI><A NAME="tex2html1901"
+  HREF="4_5Application_Program.html#SECTION00553900000000000000">4.5.3.9 API Reference</A>
+<LI><A NAME="tex2html1902"
+  HREF="4_5Application_Program.html#SECTION005531000000000000000">4.5.3.10 Access to the persistent state data</A>
+<LI><A NAME="tex2html1903"
+  HREF="4_5Application_Program.html#SECTION005531100000000000000">4.5.3.11 Future persistence API</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1904"
+  HREF="4_5Application_Program.html#SECTION00554000000000000000">4.5.4  Chirp</A>
+<LI><A NAME="tex2html1905"
+  HREF="4_5Application_Program.html#SECTION00555000000000000000">4.5.5  The Command Line Interface</A>
+<LI><A NAME="tex2html1906"
+  HREF="4_5Application_Program.html#SECTION00556000000000000000">4.5.6  The Condor GAHP</A>
+<LI><A NAME="tex2html1907"
+  HREF="4_5Application_Program.html#SECTION00557000000000000000">4.5.7  The Condor Perl Module</A>
+<UL>
+<LI><A NAME="tex2html1908"
+  HREF="4_5Application_Program.html#SECTION00557100000000000000">4.5.7.1 Subroutines</A>
+<LI><A NAME="tex2html1909"
+  HREF="4_5Application_Program.html#SECTION00557200000000000000">4.5.7.2 Examples</A>
+</UL></UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00550000000000000000"></A><A NAME="sec:Misc-APIs"></A>
+<BR>
+4.5 Application Program Interfaces
+</H1>
+
+<P>
+
+<H2><A NAME="SECTION00551000000000000000"></A><A NAME="API-WebService"></A>
+<A NAME="42113"></A>
+<A NAME="42114"></A>
+<A NAME="42115"></A>
+<A NAME="42116"></A>
+<BR>
+4.5.1  Web Service
+</H2>
+
+<P>
+Condor's Web Service (WS) API provides a way for application developers
+to interact with Condor, without needing to utilize
+Condor's command-line tools.
+In keeping with the Condor philosophy of reliability and fault-tolerance,
+this API is designed to provide a simple and powerful way
+to interact with Condor.
+Condor daemons understand and implement
+the SOAP (Simple Object Access Protocol) XML API
+to provide a web service interface for Condor job submission
+and management.
+
+<P>
+To deal with the issues of reliability and fault-tolerance,
+a two-phase commit mechanism to provides a transaction-based protocol.  
+The following API description describes interaction
+between a client using the API and both the <I>condor_schedd</I> and 
+<I>condor_collector</I> daemons to illustrate transactions
+for use in job submission, queue management and ClassAd 
+management functions.
+
+<P>
+
+<H3><A NAME="SECTION00551100000000000000"></A><A NAME="WebService-Transactions"></A>
+<A NAME="42120"></A>
+<BR>
+4.5.1.1  Transactions
+</H3>
+
+<P>
+All applications using the API to interact with the <I>condor_schedd</I>
+will need to use transactions.
+A transaction is
+an ACID unit of work (atomic, consistent, isolated, and durable).
+The API limits the lifetime of a transaction,
+and both the client (application) and the server
+(the <I>condor_schedd</I> daemon)
+may place a limit on the lifetime.
+The server reserves the right to specify a maximum
+duration for a transaction. 
+
+<P>
+The client initiates a transaction using the
+<TT>beginTransaction()</TT> method. 
+It ends the transaction with either 
+a commit (using <TT>commitTransaction()</TT>)
+or an abort (using <TT>abortTransaction()</TT>).
+
+<P>
+Not all operations in the API need to be performed within a
+transaction.
+Some accept a null transaction.
+A null transaction is a SOAP message with
+<PRE>
+&lt;transaction xsi:type="ns1:Transaction" xsi:nil="true"/&gt;
+</PRE>
+Often this is achieved by passing the programming
+language's equivalent of <code>null</code> in place of a transaction identifier.
+It is possible that some operations will have access to more
+information when they are used inside a transaction. For instance, a
+<TT>getJobAds()</TT>.
+query would have access to the jobs that are pending in a
+transaction, which are not committed and therefore not visible
+outside of the transaction. 
+Transactions are as ACID compliant as possible. 
+Therefore, do not query for information
+outside of a transaction on which to make a decision inside a
+transaction based on the query's results.
+
+<P>
+
+<H3><A NAME="SECTION00551200000000000000"></A><A NAME="WebService-Submission"></A>
+<A NAME="42130"></A>
+<BR>
+4.5.1.2  Job Submission
+</H3>
+
+<P>
+A ClassAd is required to describe a job.
+The job ClassAd will be 
+submitted to the <I>condor_schedd</I> within a transaction
+using the <TT>submit()</TT> method.
+The complexity of job ClassAd creation may be simplified
+by the <TT>createJobTemplate()</TT> method.
+It returns an instance of a ClassAd structure that may be
+further modified.
+A necessary part of the job ClassAd are the job attributes
+<TT>ClusterId</TT> and <TT>ProcId</TT>, which uniquely identify
+the cluster and the job within a cluster.
+Allocation and assignment of (monotonically increasing)
+<TT>ClusterId</TT> values utilize the <TT>newCluster()</TT> method.
+Jobs may be submitted within the assigned cluster only until
+the <TT>newCluster()</TT> method is invoked a subsequent time. 
+Each job is allocated and assigned a (monotonically increasing)
+<TT>ProcId</TT> within the current cluster using the <TT>newJob()</TT>
+method.
+Therefore, the sequence of method calls to submit a set of jobs
+initially calls <TT>newCluster()</TT>.
+This is followed by calls to <TT>newJob()</TT> and then <TT>submit()</TT>
+for each job within the cluster.
+
+<P>
+As an example, here are sample cluster and job numbers that 
+result from the ordered calls to submission methods:
+
+<OL>
+<LI>A call to <TT>newCluster()</TT>, assigns a <TT>ClusterId</TT> of 6.
+</LI>
+<LI>A call to <TT>newJob()</TT>, assigns a <TT>ProcId</TT> of 0, as
+ this is the first job within the cluster.
+</LI>
+<LI>A call to <TT>submit()</TT> results in a job submission numbered 6.0.
+</LI>
+<LI>A call to <TT>newJob()</TT>, assigns a <TT>ProcId</TT> of 1.
+</LI>
+<LI>A call to <TT>submit()</TT> results in a job submission numbered 6.1.
+</LI>
+<LI>A call to <TT>newJob()</TT>, assigns a <TT>ProcId</TT> of 2.
+</LI>
+<LI>A call to <TT>submit()</TT> results in a job submission numbered 6.2.
+</LI>
+<LI>A call to <TT>newCluster()</TT>, assigns a <TT>ClusterId</TT> of 7.
+</LI>
+<LI>A call to <TT>newJob()</TT>, assigns a <TT>ProcId</TT> of 0, as
+ this is the first job within the cluster.
+</LI>
+<LI>A call to <TT>submit()</TT> results in a job submission numbered 7.0.
+</LI>
+<LI>A call to <TT>newJob()</TT>, assigns a <TT>ProcId</TT> of 1.
+</LI>
+<LI>A call to <TT>submit()</TT> results in a job submission numbered 7.1.
+</LI>
+</OL>
+
+<P>
+There is the
+potential that a call to <TT>submit()</TT> will fail.
+Failure means that the
+job is in the queue,
+and it typically indicates that
+something needed by the job has not been sent.
+As a result the job has no hope in successfully running.
+It is possible to recover from
+such a failure by trying to resend information that the job will
+need. It is also completely acceptable to abort and make another
+attempt. To simplify the client's effort in figuring out what the job
+requires, a <TT>discoverJobRequirements()</TT> method accepting a 
+job ClassAd and
+returning a list of things that should be sent along with the job is
+provided.
+
+<P>
+
+<H3><A NAME="SECTION00551300000000000000"></A><A NAME="WebService-File-Transfer"></A>
+<A NAME="42168"></A>
+<BR>
+4.5.1.3  File Transfer
+</H3>
+
+<P>
+A common job submission case requires the job's
+executable and input files to be transferred
+from the machine where the application is running
+to the machine where the <I>condor_schedd</I> daemon is running.
+This is the analogous situation to running <I>condor_submit</I>
+using the <B>-spool</B> or <B>-remote</B> option.
+The executable and input files must be sent directly to
+the <I>condor_schedd</I> daemon, which places all files
+in a spool location.
+
+<P>
+The two methods 
+<TT>declareFile()</TT>
+and <TT>sendFile()</TT> work in tandem to transfer files
+to the <I>condor_schedd</I> daemon.
+The <TT>declareFile()</TT> method causes the <I>condor_schedd</I> daemon
+to create the file in its spool location,
+or indicate in its return value that the file already exists.
+This increases efficiency, 
+as resending an existing file is a waste of resources.
+The <TT>sendFile()</TT> method sends 
+base64 encoded data.
+<TT>sendFile()</TT> may be used to send an 
+entire file, or chunks of files as desired.
+
+<P>
+The <TT>declareFile()</TT> method has both required and
+optional arguments.
+<TT>declareFile()</TT> requires the name of the file
+and its size in bytes.
+The optional arguments relate hash information.
+A hash type of <TT>NOHASH</TT> disables file verification;
+the <I>condor_schedd</I> daemon will not have a reliable way
+to determine the existence of the file being declared.
+
+<P>
+Methods for retrieving files are most useful when a job is completed.
+Consider the categorization of the typical life-cycle for a job:
+<DL>
+<DT><STRONG>Birth:</STRONG></DT>
+<DD>The birth of a job begins with <TT>submit()</TT>.
+  
+</DD>
+<DT><STRONG>Childhood:</STRONG></DT>
+<DD>The job executes.
+  
+</DD>
+<DT><STRONG>Middle Age:</STRONG></DT>
+<DD>A completed job waits to be removed.
+  As the job enters Middle Age,
+  its <TT>JobStatus</TT> ClassAd attribute becomes Completed (the value 4).
+  
+</DD>
+<DT><STRONG>Old Age:</STRONG></DT>
+<DD>The job's information goes into the history log.
+</DD>
+</DL>
+
+<P>
+Once the job enters Middle Age,
+the <TT>getFile()</TT> method retrieves a file.
+The <TT>listSpool()</TT> method assists by providing
+a list of all the job's files in the spool location.
+
+<P>
+The job enters Old Age by the application's use of the
+<TT>closeSpool()</TT> method.
+It causes  the <I>condor_schedd</I> daemon to remove the 
+job from the queue, 
+and the job's spool files are no longer available.
+As there is no requirement for the application to invoke
+the <TT>closeSpool()</TT> method,
+jobs can potentially remain in the queue forever.
+The configuration variable <TT>SOAP_LEAVE_IN_QUEUE</TT> <A NAME="42690"></A> <A NAME="42691"></A>
+may mitigate this problem.
+When this boolean variable evaluates to <TT>False</TT>,
+a job enters Old Age.
+A reasonable example for this configuration variable is
+<PRE>
+SOAP_LEAVE_IN_QUEUE = ((JobStatus==4) &amp;&amp; ((ServerTime - CompletionDate) &lt; (60 * 60 * 24)))
+</PRE>This expression results in Old age for a job (removed from the queue),
+once the job has been Middle Aged (been completed) for 24 hours.
+
+<P>
+
+<H3><A NAME="SECTION00551400000000000000"></A><A NAME="sec:WebService-Implementation"></A>
+<BR>
+4.5.1.4  Implementation Details
+</H3>
+
+<P>
+Condor daemons understand and communicate using the
+SOAP XML protocol.
+An application seeking to use this protocol
+will require code that handles the communication.
+The XML WSDL (Web Services Description Language)
+that Condor implements is included with the
+Condor distribution.
+It is in <TT><TT>$(RELEASE_DIR)</TT>/lib/webservice</TT>.
+The WSDL must be run through a toolkit to produce
+language-specific routines that do communication.
+The application is compiled with these routines.
+
+<P>
+<A NAME="42600"></A>
+Condor must be configured to enable responses to SOAP calls.
+Please see 
+section&nbsp;<A HREF="3_3Configuration.html#sec:API-Config-File-Entries">3.3.31</A> for definitions of the
+configuration variables related to the web services API.
+The WS interface is listening on the <I>condor_schedd</I> daemon's command port. 
+To obtain a list of all the the <I>condor_schedd</I> daemons in the
+pool with a WS interface, issue the command:
+<PRE>
+  %  condor_status -schedd -constraint "HasSOAPInterface=?=TRUE"
+</PRE>With this information,
+a further command locates the port number to use:
+<PRE>
+  % condor_status -schedd -constraint "HasSOAPInterface=?=TRUE" -l | grep MyAddress 
+</PRE>
+<P>
+Condor's security configuration must be set up such that 
+access is authorized for the SOAP client.
+See Section&nbsp;<A HREF="3_6Security.html#sec:Security-Authorization">3.6.7</A>
+for information on how to set the
+<TT>ALLOW_SOAP</TT> and <TT>DENY_SOAP</TT> configuration variables.
+
+<P>
+The API's routines can be roughly categorized into ones that
+deal with
+
+<UL>
+<LI>Transactions
+</LI>
+<LI>Job Submission
+</LI>
+<LI>File Transfer
+</LI>
+<LI>Job Management
+</LI>
+<LI>ClassAd Management
+</LI>
+<LI>Version Information
+</LI>
+</UL>
+The routines for each of these categories is detailed.
+Note that the signature provided will accurately 
+reflect a routine's name, 
+but that return values and parameter specification
+will vary according  to the target programming language.
+
+<P>
+
+<H3><A NAME="SECTION00551500000000000000"></A><A NAME="WebService-Gotchas"></A>
+<BR>
+4.5.1.5  Get These Items Correct
+</H3>
+
+<P>
+
+<UL>
+<LI>For jobs that are to be executed on Windows platforms,
+  explicitly set the job ClassAd attribute <TT>NTDomain</TT>.
+  This attribute defines the NT domain within which the
+  job's owner authenticates.  The attribute is necessary,
+  and it is not set for the job by the <TT>createJobTemplate()</TT>
+  function.
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<H3><A NAME="SECTION00551600000000000000"></A><A NAME="WebService-Transactions"></A>
+<BR>
+4.5.1.6  Methods for Transaction Management
+</H3>
+
+<P>
+<DL>
+<DT><STRONG><TT>beginTransaction</TT></STRONG></DT>
+<DD>Begin a transaction.
+  A prototype is
+
+<P>
+<TT>StatusAndTransaction beginTransaction(int duration);</TT> 
+
+<P>
+<DL>
+<DT><STRONG>Parameters</STRONG></DT>
+<DD><UL>
+<LI><TT>duration</TT> The expected duration of the transaction.
+    
+</LI>
+</UL>
+    
+</DD>
+<DT><STRONG>Return Value</STRONG></DT>
+<DD>If the function succeeds, the return value is <TT>SUCCESS</TT>; 
+      otherwise, see <TT>StatusCode</TT> for valid return values. Additionally,
+      on success, the return value contains the new transaction.
+  
+</DD>
+</DL>    
+
+<P>
+</DD>
+<DT><STRONG><TT>commitTransaction</TT></STRONG></DT>
+<DD>Commits a transaction.
+  A prototype is
+
+<P>
+<TT>Status commitTransaction(Transaction transaction);</TT>
+
+<P>
+<DL>
+<DT><STRONG>Parameters</STRONG></DT>
+<DD><UL>
+<LI><TT>transaction</TT> The transaction to be committed.
+    
+</LI>
+</UL>
+    
+</DD>
+<DT><STRONG> Return Value</STRONG></DT>
+<DD>If the function succeeds, the return value is <TT>SUCCESS</TT>; 
+      otherwise, see <TT>StatusCode</TT> for valid return values. 
+  
+</DD>
+</DL>  
+
+<P>
+</DD>
+<DT><STRONG><TT>abortTransaction</TT></STRONG></DT>
+<DD>Abort a transaction.
+  A prototype is
+
+<P>
+<TT>Status abortTransaction(Transaction transaction);</TT>
+
+<P>
+<DL>
+<DT><STRONG> Parameters</STRONG></DT>
+<DD><UL>
+<LI><TT>transaction</TT> The transaction to be aborted.
+    
+</LI>
+</UL>
+    
+</DD>
+<DT><STRONG> Return Value</STRONG></DT>
+<DD>If the function succeeds, the return value is <TT>SUCCESS</TT>; 
+      otherwise, see <TT>StatusCode</TT> for valid return values. 
+  
+</DD>
+</DL>  
+
+<P>
+</DD>
+<DT><STRONG><TT>extendTransaction</TT></STRONG></DT>
+<DD>Request an extension in duration for a specific transaction.
+  A prototype is
+
+<P>
+<TT>StatusAndTransaction extendTransaction(
+      Transaction transaction, int duration);</TT>
+
+<P>
+<DL>
+<DT><STRONG> Parameters</STRONG></DT>
+<DD><UL>
+<LI><TT>transaction</TT> The transaction to be extended.
+</LI>
+<LI><TT>duration</TT> The duration of the extension.
+    
+</LI>
+</UL>
+    
+</DD>
+<DT><STRONG> Return Value</STRONG></DT>
+<DD>If the function succeeds, the return value is <TT>SUCCESS</TT>; 
+      otherwise, see <TT>StatusCode</TT> for valid return values. Additionally,
+      on success, the return value contains the transaction with the extended
+      duration.
+  
+</DD>
+</DL>  
+
+<P>
+</DD>
+</DL>
+
+<P>
+
+<H3><A NAME="SECTION00551700000000000000"></A><A NAME="WebService-Submission"></A>
+<BR>
+4.5.1.7  Methods for Job Submission
+</H3>
+
+<P>
+<DL>
+<DT><STRONG><TT>submit</TT></STRONG></DT>
+<DD>Submit a job.
+  A prototype is
+
+<P>
+<TT>StatusAndRequirements submit(Transaction transaction, 
+      int clusterId, int jobId, ClassAd jobAd);</TT>
+
+<P>
+<DL>
+<DT><STRONG> Parameters</STRONG></DT>
+<DD><UL>
+<LI><TT>transaction</TT>
+      The transaction in which the submission takes place.
+</LI>
+<LI><TT>clusterId</TT> The cluster identifier.
+</LI>
+<LI><TT>jobId</TT> The job identifier.
+</LI>
+<LI><TT>jobAd</TT>
+      The ClassAd describing the job. Creation of this ClassAd can be simplified
+      with <TT>createJobTemplate();</TT>.
+    
+</LI>
+</UL>
+    
+</DD>
+<DT><STRONG> Return Value</STRONG></DT>
+<DD>If the function succeeds, the return value is <TT>SUCCESS</TT>; 
+      otherwise, see <TT>StatusCode</TT> for valid return values. Additionally,
+      the return value contains the job's requirements.
+  
+</DD>
+</DL>  
+
+<P>
+</DD>
+<DT><STRONG><TT>createJobTemplate</TT></STRONG></DT>
+<DD>Request a job Class Ad, given some of the job requirements.
+  This job Class Ad will be suitable for use when submitting the job.
+  Note that the job attribute <TT>NTDomain</TT> is not set by this
+  function, but must be set for jobs that will execute on Windows
+  platforms.
+  A prototype is 
+
+<P>
+<TT>StatusAndClassAd createJobTemplate(int clusterId, 
+      int jobId, String owner, UniverseType type, String command, 
+      String arguments, String requirements);</TT>
+
+<P>
+<DL>
+<DT><STRONG> Parameters</STRONG></DT>
+<DD><UL>
+<LI><TT>clusterId</TT> The cluster identifier.
+</LI>
+<LI><TT>jobId</TT> The job identifier.
+</LI>
+<LI><TT>owner</TT> 
+      The name to be associated with the job.
+</LI>
+<LI><TT>type</TT>
+      The universe under which the job will run, where <TT>type</TT> can be
+      one of the following:
+
+<P>
+<TT>enum UniverseType { STANDARD = 1, VANILLA = 5,
+	SCHEDULER = 7, MPI = 8, GRID = 9, JAVA = 10,
+	PARALLEL = 11, LOCALUNIVERSE = 12, VM = 13 };</TT>
+
+<P>
+</LI>
+<LI><TT>command</TT> 
+      The command to execute once the job has started.
+</LI>
+<LI><TT>arguments</TT>
+      The command-line arguments for <TT>command</TT>.
+</LI>
+<LI><TT>requirements</TT>
+      The requirements expression for the job. For further details 
+      and examples of the expression syntax, please refer to 
+      section&nbsp;<A HREF="4_1Condor_s_ClassAd.html#sec:classad-reference">4.1</A>.
+    
+</LI>
+</UL>
+    
+</DD>
+<DT><STRONG> Return Value</STRONG></DT>
+<DD>If the function succeeds, the return value is <TT>SUCCESS</TT>; 
+      otherwise, see <TT>StatusCode</TT> for valid return values. 
+  
+</DD>
+</DL>
+
+<P>
+</DD>
+<DT><STRONG><TT>discoverJobRequirements</TT></STRONG></DT>
+<DD>Discover the requirements of a job, given a Class Ad.  May be helpful 
+  in determining what should be sent along with the job. 
+  A prototype is 
+
+<P>
+<TT>StatusAndRequirements discoverJobRequirements(
+      ClassAd jobAd);</TT>
+
+<P>
+<DL>
+<DT><STRONG> Parameters</STRONG></DT>
+<DD><UL>
+<LI><TT>jobAd</TT> The ClassAd of the job.
+    
+</LI>
+</UL>
+    
+</DD>
+<DT><STRONG> Return Value</STRONG></DT>
+<DD>If the function succeeds, the return value is <TT>SUCCESS</TT>; 
+      otherwise, see <TT>StatusCode</TT> for valid return values. Additionally,
+      on success, the return value contains the job's requirements.
+  
+</DD>
+</DL>    
+
+<P>
+</DD>
+</DL>
+
+<P>
+
+<H3><A NAME="SECTION00551800000000000000"></A><A NAME="WebService-FileTransfer"></A>
+<BR>
+4.5.1.8  Methods for File Transfer
+</H3>
+
+<P>
+<DL>
+<DT><STRONG><TT>declareFile</TT></STRONG></DT>
+<DD>Declare a file that may be used by a job.
+  A prototype is 
+
+<P>
+<TT>Status declareFile(Transaction transaction, int clusterId, 
+      int jobId, String name, int size, HashType hashType, String hash);</TT>
+
+<P>
+<DL>
+<DT><STRONG> Parameters</STRONG></DT>
+<DD><UL>
+<LI><TT>transaction</TT> 
+      The transaction in which this file is declared.
+</LI>
+<LI><TT>clusterId</TT> The cluster identifier.
+</LI>
+<LI><TT>jobId</TT>
+      An identifier of the job that will use the file.
+</LI>
+<LI><TT>name</TT> The name of the file.
+</LI>
+<LI><TT>size</TT> The size of the file.
+</LI>
+<LI><TT>hashType</TT>
+      The type of hash mechanism used to verify file integrity, where 
+      <TT>hashType</TT> can be one of the following:
+
+<P>
+<TT>enum HashType { NOHASH, MD5HASH };</TT>
+
+<P>
+</LI>
+<LI><TT>hash</TT>
+      An optionally zero-length string encoding of the file hash.
+    
+</LI>
+</UL>
+    
+</DD>
+<DT><STRONG> Return Value</STRONG></DT>
+<DD>If the function succeeds, the return value is <TT>SUCCESS</TT>; 
+      otherwise, see <TT>StatusCode</TT> for valid return values. 
+  
+</DD>
+</DL>   
+
+<P>
+</DD>
+<DT><STRONG><TT>sendFile</TT></STRONG></DT>
+<DD>Send a file that a job may use.
+  A prototype is 
+
+<P>
+<TT>Status sendFile(Transaction transaction, int clusterId, 
+      int jobId, String name, int offset, Base64 data);</TT>
+
+<P>
+<DL>
+<DT><STRONG> Parameters</STRONG></DT>
+<DD><UL>
+<LI><TT>transaction</TT> 
+      The transaction in which this file is send.
+</LI>
+<LI><TT>clusterId</TT> The cluster identifier.
+</LI>
+<LI><TT>jobId</TT>
+      An identifier of the job that will use the file.
+</LI>
+<LI><TT>name</TT>
+      The name of the file being sent.
+</LI>
+<LI><TT>offset</TT> 
+      The starting offset within the file being sent.
+</LI>
+<LI><TT>length</TT>
+      The length from the offset to send.
+</LI>
+<LI><TT>data</TT>
+      The data block being sent.  This could be the entire file or a
+      sub-section of the file as defined by <TT>offset</TT> and 
+      <TT>length</TT>.
+    
+</LI>
+</UL>
+    
+</DD>
+<DT><STRONG> Return Value</STRONG></DT>
+<DD>If the function succeeds, the return value is <TT>SUCCESS</TT>; 
+      otherwise, see <TT>StatusCode</TT> for valid return values. 
+  
+</DD>
+</DL>  
+
+<P>
+</DD>
+<DT><STRONG><TT>getFile</TT></STRONG></DT>
+<DD>Get a file from a job's spool.
+  A prototype is 
+
+<P>
+<TT>StatusAndBase64 getFile(Transaction transaction, 
+      int clusterId, int jobId, String name, int offset, int length);</TT>
+
+<P>
+<DL>
+<DT><STRONG> Parameters</STRONG></DT>
+<DD><UL>
+<LI><TT>transaction</TT> 
+      An optionally nullable transaction, meaning this call does not 
+      need to occur in a transaction. 
+</LI>
+<LI><TT>clusterId</TT> The cluster in which to search.
+</LI>
+<LI><TT>jobId</TT>
+      The job identifier the file is associated with.
+</LI>
+<LI><TT>name</TT>
+      The name of the file to retrieve.
+</LI>
+<LI><TT>offset</TT> 
+      The starting offset withing the file being retrieved.
+</LI>
+<LI><TT>length</TT>
+      The length from the offset to retrieve.
+    
+</LI>
+</UL>
+    
+</DD>
+<DT><STRONG> Return Value</STRONG></DT>
+<DD>If the function succeeds, the return value is <TT>SUCCESS</TT>; 
+      otherwise, see <TT>StatusCode</TT> for valid return values. Additionally,
+      on success, the return value contains the file or a sub-section of the
+      file as defined by <TT>offset</TT> and <TT>length</TT>.
+  
+</DD>
+</DL>  
+
+<P>
+</DD>
+<DT><STRONG><TT>closeSpool</TT></STRONG></DT>
+<DD>Close a job's spool.
+  All the files in the job's spool can be deleted. 
+  
+A prototype is 
+
+<P>
+<TT>Status closeSpool(Transaction transaction, int clusterId, 
+      int jobId);</TT>      
+
+<P>
+<DL>
+<DT><STRONG> Parameters</STRONG></DT>
+<DD><UL>
+<LI><TT>transaction</TT> 
+      An optionally nullable transaction, meaning this call does not 
+      need to occur in a transaction. 
+</LI>
+<LI><TT>clusterId</TT> 
+      The cluster identifier which the job is associated with. 
+</LI>
+<LI><TT>jobId</TT>
+      The job identifier for which the spool is to be removed.
+    
+</LI>
+</UL>
+    
+</DD>
+<DT><STRONG> Return Value</STRONG></DT>
+<DD>If the function succeeds, the return value is <TT>SUCCESS</TT>; 
+      otherwise, see <TT>StatusCode</TT> for valid return values.
+  
+</DD>
+</DL>  
+
+<P>
+</DD>
+<DT><STRONG><TT>listSpool</TT></STRONG></DT>
+<DD>List the files in a job's spool.
+  A prototype is 
+
+<P>
+<TT>StatusAndFileInfoArray listSpool(Transaction transaction, 
+        int clusterId, int jobId);</TT>
+
+<P>
+<DL>
+<DT><STRONG> Parameters</STRONG></DT>
+<DD><UL>
+<LI><TT>transaction</TT> 
+      An optionally nullable transaction, meaning this call does not 
+      need to occur in a transaction. 
+</LI>
+<LI><TT>clusterId</TT> The cluster in which to search.
+</LI>
+<LI><TT>jobId</TT> The job identifier to search for.
+    
+</LI>
+</UL>
+    
+</DD>
+<DT><STRONG> Return Value</STRONG></DT>
+<DD>If the function succeeds, the return value is <TT>SUCCESS</TT>; 
+      otherwise, see <TT>StatusCode</TT> for valid return values. Additionally,
+      on success, the return value contains a list of files and their 
+      respective sizes.
+  
+</DD>
+</DL>  
+
+<P>
+</DD>
+</DL>
+
+<P>
+
+<H3><A NAME="SECTION00551900000000000000"></A><A NAME="WebService-JobManagement"></A>
+<BR>
+4.5.1.9  Methods for Job Management
+</H3>
+
+<P>
+<DL>
+<DT><STRONG><TT>newCluster</TT></STRONG></DT>
+<DD>Create a new job cluster.
+  A prototype is 
+
+<P>
+<TT>StatusAndInt newCluster(Transaction transaction);</TT>
+
+<P>
+<DL>
+<DT><STRONG> Parameters</STRONG></DT>
+<DD><UL>
+<LI><TT>transaction</TT> 
+      The transaction in which this cluster is created.
+    
+</LI>
+</UL>
+    
+</DD>
+<DT><STRONG> Return Value</STRONG></DT>
+<DD>If the function succeeds, the return value is <TT>SUCCESS</TT>; 
+      otherwise, see <TT>StatusCode</TT> for valid return values. Additionally,
+      on success, the return value contains the cluster id.
+  
+</DD>
+</DL>
+
+<P>
+</DD>
+<DT><STRONG><TT>removeCluster</TT></STRONG></DT>
+<DD>Remove a job cluster, and all the jobs within it.
+  
+A prototype is 
+
+<P>
+<TT>Status removeCluster(Transaction transaction, int clusterId,
+      String reason);</TT>
+
+<P>
+<DL>
+<DT><STRONG> Parameters</STRONG></DT>
+<DD><UL>
+<LI><TT>transaction</TT> 
+      An optionally nullable transaction, meaning this call does not 
+      need to occur in a transaction. 
+</LI>
+<LI><TT>clusterId</TT> 
+      The cluster to remove.
+</LI>
+<LI><TT>reason</TT>
+      The reason for the removal.
+    
+</LI>
+</UL>
+    
+</DD>
+<DT><STRONG> Return Value</STRONG></DT>
+<DD>If the function succeeds, the return value is <TT>SUCCESS</TT>; 
+      otherwise, see <TT>StatusCode</TT> for valid return values. 
+  
+</DD>
+</DL>
+
+<P>
+</DD>
+<DT><STRONG><TT>newJob</TT></STRONG></DT>
+<DD>Creates a new job within the most recently created job cluster.
+  
+A prototype is 
+
+<P>
+<TT>StatusAndInt newJob(Transaction transaction, int clusterId);</TT>
+
+<P>
+<DL>
+<DT><STRONG> Parameters</STRONG></DT>
+<DD><UL>
+<LI><TT>transaction</TT> 
+      The transaction in which this job is created.
+</LI>
+<LI><TT>clusterId</TT> 
+      The cluster identifier of the most recently created cluster. 
+    
+</LI>
+</UL>
+    
+</DD>
+<DT><STRONG> Return Value</STRONG></DT>
+<DD>If the function succeeds, the return value is <TT>SUCCESS</TT>; 
+      otherwise, see <TT>StatusCode</TT> for valid return values. Additionally,
+      on success, the return value contains the job id.
+  
+</DD>
+</DL>
+
+<P>
+</DD>
+<DT><STRONG><TT>removeJob</TT></STRONG></DT>
+<DD>Remove a job, regardless of the job's state.
+  A prototype is 
+
+<P>
+<TT>Status removeJob(Transaction transaction, int clusterId, 
+      int jobId, String reason, boolean forceRemoval);</TT>
+
+<P>
+<DL>
+<DT><STRONG> Parameters</STRONG></DT>
+<DD><UL>
+<LI><TT>transaction</TT> 
+      An optionally nullable transaction, meaning this call does not 
+      need to occur in a transaction. 
+</LI>
+<LI><TT>clusterId</TT> The cluster identifier to search in.
+</LI>
+<LI><TT>jobId</TT> The job identifier to search for.
+</LI>
+<LI><TT>reason</TT> The reason for the release.
+</LI>
+<LI><TT>forceRemoval</TT>
+      Set if the job should be forcibly removed.
+    
+</LI>
+</UL>
+    
+</DD>
+<DT><STRONG> Return Value</STRONG></DT>
+<DD>If the function succeeds, the return value is <TT>SUCCESS</TT>; 
+      otherwise, see <TT>StatusCode</TT> for valid return values.
+  
+</DD>
+</DL>   
+
+<P>
+</DD>
+<DT><STRONG><TT>holdJob</TT></STRONG></DT>
+<DD>Put a job into the Hold state, regardless of the job's current state.
+  A prototype is 
+
+<P>
+<TT>Status holdJob(Transaction transaction, int clusterId, 
+      int jobId, string reason, boolean emailUser, boolean emailAdmin,
+      boolean systemHold);</TT>
+
+<P>
+<DL>
+<DT><STRONG> Parameters</STRONG></DT>
+<DD><UL>
+<LI><TT>transaction</TT> 
+      An optionally nullable transaction, meaning this call does not 
+      need to occur in a transaction. 
+</LI>
+<LI><TT>clusterId</TT> The cluster in which to search.
+</LI>
+<LI><TT>jobId</TT> The job identifier to search for.
+</LI>
+<LI><TT>reason</TT> The reason for the release.
+</LI>
+<LI><TT>emailUser</TT>
+      Set if the submitting user should be notified.
+</LI>
+<LI><TT>emailAdmin</TT>
+      Set if the administrator should be notified.
+</LI>
+<LI><TT>systemHold</TT>
+      Set if the job should be put on hold.
+    
+</LI>
+</UL>
+    
+</DD>
+<DT><STRONG> Return Value</STRONG></DT>
+<DD>If the function succeeds, the return value is <TT>SUCCESS</TT>; 
+      otherwise, see <TT>StatusCode</TT> for valid return values.
+  
+</DD>
+</DL>   
+
+<P>
+</DD>
+<DT><STRONG><TT>releaseJob</TT></STRONG></DT>
+<DD>Release a job that has been in the Hold state.
+  A prototype is 
+
+<P>
+<TT>Status releaseJob(Transaction transaction, int clusterId, 
+      int jobId, String reason, boolean emailUser, boolean emailAdmin);</TT>
+
+<P>
+<DL>
+<DT><STRONG> Parameters</STRONG></DT>
+<DD><UL>
+<LI><TT>transaction</TT> 
+      An optionally nullable transaction, meaning this call does not 
+      need to occur in a transaction. 
+</LI>
+<LI><TT>clusterId</TT> The cluster in which to search.
+</LI>
+<LI><TT>jobId</TT> The job identifier to search for.
+</LI>
+<LI><TT>reason</TT> The reason for the release.
+</LI>
+<LI><TT>emailUser</TT>
+      Set if the submitting user should be notified.
+</LI>
+<LI><TT>emailAdmin</TT>
+      Set if the administrator should be notified.
+    
+</LI>
+</UL>
+    
+</DD>
+<DT><STRONG> Return Value</STRONG></DT>
+<DD>If the function succeeds, the return value is <TT>SUCCESS</TT>; 
+      otherwise, see <TT>StatusCode</TT> for valid return values.
+  
+</DD>
+</DL> 
+
+<P>
+</DD>
+<DT><STRONG><TT>getJobAds</TT></STRONG></DT>
+<DD>
+A prototype is 
+
+<P>
+<TT>StatusAndClassAdArray getJobAds(Transaction transaction, 
+      String constraint);</TT>
+
+<P>
+<DL>
+<DT><STRONG> Parameters</STRONG></DT>
+<DD><UL>
+<LI><TT>transaction</TT> 
+      An optionally nullable transaction, meaning this call does not 
+      need to occur in a transaction. 
+</LI>
+<LI><TT>constraint</TT> 
+      A string constraining the number ClassAds to return. For further details 
+      and examples of the constraint syntax, please refer to 
+      section&nbsp;<A HREF="4_1Condor_s_ClassAd.html#sec:classad-reference">4.1</A>.
+    
+</LI>
+</UL>
+    
+</DD>
+<DT><STRONG> Return Value</STRONG></DT>
+<DD>If the function succeeds, the return value is <TT>SUCCESS</TT>; 
+      otherwise, see <TT>StatusCode</TT> for valid return values. Additionally,
+      on success, the return value contains all job ClassAds matching the 
+      given constraint.
+  
+</DD>
+</DL>     
+
+<P>
+</DD>
+<DT><STRONG><TT>getJobAd</TT></STRONG></DT>
+<DD>Finds a specific job ClassAd. 
+
+<P>
+This method does much the same as the first element from the array 
+  returned by
+
+<P>
+<PRE>
+getJobAds(transaction, "(ClusterId==clusterId &amp;&amp; JobId==jobId)")
+</PRE>
+<P>
+A prototype is 
+
+<P>
+<TT>StatusAndClassAd getJobAd(Transaction transaction, 
+      int clusterId, int jobId);</TT>
+
+<P>
+<DL>
+<DT><STRONG> Parameters</STRONG></DT>
+<DD><UL>
+<LI><TT>transaction</TT> 
+      An optionally nullable transaction, meaning this call does not 
+      need to occur in a transaction. 
+</LI>
+<LI><TT>clusterId</TT> The cluster in which to search.
+</LI>
+<LI><TT>jobId</TT> The job identifier to search for.
+    
+</LI>
+</UL>
+    
+</DD>
+<DT><STRONG> Return Value</STRONG></DT>
+<DD>If the function succeeds, the return value is <TT>SUCCESS</TT>; 
+      otherwise, see <TT>StatusCode</TT> for valid return values. Additionally,
+      on success, the return value contains the requested ClassAd.
+  
+</DD>
+</DL>
+
+<P>
+</DD>
+<DT><STRONG><TT>requestReschedule</TT></STRONG></DT>
+<DD>Request a <I>condor_reschedule</I> from the <I>condor_schedd</I> daemon.
+  A prototype is 
+
+<P>
+<TT>Status requestReschedule();</TT>
+
+<P>
+<DL>
+<DT><STRONG> Return Value</STRONG></DT>
+<DD>If the function succeeds, the return value is <TT>SUCCESS</TT>; 
+      otherwise, see <TT>StatusCode</TT> for valid return values.
+  
+</DD>
+</DL> 
+
+<P>
+</DD>
+</DL>
+
+<P>
+
+<H3><A NAME="SECTION005511000000000000000"></A><A NAME="WebService-ClassAdManagement"></A>
+<BR>
+4.5.1.10  Methods for ClassAd Management
+</H3>
+
+<P>
+<DL>
+<DT><STRONG><TT>insertAd</TT></STRONG></DT>
+<DD>A prototype is 
+
+<P>
+<TT>Status insertAd(ClassAdType type, ClassAdStruct ad);</TT>
+
+<P>
+<DL>
+<DT><STRONG> Parameters</STRONG></DT>
+<DD><UL>
+<LI><TT>type</TT>
+      The type of ClassAd to insert, where <TT>type</TT> can be one of the
+      following:
+
+<P>
+<TT>enum ClassAdType {
+        STARTD_AD_TYPE, QUILL_AD_TYPE,
+        SCHEDD_AD_TYPE, SUBMITTOR_AD_TYPE,
+        LICENSE_AD_TYPE, MASTER_AD_TYPE,
+        CKPTSRVR_AD_TYPE, COLLECTOR_AD_TYPE,
+        STORAGE_AD_TYPE, NEGOTIATOR_AD_TYPE,
+        HAD_AD_TYPE, GENERIC_AD_TYPE };</TT>
+
+<P>
+</LI>
+<LI><TT>ad</TT> The ClassAd to insert.
+    
+</LI>
+</UL>
+    
+</DD>
+<DT><STRONG> Return Value</STRONG></DT>
+<DD>If the function succeeds, the return value is <TT>SUCCESS</TT>; 
+      otherwise, see <TT>StatusCode</TT> for valid return values.
+  
+</DD>
+</DL>
+
+<P>
+</DD>
+<DT><STRONG><TT>queryStartdAds</TT></STRONG></DT>
+<DD>A prototype is 
+
+<P>
+<TT>ClassAdArray queryStartdAds(String constraint);</TT>
+
+<P>
+<DL>
+<DT><STRONG> Parameters</STRONG></DT>
+<DD><UL>
+<LI><TT>constraint</TT> 
+      A string constraining the number ClassAds to return. For further details 
+      and examples of the constraint syntax, please refer to 
+      section&nbsp;<A HREF="4_1Condor_s_ClassAd.html#sec:classad-reference">4.1</A>.
+    
+</LI>
+</UL>
+    
+</DD>
+<DT><STRONG> Return Value</STRONG></DT>
+<DD>A list of all the <I>condor_startd</I> ClassAds matching the 
+      given constraint.
+  
+</DD>
+</DL>    
+
+<P>
+</DD>
+<DT><STRONG><TT>queryScheddAds</TT></STRONG></DT>
+<DD>A prototype is 
+
+<P>
+<TT>ClassAdArray queryScheddAds(String constraint);</TT>
+
+<P>
+<DL>
+<DT><STRONG> Parameters</STRONG></DT>
+<DD><UL>
+<LI><TT>constraint</TT> 
+      A string constraining the number ClassAds to return. For further details 
+      and examples of the constraint syntax, please refer to 
+      section&nbsp;<A HREF="4_1Condor_s_ClassAd.html#sec:classad-reference">4.1</A>.
+    
+</LI>
+</UL>
+    
+</DD>
+<DT><STRONG> Return Value</STRONG></DT>
+<DD>A list of all the <I>condor_schedd</I> ClassAds matching the given 
+      constraint.
+  
+</DD>
+</DL>   
+
+<P>
+</DD>
+<DT><STRONG><TT>queryMasterAds</TT></STRONG></DT>
+<DD>A prototype is 
+
+<P>
+<TT>ClassAdArray queryMasterAds(String constraint);</TT>
+
+<P>
+<DL>
+<DT><STRONG> Parameters</STRONG></DT>
+<DD><UL>
+<LI><TT>constraint</TT> 
+      A string constraining the number ClassAds to return. For further details 
+      and examples of the constraint syntax, please refer to 
+      section&nbsp;<A HREF="4_1Condor_s_ClassAd.html#sec:classad-reference">4.1</A>.
+    
+</LI>
+</UL>
+    
+</DD>
+<DT><STRONG> Return Value</STRONG></DT>
+<DD>A list of all the <I>condor_master</I> ClassAds matching the given 
+      constraint.
+  
+</DD>
+</DL>
+
+<P>
+</DD>
+<DT><STRONG><TT>querySubmittorAds</TT></STRONG></DT>
+<DD>A prototype is 
+
+<P>
+<TT>ClassAdArray querySubmittorAds(String constraint);</TT>
+
+<P>
+<DL>
+<DT><STRONG> Parameters</STRONG></DT>
+<DD><UL>
+<LI><TT>constraint</TT> 
+      A string constraining the number ClassAds to return. For further details 
+      and examples of the constraint syntax, please refer to 
+      section&nbsp;<A HREF="4_1Condor_s_ClassAd.html#sec:classad-reference">4.1</A>.
+    
+</LI>
+</UL>
+    
+</DD>
+<DT><STRONG> Return Value</STRONG></DT>
+<DD>A list of all the submitters ClassAds matching the given 
+      constraint.
+  
+</DD>
+</DL>
+
+<P>
+</DD>
+<DT><STRONG><TT>queryLicenseAds</TT></STRONG></DT>
+<DD>A prototype is 
+
+<P>
+<TT>ClassAdArray queryLicenseAds(String constraint);</TT>
+
+<P>
+<DL>
+<DT><STRONG> Parameters</STRONG></DT>
+<DD><UL>
+<LI><TT>constraint</TT> 
+      A string constraining the number ClassAds to return.For further details 
+      and examples of the constraint syntax, please refer to 
+      section&nbsp;<A HREF="4_1Condor_s_ClassAd.html#sec:classad-reference">4.1</A>.
+    
+</LI>
+</UL>
+    
+</DD>
+<DT><STRONG> Return Value</STRONG></DT>
+<DD>A list of all the license ClassAds matching the given constraint.
+  
+</DD>
+</DL>
+
+<P>
+</DD>
+<DT><STRONG><TT>queryStorageAds</TT></STRONG></DT>
+<DD>A prototype is 
+
+<P>
+<TT>ClassAdArray queryStorageAds(String constraint);</TT>
+
+<P>
+<DL>
+<DT><STRONG> Parameters</STRONG></DT>
+<DD><UL>
+<LI><TT>constraint</TT>
+      A string constraining the number ClassAds to return. For further details 
+      and examples of the constraint syntax, please refer to 
+      section&nbsp;<A HREF="4_1Condor_s_ClassAd.html#sec:classad-reference">4.1</A>.
+    
+</LI>
+</UL>
+    
+</DD>
+<DT><STRONG> Return Value</STRONG></DT>
+<DD>A list of all the storage ClassAds matching the given constraint.
+  
+</DD>
+</DL> 
+
+<P>
+</DD>
+<DT><STRONG><TT>queryAnyAds</TT></STRONG></DT>
+<DD>A prototype is 
+
+<P>
+<TT>ClassAdArray queryAnyAds(String constraint);</TT>
+
+<P>
+<DL>
+<DT><STRONG> Parameters</STRONG></DT>
+<DD><UL>
+<LI><TT>constraint</TT> 
+      A string constraining the number ClassAds to return. For further details 
+      and examples of the constraint syntax, please refer to 
+      section&nbsp;<A HREF="4_1Condor_s_ClassAd.html#sec:classad-reference">4.1</A>.
+    
+</LI>
+</UL>
+    
+</DD>
+<DT><STRONG> Return Value</STRONG></DT>
+<DD>A list of all the ClassAds matching the given constraint.
+      to return.
+  
+</DD>
+</DL>  
+
+<P>
+</DD>
+</DL>
+
+<P>
+
+<H3><A NAME="SECTION005511100000000000000"></A><A NAME="WebService-VersionInformation"></A>
+<BR>
+4.5.1.11  Methods for Version Information
+</H3>
+
+<P>
+<DL>
+<DT><STRONG><TT>getVersionString</TT></STRONG></DT>
+<DD>A prototype is 
+
+<P>
+<TT>StatusAndString getVersionString();</TT>
+
+<P>
+<DL>
+<DT><STRONG> Return Value</STRONG></DT>
+<DD>Returns the Condor version as a string.
+  
+</DD>
+</DL>  
+
+<P>
+</DD>
+<DT><STRONG><TT>getPlatformString</TT></STRONG></DT>
+<DD>A prototype is 
+
+<P>
+<TT>StatusAndString getPlatformString();</TT>
+
+<P>
+<DL>
+<DT><STRONG> Return Value</STRONG></DT>
+<DD>Returns the platform information Condor is running on as string.
+  
+</DD>
+</DL>  
+
+<P>
+</DD>
+</DL>
+
+<P>
+
+<H3><A NAME="SECTION005511200000000000000"></A><A NAME="WebService-DataStructures"></A>
+<BR>
+4.5.1.12  Common Data Structures
+</H3>
+
+<P>
+Many methods return a status.
+Table&nbsp;<A HREF="#WebService-StatusCode">4.5</A> lists and defines the
+<TT>StatusCode</TT> return values.
+
+<P>
+<DIV ALIGN="CENTER">
+</DIV>
+<BR><P></P>
+<DIV ALIGN="CENTER"><A NAME="42609"></A>
+<TABLE>
+<CAPTION><STRONG>Table 4.5:</STRONG>
+<TT>StatusCode</TT> definitions</CAPTION>
+<TR><TD><TABLE CELLPADDING=3 BORDER="1">
+<TR><TH ALIGN="LEFT"><B>Value</B></TH>
+<TH ALIGN="LEFT"><B>Identifier</B></TH>
+<TH ALIGN="LEFT"><B>Definition</B></TH>
+</TR>
+<TR><TD ALIGN="LEFT">0</TD>
+<TD ALIGN="LEFT"><TT>SUCCESS</TT></TD>
+<TD ALIGN="LEFT">All OK</TD>
+</TR>
+<TR><TD ALIGN="LEFT">1</TD>
+<TD ALIGN="LEFT"><TT>FAIL</TT></TD>
+<TD ALIGN="LEFT">An error occurred that is not specific to another error code</TD>
+</TR>
+<TR><TD ALIGN="LEFT">2</TD>
+<TD ALIGN="LEFT"><TT>INVALIDTRANSACTION</TT></TD>
+<TD ALIGN="LEFT">No such transaction exists</TD>
+</TR>
+<TR><TD ALIGN="LEFT">3</TD>
+<TD ALIGN="LEFT"><TT>UNKNOWNCLUSTER</TT></TD>
+<TD ALIGN="LEFT">The specified cluster is not the currently active one</TD>
+</TR>
+<TR><TD ALIGN="LEFT">4</TD>
+<TD ALIGN="LEFT"><TT>UNKNOWNJOB</TT></TD>
+<TD ALIGN="LEFT">The specified job does not exist within the specified cluster</TD>
+</TR>
+<TR><TD ALIGN="LEFT">5</TD>
+<TD ALIGN="LEFT"><TT>UNKNOWNFILE</TT></TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">6</TD>
+<TD ALIGN="LEFT"><TT>INCOMPLETE</TT></TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">7</TD>
+<TD ALIGN="LEFT"><TT>INVALIDOFFSET</TT></TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">8</TD>
+<TD ALIGN="LEFT"><TT>ALREADYEXISTS</TT></TD>
+<TD ALIGN="LEFT">For this job, the specified file already exists</TD>
+</TR>
+</TABLE>
+</TD></TR>
+</TABLE>
+</DIV><P></P>
+<BR>
+<DIV ALIGN="CENTER">
+</DIV>
+
+<H2><A NAME="SECTION00552000000000000000"></A><A NAME="API-DRMAA"></A>
+<A NAME="43310"></A>
+<A NAME="43311"></A>
+<A NAME="43312"></A>
+<BR>
+4.5.2  The DRMAA API
+</H2>
+
+<P>
+The following quote from the DRMAA Specification 1.0 abstract
+nicely describes the purpose of the API:
+
+<P>
+The Distributed Resource Management Application API (DRMAA),
+developed by a working group of the Global Grid Forum (GGF),
+<BLOCKQUOTE>
+provides a generalized API to distributed resource management systems
+(DRMSs) in order to facilitate integration of application programs.
+The scope of DRMAA is limited to job submission,
+job monitoring and control,
+and the retrieval of the finished job status.
+DRMAA provides application developers and
+distributed resource management builders
+with a programming model that enables
+the development of distributed applications
+tightly coupled to an underlying DRMS.
+For deployers of such distributed applications,
+DRMAA preserves flexibility and choice in system design.
+
+</BLOCKQUOTE>
+
+<P>
+The API allows users who write programs using DRMAA functions
+and link to a DRMAA library to submit,
+control, and retrieve information about jobs to a Grid system.
+The Condor implementation of a portion of the API
+allows programs (applications) to use the library
+functions provided to submit, monitor and control
+Condor jobs.
+
+<P>
+See the DRMAA site 
+(<A NAME="tex2html64"
+  HREF="http://www.drmaa.org">http://www.drmaa.org</A>) to find the
+API specification for DRMA 1.0 for further details on the API.
+
+<P>
+
+<H3><A NAME="SECTION00552100000000000000"></A><A NAME="DRMAA-Implementation"></A>
+<BR>
+4.5.2.1  Implementation Details
+</H3>
+
+<P>
+The library was developed from the DRMA API Specification 1.0 of January 2004
+and the DRMAA C Bindings v0.9 of September 2003.
+It is a static C library that expects a POSIX thread model
+on Unix systems and a Windows thread model on Windows systems.
+Unix systems that do not support POSIX threads
+are not guaranteed thread safety when calling the library's functions.
+
+<P>
+The object library file is called <TT>libcondordrmaa.a</TT>,
+and it is located within
+the <TT>&lt;release&gt;/lib</TT> directory in the Condor download.
+Its header file  is called <TT>lib_condor_drmaa.h</TT>, and it is located within
+the <TT>&lt;release&gt;/include</TT> directory in the Condor download.
+Also within <TT>&lt;release&gt;/include</TT> is the file
+<TT>lib_condor_drmaa.README</TT>,
+which gives further details on the implementation.
+
+<P>
+Use of the library requires that a
+local <I>condor_schedd</I> daemon  must be running,
+and the program linked to the library must have
+sufficient spool space.
+This space should be in <TT>/tmp</TT>
+or specified by the environment variables
+<TT>TEMP</TT>, <TT>TMP</TT>, or <TT>SPOOL</TT>.
+The program linked to the library and the local <I>condor_schedd</I> daemon
+must have read, write, and traverse rights to the spool space.
+
+<P>
+The library currently supports the following specification-defined
+job attributes:
+<DL>
+<DT></DT>
+<DD>DRMAA_REMOTE_COMMAND
+</DD>
+<DT></DT>
+<DD>DRMAA_JS_STATE
+</DD>
+<DT></DT>
+<DD>DRMAA_NATIVE_SPECIFICATION
+</DD>
+<DT></DT>
+<DD>DRMAA_BLOCK_EMAIL
+</DD>
+<DT></DT>
+<DD>DRMAA_INPUT_PATH
+</DD>
+<DT></DT>
+<DD>DRMAA_OUTPUT_PATH
+</DD>
+<DT></DT>
+<DD>DRMAA_ERROR_PATH
+</DD>
+<DT></DT>
+<DD>DRMAA_V_ARGV
+</DD>
+<DT></DT>
+<DD>DRMAA_V_ENV
+</DD>
+<DT></DT>
+<DD>DRMAA_V_EMAIL
+</DD>
+</DL>
+
+<P>
+The attribute <TT>DRMAA_NATIVE_SPECIFICATION</TT> can be used
+to direct all commands supported within
+submit description files.  
+See the <I>condor_submit</I> manual page at
+section&nbsp;<A HREF="condor_submit.html#man-condor-submit">10</A> for a complete list.
+Multiple commands can be specified if separated by newlines.  
+
+<P>
+As in the normal submit file,
+arbitrary attributes can be added to the job's ClassAd
+by prefixing the attribute with +.  In this case, you will need to put
+string values in quotation marks, the same as in a submit file.
+
+<P>
+Thus to tell Condor that the job will likely use 64 megabytes of memory (65536
+kilobytes), to more highly rank machines with more memory, and to add the
+arbitrary attribute of department set to chemistry, you would set
+AttrDRMAA_NATIVE_SPECIFICATION to the C string:
+
+<P>
+<PRE>
+  drmaa_set_attribute(jobtemplate, DRMAA_NATIVE_SPECIFICATION,
+      "image_size=65536\nrank=Memory\n+department=\"chemistry\"",
+      err_buf, sizeof(err_buf)-1);
+</PRE>
+
+<H2><A NAME="SECTION00553000000000000000"></A><A NAME="sec:job-log-reader"></A>
+<A NAME="43395"></A>
+<A NAME="43396"></A>
+<A NAME="43397"></A>
+<BR>
+4.5.3 The Condor User and Job Log Reader API
+</H2>
+<A NAME="43864"></A>
+<A NAME="43399"></A>
+
+<P>
+Condor has the ability to log a Condor job's significant events during 
+its lifetime.
+This is enabled in the job's submit description file with the
+<B>Log</B> command.
+
+<P>
+This section describes the API defined by the C++ <TT>ReadUserLog</TT> class,
+which provides a programming interface for applications
+to read and parse events,
+polling for events, and saving and restoring reader state.
+
+<P>
+
+<H3><A NAME="SECTION00553100000000000000">
+4.5.3.1 Constants and Enumerated Types</A>
+</H3>
+
+<P>
+The following define enumerated types useful to the API.
+
+<P>
+
+<UL>
+<LI><TT>ULogEventOutcome</TT> (defined in <TT>condor_event.h</TT>):
+  
+<UL>
+<LI><TT>ULOG_OK</TT>: Event is valid
+</LI>
+<LI><TT>ULOG_NO_EVENT</TT>: No event occurred (like EOF)
+</LI>
+<LI><TT>ULOG_RD_ERROR</TT>: Error reading log file
+</LI>
+<LI><TT>ULOG_MISSED_EVENT</TT>: Missed event
+</LI>
+<LI><TT>ULOG_UNK_ERROR</TT>: Unknown Error
+  
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI><TT>ReadUserLog::FileStatus</TT>
+  
+<UL>
+<LI><TT>LOG_STATUS_ERROR</TT>: An error was encountered
+</LI>
+<LI><TT>LOG_STATUS_NOCHANGE</TT>: No change in file size
+</LI>
+<LI><TT>LOG_STATUS_GROWN</TT>: File has grown
+</LI>
+<LI><TT>LOG_STATUS_SHRUNK</TT>: File has shrunk
+  
+</LI>
+</UL>
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<H3><A NAME="SECTION00553200000000000000">
+4.5.3.2 Constructors and Destructors</A>
+</H3>
+
+<P>
+All <TT>ReadUserLog</TT> constructors invoke one of the <TT>initialize()</TT>
+methods.
+Since C++ constructors cannot return errors, 
+an application using any but the default constructor should call
+<TT>isIinitialized()</TT> to verify that the object initialized correctly,
+and for example, had permissions to open required files.
+
+<P>
+Note that because the constructors cannot return status information,
+most of these constructors will be eliminated in the future.
+All constructors, except for the default constructor with no parameters,
+will be removed.
+The application will need to call the appropriate <TT>initialize()</TT> method.
+
+<P>
+
+<UL>
+<LI> <TT>ReadUserLog::ReadUserLog(bool isEventLog)</TT> 
+  
+<BR><B>Synopsis:</B> Constructor default
+  
+<BR><B>Returns:</B> None
+  
+<BR><B>Constructor</B> parameters:  
+  
+<UL>
+<LI><TT>bool</TT> <TT>isEventLog</TT> (<I>Optional with default</I> = <TT>false</TT>) 
+<BR>
+If <TT>true</TT>, the <TT>ReadUserLog</TT> object is
+    initialized to read the schedd-wide event log.
+    
+<BR><U>NOTE</U>: If <TT>isEventLog</TT> is <TT>true</TT>, the initialization may
+    silently fail, so the value of <TT>ReadUserLog::isInitialized</TT>
+    should be checked to verify that the initialization was successful.
+    
+<BR><U>NOTE</U>: The <TT>isEventLog</TT> parameter will be removed in the future.
+  
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI> <TT>ReadUserLog::ReadUserLog(FILE *fp, bool is_xml, bool enable_close)</TT> 
+  
+<BR><B>Synopsis:</B> Constructor of a limited functionality reader: no rotation handling, no locking
+  
+<BR><B>Returns:</B> None
+  
+<BR><B>Constructor</B> parameters:  
+  
+<UL>
+<LI><TT>FILE *</TT> <TT>fp</TT> 
+<BR>
+File pointer to the previously opened log file to read.
+</LI>
+<LI><TT>bool</TT> <TT>is_xml</TT> 
+<BR>
+If <TT>true</TT>, the file is treated as XML; otherwise, it will be
+    read as an old style file.
+</LI>
+<LI><TT>bool</TT> <TT>enable_close</TT> (<I>Optional with default</I> = <TT>false</TT>) 
+<BR>
+If <TT>true</TT>, the reader will open the file read-only.
+  
+</LI>
+</UL>
+  <U>NOTE</U>: The <TT>ReadUserLog::isInitialized</TT> method
+  should be invoked to verify that this constructor was initialized
+  successfully.
+  
+<BR><U>NOTE</U>: This constructor will be removed in the future.
+
+<P>
+</LI>
+<LI> <TT>ReadUserLog::ReadUserLog(const char *filename, bool read_only)</TT> 
+  
+<BR><B>Synopsis:</B> Constructor to read a specific log file
+  
+<BR><B>Returns:</B> None
+  
+<BR><B>Constructor</B> parameters:  
+  
+<UL>
+<LI><TT>const char *</TT> <TT>filename</TT> 
+<BR>
+Path to the log file to read
+</LI>
+<LI><TT>bool</TT> <TT>read_only</TT> (<I>Optional with default</I> = <TT>false</TT>) 
+<BR>
+If <TT>true</TT>, the reader will open the file read-only and
+    disable locking.
+  
+</LI>
+</UL>
+  <U>NOTE</U>: This constructor will be removed in the future.
+
+<P>
+</LI>
+<LI> <TT>ReadUserLog::ReadUserLog(const FileState &amp;state, bool read_only)</TT> 
+  
+<BR><B>Synopsis:</B> Constructor to continue from a persisted reader state
+  
+<BR><B>Returns:</B> None
+  
+<BR><B>Constructor</B> parameters:  
+  
+<UL>
+<LI><TT>const FileState &amp;</TT> <TT>state</TT> 
+<BR>
+Reference to the persisted state to restore from
+</LI>
+<LI><TT>bool</TT> <TT>read_only</TT> (<I>Optional with default</I> = <TT>false</TT>) 
+<BR>
+If <TT>true</TT>, the reader will open the file read-only and
+    disable locking.
+  
+</LI>
+</UL>
+  <U>NOTE</U>: The <TT>ReadUserLog::isInitialized</TT>
+  method should be invoked to verify that this constructor was
+  initialized successfully.
+  
+<BR><U>NOTE</U>: This constructor will be removed in the future.
+
+<P>
+</LI>
+<LI> <TT>ReadUserLog::~ReadUserLog(void)</TT> 
+  
+<BR><B>Synopsis:</B> Destructor
+  
+<BR><B>Returns:</B> None
+  
+<BR><B>Destructor</B> parameters: 
+    
+<UL>
+<LI>None. 
+</LI>
+</UL> 
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<H3><A NAME="SECTION00553300000000000000">
+4.5.3.3 Initializers</A>
+</H3>
+
+<P>
+These methods are used to perform the initialization of the
+<TT>ReadUserLog</TT> objects.  These initializers are used by all constructors
+that do real work.  
+Applications should never use those constructors,
+should use the default constructor,
+ and should instead use one of these initializer methods.
+
+<P>
+All of these functions will return <TT>false</TT> if there are problems
+such as being unable to open the log file,
+or <TT>true</TT> if successful.
+
+<P>
+
+<UL>
+<LI><TT><TT>bool</TT></TT> <TT>ReadUserLog::initialize(void)</TT> 
+  
+<BR><B>Synopsis:</B> Initialize to read the EventLog file.
+  
+<BR><U>NOTE</U>: This method will likely be eliminated in the future, and this
+  functionality will be moved to a new <TT>ReadEventLog</TT> class.
+  
+<BR><B>Returns:</B> <TT>bool</TT>; <TT>true</TT>: success, <TT>false</TT>: failed
+  
+<BR><B>Method</B> parameters:   
+  
+<UL>
+<LI>None. 
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI><TT><TT>bool</TT></TT> <TT>ReadUserLog::initialize(const char *filename, bool handle_rotation,
+    bool check_for_rotated, bool read_only)</TT> 
+  
+<BR><B>Synopsis:</B> Initialize to read a specific log file.
+  
+<BR><B>Returns:</B> <TT>bool</TT>; <TT>true</TT>: success, <TT>false</TT>: failed
+  
+<BR><B>Method</B> parameters:   
+  
+<UL>
+<LI><TT>const char *</TT> <TT>filename</TT> 
+<BR>
+Path to the log file to read
+</LI>
+<LI><TT>bool</TT> <TT>handle_rotation</TT> (<I>Optional with default</I> = <TT>false</TT>) 
+<BR>
+If <TT>true</TT>, enable the reader to handle rotating log files,
+    which is only useful for global user logs
+</LI>
+<LI><TT>bool</TT> <TT>check_for_rotated</TT> (<I>Optional with default</I> = <TT>false</TT>) 
+<BR>
+If <TT>true</TT>, try to open the rotated files
+    (with file names appended with <TT>.old</TT> or <TT>.1</TT>, <TT>.2</TT>, ... )
+    first.
+</LI>
+<LI><TT>bool</TT> <TT>read_only</TT> (<I>Optional with default</I> = <TT>false</TT>) 
+<BR>
+If <TT>true</TT>, the reader will open the file read-only and
+    disable locking.
+  
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI><TT><TT>bool</TT></TT> <TT>ReadUserLog::initialize(const char *filename, int max_rotation,
+    bool check_for_rotated, bool read_only)</TT> 
+  
+<BR><B>Synopsis:</B> Initialize to read a specific log file.
+  
+<BR><B>Returns:</B> <TT>bool</TT>; <TT>true</TT>: success, <TT>false</TT>: failed
+  
+<BR><B>Method</B> parameters:   
+  
+<UL>
+<LI><TT>const char *</TT> <TT>filename</TT> 
+<BR>
+Path to the log file to read
+</LI>
+<LI><TT>int</TT> <TT>max_rotation</TT> 
+<BR>
+Limits what previously rotated files will be considered by the number
+    given in the file name suffix.
+    A value of 0 disables looking for rotated files.
+    A value of 1 limits the rotated file to be that with the file name suffix
+    of <TT>.old</TT>.
+    As only event logs are rotated, this parameter is only useful for
+    event logs.
+</LI>
+<LI><TT>bool</TT> <TT>check_for_rotated</TT> (<I>Optional with default</I> = <TT>false</TT>) 
+<BR>
+If <TT>true</TT>, try to open the rotated files
+    (with file names appended with <TT>.old</TT> or <TT>.1</TT>, <TT>.2</TT>, ... )
+    first.
+</LI>
+<LI><TT>bool</TT> <TT>read_only</TT> (<I>Optional with default</I> = <TT>false</TT>) 
+<BR>
+If <TT>true</TT>, the reader will open the file read-only and
+    disable locking.
+  
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI><TT><TT>bool</TT></TT> <TT>ReadUserLog::initialize(const FileState &amp;state, bool read_only)</TT> 
+  
+<BR><B>Synopsis:</B> Initialize to continue from a persisted reader state.
+  
+<BR><B>Returns:</B> <TT>bool</TT>; <TT>true</TT>: success, <TT>false</TT>: failed
+  
+<BR><B>Method</B> parameters:   
+  
+<UL>
+<LI><TT>const FileState &amp;</TT> <TT>state</TT> 
+<BR>
+Reference to the persisted state to restore from
+</LI>
+<LI><TT>bool</TT> <TT>read_only</TT> (<I>Optional with default</I> = <TT>false</TT>) 
+<BR>
+If <TT>true</TT>, the reader will open the file read-only and
+    disable locking.
+  
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI><TT><TT>bool</TT></TT> <TT>ReadUserLog::initialize(const FileState &amp;state, int max_rotation, bool read_only)</TT> 
+  
+<BR><B>Synopsis:</B> Initialize to continue from a persisted reader state and set the
+  rotation parameters.
+  
+<BR><B>Returns:</B> <TT>bool</TT>; <TT>true</TT>: success, <TT>false</TT>: failed
+  
+<BR><B>Method</B> parameters:   
+  
+<UL>
+<LI><TT>const FileState &amp;</TT> <TT>state</TT> 
+<BR>
+Reference to the persisted state to restore from
+</LI>
+<LI><TT>int</TT> <TT>max_rotation</TT> 
+<BR>
+Limits what previously rotated files will be considered by the number
+    given in the file name suffix.
+    A value of 0 disables looking for rotated files.
+    A value of 1 limits the rotated file to be that with the file name suffix
+    of <TT>.old</TT>.
+    As only event logs are rotated, this parameter is only useful for
+    event logs.
+</LI>
+<LI><TT>bool</TT> <TT>read_only</TT> (<I>Optional with default</I> = <TT>false</TT>) 
+<BR>
+If <TT>true</TT>, the reader will open the file read-only and
+    disable locking.
+  
+</LI>
+</UL>
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<H3><A NAME="SECTION00553400000000000000">
+4.5.3.4 Primary Methods</A>
+</H3>
+
+<UL>
+<LI><TT><TT>ULogEventOutcome</TT></TT> <TT>ReadUserLog::readEvent(ULogEvent <IMG
+ WIDTH="14" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img64.png"
+ ALT="$*$">&amp; event)</TT> 
+  
+<BR><B>Synopsis:</B> Read the next event from the log file.
+  
+<BR><B>Returns:</B> <TT>ULogEventOutcome</TT>; Outcome of the log read attempt. <TT>ULogEventOutcome</TT> is an enumerated
+  type.
+  
+<BR><B>Method</B> parameters:   
+  
+<UL>
+<LI><TT><TT>ULogEvent</TT> <IMG
+ WIDTH="14" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img64.png"
+ ALT="$*$">&amp;</TT> <TT>event</TT> 
+<BR>
+Pointer to an <TT>ULogEvent</TT> that is allocated by this call to
+    <TT>ReadUserLog::readEvent</TT>.
+    If no event is allocated, this pointer is
+    set to <TT>NULL</TT>.  Otherwise the event needs to be <TT>    delete()ed</TT> by the application.
+  
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI><TT><TT>bool</TT></TT> <TT>ReadUserLog::synchronize(void)</TT> 
+  
+<BR><B>Synopsis:</B> Synchronize the log file if the last event read was an error.  This
+    safe guard function should be called if there is some error reading an
+    event, but there are events after it in the file.
+    It will skip over the
+    bad event, meaning it will read up to and including the event separator,
+    so that the rest of the events can be read.
+  
+<BR><B>Returns:</B> <TT>bool</TT>; <TT>true</TT>: success, <TT>false</TT>: failed
+  
+<BR><B>Method</B> parameters:   
+  
+<UL>
+<LI>None. 
+</LI>
+</UL>
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<H3><A NAME="SECTION00553500000000000000">
+4.5.3.5 Accessors</A>
+</H3>
+
+<UL>
+<LI><TT><TT>ReadUserLog::FileStatus</TT></TT> <TT>ReadUserLog::CheckFileStatus(void)</TT> 
+  
+<BR><B>Synopsis:</B> Check the status of the file, and whether it has grown, shrunk, etc.
+  
+<BR><B>Returns:</B> <TT>ReadUserLog::FileStatus</TT>; the status of the log file, an
+  enumerated type.
+  
+<BR><B>Method</B> parameters:   
+  
+<UL>
+<LI>None. 
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI><TT><TT>ReadUserLog::FileStatus</TT></TT> <TT>ReadUserLog::CheckFileStatus(bool &amp;is_empty)</TT> 
+  
+<BR><B>Synopsis:</B> Check the status of the file, and whether it has grown, shrunk, etc.
+  
+<BR><B>Returns:</B> <TT>ReadUserLog::FileStatus</TT>; the status of the log file, an
+  enumerated type.
+  
+<BR><B>Method</B> parameters:   
+  
+<UL>
+<LI><TT>bool &amp;</TT> <TT>is_empty</TT> 
+<BR>
+Set to <TT>true</TT> if the file is empty, <TT>false</TT> otherwise.
+  
+</LI>
+</UL>
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<H3><A NAME="SECTION00553600000000000000">
+4.5.3.6 Methods for saving and restoring persistent reader state</A>
+</H3>
+
+<P>
+The <TT>ReadUserLog::FileState</TT> structure is used to save and
+restore the state of the <TT>ReadUserLog</TT> state for persistence.  The
+application should always use <TT>InitFileState()</TT> to initialize this
+structure.
+
+<P>
+All of these methods take a reference to a state buffer
+as their only parameter.
+
+<P>
+All of these methods return <TT>true</TT> upon success.
+
+<P>
+
+<H3><A NAME="SECTION00553700000000000000">
+4.5.3.7 Save state to persistent storage</A>
+</H3>
+To save the state, do something like this:
+<PRE>
+  ReadUserLog                reader;
+  ReadUserLog::FileState     statebuf;
+
+  status = ReadUserLog::InitFileState( statebuf );
+
+  status = reader.GetFileState( statebuf );
+  write( fd, statebuf.buf, statebuf.size );
+  ...
+  status = reader.GetFileState( statebuf );
+  write( fd, statebuf.buf, statebuf.size );
+  ...
+
+  status = UninitFileState( statebuf );
+</PRE>
+<P>
+
+<H3><A NAME="SECTION00553800000000000000">
+4.5.3.8 Restore state from persistent storage</A>
+</H3>
+To restore the state, do something like this:
+<PRE>
+  ReadUserLog::FileState     statebuf;
+  status = ReadUserLog::InitFileState( statebuf );
+
+  read( fd, statebuf.buf, statebuf.size );
+
+  ReadUserLog                reader;
+  status = reader.initialize( statebuf );
+
+  status = UninitFileState( statebuf );
+  ....
+</PRE>
+<P>
+
+<H3><A NAME="SECTION00553900000000000000">
+4.5.3.9 API Reference</A>
+</H3>
+
+<UL>
+<LI><TT>static <TT>bool</TT></TT> <TT>ReadUserLog::InitFileState(ReadUserLog::FileState &amp;state)</TT> 
+  
+<BR><B>Synopsis:</B> Initialize a file state buffer
+  
+<BR><B>Returns:</B> <TT>bool</TT>; <TT>true</TT> if successful, <TT>false</TT> otherwise
+  
+<BR><B>Method</B> parameters:   
+  
+<UL>
+<LI><TT>ReadUserLog::FileState &amp;</TT> <TT>state</TT> 
+<BR>
+The file state buffer to initialize.
+  
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI><TT>static <TT>bool</TT></TT> <TT>ReadUserLog::UninitFileState(ReadUserLog::FileState &amp;state)</TT> 
+  
+<BR><B>Synopsis:</B> Clean up a file state buffer and free allocated memory
+  
+<BR><B>Returns:</B> <TT>bool</TT>; <TT>true</TT> if successful, <TT>false</TT> otherwise
+  
+<BR><B>Method</B> parameters:   
+  
+<UL>
+<LI><TT>ReadUserLog::FileState &amp;</TT> <TT>state</TT> 
+<BR>
+The file state buffer to un-initialize.
+  
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI><TT><TT>bool</TT></TT> <TT>ReadUserLog::GetFileState(ReadUserLog::FileState &amp;state)</TT> <TT>const</TT>
+  
+<BR><B>Synopsis:</B> Get the current state to persist it or save it off to disk
+  
+<BR><B>Returns:</B> <TT>bool</TT>; <TT>true</TT> if successful, <TT>false</TT> otherwise
+  
+<BR><B>Method</B> parameters:   
+  
+<UL>
+<LI><TT>ReadUserLog::FileState &amp;</TT> <TT>state</TT> 
+<BR>
+The file state buffer to read the state into.
+  
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI><TT><TT>bool</TT></TT> <TT>ReadUserLog::SetFileState(const ReadUserLog::FileState &amp;state)</TT> 
+  
+<BR><B>Synopsis:</B> Use this method to set the current state, after restoring it.
+    
+<BR><U>NOTE</U>: The state buffer is <I>NOT</I> automatically updated; a call 
+    <I>MUST</I> be made to
+    the <TT>GetFileState()</TT> method each time before persisting the
+    buffer to disk, or however else is chosen to persist its contents.
+  
+<BR><B>Returns:</B> <TT>bool</TT>; <TT>true</TT> if successful, <TT>false</TT> otherwise
+  
+<BR><B>Method</B> parameters:   
+  
+<UL>
+<LI><TT>const ReadUserLog::FileState &amp;</TT> <TT>state</TT> 
+<BR>
+The file state buffer to restore from.
+  
+</LI>
+</UL>
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<H3><A NAME="SECTION005531000000000000000">
+4.5.3.10 Access to the persistent state data</A>
+</H3>
+
+<P>
+If the application needs access to the data elements in a persistent
+state, it should instantiate a <TT>ReadUserLogStateAccess</TT> object.
+
+<P>
+
+<UL>
+<LI>Constructors / Destructors
+
+<P>
+
+<UL>
+<LI> <TT>ReadUserLogStateAccess::ReadUserLogStateAccess(const ReadUserLog::FileState &amp;state)</TT> 
+  
+<BR><B>Synopsis:</B> Constructor default
+  
+<BR><B>Returns:</B> None
+  
+<BR><B>Constructor</B> parameters:  
+  
+<UL>
+<LI><TT>const ReadUserLog::FileState &amp;</TT> <TT>state</TT> 
+<BR>
+Reference to the persistent state data to initialize from.
+  
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI> <TT>ReadUserLogStateAccess::~ReadUserLogStateAccess(void)</TT> 
+  
+<BR><B>Synopsis:</B> Destructor
+  
+<BR><B>Returns:</B> None
+  
+<BR><B>Destructor</B> parameters: 
+    
+<UL>
+<LI>None. 
+</LI>
+</UL>
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI>Accessor Methods
+
+<UL>
+<LI><TT><TT>bool</TT></TT> <TT>ReadUserLogFileState::isInitialized(void)</TT> <TT>const</TT>
+  
+<BR><B>Synopsis:</B> Checks if the buffer initialized
+  
+<BR><B>Returns:</B> <TT>bool</TT>; <TT>true</TT> if successfully initialized, <TT>false</TT> otherwise
+  
+<BR><B>Method</B> parameters:   
+  
+<UL>
+<LI>None. 
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI><TT><TT>bool</TT></TT> <TT>ReadUserLogFileState::isValid(void)</TT> <TT>const</TT>
+  
+<BR><B>Synopsis:</B> Checks if the buffer is valid for use by 
+  <TT>ReadUserLog::initialize()</TT>
+  
+<BR><B>Returns:</B> <TT>bool</TT>; <TT>true</TT> if successful, <TT>false</TT> otherwise
+  
+<BR><B>Method</B> parameters:   
+  
+<UL>
+<LI>None. 
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI><TT><TT>bool</TT></TT> <TT>ReadUserLogFileState::getFileOffset(unsigned long &amp;pos)</TT> <TT>const</TT>
+  
+<BR><B>Synopsis:</B> Get position within individual file.
+    
+<BR><U>NOTE</U>: Can return an error if the result is too large to be
+    stored in a <TT>long</TT>.
+  
+<BR><B>Returns:</B> <TT>bool</TT>; <TT>true</TT> if successful, <TT>false</TT> otherwise
+  
+<BR><B>Method</B> parameters:   
+  
+<UL>
+<LI><TT>unsigned long &amp;</TT> <TT>pos</TT> 
+<BR>
+Byte position within the current log file
+  
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI><TT><TT>bool</TT></TT> <TT>ReadUserLogFileState::getFileEventNum(unsigned long &amp;num)</TT> <TT>const</TT>
+  
+<BR><B>Synopsis:</B> Get event number in individual file.
+    
+<BR><U>NOTE</U>: Can return an error if the result is too large to be
+    stored in a <TT>long</TT>.
+  
+<BR><B>Returns:</B> <TT>bool</TT>; <TT>true</TT> if successful, <TT>false</TT> otherwise
+  
+<BR><B>Method</B> parameters:   
+  
+<UL>
+<LI><TT>unsigned long &amp;</TT> <TT>num</TT> 
+<BR>
+Event number of the current event in the current log file
+  
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI><TT><TT>bool</TT></TT> <TT>ReadUserLogFileState::getLogPosition(unsigned long &amp;pos)</TT> <TT>const</TT>
+  
+<BR><B>Synopsis:</B> Position of the start of the current file in overall log.
+    
+<BR><U>NOTE</U>: Can return an error if the result is too large
+    to be stored in a <TT>long</TT>.
+  
+<BR><B>Returns:</B> <TT>bool</TT>; <TT>true</TT> if successful, <TT>false</TT> otherwise
+  
+<BR><B>Method</B> parameters:   
+  
+<UL>
+<LI><TT>unsigned long &amp;</TT> <TT>pos</TT> 
+<BR>
+Byte offset of the start of the current file in the overall
+    logical log stream.
+  
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI><TT>bool</TT> <TT>ReadUserLogFileState::getEventNumber(unsigned long &amp;num)</TT> <TT>const</TT>
+  
+<BR><B>Synopsis:</B> Get the event number of the first event in the current file
+    
+<BR><U>NOTE</U>: Can return an error if the result is too large
+    to be stored in a <TT>long</TT>.
+  
+<BR><B>Returns:</B> bool; <TT>true</TT> if successful, <TT>false</TT> otherwise
+  
+<BR><B>Method</B> parameters:   
+  
+<UL>
+<LI><TT>unsigned long &amp;</TT> <TT>num</TT> 
+<BR>
+This is the absolute event number of the first event in the
+    current file in the overall logical log stream.
+  
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI><TT>bool</TT> <TT>ReadUserLogFileState::getUniqId(char *buf, int size)</TT> <TT>const</TT>
+  
+<BR><B>Synopsis:</B> Get the unique ID of the associated state file.
+  
+<BR><B>Returns:</B> bool; <TT>true</TT> if successful, <TT>false</TT> otherwise
+  
+<BR><B>Method</B> parameters:   
+  
+<UL>
+<LI><TT>char <IMG
+ WIDTH="14" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img64.png"
+ ALT="$*$"></TT> <TT>buf</TT> 
+<BR>
+Buffer to fill with the unique ID of the current file.
+</LI>
+<LI><TT>int</TT> <TT>size</TT> 
+<BR>
+Size in bytes of <TT>buf</TT>.
+    
+<BR>
+This is to prevent <TT>ReadUserLogFileState::getUniqId</TT>
+    from writing past the end of <TT>buf</TT>.
+  
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI><TT><TT>bool</TT></TT> <TT>ReadUserLogFileState::getSequenceNumber(int &amp;seqno)</TT> <TT>const</TT>
+  
+<BR><B>Synopsis:</B> Get the sequence number of the associated state file.
+  
+<BR><B>Returns:</B> <TT>bool</TT>; <TT>true</TT> if successful, <TT>false</TT> otherwise
+  
+<BR><B>Method</B> parameters:   
+  
+<UL>
+<LI><TT>int &amp;</TT> <TT>seqno</TT> 
+<BR>
+Sequence number of the current file
+  
+</LI>
+</UL>
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI>Comparison Methods
+
+<UL>
+<LI><TT><TT>bool</TT></TT> <TT>ReadUserLogFileState::getFileOffsetDiff(const ReadUserLogStateAccess &amp;other, unsigned long &amp;pos)</TT> <TT>const</TT>
+  
+<BR><B>Synopsis:</B> Get the position difference of two states given by <TT>this</TT> 
+  and <TT>other</TT>.
+    
+<BR><U>NOTE</U>: Can return an error if the result is too large to be
+    stored in a <TT>long</TT>.
+  
+<BR><B>Returns:</B> <TT>bool</TT>; <TT>true</TT> if successful, <TT>false</TT> otherwise
+  
+<BR><B>Method</B> parameters:   
+  
+<UL>
+<LI><TT>const ReadUserLogStateAccess &amp;</TT> <TT>other</TT> 
+<BR>
+Reference to the state to compare to.
+</LI>
+<LI><TT>long &amp;</TT> <TT>diff</TT> 
+<BR>
+Difference in the positions
+  
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI><TT>bool</TT> <TT>ReadUserLogFileState::getFileEventNumDiff(const ReadUserLogStateAccess &amp;other, long &amp;diff)</TT> <TT>const</TT>
+  
+<BR><B>Synopsis:</B> Get event number in individual file.
+    
+<BR><U>NOTE</U>: Can return an error if the result is too large to be
+    stored in a <TT>long</TT>.
+  
+<BR><B>Returns:</B> bool; <TT>true</TT> if successful, <TT>false</TT> otherwise
+  
+<BR><B>Method</B> parameters:   
+  
+<UL>
+<LI><TT>const ReadUserLogStateAccess &amp;</TT> <TT>other</TT> 
+<BR>
+Reference to the state to compare to.
+</LI>
+<LI><TT>long &amp;</TT> <TT>diff</TT> 
+<BR>
+Event number of the current event in
+    the current log file
+  
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI><TT>bool</TT> <TT>ReadUserLogFileState::getLogPosition(const ReadUserLogStateAccess &amp;other, long &amp;diff)</TT> <TT>const</TT>
+  
+<BR><B>Synopsis:</B> Get the position difference of two states given by <TT>this</TT> 
+  and <TT>other</TT>.
+    
+<BR><U>NOTE</U>: Can return an error if the result is too large
+    to be stored in a <TT>long</TT>.
+  
+<BR><B>Returns:</B> bool; <TT>true</TT> if successful, <TT>false</TT> otherwise
+  
+<BR><B>Method</B> parameters:   
+  
+<UL>
+<LI><TT>const ReadUserLogStateAccess &amp;</TT> <TT>other</TT> 
+<BR>
+Reference to the state to compare to.
+</LI>
+<LI><TT>long &amp;</TT> <TT>diff</TT> 
+<BR>
+Difference between the byte offset of the start of the current
+    file in the overall logical log stream and that of <TT>other</TT>.
+  
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI><TT>bool</TT> <TT>ReadUserLogFileState::getEventNumber(const ReadUserLogStateAccess &amp;other, long &amp;diff)</TT> <TT>const</TT>
+  
+<BR><B>Synopsis:</B> Get the difference between the event number of the first event in
+    two state buffers (this - other).
+    
+<BR><U>NOTE</U>: Can return an error if the result is too large
+    to be stored in a <TT>long</TT>.
+  
+<BR><B>Returns:</B> bool; <TT>true</TT> if successful, <TT>false</TT> otherwise
+  
+<BR><B>Method</B> parameters:   
+  
+<UL>
+<LI><TT>const ReadUserLogStateAccess &amp;</TT> <TT>other</TT> 
+<BR>
+Reference to the state to compare to.
+</LI>
+<LI><TT>long &amp;</TT> <TT>diff</TT> 
+<BR>
+Difference between the absolute event number of the first event in
+    the current file in the overall logical log stream and that of
+    <TT>other</TT>.
+  
+</LI>
+</UL>
+
+<P>
+</LI>
+</UL>	
+<P>
+</LI>
+</UL>
+
+<P>
+
+<H3><A NAME="SECTION005531100000000000000">
+4.5.3.11 Future persistence API</A>
+</H3>
+The <TT>ReadUserLog::FileState</TT> will likely be replaced with a new
+C++ <TT>ReadUserLog::NewFileState</TT>, or a similarly named class that
+will self initialize.
+
+<P>
+Additionally, the functionality of <TT>ReadUserLogStateAccess</TT> will
+be integrated into this class.
+
+<H2><A NAME="SECTION00554000000000000000"></A><A NAME="API-Chirp"></A>
+<A NAME="45652"></A>
+<A NAME="45653"></A>
+<BR>
+4.5.4  Chirp
+</H2>
+
+<P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\fbox{This section has not yet been written}$
+ -->
+<IMG
+ WIDTH="312" HEIGHT="46" ALIGN="MIDDLE" BORDER="0"
+ SRC="img44.png"
+ ALT="\fbox{This section has not yet been written}">
+</DIV>
+
+<P>
+
+<H2><A NAME="SECTION00555000000000000000"></A><A NAME="API-commandline"></A>
+<A NAME="45655"></A>
+<BR>
+4.5.5  The Command Line Interface
+</H2>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\fbox{This section has not yet been written}$
+ -->
+<IMG
+ WIDTH="312" HEIGHT="46" ALIGN="MIDDLE" BORDER="0"
+ SRC="img44.png"
+ ALT="\fbox{This section has not yet been written}">
+</DIV>
+
+<P>
+
+<H2><A NAME="SECTION00556000000000000000"></A><A NAME="API-GAHP"></A>
+<A NAME="45657"></A>
+<BR>
+4.5.6  The Condor GAHP
+</H2>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\fbox{This section has not yet been written}$
+ -->
+<IMG
+ WIDTH="312" HEIGHT="46" ALIGN="MIDDLE" BORDER="0"
+ SRC="img44.png"
+ ALT="\fbox{This section has not yet been written}">
+</DIV>
+
+<P>
+
+<H2><A NAME="SECTION00557000000000000000"></A><A NAME="sec:condor-pm"></A>
+<A NAME="45685"></A>
+<A NAME="45686"></A>
+<BR>
+4.5.7  The Condor Perl Module
+</H2>
+
+<P>
+The Condor Perl module facilitates automatic submitting and monitoring of
+Condor jobs, along with automated administration of Condor.
+The most common
+use of this module is the monitoring of Condor jobs.
+The Condor Perl module can be used as a meta scheduler for the submission
+of Condor jobs.
+
+<P>
+The Condor Perl module provides several subroutines.
+Some of the subroutines are used as callbacks;
+an event triggers the execution of a specific subroutine.
+Other of the subroutines denote actions to be taken by Perl.
+Some of these subroutines take other subroutines as arguments.
+
+<P>
+
+<H3><A NAME="SECTION00557100000000000000">
+4.5.7.1 Subroutines</A>
+</H3>
+<DL>
+<DT><STRONG><TT>Submit(submit_description_file)</TT></STRONG></DT>
+<DD>This subroutine takes the action of submitting a job to Condor.
+	The argument is the name of a submit description file.
+	The <I>condor_submit</I> program should be in the
+	path of the user.  If the user wishes to monitor the job with condor
+	they must specify a log file in the command file.  The cluster
+	submitted is returned. For more information
+	see the <I>condor_submit</I> man page.
+
+<P>
+</DD>
+<DT><STRONG><TT>Vacate(machine)</TT></STRONG></DT>
+<DD>This subroutine takes the action of sending a
+	<I>condor_vacate</I> command to the machine specified as an argument.
+	The machine may be specified
+	either by host name, or by <I>sinful string</I>.  For more information
+	see the <I>condor_vacate</I> man page.
+
+<P>
+</DD>
+<DT><STRONG><TT>Reschedule(machine)</TT></STRONG></DT>
+<DD>This subroutine takes the action of sending a
+	<I>condor_reschedule</I> command to the machine specified as an argument.
+	The machine may be specified either
+ 	by host name, or by <I>sinful string</I>.  For more information see
+	the <I>condor_reschedule</I> man page.
+
+<P>
+</DD>
+<DT><STRONG><TT>Monitor(cluster)</TT></STRONG></DT>
+<DD>Takes the action of monitoring this cluster.
+	It returns when all jobs in cluster terminate.
+
+<P>
+</DD>
+<DT><STRONG><TT>Wait()</TT></STRONG></DT>
+<DD>Takes the action of waiting until all monitor subroutines finish,
+	and then exits the Perl script.
+
+<P>
+</DD>
+<DT><STRONG><TT>DebugOn()</TT></STRONG></DT>
+<DD>Takes the action of turning debug messages on.
+	This may be useful when attempting to debug the Perl script.
+
+<P>
+</DD>
+<DT><STRONG><TT>DebugOff()</TT></STRONG></DT>
+<DD>Takes the action of turning debug messages off.
+
+<P>
+</DD>
+<DT><STRONG><TT>RegisterEvicted(sub)</TT></STRONG></DT>
+<DD>Register a subroutine (called <TT>sub</TT>)
+	to be used as a callback when a job from
+	a specified cluster is evicted.  The subroutine will be
+	called with two arguments: cluster and job. The cluster
+	and job are the cluster number and process number of the job that
+	was evicted.
+
+<P>
+</DD>
+<DT><STRONG><TT>RegisterEvictedWithCheckpoint(sub)</TT></STRONG></DT>
+<DD>Same as RegisterEvicted except that the handler is called when the 
+	evicted job was checkpointed.
+
+<P>
+</DD>
+<DT><STRONG><TT>RegisterEvictedWithoutCheckpoint(sub)</TT></STRONG></DT>
+<DD>Same as RegisterEvicted except that the handler is called when the
+	evicted job was not checkpointed.
+
+<P>
+</DD>
+<DT><STRONG><TT>RegisterExit(sub)</TT></STRONG></DT>
+<DD>Register a termination handler that is called when a job exits.
+	The termination handler will be called with two arguments: cluster and
+	job. The cluster and job are the cluster and process numbers of the
+	existing job. 
+
+<P>
+</DD>
+<DT><STRONG><TT>RegisterExitSuccess(sub)</TT></STRONG></DT>
+<DD>Register a termination handler that is called when a job exits without
+	errors. The termination handler will be called with two arguments: 
+	cluster and job  The cluster and job are the cluster and process
+	numbers of the existing job. 
+
+<P>
+</DD>
+<DT><STRONG><TT>RegisterExitFailure(sub)</TT></STRONG></DT>
+<DD>Register a termination handler that is called when a job exits with 
+	errors. The termination handler will be called with three arguments:
+	cluster, job and retval. The cluster and job are the cluster 
+	and process numbers of the existing job and the retval is the exit
+	code of the job.
+
+<P>
+</DD>
+<DT><STRONG><TT>RegisterExitAbnormal(sub)</TT></STRONG></DT>
+<DD>Register an termination handler that is called when a job abnormally
+	exits (segmentation fault, bus error, ...). The termination handler
+	will be called with four arguments: cluster, job  signal and
+	core. The cluster and job are the cluster and process numbers of 
+	the existing job. The signal indicates the signal that the job
+	died with and core indicates whether a core file was created and if 
+	so, what the full path to the core file is.
+
+<P>
+</DD>
+<DT><STRONG><TT>RegisterAbort(sub)</TT></STRONG></DT>
+<DD>Register a handler that is called when a job is aborted by a user.
+
+<P>
+</DD>
+<DT><STRONG><TT>RegisterJobErr(sub)</TT></STRONG></DT>
+<DD>Register a handler that is called when a job is not executable.
+
+<P>
+</DD>
+<DT><STRONG><TT>RegisterExecute(sub)</TT></STRONG></DT>
+<DD>Register an execution handler that is called whenever a job starts
+	running on a given host.  The handler is called with four arguments:
+	cluster, job  host, and sinful.  Cluster and job are the cluster and
+	process numbers for the job, host is the Internet address of the
+	machine running the job, and sinful is the Internet address and 
+	command port of the <I>condor_starter</I> supervising the job.
+
+<P>
+</DD>
+<DT><STRONG><TT>RegisterSubmit(sub)</TT></STRONG></DT>
+<DD>Register a submit handler that is called whenever a job is submitted
+	with the given cluster.  The handler is called with cluster, job 
+	host, and sinful. Cluster and job are the cluster and
+	process numbers for the job, host is the Internet address of the
+	machine running the job, and sinful is the Internet address and
+	command port of the <I>condor_schedd</I> responsible for the job.
+
+<P>
+</DD>
+<DT><STRONG><TT>Monitor(cluster)</TT></STRONG></DT>
+<DD>Begin monitoring this cluster. Returns when all jobs in cluster
+	terminate.  
+<BR>
+<P>
+</DD>
+<DT><STRONG><TT>Wait()</TT></STRONG></DT>
+<DD>Wait until all monitors finish and exit.
+
+<P>
+</DD>
+<DT><STRONG><TT>DebugOn()</TT></STRONG></DT>
+<DD>Turn debug messages on.  This may be useful if you don't understand
+	what your script is doing.	
+
+<P>
+</DD>
+<DT><STRONG><TT>DebugOff()</TT></STRONG></DT>
+<DD>Turn debug messages off.
+
+<P>
+</DD>
+<DT><STRONG><TT>TestSubmit(command_file)</TT></STRONG></DT>
+<DD>This subroutine submits a job to Condor for testing, and places
+  all variables from the command file into
+  the Perl hash <TT>%submit_info</TT>.
+  Does not reset the state of variables, so that testing preserves
+  callbacks.
+
+<P>
+</DD>
+<DT><STRONG><TT>SubmitDagman(DAG_file, DAGMan_args)</TT></STRONG></DT>
+<DD>Takes the action of submitting a DAG using <I>condor_dagman</I>.
+  The first argument is the name of the DAG input file, 
+  and the second argument is the command line arguments for 
+  <I>condor_dagman</I>.
+  Information from the submit description file generated by
+  <I>condor_dagman</I> is placed into the Perl hash <TT>%submit_info</TT>
+  for access during callbacks.
+
+<P>
+</DD>
+<DT><STRONG><TT>TestSubmitDagman(DAG_file, DAGMan_args)</TT></STRONG></DT>
+<DD>This subroutine submits a <I>condor_dagman</I> to Condor for testing,
+  and places information from the submit description file generated by
+  <I>condor_dagman</I> into the Perl hash <TT>%submit_info</TT>
+  for access during callbacks.
+  The first argument is the name of the DAG input file, 
+  and the second argument is the command line arguments for 
+  <I>condor_dagman</I>.
+  Does not reset the state of variables, so that testing preserves
+  callbacks.
+
+<P>
+</DD>
+<DT><STRONG><TT>RegisterEvictedWithRequeue(sub)</TT></STRONG></DT>
+<DD>Register a subroutine (called <TT>sub</TT>)
+  to be used as a callback when a job from
+  a specified cluster is requeued.  The subroutine will be
+  called with two arguments: cluster and job. The cluster
+  and job are the cluster number and process number of the job that
+  was requeued.
+
+<P>
+</DD>
+<DT><STRONG><TT>RegisterShadow(sub)</TT></STRONG></DT>
+<DD>Register a subroutine (called <TT>sub</TT>)
+  to be used as a callback when a shadow exception occurs.
+
+<P>
+</DD>
+<DT><STRONG><TT>RegisterHold(sub)</TT></STRONG></DT>
+<DD>Register a subroutine (called <TT>sub</TT>)
+  to be used as a callback when a job enters the hold state.
+
+<P>
+</DD>
+<DT><STRONG><TT>RegisterRelease(sub)</TT></STRONG></DT>
+<DD>Register a subroutine (called <TT>sub</TT>)
+  to be used as a callback when a job is released.
+
+<P>
+</DD>
+<DT><STRONG><TT>RegisterWantError(sub)</TT></STRONG></DT>
+<DD>Register a subroutine (called <TT>sub</TT>)
+  to be used as a callback when a system call invoked using <TT>runCommand</TT>
+  experiences an error.
+
+<P>
+</DD>
+<DT><STRONG><TT>runCommand(string)</TT></STRONG></DT>
+<DD><TT>string</TT> identifies a syscall that is invoked.
+  If the syscall exits abnormally or exits with an error, the callback
+  registered with <TT>RegisterWantError()</TT> is called, and
+  an error message is issued.
+
+<P>
+</DD>
+<DT><STRONG><TT>RegisterTimed(sub, seconds)</TT></STRONG></DT>
+<DD>Register a subroutine (called <TT>sub</TT>)
+  to be called back at a delay of <TT>seconds</TT> time from
+  this registration time.  Only one callback may be registered,
+  as subsequent calls modify the timer only.
+
+<P>
+</DD>
+<DT><STRONG><TT>RemoveTimed()</TT></STRONG></DT>
+<DD>Remove the single, timed callback registered with <TT>RegisterTimed()</TT>.
+
+<P>
+</DD>
+</DL>
+
+<P>
+
+<H3><A NAME="SECTION00557200000000000000"></A>
+<A NAME="45755"></A>
+<BR>
+4.5.7.2 Examples
+</H3>
+
+<P>
+The following is an example that uses the Condor Perl module.
+The example uses the submit description file 
+<TT>mycmdfile.cmd</TT> to specify the submission of a job.
+As the job is matched with a machine and begins to execute,
+a callback  subroutine (called <code>execute</code>)
+sends a <I>condor_vacate</I> signal to the job,
+and it increments a counter which keeps track of the
+number of times this callback executes.
+A second callback keeps a count of the number of times
+that the job was evicted before the job completes.
+After the job completes, the termination
+callback (called <code>normal</code>) prints out a summary of what happened.
+
+<P>
+<PRE>
+#!/usr/bin/perl
+use Condor;
+
+$CMD_FILE = 'mycmdfile.cmd';
+$evicts = 0;
+$vacates = 0;
+
+# A subroutine that will be used as the normal execution callback
+$normal = sub
+{
+    %parameters = @_;
+    $cluster = $parameters{'cluster'};
+    $job = $parameters{'job'};
+
+    print "Job $cluster.$job exited normally without errors.\n";
+    print "Job was vacated $vacates times and evicted $evicts times\n";
+    exit(0);
+};	
+
+$evicted = sub
+{
+    %parameters = @_;
+    $cluster = $parameters{'cluster'};
+    $job = $parameters{'job'};
+
+    print "Job $cluster, $job was evicted.\n";
+    $evicts++;
+    &amp;Condor::Reschedule();	
+};
+
+$execute = sub
+{
+    %parameters = @_;
+    $cluster = $parameters{'cluster'};
+    $job = $parameters{'job'};
+    $host = $parameters{'host'};
+    $sinful = $parameters{'sinful'};
+
+    print "Job running on $sinful, vacating...\n";
+    &amp;Condor::Vacate($sinful);
+    $vacates++;
+};
+
+$cluster = Condor::Submit($CMD_FILE);
+printf("Could not open. Access Denied\n");
+			break;
+&amp;Condor::RegisterExitSuccess($normal);
+&amp;Condor::RegisterEvicted($evicted);
+&amp;Condor::RegisterExecute($execute);
+&amp;Condor::Monitor($cluster);
+&amp;Condor::Wait();
+</PRE>
+<P>
+This example program will submit the command file 'mycmdfile.cmd' and attempt
+to vacate any machine that the job runs on. The termination
+handler then prints out a summary of what has happened.
+
+<P>
+A second example Perl script facilitates the meta-scheduling of
+two of Condor jobs.
+It submits a second job if the first job successfully completes.
+
+<P>
+<PRE>
+#!/s/std/bin/perl
+
+# tell Perl where to find the Condor library
+use lib '/unsup/condor/lib';
+# tell Perl to use what it finds in the Condor library
+use Condor;
+
+$SUBMIT_FILE1 = 'Asubmit.cmd';
+$SUBMIT_FILE2 = 'Bsubmit.cmd';
+
+# Callback used when first job exits without errors.
+$firstOK = sub
+{
+    %parameters = @_;
+    $cluster = $parameters{'cluster'};
+    $job = $parameters{'job'};
+
+    $cluster = Condor::Submit($SUBMIT_FILE2);
+    if (($cluster) == 0)
+    {
+        printf("Could not open $SUBMIT_FILE2.\n");
+    }
+
+    &amp;Condor::RegisterExitSuccess($secondOK);
+    &amp;Condor::RegisterExitFailure($secondfails);
+    &amp;Condor::Monitor($cluster);
+};	
+
+$firstfails = sub
+{
+    %parameters = @_;
+    $cluster = $parameters{'cluster'};
+    $job = $parameters{'job'};
+
+    print "The first job, $cluster.$job failed, exiting with an error. \n";
+    exit(0);
+};	
+
+# Callback used when second job exits without errors.
+$secondOK = sub
+{
+    %parameters = @_;
+    $cluster = $parameters{'cluster'};
+    $job = $parameters{'job'};
+
+    print "The second job, $cluster.$job successfully completed. \n";
+    exit(0);
+};	
+
+# Callback used when second job exits WITH an error.
+$secondfails = sub
+{
+    %parameters = @_;
+    $cluster = $parameters{'cluster'};
+    $job = $parameters{'job'};
+
+    print "The second job ($cluster.$job) failed. \n";
+    exit(0);
+};	
+
+
+$cluster = Condor::Submit($SUBMIT_FILE1);
+if (($cluster) == 0)
+{
+    printf("Could not open $SUBMIT_FILE1. \n");
+}
+&amp;Condor::RegisterExitSuccess($firstOK);
+&amp;Condor::RegisterExitFailure($firstfails);
+
+
+&amp;Condor::Monitor($cluster);
+&amp;Condor::Wait();
+</PRE>
+<P>
+Some notes are in order about this example.
+The same task could be accomplished using the Condor DAGMan
+metascheduler.
+The first job is the parent, and the second job is the child.
+The input file to DAGMan is significantly simpler than this
+Perl script.
+
+<P>
+A third example using the Condor Perl module
+expands upon the second example.
+Whereas the second example could have been more easily
+implemented using DAGMan, this third example shows
+the versatility of using Perl as a metascheduler.
+
+<P>
+In this example, the result generated from the successful completion of
+the first job are used to decide which subsequent job should be
+submitted.
+This is a very simple example of a branch and bound technique,
+to focus the search for a problem solution.
+
+<P>
+<PRE>
+#!/s/std/bin/perl
+
+# tell Perl where to find the Condor library
+use lib '/unsup/condor/lib';
+# tell Perl to use what it finds in the Condor library
+use Condor;
+
+$SUBMIT_FILE1 = 'Asubmit.cmd';
+$SUBMIT_FILE2 = 'Bsubmit.cmd';
+$SUBMIT_FILE3 = 'Csubmit.cmd';
+
+# Callback used when first job exits without errors.
+$firstOK = sub
+{
+    %parameters = @_;
+    $cluster = $parameters{'cluster'};
+    $job = $parameters{'job'};
+
+    # open output file from first job, and read the result
+    if ( -f "A.output" )
+    {
+        open(RESULTFILE, "A.output") or die "Could not open result file.";
+        $result = &lt;RESULTFILE&gt;;
+        close(RESULTFILE);
+        # next job to submit is based on output from first job
+        if ($result &lt; 100)
+        {
+            $cluster = Condor::Submit($SUBMIT_FILE2);
+            if (($cluster) == 0)
+            {
+                printf("Could not open $SUBMIT_FILE2.\n");
+            }
+
+            &amp;Condor::RegisterExitSuccess($secondOK);
+            &amp;Condor::RegisterExitFailure($secondfails);
+            &amp;Condor::Monitor($cluster);
+        }
+        else
+        {
+            $cluster = Condor::Submit($SUBMIT_FILE3);
+            if (($cluster) == 0)
+            {
+                printf("Could not open $SUBMIT_FILE3.\n");
+            }
+
+            &amp;Condor::RegisterExitSuccess($thirdOK);
+            &amp;Condor::RegisterExitFailure($thirdfails);
+            &amp;Condor::Monitor($cluster);
+        }
+    }
+    else
+    {
+        
+        printf("Results file does not exist.\n");
+    }
+};	
+
+$firstfails = sub
+{
+    %parameters = @_;
+    $cluster = $parameters{'cluster'};
+    $job = $parameters{'job'};
+
+    print "The first job, $cluster.$job failed, exiting with an error. \n";
+    exit(0);
+};	
+
+
+# Callback used when second job exits without errors.
+$secondOK = sub
+{
+    %parameters = @_;
+    $cluster = $parameters{'cluster'};
+    $job = $parameters{'job'};
+
+    print "The second job, $cluster.$job successfully completed. \n";
+    exit(0);
+};	
+
+
+# Callback used when third job exits without errors.
+$thirdOK = sub
+{
+    %parameters = @_;
+    $cluster = $parameters{'cluster'};
+    $job = $parameters{'job'};
+
+    print "The third job, $cluster.$job successfully completed. \n";
+    exit(0);
+};	
+
+
+# Callback used when second job exits WITH an error.
+$secondfails = sub
+{
+    %parameters = @_;
+    $cluster = $parameters{'cluster'};
+    $job = $parameters{'job'};
+
+    print "The second job ($cluster.$job) failed. \n";
+    exit(0);
+};	
+
+# Callback used when third job exits WITH an error.
+$thirdfails = sub
+{
+    %parameters = @_;
+    $cluster = $parameters{'cluster'};
+    $job = $parameters{'job'};
+
+    print "The third job ($cluster.$job) failed. \n";
+    exit(0);
+};	
+
+
+$cluster = Condor::Submit($SUBMIT_FILE1);
+if (($cluster) == 0)
+{
+    printf("Could not open $SUBMIT_FILE1. \n");
+}
+&amp;Condor::RegisterExitSuccess($firstOK);
+&amp;Condor::RegisterExitFailure($firstfails);
+
+
+&amp;Condor::Monitor($cluster);
+&amp;Condor::Wait();
+</PRE>
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1875"
+  HREF="5_Grid_Computing.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1869"
+  HREF="4_Miscellaneous_Concepts.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1865"
+  HREF="4_4Hooks.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1871"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1873"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1876"
+  HREF="5_Grid_Computing.html">5. Grid Computing</A>
+<B> Up:</B> <A NAME="tex2html1870"
+  HREF="4_Miscellaneous_Concepts.html">4. Miscellaneous Concepts</A>
+<B> Previous:</B> <A NAME="tex2html1866"
+  HREF="4_4Hooks.html">4.4 Hooks</A>
+ &nbsp; <B>  <A NAME="tex2html1872"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1874"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

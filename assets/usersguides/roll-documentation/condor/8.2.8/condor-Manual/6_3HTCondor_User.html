@@ -1,0 +1,1107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>6.3 The HTCondor User and Job Log Reader API</TITLE>
+<META NAME="description" CONTENT="6.3 The HTCondor User and Job Log Reader API">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="6_4Chirp.html">
+<LINK REL="previous" HREF="6_2DRMAA_API.html">
+<LINK REL="up" HREF="6_Application_Programming.html">
+<LINK REL="next" HREF="6_4Chirp.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html2184"
+  HREF="6_4Chirp.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2178"
+  HREF="6_Application_Programming.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2172"
+  HREF="6_2DRMAA_API.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2180"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2182"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2185"
+  HREF="6_4Chirp.html">6.4 Chirp</A>
+<B> Up:</B> <A NAME="tex2html2179"
+  HREF="6_Application_Programming.html">6. Application Programming Interfaces</A>
+<B> Previous:</B> <A NAME="tex2html2173"
+  HREF="6_2DRMAA_API.html">6.2 The DRMAA API</A>
+ &nbsp; <B>  <A NAME="tex2html2181"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2183"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html2186"
+  HREF="6_3HTCondor_User.html#SECTION00731000000000000000">6.3.1 Constants and Enumerated Types</A>
+<LI><A NAME="tex2html2187"
+  HREF="6_3HTCondor_User.html#SECTION00732000000000000000">6.3.2 Constructors and Destructors</A>
+<LI><A NAME="tex2html2188"
+  HREF="6_3HTCondor_User.html#SECTION00733000000000000000">6.3.3 Initializers</A>
+<LI><A NAME="tex2html2189"
+  HREF="6_3HTCondor_User.html#SECTION00734000000000000000">6.3.4 Primary Methods</A>
+<LI><A NAME="tex2html2190"
+  HREF="6_3HTCondor_User.html#SECTION00735000000000000000">6.3.5 Accessors</A>
+<LI><A NAME="tex2html2191"
+  HREF="6_3HTCondor_User.html#SECTION00736000000000000000">6.3.6 Methods for saving and restoring persistent reader state</A>
+<LI><A NAME="tex2html2192"
+  HREF="6_3HTCondor_User.html#SECTION00737000000000000000">6.3.7 Save state to persistent storage</A>
+<LI><A NAME="tex2html2193"
+  HREF="6_3HTCondor_User.html#SECTION00738000000000000000">6.3.8 Restore state from persistent storage</A>
+<LI><A NAME="tex2html2194"
+  HREF="6_3HTCondor_User.html#SECTION00739000000000000000">6.3.9 API Reference</A>
+<LI><A NAME="tex2html2195"
+  HREF="6_3HTCondor_User.html#SECTION007310000000000000000">6.3.10 Access to the persistent state data</A>
+<LI><A NAME="tex2html2196"
+  HREF="6_3HTCondor_User.html#SECTION007311000000000000000">6.3.11 Future persistence API</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00730000000000000000"></A><A NAME="sec:job-log-reader"></A>
+<A NAME="50874"></A>
+<A NAME="50875"></A>
+<A NAME="50876"></A>
+<BR>
+6.3 The HTCondor User and Job Log Reader API
+</H1>
+<A NAME="51343"></A>
+<A NAME="50878"></A>
+
+<P>
+HTCondor has the ability to log an HTCondor job's significant events during 
+its lifetime.
+This is enabled in the job's submit description file with the
+<B>Log</B><A NAME="51411"></A> command.
+
+<P>
+This section describes the API defined by the C++ <TT>ReadUserLog</TT> class,
+which provides a programming interface for applications
+to read and parse events,
+polling for events, and saving and restoring reader state.
+
+<P>
+
+<H2><A NAME="SECTION00731000000000000000">
+6.3.1 Constants and Enumerated Types</A>
+</H2>
+
+<P>
+The following define enumerated types useful to the API.
+
+<P>
+
+<UL>
+<LI><TT>ULogEventOutcome</TT> (defined in <TT>condor_event.h</TT>):
+  
+<UL>
+<LI><TT>ULOG_OK</TT>: Event is valid
+</LI>
+<LI><TT>ULOG_NO_EVENT</TT>: No event occurred (like EOF)
+</LI>
+<LI><TT>ULOG_RD_ERROR</TT>: Error reading log file
+</LI>
+<LI><TT>ULOG_MISSED_EVENT</TT>: Missed event
+</LI>
+<LI><TT>ULOG_UNK_ERROR</TT>: Unknown Error
+  
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI><TT>ReadUserLog::FileStatus</TT>
+  
+<UL>
+<LI><TT>LOG_STATUS_ERROR</TT>: An error was encountered
+</LI>
+<LI><TT>LOG_STATUS_NOCHANGE</TT>: No change in file size
+</LI>
+<LI><TT>LOG_STATUS_GROWN</TT>: File has grown
+</LI>
+<LI><TT>LOG_STATUS_SHRUNK</TT>: File has shrunk
+  
+</LI>
+</UL>
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<H2><A NAME="SECTION00732000000000000000">
+6.3.2 Constructors and Destructors</A>
+</H2>
+
+<P>
+All <TT>ReadUserLog</TT> constructors invoke one of the <TT>initialize()</TT>
+methods.
+Since C++ constructors cannot return errors, 
+an application using any but the default constructor should call
+<TT>isIinitialized()</TT> to verify that the object initialized correctly,
+and for example, had permissions to open required files.
+
+<P>
+Note that because the constructors cannot return status information,
+most of these constructors will be eliminated in the future.
+All constructors, except for the default constructor with no parameters,
+will be removed.
+The application will need to call the appropriate <TT>initialize()</TT> method.
+
+<P>
+
+<UL>
+<LI> <TT>ReadUserLog::ReadUserLog(bool isEventLog)</TT> 
+  
+<BR><B>Synopsis:</B> Constructor default
+  
+<BR><B>Returns:</B> None
+  
+<BR><B>Constructor</B> parameters:  
+  
+<UL>
+<LI><TT>bool</TT> <TT>isEventLog</TT> (<I>Optional with default</I> = <TT>false</TT>) 
+<BR>
+If <TT>true</TT>, the <TT>ReadUserLog</TT> object is
+    initialized to read the schedd-wide event log.
+    
+<BR><U>NOTE</U>: If <TT>isEventLog</TT> is <TT>true</TT>, the initialization may
+    silently fail, so the value of <TT>ReadUserLog::isInitialized</TT>
+    should be checked to verify that the initialization was successful.
+    
+<BR><U>NOTE</U>: The <TT>isEventLog</TT> parameter will be removed in the future.
+  
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI> <TT>ReadUserLog::ReadUserLog(FILE *fp, bool is_xml, bool enable_close)</TT> 
+  
+<BR><B>Synopsis:</B> Constructor of a limited functionality reader: no rotation handling, no locking
+  
+<BR><B>Returns:</B> None
+  
+<BR><B>Constructor</B> parameters:  
+  
+<UL>
+<LI><TT>FILE *</TT> <TT>fp</TT> 
+<BR>
+File pointer to the previously opened log file to read.
+</LI>
+<LI><TT>bool</TT> <TT>is_xml</TT> 
+<BR>
+If <TT>true</TT>, the file is treated as XML; otherwise, it will be
+    read as an old style file.
+</LI>
+<LI><TT>bool</TT> <TT>enable_close</TT> (<I>Optional with default</I> = <TT>false</TT>) 
+<BR>
+If <TT>true</TT>, the reader will open the file read-only.
+  
+</LI>
+</UL>
+  <U>NOTE</U>: The <TT>ReadUserLog::isInitialized</TT> method
+  should be invoked to verify that this constructor was initialized
+  successfully.
+  
+<BR><U>NOTE</U>: This constructor will be removed in the future.
+
+<P>
+</LI>
+<LI> <TT>ReadUserLog::ReadUserLog(const char *filename, bool read_only)</TT> 
+  
+<BR><B>Synopsis:</B> Constructor to read a specific log file
+  
+<BR><B>Returns:</B> None
+  
+<BR><B>Constructor</B> parameters:  
+  
+<UL>
+<LI><TT>const char *</TT> <TT>filename</TT> 
+<BR>
+Path to the log file to read
+</LI>
+<LI><TT>bool</TT> <TT>read_only</TT> (<I>Optional with default</I> = <TT>false</TT>) 
+<BR>
+If <TT>true</TT>, the reader will open the file read-only and
+    disable locking.
+  
+</LI>
+</UL>
+  <U>NOTE</U>: This constructor will be removed in the future.
+
+<P>
+</LI>
+<LI> <TT>ReadUserLog::ReadUserLog(const FileState &amp;state, bool read_only)</TT> 
+  
+<BR><B>Synopsis:</B> Constructor to continue from a persisted reader state
+  
+<BR><B>Returns:</B> None
+  
+<BR><B>Constructor</B> parameters:  
+  
+<UL>
+<LI><TT>const FileState &amp;</TT> <TT>state</TT> 
+<BR>
+Reference to the persisted state to restore from
+</LI>
+<LI><TT>bool</TT> <TT>read_only</TT> (<I>Optional with default</I> = <TT>false</TT>) 
+<BR>
+If <TT>true</TT>, the reader will open the file read-only and
+    disable locking.
+  
+</LI>
+</UL>
+  <U>NOTE</U>: The <TT>ReadUserLog::isInitialized</TT>
+  method should be invoked to verify that this constructor was
+  initialized successfully.
+  
+<BR><U>NOTE</U>: This constructor will be removed in the future.
+
+<P>
+</LI>
+<LI> <TT>ReadUserLog::~ReadUserLog(void)</TT> 
+  
+<BR><B>Synopsis:</B> Destructor
+  
+<BR><B>Returns:</B> None
+  
+<BR><B>Destructor</B> parameters: 
+    
+<UL>
+<LI>None. 
+</LI>
+</UL> 
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<H2><A NAME="SECTION00733000000000000000">
+6.3.3 Initializers</A>
+</H2>
+
+<P>
+These methods are used to perform the initialization of the
+<TT>ReadUserLog</TT> objects.  These initializers are used by all constructors
+that do real work.  
+Applications should never use those constructors,
+should use the default constructor,
+ and should instead use one of these initializer methods.
+
+<P>
+All of these functions will return <TT>false</TT> if there are problems
+such as being unable to open the log file,
+or <TT>true</TT> if successful.
+
+<P>
+
+<UL>
+<LI><TT><TT>bool</TT></TT> <TT>ReadUserLog::initialize(void)</TT> 
+  
+<BR><B>Synopsis:</B> Initialize to read the EventLog file.
+  
+<BR><U>NOTE</U>: This method will likely be eliminated in the future, and this
+  functionality will be moved to a new <TT>ReadEventLog</TT> class.
+  
+<BR><B>Returns:</B> <TT>bool</TT>; <TT>true</TT>: success, <TT>false</TT>: failed
+  
+<BR><B>Method</B> parameters:   
+  
+<UL>
+<LI>None. 
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI><TT><TT>bool</TT></TT> <TT>ReadUserLog::initialize(const char *filename, bool handle_rotation,
+    bool check_for_rotated, bool read_only)</TT> 
+  
+<BR><B>Synopsis:</B> Initialize to read a specific log file.
+  
+<BR><B>Returns:</B> <TT>bool</TT>; <TT>true</TT>: success, <TT>false</TT>: failed
+  
+<BR><B>Method</B> parameters:   
+  
+<UL>
+<LI><TT>const char *</TT> <TT>filename</TT> 
+<BR>
+Path to the log file to read
+</LI>
+<LI><TT>bool</TT> <TT>handle_rotation</TT> (<I>Optional with default</I> = <TT>false</TT>) 
+<BR>
+If <TT>true</TT>, enable the reader to handle rotating log files,
+    which is only useful for global user logs
+</LI>
+<LI><TT>bool</TT> <TT>check_for_rotated</TT> (<I>Optional with default</I> = <TT>false</TT>) 
+<BR>
+If <TT>true</TT>, try to open the rotated files
+    (with file names appended with <TT>.old</TT> or <TT>.1</TT>, <TT>.2</TT>, ... )
+    first.
+</LI>
+<LI><TT>bool</TT> <TT>read_only</TT> (<I>Optional with default</I> = <TT>false</TT>) 
+<BR>
+If <TT>true</TT>, the reader will open the file read-only and
+    disable locking.
+  
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI><TT><TT>bool</TT></TT> <TT>ReadUserLog::initialize(const char *filename, int max_rotation,
+    bool check_for_rotated, bool read_only)</TT> 
+  
+<BR><B>Synopsis:</B> Initialize to read a specific log file.
+  
+<BR><B>Returns:</B> <TT>bool</TT>; <TT>true</TT>: success, <TT>false</TT>: failed
+  
+<BR><B>Method</B> parameters:   
+  
+<UL>
+<LI><TT>const char *</TT> <TT>filename</TT> 
+<BR>
+Path to the log file to read
+</LI>
+<LI><TT>int</TT> <TT>max_rotation</TT> 
+<BR>
+Limits what previously rotated files will be considered by the number
+    given in the file name suffix.
+    A value of 0 disables looking for rotated files.
+    A value of 1 limits the rotated file to be that with the file name suffix
+    of <TT>.old</TT>.
+    As only event logs are rotated, this parameter is only useful for
+    event logs.
+</LI>
+<LI><TT>bool</TT> <TT>check_for_rotated</TT> (<I>Optional with default</I> = <TT>false</TT>) 
+<BR>
+If <TT>true</TT>, try to open the rotated files
+    (with file names appended with <TT>.old</TT> or <TT>.1</TT>, <TT>.2</TT>, ... )
+    first.
+</LI>
+<LI><TT>bool</TT> <TT>read_only</TT> (<I>Optional with default</I> = <TT>false</TT>) 
+<BR>
+If <TT>true</TT>, the reader will open the file read-only and
+    disable locking.
+  
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI><TT><TT>bool</TT></TT> <TT>ReadUserLog::initialize(const FileState &amp;state, bool read_only)</TT> 
+  
+<BR><B>Synopsis:</B> Initialize to continue from a persisted reader state.
+  
+<BR><B>Returns:</B> <TT>bool</TT>; <TT>true</TT>: success, <TT>false</TT>: failed
+  
+<BR><B>Method</B> parameters:   
+  
+<UL>
+<LI><TT>const FileState &amp;</TT> <TT>state</TT> 
+<BR>
+Reference to the persisted state to restore from
+</LI>
+<LI><TT>bool</TT> <TT>read_only</TT> (<I>Optional with default</I> = <TT>false</TT>) 
+<BR>
+If <TT>true</TT>, the reader will open the file read-only and
+    disable locking.
+  
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI><TT><TT>bool</TT></TT> <TT>ReadUserLog::initialize(const FileState &amp;state, int max_rotation, bool read_only)</TT> 
+  
+<BR><B>Synopsis:</B> Initialize to continue from a persisted reader state and set the
+  rotation parameters.
+  
+<BR><B>Returns:</B> <TT>bool</TT>; <TT>true</TT>: success, <TT>false</TT>: failed
+  
+<BR><B>Method</B> parameters:   
+  
+<UL>
+<LI><TT>const FileState &amp;</TT> <TT>state</TT> 
+<BR>
+Reference to the persisted state to restore from
+</LI>
+<LI><TT>int</TT> <TT>max_rotation</TT> 
+<BR>
+Limits what previously rotated files will be considered by the number
+    given in the file name suffix.
+    A value of 0 disables looking for rotated files.
+    A value of 1 limits the rotated file to be that with the file name suffix
+    of <TT>.old</TT>.
+    As only event logs are rotated, this parameter is only useful for
+    event logs.
+</LI>
+<LI><TT>bool</TT> <TT>read_only</TT> (<I>Optional with default</I> = <TT>false</TT>) 
+<BR>
+If <TT>true</TT>, the reader will open the file read-only and
+    disable locking.
+  
+</LI>
+</UL>
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<H2><A NAME="SECTION00734000000000000000">
+6.3.4 Primary Methods</A>
+</H2>
+
+<UL>
+<LI><TT><TT>ULogEventOutcome</TT></TT> <TT>ReadUserLog::readEvent(ULogEvent <IMG
+ WIDTH="14" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img61.png"
+ ALT="$*$">&amp; event)</TT> 
+  
+<BR><B>Synopsis:</B> Read the next event from the log file.
+  
+<BR><B>Returns:</B> <TT>ULogEventOutcome</TT>; Outcome of the log read attempt. <TT>ULogEventOutcome</TT> is an enumerated
+  type.
+  
+<BR><B>Method</B> parameters:   
+  
+<UL>
+<LI><TT><TT>ULogEvent</TT> <IMG
+ WIDTH="14" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img61.png"
+ ALT="$*$">&amp;</TT> <TT>event</TT> 
+<BR>
+Pointer to an <TT>ULogEvent</TT> that is allocated by this call to
+    <TT>ReadUserLog::readEvent</TT>.
+    If no event is allocated, this pointer is
+    set to <TT>NULL</TT>.  Otherwise the event needs to be <TT>    delete()ed</TT> by the application.
+  
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI><TT><TT>bool</TT></TT> <TT>ReadUserLog::synchronize(void)</TT> 
+  
+<BR><B>Synopsis:</B> Synchronize the log file if the last event read was an error.  This
+    safe guard function should be called if there is some error reading an
+    event, but there are events after it in the file.
+    It will skip over the
+    bad event, meaning it will read up to and including the event separator,
+    so that the rest of the events can be read.
+  
+<BR><B>Returns:</B> <TT>bool</TT>; <TT>true</TT>: success, <TT>false</TT>: failed
+  
+<BR><B>Method</B> parameters:   
+  
+<UL>
+<LI>None. 
+</LI>
+</UL>
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<H2><A NAME="SECTION00735000000000000000">
+6.3.5 Accessors</A>
+</H2>
+
+<UL>
+<LI><TT><TT>ReadUserLog::FileStatus</TT></TT> <TT>ReadUserLog::CheckFileStatus(void)</TT> 
+  
+<BR><B>Synopsis:</B> Check the status of the file, and whether it has grown, shrunk, etc.
+  
+<BR><B>Returns:</B> <TT>ReadUserLog::FileStatus</TT>; the status of the log file, an
+  enumerated type.
+  
+<BR><B>Method</B> parameters:   
+  
+<UL>
+<LI>None. 
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI><TT><TT>ReadUserLog::FileStatus</TT></TT> <TT>ReadUserLog::CheckFileStatus(bool &amp;is_empty)</TT> 
+  
+<BR><B>Synopsis:</B> Check the status of the file, and whether it has grown, shrunk, etc.
+  
+<BR><B>Returns:</B> <TT>ReadUserLog::FileStatus</TT>; the status of the log file, an
+  enumerated type.
+  
+<BR><B>Method</B> parameters:   
+  
+<UL>
+<LI><TT>bool &amp;</TT> <TT>is_empty</TT> 
+<BR>
+Set to <TT>true</TT> if the file is empty, <TT>false</TT> otherwise.
+  
+</LI>
+</UL>
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<H2><A NAME="SECTION00736000000000000000">
+6.3.6 Methods for saving and restoring persistent reader state</A>
+</H2>
+
+<P>
+The <TT>ReadUserLog::FileState</TT> structure is used to save and
+restore the state of the <TT>ReadUserLog</TT> state for persistence.  The
+application should always use <TT>InitFileState()</TT> to initialize this
+structure.
+
+<P>
+All of these methods take a reference to a state buffer
+as their only parameter.
+
+<P>
+All of these methods return <TT>true</TT> upon success.
+
+<P>
+
+<H2><A NAME="SECTION00737000000000000000">
+6.3.7 Save state to persistent storage</A>
+</H2>
+To save the state, do something like this:
+<PRE>
+  ReadUserLog                reader;
+  ReadUserLog::FileState     statebuf;
+
+  status = ReadUserLog::InitFileState( statebuf );
+
+  status = reader.GetFileState( statebuf );
+  write( fd, statebuf.buf, statebuf.size );
+  ...
+  status = reader.GetFileState( statebuf );
+  write( fd, statebuf.buf, statebuf.size );
+  ...
+
+  status = UninitFileState( statebuf );
+</PRE>
+<P>
+
+<H2><A NAME="SECTION00738000000000000000">
+6.3.8 Restore state from persistent storage</A>
+</H2>
+To restore the state, do something like this:
+<PRE>
+  ReadUserLog::FileState     statebuf;
+  status = ReadUserLog::InitFileState( statebuf );
+
+  read( fd, statebuf.buf, statebuf.size );
+
+  ReadUserLog                reader;
+  status = reader.initialize( statebuf );
+
+  status = UninitFileState( statebuf );
+  ....
+</PRE>
+<P>
+
+<H2><A NAME="SECTION00739000000000000000">
+6.3.9 API Reference</A>
+</H2>
+
+<UL>
+<LI><TT>static <TT>bool</TT></TT> <TT>ReadUserLog::InitFileState(ReadUserLog::FileState &amp;state)</TT> 
+  
+<BR><B>Synopsis:</B> Initialize a file state buffer
+  
+<BR><B>Returns:</B> <TT>bool</TT>; <TT>true</TT> if successful, <TT>false</TT> otherwise
+  
+<BR><B>Method</B> parameters:   
+  
+<UL>
+<LI><TT>ReadUserLog::FileState &amp;</TT> <TT>state</TT> 
+<BR>
+The file state buffer to initialize.
+  
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI><TT>static <TT>bool</TT></TT> <TT>ReadUserLog::UninitFileState(ReadUserLog::FileState &amp;state)</TT> 
+  
+<BR><B>Synopsis:</B> Clean up a file state buffer and free allocated memory
+  
+<BR><B>Returns:</B> <TT>bool</TT>; <TT>true</TT> if successful, <TT>false</TT> otherwise
+  
+<BR><B>Method</B> parameters:   
+  
+<UL>
+<LI><TT>ReadUserLog::FileState &amp;</TT> <TT>state</TT> 
+<BR>
+The file state buffer to un-initialize.
+  
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI><TT><TT>bool</TT></TT> <TT>ReadUserLog::GetFileState(ReadUserLog::FileState &amp;state)</TT> <TT>const</TT>
+  
+<BR><B>Synopsis:</B> Get the current state to persist it or save it off to disk
+  
+<BR><B>Returns:</B> <TT>bool</TT>; <TT>true</TT> if successful, <TT>false</TT> otherwise
+  
+<BR><B>Method</B> parameters:   
+  
+<UL>
+<LI><TT>ReadUserLog::FileState &amp;</TT> <TT>state</TT> 
+<BR>
+The file state buffer to read the state into.
+  
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI><TT><TT>bool</TT></TT> <TT>ReadUserLog::SetFileState(const ReadUserLog::FileState &amp;state)</TT> 
+  
+<BR><B>Synopsis:</B> Use this method to set the current state, after restoring it.
+    
+<BR><U>NOTE</U>: The state buffer is <I>NOT</I> automatically updated; a call 
+    <I>MUST</I> be made to
+    the <TT>GetFileState()</TT> method each time before persisting the
+    buffer to disk, or however else is chosen to persist its contents.
+  
+<BR><B>Returns:</B> <TT>bool</TT>; <TT>true</TT> if successful, <TT>false</TT> otherwise
+  
+<BR><B>Method</B> parameters:   
+  
+<UL>
+<LI><TT>const ReadUserLog::FileState &amp;</TT> <TT>state</TT> 
+<BR>
+The file state buffer to restore from.
+  
+</LI>
+</UL>
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<H2><A NAME="SECTION007310000000000000000">
+6.3.10 Access to the persistent state data</A>
+</H2>
+
+<P>
+If the application needs access to the data elements in a persistent
+state, it should instantiate a <TT>ReadUserLogStateAccess</TT> object.
+
+<P>
+
+<UL>
+<LI>Constructors / Destructors
+
+<P>
+
+<UL>
+<LI> <TT>ReadUserLogStateAccess::ReadUserLogStateAccess(const ReadUserLog::FileState &amp;state)</TT> 
+  
+<BR><B>Synopsis:</B> Constructor default
+  
+<BR><B>Returns:</B> None
+  
+<BR><B>Constructor</B> parameters:  
+  
+<UL>
+<LI><TT>const ReadUserLog::FileState &amp;</TT> <TT>state</TT> 
+<BR>
+Reference to the persistent state data to initialize from.
+  
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI> <TT>ReadUserLogStateAccess::~ReadUserLogStateAccess(void)</TT> 
+  
+<BR><B>Synopsis:</B> Destructor
+  
+<BR><B>Returns:</B> None
+  
+<BR><B>Destructor</B> parameters: 
+    
+<UL>
+<LI>None. 
+</LI>
+</UL>
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI>Accessor Methods
+
+<UL>
+<LI><TT><TT>bool</TT></TT> <TT>ReadUserLogFileState::isInitialized(void)</TT> <TT>const</TT>
+  
+<BR><B>Synopsis:</B> Checks if the buffer initialized
+  
+<BR><B>Returns:</B> <TT>bool</TT>; <TT>true</TT> if successfully initialized, <TT>false</TT> otherwise
+  
+<BR><B>Method</B> parameters:   
+  
+<UL>
+<LI>None. 
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI><TT><TT>bool</TT></TT> <TT>ReadUserLogFileState::isValid(void)</TT> <TT>const</TT>
+  
+<BR><B>Synopsis:</B> Checks if the buffer is valid for use by 
+  <TT>ReadUserLog::initialize()</TT>
+  
+<BR><B>Returns:</B> <TT>bool</TT>; <TT>true</TT> if successful, <TT>false</TT> otherwise
+  
+<BR><B>Method</B> parameters:   
+  
+<UL>
+<LI>None. 
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI><TT><TT>bool</TT></TT> <TT>ReadUserLogFileState::getFileOffset(unsigned long &amp;pos)</TT> <TT>const</TT>
+  
+<BR><B>Synopsis:</B> Get position within individual file.
+    
+<BR><U>NOTE</U>: Can return an error if the result is too large to be
+    stored in a <TT>long</TT>.
+  
+<BR><B>Returns:</B> <TT>bool</TT>; <TT>true</TT> if successful, <TT>false</TT> otherwise
+  
+<BR><B>Method</B> parameters:   
+  
+<UL>
+<LI><TT>unsigned long &amp;</TT> <TT>pos</TT> 
+<BR>
+Byte position within the current log file
+  
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI><TT><TT>bool</TT></TT> <TT>ReadUserLogFileState::getFileEventNum(unsigned long &amp;num)</TT> <TT>const</TT>
+  
+<BR><B>Synopsis:</B> Get event number in individual file.
+    
+<BR><U>NOTE</U>: Can return an error if the result is too large to be
+    stored in a <TT>long</TT>.
+  
+<BR><B>Returns:</B> <TT>bool</TT>; <TT>true</TT> if successful, <TT>false</TT> otherwise
+  
+<BR><B>Method</B> parameters:   
+  
+<UL>
+<LI><TT>unsigned long &amp;</TT> <TT>num</TT> 
+<BR>
+Event number of the current event in the current log file
+  
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI><TT><TT>bool</TT></TT> <TT>ReadUserLogFileState::getLogPosition(unsigned long &amp;pos)</TT> <TT>const</TT>
+  
+<BR><B>Synopsis:</B> Position of the start of the current file in overall log.
+    
+<BR><U>NOTE</U>: Can return an error if the result is too large
+    to be stored in a <TT>long</TT>.
+  
+<BR><B>Returns:</B> <TT>bool</TT>; <TT>true</TT> if successful, <TT>false</TT> otherwise
+  
+<BR><B>Method</B> parameters:   
+  
+<UL>
+<LI><TT>unsigned long &amp;</TT> <TT>pos</TT> 
+<BR>
+Byte offset of the start of the current file in the overall
+    logical log stream.
+  
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI><TT>bool</TT> <TT>ReadUserLogFileState::getEventNumber(unsigned long &amp;num)</TT> <TT>const</TT>
+  
+<BR><B>Synopsis:</B> Get the event number of the first event in the current file
+    
+<BR><U>NOTE</U>: Can return an error if the result is too large
+    to be stored in a <TT>long</TT>.
+  
+<BR><B>Returns:</B> bool; <TT>true</TT> if successful, <TT>false</TT> otherwise
+  
+<BR><B>Method</B> parameters:   
+  
+<UL>
+<LI><TT>unsigned long &amp;</TT> <TT>num</TT> 
+<BR>
+This is the absolute event number of the first event in the
+    current file in the overall logical log stream.
+  
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI><TT>bool</TT> <TT>ReadUserLogFileState::getUniqId(char *buf, int size)</TT> <TT>const</TT>
+  
+<BR><B>Synopsis:</B> Get the unique ID of the associated state file.
+  
+<BR><B>Returns:</B> bool; <TT>true</TT> if successful, <TT>false</TT> otherwise
+  
+<BR><B>Method</B> parameters:   
+  
+<UL>
+<LI><TT>char <IMG
+ WIDTH="14" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img61.png"
+ ALT="$*$"></TT> <TT>buf</TT> 
+<BR>
+Buffer to fill with the unique ID of the current file.
+</LI>
+<LI><TT>int</TT> <TT>size</TT> 
+<BR>
+Size in bytes of <TT>buf</TT>.
+    
+<BR>
+This is to prevent <TT>ReadUserLogFileState::getUniqId</TT>
+    from writing past the end of <TT>buf</TT>.
+  
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI><TT><TT>bool</TT></TT> <TT>ReadUserLogFileState::getSequenceNumber(int &amp;seqno)</TT> <TT>const</TT>
+  
+<BR><B>Synopsis:</B> Get the sequence number of the associated state file.
+  
+<BR><B>Returns:</B> <TT>bool</TT>; <TT>true</TT> if successful, <TT>false</TT> otherwise
+  
+<BR><B>Method</B> parameters:   
+  
+<UL>
+<LI><TT>int &amp;</TT> <TT>seqno</TT> 
+<BR>
+Sequence number of the current file
+  
+</LI>
+</UL>
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI>Comparison Methods
+
+<UL>
+<LI><TT><TT>bool</TT></TT> <TT>ReadUserLogFileState::getFileOffsetDiff(const ReadUserLogStateAccess &amp;other, unsigned long &amp;pos)</TT> <TT>const</TT>
+  
+<BR><B>Synopsis:</B> Get the position difference of two states given by <TT>this</TT> 
+  and <TT>other</TT>.
+    
+<BR><U>NOTE</U>: Can return an error if the result is too large to be
+    stored in a <TT>long</TT>.
+  
+<BR><B>Returns:</B> <TT>bool</TT>; <TT>true</TT> if successful, <TT>false</TT> otherwise
+  
+<BR><B>Method</B> parameters:   
+  
+<UL>
+<LI><TT>const ReadUserLogStateAccess &amp;</TT> <TT>other</TT> 
+<BR>
+Reference to the state to compare to.
+</LI>
+<LI><TT>long &amp;</TT> <TT>diff</TT> 
+<BR>
+Difference in the positions
+  
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI><TT>bool</TT> <TT>ReadUserLogFileState::getFileEventNumDiff(const ReadUserLogStateAccess &amp;other, long &amp;diff)</TT> <TT>const</TT>
+  
+<BR><B>Synopsis:</B> Get event number in individual file.
+    
+<BR><U>NOTE</U>: Can return an error if the result is too large to be
+    stored in a <TT>long</TT>.
+  
+<BR><B>Returns:</B> bool; <TT>true</TT> if successful, <TT>false</TT> otherwise
+  
+<BR><B>Method</B> parameters:   
+  
+<UL>
+<LI><TT>const ReadUserLogStateAccess &amp;</TT> <TT>other</TT> 
+<BR>
+Reference to the state to compare to.
+</LI>
+<LI><TT>long &amp;</TT> <TT>diff</TT> 
+<BR>
+Event number of the current event in
+    the current log file
+  
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI><TT>bool</TT> <TT>ReadUserLogFileState::getLogPosition(const ReadUserLogStateAccess &amp;other, long &amp;diff)</TT> <TT>const</TT>
+  
+<BR><B>Synopsis:</B> Get the position difference of two states given by <TT>this</TT> 
+  and <TT>other</TT>.
+    
+<BR><U>NOTE</U>: Can return an error if the result is too large
+    to be stored in a <TT>long</TT>.
+  
+<BR><B>Returns:</B> bool; <TT>true</TT> if successful, <TT>false</TT> otherwise
+  
+<BR><B>Method</B> parameters:   
+  
+<UL>
+<LI><TT>const ReadUserLogStateAccess &amp;</TT> <TT>other</TT> 
+<BR>
+Reference to the state to compare to.
+</LI>
+<LI><TT>long &amp;</TT> <TT>diff</TT> 
+<BR>
+Difference between the byte offset of the start of the current
+    file in the overall logical log stream and that of <TT>other</TT>.
+  
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI><TT>bool</TT> <TT>ReadUserLogFileState::getEventNumber(const ReadUserLogStateAccess &amp;other, long &amp;diff)</TT> <TT>const</TT>
+  
+<BR><B>Synopsis:</B> Get the difference between the event number of the first event in
+    two state buffers (this - other).
+    
+<BR><U>NOTE</U>: Can return an error if the result is too large
+    to be stored in a <TT>long</TT>.
+  
+<BR><B>Returns:</B> bool; <TT>true</TT> if successful, <TT>false</TT> otherwise
+  
+<BR><B>Method</B> parameters:   
+  
+<UL>
+<LI><TT>const ReadUserLogStateAccess &amp;</TT> <TT>other</TT> 
+<BR>
+Reference to the state to compare to.
+</LI>
+<LI><TT>long &amp;</TT> <TT>diff</TT> 
+<BR>
+Difference between the absolute event number of the first event in
+    the current file in the overall logical log stream and that of
+    <TT>other</TT>.
+  
+</LI>
+</UL>
+
+<P>
+</LI>
+</UL>	
+<P>
+</LI>
+</UL>
+
+<P>
+
+<H2><A NAME="SECTION007311000000000000000">
+6.3.11 Future persistence API</A>
+</H2>
+The <TT>ReadUserLog::FileState</TT> will likely be replaced with a new
+C++ <TT>ReadUserLog::NewFileState</TT>, or a similarly named class that
+will self initialize.
+
+<P>
+Additionally, the functionality of <TT>ReadUserLogStateAccess</TT> will
+be integrated into this class.
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html2184"
+  HREF="6_4Chirp.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2178"
+  HREF="6_Application_Programming.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2172"
+  HREF="6_2DRMAA_API.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2180"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2182"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2185"
+  HREF="6_4Chirp.html">6.4 Chirp</A>
+<B> Up:</B> <A NAME="tex2html2179"
+  HREF="6_Application_Programming.html">6. Application Programming Interfaces</A>
+<B> Previous:</B> <A NAME="tex2html2173"
+  HREF="6_2DRMAA_API.html">6.2 The DRMAA API</A>
+ &nbsp; <B>  <A NAME="tex2html2181"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2183"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

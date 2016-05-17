@@ -1,0 +1,397 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>sync</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Command Reference"
+HREF="c2117.html"><LINK
+REL="PREVIOUS"
+TITLE="swap"
+HREF="x7899.html"><LINK
+REL="NEXT"
+TITLE="update"
+HREF="x8005.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Base</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x7899.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 9. Command Reference</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x8005.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="AEN7931"
+>9.16. sync</A
+></H1
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-SYNC-CONFIG"
+>9.16.1. sync config</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks sync config</B
+> </P
+><P
+>&#13;	For each system configuration file controlled by Rocks, first
+	rebuild the configuration file by extracting data from the
+	database, then restart the relevant services.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks sync config</DT
+><DD
+><P
+>&#13;	Rebuild all configuration files and restart relevant services.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-SYNC-DNS"
+>9.16.2. sync dns</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks sync dns</B
+> </P
+><P
+>&#13;	Rebuild the DNS configuration files, then restart named.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks sync dns</DT
+><DD
+><P
+>&#13;	Rebuild the DNS configuration files, then restart named.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-SYNC-HOST-FIREWALL"
+>9.16.3. sync host firewall</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks sync host firewall</B
+> </P
+><P
+>&#13;	Reconfigure and restart firewall for named hosts.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks sync host firewall compute-0-0</DT
+><DD
+><P
+>&#13;	Reconfigure and restart the firewall on compute-0-0.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-SYNC-HOST-NETWORK"
+>9.16.4. sync host network</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks sync host network</B
+> </P
+><P
+>&#13;	Reconfigure and restart the network for the named hosts.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks sync host network compute-0-0</DT
+><DD
+><P
+>&#13;	Reconfigure and restart the network on compute-0-0.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-SYNC-HOST-SEC_ATTR"
+>9.16.5. sync host sec_attr</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks sync host sec_attr</B
+>  {host}</P
+><P
+>&#13;	This command syncs the secure attributes
+	of a host.
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	Hostname(s) whose secure attributes
+	need to be synced.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-SYNC-HOST-SHAREDKEY"
+>9.16.6. sync host sharedkey</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks sync host sharedkey</B
+> </P
+><P
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-SYNC-USERS"
+>9.16.7. sync users</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks sync users</B
+> </P
+><P
+>&#13;	Update all user-related files (e.g., /etc/passwd, /etc/shadow, etc.)
+	on all known hosts. Also, restart autofs on all known hosts.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks sync users</DT
+><DD
+><P
+>&#13;	Send all user info to all known hosts.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x7899.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x8005.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>swap</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="c2117.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>update</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

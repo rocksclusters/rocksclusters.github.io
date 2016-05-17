@@ -1,0 +1,2854 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>3.5 Policy Configuration for the condor_startd</TITLE>
+<META NAME="description" CONTENT="3.5 Policy Configuration for the condor_startd">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="3_6Security.html">
+<LINK REL="previous" HREF="3_4User_Priorities.html">
+<LINK REL="up" HREF="3_Administrators_Manual.html">
+<LINK REL="next" HREF="3_6Security.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html1438"
+  HREF="3_6Security.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1432"
+  HREF="3_Administrators_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1426"
+  HREF="3_4User_Priorities.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1434"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1436"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1439"
+  HREF="3_6Security.html">3.6 Security</A>
+<B> Up:</B> <A NAME="tex2html1433"
+  HREF="3_Administrators_Manual.html">3. Administrators' Manual</A>
+<B> Previous:</B> <A NAME="tex2html1427"
+  HREF="3_4User_Priorities.html">3.4 User Priorities and</A>
+ &nbsp; <B>  <A NAME="tex2html1435"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1437"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html1440"
+  HREF="3_5Policy_Configuration.html#SECTION00451000000000000000">3.5.1 Startd ClassAd Attributes</A>
+<LI><A NAME="tex2html1441"
+  HREF="3_5Policy_Configuration.html#SECTION00452000000000000000">3.5.2 The <TT>START</TT> expression</A>
+<LI><A NAME="tex2html1442"
+  HREF="3_5Policy_Configuration.html#SECTION00453000000000000000">3.5.3 The <TT>IS_VALID_CHECKPOINT_PLATFORM</TT> expression</A>
+<LI><A NAME="tex2html1443"
+  HREF="3_5Policy_Configuration.html#SECTION00454000000000000000">3.5.4 The <TT>RANK</TT>   expression</A>
+<LI><A NAME="tex2html1444"
+  HREF="3_5Policy_Configuration.html#SECTION00455000000000000000">3.5.5  Machine States</A>
+<UL>
+<LI><A NAME="tex2html1445"
+  HREF="3_5Policy_Configuration.html#SECTION00455100000000000000">3.5.5.1  The Claimed State and Leases</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1446"
+  HREF="3_5Policy_Configuration.html#SECTION00456000000000000000">3.5.6 Machine Activities</A>
+<LI><A NAME="tex2html1447"
+  HREF="3_5Policy_Configuration.html#SECTION00457000000000000000">3.5.7 State and Activity Transitions</A>
+<UL>
+<LI><A NAME="tex2html1448"
+  HREF="3_5Policy_Configuration.html#SECTION00457100000000000000">3.5.7.1 Owner State</A>
+<LI><A NAME="tex2html1449"
+  HREF="3_5Policy_Configuration.html#SECTION00457200000000000000">3.5.7.2 Unclaimed State</A>
+<LI><A NAME="tex2html1450"
+  HREF="3_5Policy_Configuration.html#SECTION00457300000000000000">3.5.7.3 Matched State</A>
+<LI><A NAME="tex2html1451"
+  HREF="3_5Policy_Configuration.html#SECTION00457400000000000000">3.5.7.4 Claimed State</A>
+<LI><A NAME="tex2html1452"
+  HREF="3_5Policy_Configuration.html#SECTION00457500000000000000">3.5.7.5 Preempting State</A>
+<LI><A NAME="tex2html1453"
+  HREF="3_5Policy_Configuration.html#SECTION00457600000000000000">3.5.7.6 Backfill State</A>
+<LI><A NAME="tex2html1454"
+  HREF="3_5Policy_Configuration.html#SECTION00457700000000000000">3.5.7.7 Drained State</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1455"
+  HREF="3_5Policy_Configuration.html#SECTION00458000000000000000">3.5.8 State/Activity Transition Expression Summary</A>
+<LI><A NAME="tex2html1456"
+  HREF="3_5Policy_Configuration.html#SECTION00459000000000000000">3.5.9 Policy Settings</A>
+<UL>
+<LI><A NAME="tex2html1457"
+  HREF="3_5Policy_Configuration.html#SECTION00459100000000000000">3.5.9.1 Default Policy Settings</A>
+<LI><A NAME="tex2html1458"
+  HREF="3_5Policy_Configuration.html#SECTION00459200000000000000">3.5.9.2 Test-job Policy Example</A>
+<LI><A NAME="tex2html1459"
+  HREF="3_5Policy_Configuration.html#SECTION00459300000000000000">3.5.9.3 Time of Day Policy</A>
+<LI><A NAME="tex2html1460"
+  HREF="3_5Policy_Configuration.html#SECTION00459400000000000000">3.5.9.4 Desktop/Non-Desktop Policy</A>
+<LI><A NAME="tex2html1461"
+  HREF="3_5Policy_Configuration.html#SECTION00459500000000000000">3.5.9.5 Disabling Preemption</A>
+<LI><A NAME="tex2html1462"
+  HREF="3_5Policy_Configuration.html#SECTION00459600000000000000">3.5.9.6 Job Suspension</A>
+</UL></UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00450000000000000000"></A><A NAME="sec:Configuring-Policy"></A>
+<BR>
+3.5 Policy Configuration for the <I>condor_startd</I>
+</H1>
+
+<P>
+<A NAME="27099"></A>
+<A NAME="27100"></A>
+<A NAME="27101"></A>
+<A NAME="27792"></A>
+This section describes the configuration of machines,
+such that they,
+through the <I>condor_startd</I> daemon,
+implement a desired policy for when remote jobs should start, be
+suspended, (possibly) resumed, vacate (with a checkpoint) or be killed
+(no checkpoint).
+This policy is the heart of Condor's balancing act
+between the needs and wishes of resource owners (machine owners) and
+resource users (people submitting their jobs to Condor).
+Please read
+this section carefully if you plan to change any of the settings
+described here, as a wrong setting can have a severe impact on
+either the owners of machines in your pool (they may
+ask to be removed from the pool entirely) or the users of your pool
+(they may stop using Condor).
+
+<P>
+Before the details, there are a few things to note:
+
+<UL>
+<LI>Much of this section refers to ClassAd expressions.
+Please read through section&nbsp;<A HREF="4_1Condor_s_ClassAd.html#sec:classad-reference">4.1</A> on
+ClassAd expressions before continuing.
+
+<P>
+</LI>
+<LI>If defining the policy for an SMP machine
+(a multi-CPU machine),
+also read section&nbsp;<A HREF="3_12Setting_Up.html#sec:Configuring-SMP">3.12.8</A> for specific information on
+configuring the <I>condor_startd</I> daemon for SMP machines.  
+Each <I>slot</I> represented by the <I>condor_startd</I> daemon on an
+SMP machine has its own <I>state</I> and <I>activity</I>
+(as described below). 
+In the future, each slot will be able to have its
+own individual policy expressions defined.
+Within this manual section, the word ``machine''
+refers to an individual slot within
+an SMP machine.
+</LI>
+</UL>
+
+<P>
+To define a policy, set expressions in
+the configuration file (see section&nbsp;<A HREF="3_3Configuration.html#sec:Configuring-Condor">3.3</A> on
+Configuring Condor for an introduction to Condor's
+configuration files).
+The expressions are evaluated in the context of the machine's ClassAd
+and a job ClassAd.
+The expressions can therefore reference attributes from either
+ClassAd. 
+See the unnumbered Appendix on page&nbsp;<A HREF="11_Appendix_A.html#sec:Job-ClassAd-Attributes"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>
+for a list of job ClassAd attributes.
+See the unnumbered Appendix on page&nbsp;<A HREF="11_Appendix_A.html#sec:Machine-ClassAd-Attributes"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>
+for a list of machine ClassAd attributes.
+The <TT>START</TT> expression is explained.
+It describes the conditions that must be met for a machine to
+start a job.
+The <TT>RANK</TT> expression for a machine is described.
+It allows the specification of
+the kinds of jobs a machine prefers to run.
+A final discussion details how the <I>condor_startd</I> daemon works.
+Included are
+the machine <I>states</I> and <I>activities</I>, to give
+an idea of what is possible in policy decisions.
+Two example policy settings are presented.
+
+<P>
+
+<H2><A NAME="SECTION00451000000000000000"></A><A NAME="sec:Startd-Attributes"></A>
+<BR>
+3.5.1 Startd ClassAd Attributes
+</H2>
+
+<P>
+<A NAME="27794"></A>
+<A NAME="27795"></A>
+<A NAME="27796"></A>
+The <I>condor_startd</I> daemon represents the machine on which it is running to
+the Condor pool.  
+The daemon publishes characteristics about the
+machine in the machine's ClassAd to aid matchmaking with resource requests.
+The values of these attributes may be listed by using the command:
+<I>condor_status -l hostname</I>.
+On an SMP machine, the <I>condor_startd</I> will break the machine up and advertise
+it as separate slots, each with its own name and ClassAd.
+
+<P>
+
+<H2><A NAME="SECTION00452000000000000000"></A><A NAME="sec:Start-Expr"></A>
+<BR>
+3.5.2 The <TT>START</TT> expression
+</H2>
+
+<P>
+The most important expression to the <I>condor_startd</I>
+is the <TT>START</TT> <A NAME="27862"></A> <A NAME="27863"></A> expression.  
+This expression describes the conditions that must be met for a
+machine to run a job. 
+This expression can reference attributes
+in the machine's ClassAd (such as <TT>KeyboardIdle</TT> and <TT>LoadAvg</TT>)
+and attributes in a job ClassAd (such as
+<TT>Owner</TT>, <TT>Imagesize</TT>, and <TT>Cmd</TT>, the name of the
+executable the job will run).
+The value of the <TT>START</TT> expression plays a crucial role in
+determining the state and activity of a machine.
+
+<P>
+The <TT>Requirements</TT> expression is used for
+matching machines with jobs.
+
+<P>
+The <I>condor_startd</I> defines the
+<TT>Requirements</TT> expression by logically <B>and</B>ing the 
+<TT>START</TT> expression and the <TT>IS_VALID_CHECKPOINT_PLATFORM</TT>
+expression. 
+
+<P>
+In situations where a machine wants to make itself
+unavailable for further matches, the <TT>Requirements</TT>
+expression is set to FALSE.  
+When the <TT>START</TT> expression locally evaluates to TRUE, the
+machine advertises the <TT>Requirements</TT> expression as TRUE and
+does not publish the <TT>START</TT> expression.
+
+<P>
+Normally, the expressions in the machine ClassAd are evaluated against
+certain request ClassAds in the <I>condor_negotiator</I> to see if there is
+a match, or against whatever request ClassAd currently has claimed the
+machine.  However, by locally evaluating an expression, the machine only
+evaluates the expression against its own ClassAd.  If an expression
+cannot be locally evaluated (because it references other expressions
+that are only found in a request ad, such as <TT>Owner</TT> or
+<TT>Imagesize</TT>), the expression is (usually) undefined.
+See section&nbsp;<A HREF="4_1Condor_s_ClassAd.html#sec:classad-reference">4.1</A> for specifics on
+how undefined terms are handled in ClassAd expression evaluation. 
+
+<P>
+A note of caution is in order when modifying the <TT>START</TT> to
+reference job ClassAd attributes.  The default <TT>Is_OWNER</TT>
+expression is a function of the <TT>START</TT> expression
+<PRE>
+START =?= FALSE
+</PRE>
+See a detailed discussion of the <TT>IS_OWNER</TT> expression in
+section&nbsp;<A HREF="#sec:Owner-State">3.5.7</A>.  However, the machine locally
+evaluates the <TT>IS_OWNER</TT> expression to determine if it is
+capable of running jobs for Condor.  Any job ClassAd attributes
+appearing in the <TT>START</TT> expression, and hence in the
+<TT>IS_OWNER</TT> expression are undefined in this context, and may
+lead to unexpected behavior.  Whenever the <TT>START</TT> expression
+is modified to reference job ClassAd attributes, the
+<TT>IS_OWNER</TT> expression should also be modified to reference
+only machine ClassAd attributes.
+
+<P>
+<U>NOTE</U>: If you have machines with lots of real memory and swap space such
+that the only scarce resource is CPU time, consider
+defining <TT>JOB_RENICE_INCREMENT</TT> <A NAME="27898"></A> <A NAME="27899"></A> 
+so that Condor starts jobs on the machine with low priority.
+Then, further configure to set up the machines with:
+<PRE>
+        START = True
+        SUSPEND = False
+        PREEMPT = False
+        KILL = False
+</PRE>
+In this way, Condor jobs always run and can never be kicked off
+from activity on the machine. 
+However, because they would run with ``nice priority'', interactive 
+response on the machines will not suffer.
+You probably would not notice Condor was running the jobs, 
+assuming you had enough free memory for the Condor jobs that there
+was little swapping.
+
+<P>
+<A NAME="27799"></A>
+<A NAME="27800"></A>
+
+<H2><A NAME="SECTION00453000000000000000"></A><A NAME="sec:Is-Valid-Checkpoint-Platform"></A>
+<BR>
+3.5.3 The <TT>IS_VALID_CHECKPOINT_PLATFORM</TT> expression
+</H2>
+
+<P>
+A checkpoint is the platform-dependent information necessary
+to continue the execution of a standard universe job.
+Therefore, the machine (platform) upon which a job executed
+and produced a checkpoint limits the machines (platforms)
+which may use the checkpoint to continue job execution.
+This platform-dependent information is no longer
+the obvious combination of architecture and operating system, 
+but may include subtle items such as the 
+difference between the normal, bigmem, and hugemem kernels
+within the Linux operating system.
+This results in the incorporation of a separate
+expression to indicate the ability of a machine to
+resume and continue the execution of a job that has produced
+a checkpoint.
+The <TT>REQUIREMENTS</TT> expression is dependent on this information.
+
+<P>
+At a high level, <TT>IS_VALID_CHECKPOINT_PLATFORM</TT> is an expression
+which becomes true when a job's checkpoint platform matches the
+current checkpointing platform of the machine. 
+Since this expression is <B>and</B>ed with the <TT>START</TT> expression
+to produce the <TT>REQUIREMENTS</TT> expression,
+it must also behave correctly when evaluating in the context of jobs
+that are not standard universe.
+
+<P>
+In words,
+the current default policy for this expression:
+
+<P>
+<B>Any non standard universe job may run on this machine.  
+A standard universe job may run on machines with the new checkpointing
+identification system. 
+A standard universe job may run if it has not yet produced a
+first checkpoint.
+If a standard universe job has produced a checkpoint, then make sure the 
+checkpoint platforms between the job and the machine match.</B>
+
+<P>
+The following  is the default boolean expression for this
+policy.
+A <TT>JobUniverse</TT> value of 1 denotes the standard universe.
+This expression  may be
+overridden in the Condor configuration files.
+
+<P>
+<PRE>
+IS_VALID_CHECKPOINT_PLATFORM = 
+(
+  (TARGET.JobUniverse =!= 1) ||
+
+  (
+    (MY.CheckpointPlatform =!= UNDEFINED) &amp;&amp;
+    (
+      (TARGET.LastCheckpointPlatform =?= MY.CheckpointPlatform) ||
+      (TARGET.NumCkpts == 0)
+    )
+  )
+)
+</PRE>
+<P>
+<TT>IS_VALID_CHECKPOINT_PLATFORM</TT>
+is a separate policy expression because the complexity of
+<TT>IS_VALID_CHECKPOINT_PLATFORM</TT> can be very high.
+While this
+functionality is conceptually separate from the normal <TT>START</TT>
+policies usually constructed, it is also a part of the <TT>Requirements</TT>
+to allow the job to run.
+
+<P>
+
+<H2><A NAME="SECTION00454000000000000000"></A><A NAME="sec:Rank-Expression"></A><A NAME="27915"></A><A NAME="27916"></A>
+<BR>
+3.5.4 The <TT>RANK</TT>   expression
+</H2>
+
+<P>
+A machine may be configured to prefer certain jobs over others
+using the <TT>RANK</TT> expression.
+It is an
+expression, like any other in a machine ClassAd.
+It can
+reference any attribute found in either the machine ClassAd or a job ClassAd.
+The most common use of this expression is likely to configure a
+machine to prefer to run jobs from the owner of that machine, or by
+extension, a group of machines to prefer jobs from the owners of those
+machines.
+
+<P>
+<A NAME="27187"></A>
+For example, imagine there is a small research group with 4 machines
+called tenorsax, piano, bass, and drums.
+These machines are owned by the 4 users
+coltrane, tyner, garrison, and jones,
+respectively.  
+
+<P>
+Assume that there is a large Condor pool in the department,
+and this small research group has spent a lot of money on really fast machines 
+for the group.
+As part of the larger pool, 
+but to implement a policy that gives priority on the fast machines to
+anyone in the small research group,
+set the <TT>RANK</TT>
+expression on the machines to reference the <TT>Owner</TT> attribute and
+prefer requests where that attribute matches one of the people in the
+group as in
+<PRE>
+  RANK = Owner == "coltrane" || Owner == "tyner" \
+    || Owner == "garrison" || Owner == "jones"
+</PRE>
+
+<P>
+The <TT>RANK</TT> expression is evaluated as a floating point number.
+However, like in C, boolean expressions evaluate to either 1 or 0
+depending on if they are <TT>True</TT> or <TT>False</TT>.
+So, if this expression
+evaluated to 1, 
+because the remote job was owned by one of the preferred users,
+it would be a larger value than any other
+user for whom the expression would evaluate to 0.
+
+<P>
+A more complex <TT>RANK</TT> expression
+has the same basic set up,
+where anyone from the group has priority on their fast machines.
+Its difference is that
+the machine owner has better priority on their own machine.
+To set this up for Garrison's machine (<TT>bass</TT>),
+place the following entry in the local configuration file 
+of machine <TT>bass</TT>:
+<PRE>
+  RANK = (Owner == "coltrane") + (Owner == "tyner") \
+    + ((Owner == "garrison") * 10) + (Owner == "jones")
+</PRE>
+Note that the parentheses in this expression are important, because 
+the <TT>+</TT> operator has higher default precedence than <TT>==</TT>.
+
+<P>
+The use of <TT>+</TT> instead of <TT>||</TT> allows us to 
+distinguish which terms matched and which ones did not.
+If anyone not in the research group quartet was running a job on
+the machine called <TT>bass</TT>,
+the <TT>RANK</TT> would evaluate numerically to 0, since none
+of the boolean terms evaluates to 1, and 0+0+0+0 still equals 0.
+
+<P>
+Suppose Elvin Jones submits a job.
+His job would match the <TT>bass</TT> machine,
+assuming <TT>START</TT> evaluated to <TT>True</TT> for him at that time.
+The <TT>RANK</TT> would numerically evaluate to 1.
+Therefore, the Elvin Jones job could preempt the Condor job currently running.
+Further assume that later Jimmy Garrison submits a job.
+The <TT>RANK</TT> evaluates to 10 on machine <TT>bass</TT>, 
+since the boolean that matches gets multiplied by 10.
+Due to this, Jimmy Garrison's job could preempt Elvin Jones' job
+on the <TT>bass</TT> machine where Jimmy Garrison's jobs are preferred.
+
+<P>
+The <TT>RANK</TT> expression is not required to reference the
+<TT>Owner</TT> of the jobs.
+Perhaps there is one machine with an enormous amount of memory,
+and others with not much at all.
+Perhaps configure this
+large-memory machine to prefer to run jobs with larger memory
+requirements:
+<PRE>
+  RANK = ImageSize
+</PRE>
+
+<P>
+That's all there is to it.
+The bigger the job, the more this machine wants to run it.
+It is an altruistic preference, always servicing
+the largest of jobs, no matter who submitted them.
+A little less altruistic is the <TT>RANK</TT> on Coltrane's machine that
+prefers John Coltrane's jobs over those with the largest
+<TT>Imagesize</TT>:
+<PRE>
+  RANK = (Owner == "coltrane" * 1000000000000) + Imagesize
+</PRE>
+This <TT>RANK</TT> does not work if a job is submitted with an image
+size of more <IMG
+ WIDTH="38" HEIGHT="18" ALIGN="BOTTOM" BORDER="0"
+ SRC="img59.png"
+ ALT="$10^{12}$"> Kbytes.
+However, with that size, this <TT>RANK</TT> expression
+preferring that job would not be Condor's
+only problem! 
+
+<P>
+
+<H2><A NAME="SECTION00455000000000000000"></A><A NAME="sec:States"></A>
+<BR>
+3.5.5  Machine States
+</H2>
+
+<P>
+<A NAME="27225"></A>
+<A NAME="27226"></A>
+A machine is assigned a <I>state</I> by Condor.
+The state depends on whether or not the machine is available to run Condor
+jobs, and if so, what point in the negotiations has been reached.
+The possible states are
+
+<P>
+<DL>
+<DD><A NAME="27229"></A>
+<A NAME="27230"></A>
+</DD>
+<DT><STRONG>Owner</STRONG></DT>
+<DD>The machine is being used by the machine owner, and/or
+is not available to run Condor jobs.
+  When the machine first starts up, it begins in this state.
+
+<P>
+<A NAME="27231"></A>
+<A NAME="27232"></A>
+</DD>
+<DT><STRONG>Unclaimed</STRONG></DT>
+<DD>The machine is available to run Condor jobs, but it is
+  not currently doing so.
+
+<P>
+<A NAME="27233"></A>
+<A NAME="27234"></A>
+</DD>
+<DT><STRONG>Matched</STRONG></DT>
+<DD>The machine is available to run jobs, and it has been
+  matched by the negotiator with a specific schedd.
+  That schedd just has not yet claimed this machine.
+  In this state, the machine is unavailable for further matches.
+
+<P>
+<A NAME="27235"></A>
+<A NAME="27236"></A>
+</DD>
+<DT><STRONG>Claimed</STRONG></DT>
+<DD>The machine has been claimed by a schedd. 
+
+<P>
+<A NAME="27237"></A>
+<A NAME="27238"></A>
+</DD>
+<DT><STRONG>Preempting</STRONG></DT>
+<DD>The machine was claimed by a schedd, but is now
+  preempting that claim for one of the following reasons.
+  
+<OL>
+<LI>the owner of the machine came back
+</LI>
+<LI>another user with higher priority has jobs waiting to run
+</LI>
+<LI>another request that this resource would rather serve was found
+  
+</LI>
+</OL>
+
+<P>
+<A NAME="27241"></A>
+<A NAME="27242"></A>
+</DD>
+<DT><STRONG>Backfill</STRONG></DT>
+<DD>The machine is running a backfill computation while
+  waiting for either the machine owner to come back or to be matched
+  with a Condor job.
+  This state is only entered if the machine is specifically configured
+  to enable backfill jobs.
+
+<P>
+<A NAME="27243"></A>
+<A NAME="27244"></A>
+</DD>
+<DT><STRONG>Drained</STRONG></DT>
+<DD>The machine is not running jobs, because it is being
+  drained.  One reason a machine may be drained is to consolidate
+  resources that have been divided in a partitionable slot.
+  Consolidating the resources gives large jobs a chance to run.
+
+<P>
+</DD>
+</DL>
+
+<P>
+Figure&nbsp;<A HREF="#fig:machine-states">3.1</A> shows
+the states and the possible transitions between the states.
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:machine-states"></A><A NAME="27804"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 3.1:</STRONG>
+Machine States</CAPTION>
+<TR><TD>
+<DIV ALIGN="CENTER"><IMG
+ WIDTH="788" HEIGHT="402" ALIGN="BOTTOM" BORDER="0"
+ SRC="img60.png"
+ ALT="\includegraphics{admin-man/states.eps}">
+</DIV></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+Each transition is labeled with a letter.
+The cause of each transition is described below.
+
+<P>
+
+<UL>
+<LI>Transitions out of the Owner state
+
+<P>
+<DL>
+<DT><STRONG>A</STRONG></DT>
+<DD>The machine switches from Owner to Unclaimed whenever the
+  <TT>START</TT> expression no longer locally evaluates to FALSE.
+  This indicates that the machine is potentially available to run a
+  Condor job.
+
+<P>
+</DD>
+<DT><STRONG>N</STRONG></DT>
+<DD>The machine switches from the Owner to the Drained state
+  whenever draining of the machine is initiated,
+  for example by <I>condor_drain</I> or by the <I>condor_defrag</I> daemon.
+
+<P>
+</DD>
+</DL>
+
+<P>
+</LI>
+<LI>Transitions out of the Unclaimed state
+
+<P>
+<DL>
+<DT><STRONG>B</STRONG></DT>
+<DD>The machine switches from Unclaimed back to Owner whenever the
+  <TT>START</TT> expression locally evaluates to FALSE.
+  This indicates that the machine is unavailable to run a Condor job
+  and is in use by the resource owner.
+
+<P>
+</DD>
+<DT><STRONG>C</STRONG></DT>
+<DD>The transition from Unclaimed to Matched happens whenever the
+  <I>condor_negotiator</I> matches this resource with a Condor job.
+
+<P>
+</DD>
+<DT><STRONG>D</STRONG></DT>
+<DD>The transition from Unclaimed directly to Claimed also happens
+  if the <I>condor_negotiator</I> matches this resource with a Condor job.
+  In this case the <I>condor_schedd</I> receives the match and initiates
+  the claiming protocol with the machine before the <I>condor_startd</I>
+  receives the match notification from the <I>condor_negotiator</I>.
+
+<P>
+</DD>
+<DT><STRONG>E</STRONG></DT>
+<DD>The transition from Unclaimed to Backfill happens if the
+  machine is configured to run backfill computations (see
+  section&nbsp;<A HREF="3_12Setting_Up.html#sec:Backfill">3.12.10</A>) and the <TT>START_BACKFILL</TT>
+  expression evaluates to TRUE.
+
+<P>
+</DD>
+<DT><STRONG>P</STRONG></DT>
+<DD>The transition from Unclaimed to Drained happens
+  if draining of the machine is initiated,
+  for example by <I>condor_drain</I> or by the <I>condor_defrag</I> daemon.
+
+<P>
+</DD>
+</DL>
+
+<P>
+</LI>
+<LI>Transitions out of the Matched state
+
+<P>
+<DL>
+<DT><STRONG>F</STRONG></DT>
+<DD>The machine moves from Matched to Owner if either the
+  <TT>START</TT> expression locally evaluates to FALSE, or if the 
+  <TT>MATCH_TIMEOUT</TT> <A NAME="27971"></A> <A NAME="27972"></A> timer expires.
+  This timeout is used to ensure that if a machine is matched with a
+  given <I>condor_schedd</I>, but that <I>condor_schedd</I> does not contact the
+  <I>condor_startd</I> to claim it, that the machine will give up on the
+  match and become available to be matched again.
+  In this case, since the <TT>START</TT> expression does not locally
+  evaluate to FALSE, as soon as transition <B>F</B> is complete, the
+  machine will immediately enter the Unclaimed state again (via
+  transition <B>A</B>).
+  The machine might also go from Matched to Owner if the
+  <I>condor_schedd</I> attempts to perform the claiming protocol but
+  encounters some sort of error.
+  Finally, the machine will move into the Owner state if the
+  <I>condor_startd</I> receives a <I>condor_vacate</I> command while it is in
+  the Matched state.
+
+<P>
+</DD>
+<DT><STRONG>G</STRONG></DT>
+<DD>The transition from Matched to Claimed occurs when the
+  <I>condor_schedd</I> successfully completes the claiming protocol with
+  the <I>condor_startd</I>.
+
+<P>
+</DD>
+</DL>
+
+<P>
+</LI>
+<LI>Transitions out of the Claimed state
+
+<P>
+<DL>
+<DT><STRONG>H</STRONG></DT>
+<DD>From the Claimed state, the only possible destination is the
+  Preempting state.
+  This transition can be caused by many reasons:
+  
+<UL>
+<LI>The <I>condor_schedd</I> that has claimed the machine has no more
+    work to perform and releases the claim
+</LI>
+<LI>The <TT>PREEMPT</TT> expression evaluates to TRUE (which usually
+    means the resource owner has started using the machine again and
+    is now using the keyboard, mouse, CPU, etc)  
+</LI>
+<LI>The <I>condor_startd</I> receives a <I>condor_vacate</I> command
+</LI>
+<LI>The <I>condor_startd</I> is told to shutdown (either via a signal
+    or a <I>condor_off</I> command)
+</LI>
+<LI>The resource is matched to a job with a better priority
+    (either a better user priority, or one where the machine rank is
+    higher)
+  
+</LI>
+</UL>
+
+<P>
+</DD>
+</DL>
+
+<P>
+</LI>
+<LI>Transitions out of the Preempting state
+
+<P>
+<DL>
+<DT><STRONG>I</STRONG></DT>
+<DD>The resource will move from Preempting back to Claimed if the
+  resource was matched to a job with a better priority.
+
+<P>
+</DD>
+<DT><STRONG>J</STRONG></DT>
+<DD>The resource will move from Preempting to Owner if the
+  <TT>PREEMPT</TT> expression had evaluated to TRUE, if <I>condor_vacate</I>
+  was used, or if the <TT>START</TT> expression locally evaluates to
+  FALSE when the <I>condor_startd</I> has finished evicting whatever job it
+  was running when it entered the Preempting state.
+
+<P>
+</DD>
+</DL>
+
+<P>
+</LI>
+<LI>Transitions out of the Backfill state
+
+<P>
+<DL>
+<DT><STRONG>K</STRONG></DT>
+<DD>The resource will move from Backfill to Owner for the
+  following reasons:
+  
+<UL>
+<LI>The <TT>EVICT_BACKFILL</TT> expression evaluates to TRUE
+</LI>
+<LI>The <I>condor_startd</I> receives a <I>condor_vacate</I> command
+</LI>
+<LI>The <I>condor_startd</I> is being shutdown
+  
+</LI>
+</UL>
+
+<P>
+</DD>
+<DT><STRONG>L</STRONG></DT>
+<DD>The transition from Backfill to Matched occurs whenever a
+  resource running a backfill computation is matched with a
+  <I>condor_schedd</I> that wants to run a Condor job.
+
+<P>
+</DD>
+<DT><STRONG>M</STRONG></DT>
+<DD>The transition from Backfill directly to Claimed is similar
+  to the transition from Unclaimed directly to Claimed.
+  It only occurs if the <I>condor_schedd</I> completes the claiming
+  protocol before the <I>condor_startd</I> receives the match notification
+  from the <I>condor_negotiator</I>.
+
+<P>
+</DD>
+</DL>
+
+<P>
+</LI>
+<LI>Transitions out of the Drained state
+
+<P>
+<DL>
+<DT><STRONG>O</STRONG></DT>
+<DD>The transition from Drained to Owner state happens when
+  draining is finalized or is canceled.  When a draining request is
+  made, the request either asks for the machine to stay in a Drained
+  state until canceled, or it asks for draining to be automatically
+  finalized once all slots have finished draining.
+
+<P>
+</DD>
+</DL>
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<H3><A NAME="SECTION00455100000000000000"></A><A NAME="sec:ClaimedState"></A>
+<A NAME="27316"></A>
+<A NAME="27317"></A>
+<BR>
+3.5.5.1  The Claimed State and Leases
+</H3>
+
+<P>
+When a <I>condor_schedd</I> claims a <I>condor_startd</I>, there is a claim lease.
+So long as the keep alive updates from the <I>condor_schedd</I> to the
+<I>condor_startd</I> continue to arrive, the lease is reset.
+If the lease duration passes with no updates,
+the <I>condor_startd</I> drops the claim and evicts any jobs the
+<I>condor_schedd</I> sent over.
+
+<P>
+The alive interval is the amount of time between,
+or the frequency at which the <I>condor_schedd</I> sends keep alive updates 
+to all <I>condor_schedd</I> daemons.
+An alive update resets the claim lease at the <I>condor_startd</I>.
+Updates are UDP packets.
+
+<P>
+Initially, as when the <I>condor_schedd</I> starts up,
+the alive interval starts at the value set by the 
+configuration variable <TT>ALIVE_INTERVAL</TT> <A NAME="28047"></A> <A NAME="28048"></A>.  
+It may be modified when a job is started.
+The job's ClassAd attribute <TT>JobLeaseDuration</TT> is checked.
+If the value of <TT>JobLeaseDuration/3</TT> is less than the current
+alive interval,
+then the alive interval is set to either this lower value
+or the imposed lowest limit on the alive interval of 10 seconds.
+Thus, the alive interval starts at <TT>ALIVE_INTERVAL</TT> and goes down,
+never up.
+
+<P>
+If a claim lease expires,
+the <I>condor_startd</I> will drop the claim.
+The length of the claim lease is 
+the job's ClassAd attribute <TT>JobLeaseDuration</TT>.
+<TT>JobLeaseDuration</TT> defaults to 20 minutes time,
+except when explicitly
+set within the job's submit description file.
+If <TT>JobLeaseDuration</TT> is explicitly set to 0, 
+or it is not set as may be the case for a Web Services job
+that does not define the attribute, 
+then <TT>JobLeaseDuration</TT> is given the Undefined value.
+Further, when undefined,
+the claim lease duration is calculated with
+<TT>MAX_CLAIM_ALIVES_MISSED * alive interval</TT>.
+The alive interval is the <I>current</I> value,
+as sent by the <I>condor_schedd</I>.
+If the <I>condor_schedd</I> reduces the current alive interval,
+it does not update the <I>condor_startd</I>.
+
+<P>
+
+<H2><A NAME="SECTION00456000000000000000"></A><A NAME="sec:Activities"></A>
+<BR>
+3.5.6 Machine Activities
+</H2>
+
+<P>
+<A NAME="27343"></A>
+<A NAME="27344"></A>
+Within some machine states,
+<I>activities</I> of the machine are defined.
+The state has meaning regardless of activity.
+Differences between activities are significant.
+Therefore, a ``state/activity'' pair describes
+a machine.
+The following list describes all the possible state/activity pairs.
+
+<P>
+
+<UL>
+<LI>Owner
+<DL>
+<DD><A NAME="27348"></A>
+</DD>
+<DT><STRONG>Idle</STRONG></DT>
+<DD>This is the only activity for Owner state.  As far as
+  Condor is concerned the machine is Idle, since it is not doing
+  anything for Condor.
+</DD>
+</DL>
+
+<P>
+<A NAME="27350"></A>
+</LI>
+<LI>Unclaimed
+<DL>
+<DT><STRONG>Idle</STRONG></DT>
+<DD>This is the normal activity of Unclaimed machines.
+    The machine is still Idle in that the machine owner is willing to
+    let Condor jobs run, but Condor is not using the
+    machine for anything.
+
+<P>
+<A NAME="27352"></A>
+  
+</DD>
+<DT><STRONG>Benchmarking</STRONG></DT>
+<DD>The machine is running benchmarks to
+    determine the speed on this machine.
+    This activity only occurs in the Unclaimed state.
+    How often the activity occurs is
+    determined by the <TT>RUNBENCHMARKS</TT> expression.
+</DD>
+</DL>
+
+<P>
+</LI>
+<LI>Matched
+<DL>
+<DT><STRONG>Idle</STRONG></DT>
+<DD>When Matched, the machine is still Idle to Condor.
+</DD>
+</DL>
+
+<P>
+</LI>
+<LI>Claimed
+<DL>
+<DT><STRONG>Idle</STRONG></DT>
+<DD>In this activity, the machine has been claimed, but the
+  schedd that claimed it has yet to <I>activate</I> the claim by
+  requesting a <I>condor_starter</I> to be spawned to service a job.
+  The machine returns to this state (usually briefly) when jobs
+  (and therefore <I>condor_starter</I>) finish.
+
+<P>
+<A NAME="27361"></A>
+</DD>
+<DT><STRONG>Busy</STRONG></DT>
+<DD>Once a <I>condor_starter</I> has been started and the claim is
+  active, the machine moves to the Busy activity to signify that it is
+  doing something as far as Condor is concerned.
+
+<P>
+<A NAME="27363"></A>
+</DD>
+<DT><STRONG>Suspended</STRONG></DT>
+<DD>If the job is suspended by Condor, the machine goes
+  into the Suspended activity.
+  The match between the schedd and machine has not been broken (the
+  claim is still valid), but the job is not making any progress and
+  Condor is no longer generating a load on the machine.
+
+<P>
+<A NAME="27364"></A>
+</DD>
+<DT><STRONG>Retiring</STRONG></DT>
+<DD>When an active claim is about to be preempted for any
+reason, it enters retirement, while it waits for the current job to
+finish.  The <TT>MaxJobRetirementTime</TT> expression determines how
+long to wait (counting since the time the job started).  Once the job
+finishes or the retirement time expires, the Preempting state is
+entered.
+</DD>
+</DL>
+
+<P>
+</LI>
+<LI>Preempting
+  The preempting state is used for evicting a Condor job from a given
+  machine.
+  When the machine enters the Preempting state, it checks the
+  <TT>WANT_VACATE</TT> expression to determine its activity.
+
+<P>
+<DL>
+<DD><A NAME="27369"></A>
+</DD>
+<DT><STRONG>Vacating</STRONG></DT>
+<DD>In the Vacating activity, the job that was running is
+  in the process of checkpointing.
+  As soon as the checkpoint process completes,
+  the machine moves into either the Owner state or the
+  Claimed state, depending on the reason for its preemption.
+
+<P>
+<A NAME="27370"></A>
+</DD>
+<DT><STRONG>Killing</STRONG></DT>
+<DD>Killing means that the machine has requested the running
+  job to exit the machine immediately, without checkpointing.
+</DD>
+</DL>
+
+<P>
+<A NAME="27372"></A>
+</LI>
+<LI>Backfill
+<DL>
+<DT><STRONG>Idle</STRONG></DT>
+<DD>The machine is configured to run backfill jobs and is
+  ready to do so, but it has not yet had a chance to spawn a backfill
+  manager (for example, the BOINC client).
+
+<P>
+</DD>
+<DT><STRONG>Busy</STRONG></DT>
+<DD>The machine is performing a backfill computation.
+
+<P>
+</DD>
+<DT><STRONG>Killing</STRONG></DT>
+<DD>The machine was running a backfill computation, but it
+  is now killing the job to either return resources to the machine
+  owner, or to make room for a regular Condor job.
+
+<P>
+</DD>
+</DL>
+
+<P>
+<A NAME="27375"></A>
+</LI>
+<LI>Drained
+<DL>
+<DT><STRONG>Idle</STRONG></DT>
+<DD>All slots have been drained.
+
+<P>
+</DD>
+<DT><STRONG>Retiring</STRONG></DT>
+<DD>This slot has been drained.  It is waiting for other
+  slots to finish draining.
+
+<P>
+</DD>
+</DL>
+
+<P>
+</LI>
+</UL>
+
+<P>
+Figure&nbsp;<A HREF="#fig:machine-activities">3.2</A> on
+page&nbsp;<A HREF="3_5Policy_Configuration.html#fig:machine-activities"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> gives the overall view of all
+machine states and activities and shows the possible transitions
+from one to another within the Condor system.  
+Each transition is labeled with a number on the diagram, and
+transition numbers referred to in this manual will be <B>bold</B>.  
+
+<P>
+<A NAME="27382"></A>
+<A NAME="27383"></A>
+<A NAME="27384"></A>
+
+<DIV ALIGN="CENTER"><A NAME="fig:machine-activities"></A><A NAME="27807"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 3.2:</STRONG>
+Machine States and Activities</CAPTION>
+<TR><TD>
+<DIV ALIGN="CENTER"><IMG
+ WIDTH="786" HEIGHT="714" ALIGN="BOTTOM" BORDER="0"
+ SRC="img61.png"
+ ALT="\includegraphics{admin-man/activities.eps}">
+</DIV></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+Various expressions are used to determine when and if many of these
+state and activity transitions occur.  Other transitions are initiated
+by parts of the Condor protocol (such as when the <I>condor_negotiator</I>
+matches a machine with a schedd).  The following section describes the
+conditions that lead to the various state and activity transitions.
+
+<P>
+
+<H2><A NAME="SECTION00457000000000000000"></A><A NAME="sec:State-and-Activity-Transitions"></A>
+<BR>
+3.5.7 State and Activity Transitions
+</H2>
+
+<P>
+<A NAME="27391"></A>
+<A NAME="27392"></A>
+<A NAME="27393"></A>
+<A NAME="27394"></A>
+This section traces through all possible state and activity
+transitions within a machine and describes the conditions under which
+each one occurs.
+Whenever a transition occurs, Condor records when the machine entered its
+new activity and/or new state.
+These times are often used to write expressions that determine
+when further transitions occurred.
+For example, enter the Killing activity if a machine has been in
+the Vacating activity longer than a specified amount of time. 
+
+<P>
+
+<H3><A NAME="SECTION00457100000000000000"></A><A NAME="sec:Owner-State"></A>
+<BR>
+3.5.7.1 Owner State
+</H3>
+
+<P>
+<A NAME="27396"></A>
+<A NAME="27397"></A>
+When the startd is first spawned, the machine it represents enters the
+Owner state. 
+The machine remains in the Owner state while the
+expression <TT>IS_OWNER</TT> <A NAME="28082"></A> <A NAME="28083"></A> is TRUE.
+If the <TT>IS_OWNER</TT> expression is FALSE,
+then the machine transitions to the Unclaimed state.
+The default value for the 
+<TT>IS_OWNER</TT> expression is optimized for a shared resource
+<PRE>
+START =?= FALSE
+</PRE>
+So,
+the machine will remain in the Owner state as long as the <TT>START</TT>
+expression locally evaluates to FALSE.
+Section&nbsp;<A HREF="#sec:Start-Expr">3.5.2</A> provides more detail on the
+<TT>START</TT> expression.
+If the <TT>START</TT> locally evaluates to TRUE or cannot be locally
+evaluated (it evaluates to UNDEFINED), transition <B>1</B>
+occurs and the machine enters the Unclaimed state.
+The <TT>IS_OWNER</TT> expression is locally evaluated by the machine,
+and should not reference job ClassAd attributes, which would be
+UNDEFINED.
+
+<P>
+For dedicated resources, the recommended value for the <TT>IS_OWNER</TT>
+expression is FALSE.
+
+<P>
+The Owner state represents a resource that is in use by its
+interactive owner (for example, if the keyboard is being used).
+The Unclaimed state represents a resource that is neither in use by
+its interactive user, nor the Condor system.
+From Condor's point of view, there is little difference between the
+Owner and Unclaimed states.
+In both cases, the resource is not currently in use by the Condor
+system.
+However, if a job matches the resource's <TT>START</TT> expression, the
+resource is available to run a job, regardless of if it is in the
+Owner or Unclaimed state.
+The only differences between the two states are how the resource shows
+up in <I>condor_status</I> and other reporting tools, and the fact that
+Condor will not run benchmarking on a resource in the Owner state.
+As long as the <TT>IS_OWNER</TT> expression is TRUE, the machine is
+in the Owner State.
+When the <TT>IS_OWNER</TT> expression is FALSE, the machine goes into
+the Unclaimed State.
+
+<P>
+Here is an example that assumes that an <TT>IS_OWNER</TT>
+expression is not present in the configuration.
+If the <TT>START</TT> expression is
+<PRE>
+START = KeyboardIdle &gt; 15 * $(MINUTE) &amp;&amp; Owner == "coltrane"
+</PRE>
+and if <TT>KeyboardIdle</TT> is 34 seconds,
+then the machine would remain in the Owner state.
+Owner is undefined, and
+<code>anything &amp;&amp; FALSE</code> is FALSE.
+
+<P>
+If, however, the <TT>START</TT> expression is
+<PRE>
+        START = KeyboardIdle &gt; 15 * $(MINUTE) || Owner == "coltrane"
+</PRE>
+and <TT>KeyboardIdle</TT> is 34 seconds, then the machine
+leaves the Owner state and becomes Unclaimed.
+This is because
+<code>FALSE || UNDEFINED</code> is UNDEFINED.
+So, while this machine is not available to just anybody,
+if user coltrane has jobs submitted, the machine is willing to run them.
+Any other user's jobs have to wait
+until <TT>KeyboardIdle</TT> exceeds 15 minutes.
+However, since coltrane might claim this resource,
+but has not yet, the machine goes to the Unclaimed state.
+
+<P>
+While in the Owner state, the startd polls the status of the
+machine every <TT>UPDATE_INTERVAL</TT> <A NAME="28106"></A> <A NAME="28107"></A> to see if anything has changed
+that would lead it to a different state.
+This minimizes the impact on the Owner
+while the Owner is using the machine.
+Frequently waking up, computing load averages, checking the access
+times on files, computing free swap space take time,
+and there is nothing
+time critical that the startd needs to be sure to notice as soon as it
+happens.
+If the <TT>START</TT> expression evaluates to TRUE and five
+minutes pass before the startd notices,
+that's a drop in the bucket of high-throughput computing.
+
+<P>
+The machine can only transition to the Unclaimed state from the Owner
+state. It does so when the <TT>IS_OWNER</TT> expression no longer
+evaluates to FALSE.  By default, that happens when <TT>START</TT> no longer
+locally evaluates to FALSE.
+
+<P>
+Whenever the machine is not actively running a job, it will transition
+back to the Owner state if <TT>IS_OWNER</TT> evaluates to TRUE.  Once a
+job is started, the value of <TT>IS_OWNER</TT> does not matter; the job
+either runs to completion or is preempted.  Therefore, you must
+configure the preemption policy if you want to transition back to the
+Owner state from Claimed Busy.
+
+<P>
+If draining of the machine is initiated while in the Owner state, the
+slot transitions to Drained/Retiring (transition <B>36</B>).
+
+<P>
+
+<H3><A NAME="SECTION00457200000000000000"></A><A NAME="sec:Unclaimed-State"></A>
+<A NAME="27432"></A>
+<A NAME="27433"></A>
+<BR>
+3.5.7.2 Unclaimed State
+</H3>
+
+<P>
+If the <TT>IS_OWNER</TT> expression becomes TRUE, then the machine returns
+to the Owner state.
+If the <TT>IS_OWNER</TT> expression becomes FALSE, then the machine remains
+in the Unclaimed state.
+If the <TT>IS_OWNER</TT> expression is not present in the configuration files,
+then the default value for the <TT>IS_OWNER</TT> expression is 
+<PRE>
+START =?= FALSE
+</PRE>
+so that
+while in the Unclaimed state, if the <TT>START</TT> expression locally
+evaluates to FALSE, the machine returns to the Owner state by
+transition <B>2</B>.
+
+<P>
+When in the Unclaimed state,
+the <TT>RUNBENCHMARKS</TT> <A NAME="28123"></A> <A NAME="28124"></A>
+expression is relevant.
+If <TT>RUNBENCHMARKS</TT> evaluates to TRUE while the machine
+is in the Unclaimed state,
+then the machine will transition from the Idle
+activity to the Benchmarking activity (transition <B>3</B>) and
+perform benchmarks to determine <TT>MIPS</TT> and <TT>KFLOPS</TT>.  
+When the benchmarks complete, the machine returns to the Idle activity
+(transition <B>4</B>).
+
+<P>
+The startd automatically inserts an attribute, <TT>LastBenchmark</TT>,
+whenever it runs benchmarks, so commonly <TT>RunBenchmarks</TT> is
+defined in terms of this attribute, for example:
+<PRE>
+        BenchmarkTimer = (CurrentTime - LastBenchmark)
+        RunBenchmarks = $(BenchmarkTimer) &gt;= (4 * $(HOUR))
+</PRE>
+Here, a macro, <TT>BenchmarkTimer</TT> is defined to help write the
+expression.
+This macro holds the time since the last benchmark,
+so when this time exceeds 4 hours, we run the benchmarks again.
+The startd keeps a weighted average of these benchmarking
+results to try to get the most accurate numbers possible.
+This is why
+it is desirable for 
+the startd to run them more than once in its lifetime.
+
+<P>
+<U>NOTE</U>: <TT>LastBenchmark</TT> is initialized to 0 before benchmarks
+have ever been run.
+To have the <I>condor_startd</I> run benchmarks as soon as the machine is
+Unclaimed (if it has not done so already),
+include a term using <TT>LastBenchmark</TT> as in the example above.
+
+<P>
+<U>NOTE</U>: If <TT>RUNBENCHMARKS</TT> is defined and set to something
+other than FALSE, the startd will automatically run one set of
+benchmarks when it first starts up.
+To disable benchmarks, both at startup and at any time thereafter,
+set <TT>RUNBENCHMARKS</TT> to FALSE or comment it out of the
+configuration file.
+
+<P>
+From the Unclaimed state, the machine can go to four other possible
+states: Owner (transition <B>2</B>), Backfill/Idle, Matched, or
+Claimed/Idle.
+
+<P>
+Once the <I>condor_negotiator</I> matches an Unclaimed machine with a
+requester at a given schedd, the negotiator sends a command to both
+parties, notifying them of the match.  
+If the schedd receives that notification and initiates the claiming
+procedure with the machine before the negotiator's message gets to the
+machine, the Match state is skipped,
+and the machine goes
+directly to the Claimed/Idle state (transition <B>5</B>).
+However, normally the machine will enter the Matched state (transition
+<B>6</B>), even if it is only for a brief period of time.
+
+<P>
+If the machine has been configured to perform backfill jobs (see
+section&nbsp;<A HREF="3_12Setting_Up.html#sec:Backfill">3.12.10</A>), while it is in Unclaimed/Idle it will
+evaluate the <TT>START_BACKFILL</TT> <A NAME="28149"></A> <A NAME="28150"></A> expression.
+Once <TT>START_BACKFILL</TT> evaluates to TRUE, the machine will enter
+the Backfill/Idle state (transition <B>7</B>) to begin the process of
+running backfill jobs.
+
+<P>
+If draining of the machine is initiated while in the Unclaimed state,
+the slot transitions to Drained/Retiring (transition <B>37</B>).
+
+<P>
+
+<H3><A NAME="SECTION00457300000000000000"></A><A NAME="sec:Matched-State"></A>
+<A NAME="27468"></A>
+<A NAME="27469"></A>
+<BR>
+3.5.7.3 Matched State
+</H3>
+
+<P>
+The Matched state is not very interesting to Condor.
+Noteworthy in this state is that the machine lies about its <TT>START</TT>
+expression while in this state and says that <TT>Requirements</TT> are
+<TT>False</TT> to prevent being matched again before it has been claimed.
+Also interesting is that
+the startd starts a timer to make sure it does not stay in the
+Matched state too long.
+The timer is set with the <TT>MATCH_TIMEOUT</TT> <A NAME="28160"></A> <A NAME="28161"></A>
+<A NAME="param:MatchTimeout"></A> configuration file macro.
+It is specified in seconds and defaults to 120 (2 minutes).
+If the schedd that was matched with this machine does not
+claim it within this period of time, the machine gives up,
+and goes back into the Owner state via transition <B>8</B>.
+It will probably leave the Owner state right away for the
+Unclaimed state again and wait for another match. 
+
+<P>
+At any time while the machine is in the Matched state, if the
+<TT>START</TT> expression locally evaluates to FALSE, the machine enters
+the Owner state directly (transition <B>8</B>).
+
+<P>
+If the schedd that was matched with the machine claims it before the
+<TT>MATCH_TIMEOUT</TT> expires, the machine goes into the Claimed/Idle
+state (transition <B>9</B>).
+
+<P>
+
+<H3><A NAME="SECTION00457400000000000000"></A><A NAME="sec:Claimed-State"></A>
+<A NAME="27481"></A>
+<A NAME="27482"></A>
+<BR>
+3.5.7.4 Claimed State
+</H3>
+
+<P>
+The Claimed state is certainly the most complex state.
+It has the most possible activities and the most expressions that
+determine its next activities.
+In addition, the <I>condor_checkpoint</I> and <I>condor_vacate</I> commands affect
+the machine when it is in the Claimed state.
+In general, there are two sets of expressions that might take effect.
+They depend on the universe of the request: standard or vanilla.
+The standard universe expressions are the normal expressions.
+For example:
+<PRE>
+        WANT_SUSPEND            = True
+        WANT_VACATE             = $(ActivationTimer) &gt; 10 * $(MINUTE)
+        SUSPEND                 = $(KeyboardBusy) || $(CPUBusy)
+        ...
+</PRE>
+
+<P>
+The vanilla expressions have the string``_VANILLA'' appended to their names.
+For example:
+<PRE>
+        WANT_SUSPEND_VANILLA    = True
+        WANT_VACATE_VANILLA     = True
+        SUSPEND_VANILLA         = $(KeyboardBusy) || $(CPUBusy)
+        ...
+</PRE>
+
+<P>
+Without specific vanilla versions, the normal versions
+will be used for all jobs, including vanilla jobs.  
+In this manual, the normal expressions are referenced.
+The difference exists for the
+the resource owner that might want the machine
+to behave differently for vanilla jobs, since they cannot checkpoint.
+For example, owners may want vanilla jobs to remain suspended for
+longer than standard jobs.
+
+<P>
+While Claimed, the <TT>POLLING_INTERVAL</TT> <A NAME="28174"></A> <A NAME="28175"></A> takes effect, and the
+startd polls the machine much more frequently to evaluate its
+state.
+
+<P>
+If the machine owner starts typing on the console again,
+it is best to notice this as
+soon as possible to be able to start doing whatever 
+the machine owner wants at that point.
+For SMP machines, if any slot is in the Claimed state, the
+startd polls the machine frequently.
+If already polling one slot, it does not
+cost much to evaluate the state of all the slots at
+the same time.
+
+<P>
+There are a variety of events that may cause the startd to try to get
+rid of or temporarily suspend a running job.  Activity on the
+machine's console, load from other jobs, or shutdown of the startd via
+an administrative command are all possible sources of interference.
+Another one is the appearance of a higher priority claim to the
+machine by a different Condor user.
+
+<P>
+Depending on the configuration, the startd may respond quite
+differently to activity on the machine, such as keyboard activity or
+demand for the cpu from processes that are not managed by Condor.  The
+startd can be configured to completely ignore such activity or to
+suspend the job or even to kill it.  A standard configuration for a desktop
+machine might be to go through
+successive levels of getting the job out of the way.
+The first and least costly to the job is suspending it.
+This works for both standard and vanilla jobs.
+If suspending the job for a short while does not satisfy the machine
+owner (the owner is still using the machine after a specific period of
+time), the startd moves on to vacating the job.
+Vacating a standard universe job
+involves performing a checkpoint so that the work already completed
+is not lost.  Vanilla jobs are sent a <I>soft kill signal</I> so that they
+can gracefully shut down if necessary; the default is <code>SIGTERM</code>.
+If vacating does not satisfy the machine owner (usually because it is
+taking too long and the owner wants their machine back <I>now</I>),
+the final, most drastic stage is reached: killing.  
+Killing is a quick death to the job, using a hard-kill signal that cannot
+be intercepted by the application.  For vanilla jobs that do no special
+signal handling, vacating and killing are equivalent.
+
+<P>
+The <TT>WANT_SUSPEND</TT> expression determines if the machine will
+evaluate the <TT>SUSPEND</TT> expression to consider entering the
+Suspended activity.
+The <TT>WANT_VACATE</TT> expression determines what happens when the
+machine enters the Preempting state.
+It will go to the Vacating
+activity or directly to Killing. 
+If one or both of these expressions evaluates to FALSE, the machine
+will skip that stage of getting rid of the job and proceed directly to
+the more drastic stages.
+
+<P>
+When the machine first enters the Claimed state, it goes to the Idle
+activity.  From there, it has two options.  
+It can enter the Preempting state via transition <B>10</B> (if a 
+<I>condor_vacate</I> arrives, or if the <TT>START</TT> expression locally
+evaluates to FALSE),  
+or it can enter the Busy activity (transition <B>11</B>) if the
+schedd that has claimed the machine decides to activate the claim and
+start a job.
+
+<P>
+From Claimed/Busy, the machine can transition to three other state/activity
+pairs.
+The startd evaluates the <TT>WANT_SUSPEND</TT> expression to decide
+which other expressions to evaluate.  
+If <TT>WANT_SUSPEND</TT> is TRUE, then the startd evaluates the
+<TT>SUSPEND</TT> expression.
+If <TT>WANT_SUSPEND</TT> is any value other than TRUE, then the startd will
+evaluate the <TT>PREEMPT</TT> expression and skip the Suspended activity
+entirely.
+By transition, the possible state/activity destinations from Claimed/Busy:
+
+<P>
+<DL>
+<DT><STRONG>Claimed/Idle</STRONG></DT>
+<DD>If the starter that is serving a given job exits
+  (for example because the jobs completes), the machine will go
+  to Claimed/Idle (transition <B>12</B>).
+
+<P>
+</DD>
+<DT><STRONG>Claimed/Retiring</STRONG></DT>
+<DD>If <TT>WANT_SUSPEND</TT> is FALSE and the
+  <TT>PREEMPT</TT> expression is TRUE, the machine enters the
+  Retiring activity (transition <B>13</B>).  From there, it
+  waits for a configurable amount of time for the job to finish
+  before moving on to preemption.
+
+<P>
+Another reason the machine would go from Claimed/Busy to
+  Claimed/Retiring is if the <I>condor_negotiator</I> matched the machine
+  with a ``better'' match.  This better match could either be from the
+  machine's perspective using the startd <TT>RANK</TT> expression,
+  or it could be from the negotiator's perspective due to
+  a job with a higher user priority.
+
+<P>
+Another case resulting in a transition to Claimed/Retiring is when
+  the startd is being shut down.  The only exception is a ``fast''
+  shutdown, which bypasses retirement completely.
+
+<P>
+</DD>
+<DT><STRONG>Claimed/Suspended</STRONG></DT>
+<DD>If both the <TT>WANT_SUSPEND</TT> and
+  <TT>SUSPEND</TT> expressions evaluate to TRUE, the machine
+  suspends the job (transition <B>14</B>).
+
+<P>
+</DD>
+</DL>
+
+<P>
+If a <I>condor_checkpoint</I> command arrives,
+or the <TT>PERIODIC_CHECKPOINT</TT> expression evaluates to TRUE,
+there is no state change.
+The startd has no way of knowing when this process completes,
+so periodic checkpointing can not be another state.
+Periodic checkpointing remains in the Claimed/Busy state
+and appears as a running job.
+
+<P>
+From the Claimed/Suspended state, the following transitions
+may occur:
+
+<P>
+<DL>
+<DT><STRONG>Claimed/Busy</STRONG></DT>
+<DD>If the <TT>CONTINUE</TT> expression evaluates to
+  TRUE, the machine resumes the job and enters the
+  Claimed/Busy state (transition <B>15</B>) or the Claimed/Retiring
+  state (transition <B>16</B>), depending on whether the claim
+  has been preempted.
+
+<P>
+</DD>
+<DT><STRONG>Claimed/Retiring</STRONG></DT>
+<DD>If the <TT>PREEMPT</TT> expression is TRUE, the machine
+  will enter the Claimed/Retiring activity (transition <B>16</B>).
+
+<P>
+</DD>
+<DT><STRONG>Preempting</STRONG></DT>
+<DD>If the claim is in suspended retirement and the
+  retirement time expires, the job enters the Preempting state
+  (transition <B>17</B>).  This is only possible if
+  <TT>MaxJobRetirementTime</TT> <I>decreases</I> during the suspension.
+
+<P>
+</DD>
+</DL>
+
+<P>
+For the Claimed/Retiring state, the following transitions may occur:
+
+<P>
+<DL>
+<DT><STRONG>Preempting</STRONG></DT>
+<DD>If the job finishes or the job's run time exceeds
+the value defined for the job ClassAd attribute <TT>MaxJobRetirementTime</TT>,
+the Preempting state is entered
+(transition <B>18</B>).  The run time is computed from the time when the
+job was started by the startd minus any suspension time.  When retiring
+due to <I>condor_startd</I> daemon shutdown or restart,
+it is possible for the administrator to issue a
+<I>peaceful</I> shutdown command, which causes <TT>MaxJobRetirementTime</TT>
+to effectively be infinite, avoiding any killing of jobs.  It is also
+possible for the administrator to issue a <I>fast</I> shutdown command,
+which causes
+<TT>MaxJobRetirementTime</TT> to be effectively 0.
+
+<P>
+</DD>
+<DT><STRONG>Claimed/Busy</STRONG></DT>
+<DD>If the startd was retiring because of a preempting
+claim only and the preempting claim goes away, the normal Claimed/Busy
+state is resumed (transition <B>19</B>).  If instead the retirement
+is due to owner activity (<TT>PREEMPT</TT>) or the startd is being shut down,
+no unretirement is possible.
+
+<P>
+</DD>
+<DT><STRONG>Claimed/Suspended</STRONG></DT>
+<DD>In exactly the same way that suspension may
+happen from the Claimed/Busy state, it may also happen during the
+Claimed/Retiring state (transition <B>20</B>).
+In this case, when the job continues from suspension, it moves back
+into Claimed/Retiring (transition <B>16</B>) instead of Claimed/Busy
+(transition <B>15</B>).
+
+<P>
+</DD>
+</DL>
+
+<P>
+
+<H3><A NAME="SECTION00457500000000000000"></A><A NAME="sec:Preempting-State"></A>
+<A NAME="27542"></A>
+<A NAME="27543"></A>
+<BR>
+3.5.7.5 Preempting State
+</H3>
+
+<P>
+The Preempting state is less complex than the Claimed state.
+There are two activities.
+Depending on the value of <TT>WANT_VACATE</TT>, a machine will
+be in the
+Vacating activity (if TRUE) or the Killing activity (if FALSE).  
+
+<P>
+While in the Preempting state (regardless of activity) the machine
+advertises its <TT>Requirements</TT> expression as FALSE to signify that
+it is not available for further matches, either because it is about to
+transition
+to the Owner state, or because it has already been matched with
+one preempting match, and further preempting matches are disallowed
+until the machine has been claimed by the new match.
+
+<P>
+The main function of the Preempting state is to get rid of the starter
+associated with the resource.  If the <I>condor_starter</I> associated with
+a given claim exits while the machine is still in the Vacating
+activity, then the job successfully completed a graceful shutdown.
+For standard universe jobs, this means that a checkpoint was saved.
+For other jobs, this means the application was given an opportunity to
+do a graceful shutdown, by intercepting the soft kill signal.
+
+<P>
+If the machine is in the Vacating activity, it keeps evaluating the 
+<TT>KILL</TT> expression.
+As soon as this expression evaluates to TRUE,
+the machine enters the Killing activity (transition <B>21</B>).
+If the Vacating activity lasts for as long as the maximum
+vacating time, then the machine also enters the Killing activity.
+The maximum vacating time is determined by the configuration variable
+<TT>MachineMaxVacateTime</TT> <A NAME="28232"></A> <A NAME="28233"></A>.
+This may be adjusted by the setting of the job ClassAd
+attribute <TT>JobMaxVacateTime</TT>.
+
+<P>
+When the starter exits, or if there was no starter running when the
+machine enters the Preempting state (transition <B>10</B>),
+the other purpose of the Preempting state is completed:
+notifying the schedd that had claimed this machine that the claim is
+broken.
+
+<P>
+At this point, the machine enters either the Owner state by
+transition <B>22</B> (if the job was preempted because the machine
+owner came back) or the Claimed/Idle state by transition <B>23</B>
+(if the job was preempted because a better match was found).
+
+<P>
+If the machine enters the Killing activity, (because either
+<TT>WANT_VACATE</TT> was FALSE or the <TT>KILL</TT> expression evaluated
+to TRUE), it attempts to force the <I>condor_starter</I> to immediately
+kill the underlying Condor job.
+Once the machine has begun to hard kill the Condor job, the
+<I>condor_startd</I> starts a timer, the length of which is defined by the
+<TT>KILLING_TIMEOUT</TT> <A NAME="28247"></A> <A NAME="28248"></A> <A NAME="param:KillingTimeout"></A> macro.
+This macro is defined in seconds and defaults to 30.
+If this timer expires and the machine is still in
+the Killing activity, something has gone seriously wrong with the
+<I>condor_starter</I> and the startd tries to vacate the job immediately by
+sending SIGKILL to all of the <I>condor_starter</I>'s children, and then to
+the <I>condor_starter</I> itself.
+
+<P>
+Once the <I>condor_starter</I> has killed off all the processes associated
+with the job and exited, and once the schedd that had claimed the
+machine is notified that the claim is broken, the machine will leave
+the Preempting/Killing state.
+If the job was preempted because a better match was found, the machine
+will enter Claimed/Idle (transition <B>24</B>).
+If the preemption was caused by the machine owner (the <TT>PREEMPT</TT>
+expression evaluated to TRUE, <I>condor_vacate</I> was used, etc), the
+machine will enter the Owner state (transition <B>25</B>).
+
+<P>
+
+<H3><A NAME="SECTION00457600000000000000"></A><A NAME="sec:Backfill-State"></A>
+<A NAME="27569"></A>
+<A NAME="27570"></A>
+<BR>
+3.5.7.6 Backfill State
+</H3>
+
+<P>
+The Backfill state is used whenever the machine is performing low
+priority background tasks to keep itself busy.
+For more information about backfill support in Condor, see
+section&nbsp;<A HREF="3_12Setting_Up.html#sec:Backfill">3.12.10</A> on page&nbsp;<A HREF="3_12Setting_Up.html#sec:Backfill"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+This state is only used if the machine has been configured to enable
+backfill computation, if a specific backfill manager has been
+installed and configured, and if the machine is otherwise idle (not
+being used interactively or for regular Condor computations).
+If the machine meets all these requirements, and the
+<TT>START_BACKFILL</TT> expression evaluates to TRUE, the machine will
+move from the Unclaimed/Idle state to Backfill/Idle (transition
+<B>7</B>).
+
+<P>
+Once a machine is in Backfill/Idle, it will immediately attempt to
+spawn whatever backfill manager it has been configured to use
+(currently, only the BOINC client is supported as a backfill manager
+in Condor).
+Once the BOINC client is running, the machine will enter
+Backfill/Busy (transition <B>26</B>) to indicate that it is now
+performing a backfill computation.
+
+<P>
+<U>NOTE</U>: On SMP machines, the <I>condor_startd</I> will only spawn a single
+instance of the BOINC client, even if multiple slots are
+available to run backfill jobs.
+Therefore, only the first machine to enter Backfill/Idle will cause a
+copy of the BOINC client to start running.
+If a given slot on an SMP enters the Backfill state and a
+BOINC client is already running under this <I>condor_startd</I>, the
+slot will immediately enter Backfill/Busy without waiting
+to spawn another copy of the BOINC client.
+
+<P>
+If the BOINC client ever exits on its own (which normally wouldn't
+happen), the machine will go back to Backfill/Idle (transition
+<B>27</B>) where it will immediately attempt to respawn the BOINC
+client (and return to Backfill/Busy via transition <B>26</B>).
+
+<P>
+As the BOINC client is running a backfill computation, a number of
+events can occur that will drive the machine out of the Backfill
+state.
+The machine can get matched or claimed for a Condor job, interactive
+users can start using the machine again, the machine might be evicted
+with <I>condor_vacate</I>, or the <I>condor_startd</I> might be shutdown.
+All of these events cause the <I>condor_startd</I> to kill the BOINC client
+and all its descendants, and enter the Backfill/Killing state
+(transition <B>28</B>).
+
+<P>
+Once the BOINC client and all its children have exited the system, the
+machine will enter the Backfill/Idle state to indicate that the BOINC
+client is now gone (transition <B>29</B>).
+As soon as it enters Backfill/Idle after the BOINC client exits, the
+machine will go into another state, depending on what caused the BOINC
+client to be killed in the first place.
+
+<P>
+If the <TT>EVICT_BACKFILL</TT> expression evaluates to TRUE while a
+machine is in Backfill/Busy, after the BOINC client is gone, the
+machine will go back into the Owner/Idle state (transition
+<B>30</B>).
+The machine will also return to the Owner/Idle state after the BOINC
+client exits if <I>condor_vacate</I> was used, or if the <I>condor_startd</I> is
+being shutdown.
+
+<P>
+When a machine running backfill jobs is matched with a requester that
+wants to run a Condor job, the machine will either enter the Matched
+state, or go directly into Claimed/Idle.
+As with the case of a machine in Unclaimed/Idle (described above), the
+<I>condor_negotiator</I> informs both the <I>condor_startd</I> and the
+<I>condor_schedd</I> of the match, and the exact state transitions at the
+machine depend on what order the various entities initiate
+communication with each other.
+If the <I>condor_schedd</I> is notified of the match and sends a request to
+claim the <I>condor_startd</I> before the <I>condor_negotiator</I> has a chance
+to notify the <I>condor_startd</I>, once the BOINC client exits, the
+machine will immediately enter Claimed/Idle (transition <B>31</B>).
+Normally, the notification from the <I>condor_negotiator</I> will reach the
+<I>condor_startd</I> before the <I>condor_schedd</I> attempts to claim it.
+In this case, once the BOINC client exits, the machine will enter
+Matched/Idle (transition <B>32</B>).
+
+<P>
+
+<H3><A NAME="SECTION00457700000000000000"></A><A NAME="sec:Drained-State"></A>
+<A NAME="27602"></A>
+<A NAME="27603"></A>
+<BR>
+3.5.7.7 Drained State
+</H3>
+
+<P>
+The Drained state is used when the machine is being drained,
+for example by <I>condor_drain</I> or by the <I>condor_defrag</I> daemon,
+and the slot has finished running
+jobs and is no longer willing to run new jobs.
+
+<P>
+Slots initially enter the Drained/Retiring state.  Once all slots have
+been drained, the slots transition to the Idle activity (transition
+<B>33</B>).
+
+<P>
+If draining is finalized or canceled, the slot transitions to
+Owner/Idle (transitions <B>34</B> and <B>35</B>).
+
+<P>
+
+<H2><A NAME="SECTION00458000000000000000"></A><A NAME="sec:State-Expression-Summary"></A>
+<A NAME="27610"></A>
+<A NAME="27611"></A>
+<A NAME="27612"></A>
+<A NAME="27613"></A>
+<BR>
+3.5.8 State/Activity Transition Expression Summary
+</H2>
+This section is a summary of the information from the
+previous sections.
+It serves as a quick reference.
+
+<P>
+<DL>
+<DT><STRONG><TT>START</TT> <A NAME="28318"></A> <A NAME="28319"></A></STRONG></DT>
+<DD>When TRUE, the machine is willing to spawn
+  a remote Condor job.
+
+<P>
+</DD>
+<DT><STRONG><TT>RUNBENCHMARKS</TT> <A NAME="28323"></A> <A NAME="28324"></A></STRONG></DT>
+<DD>While in the Unclaimed state, the machine
+  will run benchmarks whenever TRUE.
+
+<P>
+</DD>
+<DT><STRONG><TT>MATCH_TIMEOUT</TT> <A NAME="28328"></A> <A NAME="28329"></A></STRONG></DT>
+<DD>If the machine has been in the Matched
+  state longer than this value, it will transition to the Owner state.
+
+<P>
+</DD>
+<DT><STRONG><TT>WANT_SUSPEND</TT> <A NAME="28333"></A> <A NAME="28334"></A></STRONG></DT>
+<DD>If TRUE, the machine evaluates
+  the <TT>SUSPEND</TT> expression to see if it should transition to the
+  Suspended activity.  
+  If any value other than TRUE, the machine will look at
+  the <TT>PREEMPT</TT> expression.
+
+<P>
+</DD>
+<DT><STRONG><TT>SUSPEND</TT> <A NAME="28340"></A> <A NAME="28341"></A></STRONG></DT>
+<DD>If <TT>WANT_SUSPEND</TT> is TRUE, and the machine
+  is in the Claimed/Busy state, it enters the Suspended activity
+  if <TT>SUSPEND</TT> is TRUE.
+
+<P>
+</DD>
+<DT><STRONG><TT>CONTINUE</TT> <A NAME="28347"></A> <A NAME="28348"></A></STRONG></DT>
+<DD>If the machine is in the Claimed/Suspended
+  state, it enter the Busy activity if <TT>CONTINUE</TT> is TRUE.
+
+<P>
+</DD>
+<DT><STRONG><TT>PREEMPT</TT> <A NAME="28353"></A> <A NAME="28354"></A></STRONG></DT>
+<DD>If the machine is either in the Claimed/Suspended
+  activity, or is in the Claimed/Busy activity and
+  <TT>WANT_SUSPEND</TT> is FALSE, the machine enters the Claimed/Retiring
+  state whenever <TT>PREEMPT</TT> is TRUE. 
+
+<P>
+</DD>
+<DT><STRONG><TT>CLAIM_WORKLIFE</TT> <A NAME="28360"></A> <A NAME="28361"></A></STRONG></DT>
+<DD>If provided, this expression specifies
+the number of seconds during which a claim will continue accepting new
+jobs.  Once this time expires, any existing job may continue to run as
+usual, but once it finishes or is preempted, the claim is closed.
+This may be useful if you want to force periodic renegotiation of
+resources without preemption having to occur.  For example, if you
+have some low-priority jobs which should never be interrupted with
+kill signals, you could prevent them from being killed with
+<TT>MaxJobRetirementTime</TT>, but now high-priority jobs may have to
+wait in line when they match to a machine that is busy running one of
+these uninterruptible jobs.  You can prevent the high-priority jobs
+from ever matching to such a machine by using a rank expression in the
+job or in the negotiator's rank expressions, but then the low-priority
+claim will never be interrupted; it can keep running more jobs.  The
+solution is to use <TT>CLAIM_WORKLIFE</TT> to force the claim to stop
+running additional jobs after a certain amount of time.
+The default value for <TT>CLAIM_WORKLIFE</TT> is -1, which is treated
+as an infinite claim worklife, so claims may be held indefinitely (as
+long as they are not preempted and the schedd does not relinquish
+them, of course).
+
+<P>
+</DD>
+<DT><STRONG><TT>MachineMaxVacateTime</TT> <A NAME="28368"></A> <A NAME="28369"></A></STRONG></DT>
+<DD>When the machine enters the
+Preempting/Vacating state, this expression specifies the maximum
+time in seconds that the <I>condor_startd</I> will wait for the job to
+finish.  The job may adjust the wait time by setting
+<TT>JobMaxVacateTime</TT>.  If the job's setting is less than the
+machine's, the job's is used.  If the job's setting is larger than
+the machine's, the result depends on whether the job has any excess
+retirement time.  If the job has more retirement time left than the
+machine's maximum vacate time setting, then retirement time will be
+converted into vacating time, up to the amount of
+<TT>JobMaxVacateTime</TT>.  Once the vacating time expires, the
+job is hard-killed.  The <TT>KILL</TT> <A NAME="28377"></A> <A NAME="28378"></A> expression may be used
+to abort the graceful shutdown of the job at any time.
+
+<P>
+</DD>
+<DT><STRONG><TT>MAXJOBRETIREMENTTIME</TT> <A NAME="28382"></A> <A NAME="28383"></A></STRONG></DT>
+<DD>If the machine is in the
+Claimed/Retiring state, this expression specifies the maximum time (in
+seconds) that the <I>condor_startd</I> will wait for the job to finish.
+The clock starts when the
+job is started and is paused during any suspension.  The job may
+provide its own expression for <TT>MaxJobRetirementTime</TT>, but this
+can only be used to take <I>less</I> than the time granted by the
+<I>condor_startd</I>, never more.  For convenience, standard universe and
+nice_user jobs are submitted with a default retirement time of 0, so
+they will never wait in retirement unless the user overrides the
+default.
+
+<P>
+The machine enters the Preempting state with the goal of finishing
+shutting down the job by the end of the retirement time.  If the job
+vacating policy grants the job X seconds of vacating time, the
+transition to the Preempting state will happen X seconds before the
+end of the retirement time, so that the hard-killing of the job will not
+happen until the end of the retirement time, if the job does not finish
+shutting down before then.
+
+<P>
+This expression is evaluated in the context of the job ClassAd, so it
+may refer to attributes of the current job as well as machine
+attributes.  The expression is continually re-evaluated while the job
+is running, so it is possible, though unusual, to have an expression
+that changes over time.  For example, if you want the retirement time
+to drop to 0 if an especially high priority job is waiting for the
+current job to retire, you could use <TT>PreemptingRank</TT> in the
+expression.  Example:
+
+<P>
+<PRE>
+MAXJOBRETIREMENTTIME = 3600 * ( \
+  MY.PreemptingRank =?= UNDEFINED || \
+  PreemptingRank &lt; 600)
+</PRE>
+
+<P>
+In this example, the retirement time is 3600 seconds, but if a job gets
+matched to this machine and it has a <TT>PreemptingRank</TT> of 600 or more,
+the retirement time drops to 0 and the current job is immediately preempted.
+
+<P>
+</DD>
+<DT><STRONG><TT>WANT_VACATE</TT> <A NAME="28394"></A> <A NAME="28395"></A></STRONG></DT>
+<DD>This is checked only when the
+  <TT>PREEMPT</TT> expression is TRUE and the machine enters the
+  Preempting state.
+  If <TT>WANT_VACATE</TT> is TRUE, the machine enters the Vacating
+  activity.  
+  If it is FALSE, the machine will proceed directly to the Killing
+  activity.  
+
+<P>
+</DD>
+<DT><STRONG><TT>KILL</TT> <A NAME="28401"></A> <A NAME="28402"></A></STRONG></DT>
+<DD>If the machine is in the Preempting/Vacating state, it
+  enters Preempting/Killing whenever <TT>KILL</TT> is TRUE. 
+
+<P>
+</DD>
+<DT><STRONG><TT>KILLING_TIMEOUT</TT> <A NAME="28407"></A> <A NAME="28408"></A></STRONG></DT>
+<DD>If the machine is in the
+  Preempting/Killing state for longer than <TT>KILLING_TIMEOUT</TT>
+  seconds, the <I>condor_startd</I> sends a SIGKILL to the <I>condor_starter</I>
+  and all its children to try to kill the job as quickly as possible.
+
+<P>
+</DD>
+<DT><STRONG><TT>PERIODIC_CHECKPOINT</TT></STRONG></DT>
+<DD>If the machine is in the
+  Claimed/Busy state and <TT>PERIODIC_CHECKPOINT</TT> is TRUE, the
+  user's job begins a periodic checkpoint.
+
+<P>
+</DD>
+<DT><STRONG><TT>RANK</TT> <A NAME="28419"></A> <A NAME="28420"></A></STRONG></DT>
+<DD>If this expression evaluates to a higher number for
+  a pending resource request than it does for the current request, the
+  machine preempts the current request (enters the
+  Preempting/Vacating state).  When the preemption is complete, the
+  machine enters the Claimed/Idle state with the new resource
+  request claiming it.
+
+<P>
+</DD>
+<DT><STRONG><TT>START_BACKFILL</TT> <A NAME="28424"></A> <A NAME="28425"></A></STRONG></DT>
+<DD>When TRUE, if the machine is otherwise
+  idle, it will enter the Backfill state and spawn a backfill
+  computation (using BOINC).
+
+<P>
+</DD>
+<DT><STRONG><TT>EVICT_BACKFILL</TT> <A NAME="28429"></A> <A NAME="28430"></A></STRONG></DT>
+<DD>When TRUE, if the machine is currently
+  running a backfill computation, it will kill the BOINC client and
+  return to the Owner/Idle state.
+
+<P>
+</DD>
+</DL>
+<A NAME="27662"></A>
+<A NAME="27663"></A>
+<A NAME="27664"></A>
+<A NAME="27665"></A>
+
+<P>
+
+<H2><A NAME="SECTION00459000000000000000"></A><A NAME="sec:Policy-Settings"></A>
+<BR>
+3.5.9 Policy Settings
+</H2>
+
+<P>
+This section describes the default configuration
+policy and then provides examples of extensions to these
+policies.
+
+<P>
+
+<H3><A NAME="SECTION00459100000000000000"></A><A NAME="sec:Default-Policy"></A>
+<BR>
+3.5.9.1 Default Policy Settings
+</H3>
+
+<P>
+<A NAME="27668"></A>
+<A NAME="27669"></A>
+These settings are the default as shipped with Condor.  They have been
+used for many years with no problems.  The vanilla expressions are
+identical to the regular ones. (They are not listed here.  If
+not defined, the standard expressions are used for vanilla jobs
+as well).
+
+<P>
+The following are macros to help write the expressions
+clearly.
+
+<P>
+<DL>
+<DT><STRONG><TT>StateTimer</TT></STRONG></DT>
+<DD>Amount of time in seconds in the current state.
+
+<P>
+</DD>
+<DT><STRONG><TT>ActivityTimer</TT></STRONG></DT>
+<DD>Amount of time in seconds in the current activity. 
+
+<P>
+</DD>
+<DT><STRONG><TT>ActivationTimer</TT></STRONG></DT>
+<DD>Amount of time in seconds that the job has been
+  running on this machine.
+
+<P>
+</DD>
+<DT><STRONG><TT>LastCkpt</TT></STRONG></DT>
+<DD>Amount of time since the last periodic checkpoint.
+
+<P>
+</DD>
+<DT><STRONG><TT>NonCondorLoadAvg</TT></STRONG></DT>
+<DD>The difference between the system load and
+  the Condor load (the load generated by everything but Condor).
+
+<P>
+</DD>
+<DT><STRONG><TT>BackgroundLoad</TT></STRONG></DT>
+<DD>Amount of background load permitted
+  on the machine and still start a Condor job.
+
+<P>
+</DD>
+<DT><STRONG><TT>HighLoad</TT></STRONG></DT>
+<DD>If the <TT>$(NonCondorLoadAvg)</TT> goes over
+  this, the CPU is considered too busy, and eviction of the Condor
+  job should start. 
+
+<P>
+</DD>
+<DT><STRONG><TT>StartIdleTime</TT></STRONG></DT>
+<DD>Amount of time the keyboard must to be idle
+  before Condor will start a job.
+
+<P>
+</DD>
+<DT><STRONG><TT>ContinueIdleTime</TT></STRONG></DT>
+<DD>Amount of time the keyboard must to be idle
+  before resumption of a suspended job.
+
+<P>
+</DD>
+<DT><STRONG><TT>MaxSuspendTime</TT></STRONG></DT>
+<DD>Amount of time a job may be
+  suspended before more drastic measures are taken.
+
+<P>
+</DD>
+<DT><STRONG><TT>KeyboardBusy</TT></STRONG></DT>
+<DD>A boolean expression that evaluates to TRUE
+    when the keyboard is being used.
+
+<P>
+</DD>
+<DT><STRONG><TT>CPUIdle</TT></STRONG></DT>
+<DD>A boolean expression that evaluates to TRUE
+    when the CPU is idle.
+
+<P>
+</DD>
+<DT><STRONG><TT>CPUBusy</TT></STRONG></DT>
+<DD>A boolean expression that evaluates
+    to TRUE when the CPU is busy.
+
+<P>
+</DD>
+<DT><STRONG><TT>MachineBusy</TT></STRONG></DT>
+<DD>The CPU or the Keyboard is busy.
+
+<P>
+</DD>
+<DT><STRONG><TT>CPUIsBusy</TT></STRONG></DT>
+<DD>A boolean value set to the same value as 
+    <TT>CPUBusy</TT>.
+
+<P>
+</DD>
+<DT><STRONG><TT>CPUBusyTime</TT></STRONG></DT>
+<DD>The value 0 if <TT>CPUBusy</TT>
+    is False; the time in seconds since
+    <TT>CPUBusy</TT> became True.
+
+<P>
+</DD>
+</DL>
+
+<P>
+<PRE>
+##  These macros are here to help write legible expressions:
+MINUTE          = 60
+HOUR            = (60 * $(MINUTE))
+StateTimer      = (CurrentTime - EnteredCurrentState)
+ActivityTimer   = (CurrentTime - EnteredCurrentActivity)
+ActivationTimer = (CurrentTime - JobStart)
+LastCkpt        = (CurrentTime - LastPeriodicCheckpoint)
+
+NonCondorLoadAvg        = (LoadAvg - CondorLoadAvg)
+BackgroundLoad          = 0.3
+HighLoad                = 0.5
+StartIdleTime           = 15 * $(MINUTE)
+ContinueIdleTime        = 5 * $(MINUTE)
+MaxSuspendTime          = 10 * $(MINUTE)
+
+KeyboardBusy            = KeyboardIdle &lt; $(MINUTE)
+ConsoleBusy             = (ConsoleIdle  &lt; $(MINUTE))
+CPUIdle                = $(NonCondorLoadAvg) &lt;= $(BackgroundLoad)
+CPUBusy                = $(NonCondorLoadAvg) &gt;= $(HighLoad)
+KeyboardNotBusy         = ($(KeyboardBusy) == False)
+MachineBusy             = ($(CPUBusy) || $(KeyboardBusy)
+</PRE>
+
+<P>
+Macros are defined to want to suspend jobs (instead of
+killing them) in the case of jobs that use little memory,
+when the keyboard is not being used, and for vanilla universe
+jobs.
+We want to gracefully vacate jobs which
+have been running for more than 10 minutes
+or are vanilla universe jobs.
+<PRE>
+WANT_SUSPEND       = ( $(SmallJob) || $(KeyboardNotBusy) \
+                       || $(IsVanilla) )
+WANT_VACATE        = ( $(ActivationTimer) &gt; 10 * $(MINUTE) \
+                       || $(IsVanilla) )
+</PRE>
+
+<P>
+Finally, definitions of the actual expressions.
+Start a job if 
+the keyboard has been idle long enough and
+the load average is low enough OR the machine is currently
+running a Condor job.
+Note that Condor would only run one job at a time.
+It just may prefer to run a different job, as defined by
+the machine rank or user priorities.
+<PRE>
+START        = ( (KeyboardIdle &gt; $(StartIdleTime)) \
+                  &amp;&amp; ( $(CPUIdle) || \
+                       (State != "Unclaimed" &amp;&amp; State != "Owner")) )
+</PRE>
+
+<P>
+Suspend a job if the keyboard has been touched.
+Alternatively, suspend if the CPU has been busy for more than two minutes
+and the job has been running for more than 90 seconds.
+<PRE>
+SUSPEND         = ( $(KeyboardBusy) || \
+                 ( (CpuBusyTime &gt; 2 * $(MINUTE)) \
+                    &amp;&amp; $(ActivationTimer) &gt; 90 ) )
+</PRE>
+
+<P>
+Continue a suspended job if the CPU is idle, the Keyboard has been
+idle for long enough, and the job has been suspended more
+than 10 seconds.
+<PRE>
+CONTINUE        = ( $(CPUIdle) &amp;&amp; ($(ActivityTimer) &gt; 10) \
+                  &amp;&amp; (KeyboardIdle &gt; $(ContinueIdleTime)) )
+</PRE>
+
+<P>
+There are two conditions that signal preemption.
+The first condition is if the job is suspended,
+but it has been suspended too long.
+The second condition is if suspension is not desired and the machine is busy. 
+<PRE>
+PREEMPT	        = ( ((Activity == "Suspended") &amp;&amp; \
+                    ($(ActivityTimer) &gt; $(MaxSuspendTime))) \
+                    || (SUSPEND &amp;&amp; (WANT_SUSPEND == False)) )
+</PRE>
+
+<P>
+Do not give jobs any time to retire on their own when they are about to
+be preempted.
+
+<P>
+<PRE>
+MAXJOBRETIREMENTTIME = 0
+</PRE>
+
+<P>
+Kill jobs that take too long leaving gracefully.
+<PRE>
+MachineMaxVacateTime = 10 * $(MINUTE)
+</PRE>
+
+<P>
+<PRE>
+KILL            = False
+</PRE>
+
+<P>
+Finally, specify periodic checkpointing.  
+For jobs smaller than 60 Mbytes, do a periodic checkpoint every 6 hours.  
+For larger jobs, only checkpoint every 12 hours.
+<PRE>
+PERIODIC_CHECKPOINT     = ( (ImageSize &lt; 60000) &amp;&amp; \
+                            ($(LastCkpt) &gt; (6 * $(HOUR))) ) || \ 
+                          ( $(LastCkpt) &gt; (12 * $(HOUR)) )
+</PRE>
+
+<P>
+<A NAME="27712"></A>
+
+<P>
+At UW-Madison, we have a fast network.
+We simplify our expression considerably to
+<PRE>
+PERIODIC_CHECKPOINT     = $(LastCkpt) &gt; (3 * $(HOUR))
+</PRE>
+
+<P>
+For reference, the entire set of policy settings are included
+once more without comments:
+
+<P>
+<PRE>
+##  These macros are here to help write legible expressions:
+MINUTE          = 60
+HOUR            = (60 * $(MINUTE))
+StateTimer      = (CurrentTime - EnteredCurrentState)
+ActivityTimer   = (CurrentTime - EnteredCurrentActivity)
+ActivationTimer = (CurrentTime - JobStart)
+LastCkpt        = (CurrentTime - LastPeriodicCheckpoint)
+
+NonCondorLoadAvg        = (LoadAvg - CondorLoadAvg)
+BackgroundLoad          = 0.3
+HighLoad                = 0.5
+StartIdleTime           = 15 * $(MINUTE)
+ContinueIdleTime        = 5 * $(MINUTE)
+MaxSuspendTime          = 10 * $(MINUTE)
+
+KeyboardBusy            = KeyboardIdle &lt; $(MINUTE)
+ConsoleBusy             = (ConsoleIdle  &lt; $(MINUTE))
+CPUIdle                = $(NonCondorLoadAvg) &lt;= $(BackgroundLoad)
+CPUBusy                = $(NonCondorLoadAvg) &gt;= $(HighLoad)
+KeyboardNotBusy         = ($(KeyboardBusy) == False)
+MachineBusy             = ($(CPUBusy) || $(KeyboardBusy)
+
+WANT_SUSPEND       = ( $(SmallJob) || $(KeyboardNotBusy) \
+                       || $(IsVanilla) )
+WANT_VACATE        = ( $(ActivationTimer) &gt; 10 * $(MINUTE) \
+                       || $(IsVanilla) )
+START        = ( (KeyboardIdle &gt; $(StartIdleTime)) \
+                  &amp;&amp; ( $(CPUIdle) || \
+                       (State != "Unclaimed" &amp;&amp; State != "Owner")) )
+SUSPEND         = ( $(KeyboardBusy) || \
+                 ( (CpuBusyTime &gt; 2 * $(MINUTE)) \
+                    &amp;&amp; $(ActivationTimer) &gt; 90 ) )
+CONTINUE        = ( $(CPUIdle) &amp;&amp; ($(ActivityTimer) &gt; 10) \
+                  &amp;&amp; (KeyboardIdle &gt; $(ContinueIdleTime)) )
+PREEMPT	        = ( ((Activity == "Suspended") &amp;&amp; \
+                    ($(ActivityTimer) &gt; $(MaxSuspendTime))) \
+                    || (SUSPEND &amp;&amp; (WANT_SUSPEND == False)) )
+MAXJOBRETIREMENTTIME = 0
+MachineMaxVacateTime = 10 * $(MINUTE)
+KILL                 = False
+PERIODIC_CHECKPOINT     = ( (ImageSize &lt; 60000) &amp;&amp; \
+                            ($(LastCkpt) &gt; (6 * $(HOUR))) ) || \ 
+                          ( $(LastCkpt) &gt; (12 * $(HOUR)) )
+</PRE>
+
+<P>
+
+<H3><A NAME="SECTION00459200000000000000"></A><A NAME="sec:Test-job_Policy_Example"></A>
+<BR>
+3.5.9.2 Test-job Policy Example
+</H3>
+
+<P>
+This example shows how the default macros can be used to
+set up a machine for running test jobs from a specific user.
+Suppose we want the machine to
+behave normally, except if user coltrane submits a job.
+In that case, we
+want that job to start regardless of what is happening on the machine.
+We do not want the job suspended, vacated or killed.
+This is reasonable if 
+we know coltrane is submitting very short
+running programs for testing purposes. 
+The jobs should be executed right away.
+This works with any machine
+(or the whole pool, for that matter) by adding the following 5 expressions
+to the existing configuration:
+<PRE>
+        START      = ($(START)) || Owner == "coltrane"
+        SUSPEND    = ($(SUSPEND)) &amp;&amp; Owner != "coltrane"
+        CONTINUE   = $(CONTINUE)
+        PREEMPT    = ($(PREEMPT)) &amp;&amp; Owner != "coltrane"
+        KILL       = $(KILL)
+</PRE>
+Notice that there is nothing special in either the
+<TT>CONTINUE</TT> or <TT>KILL</TT> expressions.
+If Coltrane's jobs never suspend, they never look at <TT>CONTINUE</TT>.  
+Similarly, if they never preempt, they never look at <TT>KILL</TT>. 
+
+<P>
+
+<H3><A NAME="SECTION00459300000000000000"></A><A NAME="sec:Time_of_Day_Policy"></A>
+<BR>
+3.5.9.3 Time of Day Policy
+</H3>
+
+<P>
+<A NAME="27725"></A>
+Condor can be
+configured to only run jobs at
+certain times of the day.
+In general, we discourage configuring a system like this, since you
+can often get lots of good cycles out of machines, even when their
+owners say ``I'm always using my machine during the day.''
+However, if you submit mostly vanilla jobs or other jobs that cannot
+checkpoint, it might be a good idea to only allow the jobs to run when
+you know the machines will be idle and when they will not be
+interrupted.
+
+<P>
+To configure this kind of policy, you should use the <TT>ClockMin</TT>
+and <TT>ClockDay</TT> attributes, defined in
+section&nbsp;<A HREF="#sec:Startd-Attributes">3.5.1</A> on ``Startd ClassAd Attributes''.
+These are special attributes which are automatically inserted by the
+<I>condor_startd</I> into its ClassAd, so you can always reference them in
+your policy expressions.
+<TT>ClockMin</TT> defines the number of minutes that have passed since
+midnight.  
+For example, 8:00am is 8 hours after midnight, or 8 * 60 minutes, or
+480.
+5:00pm is 17 hours after midnight, or 17 * 60, or 1020.
+<TT>ClockDay</TT> defines the day of the week, Sunday = 0, Monday = 1,
+and so on.  
+
+<P>
+To make the policy expressions easy to read, we recommend using macros
+to define the time periods when you want jobs to run or not run.  
+For example, assume regular ``work hours'' at your site are from
+8:00am until 5:00pm, Monday through Friday: 
+
+<P>
+<PRE>
+WorkHours = ( (ClockMin &gt;= 480 &amp;&amp; ClockMin &lt; 1020) &amp;&amp; \
+              (ClockDay &gt; 0 &amp;&amp; ClockDay &lt; 6) ) 
+AfterHours = ( (ClockMin &lt; 480 || ClockMin &gt;= 1020) || \
+               (ClockDay == 0 || ClockDay == 6) )
+</PRE>
+
+<P>
+Of course, you can fine-tune these settings by changing the definition
+of <TT>AfterHours</TT> <A NAME="28464"></A> <A NAME="28465"></A> and <TT>WorkHours</TT> <A NAME="28469"></A> <A NAME="28470"></A> for your site.
+
+<P>
+Assuming you are using the default policy expressions discussed above,
+there are only a few minor changes required to force Condor jobs to
+stay off of your machines during work hours:
+
+<P>
+<PRE>
+# Only start jobs after hours.
+START = $(AfterHours) &amp;&amp; $(CPUIdle) &amp;&amp; KeyboardIdle &gt; $(StartIdleTime)
+
+# Consider the machine busy during work hours, or if the keyboard or
+# CPU are busy.
+MachineBusy = ( $(WorkHours) || $(CPUBusy) || $(KeyboardBusy) )
+</PRE>
+
+<P>
+By default, the <TT>MachineBusy</TT> macro is used to define the
+<TT>SUSPEND</TT> and <TT>PREEMPT</TT> expressions.  
+If you have changed these expressions at your site, you will need to
+add <TT>$(WorkHours)</TT> to your <TT>SUSPEND</TT> and <TT>PREEMPT</TT>
+expressions as appropriate.  
+
+<P>
+Depending on your site, you might also want to avoid suspending jobs
+during work hours, so that in the morning, if a job is running, it
+will be immediately preempted, instead of being suspended for some
+length of time:
+
+<P>
+<PRE>
+WANT_SUSPEND = $(AfterHours)
+</PRE>
+
+<P>
+<A NAME="27746"></A>
+<A NAME="27747"></A>
+
+<H3><A NAME="SECTION00459400000000000000"></A><A NAME="sec:Desktop_Non-Desktop_Policy"></A>
+<BR>
+3.5.9.4 Desktop/Non-Desktop Policy
+</H3>
+
+<P>
+Suppose you have two classes of machines in your pool: desktop
+machines and dedicated cluster machines.  In this case, you might not
+want keyboard activity to have any effect on the dedicated machines.
+For example, when you log into these machines to debug some problem,
+you probably do not want a running job to suddenly be killed.  Desktop
+machines, on the other hand, should do whatever is necessary to remain
+responsive to the user.
+
+<P>
+There are many ways to achieve the desired behavior.  One way is to
+make a standard desktop policy and a standard non-desktop policy and
+to copy the desired one into the local configuration file for each
+machine.  Another way is to define one standard policy (in
+condor_config) with a simple toggle that can be set in the local
+configuration file.  The following example illustrates the latter
+approach.
+
+<P>
+For ease of use, an entire policy is included in this example.  Some of the
+expressions are just the usual default settings.
+
+<P>
+<PRE>
+# If "IsDesktop" is configured, make it an attribute of the machine ClassAd.
+STARTD_ATTRS = IsDesktop
+
+# Only consider starting jobs if:
+# 1) the load average is low enough OR the machine is currently
+#    running a Condor job
+# 2) AND the user is not active (if a desktop)
+START = ( ($(CPUIdle) || (State != "Unclaimed" &amp;&amp; State != "Owner")) \
+          &amp;&amp; (IsDesktop =!= True || (KeyboardIdle &gt; $(StartIdleTime))) )
+
+# Suspend (instead of vacating/killing) for the following cases:
+WANT_SUSPEND = ( $(SmallJob) || $(JustCpu) \
+                 || $(IsVanilla) )
+
+# When preempting, vacate (instead of killing) in the following cases:
+WANT_VACATE  = ( $(ActivationTimer) &gt; 10 * $(MINUTE) \
+                 || $(IsVanilla) )
+
+# Suspend jobs if:
+# 1) The CPU has been busy for more than 2 minutes, AND
+# 2) the job has been running for more than 90 seconds
+# 3) OR suspend if this is a desktop and the user is active
+SUSPEND = ( ((CpuBusyTime &gt; 2 * $(MINUTE)) &amp;&amp; ($(ActivationTimer) &gt; 90)) \
+            || ( IsDesktop =?= True &amp;&amp; $(KeyboardBusy) ) )
+
+# Continue jobs if:
+# 1) the CPU is idle, AND 
+# 2) we've been suspended more than 5 minutes AND
+# 3) the keyboard has been idle for long enough (if this is a desktop)
+CONTINUE = ( $(CPUIdle) &amp;&amp; ($(ActivityTimer) &gt; 300) \
+             &amp;&amp; (IsDesktop =!= True || (KeyboardIdle &gt; $(ContinueIdleTime))) )
+
+# Preempt jobs if:
+# 1) The job is suspended and has been suspended longer than we want
+# 2) OR, we don't want to suspend this job, but the conditions to
+#    suspend jobs have been met (someone is using the machine)
+PREEMPT = ( ((Activity == "Suspended") &amp;&amp; \
+            ($(ActivityTimer) &gt; $(MaxSuspendTime))) \
+           || (SUSPEND &amp;&amp; (WANT_SUSPEND == False)) )
+
+# Replace 0 in the following expression with whatever amount of
+# retirement time you want dedicated machines to provide.  The other part
+# of the expression forces the whole expression to 0 on desktop
+# machines.
+MAXJOBRETIREMENTTIME = (IsDesktop =!= True) * 0
+
+# Kill jobs if they have taken too long to vacate gracefully
+MachineMaxVacateTime = 10 * $(MINUTE)
+KILL = False
+</PRE>
+
+<P>
+With this policy in condor_config, the local configuration files for
+desktops can be easily configured with the following line:
+
+<P>
+<PRE>
+IsDesktop = True
+</PRE>
+
+<P>
+In all other cases, the default policy described above will ignore
+keyboard activity.
+
+<P>
+
+<H3><A NAME="SECTION00459500000000000000"></A><A NAME="sec:Disabling_Preemption"></A>
+<BR>
+3.5.9.5 Disabling Preemption
+</H3>
+
+<P>
+<A NAME="27756"></A>
+<A NAME="27757"></A>
+Preemption can result in jobs being killed by Condor.  When this
+happens, the jobs remain in the queue and will be automatically
+rescheduled.  We highly recommend designing jobs that work well in
+this environment, rather than simply disabling preemption.
+
+<P>
+Planning for preemption makes jobs more robust in the face of other
+sources of failure.  One way to live happily with preemption is to use
+Condor's standard universe, which provides the ability to produce
+checkpoints.
+If a job is incompatible with the requirements of standard universe,
+the job can still gracefully shutdown and restart by intercepting the soft
+kill signal.
+
+<P>
+All that being said, there may be cases where it is appropriate
+to force 
+Condor to never kill jobs within some upper time limit.
+This can be achieved with the following policy in the configuration of
+the execute nodes:
+
+<P>
+<A NAME="27823"></A>
+<A NAME="27824"></A>
+<PRE>
+# When we want to kick a job off, let it run uninterrupted for
+# up to 2 days before forcing it to vacate.
+MAXJOBRETIREMENTTIME = $(HOUR) * 24 * 2
+</PRE>
+<P>
+Construction of this expression may be more complicated.
+For example, it could provide
+a different retirement time to different users or different types of
+jobs.  Also be aware that the job may come with its own definition
+of <TT>MaxJobRetirementTime</TT>, but this may only cause <I>less</I>
+retirement time to be used, never more than what the machine offers.
+
+<P>
+The longer the retirement time that is given, the slower reallocation
+of resources in the pool can become if there are long-running jobs.
+However, by preventing jobs from being killed, 
+you may decrease the number of
+cycles that are wasted on non-checkpointable jobs that are killed.
+That is the basic trade off.
+
+<P>
+Note that the use of <TT>MAXJOBRETIREMENTTIME</TT> limits the killing
+of jobs, but it does not prevent the preemption of resource claims.
+Therefore, it is technically not a way of disabling preemption, but
+simply a way of forcing preempting claims to wait until an existing
+job finishes or runs out of time.  In other words, it limits the preemption
+of jobs but not the preemption of claims.
+
+<P>
+Limiting the preemption of jobs is often more desirable than limiting
+the preemption of resource claims.  
+However, if you really do want to limit the preemption of resource claims,
+the following policy may be used.  Some of these settings apply to the
+execute node and some apply to the central manager, so this policy should
+be configured so that it is read by both.
+
+<P>
+<PRE>
+#Disable preemption by machine activity.
+PREEMPT = False
+#Disable preemption by user priority.
+PREEMPTION_REQUIREMENTS = False
+#Disable preemption by machine RANK by ranking all jobs equally.
+RANK = 0
+#Since we are disabling claim preemption, we
+# may as well optimize negotiation for this case:
+NEGOTIATOR_CONSIDER_PREEMPTION = False
+</PRE>
+<P>
+Be aware of the consequences of this policy. 
+Without any preemption of resource claims, once the 
+<I>condor_negotiator</I> gives
+the <I>condor_schedd</I> a match to a machine,
+the <I>condor_schedd</I> may hold onto this claim indefinitely,
+as long as the user keeps supplying more jobs to run.
+If this is not desired, force claims to be retired after
+some amount of time using <TT>CLAIM_WORKLIFE</TT> <A NAME="28490"></A> <A NAME="28491"></A>. 
+This enforces a time limit, beyond which no new jobs may be started on
+an existing claim; therefore the <I>condor_schedd</I> daemon is forced to go back to
+the <I>condor_negotiator</I> to request a new match, if there is still
+more work to do.  Example execute machine configuration to include in
+addition to the example above:
+
+<P>
+<PRE>
+# after 20 minutes, schedd must renegotiate to run
+# additional jobs on the machine
+CLAIM_WORKLIFE = 1200
+</PRE>
+<P>
+Also be aware that in all versions of Condor prior to 6.8.1, it is
+not advisable to set <TT>NEGOTIATOR_CONSIDER_PREEMPTION</TT> <A NAME="28499"></A> <A NAME="28500"></A> to False,
+because of a bug that can lead to some machines never being
+matched to jobs.
+
+<P>
+
+<H3><A NAME="SECTION00459600000000000000"></A><A NAME="sec:Job-Suspension"></A>
+<A NAME="27777"></A>
+<BR>
+3.5.9.6 Job Suspension
+</H3>
+As new jobs are submitted that receive a higher priority than
+currently executing jobs,
+the executing jobs may be preempted.
+If the preempted jobs are not capable of writing checkpoints,
+they lose whatever forward progress they have made,
+and are sent back to the job queue to await starting over again as
+another machine becomes available.
+An alternative to this is to use suspension to freeze the job while some
+other task runs,
+and then unfreeze it so that it can continue on from where it left off.
+This does not require any special handling in the job,
+unlike most strategies that take checkpoints.
+However, it does require a special configuration of Condor.
+This example implements a policy that allows the job to decide
+whether it should be evicted or suspended.
+The jobs announce their choice through the use of the invented
+job ClassAd attribute <TT>IsSuspendableJob</TT>,
+that is also utilized in the configuration.
+
+<P>
+The implementation of this policy utilizes two categories of slots,
+identified as suspendable or nonsuspendable.
+A job identifies which category of slot it wishes to run on.
+This affects two aspects of the policy:
+
+<UL>
+<LI>Of two jobs that might run on a slot, which job is chosen. 
+The four cases that may occur depend on
+whether the currently running job identifies itself as 
+suspendable or nonsuspendable, and whether the potentially running job
+identifies itself as suspendable or nonsuspendable.
+  
+<OL>
+<LI>If the currently running job is one that identifies 
+  itself as suspendable,
+  and the potentially running job identifies itself as nonsuspendable,
+  the currently running job is suspended, in favor of running the
+  nonsuspendable one.  This occurs independent of the user priority of
+  the two jobs.
+</LI>
+<LI>If both the currently running job and the potentially running job 
+  identify themselves as suspendable,
+  then the relative priorities of the users and the preemption policy 
+  determines whether the new job will replace the existing job.
+</LI>
+<LI>If both the currently running job and the potentially running job 
+  identify themselves as nonsuspendable,
+  then the relative priorities of the users and the preemption policy 
+  determines whether the new job will replace the existing job.
+</LI>
+<LI>If the currently running job is one that identifies 
+  itself as nonsuspendable,
+  and the potentially running job identifies itself as suspendable,
+  the currently running job continues running.
+  
+</LI>
+</OL>
+</LI>
+<LI>What happens to a currently running job that is preempted.
+A job that identifies itself as suspendable will be suspended,
+which means it is frozen in place,
+and will later be unfrozen when the preempting job is finished.
+A job that identifies itself as nonsuspendable is evicted,
+which means it writes a checkpoint, when possible,
+and then is killed.
+The job will return to the idle state in the job queue,
+and it can try to run again in the future.
+</LI>
+</UL>
+
+<P>
+<A NAME="27785"></A>
+<PRE>
+# Lie to Condor, to achieve 2 slots for each real slot
+NUM_CPUS = $(DETECTED_CORES)*2
+# There is no good way to tell Condor that the two slots should be treated
+# as though they share the same real memory, so lie about how much
+# memory we have.
+MEMORY = $(DETECTED_MEMORY)*2
+
+# Slots 1 through DETECTED_CORES are nonsuspendable and the rest are
+# suspendable
+IsSuspendableSlot = SlotID &gt; $(DETECTED_CORES)
+
+# If I am a suspendable slot, my corresponding nonsuspendable slot is
+# my SlotID plus $(DETECTED_CORES)
+NonSuspendableSlotState = eval(strcat("slot",SlotID-$(DETECTED_CORES),"_State")
+
+# The above expression looks at slotX_State, so we need to add
+# State to the list of slot attributes to advertise.
+STARTD_SLOT_ATTRS = $(STARTD_SLOT_ATTRS) State
+
+# For convenience, advertise these expressions in the machine ad.
+STARTD_ATTRS = $(STARTD_ATTRS) IsSuspendableSlot NonSuspendableSlotState
+
+MyNonSuspendableSlotIsIdle = \
+  (NonSuspendableSlotState =!= "Claimed" &amp;&amp; NonSuspendableSlotState =!= "Preempting")
+
+# NonSuspendable slots are always willing to start jobs.
+# Suspendable slots are only willing to start if the NonSuspendable slot is idle.
+START = \
+  IsSuspendableSlot!=True &amp;&amp; IsSuspendableJob=!=True || \
+  IsSuspendableSlot &amp;&amp; IsSuspendableJob==True &amp;&amp; $(MyNonSuspendableSlotIsIdle)
+
+# Suspend the suspendable slot if the other slot is busy.
+SUSPEND = \
+  IsSuspendableSlot &amp;&amp; $(MyNonSuspendableSlotIsIdle)!=True
+
+WANT_SUSPEND = $(SUSPEND)
+
+CONTINUE = ($(SUSPEND)) != True
+</PRE>
+<P>
+Note that in this example, the job ClassAd attribute <TT>IsSuspendableJob</TT>
+has no special meaning to Condor.  It is an invented name chosen
+for this example.
+To take advantage of the policy, a job that wishes to be suspended
+must submit the job so that this attribute is defined.
+The following line should be placed in the job's submit description file:
+<PRE>
++IsSuspendableJob = True
+</PRE>
+
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1438"
+  HREF="3_6Security.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1432"
+  HREF="3_Administrators_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1426"
+  HREF="3_4User_Priorities.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1434"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1436"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1439"
+  HREF="3_6Security.html">3.6 Security</A>
+<B> Up:</B> <A NAME="tex2html1433"
+  HREF="3_Administrators_Manual.html">3. Administrators' Manual</A>
+<B> Previous:</B> <A NAME="tex2html1427"
+  HREF="3_4User_Priorities.html">3.4 User Priorities and</A>
+ &nbsp; <B>  <A NAME="tex2html1435"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1437"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

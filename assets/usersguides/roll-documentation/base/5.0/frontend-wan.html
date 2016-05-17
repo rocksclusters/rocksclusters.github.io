@@ -1,0 +1,285 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+> Installing a Frontend over the Network </TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Roll: Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE=" Installing a Rocks Cluster "
+HREF="installing.html"><LINK
+REL="PREVIOUS"
+TITLE=" Upgrade or Reconfigure Your Existing Frontend "
+HREF="upgrade-frontend.html"><LINK
+REL="NEXT"
+TITLE="Enabling Public Web Access to Your Frontend"
+HREF="enable-www.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Base Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="upgrade-frontend.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 2. Installing a Rocks Cluster</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="enable-www.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="FRONTEND-WAN"
+>2.5. Installing a Frontend over the Network</A
+></H1
+><P
+>This section describes installing a Rocks frontend from a "Central" server
+over the wide area network, a process called WAN kickstart.
+The client frontend will retrieve Rocks Rolls and configuration over the
+Internet, and use these to install itself.</P
+><P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>First, boot the node that will be your new frontend with the Kernel/Boot
+Roll CD (see steps 1 and 2 in the section "<A
+HREF="install-frontend.html"
+>Install Frontend</A
+>").</P
+></LI
+><LI
+><P
+>Then you'll see the screen as described in step 3 in the section
+"<A
+HREF="install-frontend.html"
+>Install Frontend</A
+>".
+Enter the FQDN of your central server in the <EM
+>Hostname of
+Roll Server</EM
+> text box (don't change this value if you want to
+use the default central server) then and click the
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>Download</SAMP
+> button.</P
+><P
+>You'll see a screen that lists all the rolls available on the
+central server.
+Here's an example:</P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/central-1.png"></P
+></DIV
+></LI
+><LI
+><P
+>Now, select the rolls from the central server.
+To select a roll, click the checkbox next to roll.
+For example, this screen shows the <EM
+>area51</EM
+>,
+<EM
+>base</EM
+>, <EM
+>bio</EM
+> and
+<EM
+>viz</EM
+> rolls selected:</P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/central-2.png"></P
+></DIV
+><P
+>Click the <EM
+>Submit</EM
+> button to continue.</P
+></LI
+><LI
+><P
+>Now you'll see a screen similar to the screen below.
+This screen indicates that the <EM
+>area51</EM
+>,
+<EM
+>base</EM
+>, <EM
+>bio</EM
+> and
+<EM
+>viz</EM
+> rolls have been selected.</P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/central-3.png"></P
+></DIV
+></LI
+><LI
+><P
+>To select more rolls from another server, go to step 1 and enter a different
+FQDN.</P
+></LI
+><LI
+><P
+>If you'd like to include CD-based rolls with your Network-based rolls,
+click the <EM
+>CD/DVD-based Roll</EM
+> button and follow the
+instructions in the section "<A
+HREF="install-frontend.html"
+>Install Frontend</A
+>" starting at
+step 4.</P
+></LI
+><LI
+><P
+>When you are finished installing CD-based rolls, you will enter into
+the familiar Rocks installation windows.
+These may change depending on what rolls you have selected.
+Again the section "<A
+HREF="install-frontend.html"
+>Install Frontend</A
+>" has details for
+this process.</P
+></LI
+><LI
+><P
+>The installer will then retrieve the chosen rolls, rebuild the distribution
+with all rolls included, then install the packages.
+Finally, the installer will proceed with the post-section and other
+elements of a standard frontend install.</P
+></LI
+></OL
+><P
+>Your frontend should now be installed and ready to initialize compute nodes
+(see section <A
+HREF="install-compute-nodes.html"
+>Install Compute Nodes</A
+>).</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="upgrade-frontend.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="enable-www.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Upgrade or Reconfigure Your Existing Frontend</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="installing.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Enabling Public Web Access to Your Frontend</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,385 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Configuring the Wall</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Viz Roll: Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Installing"
+HREF="c222.html"><LINK
+REL="PREVIOUS"
+TITLE="Configuring the Frontend"
+HREF="x235.html"><LINK
+REL="NEXT"
+TITLE="Using"
+HREF="c295.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Viz Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/resized-eye.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x235.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 3. Installing</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="c295.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="AEN256"
+>3.4. Configuring the Wall</A
+></H1
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN258"
+>3.4.1. Install the Tile Nodes</A
+></H2
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># insert-ethers</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Select 'Tile' as the appliance type and boot the tile node on the bottom
+left (the bottom node in the first column).  
+Once a node has completed the installation and reboot it will start an X11 
+session but may have the incorrect video resolution, this will get
+fixed later on.</P
+><P
+>After all the tiles in the first column are installed, exit 'insert-ethers'
+by hitting the 'F8' key.
+Then, restart insert-ethers with the flag:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># insert-ethers --cabinet=1</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Now install the bottom node in the second column.</P
+><P
+>Repeat the above process for each node in each column.  Once all the nodes have
+been installed your wall should look like the following.</P
+><P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/wall-nontwin.png"></P
+></DIV
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN270"
+>3.4.2. Multi-Display Support</A
+></H2
+><P
+>The Viz Roll supports the construction of walls with either a single LCD display per machine or multiple displays per machine.  Multiple displays can be grouped together as a single X11 display using TwinView with or without Xinerama, or each display can be an independent X11 display.  The choice of whether to group a host's physical displays together or not is controlled by the <SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks sync tile</SAMP
+> command.</P
+><P
+>The default configuration for Rocks is a single physical display per machine.  If this is your configuration skip to the next section.  If your wall has
+multiple displays per host you will need to create an XML an XML file that describes the physical layout of your wall.  
+The syntax is very simple and the XML itself maps to the 
+dimensions of the wall.  Each <EM
+>col</EM
+> tag describes a vertical
+column of the wall, with the nodes listed top to bottom.  The very first
+<EM
+>col</EM
+> section lists the Tile nodes comprising the far left
+side of the wall, and from there the next section moves to the right.</P
+><DIV
+CLASS="WARNING"
+><P
+></P
+><TABLE
+CLASS="WARNING"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/warning.png"
+HSPACE="5"
+ALT="Warning"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>When connecting a single video card to two display you must connect the
+primary video connector to the LCD above (or to the left) of the secondary
+connector.  This is a requirement of the SAGE software.</P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>	This simplest method to create you layout XML is to start from
+	scratch rather than modifying the defaults as is documented in the
+	non-twinview section above.
+	</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>	&#60;wall&#62;
+
+		&#60;col&#62;
+			&#60;display host="tile-0-0:0.0"/&#62;
+			&#60;display host="tile-0-1:0.0"/&#62;
+			&#60;display host="tile-0-2:0.0"/&#62;
+		&#60;/col&#62;
+		&#60;col&#62;
+			&#60;display host="tile-0-0:0.1"/&#62;
+			&#60;display host="tile-0-1:0.1"/&#62;
+			&#60;display host="tile-0-2:0.1"/&#62;
+		&#60;/col&#62;
+		&#60;col&#62;
+			&#60;display host="tile-1-0:0.0"/&#62;
+			&#60;display host="tile-1-1:0.0"/&#62;
+			&#60;display host="tile-1-2:0.0"/&#62;
+		&#60;/col&#62;
+		&#60;col&#62;
+			&#60;display host="tile-1-0:0.1"/&#62;
+			&#60;display host="tile-1-1:0.1"/&#62;
+			&#60;display host="tile-1-2:0.1"/&#62;
+		&#60;/col&#62;
+		&#60;col&#62;
+			&#60;display host="tile-2-0:0.0"/&#62;
+			&#60;display host="tile-2-1:0.0"/&#62;
+			&#60;display host="tile-2-2:0.0"/&#62;
+		&#60;/col&#62;
+	&#60;/wall&#62;
+	</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>	After you update your tilelayout XML, now apply it to the database:
+	</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>	# rocks add tile layout layout.xml
+	</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>	Finally, reconfigure your tiles:
+	</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>	# rocks sync tile mode=meta
+	</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>	This will generate xorg.conf files for each tile node,
+	copy them to the tile nodes, then restart the X11 server.  Once the
+	Tile nodes restart X11 your wall should look like the following 
+	picture.
+	Note that each display is labeled according the connected Tile
+	node.
+	</P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/wall-twin.png"><DIV
+CLASS="CAPTION"
+><P
+>		Completed installation for a TwinView visualization wall.
+		</P
+></DIV
+></P
+></DIV
+></LI
+></OL
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x235.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="c295.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Configuring the Frontend</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="c222.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Using</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

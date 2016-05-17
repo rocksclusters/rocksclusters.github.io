@@ -1,0 +1,454 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Updating the Roll</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE=" zfs-linux Roll: Users Guide "
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Updating the zfs-linux Roll"
+HREF="updating.html"><LINK
+REL="PREVIOUS"
+TITLE="Updating the zfs-linux Roll"
+HREF="updating.html"><LINK
+REL="NEXT"
+TITLE="Using the zfs-linux Roll"
+HREF="using.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>zfs-linux Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/zfs-linux.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="updating.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 2. Updating the zfs-linux Roll</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="using.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="UPDATING-THE-ROLL"
+>2.1. Updating the Roll</A
+></H1
+><P
+>ZFS on Linux is still an in-development software and has reasonably frequent
+updates. It is often useful to update the zfs software without resorting to
+a full reinstallation of a system.  This section will describe how to do that
+and at the same time make sure the roll is in the <EM
+>local cluster</EM
+> distribution.    </P
+><P
+>This version of the zfs-linux roll requires you to manually build and add the binary version 
+of the roll.</P
+><DIV
+CLASS="WARNING"
+><P
+></P
+><TABLE
+CLASS="WARNING"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/warning.png"
+HSPACE="5"
+ALT="Warning"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>The roll follows the process at http://zfsonlinux.org to build rpms.  This has the effect of 
+installing zfs kernel modules on your frontend. If you do not want this, then you should
+build on a development server appliance.</P
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="UPDATING-THE-ROLL-FROM-GIT"
+>2.1.1. Getting the updated roll source</A
+></H2
+><P
+>If the ZFS source roll is not available for the version of ZFS-on-Linux that
+you require, then you should go to github.com. In particular,
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>https://github.com/rocksclusters/zfs-linux</SAMP
+>. 
+You should clone the repository. THe following shows read-only access to the github repository. 
+<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># git clone https://github.com/rocksclusters/zfs-linux.git 
+# cd zfs-linux
+# make binary-roll</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/note.png"
+HSPACE="5"
+ALT="Note"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>Please see the section on "Installing the Roll" to see a proper build. Remember to add the binary roll (iso image) that was created above and then recreate 
+the distribution on the frontend</P
+><P
+>As a quick reference you should do the following to update the zfs roll with 
+the version you just created. Removal of the old roll is recommended.
+<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks remove roll zfs
+# rocks add roll zfs*iso
+# rocks enable roll zfs
+# (cd /export/rocks/install; rocks create distro)</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>Now that your updated binary has been created and you have properly rebuilt the distribution, you can update the RPMS of 
+a system that has its ZFS RPMS already installed.  If ZFS is running on a node it is recommended to first stop zfs and then unload the zfs modules (this works also for a frontend)
+<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># zfs umount -a 
+# service zfs stop
+# rmmod zfs zcommon znvpair zavl zunicode spl zlib_deflate</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><P
+>At this point, ZFS is no longer active and can be updated. The following should
+properly accomplish the update
+<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># yum clean all 
+# yum update zfs 
+# service start zfs </PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><P
+>The following, very long screen dump illustrates the output of the update process. Please note it can take several minutes for the update to complete because DKMS is rebuilding modules.
+<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>Loading new spl-0.6.2 DKMS files...
+First Installation: checking all kernels...
+Building only for 2.6.32-279.14.1.el6.x86_64
+Building initial module for 2.6.32-279.14.1.el6.x86_64
+Done.
+
+spl:
+Running module version sanity check.
+ - Original module
+   - This kernel never originally had a module by this name
+ - Multiple same named modules!
+   - 2 named spl.ko in /lib/modules/2.6.32-279.14.1.el6.x86_64/
+   - All instances of this module will now be stored for reference purposes ONLY
+   - Storing in /var/lib/dkms/spl/original_module/2.6.32-279.14.1.el6.x86_64/x86_64/collisions/
+     - Stored /lib/modules/2.6.32-279.14.1.el6.x86_64/extra/spl.ko
+     - Stored /lib/modules/2.6.32-279.14.1.el6.x86_64/extra/spl/spl/spl.ko
+ - Installation
+   - Installing to /lib/modules/2.6.32-279.14.1.el6.x86_64/extra/
+
+splat.ko:
+Running module version sanity check.
+ - Original module
+   - This kernel never originally had a module by this name
+ - Multiple same named modules!
+   - 2 named splat.ko in /lib/modules/2.6.32-279.14.1.el6.x86_64/
+   - All instances of this module will now be stored for reference purposes ONLY
+   - Storing in /var/lib/dkms/spl/original_module/2.6.32-279.14.1.el6.x86_64/x86_64/collisions/
+     - Stored /lib/modules/2.6.32-279.14.1.el6.x86_64/extra/splat.ko
+     - Stored /lib/modules/2.6.32-279.14.1.el6.x86_64/extra/spl/splat/splat.ko
+ - Installation
+   - Installing to /lib/modules/2.6.32-279.14.1.el6.x86_64/extra/
+Adding any weak-modules
+
+Running the post_install script:
+
+depmod...
+
+DKMS: install completed.
+  Updating   : zfs-dkms-0.6.2-1.el6.noarch                                                        3/12
+
+DKMS: install completed.
+  Updating   : zfs-dkms-0.6.2-1.el6.noarch                                                        3/12
+Loading new zfs-0.6.2 DKMS files...
+First Installation: checking all kernels...
+Building only for 2.6.32-279.14.1.el6.x86_64
+Building initial module for 2.6.32-279.14.1.el6.x86_64
+Done.
+
+zavl:
+Running module version sanity check.
+Error! Module version 5835515F233A845D5B11799 for zavl.ko
+is not newer than what is already found in kernel 2.6.32-279.14.1.el6.x86_64 (5835515F233A845D5B11799).
+You may override by specifying --force.
+
+znvpair.ko:
+Running module version sanity check.
+ - Original module
+   - This kernel never originally had a module by this name
+ - Installation
+   - Installing to /lib/modules/2.6.32-279.14.1.el6.x86_64/extra/
+
+zunicode.ko:
+Running module version sanity check.
+Error! Module version 943EB776D6CC4E1BCED8C36 for zunicode.ko
+is not newer than what is already found in kernel 2.6.32-279.14.1.el6.x86_64 (943EB776D6CC4E1BCED8C36).
+You may override by specifying --force.
+
+zcommon.ko:
+Running module version sanity check.
+Error! Module version AAFC52164DACC53F936858E for zcommon.ko
+is not newer than what is already found in kernel 2.6.32-279.14.1.el6.x86_64 (AAFC52164DACC53F936858E).
+You may override by specifying --force.
+
+zfs.ko:
+Running module version sanity check.
+ - Original module
+   - This kernel never originally had a module by this name
+ - Installation
+   - Installing to /lib/modules/2.6.32-279.14.1.el6.x86_64/extra/
+
+zpios.ko:
+Running module version sanity check.
+Error! Module version B42A8936432BDCB399805C0 for zpios.ko
+is not newer than what is already found in kernel 2.6.32-279.14.1.el6.x86_64 (B42A8936432BDCB399805C0).
+You may override by specifying --force.
+Adding any weak-modules
+
+Running the post_install script:
+
+depmod...
+
+DKMS: install completed.
+  Updating   : zfs-0.6.2-1.el6.x86_64                                                             4/12
+  Updating   : zfs-dracut-0.6.2-1.el6.x86_64                                                      5/12
+  Updating   : zfs-test-0.6.2-1.el6.x86_64                                                        6/12
+  Cleanup    : zfs-test-0.6.1-1.el6.x86_64                                                        7/12
+  Cleanup    : zfs-0.6.1-1.el6.x86_64                                                             8/12
+  Cleanup    : zfs-dracut-0.6.1-1.el6.x86_64                                                      9/12
+  Cleanup    : zfs-dkms-0.6.1-2.el6.noarch                                                       10/12</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><P
+>You may see an error that lsscsi package does not exist. This is because the 
+package is not part of the standard OS roll, but is part of the CentOS
+Distribution. To fix this problem
+<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># yum --enablerepo=base install lsscsi 
+# yum update
+# reboot</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="updating.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="using.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Updating the zfs-linux Roll</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="updating.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Using the zfs-linux Roll</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,236 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+> Customizing Configuration of Compute Nodes </TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Roll: Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE=" Customizing your Rocks Installation "
+HREF="customization.html"><LINK
+REL="PREVIOUS"
+TITLE=" Adding Packages to Compute Nodes "
+HREF="customization-adding-packages.html"><LINK
+REL="NEXT"
+TITLE=" Adding Applications to Compute Nodes "
+HREF="customization-adding-applications.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Base Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="customization-adding-packages.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 4. Customizing your Rocks Installation</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="customization-adding-applications.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="CUSTOMIZATION-POSTCONFIG"
+>4.2. Customizing Configuration of Compute Nodes</A
+></H1
+><P
+>Create a new XML configuration file that will <EM
+>extend</EM
+>
+the current <SAMP
+CLASS="COMPUTEROUTPUT"
+>compute.xml</SAMP
+> configuration
+file:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># cd /export/rocks/install/site-profiles/5.3/nodes/
+# cp skeleton.xml extend-compute.xml</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Inside <SAMP
+CLASS="COMPUTEROUTPUT"
+>extend-compute.xml</SAMP
+>,
+add your configuration
+scripts that will be run in the <EM
+>post configuration</EM
+>
+step of the Red Hat installer.</P
+><P
+>Put your bash scripts in between the tags
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>&#60;post&#62;</SAMP
+>
+and
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>&#60;/post&#62;</SAMP
+>:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>&#60;post&#62;
+	&#60; !-- insert your scripts here --&#62;
+&#60;/post&#62;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>To apply your customized configuration scripts to compute nodes,
+rebuild the distribution:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># cd /export/rocks/install
+# rocks create distro</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Then, reinstall your compute nodes.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="customization-adding-packages.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="customization-adding-applications.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Adding Packages to Compute Nodes</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="customization.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Adding Applications to Compute Nodes</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

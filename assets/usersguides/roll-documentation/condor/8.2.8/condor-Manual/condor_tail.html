@@ -1,0 +1,239 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<link rel="canonical" href="http://research.cs.wisc.edu/htcondor/manual/current/condor_tail.html">
+
+<TITLE>condor_tail</TITLE>
+<META NAME="description" CONTENT="condor_tail">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="condor_transfer_data.html">
+<LINK REL="previous" HREF="condor_suspend.html">
+<LINK REL="up" HREF="11_Command_Reference.html">
+<LINK REL="next" HREF="condor_transfer_data.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html4342"
+  HREF="condor_transfer_data.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html4336"
+  HREF="11_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html4330"
+  HREF="condor_suspend.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html4338"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html4340"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4343"
+  HREF="condor_transfer_data.html">condor_transfer_data</A>
+<B> Up:</B> <A NAME="tex2html4337"
+  HREF="11_Command_Reference.html">11. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html4331"
+  HREF="condor_suspend.html">condor_suspend</A>
+ &nbsp; <B>  <A NAME="tex2html4339"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html4341"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html4344"
+  HREF="condor_tail.html#SECTION0012581000000000000000">Synopsis</A>
+<LI><A NAME="tex2html4345"
+  HREF="condor_tail.html#SECTION0012582000000000000000">Description</A>
+<LI><A NAME="tex2html4346"
+  HREF="condor_tail.html#SECTION0012583000000000000000">Options</A>
+<LI><A NAME="tex2html4347"
+  HREF="condor_tail.html#SECTION0012584000000000000000">Exit Status</A>
+<LI><A NAME="tex2html4348"
+  HREF="condor_tail.html#SECTION0012585000000000000000">Author</A>
+<LI><A NAME="tex2html4349"
+  HREF="condor_tail.html#SECTION0012586000000000000000">Copyright</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION0012580000000000000000"></A><A NAME="man-condor-tail"></A>
+<BR>
+<I>condor_tail</I>
+</H1> Display the last contents of a running job's standard output or file 
+  
+<P>
+
+<A NAME="88745"></A>
+<A NAME="88746"></A>
+
+<P>
+
+<H2><A NAME="SECTION0012581000000000000000">
+Synopsis</A>
+</H2><B><I>condor_tail</I></B>
+[<B>-help</B>] | [<B>-version</B>]
+
+<P>
+<B><I>condor_tail</I></B>
+[<B>-pool  </B><I>centralmanagerhostname[:portnumber]</I>]
+[<B>-name  </B><I>name</I>]
+[<B>-debug</B>]
+[<B>-maxbytes  </B><I>numbytes</I>]
+[<B>-auto-retry</B>]
+[<B>-follow</B>]
+[<B>-no-stdout</B>]
+[<B>-stderr</B>]
+<I>job-ID</I>
+[<I>-filename1</I>]
+[<I>, -filename2 ... </I>]
+
+<P>
+
+<H2><A NAME="SECTION0012582000000000000000">
+Description</A>
+</H2>
+
+<P>
+<I>condor_tail</I> displays the last bytes of a file in the sandbox
+of a running job identified by the command line argument <I>job-ID</I>.
+<TT>stdout</TT> is tailed by default.
+The number of bytes displayed is limited to 1024, unless changed
+by specifying the <B>-maxbytes</B> option.
+This limit is applied for each individual tail of a file;
+for example, when following a file, the limit is applied each
+subsequent time output is obtained. 
+
+<P>
+
+<H2><A NAME="SECTION0012583000000000000000">
+Options</A>
+</H2>
+  
+<P>
+  <DL>
+<DT><STRONG><B>-help</B></STRONG></DT>
+<DD>Display usage information and exit.
+<BR>    
+</DD>
+<DT><STRONG><B>-version</B></STRONG></DT>
+<DD>Display version information and exit.
+<BR>    
+</DD>
+<DT><STRONG><B>-pool </B><I>centralmanagerhostname[:portnumber]</I></STRONG></DT>
+<DD>Specify a pool by giving the
+        central manager's host name and an optional port number.
+<BR>    
+</DD>
+<DT><STRONG><B>-name </B><I>name</I></STRONG></DT>
+<DD>Query the <I>condor_schedd</I> daemon
+        identified with <I>name</I>.
+<BR>    
+</DD>
+<DT><STRONG><B>-debug</B></STRONG></DT>
+<DD>Display extra debugging information.
+<BR>    
+</DD>
+<DT><STRONG><B>-maxbytes </B><I>numbytes</I></STRONG></DT>
+<DD>Limits the maximum number of bytes
+        transferred per tail access.  
+        If not specified, the maximum number of bytes is 1024.
+<BR>    
+</DD>
+<DT><STRONG><B>-auto-retry</B></STRONG></DT>
+<DD>Retry the tail of the file(s) 
+        every 2 seconds, if the job is not yet running.
+<BR>    
+</DD>
+<DT><STRONG><B>-follow</B></STRONG></DT>
+<DD>Repetitively tail the file(s), 
+        until interrupted.
+<BR>    
+</DD>
+<DT><STRONG><B>-no-stdout</B></STRONG></DT>
+<DD>Do not tail <TT>stdout</TT>. 
+<BR>    
+</DD>
+<DT><STRONG><B>-stderr</B></STRONG></DT>
+<DD>Tail <TT>stderr</TT> instead of <TT>stdout</TT>. 
+<BR>  
+</DD>
+</DL>
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION0012584000000000000000">
+Exit Status</A>
+</H2>
+
+<P>
+The exit status of <I>condor_tail</I> is zero on success.
+
+<P>
+
+<H2><A NAME="SECTION0012585000000000000000">
+Author</A>
+</H2> Center for High Throughput Computing, University of Wisconsin-Madison
+  
+<H2><A NAME="SECTION0012586000000000000000">
+Copyright</A>
+</H2> 
+  Copyright &#169; 1990-2015 Center for High Throughput Computing, 
+  Computer Sciences Department, 
+  University of Wisconsin-Madison, Madison, WI.  All Rights Reserved.  
+	Licensed under the Apache License, Version 2.0.  
+
+  <HR>
+<!--Navigation Panel-->
+<A NAME="tex2html4342"
+  HREF="condor_transfer_data.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html4336"
+  HREF="11_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html4330"
+  HREF="condor_suspend.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html4338"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html4340"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4343"
+  HREF="condor_transfer_data.html">condor_transfer_data</A>
+<B> Up:</B> <A NAME="tex2html4337"
+  HREF="11_Command_Reference.html">11. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html4331"
+  HREF="condor_suspend.html">condor_suspend</A>
+ &nbsp; <B>  <A NAME="tex2html4339"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html4341"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

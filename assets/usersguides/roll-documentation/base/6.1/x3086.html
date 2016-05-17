@@ -1,0 +1,272 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Release 4.3 - changes from 4.2.1</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Release Notes"
+HREF="release-notes.html"><LINK
+REL="PREVIOUS"
+TITLE="Release 5.1 - changes from 5.0"
+HREF="x3032.html"><LINK
+REL="NEXT"
+TITLE=" Release 3.2.0 - changes from 3.1.0 "
+HREF="x3121.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Base</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x3032.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Appendix B. Release Notes</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x3121.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="AEN3086"
+>B.9. Release 4.3 - changes from 4.2.1</A
+></H1
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN3088"
+>B.9.1. New Features</A
+></H2
+><P
+></P
+><UL
+><LI
+><P
+> Rocks Command Line </P
+><P
+> Initial release of the Rocks command line which
+	facilitates non-SQL administrative access to the database. All Rocks
+	commands have a regular structure of "rocks &#60;verb&#62;
+	&#60;component&#62;". For example, to list all hosts that have been
+	discovered by the frontend, execute: "rocks list host".
+	</P
+><P
+>	All rocks commands can be listed by executing: rocks. Also, help is
+	included with each command. For example, for help on the command
+	"rocks add host", execute: "rocks add host help".
+	</P
+><P
+>	For an overview of the Rocks commmand line, see
+	<A
+HREF="http://www.rocksclusters.org/roll-documentation/base/4.3/commandline.html"
+TARGET="_top"
+>Introduction to the Rocks Command Line</A
+>. The reference
+	for all Rocks commands can be found <A
+HREF="http://www.rocksclusters.org/roll-documentation/base/4.3/c229.html"
+TARGET="_top"
+>here</A
+>.
+	</P
+></LI
+><LI
+><P
+> PXE First </P
+><P
+>	Hosts can now be configured in BIOS with a boot order of CD, PXE,
+	Hard Disk (previous releases of Rocks required: CD, Hard Disk, PXE).
+	In combination with the Rocks command line, node-specific installation
+	parameters are easily supported. For details on PXE First, see
+	<A
+HREF="http://www.rocksclusters.org/roll-documentation/base/4.3/boot-order.html"
+TARGET="_top"
+>Boot Order and PXE First</A
+>.
+	</P
+><P
+>	Note: The boot order of (CD, HD, PXE) continues to be supported in
+	Rocks 4.3. That is, existing Rocks clusters can be upgraded without
+	requiring the cluster owner to change any BIOS settings.
+	</P
+></LI
+></UL
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN3103"
+>B.9.2. Enhancements</A
+></H2
+><P
+>	OS: Based on CentOS release 4/update 5 and all updates as of
+	July 4, 2007.
+	</P
+><P
+>Base: Anaconda installer updated to v10.1.1.63.</P
+><P
+>	Base: Performance improvement when building torrent files for the
+	Avalanche Installer.
+	</P
+><P
+>	Base: Database indirects. More flexibility with Rocks variables.
+	</P
+><P
+>Grid: Globus updated to gt4.0.4 with web services.</P
+><P
+>Condor: updated to v6.8.5.</P
+><P
+>PVFS2: updated to v2.6.3.</P
+><P
+>Java: updated to v1.5.0_10.</P
+><P
+>Ganglia: updated to v3.0.4.</P
+><P
+>HPC: Now using OpenMPI and PVM from RedHat distribution.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN3115"
+>B.9.3. Bug Fixes</A
+></H2
+><P
+>	Base: Install now supports machines which have more than 26 disk
+	drives.
+	</P
+><P
+>Base: 411 clients now atomically update files.</P
+><P
+>	Condor: Max heap size properly set for java programs on small and
+	large memory machines.
+	</P
+><P
+>Condor: All logging written to /var/opt/condor.</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x3032.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x3121.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Release 5.1 - changes from 5.0</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="release-notes.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Release 3.2.0 - changes from 3.1.0</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

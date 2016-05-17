@@ -1,0 +1,1392 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+> Compute Node Disk Partitioning </TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE=" Customizing your Rocks Installation "
+HREF="customization.html"><LINK
+REL="PREVIOUS"
+TITLE=" Configuring Additional Ethernet Interfaces "
+HREF="customization-extra-nic.html"><LINK
+REL="NEXT"
+TITLE=" Creating a Custom Kernel RPM "
+HREF="customization-kernel.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Base</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="customization-extra-nic.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 5. Customizing your Rocks Installation</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="customization-kernel.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="CUSTOMIZATION-PARTITIONING"
+>5.5. Compute Node Disk Partitioning</A
+></H1
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="CUSTOMIZATION-DEFAULT-PARTITIONING"
+>5.5.1. Default Disk Partitioning</A
+></H2
+><P
+>The default root partition is 16 GB,
+the default swap partition is 1 GB, and 
+the default /var partition is 4 GB.
+The remainder of the root disk is setup as the partition
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>/state/partition1</SAMP
+>.</P
+><P
+>Only the root disk (the first discovered disk) is partitioned by default.
+To partition all disks connected to a compute node, see the section
+<A
+HREF="customization-partitioning.html#CUSTOMIZATION-MODIFYING-PARTITIONING-DEFAULT"
+>Forcing the Default Partitioning Scheme for All Disks on a Compute Node</A
+>.</P
+><P
+><DIV
+CLASS="TABLE"
+><A
+NAME="AEN1273"
+></A
+><P
+><B
+>Table 5-1.  Compute Node -- Default Root Disk Partition </B
+></P
+><TABLE
+BORDER="1"
+FRAME="border"
+RULES="all"
+CLASS="CALSTABLE"
+><COL><COL><THEAD
+><TR
+><TH
+> Partition Name </TH
+><TH
+> Size </TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>		/
+        </TD
+><TD
+>		16 GB
+        </TD
+></TR
+><TR
+><TD
+>		swap
+        </TD
+><TD
+>		1 GB
+        </TD
+></TR
+><TR
+><TD
+>		/var
+        </TD
+><TD
+>		4 GB
+        </TD
+></TR
+><TR
+><TD
+>		/state/partition1
+        </TD
+><TD
+>		<EM
+> remainder of root disk </EM
+>
+        </TD
+></TR
+></TBODY
+></TABLE
+></DIV
+></P
+><P
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/note.png"
+HSPACE="5"
+ALT="Note"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>After the initial installation, all data in the file systems labeled
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>/state/partitionX</SAMP
+>
+will be preserved over reinstallations.</P
+></TD
+></TR
+></TABLE
+></DIV
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="CUSTOMIZATION-MODIFYING-PARTITIONING-COMPLEX"
+>5.5.2. Customizing Compute Node Disk Partitions</A
+></H2
+><P
+>In Rocks, to specify custom partitioning for a node, one must write code
+in a <SAMP
+CLASS="COMPUTEROUTPUT"
+>&#60;pre&#62;</SAMP
+> section which creates a 
+file named <SAMP
+CLASS="COMPUTEROUTPUT"
+>/tmp/user_partition_info</SAMP
+>.
+with Red Hat kickstart partitioning directives in it.
+This file will be used to create the initial partitioning on a node 
+when no other info is contained in the Frontend data base and the 
+pre-existing partition are not marked by rocks (e.g. /.rocks-release).
+While when reinstalling a node which has partition information 
+already stored in the data base and the local disk are already marked 
+Rocks installer will simply reformat the "/" partition and the "/var" 
+and leave untouched all the other partitions.
+This allows users to fully program their cluster nodes' partitions.
+In the examples below, we'll explore what this means.</P
+><P
+></P
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="CUSTOMIZATION-MODIFYING-PARTITIONING-1"
+>5.5.2.1. Single Disk Example</A
+></H3
+><P
+>Create a new XML node file that will <EM
+>replace</EM
+>
+the current <SAMP
+CLASS="COMPUTEROUTPUT"
+>partition.xml</SAMP
+> XML node
+file:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># cd /export/rocks/install/site-profiles/6.2/nodes/
+# cp skeleton.xml replace-partition.xml</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Inside <SAMP
+CLASS="COMPUTEROUTPUT"
+>replace-partition.xml</SAMP
+>,
+add the following section right after the
+&#60;main&#62; &#60;/main&#62; section:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>&#60;main&#62;
+	&#60;!-- kickstart 'main' commands go here --&#62;
+&#60;/main&#62;
+
+&#60;pre&#62;
+echo "clearpart --all --initlabel --drives=hda
+part / --size 8000 --ondisk hda
+part swap --size 1000 --ondisk hda
+part /mydata --size 1 --grow --ondisk hda" &#38;gt; /tmp/user_partition_info
+&#60;/pre&#62;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>The above example uses a bash script to populate 
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>/tmp/user_partition_info</SAMP
+>.
+This will set up an 8 GB root partition, a 1 GB swap partition, and the
+remainder of the drive
+will be set up as <SAMP
+CLASS="COMPUTEROUTPUT"
+>/mydata</SAMP
+>.
+Additional drives on your compute nodes can be setup in a similar manner
+by changing the <SAMP
+CLASS="COMPUTEROUTPUT"
+>--ondisk</SAMP
+> parameter.</P
+><P
+>In the above example, the syntax of the data in 
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>/tmp/user_partition_info</SAMP
+>
+follows directly from Red Hat's kickstart.
+For more information on the <SAMP
+CLASS="COMPUTEROUTPUT"
+>part</SAMP
+> keyword, see
+<A
+HREF="http://docs.redhat.com/docs/en-US/Red_Hat_Enterprise_Linux/5/html/Installation_Guide/s1-kickstart2-options.html#s2-kickstart2-options-part-example"
+TARGET="_top"
+>Red Hat Enterprise Linux 5 Installation Guide : Kickstart Options</A
+>.</P
+><DIV
+CLASS="WARNING"
+><P
+></P
+><TABLE
+CLASS="WARNING"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/warning.png"
+HSPACE="5"
+ALT="Warning"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>User-specified partition mountpoint names
+(e.g., <SAMP
+CLASS="COMPUTEROUTPUT"
+>/mydata</SAMP
+>)
+cannot be longer than 15 characters.</P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>Then apply this configuration to the distribution by executing:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># cd /export/rocks/install
+# rocks create distro</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>To reformat compute node <SAMP
+CLASS="COMPUTEROUTPUT"
+>compute-0-0</SAMP
+>
+to your specification above, you'll need to first remove the partition
+info for <SAMP
+CLASS="COMPUTEROUTPUT"
+>compute-0-0</SAMP
+> from the database:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks remove host partition compute-0-0</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Then you'll need to remove the file
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>.rocks-release</SAMP
+> from the first
+partition of <EM
+>each disk</EM
+> on the compute node.
+Here's an example script:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>for file in $(mount | awk '{print $3}')
+do
+	if [ -f $file/.rocks-release ]
+	then
+		rm -f $file/.rocks-release
+	fi
+done</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Save the above script as
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>/share/apps/nukeit.sh</SAMP
+>
+and then execute:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># ssh compute-0-0 'sh /share/apps/nukeit.sh'</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Then, reinstall the node:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># ssh compute-0-0 '/boot/kickstart/cluster-kickstart'</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="CUSTOMIZATION-MODIFYING-PARTITIONING-2"
+>5.5.2.2. Software Raid Example</A
+></H3
+><P
+>If you would like to use software RAID on your compute nodes, inside
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>replace-partition.xml</SAMP
+>
+add a section that looks like:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>&#60;pre&#62;
+echo "clearpart --all --initlabel --drives=hda,hdb
+part / --size 8000 --ondisk hda
+part swap --size 1000 --ondisk hda
+
+part raid.00 --size=10000 --ondisk hda
+part raid.01 --size=10000 --ondisk hdb
+
+raid /mydata --level=1 --device=md0 raid.00 raid.01" &#62; /tmp/user_partition_info
+&#60;/pre&#62;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Then apply this configuration to the distribution by executing:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># cd /export/rocks/install
+# rocks create distro</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>To reformat compute node <SAMP
+CLASS="COMPUTEROUTPUT"
+>compute-0-0</SAMP
+>
+to your specification above, you'll need to first remove the partition
+info for <SAMP
+CLASS="COMPUTEROUTPUT"
+>compute-0-0</SAMP
+> from the database:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks remove host partition compute-0-0</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Then you'll need to remove the file
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>.rocks-release</SAMP
+> from the first
+partition of <EM
+>each disk</EM
+> on the compute node.
+Here's an example script:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>for file in $(mount | awk '{print $3}')
+do
+	if [ -f $file/.rocks-release ]
+	then
+		rm -f $file/.rocks-release
+	fi
+done</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Save the above script as
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>/share/apps/nukeit.sh</SAMP
+>
+and then execute:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># ssh compute-0-0 'sh /share/apps/nukeit.sh'</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Then, reinstall the node:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># ssh compute-0-0 '/boot/kickstart/cluster-kickstart'</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="CUSTOMIZATION-MODIFYING-PARTITIONING-3"
+>5.5.2.3. Programmable Partitioning</A
+></H3
+><P
+>Some issues with the above two examples are that 1) you must know the name
+of the disk device (e.g., hda) and, 2) the partitioning will be applied
+to all nodes.
+We can avoid these issues by writing a python program that emits
+node-specific partitioning directives.</P
+><P
+>In the next example, we'll use some Rocks partitioning library code to
+dynamically determine the name of the boot disk.</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>&#60;pre arg="--interpreter /opt/rocks/bin/python"&#62;
+
+import rocks_partition       
+
+membership = '&#38;membership;'
+nodename = '&#38;hostname;'
+
+def doDisk(file, disk):
+        file.write('clearpart --all --initlabel --drives=%s\n' % disk)
+        file.write('part / --size=6000 --fstype=ext3 --ondisk=%s\n' % disk)
+        file.write('part /var --size=2000 --fstype=ext3 --ondisk=%s\n' % disk)
+        file.write('part swap --size=2000 --ondisk=%s\n' % disk)
+        file.write('part /mydata --size=1 --grow --fstype=ext3 --ondisk=%s\n'
+                % disk)
+
+#                            
+# main
+#
+p = rocks_partition.RocksPartition()
+disks = p.getDisks()
+
+if len(disks) == 1:
+	file = open('/tmp/user_partition_info', 'w')
+	doDisk(file, disks[0])
+	file.close()
+&#60;/pre&#62;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>The function <SAMP
+CLASS="COMPUTEROUTPUT"
+>getDisks()</SAMP
+> returns a list
+of discovered disks.
+In the code sample above, if only one disk is discovered on the node, then
+the function <SAMP
+CLASS="COMPUTEROUTPUT"
+>doDisk</SAMP
+> is called which outputs
+partitioning directives for a single disk.
+This code segment will work for nodes with IDE or SCSI controllers.
+For example, a node with a IDE controller will name its disks
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>hdX</SAMP
+> and a node with SCSI controllers
+will name its disks <SAMP
+CLASS="COMPUTEROUTPUT"
+>sdX</SAMP
+>.
+But, the code segment above doesn't care how the node names its drives, it
+only cares if one drive is discovered.</P
+><P
+>The next example shows how a node can automatically configure a node for
+software raid when it discovers 2 disks.
+But, if the node only discovers 1 disk, it will output partitioning info
+appropriate for a single-disk system.</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>&#60;pre arg="--interpreter /opt/rocks/bin/python"&#62;
+
+import rocks_partition       
+
+membership = '&#38;membership;'
+nodename = '&#38;hostname;'
+
+def doRaid(file, disks):
+        file.write('clearpart --all --initlabel --drives=%s\n'
+                % ','.join(disks))
+
+        raidparts = []
+
+        for disk in disks:
+                if disk == disks[0]:
+                        part = 'part / --size=6000 --fstype=ext3 ' + \
+                                '--ondisk=%s\n' % disk
+                        file.write(part)
+
+                        part = 'part /var --size=2000 --fstype=ext3 ' + \
+                                '--ondisk=%s\n' % disk
+                        file.write(part)
+
+                part = 'part raid.%s --size=5000 --ondisk=%s\n' % (disk, disk)
+                file.write(part)
+
+                raidparts.append('raid.%s' % disk)
+
+        raid = 'raid /bigdisk --fstype=ext3 --device=md0 --level=1 %s\n' \
+                % ' '.join(raidparts)
+        file.write(raid)
+
+def doDisk(file, disk):
+        file.write('clearpart --all --initlabel --drives=%s\n' % disk)
+        file.write('part / --size=6000 --fstype=ext3 --ondisk=%s\n' % disk)
+        file.write('part /var --size=2000 --fstype=ext3 --ondisk=%s\n' % disk)
+        file.write('part swap --size=2000 --ondisk=%s\n' % disk)
+        file.write('part /mydata --size=1 --grow --fstype=ext3 --ondisk=%s\n'
+                % disk)
+
+#                            
+# main
+#
+p = rocks_partition.RocksPartition()
+disks = p.getDisks()
+
+file = open('/tmp/user_partition_info', 'w')
+
+if len(disks) == 2:
+	doRaid(file, disks)
+elif len(disks) == 1:
+	doDisk(file, disks[0])
+
+file.close()
+
+&#60;/pre&#62;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>If the node has
+2 disks (<SAMP
+CLASS="COMPUTEROUTPUT"
+>if len(disks) == 2:</SAMP
+>), then call
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>doRaid()</SAMP
+> to configure a software raid 1
+over the 2 disks.
+If the node has 1 disk then call <SAMP
+CLASS="COMPUTEROUTPUT"
+>doDisk()</SAMP
+>
+and output partitioning directives for a single disk.</P
+><P
+>In the next example, we show how to output user-specified partitioning info
+for only one specific node (<SAMP
+CLASS="COMPUTEROUTPUT"
+>compute-0-0</SAMP
+>).
+All other nodes that execute this pre section will get the default 
+Rocks partitioning.</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>&#60;pre arg="--interpreter /opt/rocks/bin/python"&#62;
+
+import rocks_partition       
+
+membership = '&#38;membership;'
+nodename = '&#38;hostname;'
+
+def doRaid(file, disks):
+        file.write('clearpart --all --initlabel --drives=%s\n'
+                % ','.join(disks))
+
+        raidparts = []
+
+        for disk in disks:
+                if disk == disks[0]:
+                        part = 'part / --size=6000 --fstype=ext3 ' + \
+                                '--ondisk=%s\n' % disk
+                        file.write(part)
+
+                        part = 'part /var --size=2000 --fstype=ext3 ' + \
+                                '--ondisk=%s\n' % disk
+                        file.write(part)
+
+                part = 'part raid.%s --size=5000 --ondisk=%s\n' % (disk, disk)
+                file.write(part)
+
+                raidparts.append('raid.%s' % disk)
+
+        raid = 'raid /bigdisk --fstype=ext3 --device=md0 --level=1 %s\n' \
+                % ' '.join(raidparts)
+        file.write(raid)
+
+def doDisk(file, disk):
+        file.write('clearpart --all --initlabel --drives=%s\n' % disk)
+        file.write('part / --size=6000 --fstype=ext3 --ondisk=%s\n' % disk)
+        file.write('part /var --size=2000 --fstype=ext3 --ondisk=%s\n' % disk)
+        file.write('part swap --size=2000 --ondisk=%s\n' % disk)
+        file.write('part /mydata --size=1 --grow --fstype=ext3 --ondisk=%s\n'
+                % disk)
+
+#                            
+# main
+#
+p = rocks_partition.RocksPartition()
+disks = p.getDisks()
+
+if nodename in [ 'compute-0-0' ]:
+	file = open('/tmp/user_partition_info', 'w')
+
+        if len(disks) == 2:
+                doRaid(file, disks)
+        elif len(disks) == 1:
+                doDisk(file, disks[0])
+
+	file.close()
+
+&#60;/pre&#62;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="CUSTOMIZATION-MODIFYING-PARTITIONING-DEFAULT"
+>5.5.3. Forcing the Default Partitioning Scheme for All Disks on a Compute Node</A
+></H2
+><P
+>This procedure describes how to force all the disks connected to 
+a compute node back to the default
+Rocks partitioning scheme regardless of the current state of the disk
+drive on the compute node.</P
+><P
+>The root disk will be partitioned as described in 
+<A
+HREF="customization-partitioning.html#CUSTOMIZATION-DEFAULT-PARTITIONING"
+>Default Partitioning</A
+> and
+all remaining disk drives will have one partition with the name
+<SAMP
+CLASS="COMPUTEROUTPUT"
+> /state/partition2, /state/partition3, ... </SAMP
+></P
+><P
+>For example, the following table describes the default partitioning for a
+compute node with 3 SCSI drives.</P
+><P
+><DIV
+CLASS="TABLE"
+><A
+NAME="AEN1386"
+></A
+><P
+><B
+>Table 5-2.  A Compute Node with 3 SCSI Drives </B
+></P
+><TABLE
+BORDER="1"
+FRAME="border"
+RULES="all"
+CLASS="CALSTABLE"
+><COL><COL><COL><THEAD
+><TR
+><TH
+> Device Name </TH
+><TH
+> Mountpoint </TH
+><TH
+> Size </TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>		/dev/sda1
+        </TD
+><TD
+>		/
+        </TD
+><TD
+>		16 GB
+        </TD
+></TR
+><TR
+><TD
+>		/dev/sda2
+        </TD
+><TD
+>		swap
+        </TD
+><TD
+>		1 GB
+        </TD
+></TR
+><TR
+><TD
+>		/dev/sda3
+        </TD
+><TD
+>		/var
+        </TD
+><TD
+>		4 GB
+        </TD
+></TR
+><TR
+><TD
+>		/dev/sda4
+        </TD
+><TD
+>		/state/partition1
+        </TD
+><TD
+>		<EM
+> remainder of root disk </EM
+>
+        </TD
+></TR
+><TR
+><TD
+>		/dev/sdb1
+        </TD
+><TD
+>		/state/partition2
+        </TD
+><TD
+>		<EM
+> size of disk </EM
+>
+        </TD
+></TR
+><TR
+><TD
+>		/dev/sdc1
+        </TD
+><TD
+>		/state/partition3
+        </TD
+><TD
+>		<EM
+> size of disk </EM
+>
+        </TD
+></TR
+></TBODY
+></TABLE
+></DIV
+></P
+><P
+>Create a new XML configuration file that will <EM
+>replace</EM
+>
+the current <SAMP
+CLASS="COMPUTEROUTPUT"
+>partition.xml</SAMP
+> configuration
+file:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># cd /export/rocks/install/site-profiles/6.2/nodes/
+# cp skeleton.xml replace-partition.xml</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Inside <SAMP
+CLASS="COMPUTEROUTPUT"
+>replace-partition.xml</SAMP
+>,
+add the following section:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>&#60;pre&#62;
+echo "rocks force-default" &#62; /tmp/user_partition_info
+&#60;/pre&#62;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Then apply this configuration to the distribution by executing:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># cd /export/rocks/install
+# rocks create distro</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>To reformat compute node <SAMP
+CLASS="COMPUTEROUTPUT"
+>compute-0-0</SAMP
+>
+to your specification above, you'll need to first remove the partition
+info for <SAMP
+CLASS="COMPUTEROUTPUT"
+>compute-0-0</SAMP
+> from the database:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks remove host partition compute-0-0</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Then you'll need to remove the file
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>.rocks-release</SAMP
+> from the first
+partition of <EM
+>each disk</EM
+> on the compute node.
+Here's an example script:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>for file in $(mount | awk '{print $3}')
+do
+	if [ -f $file/.rocks-release ]
+	then
+		rm -f $file/.rocks-release
+	fi
+done</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Save the above script as
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>/share/apps/nukeit.sh</SAMP
+>
+and then execute:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># ssh compute-0-0 'sh /share/apps/nukeit.sh'</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Then, reinstall the node:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># ssh compute-0-0 '/boot/kickstart/cluster-kickstart'</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>After you have returned all the compute nodes to the default partitioning
+scheme, then you'll want to remove 
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>replace-partition.xml</SAMP
+> in order to
+allow Rocks to preserve all non-root partition data.</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rm /export/rocks/install/site-profiles/6.2/nodes/replace-partition.xml</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Then apply this update to the distribution by executing:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># cd /export/rocks/install
+# rocks create distro</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="CUSTOMIZATION-FORCING-MANUAL-PARTITIONING"
+>5.5.4. Forcing Manual Partitioning Scheme on a Compute Node</A
+></H2
+><P
+>This procedure describes how to force a compute node to always display
+the manual partitioning screen during install.
+This is useful when you want full and explicit control over a node's
+partitioning.</P
+><P
+>Create a new XML configuration file that will <EM
+>replace</EM
+>
+the current <SAMP
+CLASS="COMPUTEROUTPUT"
+>partition.xml</SAMP
+> configuration
+file:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># cd /export/rocks/install/site-profiles/6.2/nodes/
+# cp skeleton.xml replace-partition.xml</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Inside <SAMP
+CLASS="COMPUTEROUTPUT"
+>replace-partition.xml</SAMP
+>,
+add the following section:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>&#60;pre&#62;
+echo "rocks manual" &#62; /tmp/user_partition_info
+&#60;/pre&#62;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Then apply this configuration to the distribution by executing:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># cd /export/rocks/install
+# rocks create distro</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>The next time you install a compute node, you will see the screen:</P
+><P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/install/41.png"></P
+></DIV
+></P
+><P
+>To interact with the above screen, from the frontend execute the command:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks-console compute-0-0</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="customization-extra-nic.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="customization-kernel.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Configuring Additional Ethernet Interfaces</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="customization.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Creating a Custom Kernel RPM</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

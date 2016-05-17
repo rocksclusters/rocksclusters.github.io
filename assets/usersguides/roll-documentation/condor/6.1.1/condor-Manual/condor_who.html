@@ -1,0 +1,390 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<link rel="canonical" href="http://research.cs.wisc.edu/htcondor/manual/current/condor_who.html">
+
+<TITLE>condor_who</TITLE>
+<META NAME="description" CONTENT="condor_who">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="gidd_alloc.html">
+<LINK REL="previous" HREF="condor_wait.html">
+<LINK REL="up" HREF="11_Command_Reference.html">
+<LINK REL="next" HREF="gidd_alloc.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html4358"
+  HREF="gidd_alloc.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html4352"
+  HREF="11_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html4346"
+  HREF="condor_wait.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html4354"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html4356"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4359"
+  HREF="gidd_alloc.html">gidd_alloc</A>
+<B> Up:</B> <A NAME="tex2html4353"
+  HREF="11_Command_Reference.html">11. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html4347"
+  HREF="condor_wait.html">condor_wait</A>
+ &nbsp; <B>  <A NAME="tex2html4355"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html4357"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html4360"
+  HREF="condor_who.html#SECTION0012631000000000000000">Synopsis</A>
+<LI><A NAME="tex2html4361"
+  HREF="condor_who.html#SECTION0012632000000000000000">Description</A>
+<LI><A NAME="tex2html4362"
+  HREF="condor_who.html#SECTION0012633000000000000000">Options</A>
+<LI><A NAME="tex2html4363"
+  HREF="condor_who.html#SECTION0012634000000000000000">Examples</A>
+<LI><A NAME="tex2html4364"
+  HREF="condor_who.html#SECTION0012635000000000000000">Exit Status</A>
+<LI><A NAME="tex2html4365"
+  HREF="condor_who.html#SECTION0012636000000000000000">Author</A>
+<LI><A NAME="tex2html4366"
+  HREF="condor_who.html#SECTION0012637000000000000000">Copyright</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION0012630000000000000000"></A><A NAME="man-condor-who"></A>
+<BR>
+<I>condor_who</I>
+</H1> Display information about owners of jobs and jobs running on an execute machine
+  
+<P>
+
+<H2><A NAME="SECTION0012631000000000000000">
+Synopsis</A>
+</H2><B><I>condor_who</I></B>
+[<I>help options</I>]
+[<I>address options</I>]
+[<I>display options</I>]
+
+<P>
+<A NAME="86940"></A>
+<A NAME="86941"></A>
+
+<P>
+
+<H2><A NAME="SECTION0012632000000000000000">
+Description</A>
+</H2>
+<I>condor_who</I> queries and displays information about the user that
+owns the jobs running on a machine.
+It is intended to be run on an execute machine.
+
+<P>
+The options that may be supplied to <I>condor_who</I> belong to three groups:
+
+<UL>
+<LI><B>Help options</B> provide information about the <I>condor_who</I>
+  tool.
+</LI>
+<LI><B>Address options</B> allow destination specification for query.
+</LI>
+<LI><B>Display options</B> control the formatting and which of the 
+  queried information to display.
+</LI>
+</UL>
+
+<P>
+At any time, only one <B>help option</B> and one <B>address option</B>
+may be specified.  
+Any number of <B>display options</B> may be specified.
+
+<P>
+<I>condor_who</I> obtains its information about jobs by talking to 
+one or more <I>condor_startd</I> daemons.
+So, <I>condor_who</I> must identify the command port of any <I>condor_startd</I>
+daemons.
+An <B>address option</B> provides this information.
+If <I>no</I> <B>address option</B> is given on the command line,
+then <I>condor_who</I> searches using this ordering:
+
+<OL>
+<LI>A defined value of the environment variable <TT>CONDOR_CONFIG</TT>
+  specifies the directory where log and address files are to be scanned
+  for needed information.
+</LI>
+<LI>With the aim of finding all <I>condor_startd</I> daemons,
+  <I>condor_who</I> utilizes the same algorithm it would using the
+  <B>-allpids</B> option.
+  The Linux <I>ps</I> or the Windows <I>tasklist</I>
+  program obtains all PIDs.
+  As Linux <TT>root</TT> or Windows <TT>administrator</TT>,
+  the Linux <I>lsof</I> or the Windows <I>netstat</I> identifies open
+  sockets and from there the PIDs of listen sockets.
+  Correlating the two lists of PIDs results in identifying the command ports of
+  all <I>condor_startd</I> daemons. 
+</LI>
+</OL>
+
+<P>
+
+<H2><A NAME="SECTION0012633000000000000000">
+Options</A>
+</H2>
+  
+<P>
+  <DL>
+<DT><STRONG><B>-help</B></STRONG></DT>
+<DD>(help option) Display usage information
+<BR>    
+</DD>
+<DT><STRONG><B>-diagnostic</B></STRONG></DT>
+<DD>(help option) Display extra information 
+      helpful for debugging 
+<BR>    
+</DD>
+<DT><STRONG><B>-verbose</B></STRONG></DT>
+<DD>(help option) Display PIDs and 
+      addresses of daemons 
+<BR>    
+</DD>
+<DT><STRONG><B>-address </B><I>hostaddress</I></STRONG></DT>
+<DD>(address option) 
+      Identify the <I>condor_startd</I> host address to query 
+<BR>    
+</DD>
+<DT><STRONG><B>-allpids</B></STRONG></DT>
+<DD>(address option) Query all local
+      <I>condor_startd</I> daemons 
+<BR>    
+</DD>
+<DT><STRONG><B>-logdir </B><I>directoryname</I></STRONG></DT>
+<DD>(address option) 
+      Specifies the directory containing log and address files
+      that <I>condor_who</I> will scan to search
+      for command ports of <I>condor_start</I> daemons to query 
+<BR>    
+</DD>
+<DT><STRONG><B>-pid </B><I>PID</I></STRONG></DT>
+<DD>(address option) Use the given <I>PID</I>
+      to identify the <I>condor_startd</I> daemon to query 
+<BR>    
+</DD>
+<DT><STRONG><B>-long</B></STRONG></DT>
+<DD>(display option) Display entire ClassAds 
+<BR>    
+</DD>
+<DT><STRONG><B>-wide</B></STRONG></DT>
+<DD>(display option) Displays fields without
+      truncating them in order to fit screen width 
+<BR>    
+</DD>
+<DT><STRONG><B>-format </B><I>fmt attr</I></STRONG></DT>
+<DD>(display option) Display attribute
+      <I>attr</I> in format <I>fmt</I>.
+      To display the attribute or expression the format must contain a single
+      <TT>printf(3)</TT>-style conversion specifier.
+      Attributes must be from the resource ClassAd.
+      Expressions are ClassAd expressions and may
+      refer to attributes in the resource ClassAd.
+      If the attribute is not present in a given ClassAd and cannot
+      be parsed as an expression, then the
+      format option will be silently skipped.
+      The conversion specifier must match the type of the
+      attribute or expression.
+      %s is suitable for strings such as <TT>Name</TT>,
+      %d for integers such as <TT>LastHeardFrom</TT>,
+      and %f for floating point numbers such as <TT>LoadAvg</TT>.
+      %v identifies the type of the attribute,
+      and then prints the value in an appropriate format.
+      %V identifies the type of the attribute,
+      and then prints the value in an appropriate format as it would
+      appear in the <B>-long</B> format.
+      As an example, strings used with %V will have quote marks.
+      An incorrect format will result in undefined behavior.
+      Do not use more than one conversion specifier in a given
+      format.  More than one conversion specifier will result
+      in undefined behavior.  To output multiple attributes
+      repeat the <B>-format</B> option once for each desired
+      attribute.
+      Like <TT>printf(3)</TT>-style formats, one may include other
+      text that will be reproduced directly.
+      A format without any conversion specifiers may be specified,
+      but an attribute is still required.
+      Include <!-- MATH
+ $\mathtt{\backslash}$
+ -->
+<IMG
+ WIDTH="14" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img10.png"
+ ALT="$\mathtt{\backslash}$">n to specify a line break. 
+<BR>    
+</DD>
+<DT><STRONG><B>-autoformat[:tn,lVh] </B><I>attr1 [attr2 ...]</I></STRONG></DT>
+<DD>(display option) Display machine ClassAd attribute values 
+      formatted in a default way according to their attribute types.  
+      This option takes an arbitrary number of attribute names as arguments,
+      and prints out their values.  It is like the <B>-format</B> option,
+      but no format strings are required.
+      It is assumed that no attribute names begin with a dash character,
+      so that the next word that begins with dash is the 
+      start of the next option.
+      The <B>autoformat</B> option may be followed by a colon character
+      and formatting qualifiers:
+
+<P>
+<B>t</B> add a tab character before each field instead of 
+      the default space character,
+
+<P>
+<B>n</B> add a newline character after each field,
+
+<P>
+<B>,</B> add a comma character after each field,
+
+<P>
+<B>l</B> label each field,
+
+<P>
+<B>V</B> use %V rather than %v for formatting,
+
+<P>
+<B>h</B> print headings before the first line of output.
+
+<P>
+The newline and comma characters may <I>not</I> be used together.
+      
+<BR>  
+</DD>
+</DL>
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION0012634000000000000000">
+Examples</A>
+</H2>
+
+<P>
+<U>Example 1</U> Sample output from the local machine,
+which is running a single Condor job.
+Note that the output of the <TT>PROGRAM</TT> field will be truncated
+to fit the display, similar to the artificial truncation shown in this 
+example output.
+<PRE>
+% condor_who 
+
+OWNER                    CLIENT            SLOT JOB RUNTIME    PID    PROGRAM
+smith1@crane.cs.wisc.edu crane.cs.wisc.edu    2 320.0 0+00:00:08 7776 D:\scratch\condor\execut
+</PRE>
+<P>
+<U>Example 2</U> Verbose sample output.
+<PRE>
+% condor_who -verbose
+
+LOG directory "D:\scratch\condor\master\test/log"
+
+Daemon       PID      Exit       Addr                     Log, Log.Old
+------       ---      ----       ----                     ---, -------
+Collector    6788                &lt;128.105.136.32:7977&gt; CollectorLog, CollectorLog.old
+Credd        8148                &lt;128.105.136.32:9620&gt; CredLog, CredLog.old
+Master       5976                &lt;128.105.136.32:64980&gt; MasterLog,
+Match MatchLog, MatchLog.old
+Negotiator   6600 NegotiatorLog, NegotiatorLog.old
+Schedd       6336                &lt;128.105.136.32:64985&gt; SchedLog, SchedLog.old
+Shadow ShadowLog,
+Slot1 StarterLog.slot1,
+Slot2        7272                &lt;128.105.136.32:65026&gt; StarterLog.slot2,
+Slot3 StarterLog.slot3,
+Slot4 StarterLog.slot4,
+SoftKill SoftKillLog,
+Startd       7416                &lt;128.105.136.32:64984&gt; StartLog, StartLog.old
+Starter StarterLog,
+TOOL                                                      TOOLLog,
+
+OWNER                    CLIENT            SLOT JOB RUNTIME    PID    PROGRAM
+smith1@crane.cs.wisc.edu crane.cs.wisc.edu    2 320.0 0+00:01:28 7776 D:\scratch\condor\execut
+</PRE>
+<P>
+
+<H2><A NAME="SECTION0012635000000000000000">
+Exit Status</A>
+</H2>
+
+<P>
+<I>condor_who</I> will exit with a status value of 0 (zero) upon success,
+and it will exit with the value 1 (one) upon failure.
+
+<P>
+
+<H2><A NAME="SECTION0012636000000000000000">
+Author</A>
+</H2> Center for High Throughput Computing, University of Wisconsin-Madison
+  
+<H2><A NAME="SECTION0012637000000000000000">
+Copyright</A>
+</H2> 
+  Copyright &#169; 1990-2013 Center for High Throughput Computing, 
+  Computer Sciences Department, 
+  University of Wisconsin-Madison, Madison, WI.  All Rights Reserved.  
+	Licensed under the Apache License, Version 2.0.  
+
+  <HR>
+<!--Navigation Panel-->
+<A NAME="tex2html4358"
+  HREF="gidd_alloc.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html4352"
+  HREF="11_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html4346"
+  HREF="condor_wait.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html4354"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html4356"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4359"
+  HREF="gidd_alloc.html">gidd_alloc</A>
+<B> Up:</B> <A NAME="tex2html4353"
+  HREF="11_Command_Reference.html">11. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html4347"
+  HREF="condor_wait.html">condor_wait</A>
+ &nbsp; <B>  <A NAME="tex2html4355"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html4357"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

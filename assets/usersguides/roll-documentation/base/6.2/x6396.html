@@ -1,0 +1,710 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>run</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Command Reference"
+HREF="c2387.html"><LINK
+REL="PREVIOUS"
+TITLE="report"
+HREF="x5910.html"><LINK
+REL="NEXT"
+TITLE="save"
+HREF="x6582.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Base</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x5910.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 9. Command Reference</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x6582.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="AEN6396"
+>9.13. run</A
+></H1
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-RUN-HOST"
+>9.13.1. run host</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks run host</B
+>  [host...] {command} [collate=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [command=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [delay=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [managed=<TT
+CLASS="REPLACEABLE"
+><I
+>boolean</I
+></TT
+>] [num-threads=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [stats=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [timeout=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [x11=<TT
+CLASS="REPLACEABLE"
+><I
+>boolean</I
+></TT
+>]</P
+><P
+>&#13;	Run a command for each specified host.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>host</SPAN
+>]</DT
+><DD
+><P
+>&#13;	Zero, one or more host names. If no host names are supplied, the command
+	is run on all 'managed' hosts. By default, all compute nodes are
+	'managed' nodes. To determine if a host is managed, execute:
+	'rocks list host attr hostname | grep managed'. If you see output like:
+	'compute-0-0: managed true', then the host is managed.
+	
+	</P
+></DD
+><DT
+>command</DT
+><DD
+><P
+>&#13;	The command to run on the list of hosts.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>collate=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Prepend the hostname to every output line if this parameter is set to
+	'yes'.
+	Default is 'no'.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>command=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of the 'command' argument.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>delay=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Sets the time (in seconds) to delay between each executed command
+	on multiple hosts. For example, if the command is run on two
+	hosts and if the delay is 10, then the command will be executed on host
+	1, then 10 seconds later, the command will be executed on host 2.
+	Default is '0' (no delay).
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>managed=<TT
+CLASS="REPLACEABLE"
+><I
+>boolean</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Run the command only on 'managed' hosts, that is, hosts that generally
+	have an ssh login. Default is 'yes'.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>num-threads=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The number of threads to start in parallel. If num-threads is 0, then
+	try to run the command in parallel on all hosts. Default is '128'.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>stats=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Display performance statistics if this parameter is set to 'yes'.
+	Default is 'no'.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>timeout=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Sets the maximum length of time (in seconds) that the command is
+	allowed to run.
+	Default is '30'.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>x11=<TT
+CLASS="REPLACEABLE"
+><I
+>boolean</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	If 'no', disable X11 forwarding when connecting to hosts.
+	Default is 'yes'.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks run host compute-0-0 command="hostname"</DT
+><DD
+><P
+>&#13;	Run the command 'hostname' on compute-0-0.
+	
+	</P
+></DD
+><DT
+>$ rocks run host compute "ls /tmp"</DT
+><DD
+><P
+>&#13;	Run the command 'ls /tmp/' on all compute nodes.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-RUN-HOST-SEC_ATTR"
+>9.13.2. run host sec_attr</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks run host sec_attr</B
+>  {file}</P
+><P
+>&#13;	This command reads a filename that contains
+	pickled information about secure attributes
+	that are relevant to the host.
+
+	This command is not intended to be run by an
+	administrator.
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>file</DT
+><DD
+><P
+>&#13;	Filename of the pickled file
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-RUN-RECONFIGURE"
+>9.13.3. run reconfigure</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks run reconfigure</B
+>  [roll...] [clear=<TT
+CLASS="REPLACEABLE"
+><I
+>boolean</I
+></TT
+>] [showattr=<TT
+CLASS="REPLACEABLE"
+><I
+>boolean</I
+></TT
+>]</P
+><P
+>&#13;	Generates a script which can be used to reconfigure a system after 
+	some attributes have been changed.
+	
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>roll</SPAN
+>]</DT
+><DD
+><P
+>&#13;	Not implemented. This argument is not implemented
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>clear=<TT
+CLASS="REPLACEABLE"
+><I
+>boolean</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	If clear is true the command will remove all the _old attributes from the database.
+	This command should be run at the beginning of a reconfigure session.
+	Default is 'no'.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>showattr=<TT
+CLASS="REPLACEABLE"
+><I
+>boolean</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	When true it prints the attributes that will be changed when running reconfigure.
+	For example if the user changes the Kickstart_PublicAddress attribute reconfigure will 
+	update the Kickstart_PublicBroadcast and Kickstart_PublicNetwork attributes accordingly.
+	This flag can be used to verify what reconfigure will change.
+
+	Reconfigure will change only the attributes named Kickstart_Private*/Kickstart_Public*
+	Default is 'no'.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks run reconfigure</DT
+><DD
+><P
+>&#13;	Generate a script to reconfigure the current system
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-RUN-ROLL"
+>9.13.4. run roll</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks run roll</B
+>  [roll...] [dryrun=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [host=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	It generates the code necessary to install a Roll on the fly
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>roll</SPAN
+>]</DT
+><DD
+><P
+>&#13;	List of rolls. This should be the roll base name (e.g., base, hpc,
+	kernel).
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>dryrun=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	It runs the command on the current node. It doesn't work with host flag
+	Default: true
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>host=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The name of the host that you want to generate the code to install the Roll.
+	It is always better to reinstall the node instead of using this method.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks run roll viz</DT
+><DD
+><P
+>&#13;	It generates the bash code necessary to install the Viz Roll onto the current system.
+	
+	</P
+></DD
+><DT
+># rocks run roll viz host=compute-0-0</DT
+><DD
+><P
+>&#13;	It generates the bash code necessary to install the Viz Roll on compute-0-0.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x5910.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x6582.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>report</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="c2387.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>save</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

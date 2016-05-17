@@ -1,0 +1,944 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Command Reference</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Roll: Users Guide"
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE=" Adding Kernel Boot Parameters "
+HREF="bootflags.html"><LINK
+REL="NEXT"
+TITLE="add"
+HREF="x1569.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="CHAPTER"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Base Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="bootflags.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x1569.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="CHAPTER"
+><H1
+><A
+NAME="AEN1567"
+></A
+>Chapter 8. Command Reference</H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Table of Contents</B
+></DT
+><DT
+>8.1. <A
+HREF="x1569.html"
+>add</A
+></DT
+><DD
+><DL
+><DT
+>8.1.1. <A
+HREF="x1569.html#ROCKS-ADD-APPLIANCE"
+>add appliance</A
+></DT
+><DT
+>8.1.2. <A
+HREF="x1569.html#ROCKS-ADD-APPLIANCE-ATTR"
+>add appliance attr</A
+></DT
+><DT
+>8.1.3. <A
+HREF="x1569.html#ROCKS-ADD-APPLIANCE-ROUTE"
+>add appliance route</A
+></DT
+><DT
+>8.1.4. <A
+HREF="x1569.html#ROCKS-ADD-ATTR"
+>add attr</A
+></DT
+><DT
+>8.1.5. <A
+HREF="x1569.html#ROCKS-ADD-BOOTACTION"
+>add bootaction</A
+></DT
+><DT
+>8.1.6. <A
+HREF="x1569.html#ROCKS-ADD-DISTRIBUTION"
+>add distribution</A
+></DT
+><DT
+>8.1.7. <A
+HREF="x1569.html#ROCKS-ADD-HOST"
+>add host</A
+></DT
+><DT
+>8.1.8. <A
+HREF="x1569.html#ROCKS-ADD-HOST-ALIAS"
+>add host alias</A
+></DT
+><DT
+>8.1.9. <A
+HREF="x1569.html#ROCKS-ADD-HOST-ATTR"
+>add host attr</A
+></DT
+><DT
+>8.1.10. <A
+HREF="x1569.html#ROCKS-ADD-HOST-INTERFACE"
+>add host interface</A
+></DT
+><DT
+>8.1.11. <A
+HREF="x1569.html#ROCKS-ADD-HOST-ROUTE"
+>add host route</A
+></DT
+><DT
+>8.1.12. <A
+HREF="x1569.html#ROCKS-ADD-NETWORK"
+>add network</A
+></DT
+><DT
+>8.1.13. <A
+HREF="x1569.html#ROCKS-ADD-OS-ATTR"
+>add os attr</A
+></DT
+><DT
+>8.1.14. <A
+HREF="x1569.html#ROCKS-ADD-OS-ROUTE"
+>add os route</A
+></DT
+><DT
+>8.1.15. <A
+HREF="x1569.html#ROCKS-ADD-ROLL"
+>add roll</A
+></DT
+><DT
+>8.1.16. <A
+HREF="x1569.html#ROCKS-ADD-ROUTE"
+>add route</A
+></DT
+><DT
+>8.1.17. <A
+HREF="x1569.html#ROCKS-ADD-VAR"
+>add var</A
+></DT
+></DL
+></DD
+><DT
+>8.2. <A
+HREF="x2461.html"
+>create</A
+></DT
+><DD
+><DL
+><DT
+>8.2.1. <A
+HREF="x2461.html#ROCKS-CREATE-DISTRO"
+>create distro</A
+></DT
+><DT
+>8.2.2. <A
+HREF="x2461.html#ROCKS-CREATE-MIRROR"
+>create mirror</A
+></DT
+><DT
+>8.2.3. <A
+HREF="x2461.html#ROCKS-CREATE-NEW-ROLL"
+>create new roll</A
+></DT
+><DT
+>8.2.4. <A
+HREF="x2461.html#ROCKS-CREATE-PACKAGE"
+>create package</A
+></DT
+><DT
+>8.2.5. <A
+HREF="x2461.html#ROCKS-CREATE-ROLL"
+>create roll</A
+></DT
+><DT
+>8.2.6. <A
+HREF="x2461.html#ROCKS-CREATE-TORRENT"
+>create torrent</A
+></DT
+></DL
+></DD
+><DT
+>8.3. <A
+HREF="x2743.html"
+>disable</A
+></DT
+><DT
+>8.4. <A
+HREF="x2812.html"
+>dump</A
+></DT
+><DD
+><DL
+><DT
+>8.4.1. <A
+HREF="x2812.html#ROCKS-DUMP"
+>dump</A
+></DT
+><DT
+>8.4.2. <A
+HREF="x2812.html#ROCKS-DUMP-APPLIANCE"
+>dump appliance</A
+></DT
+><DT
+>8.4.3. <A
+HREF="x2812.html#ROCKS-DUMP-APPLIANCE-ATTR"
+>dump appliance attr</A
+></DT
+><DT
+>8.4.4. <A
+HREF="x2812.html#ROCKS-DUMP-APPLIANCE-ROUTE"
+>dump appliance route</A
+></DT
+><DT
+>8.4.5. <A
+HREF="x2812.html#ROCKS-DUMP-ATTR"
+>dump attr</A
+></DT
+><DT
+>8.4.6. <A
+HREF="x2812.html#ROCKS-DUMP-HOST"
+>dump host</A
+></DT
+><DT
+>8.4.7. <A
+HREF="x2812.html#ROCKS-DUMP-HOST-ATTR"
+>dump host attr</A
+></DT
+><DT
+>8.4.8. <A
+HREF="x2812.html#ROCKS-DUMP-HOST-INTERFACE"
+>dump host interface</A
+></DT
+><DT
+>8.4.9. <A
+HREF="x2812.html#ROCKS-DUMP-HOST-ROLL"
+>dump host roll</A
+></DT
+><DT
+>8.4.10. <A
+HREF="x2812.html#ROCKS-DUMP-HOST-ROUTE"
+>dump host route</A
+></DT
+><DT
+>8.4.11. <A
+HREF="x2812.html#ROCKS-DUMP-NETWORK"
+>dump network</A
+></DT
+><DT
+>8.4.12. <A
+HREF="x2812.html#ROCKS-DUMP-OS-ATTR"
+>dump os attr</A
+></DT
+><DT
+>8.4.13. <A
+HREF="x2812.html#ROCKS-DUMP-OS-ROUTE"
+>dump os route</A
+></DT
+><DT
+>8.4.14. <A
+HREF="x2812.html#ROCKS-DUMP-ROUTE"
+>dump route</A
+></DT
+></DL
+></DD
+><DT
+>8.5. <A
+HREF="x3001.html"
+>enable</A
+></DT
+><DT
+>8.6. <A
+HREF="x3070.html"
+>help</A
+></DT
+><DT
+>8.7. <A
+HREF="x3098.html"
+>iterate</A
+></DT
+><DT
+>8.8. <A
+HREF="x3139.html"
+>list</A
+></DT
+><DD
+><DL
+><DT
+>8.8.1. <A
+HREF="x3139.html#ROCKS-LIST-APPLIANCE"
+>list appliance</A
+></DT
+><DT
+>8.8.2. <A
+HREF="x3139.html#ROCKS-LIST-APPLIANCE-ATTR"
+>list appliance attr</A
+></DT
+><DT
+>8.8.3. <A
+HREF="x3139.html#ROCKS-LIST-APPLIANCE-ROUTE"
+>list appliance route</A
+></DT
+><DT
+>8.8.4. <A
+HREF="x3139.html#ROCKS-LIST-APPLIANCE-XML"
+>list appliance xml</A
+></DT
+><DT
+>8.8.5. <A
+HREF="x3139.html#ROCKS-LIST-ATTR"
+>list attr</A
+></DT
+><DT
+>8.8.6. <A
+HREF="x3139.html#ROCKS-LIST-BOOTACTION"
+>list bootaction</A
+></DT
+><DT
+>8.8.7. <A
+HREF="x3139.html#ROCKS-LIST-DISTRIBUTION"
+>list distribution</A
+></DT
+><DT
+>8.8.8. <A
+HREF="x3139.html#ROCKS-LIST-HELP"
+>list help</A
+></DT
+><DT
+>8.8.9. <A
+HREF="x3139.html#ROCKS-LIST-HOST"
+>list host</A
+></DT
+><DT
+>8.8.10. <A
+HREF="x3139.html#ROCKS-LIST-HOST-ALIAS"
+>list host alias</A
+></DT
+><DT
+>8.8.11. <A
+HREF="x3139.html#ROCKS-LIST-HOST-APPLIANCE"
+>list host appliance</A
+></DT
+><DT
+>8.8.12. <A
+HREF="x3139.html#ROCKS-LIST-HOST-ATTR"
+>list host attr</A
+></DT
+><DT
+>8.8.13. <A
+HREF="x3139.html#ROCKS-LIST-HOST-BOOT"
+>list host boot</A
+></DT
+><DT
+>8.8.14. <A
+HREF="x3139.html#ROCKS-LIST-HOST-GRAPH"
+>list host graph</A
+></DT
+><DT
+>8.8.15. <A
+HREF="x3139.html#ROCKS-LIST-HOST-INSTALLFILE"
+>list host installfile</A
+></DT
+><DT
+>8.8.16. <A
+HREF="x3139.html#ROCKS-LIST-HOST-INTERFACE"
+>list host interface</A
+></DT
+><DT
+>8.8.17. <A
+HREF="x3139.html#ROCKS-LIST-HOST-MEMBERSHIP"
+>list host membership</A
+></DT
+><DT
+>8.8.18. <A
+HREF="x3139.html#ROCKS-LIST-HOST-PARTITION"
+>list host partition</A
+></DT
+><DT
+>8.8.19. <A
+HREF="x3139.html#ROCKS-LIST-HOST-PROFILE"
+>list host profile</A
+></DT
+><DT
+>8.8.20. <A
+HREF="x3139.html#ROCKS-LIST-HOST-ROLL"
+>list host roll</A
+></DT
+><DT
+>8.8.21. <A
+HREF="x3139.html#ROCKS-LIST-HOST-ROUTE"
+>list host route</A
+></DT
+><DT
+>8.8.22. <A
+HREF="x3139.html#ROCKS-LIST-HOST-XML"
+>list host xml</A
+></DT
+><DT
+>8.8.23. <A
+HREF="x3139.html#ROCKS-LIST-LICENSE"
+>list license</A
+></DT
+><DT
+>8.8.24. <A
+HREF="x3139.html#ROCKS-LIST-MEMBERSHIP"
+>list membership</A
+></DT
+><DT
+>8.8.25. <A
+HREF="x3139.html#ROCKS-LIST-NETWORK"
+>list network</A
+></DT
+><DT
+>8.8.26. <A
+HREF="x3139.html#ROCKS-LIST-NODE-XML"
+>list node xml</A
+></DT
+><DT
+>8.8.27. <A
+HREF="x3139.html#ROCKS-LIST-OS-ATTR"
+>list os attr</A
+></DT
+><DT
+>8.8.28. <A
+HREF="x3139.html#ROCKS-LIST-OS-ROUTE"
+>list os route</A
+></DT
+><DT
+>8.8.29. <A
+HREF="x3139.html#ROCKS-LIST-ROLL"
+>list roll</A
+></DT
+><DT
+>8.8.30. <A
+HREF="x3139.html#ROCKS-LIST-ROLL-COMMAND"
+>list roll command</A
+></DT
+><DT
+>8.8.31. <A
+HREF="x3139.html#ROCKS-LIST-ROUTE"
+>list route</A
+></DT
+><DT
+>8.8.32. <A
+HREF="x3139.html#ROCKS-LIST-VAR"
+>list var</A
+></DT
+></DL
+></DD
+><DT
+>8.9. <A
+HREF="x3852.html"
+>remove</A
+></DT
+><DD
+><DL
+><DT
+>8.9.1. <A
+HREF="x3852.html#ROCKS-REMOVE-APPLIANCE"
+>remove appliance</A
+></DT
+><DT
+>8.9.2. <A
+HREF="x3852.html#ROCKS-REMOVE-APPLIANCE-ATTR"
+>remove appliance attr</A
+></DT
+><DT
+>8.9.3. <A
+HREF="x3852.html#ROCKS-REMOVE-APPLIANCE-ROUTE"
+>remove appliance route</A
+></DT
+><DT
+>8.9.4. <A
+HREF="x3852.html#ROCKS-REMOVE-ATTR"
+>remove attr</A
+></DT
+><DT
+>8.9.5. <A
+HREF="x3852.html#ROCKS-REMOVE-BOOTACTION"
+>remove bootaction</A
+></DT
+><DT
+>8.9.6. <A
+HREF="x3852.html#ROCKS-REMOVE-DISTRIBUTION"
+>remove distribution</A
+></DT
+><DT
+>8.9.7. <A
+HREF="x3852.html#ROCKS-REMOVE-HOST"
+>remove host</A
+></DT
+><DT
+>8.9.8. <A
+HREF="x3852.html#ROCKS-REMOVE-HOST-ALIAS"
+>remove host alias</A
+></DT
+><DT
+>8.9.9. <A
+HREF="x3852.html#ROCKS-REMOVE-HOST-ATTR"
+>remove host attr</A
+></DT
+><DT
+>8.9.10. <A
+HREF="x3852.html#ROCKS-REMOVE-HOST-BOOT"
+>remove host boot</A
+></DT
+><DT
+>8.9.11. <A
+HREF="x3852.html#ROCKS-REMOVE-HOST-BOOTFLAGS"
+>remove host bootflags</A
+></DT
+><DT
+>8.9.12. <A
+HREF="x3852.html#ROCKS-REMOVE-HOST-INTERFACE"
+>remove host interface</A
+></DT
+><DT
+>8.9.13. <A
+HREF="x3852.html#ROCKS-REMOVE-HOST-PARTITION"
+>remove host partition</A
+></DT
+><DT
+>8.9.14. <A
+HREF="x3852.html#ROCKS-REMOVE-HOST-ROLL"
+>remove host roll</A
+></DT
+><DT
+>8.9.15. <A
+HREF="x3852.html#ROCKS-REMOVE-HOST-ROUTE"
+>remove host route</A
+></DT
+><DT
+>8.9.16. <A
+HREF="x3852.html#ROCKS-REMOVE-NETWORK"
+>remove network</A
+></DT
+><DT
+>8.9.17. <A
+HREF="x3852.html#ROCKS-REMOVE-OS-ATTR"
+>remove os attr</A
+></DT
+><DT
+>8.9.18. <A
+HREF="x3852.html#ROCKS-REMOVE-OS-ROUTE"
+>remove os route</A
+></DT
+><DT
+>8.9.19. <A
+HREF="x3852.html#ROCKS-REMOVE-ROLL"
+>remove roll</A
+></DT
+><DT
+>8.9.20. <A
+HREF="x3852.html#ROCKS-REMOVE-ROUTE"
+>remove route</A
+></DT
+><DT
+>8.9.21. <A
+HREF="x3852.html#ROCKS-REMOVE-VAR"
+>remove var</A
+></DT
+></DL
+></DD
+><DT
+>8.10. <A
+HREF="x4562.html"
+>report</A
+></DT
+><DD
+><DL
+><DT
+>8.10.1. <A
+HREF="x4562.html#ROCKS-REPORT-BUG"
+>report bug</A
+></DT
+><DT
+>8.10.2. <A
+HREF="x4562.html#ROCKS-REPORT-DBHOST"
+>report dbhost</A
+></DT
+><DT
+>8.10.3. <A
+HREF="x4562.html#ROCKS-REPORT-DISTRO"
+>report distro</A
+></DT
+><DT
+>8.10.4. <A
+HREF="x4562.html#ROCKS-REPORT-HOST"
+>report host</A
+></DT
+><DT
+>8.10.5. <A
+HREF="x4562.html#ROCKS-REPORT-HOST-ATTR"
+>report host attr</A
+></DT
+><DT
+>8.10.6. <A
+HREF="x4562.html#ROCKS-REPORT-HOST-BOOTFLAGS"
+>report host bootflags</A
+></DT
+><DT
+>8.10.7. <A
+HREF="x4562.html#ROCKS-REPORT-HOST-DHCPD"
+>report host dhcpd</A
+></DT
+><DT
+>8.10.8. <A
+HREF="x4562.html#ROCKS-REPORT-HOST-INTERFACE"
+>report host interface</A
+></DT
+><DT
+>8.10.9. <A
+HREF="x4562.html#ROCKS-REPORT-HOST-NETWORK"
+>report host network</A
+></DT
+><DT
+>8.10.10. <A
+HREF="x4562.html#ROCKS-REPORT-HOST-ROLL"
+>report host roll</A
+></DT
+><DT
+>8.10.11. <A
+HREF="x4562.html#ROCKS-REPORT-HOST-ROUTE"
+>report host route</A
+></DT
+><DT
+>8.10.12. <A
+HREF="x4562.html#ROCKS-REPORT-RESOLV"
+>report resolv</A
+></DT
+><DT
+>8.10.13. <A
+HREF="x4562.html#ROCKS-REPORT-RESOLV-PRIVATE"
+>report resolv private</A
+></DT
+><DT
+>8.10.14. <A
+HREF="x4562.html#ROCKS-REPORT-SCRIPT"
+>report script</A
+></DT
+><DT
+>8.10.15. <A
+HREF="x4562.html#ROCKS-REPORT-TENTAKEL"
+>report tentakel</A
+></DT
+><DT
+>8.10.16. <A
+HREF="x4562.html#ROCKS-REPORT-VERSION"
+>report version</A
+></DT
+></DL
+></DD
+><DT
+>8.11. <A
+HREF="x4796.html"
+>run</A
+></DT
+><DD
+><DL
+><DT
+>8.11.1. <A
+HREF="x4796.html#ROCKS-RUN-HOST"
+>run host</A
+></DT
+><DT
+>8.11.2. <A
+HREF="x4796.html#ROCKS-RUN-ROLL"
+>run roll</A
+></DT
+></DL
+></DD
+><DT
+>8.12. <A
+HREF="x4865.html"
+>set</A
+></DT
+><DD
+><DL
+><DT
+>8.12.1. <A
+HREF="x4865.html#ROCKS-SET-APPLIANCE-ATTR"
+>set appliance attr</A
+></DT
+><DT
+>8.12.2. <A
+HREF="x4865.html#ROCKS-SET-ATTR"
+>set attr</A
+></DT
+><DT
+>8.12.3. <A
+HREF="x4865.html#ROCKS-SET-HOST-ATTR"
+>set host attr</A
+></DT
+><DT
+>8.12.4. <A
+HREF="x4865.html#ROCKS-SET-HOST-BOOT"
+>set host boot</A
+></DT
+><DT
+>8.12.5. <A
+HREF="x4865.html#ROCKS-SET-HOST-BOOTFLAGS"
+>set host bootflags</A
+></DT
+><DT
+>8.12.6. <A
+HREF="x4865.html#ROCKS-SET-HOST-COMMENT"
+>set host comment</A
+></DT
+><DT
+>8.12.7. <A
+HREF="x4865.html#ROCKS-SET-HOST-CPUS"
+>set host cpus</A
+></DT
+><DT
+>8.12.8. <A
+HREF="x4865.html#ROCKS-SET-HOST-INSTALLACTION"
+>set host installaction</A
+></DT
+><DT
+>8.12.9. <A
+HREF="x4865.html#ROCKS-SET-HOST-INTERFACE-IFACE"
+>set host interface iface</A
+></DT
+><DT
+>8.12.10. <A
+HREF="x4865.html#ROCKS-SET-HOST-INTERFACE-IP"
+>set host interface ip</A
+></DT
+><DT
+>8.12.11. <A
+HREF="x4865.html#ROCKS-SET-HOST-INTERFACE-MAC"
+>set host interface mac</A
+></DT
+><DT
+>8.12.12. <A
+HREF="x4865.html#ROCKS-SET-HOST-INTERFACE-MODULE"
+>set host interface module</A
+></DT
+><DT
+>8.12.13. <A
+HREF="x4865.html#ROCKS-SET-HOST-INTERFACE-NAME"
+>set host interface name</A
+></DT
+><DT
+>8.12.14. <A
+HREF="x4865.html#ROCKS-SET-HOST-INTERFACE-SUBNET"
+>set host interface subnet</A
+></DT
+><DT
+>8.12.15. <A
+HREF="x4865.html#ROCKS-SET-HOST-INTERFACE-VLAN"
+>set host interface vlan</A
+></DT
+><DT
+>8.12.16. <A
+HREF="x4865.html#ROCKS-SET-HOST-MEMBERSHIP"
+>set host membership</A
+></DT
+><DT
+>8.12.17. <A
+HREF="x4865.html#ROCKS-SET-HOST-RACK"
+>set host rack</A
+></DT
+><DT
+>8.12.18. <A
+HREF="x4865.html#ROCKS-SET-HOST-RANK"
+>set host rank</A
+></DT
+><DT
+>8.12.19. <A
+HREF="x4865.html#ROCKS-SET-HOST-ROLL"
+>set host roll</A
+></DT
+><DT
+>8.12.20. <A
+HREF="x4865.html#ROCKS-SET-HOST-RUNACTION"
+>set host runaction</A
+></DT
+><DT
+>8.12.21. <A
+HREF="x4865.html#ROCKS-SET-NETWORK-MTU"
+>set network mtu</A
+></DT
+><DT
+>8.12.22. <A
+HREF="x4865.html#ROCKS-SET-NETWORK-NETMASK"
+>set network netmask</A
+></DT
+><DT
+>8.12.23. <A
+HREF="x4865.html#ROCKS-SET-NETWORK-SUBNET"
+>set network subnet</A
+></DT
+><DT
+>8.12.24. <A
+HREF="x4865.html#ROCKS-SET-OS-ATTR"
+>set os attr</A
+></DT
+><DT
+>8.12.25. <A
+HREF="x4865.html#ROCKS-SET-PASSWORD"
+>set password</A
+></DT
+><DT
+>8.12.26. <A
+HREF="x4865.html#ROCKS-SET-VAR"
+>set var</A
+></DT
+></DL
+></DD
+><DT
+>8.13. <A
+HREF="x6170.html"
+>sync</A
+></DT
+><DD
+><DL
+><DT
+>8.13.1. <A
+HREF="x6170.html#ROCKS-SYNC-CONFIG"
+>sync config</A
+></DT
+><DT
+>8.13.2. <A
+HREF="x6170.html#ROCKS-SYNC-DNS"
+>sync dns</A
+></DT
+><DT
+>8.13.3. <A
+HREF="x6170.html#ROCKS-SYNC-HOST-NETWORK"
+>sync host network</A
+></DT
+><DT
+>8.13.4. <A
+HREF="x6170.html#ROCKS-SYNC-USERS"
+>sync users</A
+></DT
+></DL
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="bootflags.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x1569.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Adding Kernel Boot Parameters</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>add</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

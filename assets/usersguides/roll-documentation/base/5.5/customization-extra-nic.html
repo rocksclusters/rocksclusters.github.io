@@ -1,0 +1,372 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+> Configuring Additional Ethernet Interfaces </TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE=" Customizing your Rocks Installation "
+HREF="customization.html"><LINK
+REL="PREVIOUS"
+TITLE=" Adding Applications to Compute Nodes "
+HREF="customization-adding-applications.html"><LINK
+REL="NEXT"
+TITLE=" Compute Node Disk Partitioning "
+HREF="customization-partitioning.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Base</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="customization-adding-applications.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 5. Customizing your Rocks Installation</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="customization-partitioning.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="CUSTOMIZATION-EXTRA-NIC"
+>5.4. Configuring Additional Ethernet Interfaces</A
+></H1
+><P
+>For compute nodes, Rocks uses the first ethernet interface
+(<SAMP
+CLASS="COMPUTEROUTPUT"
+>eth0</SAMP
+>) for management (e.g., reinstallation),
+monitoring (e.g., Ganglia) and message passing (e.g., OpenMPI over ethernet).
+
+Often, compute nodes have more than one ethernet interface.
+
+This procedure describes how to configure them.</P
+><P
+>Additional ethernet interfaces are configured from the frontend via the
+Rocks command line.
+It modifies entries in the networks table on the frontend to add information
+about an extra interface on a node.</P
+><P
+>Once you have the
+information in the networks table, every time you reinstall, the additional
+NIC will be configured.</P
+><P
+>Suppose you have a compute node with one configured network (eth0) and one
+unconfigured network (eth1):</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks list host interface compute-0-0
+SUBNET  IFACE MAC               IP           NETMASK     MODULE NAME        VLAN
+private eth0  00:1e:4f:b0:74:ef 10.1.255.254 255.255.0.0 tg3    compute-0-0 ------
+------- eth1  00:10:18:31:74:43 ------------ ----------- tg3    ----------- ------</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>We'll configure eth1 with the following network info and associate
+eth1 with the public subnet:</P
+><P
+></P
+><UL
+><LI
+><P
+> Name = fast-0-0 </P
+></LI
+><LI
+><P
+> IP address = 192.168.1.1 </P
+></LI
+></UL
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks set host interface ip compute-0-0 eth1 192.168.1.1
+# rocks set host interface name compute-0-0 eth1 fast-0-0     </PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Now we'll create a new 'network' and associate it with the new interface:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks add network fast 192.168.1.0 255.255.255.0</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>And then we'll check our work:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks list network
+NETWORK  SUBNET        NETMASK       MTU  
+private: 10.1.0.0      255.255.0.0   1500 
+public:  137.110.119.0 255.255.255.0 1500 
+fast:    192.168.1.0   255.255.255.0 1500</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+></P
+><P
+>Now associate the new network to eth1.</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks set host interface subnet compute-0-0 eth1 fast</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>The interface eth1 is now configured:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks list host interface compute-0-0
+SUBNET  IFACE MAC               IP           NETMASK       MODULE NAME        VLAN
+private eth0  00:1e:4f:b0:74:ef 10.1.255.254 255.255.0.0   tg3    compute-0-0 ------
+fast    eth1  00:10:18:31:74:43 192.168.1.1  255.255.255.0 tg3    fast-0-0    ------</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>After specifying new network settings to a compute-0-0, execute the following
+command to apply the settings:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks sync config
+# rocks sync host network compute-0-0</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/note.png"
+HSPACE="5"
+ALT="Note"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>If you configuring the interface to another public network, you can set
+the gateway for the interface with the
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks add host route</SAMP
+> command.</P
+><P
+>For example, to set the route for the 192.168.1.0 network to 192.168.1.254
+for compute-0-0, you'd execute:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks add host route compute-0-0 192.168.1.0 192.168.1.254 netmask=255.255.255.0</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="customization-adding-applications.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="customization-partitioning.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Adding Applications to Compute Nodes</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="customization.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Compute Node Disk Partitioning</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

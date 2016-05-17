@@ -1,0 +1,531 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>report</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Roll: Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Command Reference"
+HREF="c1516.html"><LINK
+REL="PREVIOUS"
+TITLE="remove"
+HREF="x3211.html"><LINK
+REL="NEXT"
+TITLE="run"
+HREF="x3660.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Base Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x3211.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 8. Command Reference</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x3660.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="AEN3542"
+>8.9. report</A
+></H1
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REPORT-DISTRO"
+>8.9.1. report distro</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks report distro</B
+> </P
+><P
+>&#13;	Output the path prefix for the location of the Rocks distribution.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks report distro</DT
+><DD
+><P
+>&#13;	Output the current path prefix to the distribution.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REPORT-HOST-BOOTFLAGS"
+>8.9.2. report host bootflags</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks report host bootflags</B
+>  [host...]</P
+><P
+>&#13;	Output the kernel boot flags for a specific host
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>host</SPAN
+>]</DT
+><DD
+><P
+>&#13;	Zero, one or more host names. If no host names are supplied, info about
+	all the known hosts is listed.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks report host bootflags compute-0-0</DT
+><DD
+><P
+>&#13;	Output the kernel boot flags for compute-0-0.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REPORT-HOST-DHCPD"
+>8.9.3. report host dhcpd</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks report host dhcpd</B
+>  {host}</P
+><P
+>&#13;	Output the DHCP server configuration file for a specific host.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	Create a DHCP server configuration for the machine named 'host'. If
+	no host name is supplied, then generate a DHCP configuration file
+	for this host.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks report host dhcpd frontend-0-0</DT
+><DD
+><P
+>&#13;	Output the DHCP server configuration file for frontend-0-0.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REPORT-HOST-INTERFACE"
+>8.9.4. report host interface</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks report host interface</B
+>  {host} [iface=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Output the network configuration file for a host's interface.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	One host name.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>iface=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Output a configuration file for this host's interface (e.g. 'eth0').
+	If no 'iface' parameter is supplied, then configuration files
+	for every interface defined for the host will be output (and each
+	file will be delineated by &#60;file&#62; and &#60;/file&#62; tags).
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks report host interface compute-0-0 iface=eth0</DT
+><DD
+><P
+>&#13;	Output a network configuration file for compute-0-0's eth0 interface.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REPORT-HOST-NETWORK"
+>8.9.5. report host network</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks report host network</B
+>  {host}</P
+><P
+>&#13;	Outputs the network configuration file for a host (on RHEL-based
+	machines, this is the contents of the file /etc/sysconfig/network).
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	One host name.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks report host network compute-0-0</DT
+><DD
+><P
+>&#13;	Output the network configuration for compute-0-0.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REPORT-SCRIPT"
+>8.9.6. report script</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks report script</B
+> </P
+><P
+>&#13;	Take STDIN XML input and create a shell script that can be executed
+	on a host.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks report host interface compute-0-0 | rocks report script</DT
+><DD
+><P
+>&#13;	Take the network interface XML output from 'rocks report host interface'
+	and create a shell script.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-REPORT-VERSION"
+>8.9.7. report version</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks report version</B
+> </P
+><P
+>&#13;	Output the version of Rocks.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks report version</DT
+><DD
+><P
+>&#13;	Output the current Rocks version.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x3211.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x3660.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>remove</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="c1516.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>run</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

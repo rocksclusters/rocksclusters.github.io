@@ -1,0 +1,1632 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Configuring Software with XML Files</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Roll Developer's Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE=" Roll Internals "
+HREF="internals.html"><LINK
+REL="PREVIOUS"
+TITLE="Packages"
+HREF="internals-packages.html"><LINK
+REL="NEXT"
+TITLE=" Building Your Roll "
+HREF="building.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Roll Developer's Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/developer.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="internals-packages.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 2. Roll Internals</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="building.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="INTERNALS-XML-FILES"
+>2.3. Configuring Software with XML Files</A
+></H1
+><P
+>Rocks generates kickstart files for compute nodes dynamically using a
+structure called the "kickstart graph".
+This graph is made from graph XML files and node XML files.
+In general, a node XML file contains a list of packages that should be
+installed on a host and commands to configure those packages.
+Graph XML files contain a description of "edges" that tie the node XML files
+together.</P
+><P
+>When a host asks for its configuration file from the frontend, a process on
+the frontend traverses the node XML files based on the definitions within the
+graph XML files.
+In addition, the graph XML files can enforce a relative order between the
+node XML files.</P
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="INTERNALS-XML-FILES-NODE"
+>2.3.1. Node XML Files</A
+></H2
+><P
+>All software configuration commands are contained within node XML files.
+Let's look at a real node XML (<CODE
+CLASS="CONSTANT"
+>grub.xml</CODE
+> from the
+Base Roll):</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>&#60;?xml version="1.0" standalone="no"?&#62;
+
+&#60;kickstart&#62;
+
+  &#60;description&#62;
+
+  Boot loader support (GRand Unified Bootloader)
+
+  &#60;/description&#62;
+
+
+&#60;package&#62;grub&#60;/package&#62;
+
+
+&#60;post&#62;
+
+&#60;!-- take out the splashscreen --&#62;
+&#60;file name="/tmp/grub.conf" expr="grep -v splashimage /boot/grub/grub.conf"/&#62;
+mv /tmp/grub.conf /boot/grub/grub.conf
+
+&#60;!-- Preserve the original grub.conf --&#62;
+cp /boot/grub/grub.conf /boot/grub/grub-orig.conf
+
+&#60;/post&#62;
+
+
+&#60;/kickstart&#62;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>We see that the above node XML file will install the "grub" package
+(<CODE
+CLASS="CONSTANT"
+>&#60;package&#62;grub&#60;/package&#62;</CODE
+>), and in the
+"post" configuration step during a kickstart installation, it will
+modify the configuration file (<CODE
+CLASS="CONSTANT"
+>/boot/grub/grub.conf</CODE
+>).</P
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/note.png"
+HSPACE="5"
+ALT="Note"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>During a kickstart installation, all the packages from all the node XML files
+are installed first, then all the "post" sections are executed.
+That is, when you write a post section, you are guaranteed that all the
+software packages have been installed.</P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>For a complete definition of the node XML file syntax, see
+<A
+HREF="node-xml-tags.html"
+>Node XML Tags</A
+>.</P
+><P
+>For our Valgrind example, we will modify the node XML file that was already
+created for us:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># cd /export/src/roll/valgrind/nodes
+# mv valgrind.xml valgrind-base.xml</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/note.png"
+HSPACE="5"
+ALT="Note"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>A node XML file naming convention in Rocks is to begin the name all the node
+XML files with the name of the roll they are associated with.
+For example, all node XML files in the SGE roll begin with "sge-".</P
+><P
+>Another naming convention is to add the name "client", "server" or "base" to
+the name of the node XML file based on which appliance type the node XML
+file will be applied to.
+For example, if the node XML file is intended to configure only backend
+appliances (e.g., compute nodes or tile nodes), then we'd name our node XML file
+"valgrind-client.xml".
+If the node XML file is intended to configure only frontend appliances, then
+we'd name our node XML file "valgrind-server.xml".
+And if the node XML file is for all appliance types, we'd name it
+"valgrind-base.xml". </P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>When you edit "valgrind-base.xml", you'll see:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>&#60;?xml version="1.0" standalone="no"?&#62;
+
+&#60;kickstart&#62;
+
+        &#60;description&#62;
+        Your valgrind roll description here
+        &#60;/description&#62;
+
+        &#60;copyright&#62;
+        
+        				Rocks(r)
+        		         www.rocksclusters.org
+        		         version 5.5 (Mamba)
+        		         version 6.0 (Mamba)
+        
+        Copyright (c) 2000 - 2012 The Regents of the University of California.
+        All rights reserved.	
+        
+        Redistribution and use in source and binary forms, with or without
+        modification, are permitted provided that the following conditions are
+        met:
+        
+        1. Redistributions of source code must retain the above copyright
+        notice, this list of conditions and the following disclaimer.
+        
+        2. Redistributions in binary form must reproduce the above copyright
+        notice unmodified and in its entirety, this list of conditions and the
+        following disclaimer in the documentation and/or other materials provided 
+        with the distribution.
+        
+        3. All advertising and press materials, printed or electronic, mentioning
+        features or use of this software must display the following acknowledgement: 
+        
+        	"This product includes software developed by the Rocks(r)
+        	Cluster Group at the San Diego Supercomputer Center at the
+        	University of California, San Diego and its contributors."
+        
+        4. Except as permitted for the purposes of acknowledgment in paragraph 3,
+        neither the name or logo of this software nor the names of its
+        authors may be used to endorse or promote products derived from this
+        software without specific prior written permission.  The name of the
+        software includes the following terms, and any derivatives thereof:
+        "Rocks", "Rocks Clusters", and "Avalanche Installer".  For licensing of 
+        the associated name, interested parties should contact Technology 
+        Transfer &#38; Intellectual Property Services, University of California, 
+        San Diego, 9500 Gilman Drive, Mail Code 0910, La Jolla, CA 92093-0910, 
+        Ph: (858) 534-5815, FAX: (858) 534-7345, E-MAIL:invent@ucsd.edu
+        
+        THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS''
+        AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+        THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+        PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS
+        BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+        CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+        SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+        BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+        WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+        OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
+        IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+        
+        &#60;/copyright&#62;
+
+        &#60;changelog&#62;
+        $Log: internals.sgml,v $
+        Revision 1.9  2012/05/06 05:48:40  phil
+        Copyright Storm for Mamba
+
+        Revision 1.8  2011/07/23 02:30:44  phil
+        Viper Copyright
+
+        Revision 1.7  2011/02/08 21:59:41  bruno
+        edits
+
+        Revision 1.6  2011/02/07 23:30:26  bruno
+        first pass at build section
+
+        Revision 1.5  2011/02/07 20:48:46  bruno
+        the first draft of 'roll internals' is done.
+
+        Revision 1.4  2011/02/05 01:04:49  bruno
+        checkpoint
+
+        &#60;/changelog&#62;
+
+        &#60;package&#62;valgrind&#60;/package&#62;
+        &#60;package&#62;roll-valgrind-usersguide&#60;/package&#62;
+
+&#60;/kickstart&#62;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Notice above that the "valgrind" and "roll-valgrind-usersguide" RPMs
+are specified in <CODE
+CLASS="CONSTANT"
+>&#60;package&#62;</CODE
+> tags which means those
+RPMs will be installed by the Red Hat installer.</P
+><P
+>Now let's add a <CODE
+CLASS="CONSTANT"
+>&#60;post&#62;</CODE
+> section to it:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>&#60;?xml version="1.0" standalone="no"?&#62;
+
+&#60;kickstart&#62;
+
+        &#60;description&#62;
+        Your valgrind roll description here
+        &#60;/description&#62;
+
+        &#60;copyright&#62;
+        
+        				Rocks(r)
+        		         www.rocksclusters.org
+        		         version 5.5 (Mamba)
+        		         version 6.0 (Mamba)
+        
+        Copyright (c) 2000 - 2012 The Regents of the University of California.
+        All rights reserved.	
+        
+        Redistribution and use in source and binary forms, with or without
+        modification, are permitted provided that the following conditions are
+        met:
+        
+        1. Redistributions of source code must retain the above copyright
+        notice, this list of conditions and the following disclaimer.
+        
+        2. Redistributions in binary form must reproduce the above copyright
+        notice unmodified and in its entirety, this list of conditions and the
+        following disclaimer in the documentation and/or other materials provided 
+        with the distribution.
+        
+        3. All advertising and press materials, printed or electronic, mentioning
+        features or use of this software must display the following acknowledgement: 
+        
+        	"This product includes software developed by the Rocks(r)
+        	Cluster Group at the San Diego Supercomputer Center at the
+        	University of California, San Diego and its contributors."
+        
+        4. Except as permitted for the purposes of acknowledgment in paragraph 3,
+        neither the name or logo of this software nor the names of its
+        authors may be used to endorse or promote products derived from this
+        software without specific prior written permission.  The name of the
+        software includes the following terms, and any derivatives thereof:
+        "Rocks", "Rocks Clusters", and "Avalanche Installer".  For licensing of 
+        the associated name, interested parties should contact Technology 
+        Transfer &#38; Intellectual Property Services, University of California, 
+        San Diego, 9500 Gilman Drive, Mail Code 0910, La Jolla, CA 92093-0910, 
+        Ph: (858) 534-5815, FAX: (858) 534-7345, E-MAIL:invent@ucsd.edu
+        
+        THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS''
+        AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+        THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+        PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS
+        BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+        CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+        SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+        BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+        WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+        OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
+        IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+        
+        &#60;/copyright&#62;
+
+        &#60;changelog&#62;
+        $Log: internals.sgml,v $
+        Revision 1.9  2012/05/06 05:48:40  phil
+        Copyright Storm for Mamba
+
+        Revision 1.8  2011/07/23 02:30:44  phil
+        Viper Copyright
+
+        Revision 1.7  2011/02/08 21:59:41  bruno
+        edits
+
+        Revision 1.6  2011/02/07 23:30:26  bruno
+        first pass at build section
+
+        Revision 1.5  2011/02/07 20:48:46  bruno
+        the first draft of 'roll internals' is done.
+
+        Revision 1.4  2011/02/05 01:04:49  bruno
+        checkpoint
+
+        &#60;/changelog&#62;
+
+        &#60;package&#62;valgrind&#60;/package&#62;
+        &#60;package&#62;roll-valgrind-usersguide&#60;/package&#62;
+
+&#60;post&#62;
+
+&#60;file name="/etc/motd" mode="append"&#62;
+
+This node has "valgrind" configured for it.
+
+&#60;/file&#62;
+
+&#60;/post&#62;
+
+&#60;/kickstart&#62;&#13;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>This post section will append a small note to an installing host's
+<CODE
+CLASS="CONSTANT"
+>/etc/motd</CODE
+>.</P
+><P
+>Now that we have our first node XML file, we need to "splice" it into the
+Rocks kickstart graph -- which is the subject of the next section.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="INTERNALS-XML-FILES-GRAPH"
+>2.3.2. Graph XML Files</A
+></H2
+><P
+>Every roll has node XML files and a graph XML file.
+Node XML files describe what packages should be installed and how those
+packages should be configured.
+A graph XML file describes how all the node XML files are "connected", that is,
+a graph XML file describes the "edges" between nodes.</P
+><P
+>Below is a picture of how the Base Roll's nodes are connected together via
+its graph XML file:</P
+><P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/base-graph.png"></P
+></DIV
+></P
+><P
+>Let's "splice" our "valgrind-base.xml" node XML file into the Rocks kickstart
+graph.
+We'll look at the default graph file that was automatically created for us:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># cd /export/src/roll/valgrind/graphs/default</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Now edit the file "valgrind.xml":</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>&#60;?xml version="1.0" standalone="no"?&#62;
+
+&#60;graph&#62;
+
+        &#60;description&#62;
+
+        The valgrind Roll
+
+        &#60;/description&#62;
+
+        &#60;copyright&#62;
+        
+        				Rocks(r)
+        		         www.rocksclusters.org
+        		         version 5.5 (Mamba)
+        		         version 6.0 (Mamba)
+        
+        Copyright (c) 2000 - 2012 The Regents of the University of California.
+        All rights reserved.	
+        
+        Redistribution and use in source and binary forms, with or without
+        modification, are permitted provided that the following conditions are
+        met:
+        
+        1. Redistributions of source code must retain the above copyright
+        notice, this list of conditions and the following disclaimer.
+        
+        2. Redistributions in binary form must reproduce the above copyright
+        notice unmodified and in its entirety, this list of conditions and the
+        following disclaimer in the documentation and/or other materials provided 
+        with the distribution.
+        
+        3. All advertising and press materials, printed or electronic, mentioning
+        features or use of this software must display the following acknowledgement: 
+        
+        	"This product includes software developed by the Rocks(r)
+        	Cluster Group at the San Diego Supercomputer Center at the
+        	University of California, San Diego and its contributors."
+        
+        4. Except as permitted for the purposes of acknowledgment in paragraph 3,
+        neither the name or logo of this software nor the names of its
+        authors may be used to endorse or promote products derived from this
+        software without specific prior written permission.  The name of the
+        software includes the following terms, and any derivatives thereof:
+        "Rocks", "Rocks Clusters", and "Avalanche Installer".  For licensing of 
+        the associated name, interested parties should contact Technology 
+        Transfer &#38; Intellectual Property Services, University of California, 
+        San Diego, 9500 Gilman Drive, Mail Code 0910, La Jolla, CA 92093-0910, 
+        Ph: (858) 534-5815, FAX: (858) 534-7345, E-MAIL:invent@ucsd.edu
+        
+        THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS''
+        AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+        THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+        PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS
+        BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+        CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+        SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+        BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+        WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+        OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
+        IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+        
+        &#60;/copyright&#62;
+
+        &#60;changelog&#62;
+        $Log: internals.sgml,v $
+        Revision 1.9  2012/05/06 05:48:40  phil
+        Copyright Storm for Mamba
+
+        Revision 1.8  2011/07/23 02:30:44  phil
+        Viper Copyright
+
+        Revision 1.7  2011/02/08 21:59:41  bruno
+        edits
+
+        Revision 1.6  2011/02/07 23:30:26  bruno
+        first pass at build section
+
+        Revision 1.5  2011/02/07 20:48:46  bruno
+        the first draft of 'roll internals' is done.
+
+        Revision 1.4  2011/02/05 01:04:49  bruno
+        checkpoint
+
+        &#60;/changelog&#62;
+
+        &#60;!-- add edges here --&#62;
+
+&#60;/graph&#62;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>We will add an "edge".
+Since we want our "valgrind-base.xml" node XML file to be installed on all
+nodes, we'll make an edge from the "base" node XML file to "valgrind-base":</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>&#60;?xml version="1.0" standalone="no"?&#62;
+
+&#60;graph&#62;
+
+        &#60;description&#62;
+
+        The valgrind Roll
+
+        &#60;/description&#62;
+
+        &#60;copyright&#62;
+        
+        				Rocks(r)
+        		         www.rocksclusters.org
+        		         version 5.5 (Mamba)
+        		         version 6.0 (Mamba)
+        
+        Copyright (c) 2000 - 2012 The Regents of the University of California.
+        All rights reserved.	
+        
+        Redistribution and use in source and binary forms, with or without
+        modification, are permitted provided that the following conditions are
+        met:
+        
+        1. Redistributions of source code must retain the above copyright
+        notice, this list of conditions and the following disclaimer.
+        
+        2. Redistributions in binary form must reproduce the above copyright
+        notice unmodified and in its entirety, this list of conditions and the
+        following disclaimer in the documentation and/or other materials provided 
+        with the distribution.
+        
+        3. All advertising and press materials, printed or electronic, mentioning
+        features or use of this software must display the following acknowledgement: 
+        
+        	"This product includes software developed by the Rocks(r)
+        	Cluster Group at the San Diego Supercomputer Center at the
+        	University of California, San Diego and its contributors."
+        
+        4. Except as permitted for the purposes of acknowledgment in paragraph 3,
+        neither the name or logo of this software nor the names of its
+        authors may be used to endorse or promote products derived from this
+        software without specific prior written permission.  The name of the
+        software includes the following terms, and any derivatives thereof:
+        "Rocks", "Rocks Clusters", and "Avalanche Installer".  For licensing of 
+        the associated name, interested parties should contact Technology 
+        Transfer &#38; Intellectual Property Services, University of California, 
+        San Diego, 9500 Gilman Drive, Mail Code 0910, La Jolla, CA 92093-0910, 
+        Ph: (858) 534-5815, FAX: (858) 534-7345, E-MAIL:invent@ucsd.edu
+        
+        THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS''
+        AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+        THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+        PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS
+        BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+        CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+        SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+        BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+        WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+        OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
+        IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+        
+        &#60;/copyright&#62;
+
+        &#60;changelog&#62;
+        $Log: internals.sgml,v $
+        Revision 1.9  2012/05/06 05:48:40  phil
+        Copyright Storm for Mamba
+
+        Revision 1.8  2011/07/23 02:30:44  phil
+        Viper Copyright
+
+        Revision 1.7  2011/02/08 21:59:41  bruno
+        edits
+
+        Revision 1.6  2011/02/07 23:30:26  bruno
+        first pass at build section
+
+        Revision 1.5  2011/02/07 20:48:46  bruno
+        the first draft of 'roll internals' is done.
+
+        Revision 1.4  2011/02/05 01:04:49  bruno
+        checkpoint
+
+        &#60;/changelog&#62;
+
+        &#60;!-- add edges here --&#62;
+
+        &#60;edge from="base"&#62;
+                &#60;to&#62;valgrind-base&#60;/to&#62;
+        &#60;/edge&#62;
+
+&#60;/graph&#62;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/note.png"
+HSPACE="5"
+ALT="Note"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>Note that we don't add the ".xml" file extension in edge descriptions.</P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>Our node XML file has now been spliced into the Rocks kickstart graph.
+Note: the node XML file "base" is from the Base Roll.</P
+><P
+>In the picture below, we see how "valgrind-base.xml" has been spliced into
+the Rocks kickstart graph:</P
+><P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/base-valgrind-simple-graph.png"></P
+></DIV
+></P
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="INTERNALS-XML-FILES-GRAPH-ORDERING"
+>2.3.2.1. Controlling the Order of Post Section Execution</A
+></H3
+><P
+>There are instances when we need to ensure that a post section in one
+node XML file executes before (or after) a post section in another node XML
+file.
+We can accomplish this by specifying an
+<CODE
+CLASS="CONSTANT"
+>&#60;order&#62;</CODE
+> tag in a graph XML
+file.
+To show how this is done, we'll create two new node XML files and then we'll
+edit the graph XML file.</P
+><P
+>We will create two new node XML files where one file should be
+applied to a frontend (named "valgrind-server.xml") and the other should be
+applied to the backend appliances (named "valgrind-client.xml).
+We'll add <CODE
+CLASS="CONSTANT"
+>&#60;package&#62;</CODE
+> and
+<CODE
+CLASS="CONSTANT"
+>&#60;post&#62;</CODE
+> tags to both.</P
+><P
+>Here's the contents of "valgrind-client.xml":</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>&#60;?xml version="1.0" standalone="no"?&#62;
+
+&#60;kickstart&#62;
+
+	&#60;description&#62;
+	Valgrind client node XML file. This file should be applied to
+	backend appliances (e.g., compute nodes and tile nodes).
+	&#60;/description&#62;
+
+	&#60;copyright&#62;
+	
+					Rocks(r)
+			         www.rocksclusters.org
+			         version 5.5 (Mamba)
+			         version 6.0 (Mamba)
+	
+	Copyright (c) 2000 - 2012 The Regents of the University of California.
+	All rights reserved.	
+	
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are
+	met:
+	
+	1. Redistributions of source code must retain the above copyright
+	notice, this list of conditions and the following disclaimer.
+	
+	2. Redistributions in binary form must reproduce the above copyright
+	notice unmodified and in its entirety, this list of conditions and the
+	following disclaimer in the documentation and/or other materials provided 
+	with the distribution.
+	
+	3. All advertising and press materials, printed or electronic, mentioning
+	features or use of this software must display the following acknowledgement: 
+	
+		"This product includes software developed by the Rocks(r)
+		Cluster Group at the San Diego Supercomputer Center at the
+		University of California, San Diego and its contributors."
+	
+	4. Except as permitted for the purposes of acknowledgment in paragraph 3,
+	neither the name or logo of this software nor the names of its
+	authors may be used to endorse or promote products derived from this
+	software without specific prior written permission.  The name of the
+	software includes the following terms, and any derivatives thereof:
+	"Rocks", "Rocks Clusters", and "Avalanche Installer".  For licensing of 
+	the associated name, interested parties should contact Technology 
+	Transfer &#38; Intellectual Property Services, University of California, 
+	San Diego, 9500 Gilman Drive, Mail Code 0910, La Jolla, CA 92093-0910, 
+	Ph: (858) 534-5815, FAX: (858) 534-7345, E-MAIL:invent@ucsd.edu
+	
+	THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS''
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+	THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+	PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS
+	BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+	BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+	WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+	OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
+	IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+	
+	&#60;/copyright&#62;
+
+	&#60;changelog&#62;
+	$Log: internals.sgml,v $
+	Revision 1.9  2012/05/06 05:48:40  phil
+	Copyright Storm for Mamba
+	
+	Revision 1.8  2011/07/23 02:30:44  phil
+	Viper Copyright
+	
+	Revision 1.7  2011/02/08 21:59:41  bruno
+	edits
+	
+	Revision 1.6  2011/02/07 23:30:26  bruno
+	first pass at build section
+	
+	Revision 1.5  2011/02/07 20:48:46  bruno
+	the first draft of 'roll internals' is done.
+	
+	&#60;/changelog&#62;
+
+&#60;post&#62;
+
+&#60;file name="/etc/motd" mode="append"&#62;
+
+Valgrind on a "client".
+
+&#60;/file&#62;
+
+&#60;/post&#62;
+
+&#60;/kickstart&#62;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>And here is the contents of "valgrind-server.xml":</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>&#60;?xml version="1.0" standalone="no"?&#62;
+
+&#60;kickstart&#62;
+
+	&#60;description&#62;
+	Valgrind server node XML file. This file should be applied to
+	frontends.
+	&#60;/description&#62;
+
+	&#60;copyright&#62;
+	
+					Rocks(r)
+			         www.rocksclusters.org
+			         version 5.5 (Mamba)
+			         version 6.0 (Mamba)
+	
+	Copyright (c) 2000 - 2012 The Regents of the University of California.
+	All rights reserved.	
+	
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are
+	met:
+	
+	1. Redistributions of source code must retain the above copyright
+	notice, this list of conditions and the following disclaimer.
+	
+	2. Redistributions in binary form must reproduce the above copyright
+	notice unmodified and in its entirety, this list of conditions and the
+	following disclaimer in the documentation and/or other materials provided 
+	with the distribution.
+	
+	3. All advertising and press materials, printed or electronic, mentioning
+	features or use of this software must display the following acknowledgement: 
+	
+		"This product includes software developed by the Rocks(r)
+		Cluster Group at the San Diego Supercomputer Center at the
+		University of California, San Diego and its contributors."
+	
+	4. Except as permitted for the purposes of acknowledgment in paragraph 3,
+	neither the name or logo of this software nor the names of its
+	authors may be used to endorse or promote products derived from this
+	software without specific prior written permission.  The name of the
+	software includes the following terms, and any derivatives thereof:
+	"Rocks", "Rocks Clusters", and "Avalanche Installer".  For licensing of 
+	the associated name, interested parties should contact Technology 
+	Transfer &#38; Intellectual Property Services, University of California, 
+	San Diego, 9500 Gilman Drive, Mail Code 0910, La Jolla, CA 92093-0910, 
+	Ph: (858) 534-5815, FAX: (858) 534-7345, E-MAIL:invent@ucsd.edu
+	
+	THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS''
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+	THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+	PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS
+	BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+	BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+	WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+	OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
+	IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+	
+	&#60;/copyright&#62;
+
+	&#60;changelog&#62;
+	$Log: internals.sgml,v $
+	Revision 1.9  2012/05/06 05:48:40  phil
+	Copyright Storm for Mamba
+	
+	Revision 1.8  2011/07/23 02:30:44  phil
+	Viper Copyright
+	
+	Revision 1.7  2011/02/08 21:59:41  bruno
+	edits
+	
+	Revision 1.6  2011/02/07 23:30:26  bruno
+	first pass at build section
+	
+	Revision 1.5  2011/02/07 20:48:46  bruno
+	the first draft of 'roll internals' is done.
+	
+	&#60;/changelog&#62;
+
+	&#60;package&#62;roll-valgrind-usersguide&#60;/package&#62;
+
+&#60;post&#62;
+
+&#60;file name="/etc/motd" mode="append"&#62;
+
+Valgrind on a "server".
+
+&#60;/file&#62;
+
+&#60;/post&#62;
+
+&#60;/kickstart&#62;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Then, to splice them in to the Rocks kickstart graph, we'll modify our
+graph XML file "valgrind.xml" to look like:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>&#60;?xml version="1.0" standalone="no"?&#62;
+
+&#60;graph&#62;
+
+        &#60;description&#62;
+
+        The valgrind Roll
+
+        &#60;/description&#62;
+
+        &#60;copyright&#62;
+        
+        				Rocks(r)
+        		         www.rocksclusters.org
+        		         version 5.5 (Mamba)
+        		         version 6.0 (Mamba)
+        
+        Copyright (c) 2000 - 2012 The Regents of the University of California.
+        All rights reserved.	
+        
+        Redistribution and use in source and binary forms, with or without
+        modification, are permitted provided that the following conditions are
+        met:
+        
+        1. Redistributions of source code must retain the above copyright
+        notice, this list of conditions and the following disclaimer.
+        
+        2. Redistributions in binary form must reproduce the above copyright
+        notice unmodified and in its entirety, this list of conditions and the
+        following disclaimer in the documentation and/or other materials provided 
+        with the distribution.
+        
+        3. All advertising and press materials, printed or electronic, mentioning
+        features or use of this software must display the following acknowledgement: 
+        
+        	"This product includes software developed by the Rocks(r)
+        	Cluster Group at the San Diego Supercomputer Center at the
+        	University of California, San Diego and its contributors."
+        
+        4. Except as permitted for the purposes of acknowledgment in paragraph 3,
+        neither the name or logo of this software nor the names of its
+        authors may be used to endorse or promote products derived from this
+        software without specific prior written permission.  The name of the
+        software includes the following terms, and any derivatives thereof:
+        "Rocks", "Rocks Clusters", and "Avalanche Installer".  For licensing of 
+        the associated name, interested parties should contact Technology 
+        Transfer &#38; Intellectual Property Services, University of California, 
+        San Diego, 9500 Gilman Drive, Mail Code 0910, La Jolla, CA 92093-0910, 
+        Ph: (858) 534-5815, FAX: (858) 534-7345, E-MAIL:invent@ucsd.edu
+        
+        THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS''
+        AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+        THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+        PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS
+        BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+        CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+        SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+        BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+        WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+        OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
+        IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+        
+        &#60;/copyright&#62;
+
+        &#60;changelog&#62;
+        $Log: internals.sgml,v $
+        Revision 1.9  2012/05/06 05:48:40  phil
+        Copyright Storm for Mamba
+
+        Revision 1.8  2011/07/23 02:30:44  phil
+        Viper Copyright
+
+        Revision 1.7  2011/02/08 21:59:41  bruno
+        edits
+
+        Revision 1.6  2011/02/07 23:30:26  bruno
+        first pass at build section
+
+        Revision 1.5  2011/02/07 20:48:46  bruno
+        the first draft of 'roll internals' is done.
+
+        Revision 1.4  2011/02/05 01:04:49  bruno
+        checkpoint
+
+        &#60;/changelog&#62;
+
+        &#60;!-- add edges here --&#62;
+
+        &#60;edge from="base"&#62;
+                &#60;to&#62;valgrind-base&#60;/to&#62;
+        &#60;/edge&#62;
+
+        &#60;edge from="server"&#62;
+                &#60;to&#62;valgrind-server&#60;/to&#62;
+        &#60;/edge&#62;
+
+        &#60;edge from="client"&#62;
+                &#60;to&#62;valgrind-client&#60;/to&#62;
+        &#60;/edge&#62;
+
+&#60;/graph&#62;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>With the above graph XML file, we can see (at a high level) how the Valgrind
+Roll is spliced in with the Base Roll.
+the Base Roll node XML files are yellow and the Valgrind Roll
+node XML files are red.</P
+><P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/base-valgrind-graph.png"></P
+></DIV
+></P
+><P
+>If we zoom in, we can see how two of the Valgrind node XML files have been
+spliced in:</P
+><P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/base-valgrind-zoom.png"></P
+></DIV
+></P
+><P
+>Now suppose we want the post section of "valgrind-server.xml" to execute
+<EM
+>before</EM
+> the post section of "valgrind-base.xml" and we
+want the post section of "valgrind-client.xml" to execute
+<EM
+>after</EM
+> "valgrind-base.xml".
+We can enforce this ordering by adding two
+<CODE
+CLASS="CONSTANT"
+>&#60;order&#62;</CODE
+> tags:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>&#60;?xml version="1.0" standalone="no"?&#62;
+
+&#60;graph roll="valgrind"&#62;
+
+	&#60;description&#62;
+
+	The valgrind Roll
+
+	&#60;/description&#62;
+
+	&#60;copyright&#62;
+	
+					Rocks(r)
+			         www.rocksclusters.org
+			         version 5.5 (Mamba)
+			         version 6.0 (Mamba)
+	
+	Copyright (c) 2000 - 2012 The Regents of the University of California.
+	All rights reserved.	
+	
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are
+	met:
+	
+	1. Redistributions of source code must retain the above copyright
+	notice, this list of conditions and the following disclaimer.
+	
+	2. Redistributions in binary form must reproduce the above copyright
+	notice unmodified and in its entirety, this list of conditions and the
+	following disclaimer in the documentation and/or other materials provided 
+	with the distribution.
+	
+	3. All advertising and press materials, printed or electronic, mentioning
+	features or use of this software must display the following acknowledgement: 
+	
+		"This product includes software developed by the Rocks(r)
+		Cluster Group at the San Diego Supercomputer Center at the
+		University of California, San Diego and its contributors."
+	
+	4. Except as permitted for the purposes of acknowledgment in paragraph 3,
+	neither the name or logo of this software nor the names of its
+	authors may be used to endorse or promote products derived from this
+	software without specific prior written permission.  The name of the
+	software includes the following terms, and any derivatives thereof:
+	"Rocks", "Rocks Clusters", and "Avalanche Installer".  For licensing of 
+	the associated name, interested parties should contact Technology 
+	Transfer &#38; Intellectual Property Services, University of California, 
+	San Diego, 9500 Gilman Drive, Mail Code 0910, La Jolla, CA 92093-0910, 
+	Ph: (858) 534-5815, FAX: (858) 534-7345, E-MAIL:invent@ucsd.edu
+	
+	THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS''
+	AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+	THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+	PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS
+	BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+	CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+	SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+	BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+	WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+	OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
+	IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+	
+	&#60;/copyright&#62;
+
+	&#60;changelog&#62;
+	$Log: internals.sgml,v $
+	Revision 1.9  2012/05/06 05:48:40  phil
+	Copyright Storm for Mamba
+	
+	Revision 1.8  2011/07/23 02:30:44  phil
+	Viper Copyright
+	
+	Revision 1.7  2011/02/08 21:59:41  bruno
+	edits
+	
+	Revision 1.6  2011/02/07 23:30:26  bruno
+	first pass at build section
+	
+	Revision 1.5  2011/02/07 20:48:46  bruno
+	the first draft of 'roll internals' is done.
+	
+	&#60;/changelog&#62;
+
+	&#60;!-- add edges here --&#62;
+
+	&#60;edge from="base"&#62;
+		&#60;to&#62;valgrind-base&#60;/to&#62;
+	&#60;/edge&#62;
+
+	&#60;edge from="server"&#62;
+		&#60;to&#62;valgrind-server&#60;/to&#62;
+	&#60;/edge&#62;
+
+	&#60;edge from="client"&#62;
+		&#60;to&#62;valgrind-client&#60;/to&#62;
+	&#60;/edge&#62;
+
+
+	&#60;!-- enforce post section ordering --&#62;
+
+	&#60;!--
+		valgrind-server post sections execute before valgrind-base
+		post sections
+	--&#62;
+	&#60;order head="valgrind-server"&#62;
+		&#60;tail&#62;valgrind-base&#60;/tail&#62;
+	&#60;/order&#62;
+
+	&#60;!--
+		valgrind-client post sections execute after valgrind-base
+		post sections
+	--&#62;
+	&#60;order head="valgrind-base"&#62;
+		&#60;tail&#62;valgrind-client&#60;/tail&#62;
+	&#60;/order&#62;
+
+&#60;/graph&#62;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="INTERNALS-XML-FILES-ATTR"
+>2.3.3. Attributes</A
+></H2
+><P
+>In Rocks, "attributes" are a way to have variables inside node and graph
+XML files.
+Attributes are evaluated during kickstart file creation (one of the first
+actions done when a host is installed).
+The following is an example of how the "hostname" attribute is used in a
+post section of a node XML file:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>&#60;post&#62;
+
+&#60;!--
+        set the hostname to the private name.
+--&#62;
+/bin/hostname &#38;hostname;
+
+&#60;/post&#62;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>In node XML files, if you want to use an attribute in a post section, you
+need to encode it as an XML entity (thus the '&#38;' and ';' characters that
+bracket the "hostname" attribute).</P
+><P
+>There are four levels of attributes: global, OS, appliance and host.
+Global attributes apply to all hosts in a cluster, OS attributes apply to hosts of a specific OS type (currently "linux" or "sunos"), appliance attributes
+apply to hosts that have the same appliance type (e.g., compute, tile, etc.),
+and host attributes apply to only one host.
+You can add an attribute with one of the following commands:
+<CODE
+CLASS="CONSTANT"
+>rocks add attr</CODE
+> (global),
+<CODE
+CLASS="CONSTANT"
+>rocks add os attr</CODE
+> (OS),
+<CODE
+CLASS="CONSTANT"
+>rocks add appliance attr</CODE
+> (appliance global),
+<CODE
+CLASS="CONSTANT"
+>rocks add host attr</CODE
+> (host).</P
+><P
+>To examine which attributes are currently set for a host, execute
+<CODE
+CLASS="CONSTANT"
+>rocks list host attr "hostname"</CODE
+>.
+For example:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks list host attr compute-0-0
+HOST         ATTR                                  VALUE                                    SOURCE
+compute-0-0: Condor_Client                         true                                     A     
+compute-0-0: Condor_Daemons                        MASTER, STARTD                           G     
+compute-0-0: Condor_EnableMPI                      no                                       G     
+compute-0-0: Condor_HostAllow                      +                                        G     
+compute-0-0: Condor_Master                         brunoland.rocksclusters.org              G     
+compute-0-0: Condor_Network                        private                                  G     
+compute-0-0: Condor_PasswordAuth                   no                                       G     
+compute-0-0: Condor_PortHigh                       50000                                    G     
+compute-0-0: Condor_PortLow                        40000                                    G     
+compute-0-0: HttpConf                              /etc/httpd/conf                          O     
+compute-0-0: HttpConfigDirExt                      /etc/httpd/conf.d                        O     
+compute-0-0: HttpRoot                              /var/www/html                            O     
+compute-0-0: Info_CertificateCountry               US                                       G     
+compute-0-0: Info_CertificateLocality              San Diego                                G     
+compute-0-0: Info_CertificateOrganization          SDSC                                     G     
+compute-0-0: Info_CertificateState                 California                               G     
+compute-0-0: Info_ClusterContact                   admin@place.org                          G     
+compute-0-0: Info_ClusterLatlong                   N32.87 W117.22                           G     
+compute-0-0: Info_ClusterName                      Brunoland                                G     
+compute-0-0: Info_ClusterURL                       http://www.place.org/                    G     
+compute-0-0: Kickstart_DistroDir                   /export/rocks                            G     
+compute-0-0: Kickstart_Keyboard                    us                                       G     
+compute-0-0: Kickstart_Lang                        en_US                                    G     
+compute-0-0: Kickstart_Langsupport                 en_US                                    G     
+compute-0-0: Kickstart_Multicast                   231.253.121.191                          G     
+compute-0-0: Kickstart_PrivateAddress              10.1.1.1                                 G     
+compute-0-0: Kickstart_PrivateBroadcast            10.1.255.255                             G     
+compute-0-0: Kickstart_PrivateDNSDomain            local                                    G     
+compute-0-0: Kickstart_PrivateDNSServers           10.1.1.1                                 G     
+compute-0-0: Kickstart_PrivateGateway              10.1.1.1                                 G     
+compute-0-0: Kickstart_PrivateHostname             brunoland                                G     
+compute-0-0: Kickstart_PrivateKickstartBasedir     install                                  G     
+compute-0-0: Kickstart_PrivateKickstartCGI         sbin/kickstart.cgi                       G     
+compute-0-0: Kickstart_PrivateKickstartHost        10.1.1.1                                 G     
+compute-0-0: Kickstart_PrivateNTPHost              10.1.1.1                                 G     
+compute-0-0: Kickstart_PrivateNetmask              255.255.0.0                              G     
+compute-0-0: Kickstart_PrivateNetmaskCIDR          16                                       G     
+compute-0-0: Kickstart_PrivateNetwork              10.1.0.0                                 G     
+compute-0-0: Kickstart_PrivateSyslogHost           10.1.1.1                                 G     
+compute-0-0: Kickstart_PublicAddress               198.202.88.152                           G     
+compute-0-0: Kickstart_PublicBroadcast             198.202.88.255                           G     
+compute-0-0: Kickstart_PublicDNSDomain             rocksclusters.org                        G     
+compute-0-0: Kickstart_PublicDNSServers            198.202.75.26                            G     
+compute-0-0: Kickstart_PublicGateway               198.202.88.20                            G     
+compute-0-0: Kickstart_PublicHostname              brunoland.rocksclusters.org              G     
+compute-0-0: Kickstart_PublicKickstartHost         central.rocksclusters.org                G     
+compute-0-0: Kickstart_PublicNTPHost               pool.ntp.org                             G     
+compute-0-0: Kickstart_PublicNetmask               255.255.255.0                            G     
+compute-0-0: Kickstart_PublicNetmaskCIDR           24                                       G     
+compute-0-0: Kickstart_PublicNetwork               198.202.88.0                             G     
+compute-0-0: Kickstart_Timezone                    America/Los_Angeles                      G     
+compute-0-0: RootDir                               /root                                    O     
+compute-0-0: Server_Partitioning                   manual                                   G     
+compute-0-0: Xen_Dom0MinMem                        768                                      G     
+compute-0-0: arch                                  x86_64                                   H     
+compute-0-0: bio                                   true                                     A     
+compute-0-0: dhcp_filename                         pxelinux.0                               A     
+compute-0-0: dhcp_nextserver                       10.1.1.1                                 A     
+compute-0-0: exec_host                             true                                     A     
+compute-0-0: ganglia_address                       224.0.0.3                                G     
+compute-0-0: hostname                              compute-0-0                              I     
+compute-0-0: kickstartable                         yes                                      A     
+compute-0-0: managed                               true                                     A     
+compute-0-0: os                                    linux                                    H     
+compute-0-0: rack                                  0                                        I     
+compute-0-0: rank                                  0                                        I     
+compute-0-0: rocks_version                         5.4                                      G     
+compute-0-0: sge                                   true                                     A     
+compute-0-0: ssh_use_dns                           true                                     G     
+compute-0-0: submit_host                           false                                    A     
+compute-0-0: tripwire_mail                         root@brunoland.rocksclusters.org         G     
+compute-0-0: vm_mac_base_addr                      9a:58:ca:0:00:00                         G     
+compute-0-0: vm_mac_base_addr_mask                 ff:ff:ff:c0:00:00                        G</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>In the output above, the letters in the "SOURCE" column indicate the level
+at which this host got the attribute.
+'G' means the attribute is global, 'O' is an OS attribute, 'A' is an appliance
+attribute, 'H' is a host attribute and 'I' in an intrinsic attribute (these
+attributes cannot be removed or modified).</P
+><P
+>If a host has an attribute assigned to it, you can use it in a post section
+by referring to it in its entity form ("&#38;attribute_name;").
+For example, if you'd like to dynamically get the IP address of the private
+network for the frontend, you'd use "&#38;Kickstart_PrivateAddress;" in a post
+section.</P
+><P
+>Attributes can also be used as a "edge conditional" in graph XML files or
+as a "post section conditional" in node XML files.
+An edge conditional is used to conditionally traverse an edge in a graph XML
+file.
+The following is an excerpt from the Base Roll graph XML file:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>&#60;edge from="client" to="x11" cond="x11"/&#62;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>If the "x11" attribute is set to "true", then when a kickstart file is built
+for a "client" host (e.g., a compute node or tile node), then the kickstart
+file generation code will traverse the edge from "client" to "x11", that is, 
+the "x11" node XML file will be included in the kickstart file.
+Otherwise, if the "x11" attribute is set to false, then the "x11" node XML file
+will not be included in the kickstart file.</P
+><P
+>Post section conditions are used to conditionally execute post sections.
+The following is an excerpt from a node XML file from the SGE Roll:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>&#60;post os="linux" cond="exec_host"&#62;
+
+&#60;file name="/etc/rc.d/rocksconfig.d/post-91-sge" mode="append"&#62;
+SET_HOST_TYPE=" -x "
+&#60;/file&#62;
+
+&#60;/post&#62;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>If the attribute "exec_host" is true (and if this is a "linux" host), then the
+post section will be executed, otherwise, this post section will be skipped.</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="internals-packages.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="building.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Packages</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="internals.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Building Your Roll</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

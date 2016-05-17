@@ -1,0 +1,965 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>create</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Command Reference"
+HREF="c2387.html"><LINK
+REL="PREVIOUS"
+TITLE="config"
+HREF="x3536.html"><LINK
+REL="NEXT"
+TITLE="disable"
+HREF="x3865.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Base</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x3536.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 9. Command Reference</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x3865.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="AEN3584"
+>9.3. create</A
+></H1
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-CREATE-DISTRO"
+>9.3.1. create distro</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks create distro</B
+>  [arch=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [dist=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [md5=<TT
+CLASS="REPLACEABLE"
+><I
+>bool</I
+></TT
+>] [rolls=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [root=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [version=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Create a Rocks distribution. This distribution is used to install
+	Rocks nodes.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>arch=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The architecture of the distribution. The default is the native
+	architecture of the machine.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>dist=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The directory name of the distribution. The default is: "rocks-dist".
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>md5=<TT
+CLASS="REPLACEABLE"
+><I
+>bool</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Calculate MD5SUM of all packages. Default is 'yes'.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>rolls=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	A list of rolls that should be included in the distribution. This
+	must be a list separated by spaces of the form: rollname,version.
+	For example: rolls="CentOS,5.0 kernel,5.0". The default is to
+	include all the enabled rolls for the native architecture. To
+	get a list of enabled rolls, execute: "rocks list roll".
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>root=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The path prefix location of the rolls. The default is:
+	/export/rocks/install.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>version=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The version of the distribution. The default is the native
+	version of the machine.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks create distro</DT
+><DD
+><P
+>&#13;
+	Create a distribution in the current directory.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-CREATE-KEYS"
+>9.3.2. create keys</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks create keys</B
+>  [key=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [passphrase=<TT
+CLASS="REPLACEABLE"
+><I
+>boolean</I
+></TT
+>]</P
+><P
+>&#13;	Create a RSA private/public key pair. These keys can be used to
+	control the power for host and to open a console to VM. The private
+	key will be stored in the specified by the 'key' parameter and the
+	public key will be written to standard out.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>key=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The filename that will be used to store the private key.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>passphrase=<TT
+CLASS="REPLACEABLE"
+><I
+>boolean</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Set this to 'no' if you want a passphraseless private key. The default
+	is 'yes'.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-CREATE-MIRROR"
+>9.3.3. create mirror</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks create mirror</B
+>  {path} [arch=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [rollname=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [version=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>	
+	Create a Roll ISO image from the packages found in the
+	repository located at 'URL'.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>path</DT
+><DD
+><P
+>	
+	The network location of the repository of packages.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>arch=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Architecture of the mirror. (default = the architecture of 
+	of the OS running on this machine).
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>rollname=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The base name for the created Roll. (default = 'updates').
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>version=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The version number of the created Roll. (default = the version of 
+	Rocks running on this machine).
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks create mirror http://mirrors.kernel.org/centos/4.5/updates/i386/RPMS rollname=updates version=4.5</DT
+><DD
+><P
+>&#13;	Will mirror all the packages found under the URL
+	http://mirrors.kernel.org/centos/4.5/updates/i386/RPMS and will create
+	a Roll ISO image named 'updates-4.5-0.i386.disk1.iso'.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-CREATE-NEW-ROLL"
+>9.3.4. create new roll</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks create new roll</B
+>  {version} {name} {color} [color=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [name=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [version=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>	
+	Create a new roll from a template.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>version</DT
+><DD
+><P
+>	
+	
+	</P
+></DD
+><DT
+>name</DT
+><DD
+><P
+>	
+	
+	</P
+></DD
+><DT
+>color</DT
+><DD
+><P
+>	
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>color=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>name=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>version=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks create new roll</DT
+><DD
+><P
+>&#13;	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-CREATE-PACKAGE"
+>9.3.5. create package</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks create package</B
+>  {directory} [prefix=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [release=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [version=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Create a RedHat or Solaris package from a given directory.  The
+	package will install files in either the same location as the given
+	directory, or a combination of the directory basename and the
+	provided prefix.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>directory</DT
+><DD
+><P
+>&#13;	The source directory of the files used to create the OS-specific
+	package.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>prefix=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The prefix pathname prepended to the base name of the source
+	directory.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>release=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Release number of the created package (default is '1')
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>version=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Version number of the created package (default is '1.0')
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks create package /opt/stream stream</DT
+><DD
+><P
+>&#13;	Create a package named stream in the current directory using the
+	contents of the /opt/stream directory.  The resulting package will
+	install its files at /opt/stream.
+	
+	</P
+></DD
+><DT
+># rocks create package /opt/stream localstream prefix=/usr/local</DT
+><DD
+><P
+>&#13;	Create a package named localstream in the current directory using the
+	contents of the /opt/stream directory.  The resulting package will
+	install its files at /usr/local/stream.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-CREATE-ROLL"
+>9.3.6. create roll</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks create roll</B
+>  {roll...}</P
+><P
+>&#13;	Create a roll.  You may specify either a single XML file to build
+	one Roll or a list of ISO files to build a Meta Roll.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>roll</DT
+><DD
+><P
+>&#13;	Either a list of Roll ISO files or the name of a single Roll XML
+	description file.  If a list of Roll ISO files to be merge together 
+	into a single Roll.  Otherwise the single argument is assumed to
+	be the name of the XML file generated by the top level Makefile in
+	the Roll's source.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks create roll roll-base.xml</DT
+><DD
+><P
+>&#13;	Creates the Rocks Base Roll from the roll-base.xml description file.
+	
+	</P
+></DD
+><DT
+># rocks create roll base*iso kernel*iso</DT
+><DD
+><P
+>&#13;	Create a composite Roll from a list of Roll ISOs.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>related commands</B
+></P
+><DL
+><DT
+><A
+HREF="x2389.html#ROCKS-ADD-ROLL"
+>add roll</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+><DT
+><A
+HREF="x3865.html#ROCKS-DISABLE-ROLL"
+>disable roll</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+><DT
+><A
+HREF="x4138.html#ROCKS-ENABLE-ROLL"
+>enable roll</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+><DT
+><A
+HREF="x4276.html#ROCKS-LIST-ROLL"
+>list roll</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+><DT
+><A
+HREF="x5142.html#ROCKS-REMOVE-ROLL"
+>remove roll</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x3536.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x3865.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>config</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="c2387.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>disable</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

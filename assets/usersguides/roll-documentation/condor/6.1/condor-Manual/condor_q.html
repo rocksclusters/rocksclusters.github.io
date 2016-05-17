@@ -1,0 +1,753 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<link rel="canonical" href="http://research.cs.wisc.edu/condor/manual/current/condor_q.html">
+
+<TITLE>condor_q</TITLE>
+<META NAME="description" CONTENT="condor_q">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="condor_qedit.html">
+<LINK REL="previous" HREF="condor_procd.html">
+<LINK REL="up" HREF="10_Command_Reference.html">
+<LINK REL="next" HREF="condor_qedit.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html3789"
+  HREF="condor_qedit.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3783"
+  HREF="10_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3777"
+  HREF="condor_procd.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3785"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3787"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3790"
+  HREF="condor_qedit.html">condor_qedit</A>
+<B> Up:</B> <A NAME="tex2html3784"
+  HREF="10_Command_Reference.html">10. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3778"
+  HREF="condor_procd.html">condor_procd</A>
+ &nbsp; <B>  <A NAME="tex2html3786"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3788"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html3791"
+  HREF="condor_q.html#SECTION0011291000000000000000">Synopsis</A>
+<LI><A NAME="tex2html3792"
+  HREF="condor_q.html#SECTION0011292000000000000000">Description</A>
+<LI><A NAME="tex2html3793"
+  HREF="condor_q.html#SECTION0011293000000000000000">Options</A>
+<LI><A NAME="tex2html3794"
+  HREF="condor_q.html#SECTION0011294000000000000000">General Remarks</A>
+<LI><A NAME="tex2html3795"
+  HREF="condor_q.html#SECTION0011295000000000000000">Examples</A>
+<LI><A NAME="tex2html3796"
+  HREF="condor_q.html#SECTION0011296000000000000000">Exit Status</A>
+<LI><A NAME="tex2html3797"
+  HREF="condor_q.html#SECTION0011297000000000000000">Author</A>
+<LI><A NAME="tex2html3798"
+  HREF="condor_q.html#SECTION0011298000000000000000">Copyright</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION0011290000000000000000"></A><A NAME="man-condor-q"></A>
+<BR>
+<I>condor_q</I>
+</H1> Display information about jobs in queue
+  
+<P>
+
+<H2><A NAME="SECTION0011291000000000000000">
+Synopsis</A>
+</H2><B><I>condor_q</I></B>
+[<B>-help</B>] 
+
+<P>
+<B><I>condor_q</I></B>
+
+[<B>-debug</B>]
+
+[<B>-global</B>] 
+[<B>-submitter  </B><I>submitter</I>]
+[<B>-name  </B><I>name</I>] 
+[<B>-pool  </B><I>centralmanagerhostname[:portnumber]</I>]
+[<B>-analyze</B>]
+[<B>-run</B>]
+[<B>-hold</B>]
+[<B>-globus</B>]
+[<B>-goodput</B>]
+[<B>-io</B>]
+[<B>-dag</B>]
+[<B>-long</B>]
+[<B>-xml</B>]
+[<B>-attributes  </B><I>Attr1 [,Attr2 ... ]</I>]
+[<B>-format  </B><I>fmt attr</I>]
+[<B>-cputime</B>]
+[<B>-currentrun</B>]
+[<B>-avgqueuetime</B>]
+[<B>-jobads  </B><I>file</I>] 
+[<B>-machineads  </B><I>file</I>] 
+[<B>-stream-results</B>]
+[<B>-wide</B>]
+[<I>{cluster | cluster.process | owner | 
+  <B>-constraint </B><I>expression</I> ... } </I>]
+
+<P>
+<A NAME="70777"></A>
+<A NAME="70778"></A>
+
+<P>
+
+<H2><A NAME="SECTION0011292000000000000000">
+Description</A>
+</H2>
+<I>condor_q</I> displays information about jobs in the Condor job queue.  By
+default, <I>condor_q</I> queries the local job queue but this behavior may be 
+modified by specifying:
+
+<UL>
+<LI>the <B>-global</B> option, which queries all job queues in the pool
+</LI>
+<LI>a schedd name with the <B>-name</B> option, which causes the queue of 
+		the named schedd to be queried 
+</LI>
+<LI>a submitter with the <B>-submitter</B> option, which causes all queues
+		of the named submitter to be queried
+</LI>
+</UL>
+
+<P>
+To restrict the display to jobs of interest, a list of zero or more 
+restrictions may be supplied.  Each restriction may be one of:
+
+<UL>
+<LI>a <I>cluster</I> and a <I>process</I> matches jobs which
+		belong to the specified cluster and have the specified process number
+</LI>
+<LI>a <I>cluster</I> without a <I>process</I> matches all jobs belonging
+		to the specified cluster
+</LI>
+<LI>a <I>owner</I> matches all jobs owned by the specified owner
+</LI>
+<LI>a <B>-constraint </B><I>expression</I> which matches all jobs that
+		satisfy the specified ClassAd expression. (See section&nbsp;<A HREF="4_1Condor_s_ClassAd.html#sec:classad-reference">4.1</A>
+		for a discussion of ClassAd expressions.)
+</LI>
+</UL>
+If no <I>owner</I> restrictions are present in the list, the job matches the 
+restriction list if it matches at least one restriction in the list.  If 
+<I>owner</I> restrictions are present, the job matches the list if it matches 
+one of the <I>owner</I> restrictions <I>and</I> at least one non-owner 
+restriction.
+
+<P>
+If the <B>-long</B> option is specified, <I>condor_q</I> displays a long description 
+of the queried jobs by printing the entire job ClassAd.
+The attributes of the job ClassAd may be displayed by means of the
+<B>-format</B> option, which displays attributes with a <code>printf(3)</code>
+format.
+Multiple <B>-format</B> options may be specified in the option list to display
+several attributes of the job.
+If neither <B>-long</B> or <B>-format</B> are specified, <I>condor_q</I> displays a 
+a one line summary of information as follows:
+
+<P>
+<DL>
+<DT><STRONG>ID</STRONG></DT>
+<DD>The cluster/process id of the condor job. 
+</DD>
+<DT><STRONG>OWNER</STRONG></DT>
+<DD>The owner of the job. 
+</DD>
+<DT><STRONG>SUBMITTED</STRONG></DT>
+<DD>The month, day, hour, and minute the job was submitted to the 
+	queue. 
+</DD>
+<DT><STRONG>RUN_TIME</STRONG></DT>
+<DD>Wall-clock time accumulated by the job to date in days, 
+	hours, minutes, and seconds.  
+</DD>
+<DT><STRONG>ST</STRONG></DT>
+<DD>Current status of the job, which varies somewhat according
+        to the job universe and the timing of updates.
+        H = on hold,
+        R = running,
+I = idle
+        (waiting for a machine to execute on), C = completed, 
+        X = removed, and
+        &gt; = transferring output. 
+</DD>
+<DT><STRONG>PRI</STRONG></DT>
+<DD>User specified priority of the job, ranges from -20 to +20, with 
+	higher numbers corresponding to greater priority. 
+</DD>
+<DT><STRONG>SIZE</STRONG></DT>
+<DD>The value of job ClassAd attribute <TT>MemoryUsage</TT> (in Mbytes),
+when the attribute is defined, and <TT>ImageSize</TT> (in Kbytes), otherwise. 
+</DD>
+<DT><STRONG>CMD</STRONG></DT>
+<DD>The name of the executable. 
+</DD>
+</DL>
+
+<P>
+If the <B>-dag</B> option is specified, the OWNER column is replaced
+with NODENAME for jobs started by the <I>condor_dagman</I> instance.
+
+<P>
+If the <B>-run</B> option is specified, the ST, PRI, SIZE, and CMD
+columns are replaced with:
+
+<P>
+<DL>
+<DT><STRONG>HOST(S)</STRONG></DT>
+<DD>The host where the job is running.
+</DD>
+</DL>
+
+<P>
+If the <B>-globus</B> option is specified, the ST, PRI, SIZE, and CMD
+columns are replaced with:
+<DL>
+<DT><STRONG>STATUS</STRONG></DT>
+<DD>The state that Condor believes the job is in.
+Possible values are
+  <DL>
+<DT><STRONG>PENDING</STRONG></DT>
+<DD>The job is waiting for resources to become available
+    in order to run.
+    
+</DD>
+<DT><STRONG>ACTIVE</STRONG></DT>
+<DD>The job has received resources, and the application
+    is executing.
+    
+</DD>
+<DT><STRONG>FAILED</STRONG></DT>
+<DD>The job terminated before completion because of an error,
+    user-triggered cancel, or system-triggered cancel.
+    
+</DD>
+<DT><STRONG>DONE</STRONG></DT>
+<DD>The job completed successfully.
+    
+</DD>
+<DT><STRONG>SUSPENDED</STRONG></DT>
+<DD>The job has been suspended.
+    Resources which were allocated for this job may have been
+    released due to a scheduler-specific reason.
+    
+</DD>
+<DT><STRONG>UNSUBMITTED</STRONG></DT>
+<DD>The job has not been submitted to the scheduler yet,
+    pending the reception of the 
+    GLOBUS_GRAM_PROTOCOL_JOB_SIGNAL_COMMIT_REQUEST signal from a client.
+    
+</DD>
+<DT><STRONG>STAGE_IN</STRONG></DT>
+<DD>The job manager is staging in files,
+    in order to run the job.
+    
+</DD>
+<DT><STRONG>STAGE_OUT</STRONG></DT>
+<DD>The job manager is staging out files
+    generated by the job.
+    
+</DD>
+<DT><STRONG>UNKNOWN</STRONG></DT>
+<DD>
+</DD>
+</DL>
+</DD>
+<DT><STRONG>MANAGER</STRONG></DT>
+<DD>A guess at what remote batch system is running the job.
+It is a guess, because Condor looks at the Globus jobmanager contact
+string to attempt identification.
+If the value is fork, the job is running on the
+remote host without a jobmanager.
+Values may also be condor, lsf, or pbs.
+</DD>
+<DT><STRONG>HOST</STRONG></DT>
+<DD>The host to which the job was submitted.
+</DD>
+<DT><STRONG>EXECUTABLE</STRONG></DT>
+<DD>The job as specified as the executable in the
+submit description file.
+</DD>
+</DL>
+
+<P>
+If the <B>-goodput</B> option is specified, the ST, PRI, SIZE, and CMD
+columns are replaced with:
+
+<P>
+<DL>
+<DT><STRONG>GOODPUT</STRONG></DT>
+<DD>The percentage of RUN_TIME for this job which has been
+saved in a checkpoint.  A low GOODPUT value indicates that the job is
+failing to checkpoint.  If a job has not yet attempted a checkpoint,
+this column contains <TT>[?????]</TT>.
+</DD>
+<DT><STRONG>CPU_UTIL</STRONG></DT>
+<DD>The ratio of CPU_TIME to RUN_TIME for checkpointed
+work.  A low CPU_UTIL indicates that the job is not running
+efficiently, perhaps because it is I/O bound or because the job
+requires more memory than available on the remote workstations.  If
+the job has not (yet) checkpointed, this column contains <TT>[??????]</TT>.
+</DD>
+<DT><STRONG>Mb/s</STRONG></DT>
+<DD>The network usage of this job, in Megabits per second of
+run-time.
+</DD>
+</DL>
+
+<P>
+If the <B>-io</B> option is specified, the ST, PRI, SIZE, and CMD columns
+are replaced with:
+
+<P>
+<DL>
+<DT></DT>
+<DD>READ The total number of bytes the application has read from files and sockets.
+</DD>
+<DT></DT>
+<DD>WRITE The total number of bytes the application has written to files and sockets.
+</DD>
+<DT></DT>
+<DD>SEEK The total number of seek operations the application has performed on files.
+</DD>
+<DT></DT>
+<DD>XPUT The effective throughput (average bytes read and written per second)
+from the application's point of view.
+</DD>
+<DT></DT>
+<DD>BUFSIZE The maximum number of bytes to be buffered per file.
+</DD>
+<DT></DT>
+<DD>BLOCKSIZE The desired block size for large data transfers.
+</DD>
+</DL>
+
+<P>
+These fields are updated when a job produces a checkpoint or completes.
+If a job
+has not yet produced a checkpoint, this information is not available.
+
+<P>
+If the <B>-cputime</B> option is specified, the RUN_TIME 
+column is replaced with:
+
+<P>
+<DL>
+<DT><STRONG>CPU_TIME</STRONG></DT>
+<DD>The remote CPU time accumulated by the job to date
+(which has been stored in a checkpoint) in days, hours, minutes, and
+seconds.  (If the job is currently running, time accumulated during
+the current run is <I>not</I> shown.  If the job has not produced a checkpoint,
+this column contains 0+00:00:00.)
+</DD>
+</DL>
+
+<P>
+The <I>-analyze</I> option may be used to determine why certain jobs are not
+running by performing an analysis on a per machine basis for each machine in 
+the pool.  The reasons may vary among failed constraints, insufficient priority,
+resource owner preferences and prevention of preemption by the 
+<TT>PREEMPTION_REQUIREMENTS</TT> <A NAME="71220"></A> <A NAME="71221"></A> expression.  If the <I>-long</I> option is specified 
+along with the <I>-analyze</I> option, the reason for failure is displayed on a 
+per machine basis.
+
+<P>
+
+<H2><A NAME="SECTION0011293000000000000000">
+Options</A>
+</H2>
+  
+<P>
+  <DL>
+<DT><STRONG><B>-help</B></STRONG></DT>
+<DD>Get a brief description of the supported options
+<BR>  
+</DD>
+<DT><STRONG><B>-global</B></STRONG></DT>
+<DD>Get queues of all the submitters in the system
+<BR>  
+</DD>
+<DT><STRONG><B>-debug</B></STRONG></DT>
+<DD>Causes debugging information to be sent to
+<TT>stderr</TT>, based on the value of the configuration variable
+<TT>TOOL_DEBUG</TT>
+<BR>
+  
+</DD>
+<DT><STRONG><B>-submitter </B><I>submitter</I></STRONG></DT>
+<DD>List jobs of specific submitter 
+    from all the queues in the pool
+<BR>  
+</DD>
+<DT><STRONG><B>-pool </B><I>centralmanagerhostname[:portnumber]</I></STRONG></DT>
+<DD>Use the <I>centralmanagerhostname</I> as 
+    the central manager to 
+    locate schedds. (The default is the <TT>COLLECTOR_HOST</TT> <A NAME="71256"></A> <A NAME="71257"></A>
+    specified in the configuration file.
+<BR>  
+</DD>
+<DT><STRONG><B>-analyze</B></STRONG></DT>
+<DD>Perform an analysis to determine how
+    many resources are available to run the requested jobs.  These results
+    are only meaningful for jobs using Condor's matchmaker.  This option
+    is never meaningful for Scheduler universe jobs and only meaningful
+    for grid universe jobs doing matchmaking.
+<BR>  
+</DD>
+<DT><STRONG><B>-run</B></STRONG></DT>
+<DD>Get information about running jobs.
+<BR>  
+</DD>
+<DT><STRONG><B>-hold</B></STRONG></DT>
+<DD>Get information about jobs in the hold state.
+    Also displays the time the job was placed into the hold state
+    and the reason why the job was placed in the hold state.
+<BR>  
+</DD>
+<DT><STRONG><B>-globus</B></STRONG></DT>
+<DD>Get information only about jobs submitted
+    to grid resources described as <B>gt2</B>
+    or <B>gt5</B>.
+<BR>  
+</DD>
+<DT><STRONG><B>-goodput</B></STRONG></DT>
+<DD>Display job goodput statistics.
+<BR>  
+</DD>
+<DT><STRONG><B>-io</B></STRONG></DT>
+<DD>Display job input/output summaries.
+<BR>  
+</DD>
+<DT><STRONG><B>-dag</B></STRONG></DT>
+<DD>Display DAG node jobs under their <I>condor_dagman</I> 
+    instance. Child nodes are listed using indentation to show the structure
+    of the DAG. 
+<BR>  
+</DD>
+<DT><STRONG><B>-name </B><I>name</I></STRONG></DT>
+<DD>Show only the job queue of the named schedd
+<BR>  
+</DD>
+<DT><STRONG><B>-long</B></STRONG></DT>
+<DD>Display job ads in long format
+<BR>  
+</DD>
+<DT><STRONG><B>-xml</B></STRONG></DT>
+<DD>Display job ads  in xml format.
+    The xml format is fully defined at
+    <A NAME="tex2html436"
+  HREF="http://www.cs.wisc.edu/condor/classad/refman/">http://www.cs.wisc.edu/condor/classad/refman/</A>.
+<BR>  
+</DD>
+<DT><STRONG><B>-attributes </B><I>Attr1 [,Attr2 ... ]</I></STRONG></DT>
+<DD>Explicitly list the 
+  attributes (by name, and in a comma separated list)
+  which should be displayed when using the <B>-xml</B> or <B>-long</B> options.
+  Limiting the number of attributes increases the efficiency of the query.
+<BR>  
+</DD>
+<DT><STRONG><B>-format </B><I>fmt attr</I></STRONG></DT>
+<DD>Display attribute or 
+    expression <I>attr</I> in format <I>fmt</I>.
+    To display the attribute or expression the format must contain a single
+    <TT>printf(3)</TT>-style conversion specifier.
+    Attributes must be from the job ClassAd.
+    Expressions are ClassAd expressions and may 
+    refer to attributes in the job ClassAd.
+    If the attribute is not present in a given ClassAd and cannot
+    be parsed as an expression,
+    then the format option will be silently skipped.
+    The conversion specifier must match the type of the
+    attribute or expression.
+    %s is suitable for strings such as <TT>Owner</TT>,
+    %d for integers such as <TT>ClusterId</TT>,
+    and %f for floating point numbers such as <TT>RemoteWallClockTime</TT>.  
+    %v identifies the type of the attribute,
+    and then prints the value in an appropriate format.
+    %V identifies the type of the attribute,
+    and then prints the value in an appropriate format as it would
+    appear in the <B>-long</B> format.
+    As an example, strings used with %V will have quote marks.
+    An incorrect format will result in undefined behavior.
+    Do not use more than one conversion specifier in a given
+    format.  More than one conversion specifier will result
+    in undefined behavior.  To output multiple attributes
+    repeat the <B>-format</B> option once for each desired attribute.
+    Like <TT>printf(3)</TT> style formats, one may include other
+    text that will be reproduced directly.   
+    A format without any conversion specifiers may be specified,
+    but an attribute is still required.
+    Include <!-- MATH
+ $\mathtt{\backslash}$
+ -->
+<IMG
+ WIDTH="14" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img13.png"
+ ALT="$\mathtt{\backslash}$">n to specify a line break. 
+<BR>  
+</DD>
+<DT><STRONG><B>-cputime</B></STRONG></DT>
+<DD>Instead of wall-clock allocation time (RUN_TIME), 
+    display remote CPU time accumulated by the job to date in days,
+    hours, minutes, and seconds.  (If the job is currently running, time
+    accumulated during the current run is <I>not</I> shown.)
+<BR>  
+</DD>
+<DT><STRONG><B>-currentrun</B></STRONG></DT>
+<DD>Normally, RUN_TIME contains all the time
+    accumulated during the current run plus all previous runs.  If this
+    option is specified, RUN_TIME only displays the time accumulated so
+    far on this current run.
+<BR>  
+</DD>
+<DT><STRONG><B>-avgqueuetime</B></STRONG></DT>
+<DD>Display the average of time spent in the
+    queue, considering all jobs not completed (those that do not have
+    <TT>JobStatus == 4</TT> or <TT>JobStatus == 3</TT>.  
+<BR>  
+</DD>
+<DT><STRONG><B>-jobads </B><I>file</I></STRONG></DT>
+<DD>Display jobs from a list of
+    ClassAds from a file, instead of the real ClassAds from the
+    <I>condor_schedd</I> daemon.
+    This is most useful for debugging purposes.
+    The ClassAds appear as if
+    <I>condor_q</I> <B>-l</B> is used with the header stripped out.
+<BR>  
+</DD>
+<DT><STRONG><B>-machineads </B><I>file</I></STRONG></DT>
+<DD>When doing analysis, use the
+    machine ads from the file instead of the ones from the
+    <I>condor_collector</I> daemon. 
+    This is most useful for debugging purposes. 
+    The ClassAds appear as if <I>condor_status</I> <B>-l</B> is used.
+<BR>  
+</DD>
+<DT><STRONG><B>-stream-results</B></STRONG></DT>
+<DD>Display results as jobs are fetched
+    from the job queue rather than storing results in memory until all
+    jobs have been fetched.  This can reduce memory consumption when fetching
+    large numbers of jobs, but if <I>condor_q</I> is paused while displaying
+    results, this could result in a timeout in communication with
+    <I>condor_schedd</I>.
+<BR>  
+</DD>
+<DT><STRONG><B>-wide</B></STRONG></DT>
+<DD>If this option is specified, and the command portion
+    of the output would cause the output to extend beyond 80 columns,
+    display beyond the 80 columns. 
+<BR>  
+</DD>
+<DT><STRONG>Restriction list</STRONG></DT>
+<DD>The restriction list may have zero or more items,
+    each of which may be:
+        <DL>
+<DT><STRONG><I>cluster</I></STRONG></DT>
+<DD>match all jobs belonging to cluster
+        
+</DD>
+<DT><STRONG><I>cluster.proc</I></STRONG></DT>
+<DD>match all jobs belonging to cluster with
+        a process number of <I>proc</I>
+        
+</DD>
+<DT><STRONG><B>-constraint </B><I>expression</I></STRONG></DT>
+<DD>match all jobs which match
+        the ClassAd expression constraint
+        
+</DD>
+</DL> 
+    A job matches the restriction list if it matches any restriction in the 
+    list  Additionally, if <I>owner</I> restrictions are supplied, the job
+    matches the list only if it also matches an <I>owner</I> restriction.
+<BR>  
+</DD>
+</DL>
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION0011294000000000000000">
+General Remarks</A>
+</H2>
+
+<P>
+The default output from <I>condor_q</I> is formatted to be human readable,
+not script readable.
+In an effort to make the output fit within 80 characters, values in
+some fields might be truncated.
+Furthermore, the Condor Project can (and does) change the formatting
+of this default output as we see fit.
+Therefore, any script that is attempting to parse data from <I>condor_q</I>
+is strongly encouraged to use the <B>-format</B> option (described
+above, examples given below).
+
+<P>
+Although <I>-analyze</I> provides a very good first approximation, the analyzer 
+cannot diagnose all possible situations because the analysis is based on 
+instantaneous and local information.  Therefore, there are some situations 
+(such as when several submitters are contending for resources, or if the pool 
+is rapidly changing state) which cannot be accurately diagnosed.
+
+<P>
+<I>-goodput</I>, <I>-cputime</I>, and <I>-io</I> are most useful for STANDARD
+universe jobs, since they rely on values computed when a job
+checkpoints.
+
+<P>
+It is possible to to hold jobs that are in the X state, to avoid this it 
+is best to construct a <B>-constraint </B><I>expression</I> that contains
+'JobStatus != 3' if the user wishes to avoid this condition. 
+
+<P>
+
+<H2><A NAME="SECTION0011295000000000000000">
+Examples</A>
+</H2>
+
+<P>
+The <B>-format</B> option provides a way to specify both the job attributes
+and formatting of those attributes.
+There must be only one conversion specification per <B>-format</B> option.
+As an example, to list only Jane Doe's jobs in the queue,
+choosing to print and format only the owner of the job,
+the command line arguments for the job, and the
+process ID of the job:
+<PRE>
+%condor_q -submitter jdoe -format "%s" Owner -format " %s " Args -format "ProcId = %d\n" ProcId
+jdoe 16386 2800 ProcId = 0
+jdoe 16386 3000 ProcId = 1
+jdoe 16386 3200 ProcId = 2
+jdoe 16386 3400 ProcId = 3
+jdoe 16386 3600 ProcId = 4
+jdoe 16386 4200 ProcId = 7
+</PRE>
+<P>
+To display only the JobID's of Jane Doe's jobs you can use the following.
+<PRE>
+%condor_q -submitter jdoe -format "%d." ClusterId -format "%d\n" ProcId
+27.0
+27.1
+27.2
+27.3
+27.4
+27.7
+</PRE>
+<P>
+An example that shows the difference (first set of output)
+between not using an option to <I>condor_q</I> and (second
+set of output) using the <B>-globus</B> option:
+<PRE>
+ ID      OWNER            SUBMITTED     RUN_TIME ST PRI SIZE CMD
+ 100.0   smith          12/11 13:20   0+00:00:02 R  0   0.0  sleep 10
+
+1 jobs; 0 idle, 1 running, 0 held
+
+
+
+ ID      OWNER          STATUS  MANAGER  HOST                EXECUTABLE
+ 100.0   smith         ACTIVE fork     grid.example.com       /bin/sleep
+</PRE>
+<P>
+
+<H2><A NAME="SECTION0011296000000000000000">
+Exit Status</A>
+</H2>
+
+<P>
+<I>condor_q</I> will exit with a status value of 0 (zero) upon success,
+and it will exit with the value 1 (one) upon failure.
+
+<P>
+
+<H2><A NAME="SECTION0011297000000000000000">
+Author</A>
+</H2> Condor Team, University of Wisconsin-Madison
+  
+<H2><A NAME="SECTION0011298000000000000000">
+Copyright</A>
+</H2> 
+  Copyright &#169; 1990-2012 Condor Team, Computer Sciences Department, 
+  University of Wisconsin-Madison, Madison, WI.  All Rights Reserved.  
+	Licensed under the Apache License, Version 2.0.
+
+<P>
+See the <I>Condor Version 7.8.5 Manual</I> or
+	<A NAME="tex2html437"
+  HREF="http://www.condorproject.org/license">http://www.condorproject.org/license</A>
+for
+  additional notices. 
+
+
+  <HR>
+<!--Navigation Panel-->
+<A NAME="tex2html3789"
+  HREF="condor_qedit.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3783"
+  HREF="10_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3777"
+  HREF="condor_procd.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3785"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3787"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3790"
+  HREF="condor_qedit.html">condor_qedit</A>
+<B> Up:</B> <A NAME="tex2html3784"
+  HREF="10_Command_Reference.html">10. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3778"
+  HREF="condor_procd.html">condor_procd</A>
+ &nbsp; <B>  <A NAME="tex2html3786"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3788"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

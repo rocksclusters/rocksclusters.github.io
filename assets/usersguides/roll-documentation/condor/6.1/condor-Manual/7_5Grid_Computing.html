@@ -1,0 +1,289 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>7.5 Grid Computing</TITLE>
+<META NAME="description" CONTENT="7.5 Grid Computing">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="7_6Managing_Large.html">
+<LINK REL="previous" HREF="7_4Condor_on.html">
+<LINK REL="up" HREF="7_Frequently_Asked.html">
+<LINK REL="next" HREF="7_6Managing_Large.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html2352"
+  HREF="7_6Managing_Large.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2346"
+  HREF="7_Frequently_Asked.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2340"
+  HREF="7_4Condor_on.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2348"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2350"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2353"
+  HREF="7_6Managing_Large.html">7.6 Managing Large Workflows</A>
+<B> Up:</B> <A NAME="tex2html2347"
+  HREF="7_Frequently_Asked.html">7. Frequently Asked Questions</A>
+<B> Previous:</B> <A NAME="tex2html2341"
+  HREF="7_4Condor_on.html">7.4 Condor on Windows</A>
+ &nbsp; <B>  <A NAME="tex2html2349"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2351"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html2354"
+  HREF="7_5Grid_Computing.html#SECTION00851000000000000000">What must be installed to access grid resources?</A>
+<LI><A NAME="tex2html2355"
+  HREF="7_5Grid_Computing.html#SECTION00852000000000000000">I am the administrator at Physics, and I have a 64-node cluster
+running Condor.
+The administrator at Chemistry is also running Condor on her 64-node cluster.
+We would like to be able to share resources.
+How do we do this?</A>
+<LI><A NAME="tex2html2356"
+  HREF="7_5Grid_Computing.html#SECTION00853000000000000000">What is glidein?</A>
+<LI><A NAME="tex2html2357"
+  HREF="7_5Grid_Computing.html#SECTION00854000000000000000">Using my Globus gatekeeper to submit jobs to the Condor pool
+does not work.  What is wrong?</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00850000000000000000">
+7.5 Grid Computing</A>
+</H1>
+
+<P>
+<A NAME="49355"></A>
+
+<P>
+
+<H2><A NAME="SECTION00851000000000000000">
+What must be installed to access grid resources?</A>
+</H2>
+A single machine with Condor installed such that jobs may
+be submitted is the minimum software necessary.
+If matchmaking or glidein is desired,
+then a single machine must not only be running Condor
+such that jobs may be submitted,
+but also fill the role of a central manager.
+A Personal Condor installation may satisfy both.
+
+<P>
+
+<H2><A NAME="SECTION00852000000000000000">
+I am the administrator at Physics, and I have a 64-node cluster
+running Condor.
+The administrator at Chemistry is also running Condor on her 64-node cluster.
+We would like to be able to share resources.
+How do we do this?</A>
+</H2>
+
+<P>
+Condor's flocking feature
+allows multiple Condor pools to share resources.
+By setting configuration variables within each pool,
+jobs may be executed on either cluster.
+See the manual section on flocking, section&nbsp;<A HREF="5_2Connecting_Condor.html#sec:Flocking">5.2</A>,
+for details.
+
+<P>
+
+<H2><A NAME="SECTION00853000000000000000">
+What is glidein?</A>
+</H2>
+
+<P>
+<A NAME="49360"></A>
+Glidein provides a way to temporarily add a resource
+to a local Condor pool.
+Glidein uses Globus resource-management software to run jobs
+on the resource.
+Those jobs are initially portions of Condor
+software, such that Condor is running on the resource,
+configured to be part of the local pool.
+Then, Condor may execute the user's jobs.
+There are several benefits to working in this way.
+Standard universe jobs may be submitted to run on the resource.
+Condor can also dynamically schedule jobs across the grid.
+
+<P>
+See the section on Glidein, section&nbsp;<A HREF="5_4Glidein.html#sec:Glidein">5.4</A> of the manual
+for further information.
+
+<P>
+
+<H2><A NAME="SECTION00854000000000000000"></A>
+<A NAME="49363"></A>
+<BR>
+Using my Globus gatekeeper to submit jobs to the Condor pool
+does not work.  What is wrong?
+</H2>
+
+<P>
+The Condor configuration file is in a non-standard location,
+and the Globus software does not know how to locate it,
+when you see either of the following error messages.
+
+<P>
+<U>first error message</U>
+<PRE>
+% globus-job-run \
+  globus-gate-keeper.example.com/jobmanager-condor /bin/date
+
+Neither the environment variable CONDOR_CONFIG, /etc/condor/,
+nor ~condor/ contain a condor_config file.  Either set
+CONDOR_CONFIG to point to a valid config file, or put a
+"condor_config" file in /etc/condor or ~condor/ Exiting.
+
+GRAM Job failed because the job failed when the job manager
+attempted to run it (error code 17)
+</PRE>
+<P>
+<U>second error message</U>
+<PRE>
+% globus-job-run \
+   globus-gate-keeper.example.com/jobmanager-condor /bin/date
+
+ERROR: Can't find address of local schedd GRAM Job failed
+because the job failed when the job manager attempted to run it
+(error code 17)
+</PRE>
+<P>
+As described in
+section&nbsp;<A HREF="3_2Installation.html#sec:Preparing-to-Install">3.2.2</A>, 
+Condor searches for its configuration file using the following
+ordering.
+
+<OL>
+<LI>File specified in the <TT>CONDOR_CONFIG</TT> environment variable
+</LI>
+<LI><TT>$(HOME)/.condor/condor_config</TT>
+</LI>
+<LI><TT>/etc/condor/condor_config</TT>
+</LI>
+<LI><TT>~condor/condor_config</TT>
+</LI>
+<LI><TT><TT>$(GLOBUS_LOCATION)</TT>/etc/condor_config</TT>
+</LI>
+</OL>
+
+<P>
+Presuming the configuration file is not in a standard location,
+you will need to set the <TT>CONDOR_CONFIG</TT> environment variable
+<A NAME="49379"></A>
+by hand, or set it in an initialization script.
+One of the following solutions for an initialization may be used.
+
+<OL>
+<LI>Wherever <I>globus-gatekeeper</I> is launched,
+replace it with a minimal shell script that sets
+<TT>CONDOR_CONFIG</TT> and then starts <I>globus-gatekeeper</I>.
+Something like the following should work:
+
+<P>
+<PRE>
+  #! /bin/sh
+  CONDOR_CONFIG=/path/to/condor_config
+  export CONDOR_CONFIG
+  exec /path/to/globus/sbin/globus-gatekeeper "$@"
+</PRE>
+</LI>
+<LI>If you are starting <I>globus-gatekeeper</I> using <I>inetd</I>,
+<I>xinetd</I>, or a similar program,
+set the environment variable there.
+If you are using <I>inetd</I>, you can use the <I>env</I> program
+to set the environment.
+This example does this;
+the example is shown on multiple lines,
+but it will be all on one line in the <I>inetd</I> configuration. 
+<PRE>
+globus-gatekeeper stream tcp nowait root /usr/bin/env
+env CONDOR_CONFIG=/path/to/condor_config
+/path/to/globus/sbin/globus-gatekeeper
+-co /path/to/globus/etc/globus-gatekeeper.conf
+</PRE>If you're using <I>xinetd</I>, add an env setting
+something like the following:
+<PRE>
+service gsigatekeeper
+{
+    env = CONDOR_CONFIG=/path/to/condor_config
+    cps = 1000 1
+    disable = no
+    instances = UNLIMITED
+    max_load = 300
+    nice = 10
+    protocol = tcp
+    server = /path/to/globus/sbin/globus-gatekeeper
+    server_args = -conf /path/to/globus/etc/globus-gatekeeper.conf
+    socket_type = stream
+    user = root
+    wait = no
+}
+</PRE>
+<P>
+</LI>
+</OL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html2352"
+  HREF="7_6Managing_Large.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2346"
+  HREF="7_Frequently_Asked.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2340"
+  HREF="7_4Condor_on.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2348"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2350"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2353"
+  HREF="7_6Managing_Large.html">7.6 Managing Large Workflows</A>
+<B> Up:</B> <A NAME="tex2html2347"
+  HREF="7_Frequently_Asked.html">7. Frequently Asked Questions</A>
+<B> Previous:</B> <A NAME="tex2html2341"
+  HREF="7_4Condor_on.html">7.4 Condor on Windows</A>
+ &nbsp; <B>  <A NAME="tex2html2349"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2351"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

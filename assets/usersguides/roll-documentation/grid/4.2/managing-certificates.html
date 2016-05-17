@@ -1,0 +1,343 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Managing Certificates</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE=" Grid Roll: Users Guide "
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Using the Grid Roll"
+HREF="using.html"><LINK
+REL="PREVIOUS"
+TITLE="Using the Grid Roll"
+HREF="using.html"><LINK
+REL="NEXT"
+TITLE="Using Certificates"
+HREF="using-certificates.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Grid Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/globustoolkit.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="using.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 3. Using the Grid Roll</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="using-certificates.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="MANAGING-CERTIFICATES"
+>3.1. Managing Certificates</A
+></H1
+><P
+>&#13;This section discusses how to use the Globus Simple CA, and Rocks
+software to manage user certificates.  If you plan to use a different
+CA system please refer to the documentation for that CA.&#13;</P
+><P
+>	
+Creating a Globus User Certificate, regardless of the CA system,
+involves the following steps:
+
+<P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>&#13;User creates a certificate request.&#13;</P
+></LI
+><LI
+><P
+>&#13;Certificate Request is sent to the CA system.  The Grid Roll skips
+this step, and the root account directly reads the Certificate Request
+out of the user's home directories.&#13;</P
+></LI
+><LI
+><P
+>&#13;The CA system creates a Globus User Certificate and returns it to the
+user.&#13;</P
+></LI
+></OL
+>&#13;</P
+><P
+>&#13;The advantage of using the Simple CA (and the Rocks Grid Roll) to
+provide CA services is that these steps can be completed in minutes,
+rather than the standard practice of waiting hours to days for a
+certificate.&#13;</P
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN77"
+>3.1.1. Requesting a Certificate</A
+></H2
+><P
+>&#13;Users may request certificates using the Globus command
+<B
+CLASS="COMMAND"
+>grid-cert-request</B
+>.  In the following sample output
+a certificate request is generated for the user with a Common Name
+(CN) of "Spaceman Spiff".  The rest of the DN is picked up from the
+configuration of the CA, which was done at installation time.
+
+<DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/note.png"
+HSPACE="5"
+ALT="Note"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>&#13;Although the <B
+CLASS="COMMAND"
+>grid-cert-request</B
+> command instructs
+that you email you certificate request this step is not necessary when
+using the Grid Roll.&#13;</P
+></TD
+></TR
+></TABLE
+></DIV
+>&#13;</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>$ grid-cert-request 
+Enter your name, e.g., John Smith: Spaceman Spiff
+A certificate request and private key is being created.
+You will be asked to enter a PEM pass phrase.
+This pass phrase is akin to your account password, 
+and is used to protect your key file.
+If you forget your pass phrase, you will need to
+obtain a new certificate.
+
+Using configuration from /etc/grid-security/globus-user-ssl.conf
+Generating a 1024 bit RSA private key
+.....++++++
+.......................................++++++
+writing new private key to '/home/gridboy/.globus/userkey.pem'
+Enter PEM pass phrase:
+Verifying password - Enter PEM pass phrase:
+-----
+you are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Level 0 Organization [Grid]:Level 0 Organizational Unit [San Diego Supercomputer Center]:Level 1 Organizational Unit [rocks12.sdsc.edu]:Level 2 Organizational Unit [sdsc.edu]:Name (e.g., John M. Smith) []:
+
+A private key and a certificate request has been generated with the subject:
+
+/O=Grid/OU=San Diego Supercomputer Center/OU=rocks12.sdsc.edu/OU=sdsc.edu/CN=Spaceman Spiff
+
+If the CN=Spaceman Spiff is not appropriate, rerun this
+script with the -force -cn "Common Name" options.
+
+Your private key is stored in /home/gridboy/.globus/userkey.pem
+Your request is stored in /home/gridboy/.globus/usercert_request.pem
+
+Please e-mail the request to the Globus Simple CA root
+You may use a command similar to the following:
+
+cat /home/gridboy/.globus/usercert_request.pem | mail root
+
+Only use the above if this machine can send AND receive e-mail. if not, please
+mail using some other method.
+
+Your certificate will be mailed to you within two working days.
+If you receive no response, contact Globus Simple CA at root</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN85"
+>3.1.2. Creating User Certificates</A
+></H2
+><P
+>&#13;Only the root account is permitted to issue user certificates using
+the locally installed Simple CA.  After one, or more, users have
+run <B
+CLASS="COMMAND"
+>grid-cert-request</B
+>, the root use must log in and
+run <B
+CLASS="COMMAND"
+>local-ca-sign</B
+>.  In the following example, a
+certificate request is found, a certificate issued, and the
+grid-mapfile populated with an entry for the user.&#13;</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># local-ca-sign 
+Enter CA passphrase: 
+
+Enter password for the CA key:
+
+The new signed certificate is at: /root/.globus/simpleCA//newcerts/03.pem
+
+/etc/grid-security/grid-mapfile does not exist... Attempting to create /etc/grid-security/grid-mapfile
+(1) entry added</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="using.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="using-certificates.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Using the Grid Roll</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="using.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Using Certificates</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

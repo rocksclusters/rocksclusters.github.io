@@ -1,0 +1,309 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>9.4 The HTCondorView Client Contrib Module</TITLE>
+<META NAME="description" CONTENT="9.4 The HTCondorView Client Contrib Module">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="9_5Job_Monitor_Log.html">
+<LINK REL="previous" HREF="9_3Quill.html">
+<LINK REL="up" HREF="9_Contrib_Source.html">
+<LINK REL="next" HREF="9_5Job_Monitor_Log.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html2453"
+  HREF="9_5Job_Monitor_Log.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2447"
+  HREF="9_Contrib_Source.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2441"
+  HREF="9_3Quill.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2449"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2451"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2454"
+  HREF="9_5Job_Monitor_Log.html">9.5 Job Monitor/Log Viewer</A>
+<B> Up:</B> <A NAME="tex2html2448"
+  HREF="9_Contrib_Source.html">9. Contrib and Source</A>
+<B> Previous:</B> <A NAME="tex2html2442"
+  HREF="9_3Quill.html">9.3 Quill</A>
+ &nbsp; <B>  <A NAME="tex2html2450"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2452"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html2455"
+  HREF="9_4HTCondorView_Client.html#SECTION001041000000000000000">9.4.1 Step-by-Step Installation of the HTCondorView Client</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION001040000000000000000"></A><A NAME="sec:HTCondorView-Client-Install"></A> 
+<A NAME="57077"></A>
+<A NAME="57078"></A>
+<BR>
+9.4 The HTCondorView Client Contrib Module
+</H1>
+
+<P>
+The HTCondorView Client contrib module is used to automatically generate
+World Wide Web pages to display usage statistics of an HTCondor
+pool.
+Included in the module is a shell script which invokes the <I>condor_stats</I>
+command to retrieve pool usage statistics from the HTCondorView server, and
+generate HTML pages from the results.  
+Also included is a Java applet, which graphically visualizes HTCondor 
+usage information.  
+Users can interact with the applet to customize the visualization and to
+zoom in to a specific time frame.
+Figure&nbsp;<A HREF="#fig:view-screenshot">9.1</A> on page&nbsp;<A HREF="9_4HTCondorView_Client.html#fig:view-screenshot"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>
+is a screen shot of a web page created by HTCondorView.  
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:view-screenshot"></A><A NAME="57163"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 9.1:</STRONG>
+Screen shot of HTCondorView Client</CAPTION>
+<TR><TD>
+<DIV ALIGN="CENTER"><IMG
+ WIDTH="636" HEIGHT="587" ALIGN="BOTTOM" BORDER="0"
+ SRC="img62.png"
+ ALT="\includegraphics{contrib/view-screenshot.ps}">
+</DIV></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+After unpacking and installing the HTCondorView Client, a script named
+<I>make_stats</I> can be invoked to create HTML pages displaying HTCondor usage
+for the past hour, day, week, or month.  
+By using the Unix <I>cron</I> facility to periodically execute
+<I>make_stats</I>, HTCondor pool usage statistics can be kept up to date
+automatically.  
+This simple model allows the HTCondorView Client to be easily installed;
+no Web server CGI interface is needed.
+
+<P>
+
+<H2><A NAME="SECTION001041000000000000000"></A><A NAME="sec:condorview-client-step-by-step"></A>
+<BR>
+9.4.1 Step-by-Step Installation of the HTCondorView Client
+</H2>
+
+<P>
+<A NAME="57090"></A>
+<A NAME="57091"></A>
+
+<OL>
+<LI>Make certain that the HTCondorView Server is configured.
+Section&nbsp;<A HREF="3_12Setting_Up.html#sec:Contrib-HTCondorView-Install">3.12.6</A>
+describes configuration of the server.
+The server logs information on disk in order to provide a persistent,
+historical database of pool statistics.
+The HTCondorView Client makes queries over the network to this
+database.
+The <I>condor_collector</I> includes this database support.
+To activate the persistent database logging, add the following entries to
+the configuration file for the <I>condor_collector</I> chosen to act as the ViewServer.
+<PRE>
+    POOL_HISTORY_DIR = /full/path/to/directory/to/store/historical/data 
+    KEEP_POOL_HISTORY = True
+</PRE>
+
+<P>
+</LI>
+<LI>Create a directory where HTCondorView is to place the HTML files.  
+This directory should be one published by a web server, so that HTML
+files which exist in this directory can be accessed using a web browser.  
+This directory is referred to as the <TT>VIEWDIR</TT> directory.
+
+<P>
+</LI>
+<LI>Download the <I>view_client</I> contrib module.
+Follow links for contrib modules from the wiki at
+<A NAME="tex2html98"
+  HREF="https://htcondor-wiki.cs.wisc.edu/index.cgi/wiki">https://htcondor-wiki.cs.wisc.edu/index.cgi/wiki</A>.
+
+<P>
+</LI>
+<LI>Unpack or untar this contrib module into the
+directory <TT>VIEWDIR</TT>.
+This creates several files and subdirectories.
+Further unpack the jar file within the <TT>VIEWDIR</TT> directory with:
+<PRE> 
+  jar -xf condorview.jar
+</PRE>
+
+<P>
+</LI>
+<LI>Edit the <I>make_stats</I> script.  At the beginning of the file
+are six parameters to customize.
+The parameters are
+
+<P>
+<DL>
+<DT><STRONG><TT>ORGNAME</TT></STRONG></DT>
+<DD>A brief name that identifies an
+	organization. An example is ``Univ of Wisconsin''.  Do not
+	use any slashes in the name or other special regular-expression
+	characters. Avoid the characters <!-- MATH
+ $\mathtt{\backslash}$
+ -->
+<IMG
+ WIDTH="14" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img10.png"
+ ALT="$\mathtt{\backslash}$">^  and $.
+
+<P>
+</DD>
+<DT><STRONG><TT>CONDORADMIN</TT></STRONG></DT>
+<DD>The e-mail
+	address of the HTCondor administrator at your site.  
+	This e-mail address will appear at the bottom of the web pages.
+
+<P>
+</DD>
+<DT><STRONG><TT>VIEWDIR</TT></STRONG></DT>
+<DD>The full path name
+	(<I>not</I> a relative path) to the <TT>VIEWDIR</TT> directory set
+	by installation step 2.  
+	It is the directory that contains the <I>make_stats</I> script.
+
+<P>
+</DD>
+<DT><STRONG><TT>STATSDIR</TT></STRONG></DT>
+<DD>The full path name of the
+	directory which contains the <I>condor_stats</I> binary.
+	The <I>condor_stats</I> program is included in the <TT>&lt;release_dir&gt;/bin</TT>
+	directory. 
+	The value for <TT>STATSDIR</TT> is added to the <TT>PATH</TT>
+	parameter by default.  
+
+<P>
+</DD>
+<DT><STRONG><TT>PATH</TT></STRONG></DT>
+<DD>A list of subdirectories,
+	separated by colons, where the <I>make_stats</I> script can find
+	the <I>awk</I>, <I>bc</I>, <I>sed</I>, <I>date</I>, and <I>condor_stats</I>
+	programs.  
+	If <I>perl</I> is installed, the path should also
+	include the directory where <I>perl</I> is installed.
+	The following default works on most systems:
+        <PRE> 
+        PATH=/bin:/usr/bin:$STATSDIR:/usr/local/bin
+</PRE>
+
+<P>
+</DD>
+</DL>
+
+<P>
+</LI>
+<LI>To create all of the initial HTML files, run
+<PRE>
+        ./make_stats setup
+</PRE>
+Open the file <TT>index.html</TT> to verify that things look good.
+
+<P>
+<A NAME="57165"></A>
+<A NAME="57135"></A>
+
+<P>
+</LI>
+<LI>Add the <I>make_stats</I> program to <I>cron</I>.  
+Running <I>make_stats</I> in step 6 created a <TT>cronentries</TT> file.
+This <TT>cronentries</TT> file is ready to be processed by the Unix
+<I>crontab</I> command.
+The <I>crontab</I> manual page contains details about
+the <I>crontab</I> command and the <I>cron</I> daemon.
+Look at the
+<TT>cronentries</TT> file; by default, it will run 
+<I>make_stats</I> <I>hour</I> every 15 minutes, 
+<I>make_stats</I> <I>day</I> once an hour, 
+<I>make_stats</I> <I>week</I> twice per day, and 
+<I>make_stats</I> <I>month</I> once per day.
+These are reasonable defaults.  
+Add these commands to cron on any
+system that can access the <TT>VIEWDIR</TT> and
+<TT>STATSDIR</TT> directories,
+even on a system that does not have HTCondor installed.
+The commands do not need to run as root user;
+in fact, they should probably not run as root.  These commands can run
+as any user that has read/write access to the <TT>VIEWDIR</TT> directory.
+The command
+<PRE> 
+  crontab cronentries
+</PRE>
+can set the crontab file;
+note that this command overwrites the current, existing crontab file with the 
+entries from the file <TT>cronentries</TT>.
+
+<P>
+</LI>
+<LI>Point the web browser at the <TT>VIEWDIR</TT> directory
+to complete the installation.
+
+<P>
+</LI>
+</OL>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html2453"
+  HREF="9_5Job_Monitor_Log.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2447"
+  HREF="9_Contrib_Source.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2441"
+  HREF="9_3Quill.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2449"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2451"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2454"
+  HREF="9_5Job_Monitor_Log.html">9.5 Job Monitor/Log Viewer</A>
+<B> Up:</B> <A NAME="tex2html2448"
+  HREF="9_Contrib_Source.html">9. Contrib and Source</A>
+<B> Previous:</B> <A NAME="tex2html2442"
+  HREF="9_3Quill.html">9.3 Quill</A>
+ &nbsp; <B>  <A NAME="tex2html2450"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2452"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

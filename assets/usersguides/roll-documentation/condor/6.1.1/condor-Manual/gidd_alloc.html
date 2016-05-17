@@ -1,0 +1,174 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>gidd_alloc</TITLE>
+<META NAME="description" CONTENT="gidd_alloc">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="procd_ctl.html">
+<LINK REL="previous" HREF="condor_who.html">
+<LINK REL="up" HREF="11_Command_Reference.html">
+<LINK REL="next" HREF="procd_ctl.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html4379"
+  HREF="procd_ctl.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html4373"
+  HREF="11_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html4367"
+  HREF="condor_who.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html4375"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html4377"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4380"
+  HREF="procd_ctl.html">procd_ctl</A>
+<B> Up:</B> <A NAME="tex2html4374"
+  HREF="11_Command_Reference.html">11. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html4368"
+  HREF="condor_who.html">condor_who</A>
+ &nbsp; <B>  <A NAME="tex2html4376"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html4378"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html4381"
+  HREF="gidd_alloc.html#SECTION0012641000000000000000">Synopsis</A>
+<LI><A NAME="tex2html4382"
+  HREF="gidd_alloc.html#SECTION0012642000000000000000">Description</A>
+<LI><A NAME="tex2html4383"
+  HREF="gidd_alloc.html#SECTION0012643000000000000000">General Remarks</A>
+<LI><A NAME="tex2html4384"
+  HREF="gidd_alloc.html#SECTION0012644000000000000000">Exit Status</A>
+<LI><A NAME="tex2html4385"
+  HREF="gidd_alloc.html#SECTION0012645000000000000000">Author</A>
+<LI><A NAME="tex2html4386"
+  HREF="gidd_alloc.html#SECTION0012646000000000000000">Copyright</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION0012640000000000000000"></A><A NAME="man-gidd-alloc"></A>
+<BR>
+gidd_alloc
+</H1> find a GID within the specified range which is not used by any process
+  
+<P>
+
+<H2><A NAME="SECTION0012641000000000000000">
+Synopsis</A>
+</H2><B>gidd_alloc</B>
+<I>min-gid</I>
+<I>max-gid</I>
+
+<P>
+<A NAME="87336"></A>
+<A NAME="87337"></A>
+
+<P>
+
+<H2><A NAME="SECTION0012642000000000000000">
+Description</A>
+</H2>
+
+<P>
+This program will scan the alive PIDs, looking for which GID is unused in
+the supplied, inclusive range specified by the required arguments
+<I>min-gid</I> and <I>max-gid</I>. 
+Upon finding one,
+it will add the GID to its own supplementary group list,
+and then scan the PIDs again expecting to find only itself using the GID. 
+If no collision has occurred, the program exits, otherwise it retries.
+
+<P>
+
+<H2><A NAME="SECTION0012643000000000000000">
+General Remarks</A>
+</H2>
+
+<P>
+This is a program only available for the Linux ports of HTCondor.
+
+<P>
+
+<H2><A NAME="SECTION0012644000000000000000">
+Exit Status</A>
+</H2>
+
+<P>
+<I>gidd_alloc</I> will exit with a status value of 0 (zero) upon success,
+and it will exit with the value 1 (one) upon failure.
+
+<P>
+
+<H2><A NAME="SECTION0012645000000000000000">
+Author</A>
+</H2> Center for High Throughput Computing, University of Wisconsin-Madison
+  
+<H2><A NAME="SECTION0012646000000000000000">
+Copyright</A>
+</H2> 
+  Copyright &#169; 1990-2013 Center for High Throughput Computing, 
+  Computer Sciences Department, 
+  University of Wisconsin-Madison, Madison, WI.  All Rights Reserved.  
+	Licensed under the Apache License, Version 2.0.  
+
+  <HR>
+<!--Navigation Panel-->
+<A NAME="tex2html4379"
+  HREF="procd_ctl.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html4373"
+  HREF="11_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html4367"
+  HREF="condor_who.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html4375"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html4377"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4380"
+  HREF="procd_ctl.html">procd_ctl</A>
+<B> Up:</B> <A NAME="tex2html4374"
+  HREF="11_Command_Reference.html">11. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html4368"
+  HREF="condor_who.html">condor_who</A>
+ &nbsp; <B>  <A NAME="tex2html4376"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html4378"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

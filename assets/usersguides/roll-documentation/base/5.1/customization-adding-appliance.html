@@ -1,0 +1,427 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+> Adding a New Appliance Type to the Cluster </TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Roll: Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE=" Customizing your Rocks Installation "
+HREF="customization.html"><LINK
+REL="PREVIOUS"
+TITLE=" Enabling RSH on Compute Nodes "
+HREF="customization-rsh.html"><LINK
+REL="NEXT"
+TITLE=" Adding a Device Driver "
+HREF="customization-driver.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Base Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="customization-rsh.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 4. Customizing your Rocks Installation</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="customization-driver.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="CUSTOMIZATION-ADDING-APPLIANCE"
+>4.8. Adding a New Appliance Type to the Cluster</A
+></H1
+><P
+>This procedure describes how to add a new appliance type to your cluster.
+This is useful when you want a subset of compute nodes to have specific
+behavior that is different from the rest of the compute nodes.
+For example, if you want all the nodes in cabinet 1 to be configured
+differently from the rest of the compute nodes.</P
+><P
+>Before you begin, you'll want to be comfortable with the Rocks XML framework
+that is used to produce a configuration graph.
+Details on this framework are found in the
+<A
+HREF="http://www.rocksclusters.org/rocks-documentation/reference-guide/5.1/"
+TARGET="_top"
+>Reference Guide</A
+>.</P
+><P
+>First, you'll need to create a new node XML file.
+This file will contain the configuration scripts and/or packages that
+will be applied to each of your appliances.
+Let's call it <SAMP
+CLASS="COMPUTEROUTPUT"
+>my-compute.xml</SAMP
+>.
+This file should be created in the directory
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>/export/rocks/install/site-profiles/5.1/nodes</SAMP
+>.
+Below is the contents of the file:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>&#60;?xml version="1.0" standalone="no"?&#62;
+
+&#60;kickstart&#62;
+  
+&#60;description&#62;
+My specialized compute node
+&#60;/description&#62;
+
+  
+&#60;changelog&#62;
+&#60;/changelog&#62;
+
+&#60;post&#62;
+
+&#60;file name="/etc/motd" mode="append"&#62;
+My Compute Appliance
+&#60;/file&#62;
+
+&#60;/post&#62;
+
+&#60;/kickstart&#62; </PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Now, we'll link the above file into the existing XML configuration graph.
+We'll simply point the above XML node to the existing
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>compute.xml</SAMP
+> node.
+In object-oriented terms, we are inheriting all the functionality of the
+compute appliance and then extending it.</P
+><P
+>To link <SAMP
+CLASS="COMPUTEROUTPUT"
+>my-compute.xml</SAMP
+> to 
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>compute.xml</SAMP
+>, in the directory
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>/export/rocks/install/site-profiles/5.1/graphs/default</SAMP
+>, 
+create the file <SAMP
+CLASS="COMPUTEROUTPUT"
+>my-appliance.xml</SAMP
+> and
+have it contain:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>&#60;?xml version="1.0" standalone="no"?&#62;
+
+&#60;graph&#62;
+
+&#60;description&#62;
+&#60;/description&#62;
+
+&#60;changelog&#62;
+&#60;/changelog&#62;
+
+&#60;edge from="my-compute"&#62;
+        &#60;to&#62;compute&#60;/to&#62;
+&#60;/edge&#62; 
+
+&#60;order gen="kgen" head="TAIL"&#62;
+        &#60;tail&#62;my-compute&#60;/tail&#62;
+&#60;/order&#62;
+
+&#60;/graph&#62;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>To apply the changes above to the current distribution, execute:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># cd /export/rocks/install
+# rocks create distro</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Now we need to add an entry into the Rocks MySQL database.
+This is accomplished with the rocks command line:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># /opt/rocks/bin/rocks add appliance my-compute membership='My Compute' \
+  short-name='mc' node='my-compute'</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Now let's retarget an existing compute node.
+We'll use <SAMP
+CLASS="COMPUTEROUTPUT"
+>insert-ethers</SAMP
+> to accomplish this
+task.
+First, ask <SAMP
+CLASS="COMPUTEROUTPUT"
+>insert-ethers</SAMP
+> to replace
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>compute-0-0</SAMP
+>:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># insert-ethers --replace compute-0-0</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>This displays the screen:</P
+><P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/add-new-appliance.png"></P
+></DIV
+></P
+><P
+>Select <EM
+>My Compute</EM
+> then hit <EM
+>Ok</EM
+>.
+This removes 
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>compute-0-0</SAMP
+> from the database and the
+next node that asks to be configured (that is, the next node that sends
+out a DHCP request) will be assigned the name
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>my-compute-0-0</SAMP
+>.
+To see this in action, instruct
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>compute-0-0</SAMP
+> to reinstall itself:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># shoot-node compute-0-0</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Eventually, you'll see <SAMP
+CLASS="COMPUTEROUTPUT"
+>insert-ethers</SAMP
+>
+report that it discovered <SAMP
+CLASS="COMPUTEROUTPUT"
+>my-compute-0-0</SAMP
+>.
+After the node installs, it will be configured as a
+<EM
+>my-appliance</EM
+>.
+You can login to the node by executing:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># ssh my-compute-0-0</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Your custom appliance can be applied to any new node in your system
+by starting <SAMP
+CLASS="COMPUTEROUTPUT"
+>insert-ethers</SAMP
+> as instructed
+above, then by booting a new node in configuration mode (by forcing
+it to PXE boot or by booting the node with the Kernel/Boot Roll).</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="customization-rsh.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="customization-driver.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Enabling RSH on Compute Nodes</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="customization.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Adding a Device Driver</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

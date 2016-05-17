@@ -1,0 +1,674 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>7.3 Running Condor Jobs</TITLE>
+<META NAME="description" CONTENT="7.3 Running Condor Jobs">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="7_4Condor_on.html">
+<LINK REL="previous" HREF="7_2Setting_up.html">
+<LINK REL="up" HREF="7_Frequently_Asked.html">
+<LINK REL="next" HREF="7_4Condor_on.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html2050"
+  HREF="7_4Condor_on.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2044"
+  HREF="7_Frequently_Asked.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2038"
+  HREF="7_2Setting_up.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2046"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2048"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2051"
+  HREF="7_4Condor_on.html">7.4 Condor on Windows</A>
+<B> Up:</B> <A NAME="tex2html2045"
+  HREF="7_Frequently_Asked.html">7. Frequently Asked Questions</A>
+<B> Previous:</B> <A NAME="tex2html2039"
+  HREF="7_2Setting_up.html">7.2 Setting up Condor</A>
+ &nbsp; <B>  <A NAME="tex2html2047"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2049"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html2052"
+  HREF="7_3Running_Condor.html#SECTION00831000000000000000">Why aren't any or all of my jobs running?</A>
+<LI><A NAME="tex2html2053"
+  HREF="7_3Running_Condor.html#SECTION00832000000000000000">I'm at the University of Wisconsin-Madison Computer Science Dept., and I am having problems!</A>
+<LI><A NAME="tex2html2054"
+  HREF="7_3Running_Condor.html#SECTION00833000000000000000">I'm getting a lot of e-mail from Condor.  Can I just delete it all?</A>
+<LI><A NAME="tex2html2055"
+  HREF="7_3Running_Condor.html#SECTION00834000000000000000">Why will my vanilla jobs only run on the machine where I submitted them from?</A>
+<LI><A NAME="tex2html2056"
+  HREF="7_3Running_Condor.html#SECTION00835000000000000000">Why does the <TT>requirements</TT> expression for the job I submitted
+<BR>
+have extra things that I did not put in my submit description file?</A>
+<LI><A NAME="tex2html2057"
+  HREF="7_3Running_Condor.html#SECTION00836000000000000000">When I use <I>condor_compile</I> to produce a job, I get an error that says, "Internal ld was not invoked!". What does this mean?</A>
+<LI><A NAME="tex2html2058"
+  HREF="7_3Running_Condor.html#SECTION00837000000000000000">Why might my job be preempted (evicted)?</A>
+<LI><A NAME="tex2html2059"
+  HREF="7_3Running_Condor.html#SECTION00838000000000000000">Condor does not stop the Condor jobs running on my Linux machine
+when I use my keyboard and mouse.  Is there a bug?</A>
+<LI><A NAME="tex2html2060"
+  HREF="7_3Running_Condor.html#SECTION00839000000000000000">What signals get sent to my jobs when Condor needs to preempt or kill them, or when I remove them from the queue?  Can I tell Condor which signals to send?</A>
+<LI><A NAME="tex2html2061"
+  HREF="7_3Running_Condor.html#SECTION008310000000000000000">Why does my Linux job have an enormous ImageSize and
+refuse to run anymore?</A>
+<LI><A NAME="tex2html2062"
+  HREF="7_3Running_Condor.html#SECTION008311000000000000000">Why does the time output from <I>condor_status</I> appear
+as [?????] ? </A>
+<LI><A NAME="tex2html2063"
+  HREF="7_3Running_Condor.html#SECTION008312000000000000000">The user condor's home directory cannot be found.  Why?</A>
+<LI><A NAME="tex2html2064"
+  HREF="7_3Running_Condor.html#SECTION008313000000000000000">Condor commands (including <I>condor_q</I>) are really slow. What is going on?</A>
+<LI><A NAME="tex2html2065"
+  HREF="7_3Running_Condor.html#SECTION008314000000000000000">Where are my missing files?  The command <TT>when_to_transfer_output = ON_EXIT_OR_EVICT</TT> is in the submit description file.</A>
+<LI><A NAME="tex2html2066"
+  HREF="7_3Running_Condor.html#SECTION008315000000000000000">Why are my vm universe VMware jobs failing and being put on hold?</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00830000000000000000">
+7.3 Running Condor Jobs</A>
+</H1>
+
+<P>
+<A NAME="49658"></A>
+
+<H2><A NAME="SECTION00831000000000000000">
+Why aren't any or all of my jobs running?</A>
+</H2>
+
+<P>
+Please see 
+Section&nbsp;<A HREF="2_6Managing_Job.html#sec:job-not-running">2.6.5</A>, on page&nbsp;<A HREF="2_6Managing_Job.html#sec:job-not-running"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>
+for information on why a job might not be running.
+
+<P>
+
+<H2><A NAME="SECTION00832000000000000000">
+I'm at the University of Wisconsin-Madison Computer Science Dept., and I am having problems!</A>
+</H2>
+
+<P>
+Please see the web page <A NAME="tex2html97"
+  HREF="http://www.cs.wisc.edu/condor/uwcs">http://www.cs.wisc.edu/condor/uwcs</A>.
+As
+it explains, your home directory is in AFS, which by default has
+access control restrictions which can prevent Condor jobs from running
+properly.
+The above URL will explain how to solve the problem.
+
+<P>
+
+<H2><A NAME="SECTION00833000000000000000">
+I'm getting a lot of e-mail from Condor.  Can I just delete it all?</A>
+</H2>
+
+<P>
+Generally you shouldn't ignore <B>all</B> of the mail Condor sends,
+but you can reduce the amount you get by telling Condor that you don't
+want to be notified every time a job successfully completes, only when
+a job experiences an error.
+To do this, include a line in your submit file like the following:
+
+<P>
+<PRE>
+Notification = Error
+</PRE>
+
+<P>
+See the Notification parameter in the <I>condor_q</I> man page on
+page&nbsp;<A HREF="condor_submit.html#man-condor-submit-notification"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> of this manual for more
+information.
+
+<P>
+
+<H2><A NAME="SECTION00834000000000000000">
+Why will my vanilla jobs only run on the machine where I submitted them from?</A>
+</H2>
+
+<P>
+Check the following:
+
+<OL>
+<LI>Did you submit the job from a local file system that other
+computers can't access?
+
+<P>
+See Section&nbsp;<A HREF="3_3Configuration.html#sec:Shared-Filesystem-Config-File-Entries">3.3.7</A>, on
+page&nbsp;<A HREF="3_3Configuration.html#sec:Shared-Filesystem-Config-File-Entries"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+</LI>
+<LI>Did you set a special requirements expression for 
+vanilla jobs that's preventing them from running but not other jobs?
+
+<P>
+See Section&nbsp;<A HREF="3_3Configuration.html#sec:Shared-Filesystem-Config-File-Entries">3.3.7</A>, on
+page&nbsp;<A HREF="3_3Configuration.html#sec:Shared-Filesystem-Config-File-Entries"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+</LI>
+<LI>Is Condor running as a non-root user?
+
+<P>
+See Section&nbsp;<A HREF="3_6Security.html#sec:Non-Root">3.6.13</A>, on page&nbsp;<A HREF="3_6Security.html#sec:Non-Root"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+</LI>
+</OL>
+
+<P>
+
+<H2><A NAME="SECTION00835000000000000000"></A>
+<A NAME="49683"></A>
+<BR>
+Why does the <TT>requirements</TT> expression for the job I submitted
+<BR>
+have extra things that I did not put in my submit description file?
+</H2>
+There are several extensions to the submitted <TT>requirements</TT>
+that are automatically added by Condor.
+Here is a list:
+
+<UL>
+<LI>Condor automatically adds <TT>arch</TT> and <TT>opsys</TT> if 
+  not specified in the submit description file. It is assumed that
+  the executable needs to execute on the same platform as the machine
+  on which the job is submitted.
+
+<P>
+</LI>
+<LI>Condor automatically adds the expression
+  <TT>(Memory * 1024 &gt; ImageSize)</TT>.
+  This ensures that the job will run on a machine with at
+  least as much physical memory as the memory footprint of the job.
+
+<P>
+</LI>
+<LI>Condor automatically adds the expression
+  <TT>(Disk &gt;= DiskUsage)</TT> if not already specified.
+  This ensures that the job will run on a machine with enough disk
+  space for the job's local I/O (if there is any).
+
+<P>
+</LI>
+<LI>A pool administrator may define configuration variables that
+  cause expressions to be added to <TT>requirements</TT>.
+  These configuration variables are <TT>APPEND_REQUIREMENTS</TT>,
+  <TT>APPEND_REQ_VANILLA</TT>, and <TT>APPEND_REQ_STANDARD</TT>.
+  These configuration variables give
+  pool administrators the flexibility to set policy for a local pool.
+
+<P>
+</LI>
+<LI>Older versions of Condor needed to add confusing clauses
+  about WINNT and the FileSystemDomain to vanilla universe jobs.
+  This made sure that the jobs ran on a machine where files were
+  accessible.
+  The Windows version supported automatically transferring files
+  with the vanilla job,
+  while the Unix version relied on a shared file system.
+  Since the Unix version of Condor now supports transferring files,
+  these expressions are no longer added to the
+  <TT>requirements</TT> for a job.
+</LI>
+</UL>
+
+<P>
+
+<H2><A NAME="SECTION00836000000000000000">
+When I use <I>condor_compile</I> to produce a job, I get an error that says, "Internal ld was not invoked!". What does this mean?</A>
+</H2>
+<A NAME="50085"></A>
+
+<P>
+<I>condor_compile</I> enforces a specific behavior in the compilers and
+linkers that it supports
+(for example <I>gcc</I>, <I>g77</I>, <I>cc</I>, <I>CC</I>, <I>ld</I>)
+where a special linker script
+provided by Condor must be invoked during the final linking stages of
+the supplied compiler or linker.
+
+<P>
+In some rare cases,
+as with <I>gcc</I> compiled with
+the options <B>-with-as</B> or <B>-with-ld</B>,
+the enforcement mechanism
+we rely upon to have <I>gcc</I>
+choose our supplied linker script is not honored
+by the compiler.
+When this happens, an executable is produced,
+but the executable is devoid of the
+Condor libraries which both identify it as a Condor executable linked
+for the standard universe and implement the feature sets of remote I/O
+and transparent process checkpointing and migration.
+
+<P>
+Often, the only fix in order to use the compiler desired,
+is to reconfigure and recompile the compiler itself,
+such that it does not use the errant options mentioned. 
+
+<P>
+With Condor's standard universe,
+we highly recommend that your source files
+are compiled with the supported compiler for your platform.
+See
+section&nbsp;<A HREF="1_5Availability.html#sec:Availability">1.5</A>
+for the list of supported compilers.
+For a Linux platform, the supported compiler
+is the default compiler that came with the distribution.
+It is often found in the directory <TT>/usr/bin</TT>.
+
+<P>
+
+<H2><A NAME="SECTION00837000000000000000">
+Why might my job be preempted (evicted)?</A>
+</H2>
+
+<P>
+There are four circumstances under which Condor may evict a job.
+They are controlled by different expressions.
+
+<P>
+Reason number 1 is the user priority:
+controlled by the <TT>PREEMPTION_REQUIREMENTS</TT>
+expression in the configuration file.
+If there is a job from a 
+higher priority user sitting idle,
+the <I>condor_negotiator</I> daemon may evict 
+a currently running job submitted from a lower priority user if 
+<TT>PREEMPTION_REQUIREMENTS</TT> is True.
+For more on user priorities,
+see section&nbsp;<A HREF="2_7Priorities_Preemption.html#sec:Priorities">2.7</A> and
+section&nbsp;<A HREF="3_4User_Priorities.html#sec:UserPrio">3.4</A>.
+
+<P>
+Reason number 2 is the owner (machine) policy:
+controlled by the <TT>PREEMPT</TT> expression in the configuration file.
+When a job is running and the <TT>PREEMPT</TT> expression
+evaluates to True,
+the <I>condor_startd</I> will evict the job.
+The <TT>PREEMPT</TT> expression should reflect 
+the requirements under which the machine owner will not permit
+a job to continue to run.
+For example, a policy to evict a currently running job when a key is hit
+or when it is the 9:00am work arrival time,
+would be expressed in the <TT>PREEMPT</TT> expression 
+and enforced by the <I>condor_startd</I>.
+For more on the <TT>PREEMPT</TT> expression,
+see section&nbsp;<A HREF="3_5Policy_Configuration.html#sec:Configuring-Policy">3.5</A>.
+
+<P>
+Reason number 3 is the owner (machine) preference:
+controlled by the <TT>RANK</TT> expression in the 
+configuration file (sometimes called the startd rank or machine rank).
+The <TT>RANK</TT> expression is evaluated as a floating point number.
+When one job is running, a second idle job that evaluates to a higher
+<TT>RANK</TT> value 
+tells the <I>condor_startd</I> to prefer the second job over the first.
+Therefore, the <I>condor_startd</I> will evict the first 
+job so that it can start running the second (preferred) job.
+For more on <TT>RANK</TT>,
+see section&nbsp;<A HREF="3_5Policy_Configuration.html#sec:Configuring-Policy">3.5</A>.
+
+<P>
+Reason number 4 is if Condor is to be shutdown:
+on a machine that is currently running a job.
+Condor evicts the currently running job before proceeding
+with the shutdown.
+
+<P>
+
+<H2><A NAME="SECTION00838000000000000000"></A>
+<A NAME="49732"></A>
+<BR>
+Condor does not stop the Condor jobs running on my Linux machine
+when I use my keyboard and mouse.  Is there a bug?
+</H2>
+
+<P>
+There is no bug in Condor.
+Unfortunately,
+recent Linux 2.4.x and all Linux 2.6.x kernels through 
+version 2.6.10
+do not post proper state information,
+such that Condor can detect keyboard and mouse activity.
+Condor 
+implements workarounds to piece together the needed
+state information for PS/2 devices.
+A better fix of the problem utilizes the 
+kernel patch linked to from the directions posted at
+<A NAME="tex2html98"
+  HREF="http://www.cs.wisc.edu/condor/kernel.patch.html">http://www.cs.wisc.edu/condor/kernel.patch.html</A>.
+This patch works better for PS/2 devices, and
+may also work for USB devices.
+A future version of Condor will implement better recognition
+of USB devices,
+such that the kernel patch will also definitively work for USB devices.
+
+<P>
+
+<H2><A NAME="SECTION00839000000000000000">
+What signals get sent to my jobs when Condor needs to preempt or kill them, or when I remove them from the queue?  Can I tell Condor which signals to send?</A>
+</H2>
+
+<P>
+The answer is dependent on the universe of the jobs.
+
+<P>
+Under the scheduler universe,
+the signal jobs get upon <I>condor_rm</I> can be set by
+the user in the submit description file with the form of
+<PRE>
+remove_kill_sig = SIGWHATEVER
+</PRE>
+If this command is not defined, 
+Condor further looks for a command 
+in the submit description file with the form
+<PRE>
+kill_sig = SIGWHATEVER
+</PRE>
+And, if that command is also not given,
+Condor uses SIGTERM.
+
+<P>
+For all other universes, the jobs get the value of
+the submit description file command
+<code>kill_sig</code>, which is SIGTERM by default.
+
+<P>
+If a job is killed or evicted, the job is sent a
+<code>kill_sig</code>, 
+unless it is on the receiving end of a hard kill,
+in which case it gets SIGKILL.
+
+<P>
+Under all universes,
+the signal is sent only to the parent PID of the job,
+namely, the first child of the <I>condor_starter</I>.
+If the child itself is forking,
+the child must catch and forward signals as appropriate.
+This in turn depends on the user's desired behavior.
+The exception to this is (again) where the job is receiving
+a hard kill.
+Condor sends the value SIGKILL to all the PIDs in the family.
+
+<P>
+
+<H2><A NAME="SECTION008310000000000000000">
+Why does my Linux job have an enormous ImageSize and
+refuse to run anymore?</A>
+</H2>
+
+<P>
+<A NAME="49742"></A>
+<A NAME="49743"></A>
+
+<P>
+Sometimes Linux jobs run, are preempted and can not start again because
+Condor thinks the image size of the job is too big. This is because
+Condor has a problem calculating the image size of a program on Linux
+that uses threads. It is particularly noticeable in the Java universe,
+but it also happens in the vanilla universe. It is not an issue in the
+standard universe, because threaded programs are not allowed.
+
+<P>
+On Linux, each thread appears to consume as much memory as the entire
+program consumes, so the image size appears to be (number-of-threads *
+image-size-of-program). If your program uses a lot of threads, your
+apparent image size balloons. You can see the image size that Condor
+believes your program has by using the -l option to <I>condor_q</I>, and
+looking at the <TT>ImageSize</TT> attribute.
+
+<P>
+When you submit your job, Condor creates or extends the requirements
+for your job. In particular, it adds a requirement that you job must
+run on a machine with sufficient memory:
+
+<P>
+<PRE>
+Requirements = ... ((Memory * 1024) &gt;= ImageSize) ...
+</PRE>
+<P>
+Note that memory is the execution machine's memory in Mbytes,
+while <TT>ImageSize</TT> is in Kbytes.
+<TT>ImageSize</TT> is not a perfect measure of the memory requirements of a job.
+It over-counts memory that is shared between processes.
+It may appear quite large if the job uses <TT>mmap()</TT> on a large file.
+It does not account for memory that the job uses indirectly in the operating
+system's file system cache.
+
+<P>
+In the Requirements expression above, 
+Condor added <TT>(Memory * 1024) &gt;= ImageSize)</TT> on behalf of the job.
+To prevent Condor from doing this,
+provide your own expression about memory in the submit description file,
+as in this example:
+
+<P>
+<PRE>
+Requirements = Memory &gt; 1024
+</PRE>
+
+<P>
+You will need to change the value 1024 to a reasonably good estimate of 
+the actual
+memory requirements of the program, in Mbytes. This example says that
+the program requires 1 Gbyte of memory. If you underestimate the
+memory your application needs, you may have bad performance if the job
+runs on machines that have insufficient memory.
+
+<P>
+In addition, if you have modified your machine policies to preempt
+jobs when <TT>ImageSize</TT> is large,
+you will need to change those policies.
+
+<P>
+
+<H2><A NAME="SECTION008311000000000000000"></A>
+<A NAME="49756"></A>
+<A NAME="49757"></A>
+<A NAME="49758"></A>
+<BR>
+Why does the time output from <I>condor_status</I> appear
+as [?????] ? 
+</H2>
+
+<P>
+Condor collects timing information for a large variety of uses.
+Collection of the data relies on accurate times.
+Being a distributed system, clock skew among machines causes 
+errant timing calculations.
+Values can be reported too large or too small, with the possibility
+of calculating negative timing values.
+
+<P>
+This problem may be seen by the user when looking at the output
+of <I>condor_status</I>.
+If the <B>ActivityTime</B> field appears
+as [?????],
+then this calculated statistic was negative.
+<I>condor_status</I> recognizes that a negative amount of time will
+be nonsense to report, and instead displays this string. 
+
+<P>
+The solution to the problem is to synchronize the clocks on
+these machines.
+An administrator can do this using a tool such as <I>ntp</I>.
+
+<P>
+
+<H2><A NAME="SECTION008312000000000000000">
+The user condor's home directory cannot be found.  Why?</A>
+</H2>
+
+<P>
+<A NAME="49764"></A>
+<A NAME="49765"></A>
+This problem may be observed after installation, when attempting
+to execute
+<PRE>
+~condor/condor/bin/condor_config_val  -tilde
+</PRE>and there is a user named condor.
+The command prints a message such as
+<PRE>
+     Error: Specified -tilde but can't find condor's home directory
+</PRE>
+<P>
+In this case, the difficulty stems from 
+using NIS,
+because the Condor daemons fail to communicate properly with NIS to get
+account information.
+To fix the problem, a dynamically linked version of Condor must
+be installed.
+
+<P>
+
+<H2><A NAME="SECTION008313000000000000000"></A>
+<A NAME="49771"></A>
+<BR>
+Condor commands (including <I>condor_q</I>) are really slow. What is going on?
+</H2>
+
+<P>
+Some Condor programs will react slowly if they expect to find a
+<I>condor_collector</I> daemon, yet cannot contact one.
+Notably, <I>condor_q</I> can be very slow.
+The <I>condor_schedd</I> daemon will also be slow,
+and it will log lots of harmless messages complaining.
+If you are not running a <I>condor_collector</I> daemon,
+it is important that the configuration variable
+<TT>COLLECTOR_HOST</TT> <A NAME="50244"></A> <A NAME="50245"></A> be set to nothing.
+This is typically done by setting <TT>CONDOR_HOST</TT> with
+<PRE>
+CONDOR_HOST=
+COLLECTOR_HOST=$(CONDOR_HOST)
+</PRE>or
+<PRE>
+COLLECTOR_HOST=
+</PRE>
+<P>
+
+<H2><A NAME="SECTION008314000000000000000"></A>
+<A NAME="49783"></A>
+<A NAME="49784"></A>
+<A NAME="49785"></A>
+<BR>
+Where are my missing files?  The command <TT>when_to_transfer_output = ON_EXIT_OR_EVICT</TT> is in the submit description file.
+</H2>
+Although it may appear as if files are missing,
+they are not.
+The transfer does take place whenever a job is 
+preempted by another job, vacates the machine, or is killed.
+Look for the files in the directory defined by
+the <TT>SPOOL</TT> configuration variable.
+See
+section&nbsp;<A HREF="2_5Submitting_Job.html#sec:file-transfer-if-when">2.5.4</A>, on
+page&nbsp;<A HREF="2_5Submitting_Job.html#sec:file-transfer-if-when"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for details on the naming
+of the intermediate files.
+
+<P>
+
+<H2><A NAME="SECTION008315000000000000000"></A><A NAME="sec:vmware-symlink-bug"></A>
+<BR>
+Why are my vm universe VMware jobs failing and being put on hold?
+</H2>
+
+<P>
+Strange behavior has been noted when Condor tries to run a 
+<B>vm</B> universe VMware
+job using a path to a VMX file that contains a symbolic link.
+An example of an error message that may appear in such a job's user log:
+<PRE>
+Error from starter on master_vmuniverse_strtd@nostos.cs.wisc
+.edu: register(/scratch/gquinn/condor/git/CONDOR_SRC/src/con
+dor_tests/31426/31426vmuniverse/execute/dir_31534/vmN3hylp_c
+ondor.vmx) = 1/Error: Command failed: A file was not found/(
+ERROR) Can't create snapshot for vm(/scratch/gquinn/condor/g
+it/CONDOR_SRC/src/condor_tests/31426/31426vmuniverse/execute
+/dir_31534/vmN3hylp_condor.vmx)
+</PRE>
+To work around this problem:
+
+<UL>
+<LI>If using file transfer
+(the submit description file contains
+<B>vmware_should_transfer_files = true</B>),
+then modify any
+configuration variable <TT>EXECUTE</TT> <A NAME="50254"></A> <A NAME="50255"></A> values on all execute machines,
+such that they do not contain symbolic link path components.
+</LI>
+<LI>If using a shared file system, ensure that the
+submit description file command
+<B>vmware_dir</B> does not use
+symbolic link path name components.
+</LI>
+</UL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html2050"
+  HREF="7_4Condor_on.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2044"
+  HREF="7_Frequently_Asked.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2038"
+  HREF="7_2Setting_up.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2046"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2048"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2051"
+  HREF="7_4Condor_on.html">7.4 Condor on Windows</A>
+<B> Up:</B> <A NAME="tex2html2045"
+  HREF="7_Frequently_Asked.html">7. Frequently Asked Questions</A>
+<B> Previous:</B> <A NAME="tex2html2039"
+  HREF="7_2Setting_up.html">7.2 Setting up Condor</A>
+ &nbsp; <B>  <A NAME="tex2html2047"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2049"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

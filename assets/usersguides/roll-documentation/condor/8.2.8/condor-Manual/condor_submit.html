@@ -1,0 +1,5202 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<link rel="canonical" href="http://research.cs.wisc.edu/htcondor/manual/current/condor_submit.html">
+
+<TITLE>condor_submit</TITLE>
+<META NAME="description" CONTENT="condor_submit">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="condor_submit_dag.html">
+<LINK REL="previous" HREF="condor_store_cred.html">
+<LINK REL="up" HREF="11_Command_Reference.html">
+<LINK REL="next" HREF="condor_submit_dag.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html4276"
+  HREF="condor_submit_dag.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html4270"
+  HREF="11_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html4264"
+  HREF="condor_store_cred.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html4272"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html4274"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4277"
+  HREF="condor_submit_dag.html">condor_submit_dag</A>
+<B> Up:</B> <A NAME="tex2html4271"
+  HREF="11_Command_Reference.html">11. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html4265"
+  HREF="condor_store_cred.html">condor_store_cred</A>
+ &nbsp; <B>  <A NAME="tex2html4273"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html4275"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html4278"
+  HREF="condor_submit.html#SECTION0012551000000000000000">Synopsis</A>
+<LI><A NAME="tex2html4279"
+  HREF="condor_submit.html#SECTION0012552000000000000000">Description</A>
+<LI><A NAME="tex2html4280"
+  HREF="condor_submit.html#SECTION0012553000000000000000">Options</A>
+<LI><A NAME="tex2html4281"
+  HREF="condor_submit.html#SECTION0012554000000000000000">Submit Description File Commands</A>
+<LI><A NAME="tex2html4282"
+  HREF="condor_submit.html#SECTION0012555000000000000000">Exit Status</A>
+<LI><A NAME="tex2html4283"
+  HREF="condor_submit.html#SECTION0012556000000000000000">Examples</A>
+<LI><A NAME="tex2html4284"
+  HREF="condor_submit.html#SECTION0012557000000000000000">General Remarks</A>
+<LI><A NAME="tex2html4285"
+  HREF="condor_submit.html#SECTION0012558000000000000000">See Also</A>
+<LI><A NAME="tex2html4286"
+  HREF="condor_submit.html#SECTION0012559000000000000000">Author</A>
+<LI><A NAME="tex2html4287"
+  HREF="condor_submit.html#SECTION00125510000000000000000">Copyright</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION0012550000000000000000"></A><A NAME="man-condor-submit"></A>
+<BR>
+<I>condor_submit</I>
+</H1> Queue jobs for execution under HTCondor
+  
+<P>
+
+<A NAME="82981"></A>
+<A NAME="82982"></A>
+
+<P>
+
+<H2><A NAME="SECTION0012551000000000000000">
+Synopsis</A>
+</H2><B><I>condor_submit</I></B>
+[<B>-verbose</B>]
+[<B>-unused</B>]
+[<B>-name  </B><I>schedd_name</I>]
+[<B>-remote  </B><I>schedd_name</I>]
+[<B>-addr  </B><I><IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">ip:port<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></I>]
+[<B>-pool  </B><I>pool_name</I>]
+[<B>-disable</B>]
+[<B>-password  </B><I>passphrase</I>]
+
+[<B>-debug</B>]
+
+[<B>-append</B> <I>command</I> <B>... </B>]
+[<B>-spool</B>]
+[<B>-dump  </B><I>filename</I>]
+[<B>-interactive</B>]
+[<I>submit description file</I>]
+
+<P>
+
+<H2><A NAME="SECTION0012552000000000000000">
+Description</A>
+</H2>
+
+<P>
+<I>condor_submit</I> is the program for submitting jobs for execution
+under HTCondor.
+<I>condor_submit</I> requires a submit description file which contains commands
+to direct the queuing of jobs.
+One submit description file may contain
+specifications for the queuing of many HTCondor jobs at once.
+A single invocation of <I>condor_submit</I> may cause one or
+more clusters.
+A cluster is a set of jobs
+specified in the submit description file
+between <B>queue</B><A NAME="83244"></A> commands for which the executable is not changed.
+It is advantageous to submit
+multiple jobs as a single cluster because:
+
+<UL>
+<LI>Only one copy of the checkpoint file is needed to 
+represent all jobs in a cluster until they begin execution.
+</LI>
+<LI>There is much less overhead involved for HTCondor to start the next
+job in a cluster than for HTCondor to start a new cluster.  This can make
+a big difference when submitting lots of short jobs.
+</LI>
+</UL>
+
+<P>
+Multiple clusters may be specified within a single
+submit description file.
+Each cluster must specify a single executable.
+
+<P>
+The job ClassAd attribute <TT>ClusterId</TT> identifies a cluster.
+
+<P>
+Note that submission of jobs from a Windows machine requires
+a stashed password to allow HTCondor to impersonate the user submitting
+the job.
+To stash a password, use the <I>condor_store_cred</I> command.
+See the manual page for details.
+
+<P>
+For lengthy lines within the submit description file,
+the backslash (<!-- MATH
+ $\mathtt{\backslash}$
+ -->
+<IMG
+ WIDTH="14" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img10.png"
+ ALT="$\mathtt{\backslash}$">) is a line continuation character.
+Placing the backslash at the end of a line causes the current line's command
+to be continued with the next line of the file.
+Submit description files may contain comments.
+A comment is any line beginning with a pound character (<code>#</code>). 
+
+<P>
+
+<H2><A NAME="SECTION0012553000000000000000">
+Options</A>
+</H2>
+  
+<P>
+  <DL>
+<DT><STRONG><B>-verbose</B></STRONG></DT>
+<DD>Verbose output - display the created job ClassAd
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>-unused</B></STRONG></DT>
+<DD>As a default, causes no warnings to be issued about
+  user-defined macros not being used within the submit description file.
+  The meaning reverses (toggles) when
+  the configuration variable <TT>WARN_ON_UNUSED_SUBMIT_FILE_MACROS</TT><A NAME="83258"></A><A NAME="83259"></A>
+  is set to the non default value of <TT>False</TT>.
+  Printing the warnings can help identify spelling
+  errors of submit description file commands.  The warnings are sent
+  to stderr. 
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>-name </B><I>schedd_name</I></STRONG></DT>
+<DD>Submit to the specified <I>condor_schedd</I>.
+Use this option to submit to a <I>condor_schedd</I> other than the default local one.
+<I>schedd_name</I> is the value of the <TT>Name</TT> ClassAd attribute on
+the machine where the <I>condor_schedd</I> daemon runs.
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>-remote </B><I>schedd_name</I></STRONG></DT>
+<DD>Submit to the specified
+<I>condor_schedd</I>, spooling all required input files over the network connection.
+<I>schedd_name</I> is the value of the <TT>Name</TT> ClassAd attribute
+on the machine where the <I>condor_schedd</I> daemon runs.
+This option is equivalent to using both <B>-name</B> and <B>-spool</B>.
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>-addr </B><I><IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">ip:port<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></I></STRONG></DT>
+<DD>Submit to the <I>condor_schedd</I> at
+the IP address and port given by the <I>sinful string</I> argument 
+<I><IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">ip:port<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></I>.
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>-pool </B><I>pool_name</I></STRONG></DT>
+<DD>Look in the specified pool for the 
+<I>condor_schedd</I> to submit to.
+This option is used with <B>-name</B> or <B>-remote</B>.
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>-disable</B></STRONG></DT>
+<DD>Disable file permission checks
+  when submitting a job for read permissions on all input files, 
+  such as those defined by 
+  commands <B>input</B><A NAME="83352"></A> and <B>transfer_input_files</B><A NAME="83354"></A>,
+  as well as write permission to output files, such as a
+  log file defined by <B>log</B><A NAME="83356"></A> and output files defined with 
+  <B>output</B><A NAME="83358"></A> or <B>transfer_output_files</B><A NAME="83360"></A>.  
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>-password </B><I>passphrase</I></STRONG></DT>
+<DD>Specify a password to the 
+<I>MyProxy</I> server. 
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>-debug</B></STRONG></DT>
+<DD>Cause debugging information to be sent to <TT>stderr</TT>,
+based on the value of the configuration variable <TT>TOOL_DEBUG</TT>.
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>-append </B><I>command</I></STRONG></DT>
+<DD>Augment the commands in the submit 
+description file with the given command.
+This command will be considered to immediately precede the Queue
+command within the submit description file, and come after all other
+previous commands.
+The submit description file is not modified.
+Multiple commands are specified by using the <B>-append</B> option multiple times.
+Each new command is given in a separate <B>-append</B> option.
+Commands with spaces in them will need to be enclosed in double quote
+marks.
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>-spool</B></STRONG></DT>
+<DD>Spool all required input files, job event log, and
+proxy over the connection to the <I>condor_schedd</I>.
+After submission, modify
+local copies of the files without affecting your jobs. Any output
+files for completed jobs need to be retrieved with <I>condor_transfer_data</I>.
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>-dump </B><I>filename</I></STRONG></DT>
+<DD>Sends all ClassAds to the specified
+  file, instead of to the <I>condor_schedd</I>.
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>-interactive</B></STRONG></DT>
+<DD>Indicates
+  that the user wants to run an interactive shell on an execute machine 
+  in the pool.
+  This is equivalent to creating a submit description file 
+  of a vanilla universe sleep job, 
+  and then running <I>condor_ssh_to_job</I> by hand.
+  Without any additional arguments, 
+  <I>condor_submit</I> with the -interactive flag creates a dummy
+  vanilla universe job that sleeps, 
+  submits it to the local scheduler, 
+  waits for the job to run, 
+  and then launches <I>condor_ssh_to_job</I> to run a shell.
+  If the user would like to run the shell on a machine that matches 
+  a particular <B>requirements</B><A NAME="83428"></A> expression, 
+  the submit description file is specified, and it will contain the expression.
+  Note that all policy expressions specified in the submit 
+  description file are honored, but any <B>executable</B><A NAME="83430"></A> or
+  <B>universe</B><A NAME="83432"></A> commands are overwritten to be sleep and vanilla.
+  The job ClassAd attribute <TT>InteractiveJob</TT> is set to <TT>True</TT>
+  to identify interactive jobs for <I>condor_startd</I> policy usage.  
+<BR>
+<P>
+</DD>
+<DT><STRONG><I>submit description file</I></STRONG></DT>
+<DD>The path and file name of 
+the submit description file. 
+If this optional argument is missing or is the dash character (<TT>-</TT>),
+then the commands are taken from standard input.
+<BR>
+<P>
+</DD>
+</DL>
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION0012554000000000000000"></A>
+<A NAME="83080"></A>
+<BR>
+Submit Description File Commands
+</H2>
+Each submit description file describes one cluster of jobs to be
+placed in the HTCondor execution pool. All jobs in a cluster must share
+the same executable, but they may have different input and output files,
+and different program arguments. The submit description file is
+the only command-line argument to <I>condor_submit</I>. If the submit description
+file argument is omitted, <I>condor_submit</I> will read the submit description
+from standard input.
+
+<P>
+The submit description file must contain 
+one <I>executable</I> command and at least one <I>queue</I> command.
+All of the other commands have default actions.
+
+<P>
+The commands which can appear in the submit description file are
+numerous.  They are listed here in alphabetical order by category.
+
+<P>
+<I>BASIC COMMANDS</I>
+<DL>
+<DD><P>
+<A NAME="83524"></A>
+<A NAME="man-condor-submit-arguments"></A></DD>
+<DT><STRONG>arguments = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">argument_list<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>List of arguments to be supplied
+to the executable as part of the command line.
+
+<P>
+In the <B>java</B> universe, the first
+argument must be the name of the class containing <TT>main</TT>.
+
+<P>
+There are two permissible formats for specifying arguments,
+identified as the old syntax and the new syntax.
+The old syntax supports white space characters within arguments
+only in special circumstances;
+when used, the command line arguments are represented in the
+job ClassAd attribute <TT>Args</TT>.
+The new syntax 
+supports uniform quoting of white space characters within arguments;
+when used, the command line arguments are represented in the
+job ClassAd attribute <TT>Arguments</TT>.
+
+<P>
+<B>Old Syntax</B>
+
+<P>
+In the old syntax, individual command line arguments are delimited 
+(separated) by space characters.
+To allow a double quote mark in an argument,
+it is escaped with a backslash; that is,
+the two character sequence <code>\"</code>
+becomes a single double quote mark within an argument.
+
+<P>
+Further interpretation of the argument string differs depending on the
+operating system.  On Windows, the entire argument string is
+passed verbatim (other than the backslash in front of double quote marks)
+to the Windows application.  
+Most Windows applications
+will allow spaces within an argument value by surrounding
+the argument with double quotes marks.
+In all
+other cases, there is no further interpretation of the arguments.
+
+<P>
+Example:
+
+<P>
+<PRE>
+arguments = one \"two\" 'three'
+</PRE>
+
+<P>
+Produces in Unix vanilla universe:
+
+<P>
+<PRE>
+argument 1: one
+argument 2: "two"
+argument 3: 'three'
+</PRE>
+
+<P>
+<B>New Syntax</B>
+
+<P>
+Here are the rules for using the new syntax:
+
+<P>
+
+<OL>
+<LI>The entire string representing the command line arguments is
+surrounded by double quote marks.
+This permits the white space characters of spaces and tabs to potentially
+be embedded within a single argument. 
+Putting the double quote mark within the arguments
+is accomplished by escaping it with another double quote mark.
+
+<P>
+</LI>
+<LI>The white space characters of spaces or tabs delimit arguments.
+
+<P>
+</LI>
+<LI>To embed white space characters of spaces or tabs within a 
+single argument,
+surround the entire argument with single quote marks.
+
+<P>
+</LI>
+<LI>To insert a literal single quote mark, escape it within
+an argument already delimited by single quote marks
+by adding another single quote mark.
+
+<P>
+</LI>
+</OL>
+
+<P>
+Example:
+<PRE>
+arguments = "3 simple arguments"
+</PRE>
+Produces:
+<PRE>
+argument 1: 3
+argument 2: simple
+argument 3: arguments
+</PRE>
+
+<P>
+Another example:
+<PRE>
+arguments = "one 'two with spaces'	3"
+</PRE>
+Produces:
+<PRE>
+argument 1: one
+argument 2: two with spaces
+argument 3: 3
+</PRE>
+
+<P>
+And yet another example:
+<PRE>
+arguments = "one ""two"" 'spacey ''quoted'' argument'"
+</PRE>
+
+<P>
+Produces:
+<PRE>
+argument 1: one
+argument 2: "two"
+argument 3: spacey 'quoted' argument
+</PRE>
+
+<P>
+Notice that in the new syntax, the backslash has no special meaning.
+This is for the convenience of Windows users.
+
+<P>
+<A NAME="83550"></A>
+<A NAME="man-condor-submit-environment"></A></DD>
+<DT><STRONG>environment = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">parameter_list<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>List of environment
+<A NAME="83552"></A>
+variables.
+
+<P>
+There are two different formats for specifying the environment
+variables: the old format and the new format.  The old format is
+retained for backward-compatibility.  It suffers from a
+platform-dependent syntax and the inability to insert some special
+characters into the environment.
+
+<P>
+The new syntax for specifying environment values:
+
+<P>
+
+<OL>
+<LI>Put double quote marks around the entire argument string.  This
+distinguishes the new syntax from the old.
+The old syntax does not have double quote marks around it.
+Any literal double quote marks within the string
+must be escaped by repeating the double quote mark.
+
+<P>
+</LI>
+<LI>Each environment entry has the form
+
+<P>
+<PRE>
+&lt;name&gt;=&lt;value&gt;
+</PRE>
+
+<P>
+</LI>
+<LI>Use white space (space or tab characters) to separate environment entries.
+
+<P>
+</LI>
+<LI>To put any white space in an environment entry, surround
+the space and as much of the surrounding entry as desired with
+single quote marks.
+
+<P>
+</LI>
+<LI>To insert a literal single quote mark, repeat the single quote mark
+anywhere inside of a section surrounded by single quote marks.
+
+<P>
+</LI>
+</OL>
+
+<P>
+Example:
+
+<P>
+<PRE>
+environment = "one=1 two=""2"" three='spacey ''quoted'' value'"
+</PRE>
+
+<P>
+Produces the following environment entries:
+
+<P>
+<PRE>
+one=1
+two="2"
+three=spacey 'quoted' value
+</PRE>
+
+<P>
+Under the old syntax, there are no double quote marks surrounding the
+environment specification.  Each environment entry remains of the form
+<PRE>
+&lt;name&gt;=&lt;value&gt;
+</PRE>
+Under Unix, list multiple environment entries by separating them with
+a semicolon (;).  Under Windows, separate multiple entries with a
+vertical bar (| ).  There is no way to insert a literal semicolon
+under Unix or a literal vertical bar under Windows.  Note that spaces
+are accepted, but rarely desired, characters within parameter names
+and values, because they are treated as literal characters, not
+separators or ignored white space.  Place spaces within the parameter
+list only if required.
+
+<P>
+A Unix example:
+
+<P>
+<PRE>
+environment = one=1;two=2;three="quotes have no 'special' meaning"
+</PRE>
+
+<P>
+This produces the following:
+
+<P>
+<PRE>
+one=1
+two=2
+three="quotes have no 'special' meaning"
+</PRE>
+
+<P>
+If the environment is set with the <B>environment</B><A NAME="84770"></A> command <I>and</I>
+<B>getenv</B><A NAME="84772"></A> is also set to true, values specified with
+<B>environment</B> override values in the submitter's environment
+(regardless of the order of the <B>environment</B> and <B>getenv</B>
+commands).
+
+<P>
+<A NAME="83573"></A>
+<A NAME="man-condor-submit-error"></A></DD>
+<DT><STRONG>error = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">pathname<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>A path and file name used by HTCondor to capture any
+error messages the program would normally write to the screen
+(that is, this file becomes <TT>stderr</TT>).
+A path is given with respect to the file system of the machine
+on which the job is submitted.
+The file is written (by the job)
+in the remote scratch directory of the machine where the job is executed. 
+When the job exits, the resulting file is transferred back to the machine
+where the job was submitted, and the path is utilized for file placement.
+If not specified, the default value of
+<TT>/dev/null</TT> is used for submission to a Unix machine.
+If not specified, error messages are ignored
+for submission to a Windows machine.
+More than one job should not use the same error file, since
+this will cause one job to overwrite the errors of another.
+The error file and the output file should not be the same file
+as the outputs will overwrite each other or be lost.
+For grid universe jobs, <B>error</B><A NAME="84779"></A> may be a URL that the Globus
+tool <I>globus_url_copy</I> understands.
+
+<P>
+<A NAME="83579"></A>
+<A NAME="man-condor-submit-executable"></A></DD>
+<DT><STRONG>executable = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">pathname<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>An optional path and a required file name of the executable file for this
+job cluster. Only one <B>executable</B><A NAME="84782"></A> command within a
+submit description file is guaranteed to work properly.
+More than one often works.
+
+<P>
+If no path or a relative path is used, then the executable file
+is presumed to be relative
+to the current working directory of the user as the
+<I>condor_submit</I> command is issued.
+
+<P>
+If submitting into the standard universe, then the named executable
+must have been re-linked with the HTCondor libraries (such as via the
+<I>condor_compile</I> command). If submitting into the vanilla universe
+(the default), then the named executable need not be re-linked and can
+be any process which can run in the background (shell scripts work
+fine as well).  If submitting into the Java universe, then the
+argument must be a compiled <TT>.class</TT> file.
+
+<P>
+<A NAME="83585"></A>
+<A NAME="man-condor-submit-getenv"></A></DD>
+<DT><STRONG>getenv = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">True |  False<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>If <B>getenv</B> is set to
+<A NAME="83588"></A>
+<TT>True</TT>, then <I>condor_submit</I> will copy all of the user's current
+shell environment variables at the time of job submission into the job
+ClassAd. The job will therefore execute with the same set of environment
+variables that the user had at submit time. Defaults to <TT>False</TT>.
+
+<P>
+If the environment is set with the <B>environment</B> command <I>and</I>
+<B>getenv</B> is also set to true, values specified with
+<B>environment</B> override values in the submitter's environment
+(regardless of the order of the <B>environment</B> and <B>getenv</B>
+commands).
+
+<P>
+<A NAME="83598"></A>
+<A NAME="man-condor-submit-input"></A></DD>
+<DT><STRONG>input = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">pathname<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>HTCondor assumes that its jobs are
+long-running, and that the user will not wait at the terminal for their
+completion. Because of this, the standard files which normally access
+the terminal, (<TT>stdin</TT>, <TT>stdout</TT>, and <TT>stderr</TT>),
+must refer to files. Thus,
+the file name specified with <B>input</B><A NAME="84802"></A> should contain any keyboard
+input the program requires (that is, this file becomes <TT>stdin</TT>).
+A path is given with respect to the file system of the machine
+on which the job is submitted.
+The file is transferred before execution
+to the remote scratch directory of the machine where the job is executed. 
+If not specified, the default value
+of <TT>/dev/null</TT> is used for submission to a Unix machine.
+If not specified, input is ignored
+for submission to a Windows machine.
+For grid universe jobs, <B>input</B><A NAME="84806"></A> may be a URL that the Globus
+tool <I>globus_url_copy</I> understands.
+
+<P>
+Note that this command does <I>not</I> refer to the command-line
+arguments of the program.  The command-line arguments are specified by
+the <B>arguments</B><A NAME="84809"></A> command.
+
+<P>
+<A NAME="83610"></A>
+<A NAME="man-condor-submit-log"></A></DD>
+<DT><STRONG>log = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">pathname<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>Use <B>log</B><A NAME="84811"></A> to specify a file name where
+HTCondor will write a log file of what is happening with this job cluster,
+called a job event log.
+For example, HTCondor will place a log entry into this file
+when and where the job begins running,
+when the job produces a checkpoint, or moves (migrates) to another machine,
+and when the job completes.
+Most users find specifying a <B>log</B> file to be handy;
+its use is recommended. If no <B>log</B> entry is specified, 
+HTCondor does not create a log for this cluster.
+If a relative path is specified, it is relative to the 
+current working directory as the job is submitted or
+the directory specified by submit command <B>initialdir</B>
+on the submit machine.
+
+<P>
+<A NAME="83616"></A>
+<A NAME="man-condor-submit-log-xml"></A></DD>
+<DT><STRONG>log_xml = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">True |  False<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>If <B>log_xml</B><A NAME="84816"></A> is <TT>True</TT>, 
+then the job event log file will be written in ClassAd XML.
+If not specified, XML is not used.
+Note that the file is an XML fragment; it is
+missing the file header and footer.
+Do not mix XML and non-XML within a single file.
+If multiple jobs write to a
+single job event log file, ensure that all of the jobs specify
+this option in the same way.
+
+<P>
+<A NAME="83620"></A>
+<A NAME="83621"></A>
+<A NAME="83622"></A>
+<A NAME="man-condor-submit-notification"></A></DD>
+<DT><STRONG>notification = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">Always |  Complete |  Error |  Never<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>Owners of HTCondor jobs are notified by
+e-mail when certain events occur.
+If defined by <I>Always</I>, the owner will be notified
+whenever the job produces a checkpoint, as well as when the job completes.
+If defined by <I>Complete</I>, the owner will
+be notified when the job terminates.
+If defined by <I>Error</I>, the owner will only be notified
+if the job terminates abnormally,
+or if the job is placed on hold because of a failure, and not by user request.
+If defined by <I>Never</I> (the default), the owner will not receive e-mail,
+regardless to what happens to the job.
+The HTCondor User's manual documents statistics included in the e-mail.
+
+<P>
+<A NAME="83628"></A>
+<A NAME="man-condor-submit-notify-user"></A></DD>
+<DT><STRONG>notify_user = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">email-address<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>Used to specify the e-mail
+address to use when HTCondor sends e-mail about a job.  If not specified,
+HTCondor defaults to using the e-mail address defined by
+<PRE>
+job-owner@UID_DOMAIN
+</PRE>
+where the configuration variable <TT>UID_DOMAIN</TT><A NAME="84827"></A><A NAME="84828"></A>
+is specified by the HTCondor site administrator.
+If <TT>UID_DOMAIN</TT><A NAME="84832"></A><A NAME="84833"></A> has not been specified,
+HTCondor sends the e-mail to:
+<PRE>
+job-owner@submit-machine-name
+</PRE>
+
+<P>
+<A NAME="83636"></A>
+<A NAME="man-condor-submit-output"></A></DD>
+<DT><STRONG>output = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">pathname<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>The <B>output</B><A NAME="84837"></A> file captures
+any information the program would ordinarily write to the screen
+(that is, this file becomes <TT>stdout</TT>).
+A path is given with respect to the file system of the machine
+on which the job is submitted.
+The file is written (by the job)
+in the remote scratch directory of the machine where the job is executed. 
+When the job exits, the resulting file is transferred back to the machine
+where the job was submitted, and the path is utilized for file placement.
+If not specified, the default value of
+<TT>/dev/null</TT> is used for submission to a Unix machine.
+If not specified, output is ignored
+for submission to a Windows machine.
+Multiple jobs should not use the same output
+file, since this will cause one job to overwrite the output of
+another.
+The output file and the error file should not be the same file
+as the outputs will overwrite each other or be lost.
+For grid universe jobs, <B>output</B><A NAME="84841"></A> may be a URL that the Globus
+tool <I>globus_url_copy</I> understands.
+
+<P>
+Note that if a program explicitly opens and writes to a file,
+that file should <I>not</I> be specified as the <B>output</B><A NAME="84844"></A> file.
+
+<P>
+<A NAME="83645"></A>
+<A NAME="man-condor-submit-priority"></A></DD>
+<DT><STRONG>priority = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">integer<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>An HTCondor job priority 
+can be any integer, with 0 being the default.
+Jobs with higher numerical priority will
+run before jobs with lower numerical priority. Note that this priority
+is on a per user basis.
+One user with many jobs may use this command
+to order his/her own jobs,
+and this will have no effect on whether or
+not these jobs will run ahead of another user's jobs.
+
+<P>
+<A NAME="83647"></A>
+<A NAME="man-condor-submit-queue"></A></DD>
+<DT><STRONG>queue [<B>number-of-procs</B>]</STRONG></DT>
+<DD>Places one or more
+copies of the job into the HTCondor queue.
+The optional
+argument <I>number-of-procs</I> specifies how many times to submit the
+job to the queue, and it defaults to 1.
+If desired, any commands may be placed
+between subsequent <B>queue</B><A NAME="84849"></A> commands, such as new <B>input</B><A NAME="84851"></A>,
+<B>output</B><A NAME="84853"></A>, <B>error</B><A NAME="84855"></A>, <B>initialdir</B><A NAME="84857"></A>,
+or <B>arguments</B><A NAME="84859"></A> commands.
+This is handy when submitting multiple runs into one cluster with
+one submit description file.
+
+<P>
+<A NAME="83657"></A>
+<A NAME="man-condor-submit-universe"></A></DD>
+<DT><STRONG>universe = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">vanilla |  standard |  scheduler
+|  local |  grid |  java |  vm<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>Specifies which HTCondor universe to use when running this job.  The HTCondor
+universe specifies an HTCondor execution environment.
+
+<P>
+The <B>vanilla</B> universe is the default (except where the
+configuration variable <TT>DEFAULT_UNIVERSE</TT><A NAME="84862"></A><A NAME="84863"></A> defines it
+otherwise), and is an execution environment for jobs which do not
+use HTCondor's mechanisms for taking checkpoints;
+these are ones that have not been linked with the HTCondor libraries.  
+Use the <B>vanilla</B> universe to submit shell scripts to HTCondor.
+
+<P>
+The <B>standard</B> universe tells HTCondor that this job has been
+re-linked via <I>condor_compile</I> with the HTCondor libraries and therefore
+supports taking checkpoints and remote system calls.
+
+<P>
+The <B>scheduler</B> universe is for a job that is to run on the
+machine where the job is submitted.
+This universe is intended for a job that acts as a metascheduler
+and will not be preempted.
+
+<P>
+The <B>local</B> universe is for a job that is to run on the
+machine where the job is submitted.
+This universe runs the job immediately and will not be preempt the job.
+
+<P>
+The <B>grid</B> universe forwards the job to an external job
+management system.
+Further specification of the <B>grid</B> universe is done with the
+<B>grid_resource</B><A NAME="84875"></A> command.
+
+<P>
+The <B>java</B> universe is for programs written to the Java Virtual Machine.
+
+<P>
+The <B>vm</B> universe facilitates the execution of a virtual
+machine.
+
+<P>
+</DD>
+</DL> 
+
+<P>
+<I>COMMANDS FOR MATCHMAKING</I>
+<DL>
+<DD><P>
+<A NAME="83674"></A>
+<A NAME="man-condor-submit-rank"></A></DD>
+<DT><STRONG>rank = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">ClassAd Float Expression<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>A ClassAd Floating-Point
+expression that states how to rank machines which have already met the requirements
+expression. Essentially, rank expresses preference.  A higher numeric value
+equals better rank. HTCondor will give the job the machine with the
+highest rank.  For example,
+<PRE>
+        requirements = Memory &gt; 60
+        rank = Memory
+</PRE>
+asks HTCondor to find all available machines with more than 60 megabytes of memory
+and give to the job the machine with the most amount of memory.
+The HTCondor User's
+Manual contains complete information on the syntax and available attributes
+that can be used in the ClassAd expression.
+
+<P>
+<A NAME="83678"></A>
+<A NAME="man-condor-submit-request-cpus"></A></DD>
+<DT><STRONG>request_cpus = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">num-cpus<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>A requested number of CPUs (cores).
+If not specified, the number requested will be 1.
+If specified, 
+the expression
+<PRE>
+  &amp;&amp; (RequestCpus &lt;= Target.Cpus)
+</PRE>
+is appended to the <B>requirements</B><A NAME="84879"></A> expression for the job.
+
+<P>
+For pools that enable
+dynamic <I>condor_startd</I> provisioning,
+specifies the minimum number of CPUs requested for this job,
+resulting in a dynamic slot being created with this many cores.
+
+<P>
+<A NAME="83684"></A>
+<A NAME="man-condor-submit-request-disk"></A></DD>
+<DT><STRONG>request_disk = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">quantity<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>The requested amount of disk space in KiB requested for this job.
+If not specified, 
+it will be set to the job ClassAd attribute <TT>DiskUsage</TT>.
+The expression
+<PRE>
+  &amp;&amp; (RequestDisk &lt;= Target.Disk)
+</PRE>
+is appended to the <B>requirements</B><A NAME="84884"></A> expression for the job.
+
+<P>
+For pools that enable
+dynamic <I>condor_startd</I> provisioning,
+a dynamic slot will be created with at least this much disk space.
+
+<P>
+Characters may be appended to a numerical value to indicate units. 
+<TT>K</TT> or <TT>KB</TT> indicates KiB, <IMG
+ WIDTH="30" HEIGHT="18" ALIGN="BOTTOM" BORDER="0"
+ SRC="img11.png"
+ ALT="$2^{10}$"> numbers of bytes.
+<TT>M</TT> or <TT>MB</TT> indicates MiB, <IMG
+ WIDTH="30" HEIGHT="18" ALIGN="BOTTOM" BORDER="0"
+ SRC="img12.png"
+ ALT="$2^{20}$"> numbers of bytes.
+<TT>G</TT> or <TT>GB</TT> indicates GiB, <IMG
+ WIDTH="30" HEIGHT="18" ALIGN="BOTTOM" BORDER="0"
+ SRC="img13.png"
+ ALT="$2^{30}$"> numbers of bytes.
+<TT>T</TT> or <TT>TB</TT> indicates TiB, <IMG
+ WIDTH="30" HEIGHT="18" ALIGN="BOTTOM" BORDER="0"
+ SRC="img14.png"
+ ALT="$2^{40}$"> numbers of bytes.
+
+<P>
+<A NAME="83703"></A>
+<A NAME="man-condor-submit-request-memory"></A></DD>
+<DT><STRONG>request_memory = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">quantity<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>The required amount of memory in MiB that this job needs
+to avoid excessive swapping.
+If not specified and the submit command <B>vm_memory</B><A NAME="84896"></A> is specified, 
+then the value specified
+for <B>vm_memory</B><A NAME="84898"></A> defines <B>request_memory</B><A NAME="84900"></A>.
+If neither <B>request_memory</B><A NAME="84902"></A> nor <B>vm_memory</B><A NAME="84904"></A> is specified,
+the value is set by the configuration variable
+<TT>JOB_DEFAULT_REQUESTMEMORY</TT><A NAME="84906"></A><A NAME="84907"></A>.
+The actual amount of memory used by a job is represented by the
+job ClassAd attribute <TT>MemoryUsage</TT>.
+
+<P>
+For pools that enable
+dynamic <I>condor_startd</I> provisioning,
+a dynamic slot will be created with at least this much RAM.
+
+<P>
+The expression
+<PRE>
+  &amp;&amp; (RequestMemory &lt;= Target.Memory)
+</PRE>
+is appended to the <B>requirements</B><A NAME="84914"></A> expression for the job.
+
+<P>
+Characters may be appended to a numerical value to indicate units. 
+<TT>K</TT> or <TT>KB</TT> indicates KiB, <IMG
+ WIDTH="30" HEIGHT="18" ALIGN="BOTTOM" BORDER="0"
+ SRC="img11.png"
+ ALT="$2^{10}$"> numbers of bytes.
+<TT>M</TT> or <TT>MB</TT> indicates MiB, <IMG
+ WIDTH="30" HEIGHT="18" ALIGN="BOTTOM" BORDER="0"
+ SRC="img12.png"
+ ALT="$2^{20}$"> numbers of bytes.
+<TT>G</TT> or <TT>GB</TT> indicates GiB, <IMG
+ WIDTH="30" HEIGHT="18" ALIGN="BOTTOM" BORDER="0"
+ SRC="img13.png"
+ ALT="$2^{30}$"> numbers of bytes.
+<TT>T</TT> or <TT>TB</TT> indicates TiB, <IMG
+ WIDTH="30" HEIGHT="18" ALIGN="BOTTOM" BORDER="0"
+ SRC="img14.png"
+ ALT="$2^{40}$"> numbers of bytes.
+
+<P>
+<A NAME="83728"></A>
+<A NAME="83729"></A>
+<A NAME="83730"></A>
+<A NAME="man-condor-submit-request-name"></A></DD>
+<DT><STRONG>request_&lt;name&gt; = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">quantity<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>The required amount of the custom machine resource 
+identified by <TT>&lt;name&gt;</TT> that this job needs.
+The custom machine resource is defined in the machine's configuration.
+Machines that have available GPUs will define <TT>&lt;name&gt;</TT>
+to be <TT>GPUs</TT>.
+
+<P>
+<A NAME="83735"></A>
+<A NAME="man-condor-submit-requirements"></A></DD>
+<DT><STRONG>requirements = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">ClassAd Boolean Expression<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>The requirements
+command is a boolean ClassAd expression which uses C-like operators. In
+order for any job in this cluster to run on a given machine, this
+requirements expression must evaluate to true on the given machine. 
+
+<P>
+For scheduler and local universe jobs, the requirements expression is
+evaluated against
+the <TT>Scheduler</TT> ClassAd which represents the 
+the <I>condor_schedd</I> daemon running on the submit machine,
+rather than a remote machine.
+Like all commands in the submit description file, if multiple requirements
+commands are present, all but the last one are ignored.
+By default, <I>condor_submit</I> appends the following clauses to
+the requirements expression:
+
+<OL>
+<LI>Arch and OpSys are set equal to the Arch and OpSys of the
+submit machine.  In other words: unless you request otherwise, 
+HTCondor will give your
+job machines with the same architecture and operating system version as
+the machine running <I>condor_submit</I>.
+</LI>
+<LI>Cpus <IMG
+ WIDTH="33" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img66.png"
+ ALT="$&gt;=$"> RequestCpus, if the job ClassAd attribute
+<TT>RequestCpus</TT> is defined.
+</LI>
+<LI>Disk <IMG
+ WIDTH="33" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img66.png"
+ ALT="$&gt;=$"> RequestDisk, if the job ClassAd attribute
+<TT>RequestDisk</TT> is defined.
+Otherwise, Disk <IMG
+ WIDTH="33" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img66.png"
+ ALT="$&gt;=$"> DiskUsage is appended to the requirements.
+The <TT>DiskUsage</TT> attribute is initialized to the size of the
+executable plus the size of any files specified in a
+<B>transfer_input_files</B><A NAME="84937"></A> command.
+It exists to ensure there is enough disk space on the
+target machine for HTCondor to copy over both the executable
+and needed input files.
+The <TT>DiskUsage</TT> attribute represents the maximum amount of
+total disk space required by the job in kilobytes.
+HTCondor automatically updates the <TT>DiskUsage</TT> attribute
+approximately every 20 minutes while the job runs with the
+amount of space being used by the job on the execute machine.
+</LI>
+<LI>Memory <IMG
+ WIDTH="33" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img66.png"
+ ALT="$&gt;=$"> RequestMemory, if the job ClassAd attribute
+<TT>RequestMemory</TT> is defined.
+</LI>
+<LI>If Universe is set to Vanilla, FileSystemDomain is set equal to
+the submit machine's FileSystemDomain.
+</LI>
+</OL>
+View the requirements of a job
+which has already been submitted (along with everything else about the
+job ClassAd) with the command <I>condor_q -l</I>; see the command reference for
+<I>condor_q</I> on page&nbsp;<A HREF="condor_q.html#man-condor-q"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.  Also, see the HTCondor Users
+Manual for complete information on the syntax and available attributes
+that can be used in the ClassAd expression.
+
+<P>
+</DD>
+</DL> 
+
+<P>
+<I>FILE TRANSFER COMMANDS</I>
+<DL>
+<DD><P>
+<A NAME="83756"></A>
+<A NAME="83757"></A>
+<A NAME="man-condor-submit-dont-encrypt-input-files"></A></DD>
+<DT><STRONG>dont_encrypt_input_files = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$"> file1,file2,file... <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>A comma and/or space separated list of input files that are <I>not</I> to be
+encrypted when transferred with the file transfer mechanism.
+Specification of files in this manner overrides configuration that would
+use encryption.
+Each input file must also be in the list given by
+<B>transfer_input_files</B><A NAME="84946"></A>.
+When a path to an input file or directory is specified, 
+this specifies the path to the file on the submit side.
+A single wild card character (<TT>*</TT>) may be used in each file name.
+
+<P>
+<A NAME="83762"></A>
+<A NAME="83763"></A>
+<A NAME="man-condor-submit-dont-encrypt-output-files"></A></DD>
+<DT><STRONG>dont_encrypt_output_files = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$"> file1,file2,file... <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>A comma and/or space separated list of output files that are <I>not</I> to be
+encrypted when transferred back with the file transfer mechanism.
+Specification of files in this manner overrides configuration that would
+use encryption.
+The output file(s) must also either be in the list given by
+<B>transfer_output_files</B><A NAME="84949"></A> or be discovered and to be transferred
+back with the file transfer mechanism.
+When a path to an output file or directory is specified, 
+this specifies the path to the file on the execute side.
+A single wild card character (<TT>*</TT>) may be used in each file name.
+
+<P>
+<A NAME="83768"></A>
+<A NAME="83769"></A>
+<A NAME="man-condor-submit-encrypt-input-files"></A></DD>
+<DT><STRONG>encrypt_input_files = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$"> file1,file2,file... <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>A comma and/or space separated list of input files that are to be
+encrypted when transferred with the file transfer mechanism.
+Specification of files in this manner overrides configuration that would
+<I>not</I> use encryption.
+Each input file must also be in the list given by
+<B>transfer_input_files</B><A NAME="84952"></A>.
+When a path to an input file or directory is specified, 
+this specifies the path to the file on the submit side.
+A single wild card character (<TT>*</TT>) may be used in each file name.
+The method of encryption utilized will be as agreed upon in security
+negotiation; if that negotiation failed, then the file transfer
+mechanism must also fail for files to be encrypted.
+
+<P>
+<A NAME="83774"></A>
+<A NAME="83775"></A>
+<A NAME="man-condor-submit-encrypt-output-files"></A></DD>
+<DT><STRONG>encrypt_output_files = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$"> file1,file2,file... <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>A comma and/or space separated list of output files that are to be
+encrypted when transferred back with the file transfer mechanism.
+Specification of files in this manner overrides configuration that would
+<I>not</I> use encryption.
+The output file(s) must also either be in the list given by
+<B>transfer_output_files</B><A NAME="84955"></A> or be discovered and to be transferred
+back with the file transfer mechanism.
+When a path to an output file or directory is specified, 
+this specifies the path to the file on the execute side.
+A single wild card character (<TT>*</TT>) may be used in each file name.
+The method of encryption utilized will be as agreed upon in security
+negotiation; if that negotiation failed, then the file transfer
+mechanism must also fail for files to be encrypted.
+
+<P>
+<A NAME="83780"></A>
+<A NAME="man-condor-submit-max-transfer-input-mb"></A></DD>
+<DT><STRONG>max_transfer_input_mb = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">ClassAd Integer Expression<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>This integer expression specifies the maximum allowed total size in
+MiB of the input files that are transferred for a job.  This
+expression does <I>not</I> apply to grid universe, standard universe, or
+files transferred via file transfer plug-ins.  The expression may refer
+to attributes of the job.  The special value -1 indicates no limit.
+If not defined, the value set by configuration variable
+<TT>MAX_TRANSFER_INPUT_MB</TT><A NAME="84958"></A><A NAME="84959"></A> is used.  
+If the observed size of all input files at submit time is
+larger than the limit, the job will be immediately placed on hold with
+a <TT>HoldReasonCode</TT> value of 32.
+If the job passes this initial test, but the size of
+the input files increases or the limit decreases so that the limit is
+violated, the job will be placed on hold at the time when the file
+transfer is attempted.
+
+<P>
+<A NAME="83785"></A>
+<A NAME="man-condor-submit-max-transfer-output-mb"></A></DD>
+<DT><STRONG>max_transfer_output_mb = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">ClassAd Integer Expression<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>This integer expression specifies the maximum allowed total size in
+MiB of the output files that are transferred for a job.  This
+expression does <I>not</I> apply to grid universe, standard universe, or
+files transferred via file transfer plug-ins.  The expression may refer
+to attributes of the job.  The special value -1 indicates no limit.
+If not set, the value set by configuration variable
+<TT>MAX_TRANSFER_OUTPUT_MB</TT><A NAME="84964"></A><A NAME="84965"></A> is used.  
+If the total size of the job's output files to be transferred
+is larger than the limit, the job will be placed on hold with
+a <TT>HoldReasonCode</TT> value of 33.
+The output will be transferred up to the point when the
+limit is hit, so some files may be fully transferred, some partially,
+and some not at all.
+
+<P>
+<A NAME="83790"></A>
+<A NAME="83791"></A>
+<A NAME="man-condor-submit-output-destintation"></A></DD>
+<DT><STRONG>output_destination = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">destination-URL<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>When present, defines a URL that specifies both a plug-in and a
+destination for the transfer of the entire output sandbox or
+a subset of output files as specified by the submit command
+<B>transfer_output_files</B><A NAME="84970"></A>.
+The plug-in does the transfer of files, 
+and no files are sent back to the submit machine.
+The HTCondor Administrator's manual has full details.
+
+<P>
+<A NAME="83794"></A>
+<A NAME="83795"></A>
+<A NAME="man-condor-submit-should-transfer-files"></A></DD>
+<DT><STRONG>should_transfer_files = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">YES |  NO |  IF_NEEDED <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>The <B>should_transfer_files</B><A NAME="84972"></A> setting is used to define if HTCondor
+should transfer files to and from the remote machine where the job
+runs.
+The file transfer mechanism is used to run jobs which are not in the
+standard universe (and can therefore use remote system calls for file
+access) on machines which do not have a shared file system with the
+submit machine.
+<B>should_transfer_files</B><A NAME="84974"></A> equal to <I>YES</I> will cause HTCondor to
+always transfer files for the job.
+<I>NO</I> disables HTCondor's file transfer mechanism.
+<I>IF_NEEDED</I> will not transfer files for the job if it is matched
+with a resource in the same <TT>FileSystemDomain</TT> as the submit
+machine (and therefore, on a machine with the same shared file
+system).
+If the job is matched with a remote resource in a different 
+<TT>FileSystemDomain</TT>, HTCondor will transfer the necessary files. 
+
+<P>
+For more information about this and other settings related to
+transferring files, see the HTCondor User's manual section
+on the file transfer mechanism. 
+
+<P>
+Note that <B>should_transfer_files</B><A NAME="84984"></A> is not supported
+for jobs submitted to the grid universe.
+
+<P>
+<A NAME="83805"></A>
+<A NAME="man-condor-submit-skip-filechecks"></A></DD>
+<DT><STRONG>skip_filechecks = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">True |  False<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>When <TT>True</TT>,
+file permission checks for the submitted job are disabled.
+When <TT>False</TT>, file permissions are checked; this is the behavior
+when this command is not present in the submit description file.
+File permissions are checked for read permissions on all input files,
+such as those defined by 
+commands <B>input</B><A NAME="84988"></A> and <B>transfer_input_files</B><A NAME="84990"></A>,
+and for write permission to output files, 
+such as a log file defined by <B>log</B><A NAME="84992"></A> and output files defined with
+<B>output</B><A NAME="84994"></A> or <B>transfer_output_files</B><A NAME="84996"></A>.
+
+<P>
+<A NAME="83814"></A>
+<A NAME="man-condor-submit-stream-error"></A></DD>
+<DT><STRONG>stream_error = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">True |  False<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>If <TT>True</TT>, then <TT>stderr</TT> is streamed back to
+the machine from which the job was submitted.
+If <TT>False</TT>, <TT>stderr</TT> is stored locally
+and transferred back when the job completes.
+This command is ignored if the job ClassAd attribute
+<TT>TransferErr</TT> is
+<TT>False</TT>.
+The default value is <TT>False</TT>.
+This command must be used in conjunction with 
+<B>error</B><A NAME="85005"></A>, otherwise <TT>stderr</TT> will
+sent to <TT>/dev/null</TT> on Unix machines and
+ignored on Windows machines.
+
+<P>
+<A NAME="83826"></A>
+<A NAME="man-condor-submit-stream-input"></A></DD>
+<DT><STRONG>stream_input = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">True |  False<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>If <TT>True</TT>, then <TT>stdin</TT> is streamed from the
+machine on which the job was submitted.
+The default value is <TT>False</TT>.
+The command is only relevant for jobs submitted to
+the vanilla or java universes, and
+it is ignored by the grid
+universe.
+This command must be used in conjunction with 
+<B>input</B><A NAME="85012"></A>, otherwise <TT>stdin</TT> will
+be <TT>/dev/null</TT> on Unix machines and
+ignored on Windows machines.
+
+<P>
+<A NAME="83834"></A>
+<A NAME="man-condor-submit-stream-output"></A></DD>
+<DT><STRONG>stream_output = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">True |  False<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>If <TT>True</TT>, then <TT>stdout</TT> is streamed back to
+the machine from which the job was submitted.
+If <TT>False</TT>, <TT>stdout</TT> is stored locally
+and transferred back when the job completes.
+This command is ignored if the job ClassAd attribute
+<TT>TransferOut</TT> is
+<TT>False</TT>.
+The default value is <TT>False</TT>.
+This command must be used in conjunction with 
+<B>output</B><A NAME="85023"></A>, otherwise <TT>stdout</TT> will
+sent to <TT>/dev/null</TT> on Unix machines and
+ignored on Windows machines.
+
+<P>
+<A NAME="83846"></A>
+<A NAME="man-condor-submit-transfer-executable"></A></DD>
+<DT><STRONG>transfer_executable = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">True |  False<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>This command is applicable to jobs submitted to the grid
+and vanilla universes.
+If <B>transfer_executable</B> is set to
+<TT>False</TT>, then HTCondor looks for the executable on the remote machine, and
+does not transfer the executable over.
+This is useful for an already pre-staged 
+executable; HTCondor behaves more like rsh.
+The default value is <TT>True</TT>.
+
+<P>
+<A NAME="83851"></A>
+</DD>
+<DT><STRONG>transfer_input_files = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$"> file1,file2,file... <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD><A NAME="man-condor-submit-transfer-input-files"></A>A comma-delimited list of all the files and directories to be transferred
+into the working directory for the job, before the job is started.
+By default, the file specified in the
+<B>executable</B><A NAME="85030"></A> command and any file specified in the <B>input</B><A NAME="85032"></A>
+command (for example, <TT>stdin</TT>) are transferred.
+
+<P>
+When a path to an input file or directory is specified, this specifies
+the path to the file on the submit side.
+The file is placed in the job's temporary scratch directory on the execute side,
+and it is named using the base name of the original path.  For
+example, <TT>/path/to/input_file</TT> becomes <TT>input_file</TT> in the job's
+scratch directory.
+
+<P>
+A directory may be specified by appending the forward slash character (/)
+as a trailing path separator.
+This syntax is used for both Windows and Linux submit hosts.
+A directory example using a trailing path separator
+is <TT>input_data/</TT>. 
+When a directory is specified with the trailing path separator,
+the contents of the directory are
+transferred,  but the directory itself is not transferred.
+It is as if each of the items
+within the directory were listed in the transfer list.
+When there is no trailing path separator,
+the directory is transferred, its contents are transferred,
+and these contents are placed inside the transferred directory.
+
+<P>
+For grid universe jobs other than HTCondor-C, the transfer of
+directories is not currently supported.
+
+<P>
+Symbolic links to files are transferred as the files they point to.
+Transfer of symbolic links to directories is not currently supported.
+
+<P>
+For vanilla and vm universe jobs only,
+a file may be specified by giving a URL, instead of a file name.
+The implementation for URL transfers requires both configuration
+and available plug-in. 
+
+<P>
+<A NAME="83859"></A>
+<A NAME="man-condor-submit-transfer-output-files"></A></DD>
+<DT><STRONG>transfer_output_files = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$"> file1,file2,file... <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>This command forms an explicit list of output files and directories 
+to be transferred
+back from the temporary working directory on the execute machine to
+the submit machine.
+If there are multiple files, they must be delimited with commas.
+
+<P>
+For HTCondor-C jobs and all other non-grid universe jobs,
+if <B>transfer_output_files</B> is not specified,
+HTCondor will automatically transfer back all files in the job's
+temporary working directory which have been
+modified or created by the job.  Subdirectories are not scanned for
+output, so if output from subdirectories is desired, the output list
+must be explicitly specified.
+For grid universe jobs other than HTCondor-C, desired output files must
+also be explicitly listed.
+Another reason to explicitly list output files is for a job that creates
+many files, and the user wants only a subset transferred back.
+
+<P>
+For grid universe jobs other than with grid type <B>condor</B>,
+to have files other than standard output and standard error transferred
+from the execute machine back to the submit machine,
+do use <B>transfer_output_files</B>, listing
+all files to be transferred.
+These files are found on the execute machine in the
+working directory of the job.
+
+<P>
+When a path to an output file or directory is specified,
+it specifies the path to the file on the execute side.
+As a destination on the submit side,
+the file is placed in the job's initial working directory,
+and it is named using the base name of the original path.
+For example, <TT>path/to/output_file</TT> becomes <TT>output_file</TT> in
+the job's initial working directory.
+The name and path of the file
+that is written on the submit side may be modified by
+using <B>transfer_output_remaps</B><A NAME="85043"></A>. Note that this remap
+function only works with files but not with directories. 
+
+<P>
+A directory may be specified using a trailing path separator.
+An example of a trailing path separator is the slash character on Unix
+platforms; a directory example using a trailing path separator
+is <TT>input_data/</TT>. 
+When a directory is specified with a trailing path separator,
+the contents of the directory are
+transferred,  but the directory itself is not transferred.
+It is as if each of the items
+within the directory were listed in the transfer list.
+When there is no trailing path separator,
+the directory is transferred, its contents are transferred,
+and these contents are placed inside the transferred directory.
+
+<P>
+For grid universe jobs other than HTCondor-C, the transfer of
+directories is not currently supported.
+
+<P>
+Symbolic links to files are transferred as the files they point to.
+Transfer of symbolic links to directories is not currently supported.
+
+<P>
+<A NAME="83868"></A>
+<A NAME="man-condor-submit-transfer-output-remaps"></A></DD>
+<DT><STRONG>transfer_output_remaps <IMG
+ WIDTH="19" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img67.png"
+ ALT="$=$"> <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$"> `` name <IMG
+ WIDTH="19" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img67.png"
+ ALT="$=$"> newname ; name2 <IMG
+ WIDTH="19" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img67.png"
+ ALT="$=$"> newname2 ... ''<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"> </STRONG></DT>
+<DD>This specifies the name (and optionally path) to use when downloading output
+files from the completed job.  Normally, output files are transferred back
+to the initial working directory with the same name they had in the execution
+directory.  This gives you the option to save them with a different path
+or name.  If you specify a relative path, the final path will be relative
+to the job's initial working directory.
+
+<P>
+<I>name</I> describes an output file name produced by your job, and
+<I>newname</I> describes the file name it should be downloaded to.
+Multiple remaps can be specified by separating each with a semicolon.
+If you wish to remap file names that contain equals signs or
+semicolons, these special characters may be escaped with a backslash.
+You cannot specify directories to be remapped. 
+
+<P>
+<A NAME="83872"></A>
+<A NAME="man-condor-submit-when-to-transfer-output"></A></DD>
+<DT><STRONG>when_to_transfer_output = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$"> ON_EXIT |  ON_EXIT_OR_EVICT <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD><P>
+Setting <B>when_to_transfer_output</B><A NAME="85050"></A> equal to <I>ON_EXIT</I> will
+cause HTCondor to transfer the job's output files back to the submitting
+machine only when the job completes (exits on its own).
+
+<P>
+The <I>ON_EXIT_OR_EVICT</I> option is intended for fault tolerant
+jobs which periodically save their own state and can restart where
+they left off.
+In this case, files are spooled to the submit machine any time the
+job leaves a remote site, either because it exited on its own, or was
+evicted by the HTCondor system for any reason prior to job completion.
+The files spooled back are placed in a directory defined by
+the value of the <TT>SPOOL</TT> configuration variable.
+Any output files transferred back to the submit machine are
+automatically sent back out again as input files if the job restarts.
+
+<P>
+</DD>
+</DL> 
+
+<P>
+<I>POLICY COMMANDS</I>
+<DL>
+<DD><P>
+<A NAME="83881"></A>
+<A NAME="man-condor-submit-hold"></A></DD>
+<DT><STRONG>hold = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">True |  False<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>If <B>hold</B> is set to
+<TT>True</TT>, then the submitted job will be placed into the Hold state.
+Jobs in the Hold state will not run until released by <I>condor_release</I>.
+Defaults to <TT>False</TT>.
+
+<P>
+<A NAME="83887"></A>
+<A NAME="condor-submit-keep-claim-idle"></A></DD>
+<DT><STRONG>keep_claim_idle = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">integer<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>An integer number of seconds
+that a job requests the <I>condor_schedd</I> to wait before releasing its
+claim after the job exits or after the job is removed.
+
+<P>
+The process by which the 
+<I>condor_schedd</I> claims a <I>condor_startd</I> is somewhat time-consuming.
+To amortize this cost, the <I>condor_schedd</I> tries to reuse claims
+to run subsequent jobs, after a job using a claim is done.  
+However,
+it can only do this if there is an idle job in the queue at the moment
+the previous job completes.
+Sometimes, and especially for the node jobs when using DAGMan,
+there is a subsequent job about to be submitted, 
+but it has not yet arrived in the queue when the previous job completes.
+As a result, the <I>condor_schedd</I> releases the claim,
+and the next job must wait an entire negotiation cycle to start.
+When this submit command is defined with a non-negative integer,
+when the job exits, the <I>condor_schedd</I> tries as usual to reuse the claim.
+If it cannot, instead of releasing the claim,
+the <I>condor_schedd</I> keeps the claim until either the number of seconds given
+as a parameter, or a new job which matches that claim arrives, 
+whichever comes first.  
+The <I>condor_startd</I> in question will remain in the Claimed/Idle state,
+and the original job will be "charged" (in terms of priority) for the time
+in this state.
+
+<P>
+<A NAME="83897"></A>
+<A NAME="condor-submit-leave-in-queue"></A></DD>
+<DT><STRONG>leave_in_queue = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">ClassAd Boolean Expression<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>When the ClassAd Expression evaluates to <TT>True</TT>, the job is
+not removed from the queue upon completion.
+This allows the user of a remotely spooled job to retrieve output
+files in cases where HTCondor would have removed them as part of
+the cleanup associated with completion. The job will only exit
+the queue once it has been marked for removal (via <I>condor_rm</I>,
+for example) and the <B>leave_in_queue</B><A NAME="85081"></A> expression has
+become <TT>False</TT>.
+<B>leave_in_queue</B><A NAME="85084"></A> defaults to <TT>False</TT>.
+
+<P>
+As an example, if the job is to be removed once the output is retrieved
+with <I>condor_transfer_data</I>, then use 
+<PRE>
+leave_in_queue = (JobStatus == 4) &amp;&amp; ((StageOutFinish =?= UNDEFINED) ||\
+                 (StageOutFinish == 0))
+</PRE>
+<P>
+<A NAME="83908"></A>
+<A NAME="condor-submit-next-job-start-delay"></A></DD>
+<DT><STRONG>next_job_start_delay = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">ClassAd Boolean Expression<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>This expression specifies the number of seconds to delay after starting up
+this job before the next job is started.  The maximum
+allowed delay is specified by the HTCondor configuration variable
+<TT>MAX_NEXT_JOB_START_DELAY</TT><A NAME="85089"></A><A NAME="85090"></A>, which defaults to 10 minutes.
+This command does not apply to <B>scheduler</B>
+or <B>local</B> universe jobs.
+
+<P>
+This command has been historically used to implement a form
+of job start throttling from the job submitter's perspective.
+It was effective for the case of multiple job submission where
+the transfer of extremely large input data sets to the execute
+machine caused machine performance to suffer.
+This command is no longer useful, as throttling should be
+accomplished through configuration of the <I>condor_schedd</I> daemon.
+
+<P>
+<A NAME="83914"></A>
+<A NAME="condor-submit-on-exit-hold"></A></DD>
+<DT><STRONG>on_exit_hold = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">ClassAd Boolean Expression<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>The ClassAd expression is checked when the job exits, and if <TT>True</TT>,
+places the job into the Hold state.
+If <TT>False</TT> (the default value when not defined),
+then nothing happens and the <TT>on_exit_remove</TT> expression is
+checked to determine if that needs to be applied.
+
+<P>
+For example:
+Suppose a job is known to run for a minimum of an hour.
+If the job exits after less than an hour, the job should be placed on
+hold and an e-mail notification sent,
+instead of being allowed to leave the queue.
+
+<P>
+<PRE>
+  on_exit_hold = (time() - JobStartDate) &lt; (60 * $(MINUTE))
+</PRE>
+<P>
+This expression places the job on hold if it exits for any reason
+before running for an hour. An e-mail will be sent to the user explaining
+that the job was placed on hold because this expression became <TT>True</TT>.
+
+<P>
+<TT>periodic_*</TT> expressions take
+precedence over <TT>on_exit_*</TT> expressions,
+and <TT>*_hold</TT> expressions take
+precedence over a <TT>*_remove</TT> expressions.
+
+<P>
+Only job ClassAd attributes will be defined for use by this ClassAd expression.
+This expression is available for the vanilla, java, parallel, grid,
+local and scheduler universes.
+It is additionally available, when submitted from a Unix machine,
+for the standard universe.
+
+<P>
+<A NAME="83926"></A>
+</DD>
+<DT><STRONG>on_exit_hold_reason = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">ClassAd String Expression<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>When the job is placed on hold due to the <B>on_exit_hold</B><A NAME="85106"></A>
+expression becoming <TT>True</TT>, this expression is evaluated to
+set the value of <TT>HoldReason</TT> in the job ClassAd.
+If this expression is <TT>UNDEFINED</TT> or produces an empty or invalid string,
+a default description is used.
+
+<P>
+<A NAME="83931"></A>
+</DD>
+<DT><STRONG>on_exit_hold_subcode = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">ClassAd Integer Expression<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>When the job is placed on hold due to the <B>on_exit_hold</B><A NAME="85111"></A>
+expression becoming <TT>True</TT>, this expression is evaluated to set the
+value of <TT>HoldReasonSubCode</TT> in the job ClassAd.
+The default subcode is 0.  The <TT>HoldReasonCode</TT> will be set to 3, which
+indicates that the job went on hold due to a job policy expression.
+
+<P>
+<A NAME="83936"></A>
+<A NAME="condor-submit-on-exit-remove"></A></DD>
+<DT><STRONG>on_exit_remove = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">ClassAd Boolean Expression<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>The ClassAd expression is checked when the job exits, and if <TT>True</TT>
+(the default value when undefined),
+then it allows the job to leave the queue normally.
+If <TT>False</TT>, then the job is placed back into the Idle state.
+If the user job runs under the vanilla universe,
+then the job restarts from the beginning.
+If the user job runs under the standard universe,
+then it continues from where it left off, using the last checkpoint.
+
+<P>
+For example,
+suppose a job occasionally segfaults,
+but chances are that the job will finish successfully
+if the job is run again with the same data.
+The <B>on_exit_remove</B><A NAME="85118"></A> expression can cause the job
+to run again with the following command.
+Assume that the signal identifier for the segmentation fault is 11 on the
+platform where the job will be running.
+<PRE>
+  on_exit_remove = (ExitBySignal == False) || (ExitSignal != 11)
+</PRE>This expression lets the job leave the queue if the job was
+not killed by a signal or if it was
+killed by a signal other than 11, representing segmentation fault in
+this example.
+So, if the exited due to signal 11, it will stay in the job queue.
+In any other case of the job exiting,
+the job will leave the queue as it normally would have done.
+
+<P>
+As another example,
+if the job should only leave the queue if it exited on its own with
+status 0,
+this <B>on_exit_remove</B><A NAME="85120"></A> expression works well:
+
+<P>
+<PRE>
+  on_exit_remove = (ExitBySignal == False) &amp;&amp; (ExitCode == 0)
+</PRE>If the job was killed by a signal or exited with a non-zero exit
+status, HTCondor would leave the job in the queue to run again.
+
+<P>
+<TT>periodic_*</TT> expressions take
+precedence over <TT>on_exit_*</TT> expressions,
+and <TT>*_hold</TT> expressions take
+precedence over a <TT>*_remove</TT> expressions.
+
+<P>
+Only job ClassAd attributes will be defined for use by this ClassAd expression.
+This expression is available for the vanilla, java, parallel, grid,
+local and scheduler universes.
+It is additionally available, when submitted from a Unix machine, for the
+standard universe.  Note that the <I>condor_schedd</I> daemon,
+by default, only checks
+these periodic expressions once every 300 seconds.  The period of
+these evaluations can be adjusted by setting the
+<TT>PERIODIC_EXPR_INTERVAL</TT> configuration macro.
+
+<P>
+<A NAME="83952"></A>
+<A NAME="condor-submit-periodic-hold"></A></DD>
+<DT><STRONG>periodic_hold = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">ClassAd Boolean Expression<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>This expression is checked periodically at an interval of
+the number of seconds set by
+the configuration variable <TT>PERIODIC_EXPR_INTERVAL</TT>.
+If it becomes <TT>True</TT>, the job will be placed on hold.
+If unspecified, the default value is <TT>False</TT>.
+
+<P>
+<TT>periodic_*</TT> expressions take
+precedence over <TT>on_exit_*</TT> expressions,
+and <TT>*_hold</TT> expressions take
+precedence over a <TT>*_remove</TT> expressions.
+
+<P>
+Only job ClassAd attributes will be defined for use by this ClassAd expression.
+This expression is available for the vanilla, java, parallel, grid,
+local and scheduler universes.
+It is additionally available, when submitted from a Unix machine,
+for the standard universe.  Note that the <I>condor_schedd</I> daemon,
+by default, only checks
+these periodic expressions once every 300 seconds.  The period of
+these evaluations can be adjusted by setting the
+<TT>PERIODIC_EXPR_INTERVAL</TT> configuration macro.
+
+<P>
+<A NAME="83963"></A>
+</DD>
+<DT><STRONG>periodic_hold_reason = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">ClassAd String Expression<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>When the job is placed on hold due to the <B>periodic_hold</B><A NAME="85139"></A>
+expression becoming <TT>True</TT>, this expression is evaluated to
+set the value of <TT>HoldReason</TT> in the job ClassAd.
+If this expression is <TT>UNDEFINED</TT> or produces an empty or invalid string,
+a default description is used.
+
+<P>
+<A NAME="83968"></A>
+</DD>
+<DT><STRONG>periodic_hold_subcode = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">ClassAd Integer Expression<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>When the job is placed on hold due to the <B>periodic_hold</B><A NAME="85144"></A>
+expression becoming true, this expression is evaluated to set the
+value of <TT>HoldReasonSubCode</TT> in the job ClassAd.
+The default subcode is 0.  The <TT>HoldReasonCode</TT> will be set to 3, which
+indicates that the job went on hold due to a job policy expression.
+
+<P>
+<A NAME="83972"></A>
+<A NAME="condor-submit-periodic-release"></A></DD>
+<DT><STRONG>periodic_release = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">ClassAd Boolean Expression<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>This expression is checked periodically at an interval of
+the number of seconds set by
+the configuration variable <TT>PERIODIC_EXPR_INTERVAL</TT>
+while the job is in the Hold state.
+If the expression becomes <TT>True</TT>, the job will be released.
+
+<P>
+Only job ClassAd attributes will be defined for use by this ClassAd expression.
+This expression is available for the vanilla, java, parallel, grid,
+local and scheduler universes.
+It is additionally available, when submitted from a Unix machine,
+for the standard universe.  Note that the <I>condor_schedd</I> daemon,
+by default, only checks
+periodic expressions once every 300 seconds.  The period of
+these evaluations can be adjusted by setting the
+<TT>PERIODIC_EXPR_INTERVAL</TT> configuration macro.
+
+<P>
+<A NAME="83978"></A>
+<A NAME="condor-submit-periodic-remove"></A></DD>
+<DT><STRONG>periodic_remove = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">ClassAd Boolean Expression<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>This expression is checked periodically at an interval of
+the number of seconds set by
+the configuration variable <TT>PERIODIC_EXPR_INTERVAL</TT>.
+If it becomes <TT>True</TT>, the job is removed from the queue.
+If unspecified, the default value is <TT>False</TT>.
+
+<P>
+See the Examples section of this manual page
+for an example of a <B>periodic_remove</B><A NAME="85156"></A> expression.
+
+<P>
+<TT>periodic_*</TT> expressions take
+precedence over <TT>on_exit_*</TT> expressions,
+and <TT>*_hold</TT> expressions take
+precedence over a <TT>*_remove</TT> expressions.
+So, the <TT>periodic_remove</TT> expression takes precedent over
+the <TT>on_exit_remove</TT> expression,
+if the two describe conflicting actions.
+
+<P>
+Only job ClassAd attributes will be defined for use by this ClassAd expression.
+This expression is available for the vanilla, java, parallel, grid,
+local and scheduler universes.
+It is additionally available, when submitted from a Unix machine,
+for the standard universe.  Note that the <I>condor_schedd</I> daemon,
+by default, only checks
+periodic expressions once every 300 seconds.  The period of
+these evaluations can be adjusted by setting the
+<TT>PERIODIC_EXPR_INTERVAL</TT> configuration macro.
+
+<P>
+</DD>
+</DL> 
+
+<P>
+<I>COMMANDS SPECIFIC TO THE STANDARD UNIVERSE</I>
+
+<P>
+<DL>
+<DD><P>
+<A NAME="83995"></A>
+<A NAME="condor-submit-allow-startup-script"></A></DD>
+<DT><STRONG>allow_startup_script = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">True |  False<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>If True, a standard universe job will execute a script
+instead of submitting the job,
+and the consistency check to see if the executable has
+been linked using <I>condor_compile</I> is omitted.
+The <B>executable</B><A NAME="85169"></A> command within the submit description
+file specifies the name of the script.
+The script is used to do preprocessing before the
+job is submitted.
+The shell script ends with an <I>exec</I> of the
+job executable, such that the process id of the executable is the
+same as that of the shell script.
+Here is an example script that gets a copy of a machine-specific
+executable before the <I>exec</I>.
+<PRE> 
+   #! /bin/sh
+
+   # get the host name of the machine
+   $host=`uname -n`
+
+   # grab a standard universe executable designed specifically
+   # for this host
+   scp elsewhere@cs.wisc.edu:${host} executable
+
+   # The PID MUST stay the same, so exec the new standard universe process.
+   exec executable ${1+"$@"}
+</PRE><FONT SIZE="-1"> 
+</FONT>If this command is not present (defined), then the value
+defaults to false.
+
+<P>
+<A NAME="84003"></A>
+<A NAME="condor-submit-append-files"></A></DD>
+<DT><STRONG>append_files = file1, file2, ...</STRONG></DT>
+<DD><P>
+If your job attempts to access a file mentioned in this list,
+HTCondor will force all writes to that file to be appended to the end.
+Furthermore, condor_submit will not truncate it.
+This list uses the same syntax as compress_files, shown above.
+
+<P>
+This option may yield some surprising results.  If several
+jobs attempt to write to the same file, their output may be intermixed.
+If a job is evicted from one or more machines during the course of its
+lifetime, such an output file might contain several copies of the results.
+This option should be only be used when you wish a certain file to be
+treated as a running log instead of a precise result.
+
+<P>
+This option only applies to standard-universe jobs.
+
+<P>
+<A NAME="84005"></A>
+<A NAME="84006"></A>
+<A NAME="84007"></A>
+<A NAME="condor-submit-buffer-files"></A><A NAME="condor-submit-buffer-size"></A><A NAME="condor-submit-buffer-block-size"></A></DD>
+<DT><STRONG>buffer_files <IMG
+ WIDTH="19" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img67.png"
+ ALT="$=$"> <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$"> `` name <IMG
+ WIDTH="19" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img67.png"
+ ALT="$=$"> (size,block-size) ; name2 <IMG
+ WIDTH="19" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img67.png"
+ ALT="$=$"> (size,block-size) ... '' <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"> </STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG>buffer_size <IMG
+ WIDTH="19" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img67.png"
+ ALT="$=$"> <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">bytes-in-buffer<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG>buffer_block_size <IMG
+ WIDTH="19" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img67.png"
+ ALT="$=$"> <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">bytes-in-block<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>HTCondor keeps a buffer of recently-used data for each file a job accesses.
+This buffer is used both to cache commonly-used data and to consolidate small
+reads and writes into larger operations that get better throughput.
+The default settings should produce reasonable results for most programs.
+
+<P>
+These options only apply to standard-universe jobs.
+
+<P>
+If needed, you may set the buffer controls individually for each file using
+the buffer_files option. For example, to set the buffer size to 1 MiB and
+the block size to 256 KiB for the file <TT>input.data</TT>, use this command:
+
+<P>
+<PRE>
+buffer_files = "input.data=(1000000,256000)"
+</PRE>
+
+<P>
+Alternatively, you may use these two options to set
+the default sizes for all files used by your job:
+
+<P>
+<PRE>
+buffer_size = 1000000
+buffer_block_size = 256000
+</PRE>
+
+<P>
+If you do not set these, HTCondor will use the values given by these
+two configuration file macros:
+
+<P>
+<PRE>
+DEFAULT_IO_BUFFER_SIZE = 1000000
+DEFAULT_IO_BUFFER_BLOCK_SIZE = 256000
+</PRE>
+
+<P>
+Finally, if no other settings are present, HTCondor will use
+a buffer of 512 KiB
+and a block size of 32 KiB.
+
+<P>
+<A NAME="84018"></A>
+<A NAME="condor-submit-compress-files"></A></DD>
+<DT><STRONG>compress_files = file1, file2, ...</STRONG></DT>
+<DD><P>
+If your job attempts to access any of the files mentioned in this list,
+HTCondor will automatically compress them (if writing) or decompress them (if reading).
+The compress format is the same as used by GNU gzip.
+
+<P>
+The files given in this list may be simple file names or complete paths and may
+include <IMG
+ WIDTH="14" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img61.png"
+ ALT="$*$"> as a wild card.  For example, this list causes the file /tmp/data.gz,
+any file named event.gz, and any file ending in .gzip to be automatically
+compressed or decompressed as needed:
+
+<P>
+<PRE>
+compress_files = /tmp/data.gz, event.gz, *.gzip
+</PRE>
+Due to the nature of the compression format, compressed files must only
+be accessed sequentially.  Random access reading is allowed but is very slow,
+while random access writing is simply not possible.  This restriction may be
+avoided by using both compress_files and fetch_files at the same time.  When
+this is done, a file is kept in the decompressed state at the execution
+machine, but is compressed for transfer to its original location.
+
+<P>
+This option only applies to standard universe jobs.
+
+<P>
+<A NAME="84022"></A>
+<A NAME="condor-submit-fetch-files"></A></DD>
+<DT><STRONG>fetch_files = file1, file2, ...</STRONG></DT>
+<DD>If your job attempts to access a file mentioned in this list,
+HTCondor will automatically copy the whole file to the executing machine,
+where it can be accessed quickly.  When your job closes the file,
+it will be copied back to its original location.
+This list uses the same syntax as compress_files, shown above.
+
+<P>
+This option only applies to standard universe jobs.
+
+<P>
+<A NAME="84024"></A>
+<A NAME="condor-submit-file-remaps"></A></DD>
+<DT><STRONG>file_remaps <IMG
+ WIDTH="19" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img67.png"
+ ALT="$=$"> <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$"> `` name <IMG
+ WIDTH="19" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img67.png"
+ ALT="$=$"> newname ; name2 <IMG
+ WIDTH="19" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img67.png"
+ ALT="$=$"> newname2 ... ''<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"> </STRONG></DT>
+<DD><P>
+Directs HTCondor to use a new file name in place of an old one.  <I>name</I>
+describes a file name that your job may attempt to open, and <I>newname</I>
+describes the file name it should be replaced with.
+<I>newname</I> may include an optional leading
+access specifier, <code>local:</code> or <code>remote:</code>.  If left unspecified,
+the default access specifier is <code>remote:</code>.  Multiple remaps can be
+specified by separating each with a semicolon.
+
+<P>
+This option only applies to standard universe jobs.
+
+<P>
+If you wish to remap file names that contain equals signs or semicolons,
+these special characters may be escaped with a backslash.
+
+<P>
+<DL>
+<DT><STRONG>Example One:</STRONG></DT>
+<DD>Suppose that your job reads a file named <TT>dataset.1</TT>.
+To instruct HTCondor
+to force your job to read <TT>other.dataset</TT> instead,
+add this to the submit file:
+<PRE>
+file_remaps = "dataset.1=other.dataset"
+</PRE>
+</DD>
+<DT><STRONG>Example Two:</STRONG></DT>
+<DD>Suppose that your run many jobs which all read in the same large file,
+called <TT>very.big</TT>.
+If this file can be found in the same place on
+a local disk in every machine in the pool,
+(say <TT>/bigdisk/bigfile</TT>,) you can
+instruct HTCondor of this fact by remapping <TT>very.big</TT> to
+<TT>/bigdisk/bigfile</TT> and specifying that the file is to be read locally,
+which will be much faster than reading over the network.
+<PRE>
+file_remaps = "very.big = local:/bigdisk/bigfile"
+</PRE>
+</DD>
+<DT><STRONG>Example Three:</STRONG></DT>
+<DD>Several remaps can be applied at once by separating each with a semicolon.
+<PRE>
+file_remaps = "very.big = local:/bigdisk/bigfile ; dataset.1 = other.dataset"
+</PRE>
+</DD>
+</DL>
+
+<P>
+<A NAME="84043"></A>
+<A NAME="condor-submit-local-files"></A></DD>
+<DT><STRONG>local_files = file1, file2, ...</STRONG></DT>
+<DD><P>
+If your job attempts to access a file mentioned in this list,
+HTCondor will cause it to be read or written at the execution machine.
+This is most useful for temporary files not used for input or output.
+This list uses the same syntax as compress_files, shown above.
+
+<P>
+<PRE>
+local_files = /tmp/*
+</PRE>
+
+<P>
+This option only applies to standard universe jobs.
+
+<P>
+<A NAME="84047"></A>
+<A NAME="condor-submit-want-remote-io"></A></DD>
+<DT><STRONG>want_remote_io = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">True |  False<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>This option controls how a file is opened and manipulated in a standard
+universe job.
+If this option is true, which is the default, then the <I>condor_shadow</I>
+makes all decisions about how each and every file should be opened by
+the executing job.
+This entails a network round trip (or more) from the job to the
+<I>condor_shadow</I> and back again for every single <TT>open()</TT>
+in addition to other needed information about the file.
+If set to false, then when the job queries the <I>condor_shadow</I> for the
+first time about how to open a file, the <I>condor_shadow</I> will inform the
+job to automatically perform all of its file manipulation on the local
+file system on the execute machine and any file remapping will be ignored.
+This means that there <B>must</B> be a shared file system (such
+as NFS or AFS) between the execute machine and the submit machine and that
+<B>ALL</B> paths that the job could open on the execute machine must be valid.
+The ability of the standard universe job to checkpoint, possibly to a
+checkpoint server, is not affected by this attribute.
+However, when the job resumes it will be expecting the same file system
+conditions that were present when the job checkpointed.
+
+<P>
+</DD>
+</DL> 
+
+<P>
+<I>COMMANDS FOR THE GRID</I>
+<DL>
+<DD><P>
+<A NAME="84059"></A>
+<A NAME="condor-submit-batch-queue"></A></DD>
+<DT><STRONG>batch_queue = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">queuename<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>Used for <B>pbs</B>, <B>lsf</B>, and <B>sge</B> 
+grid universe jobs.
+Specifies the name of the PBS/LSF/SGE job queue into which the job should
+be submitted.
+If not specified, the default queue is used.
+
+<P>
+<A NAME="84064"></A>
+<A NAME="condor-submit-boinc-authenticator-file"></A></DD>
+<DT><STRONG>boinc_authenticator_file = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">pathname<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>For grid type <B>boinc</B> jobs, 
+specifies a path and file name of the authorization file that grants
+permission for HTCondor to use the BOINC service.
+There is no default value when not specified.
+
+<P>
+<A NAME="84067"></A>
+<A NAME="condor-submit-cream-attributes"></A></DD>
+<DT><STRONG>cream_attributes = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">name=value;... ;name=value<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>Provides a list of attribute/value pairs to be set in a CREAM job description
+of a grid universe job destined for the CREAM grid system.
+The pairs are separated by semicolons, and written in New ClassAd syntax.
+
+<P>
+<A NAME="84069"></A>
+<A NAME="condor-submit-delegate-job-GSI-credentials-lifetime"></A></DD>
+<DT><STRONG>delegate_job_GSI_credentials_lifetime = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">seconds<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>Specifies the maximum number of seconds for which
+delegated proxies should be valid.  
+The default behavior when this command is not specified
+is determined by the configuration variable 
+<TT>DELEGATE_JOB_GSI_CREDENTIALS_LIFETIME</TT><A NAME="85201"></A><A NAME="85202"></A>, 
+which defaults to one day.  
+A value of 0 indicates that the delegated proxy
+should be valid for as long as allowed by the credential used to
+create the proxy.  This setting currently only applies to proxies
+delegated for non-grid jobs and for HTCondor-C jobs.  It does not currently
+apply to globus grid jobs, which always behave as though this setting
+were 0.  This variable has no effect if the configuration
+variable <TT>DELEGATE_JOB_GSI_CREDENTIALS</TT><A NAME="85206"></A><A NAME="85207"></A> is <TT>False</TT>,
+because in that case the job proxy is copied rather than delegated.
+
+<P>
+<A NAME="84074"></A>
+<A NAME="condor-submit-deltacloud-hardware-profile"></A></DD>
+<DT><STRONG>deltacloud_hardware_profile = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">Deltacloud profile name<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>Used for <B>deltacloud</B> jobs.
+An optional identifier for the type of VM desired. If not provided,
+a service-defined default is used.
+
+<P>
+<A NAME="84077"></A>
+<A NAME="condor-submit-deltacloud-hardware-profile-cpu"></A></DD>
+<DT><STRONG>deltacloud_hardware_profile_cpu = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">cpu details<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>Used for <B>deltacloud</B> jobs.
+An optional description of the CPUs desired for the VM, overriding
+the selected hardware profile.
+
+<P>
+<A NAME="84080"></A>
+<A NAME="condor-submit-deltacloud-hardware-profile-memory"></A></DD>
+<DT><STRONG>deltacloud_hardware_profile_memory = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">memory details<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>Used for <B>deltacloud</B> jobs.
+An optional description of the memory (RAM) desired for the VM, overriding
+the selected hardware profile.
+
+<P>
+<A NAME="84083"></A>
+<A NAME="condor-submit-deltacloud-hardware-profile-storage"></A></DD>
+<DT><STRONG>deltacloud_hardware_profile_storage = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">storage details<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>Used for <B>deltacloud</B> jobs.
+An optional description of the storage (disk) desired for the VM, overriding
+the selected hardware profile.
+
+<P>
+<A NAME="84086"></A>
+<A NAME="condor-submit-deltacloud-image-id"></A></DD>
+<DT><STRONG>deltacloud_image_id = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">Deltacloud image ID<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>Used for <B>deltacloud</B> jobs.
+Identifier of the VM image to run.
+
+<P>
+<A NAME="84089"></A>
+<A NAME="condor-submit-deltacloud-keyname"></A></DD>
+<DT><STRONG>deltacloud_keyname = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">Deltacloud key name<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>Used for <B>deltacloud</B> jobs.
+Identifier of the SSH key pair that should be used to allow remote login
+to the running instance. The key pair needs to be created before
+submission.
+
+<P>
+<A NAME="84092"></A>
+<A NAME="condor-submit-deltacloud-password-file"></A></DD>
+<DT><STRONG>deltacloud_password_file = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">pathname<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>Used for <B>deltacloud</B> jobs.
+Path and file name of a file containing the secret key to be used to
+authenticate with a Deltacloud service.
+
+<P>
+<A NAME="84095"></A>
+<A NAME="condor-submit-deltacloud-realm-id"></A></DD>
+<DT><STRONG>deltacloud_realm_id = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">Deltacloud realm ID<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>Used for <B>deltacloud</B> jobs.
+An optional identifier specifying which of multiple locations within a
+cloud service should be used to run the VM. If not provided, a
+service-selected default is used.
+
+<P>
+<A NAME="84098"></A>
+<A NAME="condor-submit-deltacloud-user-data"></A></DD>
+<DT><STRONG>deltacloud_user_data = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">data<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>Used for <B>deltacloud</B> jobs.
+A string, representing a block of data that can be accessed 
+by the virtual machine job inside the cloud service.
+
+<P>
+<A NAME="84101"></A>
+<A NAME="condor-submit-deltacloud-username"></A></DD>
+<DT><STRONG>deltacloud_username = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">Deltacloud username<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>Used for <B>deltacloud</B> jobs.
+The user name to be used to authenticate with a Deltacloud service.
+
+<P>
+<A NAME="84104"></A>
+<A NAME="condor-submit-ec2-access-key-id"></A></DD>
+<DT><STRONG>ec2_access_key_id = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">pathname<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>For grid type <B>ec2</B> jobs,
+identifies the file containing the access key.  
+
+<P>
+<A NAME="84107"></A>
+<A NAME="condor-submit-ec2-ami-id"></A></DD>
+<DT><STRONG>ec2_ami_id = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">EC2 xMI ID<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>For grid type <B>ec2</B> jobs, identifies the machine image.
+Services compatible with the EC2 Query API may refer to these
+with abbreviations other than <TT>AMI</TT>,
+for example <TT>EMI</TT> is valid for Eucalyptus.
+
+<P>
+<A NAME="84112"></A>
+<A NAME="condor-submit-ec2-availability-zone"></A></DD>
+<DT><STRONG>ec2_availability_zone = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">zone name<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>For grid type <B>ec2</B> jobs, 
+specifies the Availability Zone that the instance should be run in. 
+This command is optional, unless <B>ec2_ebs_volumes</B><A NAME="85227"></A> is set.
+As an example, one current zone is <TT>us-east-1b</TT>.
+
+<P>
+<A NAME="84117"></A>
+<A NAME="condor-submit-ec2-ebs-volumes"></A></DD>
+<DT><STRONG>ec2_ebs_volumes = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">ebs name<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$">:<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">device name<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$">,<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">ebs name<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$">:<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">device name<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$">,... </STRONG></DT>
+<DD>For grid type <B>ec2</B> jobs,
+optionally specifies a list of Elastic Block Store (EBS)
+volumes to be made available to the instance and the device names they
+should have in the instance.
+
+<P>
+<A NAME="84120"></A>
+<A NAME="condor-submit-ec2-elastic-id"></A></DD>
+<DT><STRONG>ec2_elastic_ip = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">elastic IP address<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>For grid type <B>ec2</B> jobs,
+and optional specification of an Elastic IP address 
+that should be assigned to this instance.
+
+<P>
+<A NAME="84123"></A>
+<A NAME="condor-submit-ec2-instance-type"></A></DD>
+<DT><STRONG>ec2_instance_type = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">instance type<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>For grid type <B>ec2</B> jobs, identifies the instance type.
+Different services may offer different instance types,
+so no default value is set.
+
+<P>
+<A NAME="84126"></A>
+</DD>
+<DT><STRONG>ec2_key_pair = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">ssh key-pair name<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>For grid type <B>ec2</B> jobs, 
+specifies the name of an SSH key-pair that is already registered
+with the EC2 service.
+The associated private key can be used to <I>ssh</I> into the
+virtual machine once it is running.
+
+<P>
+<A NAME="84129"></A>
+</DD>
+<DT><STRONG>ec2_key_pair_file = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">pathname<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>For grid type <B>ec2</B> jobs, 
+specifies the complete path and file name of a file into which 
+HTCondor will write an SSH key for use with ec2 jobs. 
+The key can be used to <I>ssh</I> into the
+virtual machine once it is running.
+If <B>ec2_keypair</B><A NAME="85237"></A> is specified for a job,
+<B>ec2_keypair_file</B><A NAME="85239"></A> is ignored.
+
+<P>
+<A NAME="84134"></A>
+<A NAME="condor-submit-ec2-access-key"></A></DD>
+<DT><STRONG>ec2_secret_access_key = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">pathname<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>For grid type <B>ec2</B> jobs,
+specifies the path and file name containing the secret access key.
+
+<P>
+<A NAME="84137"></A>
+<A NAME="condor-submit-ec2-security-groups"></A></DD>
+<DT><STRONG>ec2_security_groups = group1, group2, ...</STRONG></DT>
+<DD>For grid type <B>ec2</B> jobs, 
+defines the list of EC2 security groups which
+should be associated with the job.
+
+<P>
+<A NAME="84140"></A>
+<A NAME="condor-submit-ec2-spot-price"></A></DD>
+<DT><STRONG>ec2_spot_price = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">bid<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>For grid type <B>ec2</B> jobs, 
+specifies the spot instance bid, which is the most that the job submitter
+is willing to pay per hour to run this job.
+
+<P>
+<A NAME="84143"></A>
+<A NAME="condor-submit-ec2-tag-names"></A></DD>
+<DT><STRONG>ec2_tag_names = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">name0,name1,name...<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>For grid type <B>ec2</B> jobs, 
+specifies the case of tag names that will be associated with the
+running instance.
+This is only necessary if a tag name case matters.
+By default the list will be automatically generated.
+
+<P>
+<A NAME="84146"></A>
+</DD>
+<DT><STRONG>ec2_tag_<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">name<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"> = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">value<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>For grid type <B>ec2</B> jobs, 
+specifies a tag to be associated with the running instance.
+The tag name will be lower-cased, use <B>ec2_tag_names</B><A NAME="85246"></A> to
+change the case.
+
+<P>
+<A NAME="84149"></A>
+<A NAME="condor-submit-ec2-user-data"></A></DD>
+<DT><STRONG>ec2_user_data = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">data<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>For grid type <B>ec2</B> jobs, 
+provides a block of data that can be accessed by the virtual machine.
+If both <B>ec2_user_data</B><A NAME="85249"></A> and 
+<B>ec2_user_data_file</B><A NAME="85251"></A> are specified for a job,
+the two blocks of data are concatenated, 
+with the data from this <B>ec2_user_data</B> submit command 
+occurring first.
+
+<P>
+<A NAME="84155"></A>
+<A NAME="condor-submit-ec2-user-data-file"></A></DD>
+<DT><STRONG>ec2_user_data_file = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">pathname<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>For grid type <B>ec2</B> jobs, 
+specifies a path and file name whose contents can be 
+accessed by the virtual machine.
+If both <B>ec2_user_data</B><A NAME="85255"></A> and 
+<B>ec2_user_data_file</B><A NAME="85257"></A> are specified for a job,
+the two blocks of data are concatenated, 
+with the data from that <B>ec2_user_data</B> submit command 
+occurring first.
+
+<P>
+<A NAME="84161"></A>
+<A NAME="condor-submit-ec2-vpc-ip"></A></DD>
+<DT><STRONG>ec2_vpc_ip = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">a.b.c.d<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>For grid type <B>ec2</B> jobs, 
+that are part of a Virtual Private Cloud (VPC),
+an optional specification of the IP address that this instance should have 
+within the VPC.
+
+<P>
+<A NAME="84164"></A>
+<A NAME="condor-submit-ec2-vpc-subnet"></A></DD>
+<DT><STRONG>ec2_vpc_subnet = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">subnet specification string<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>For grid type <B>ec2</B> jobs, 
+an optional specification of the Virtual Private Cloud (VPC) that
+this instance should be a part of.
+
+<P>
+<A NAME="84167"></A>
+<A NAME="condor-submit-gce-auth-file"></A></DD>
+<DT><STRONG>gce_auth_file = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">pathname<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>For grid type <B>gce</B> jobs, 
+specifies a path and file name of the authorization file that grants
+permission for HTCondor to use the Google account.
+There is no default value when not specified.
+
+<P>
+<A NAME="84170"></A>
+<A NAME="condor-submit-gce-image"></A></DD>
+<DT><STRONG>gce_image = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">URL<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>For grid type <B>gce</B> jobs,
+the URL of the virtual machine image representing the HTCondor job to
+be run.  This virtual machine image must already be register with GCE
+and reside in Google's Cloud Storage service.
+
+<P>
+<A NAME="84173"></A>
+<A NAME="condor-submit-gce-machine-type"></A></DD>
+<DT><STRONG>gce_machine_type = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">machine type<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>For grid type <B>gce</B> jobs,
+the long form of the URL that describes the machine configuration that the
+virtual machine instance is to run on. 
+
+<P>
+<A NAME="84176"></A>
+<A NAME="condor-submit-gce-metadata"></A></DD>
+<DT><STRONG>gce_metadata = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">name=value,... ,name=value<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>For grid type <B>gce</B> jobs,
+a comma separated list of name and value pairs that define metadata
+for a virtual machine instance that is an HTCondor job.
+
+<P>
+<A NAME="84179"></A>
+<A NAME="condor-submit-gce-metadata-file"></A></DD>
+<DT><STRONG>gce_metadata_file = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">pathname<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>For grid type <B>gce</B> jobs, 
+specifies a path and file name of the file that contains metadata
+for a virtual machine instance that is an HTCondor job.
+Within the file, each name and value pair is on its own line;
+so, the pairs are separated by the newline character.
+
+<P>
+<A NAME="84182"></A>
+<A NAME="condor-submit-globus-rematch"></A></DD>
+<DT><STRONG>globus_rematch = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">ClassAd Boolean Expression<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD><A NAME="condor-submit-globus-rematch"></A>This expression is evaluated by the <I>condor_gridmanager</I> whenever:
+
+<OL>
+<LI>the <B>globus_resubmit</B><A NAME="85269"></A> expression evaluates to <TT>True</TT>
+</LI>
+<LI>the <I>condor_gridmanager</I> decides it needs to retry a submission
+   (as when a previous submission failed to commit)
+</LI>
+</OL>
+If <B>globus_rematch</B><A NAME="85274"></A> evaluates to <TT>True</TT>,
+then <I>before</I> the job is submitted again to globus,
+the <I>condor_gridmanager</I> will request that the <I>condor_schedd</I>
+daemon renegotiate
+with the matchmaker (the <I>condor_negotiator</I>).
+The result is this job will be matched again.
+
+<P>
+<A NAME="84197"></A>
+<A NAME="condor-submit-globus-resubmit"></A></DD>
+<DT><STRONG>globus_resubmit = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">ClassAd Boolean Expression<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>The expression is evaluated by the <I>condor_gridmanager</I> each time
+the <I>condor_gridmanager</I> gets a job ad to manage.
+Therefore, the expression is evaluated:
+
+<OL>
+<LI>when a grid universe job is first submitted to HTCondor-G
+</LI>
+<LI>when a grid universe job is released from the hold state
+</LI>
+<LI>when HTCondor-G is restarted (specifically, whenever the <I>condor_gridmanager</I>
+   is restarted)
+</LI>
+</OL>
+If the expression evaluates to <TT>True</TT>,
+then any previous submission to the grid universe will be
+forgotten and this job will be submitted again as a fresh submission to
+the grid universe.
+This may be useful if there is a desire to give up on a
+previous submission and try again.
+Note that this may result in the same job running more than
+once.  Do not treat this operation lightly.
+
+<P>
+<A NAME="84205"></A>
+<A NAME="condor-submit-globus-rsl"></A></DD>
+<DT><STRONG>globus_rsl = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">RSL-string<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>Used to provide any additional Globus RSL
+string attributes which are not covered by other submit description
+file commands or job attributes. Used for <B>grid</B> <B>universe</B>
+jobs, where the grid resource has a <B>grid-type-string</B> of
+<B>gt2</B>.
+
+<P>
+<A NAME="84211"></A>
+<A NAME="condor-submit-grid-resource"></A></DD>
+<DT><STRONG>grid_resource = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">grid-type-string<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"> <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">grid-specific-parameter-list<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"> </STRONG></DT>
+<DD>For each <B>grid-type-string</B> value, 
+there are further type-specific values that must specified.
+This submit description file command allows each to
+be given in a space-separated list.
+Allowable <B>grid-type-string</B> values are
+<B>batch</B>, 
+<B>condor</B>, <B>cream</B>, 
+<B>deltacloud</B>, 
+<B>ec2</B>,
+<B>gt2</B>, <B>gt5</B>,
+<B>lsf</B>, <B>nordugrid</B>, <B>pbs</B>,
+<B>sge</B>,
+and <B>unicore</B>.
+The HTCondor manual chapter on Grid Computing details the variety of 
+grid types.
+
+<P>
+For a <B>grid-type-string</B> of <B>batch</B>,
+the single parameter is the name of the local batch system,
+and will be one of <TT>pbs</TT>, <TT>lsf</TT>, or <TT>sge</TT>.
+
+<P>
+For a <B>grid-type-string</B> of <B>condor</B>,
+the first parameter is the name of the remote <I>condor_schedd</I>
+daemon.
+The second parameter is the name of the pool to which the remote
+<I>condor_schedd</I> daemon belongs.
+
+<P>
+For a <B>grid-type-string</B> of <B>cream</B>,
+there are three parameters.
+The first parameter is the web services address of the CREAM server.
+The second parameter is the 
+name of the batch system that sits behind the CREAM server.
+The third parameter identifies a site-specific queue
+within the batch system.
+
+<P>
+For a <B>grid-type-string</B> of <B>deltacloud</B>,
+the single parameter is the URL of the deltacloud service requested.
+
+<P>
+For a <B>grid-type-string</B> of <B>ec2</B>,
+one additional parameter specifies the EC2 URL. 
+
+<P>
+For a <B>grid-type-string</B> of <B>gt2</B>,
+the single parameter is the name of the pre-WS GRAM resource to be used.
+
+<P>
+For a <B>grid-type-string</B> of <B>gt5</B>,
+the single parameter is the name of the pre-WS GRAM resource to be used,
+which is the same as for the <B>grid-type-string</B> of <B>gt2</B>.
+
+<P>
+For a <B>grid-type-string</B> of <B>lsf</B>, no additional
+parameters are used.
+
+<P>
+For a <B>grid-type-string</B> of <B>nordugrid</B>,
+the single parameter is the name of the NorduGrid resource to be used.
+
+<P>
+For a <B>grid-type-string</B> of <B>pbs</B>, no additional
+parameters are used.
+
+<P>
+For a <B>grid-type-string</B> of <B>sge</B>, no additional
+parameters are used.
+
+<P>
+For a <B>grid-type-string</B> of <B>unicore</B>,
+the first parameter is the name of the Unicore Usite to be used.
+The second parameter is the name of the Unicore Vsite to be used.
+
+<P>
+<A NAME="84258"></A>
+<A NAME="condor-submit-keystore-alias"></A></DD>
+<DT><STRONG>keystore_alias = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">name<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>A string to locate the certificate in a Java keystore file,
+as used for a <B>unicore</B> job.
+
+<P>
+<A NAME="84261"></A>
+<A NAME="condor-submit-keystore-file"></A></DD>
+<DT><STRONG>keystore_file = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">pathname<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>The complete path and file name of the Java keystore file
+containing the certificate to be used for a <B>unicore</B> job.
+
+<P>
+<A NAME="84264"></A>
+<A NAME="condor-submit-passphrase-file"></A></DD>
+<DT><STRONG>keystore_passphrase_file = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">pathname<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>The complete path and file name
+to the file containing the passphrase protecting a Java keystore
+file containing the certificate.
+Relevant for a <B>unicore</B> job.
+
+<P>
+<A NAME="84267"></A>
+<A NAME="condor-submit-MyProxyCredentialName"></A></DD>
+<DT><STRONG>MyProxyCredentialName = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">symbolic name<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>The symbolic name that identifies a credential to the <I>MyProxy</I> server.
+This symbolic name is set as the credential is
+initially stored on the server (using <I>myproxy-init</I>).
+
+<P>
+<A NAME="84271"></A>
+<A NAME="condor-submit-MyProxyHost"></A></DD>
+<DT><STRONG>MyProxyHost = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">host<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$">:<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">port<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>The Internet address of the host that is the <I>MyProxy</I> server.
+The <B>host</B> may be specified by either a host name
+(as in <TT>head.example.com</TT>) or an IP address
+(of the form 123.456.7.8).
+The <B>port</B> number is an integer.
+
+<P>
+<A NAME="84277"></A>
+<A NAME="condor-submit-MyProxyLifetime"></A></DD>
+<DT><STRONG>MyProxyNewProxyLifetime = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">number-of-minutes<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>The new lifetime (in minutes) of the proxy after it is refreshed.
+
+<P>
+<A NAME="84279"></A>
+<A NAME="condor-submit-MyProxyPassword"></A></DD>
+<DT><STRONG>MyProxyPassword = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">password<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>The password needed to refresh a credential on the <I>MyProxy</I> server.
+This password is set when the user initially stores
+credentials on the server (using <I>myproxy-init</I>).
+As an alternative to using <B>MyProxyPassword</B><A NAME="85352"></A> in the
+submit description file,
+the password may be specified as a command line argument to <I>condor_submit</I>
+with the <I>-password</I> argument.
+
+<P>
+<A NAME="84286"></A>
+<A NAME="condor-submit-MyProxyThreshhold"></A></DD>
+<DT><STRONG>MyProxyRefreshThreshold = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">number-of-seconds<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>The time (in seconds) before the expiration of a proxy 
+that the proxy should be refreshed.
+For example, if <B>MyProxyRefreshThreshold</B><A NAME="85358"></A> is set to the
+value 600, the proxy will be refreshed 10 minutes before
+it expires.
+
+<P>
+<A NAME="84289"></A>
+<A NAME="condor-submit-MyProxyServerDN"></A></DD>
+<DT><STRONG>MyProxyServerDN = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">credential subject<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>A string that specifies the expected Distinguished Name (credential subject,
+abbreviated DN)
+of the <I>MyProxy</I> server.
+It must be specified when the <I>MyProxy</I> server
+DN does not follow the
+conventional naming scheme of a host credential.
+This occurs, for
+example, when the  <I>MyProxy</I> server DN begins with a user credential.
+
+<P>
+<A NAME="84294"></A>
+<A NAME="condor-submit-nordugrid-rsl"></A></DD>
+<DT><STRONG>nordugrid_rsl = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">RSL-string<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>Used to provide any additional RSL
+string attributes which are not covered by regular submit description
+file parameters. Used when the <B>universe</B> is <B>grid</B>,
+and the type of grid system is <B>nordugrid</B>.
+
+<P>
+<A NAME="84299"></A>
+<A NAME="condor-submit-transfer-error"></A></DD>
+<DT><STRONG>transfer_error = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">True |  False<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>For jobs submitted to the grid universe only.
+If <TT>True</TT>, then the error output (from <TT>stderr</TT>) from the job
+is transferred from the remote machine back to the submit machine.
+The name of the file after transfer is given
+by the <B>error</B><A NAME="85368"></A> command.
+If <TT>False</TT>, no transfer takes place (from the remote machine
+to submit machine),
+and the name of the file is given
+by the <B>error</B><A NAME="85371"></A> command.
+The default value is <TT>True</TT>.
+
+<P>
+<A NAME="84307"></A>
+<A NAME="condor-submit-transfer-input"></A></DD>
+<DT><STRONG>transfer_input = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">True |  False<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>For jobs submitted to the grid universe only.
+If <TT>True</TT>, then the job input (<TT>stdin</TT>) is transferred
+from the machine where the job was submitted to the remote machine.
+The name of the file that is transferred is given by the
+<B>input</B><A NAME="85376"></A> command.
+If <TT>False</TT>, then the job's input is taken from a pre-staged
+file on the remote machine, and
+the name of the file is given by the <B>input</B><A NAME="85379"></A> command.
+The default value is <TT>True</TT>.
+
+<P>
+For transferring files other than <TT>stdin</TT>,
+see <B>transfer_input_files</B><A NAME="85383"></A>.
+
+<P>
+<A NAME="84317"></A>
+<A NAME="condor-submit-transfer-output"></A></DD>
+<DT><STRONG>transfer_output = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">True |  False<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>For jobs submitted to the grid universe only.
+If <TT>True</TT>, then the output (from <TT>stdout</TT>) from the job
+is transferred from the remote machine back to the submit machine.
+The name of the file after transfer is given
+by the <B>output</B><A NAME="85387"></A> command.
+If <TT>False</TT>, no transfer takes place (from the remote machine
+to submit machine),
+and the name of the file is given
+by the <B>output</B><A NAME="85390"></A> command.
+The default value is <TT>True</TT>.
+
+<P>
+For transferring files other than <TT>stdout</TT>,
+see <B>transfer_output_files</B><A NAME="85394"></A>.
+
+<P>
+<A NAME="84327"></A>
+<A NAME="condor-submit-use-x509userproxy"></A></DD>
+<DT><STRONG>use_x509userproxy = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">True |  False<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>Set this command to <TT>True</TT> to indicate that the job requires an
+X.509 user proxy.
+If <B>x509userproxy</B> is set, then that file is used for the proxy.
+Otherwise, the proxy is looked for in the standard locations.
+If <B>x509userproxy</B> is set or if the job is a grid universe job
+of grid type 
+<B>gt2</B>, <B>gt5</B>, <B>cream</B>, or <B>nordugrid</B>,
+then the value of <B>use_x509userproxy</B> is forced to <TT>True</TT>.
+Defaults to <TT>False</TT>.
+
+<P>
+<A NAME="84339"></A>
+<A NAME="condor-submit-x509userproxy"></A></DD>
+<DT><STRONG>x509userproxy = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">full-pathname<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>Used to override the default
+path name for X.509 user certificates. The default location for X.509 proxies
+is the <TT>/tmp</TT> directory,
+which is generally a local file system.
+Setting
+this value would allow HTCondor to access the proxy in a shared file system
+(for example, AFS).
+HTCondor will use the proxy specified in the submit description file first.
+If nothing is specified in the submit description file,
+it will use the environment variable X509_USER_PROXY.
+If that variable is not present,
+it will search in the default location.
+
+<P>
+<B>x509userproxy</B><A NAME="85407"></A> is relevant when
+the <B>universe</B> is <B>vanilla</B>,
+or when the <B>universe</B> is <B>grid</B>
+and the type of grid system is one of <B>gt2</B>,
+<B>gt5</B>, <B>condor</B>, <B>cream</B>, 
+or <B>nordugrid</B>.
+Defining a value causes the proxy to be delegated to the execute machine.
+Further, VOMS attributes defined in the proxy will appear in
+the job ClassAd.
+
+<P>
+</DD>
+</DL> 
+
+<P>
+<I>COMMANDS FOR PARALLEL, JAVA, and SCHEDULER UNIVERSES</I>
+<DL>
+<DD><P>
+<A NAME="84355"></A>
+<A NAME="condor-submit-hold-kill-sig"></A></DD>
+<DT><STRONG>hold_kill_sig = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">signal-number<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>For the scheduler universe only,
+<B>signal-number</B><A NAME="85418"></A> is the signal delivered
+to the job when the job is put on hold
+with <I>condor_hold</I>.
+<B>signal-number</B><A NAME="85422"></A> may be either the platform-specific name or value
+of the signal.
+If this command is not present,
+the value of <B>kill_sig</B><A NAME="85424"></A> is used.
+
+<P>
+<A NAME="84361"></A>
+<A NAME="condor-submit-jar-files"></A></DD>
+<DT><STRONG>jar_files = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">file_list<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>Specifies a list of additional JAR files to include when using
+the Java universe.  JAR files will be transferred along with
+the executable and automatically added to the classpath.
+
+<P>
+<A NAME="84363"></A>
+<A NAME="condor-submit-java-vm-args"></A></DD>
+<DT><STRONG>java_vm_args = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">argument_list<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>Specifies a list of additional arguments to the Java VM itself,
+When HTCondor runs the Java program, these are the arguments that 
+go before the class name.  This can be used to set VM-specific 
+arguments like stack size, garbage-collector arguments 
+and initial property values.
+
+<P>
+<A NAME="84365"></A>
+<A NAME="condor-submit-machine-count"></A></DD>
+<DT><STRONG>machine_count = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">max<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>For the parallel universe,
+a single value (<I>max</I>) is required.
+It is neither a maximum or minimum, but 
+the number of machines to be dedicated toward running the job.
+
+<P>
+<A NAME="84368"></A>
+<A NAME="condor-submit-remove-kill-sig"></A></DD>
+<DT><STRONG>remove_kill_sig = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">signal-number<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>For the scheduler universe only,
+<B>signal-number</B><A NAME="85428"></A> is the signal delivered
+to the job when the job is removed
+with <I>condor_rm</I>.
+<B>signal-number</B><A NAME="85432"></A> may be either the platform-specific name or value
+of the signal.
+This example shows it both ways for a Linux signal:
+<PRE>
+remove_kill_sig = SIGUSR1
+remove_kill_sig = 10
+</PRE>
+If this command is not present,
+the value of <B>kill_sig</B><A NAME="85434"></A> is used.
+
+<P>
+</DD>
+</DL> 
+
+<P>
+<I>COMMANDS FOR THE VM UNIVERSE</I>
+<DL>
+<DD><P>
+<A NAME="84379"></A>
+<A NAME="condor-submit-vm-disk"></A></DD>
+<DT><STRONG>vm_disk = file1:device1:permission1, file2:device2:permission2:format2, ... </STRONG></DT>
+<DD>A list of comma separated disk files.
+Each disk file is specified by 4 colon separated fields.
+The first field is the path and file name of the disk file.
+The second field specifies the device. 
+The third field specifies permissions,
+and the optional fourth field specifies the image format. 
+
+<P>
+An example that specifies two disk files:
+<PRE>
+vm_disk = /myxen/diskfile.img:sda1:w,/myxen/swap.img:sda2:w
+</PRE>
+<P>
+<A NAME="84383"></A>
+<A NAME="condor-submit-vm-checkpoint"></A></DD>
+<DT><STRONG>vm_checkpoint = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">True |  False<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>A boolean value specifying whether or not to take checkpoints.
+If not specified, the default value is <TT>False</TT>.
+In the current implementation, setting both
+<B>vm_checkpoint</B><A NAME="85437"></A> and <B>vm_networking</B><A NAME="85439"></A>
+to <TT>True</TT> does not yet work in all cases.
+Networking cannot be used if a vm universe job uses a
+checkpoint in order to continue execution after migration
+to another machine.
+
+<P>
+<A NAME="84389"></A>
+<A NAME="condor-submit-vm-macaddr"></A></DD>
+<DT><STRONG>vm_macaddr = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">MACAddr<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>Defines that MAC address that the virtual machine's network interface
+should have,
+in the standard format of six groups of
+two hexadecimal digits separated by colons.
+
+<P>
+<A NAME="84391"></A>
+<A NAME="condor-submit-vm-memory"></A></DD>
+<DT><STRONG>vm_memory = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">MBytes-of-memory<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>The amount of memory in MBytes that a vm universe job
+requires.
+
+<P>
+<A NAME="84393"></A>
+<A NAME="condor-submit-vm-networking"></A></DD>
+<DT><STRONG>vm_networking = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">True |  False<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>Specifies whether to use networking or not.
+In the current implementation, setting both
+<B>vm_checkpoint</B><A NAME="85442"></A> and <B>vm_networking</B><A NAME="85444"></A>
+to <TT>True</TT> does not yet work in all cases.
+Networking cannot be used if a vm universe job uses a
+checkpoint in order to continue execution after migration
+to another machine.
+
+<P>
+<A NAME="84398"></A>
+<A NAME="condor-submit-vm-networking-type"></A></DD>
+<DT><STRONG>vm_networking_type = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">nat |  bridge <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>When <B>vm_networking</B><A NAME="85447"></A> is <TT>True</TT>,
+this definition augments the job's requirements to match
+only machines with the specified networking.
+If not specified, then either networking type matches.
+
+<P>
+<A NAME="84402"></A>
+<A NAME="condor-submit-vm-no-output-vm"></A></DD>
+<DT><STRONG>vm_no_output_vm = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">True |  False<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>When <TT>True</TT>, prevents HTCondor from transferring output
+files back to the machine from which the vm universe job
+was submitted.
+If not specified, the default value is <TT>False</TT>.
+
+<P>
+<A NAME="84406"></A>
+<A NAME="condor-submit-vm-type"></A></DD>
+<DT><STRONG>vm_type = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">vmware |  xen |  kvm<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>Specifies the underlying virtual machine software that this
+job expects.
+
+<P>
+<A NAME="84408"></A>
+<A NAME="condor-submit-vmware-dir"></A></DD>
+<DT><STRONG>vmware_dir = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">pathname<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>The complete path and name of the directory where VMware-specific
+files and applications such as the VMDK (Virtual Machine Disk Format) and
+VMX (Virtual Machine Configuration) reside.
+This command is optional; when not specified, all relevant VMware image files
+are to be listed using <B>transfer_input_files</B><A NAME="85452"></A>.
+
+<P>
+<A NAME="84411"></A>
+<A NAME="condor-submit-vmware-should-transfer-files"></A></DD>
+<DT><STRONG>vmware_should_transfer_files = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">True |  False<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>Specifies whether HTCondor will transfer VMware-specific files 
+located as specified by <B>vmware_dir</B><A NAME="85454"></A> to
+the execute machine (<TT>True</TT>) or rely on access through 
+a shared file system (<TT>False</TT>).
+Omission of this required command (for VMware vm universe jobs)
+results in an error message from <I>condor_submit</I>, and the
+job will not be submitted.
+
+<P>
+<A NAME="84417"></A>
+<A NAME="condor-submit-vmware-snapshot-disk"></A></DD>
+<DT><STRONG>vmware_snapshot_disk = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">True |  False<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>When <TT>True</TT>, causes HTCondor to utilize
+a VMware snapshot disk for new or modified files.
+If not specified, the default value is <TT>True</TT>.
+
+<P>
+<A NAME="84421"></A>
+<A NAME="condor-submit-xen-initrd"></A></DD>
+<DT><STRONG>xen_initrd = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">image-file<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>When <B>xen_kernel</B><A NAME="85462"></A> gives a path and file name for
+the kernel image to use, 
+this optional command may specify a path to and ramdisk 
+(<TT>initrd</TT>) image file.
+
+<P>
+<A NAME="84425"></A>
+<A NAME="condor-submit-xen-kernel"></A></DD>
+<DT><STRONG>xen_kernel = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">included |   path-to-kernel<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>A value of <B>included</B><A NAME="85465"></A> specifies that the kernel is
+included in the disk file.
+If not one of these values, then the value is a path and
+file name of the kernel to be used.
+
+<P>
+<A NAME="84428"></A>
+<A NAME="condor-submit-xen-kernel-params"></A></DD>
+<DT><STRONG>xen_kernel_params = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">string<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>A string that is appended to the Xen kernel command line.
+
+<P>
+<A NAME="84430"></A>
+<A NAME="condor-submit-xen-root"></A></DD>
+<DT><STRONG>xen_root = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">string<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>A string that is appended to the Xen kernel command line
+to specify the root device. This string is required when
+<B>xen_kernel</B><A NAME="85467"></A> gives a path to a kernel.  Omission 
+for this required case results in an error message during 
+submission.
+
+<P>
+</DD>
+</DL> 
+
+<P>
+<I>ADVANCED COMMANDS</I>
+<DL>
+<DD><P>
+<A NAME="84436"></A>
+<A NAME="condor-submit-accounting-group"></A></DD>
+<DT><STRONG>accounting_group = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">accounting-group-name<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>Causes jobs to negotiate under the given accounting group.  
+This value is advertised in the job ClassAd as <TT>AcctGroup</TT>.
+The HTCondor Administrator's manual  contains more information about 
+accounting groups.
+
+<P>
+<A NAME="84439"></A>
+<A NAME="condor-submit-accounting-group-user"></A></DD>
+<DT><STRONG>accounting_group_user = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">accounting-group-user-name<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>Sets the user name associated with the accounting group name for 
+resource usage accounting purposes.  If not set, 
+defaults to the value of the job ClassAd attribute <TT>Owner</TT>.
+This value is
+advertised in the job ClassAd as <TT>AcctGroupUser</TT>.
+If an accounting group has not been set with the 
+<B>accounting_group</B><A NAME="85472"></A> command, 
+this command is ignored.
+
+<P>
+<A NAME="84444"></A>
+<A NAME="condor-submit-concurrency-limits"></A></DD>
+<DT><STRONG>concurrency_limits = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">string-list<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>A list of resources that this job needs.
+The resources are presumed to have concurrency limits placed upon them,
+thereby limiting the number of concurrent jobs in execution which
+need the named resource.
+Commas and space characters delimit the items in the list.
+Each item in the list may specify a numerical value identifying the integer
+number of resources required for the job.
+The syntax follows the resource name by a colon character (<code>:</code>)
+and the numerical value.
+Details on concurrency limits are in the HTCondor Administrator's manual.
+
+<P>
+<A NAME="84446"></A>
+<A NAME="condor-submit-copy-to-spool"></A></DD>
+<DT><STRONG>copy_to_spool = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">True |  False<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>If <B>copy_to_spool</B><A NAME="85474"></A> is <TT>True</TT>,
+then <I>condor_submit</I> copies the executable to the local spool 
+directory before running it on a remote host. 
+As copying can be quite time consuming and unnecessary,
+the default value is <TT>False</TT> for all job universes
+other than the standard universe. 
+When <TT>False</TT>, <I>condor_submit</I> does not copy the executable
+to a local spool directory.
+The default is <TT>True</TT> in standard universe, because
+resuming execution from a checkpoint can only be guaranteed to work using
+precisely the same executable that created the checkpoint.
+
+<P>
+<A NAME="84455"></A>
+<A NAME="condor-submit-coresize"></A></DD>
+<DT><STRONG>coresize = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">size<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>Should the user's program abort and produce
+a core file, <B>coresize</B> specifies the maximum size in bytes of the
+core file which the user wishes to keep. If <B>coresize</B> is not
+specified in the command file, the system's user resource limit
+<TT>coredumpsize</TT> is used.
+A value of -1 results in no limits being applied to the core file size.
+
+<P>
+<A NAME="84460"></A>
+<A NAME="condor-submit-cron-day-of-month"></A></DD>
+<DT><STRONG>cron_day_of_month = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">Cron-evaluated Day<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>The set of days of the month for which a deferral time applies.
+The HTCondor User's manual section on Time Scheduling for Job Execution
+has further details.
+
+<P>
+<A NAME="84462"></A>
+<A NAME="condor-submit-cron-day-of-week"></A></DD>
+<DT><STRONG>cron_day_of_week = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">Cron-evaluated Day<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>The set of days of the week for which a deferral time applies.
+The HTCondor User's manual section on Time Scheduling for Job Execution
+has further details.
+
+<P>
+<A NAME="84464"></A>
+<A NAME="condor-submit-cron-hour"></A></DD>
+<DT><STRONG>cron_hour = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">Cron-evaluated Hour<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>The set of hours of the day for which a deferral time applies.
+The HTCondor User's manual section on Time Scheduling for Job Execution
+has further details.
+
+<P>
+<A NAME="84466"></A>
+<A NAME="condor-submit-cron-minute"></A></DD>
+<DT><STRONG>cron_minute = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">Cron-evaluated Minute<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>The set of minutes within an hour for which a deferral time applies.
+The HTCondor User's manual section on Time Scheduling for Job Execution
+has further details.
+
+<P>
+<A NAME="84468"></A>
+<A NAME="condor-submit-cron-month"></A></DD>
+<DT><STRONG>cron_month = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">Cron-evaluated Month<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>The set of months within a year for which a deferral time applies.
+The HTCondor User's manual section on Time Scheduling for Job Execution
+has further details.
+
+<P>
+<A NAME="84470"></A>
+<A NAME="condor-submit-cron-prep-time"></A></DD>
+<DT><STRONG>cron_prep_time = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">ClassAd Integer Expression<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>Analogous to <B>deferral_prep_time</B><A NAME="85487"></A>.
+The number of seconds prior to a job's deferral time that
+the job may be matched and sent to an execution machine.
+
+<P>
+<A NAME="84473"></A>
+<A NAME="condor-submit-cron-window"></A></DD>
+<DT><STRONG>cron_window = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">ClassAd Integer Expression<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>Analogous to the submit command <B>deferral_window</B><A NAME="85489"></A>.
+It allows cron jobs that
+miss their deferral time to begin execution.
+
+<P>
+The HTCondor User's manual section on Time Scheduling for Job Execution
+has further details.
+
+<P>
+<A NAME="84476"></A>
+<A NAME="condor-submit-dagman-log"></A></DD>
+<DT><STRONG>dagman_log = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">pathname<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>DAGMan inserts this command to specify an event log that it watches to maintain
+the state of the DAG. If the <B>log</B><A NAME="85491"></A> command is not specified in the
+submit file, DAGMan uses the <B>log</B><A NAME="85493"></A> command to specify the event log.
+
+<P>
+<A NAME="84480"></A>
+<A NAME="condor-submit-deferral-prep-time"></A></DD>
+<DT><STRONG>deferral_prep_time = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">ClassAd Integer Expression<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>The number of seconds prior to a job's deferral time that
+the job may be matched and sent to an execution machine.
+
+<P>
+The HTCondor User's manual section on Time Scheduling for Job Execution
+has further details.
+
+<P>
+<A NAME="84482"></A>
+<A NAME="condor-submit-deferral-time"></A></DD>
+<DT><STRONG>deferral_time = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">ClassAd Integer Expression<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>Allows a job to specify the time at which its execution
+is to begin,
+instead of beginning execution as soon as it arrives at the execution
+machine. The deferral time is an expression that 
+evaluates to a Unix Epoch timestamp (the number of
+seconds elapsed since 00:00:00 on January 1, 1970, Coordinated
+Universal Time). 
+Deferral time is evaluated with respect to the execution machine.
+This option delays the start of
+execution, but not the matching and claiming of
+a machine for the job.
+If the job is not available and ready to begin
+execution at the deferral time, it has missed its deferral time.
+A job that misses its deferral time will be put on hold
+in the queue. 
+
+<P>
+The HTCondor User's manual section on Time Scheduling for Job Execution
+has further details.
+
+<P>
+Due to implementation details,
+a deferral time may not be used for scheduler universe jobs.
+
+<P>
+<A NAME="84484"></A>
+<A NAME="condor-submit-deferral-window"></A></DD>
+<DT><STRONG>deferral_window = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">ClassAd Integer Expression<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>The deferral window is used in conjunction with the
+<B>deferral_time</B><A NAME="85495"></A> command to allow jobs that
+miss their deferral time to begin execution.
+
+<P>
+The HTCondor User's manual section on Time Scheduling for Job Execution
+has further details.
+
+<P>
+<A NAME="84487"></A>
+<A NAME="condor-submit-description"></A></DD>
+<DT><STRONG>description = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">string<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>A string that sets the value of the job ClassAd attribute
+<TT>JobDescription</TT>.
+When set, tools which display the executable such as <I>condor_q</I>
+will instead use this string.
+
+<P>
+<A NAME="84491"></A>
+<A NAME="condor-submit-email-attributes"></A></DD>
+<DT><STRONG>email_attributes = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">list-of-job-ad-attributes<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>A comma-separated list of attributes from the job ClassAd. These
+attributes and their values will be included in the e-mail notification
+of job completion.
+
+<P>
+<A NAME="84493"></A>
+<A NAME="condor-submit-image-size"></A></DD>
+<DT><STRONG>image_size = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">size<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>Advice to HTCondor specifying the maximum
+virtual image size to which the job will grow during its execution.
+HTCondor will then execute the job only on machines which have enough resources,
+(such as virtual memory), to support executing the job.
+If not specified, HTCondor will automatically make a (reasonably accurate)
+estimate about the job's size and adjust this estimate as the program runs.
+If specified and underestimated, the job may crash due to
+the inability to acquire more address space; 
+for example, if <TT>malloc()</TT> fails. 
+If the image size is overestimated,
+HTCondor may have difficulty finding machines which have the required resources.
+<I>size</I> is specified in KiB. 
+For example, for an image size of 8 MiB, <I>size</I> should be 8000.
+
+<P>
+<A NAME="84498"></A>
+<A NAME="man-condor-submit-initialdir"></A></DD>
+<DT><STRONG>initialdir = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">directory-path<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>Used to give jobs a directory with respect to file input and output.
+Also provides a directory 
+(on the machine from which the job is submitted)
+for the job event log, when a full path is not specified. 
+
+<P>
+For vanilla universe jobs where there is a shared file system,
+it is the current working directory on the machine where the
+job is executed.
+
+<P>
+For vanilla or grid universe jobs where file transfer mechanisms are
+utilized (there is <I>not</I> a shared file system),
+it is the directory on the machine from which the job is submitted
+where the input files come from, and where the job's output
+files go to.
+
+<P>
+For standard universe jobs,
+it is the directory on the machine from which the job is submitted
+where the <I>condor_shadow</I> daemon runs;
+the current working directory for file input and output accomplished
+through remote system calls.
+
+<P>
+For scheduler universe jobs,
+it is the directory on the machine from which the job is submitted
+where the job runs;
+the current working directory for file input and output with
+respect to relative path names.
+
+<P>
+Note that the path to the executable is <I>not</I> relative to
+<B>initialdir</B><A NAME="85507"></A>; if it is a relative path, it is relative to the
+directory in which the <I>condor_submit</I> command is run.
+
+<P>
+<A NAME="84505"></A>
+<A NAME="man-condor-submit-job-ad-information-attrs"></A></DD>
+<DT><STRONG>job_ad_information_attrs =  <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">attribute-list<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>A comma-separated list of job ClassAd attribute names.
+The named attributes and their values are written to the job event log
+whenever any event is being written to the log.
+This implements the same thing as the configuration variable
+<TT>EVENT_LOG_INFORMATION_ATTRS</TT> (see
+page&nbsp;<A HREF="3_3Configuration.html#param:EventLogJobAdInformationAttrs"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>),
+but it applies to the job event log, instead of the system event log.
+
+<P>
+<A NAME="84509"></A>
+<A NAME="condor-submit-job-lease-duration"></A></DD>
+<DT><STRONG>job_lease_duration = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">number-of-seconds<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>For vanilla
+and java universe jobs only, the duration (in seconds) of a
+job lease.
+The default value is twenty minutes for universes that support it.
+If a job lease is not desired, the value can be explicitly set to 0 to
+disable the job lease semantics.
+The HTCondor User's manual section on Special Environment Considerations
+has further details.
+
+<P>
+<A NAME="84511"></A>
+<A NAME="84512"></A>
+<A NAME="condor-submit-job-machine-attrs"></A></DD>
+<DT><STRONG>job_machine_attrs = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">attr1, attr2, ... <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>A comma and/or space separated list of machine attribute names that
+should be recorded in the job ClassAd in addition to the ones specified
+by the <I>condor_schedd</I> daemon's system configuration variable
+<TT>SYSTEM_JOB_MACHINE_ATTRS</TT><A NAME="85514"></A><A NAME="85515"></A>.  When there are multiple run
+attempts, history of machine attributes from previous run attempts
+may be kept.  The number of run attempts to store may be extended
+beyond the system-specified history length by using the submit file
+command <B>job_machine_attrs_history_length</B><A NAME="85519"></A>.  A machine
+attribute named <TT>X</TT> will be inserted into the job ClassAd as an
+attribute named <TT>MachineAttrX0</TT>.  The previous value of this
+attribute will be named <TT>MachineAttrX1</TT>, the previous to that
+will be named <TT>MachineAttrX2</TT>, and so on, up to the specified
+history length.  A history of length 1 means that only <TT>MachineAttrX0</TT>
+will be recorded.  The value recorded in the job ClassAd is the evaluation
+of the machine attribute in the context of the job ClassAd when
+the <I>condor_schedd</I> daemon initiates the start up of the job.  If the
+evaluation results in an <TT>Undefined</TT> or <TT>Error</TT> result, the value
+recorded in the job ad will be <TT>Undefined</TT> or <TT>Error</TT>, respectively.
+
+<P>
+<A NAME="84527"></A>
+<A NAME="condor-submit-want-graceful-removal"></A></DD>
+<DT><STRONG>want_graceful_removal = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">boolean expression<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>When <TT>True</TT>, this causes a graceful shutdown of the job when the
+job is removed or put on hold, giving it time to clean up or save state.
+Otherwise, the job is abruptly killed.  The default is <TT>false</TT>.
+
+<P>
+<A NAME="84531"></A>
+<A NAME="condor-submit-kill-sig"></A></DD>
+<DT><STRONG>kill_sig = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">signal-number<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>When HTCondor needs to kick a job
+off of a machine, it will send the job the signal specified by
+<B>signal-number</B><A NAME="85534"></A>.
+<B>signal-number</B><A NAME="85536"></A> needs to be an integer which
+represents a valid signal on the execution machine.  For jobs submitted
+to the standard universe, the default value is the number for
+<code>SIGTSTP</code> which tells the HTCondor libraries to initiate a checkpoint
+of the process.  For jobs submitted to other universes,
+the default value, when not defined,
+is <code>SIGTERM</code>, which is the standard way to terminate a program in Unix.  
+
+<P>
+<A NAME="84535"></A>
+<A NAME="condor-submit-kill-sig-timeout"></A></DD>
+<DT><STRONG>kill_sig_timeout = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">seconds<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>This submit command should
+no longer be used as of HTCondor version 7.7.3;
+use <B>job_max_vacate_time</B><A NAME="85538"></A> instead.
+If <B>job_max_vacate_time</B><A NAME="85540"></A> is not defined,
+this defines the number of seconds that HTCondor
+should wait following the sending of the kill signal defined by
+<B>kill_sig</B><A NAME="85542"></A> and forcibly killing the job.
+The actual amount of time between sending the signal and forcibly killing
+the job is the smallest of this value and the configuration variable
+<TT>KILLING_TIMEOUT</TT><A NAME="85544"></A><A NAME="85545"></A>, as defined on the execute machine.
+
+<P>
+<A NAME="84541"></A>
+<A NAME="condor-submit-load-profile"></A></DD>
+<DT><STRONG>load_profile = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">True |  False<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>When <TT>True</TT>, loads the account profile of the dedicated run account for
+Windows jobs.
+May not be used with <B>run_as_owner</B><A NAME="85550"></A>.
+
+<P>
+<A NAME="84545"></A>
+<A NAME="condor-submit-match-list-length"></A></DD>
+<DT><STRONG>match_list_length = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">integer value<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>Defaults to the value zero (0).
+When <B>match_list_length</B><A NAME="85552"></A> is defined with an integer value
+greater than zero (0),
+attributes are inserted into the job ClassAd.
+The maximum number of attributes defined is given by the integer
+value.
+The job ClassAds introduced are given as
+<PRE>
+LastMatchName0 = "most-recent-Name"
+LastMatchName1 = "next-most-recent-Name"
+</PRE>
+
+<P>
+The value for each introduced ClassAd is given by the
+value of the <TT>Name</TT> attribute
+from the machine ClassAd of a previous execution (match).
+As a job is matched, the definitions for these attributes
+will roll,
+with <code>LastMatchName1</code> becoming <code>LastMatchName2</code>,
+<code>LastMatchName0</code> becoming <code>LastMatchName1</code>,
+and <code>LastMatchName0</code> being set by the most recent
+value of the <TT>Name</TT> attribute.
+
+<P>
+An intended use of
+these job attributes is in the requirements expression.
+The requirements can allow a job to prefer a match with either the same
+or a different resource than a previous match.
+
+<P>
+<A NAME="84552"></A>
+<A NAME="84553"></A>
+<A NAME="condor-submit-job-max-vacate-time"></A></DD>
+<DT><STRONG>job_max_vacate_time = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">integer expression<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>An integer-valued expression (in seconds) that may be used to adjust
+the time given to an evicted job for gracefully shutting down.  If the
+job's setting is less than the machine's, the job's is used.  If the
+job's setting is larger than the machine's, the result depends on
+whether the job has any excess retirement time.  If the job has more
+retirement time left than the machine's max vacate time setting, then
+retirement time will be converted into vacating time, up to the amount
+requested by the job.
+
+<P>
+Setting this expression does not affect the job's resource
+requirements or preferences.  For a job to only run on a machine with
+a minimum <TT>MachineMaxVacateTime</TT>, or to preferentially run on
+such machines, explicitly specify this in the requirements and/or rank
+expressions.
+
+<P>
+<A NAME="84556"></A>
+<A NAME="84557"></A>
+<A NAME="condor-submit-max-job-retirement-time"></A></DD>
+<DT><STRONG>max_job_retirement_time = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">integer expression<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>An integer-valued expression (in seconds) that
+does nothing unless the machine that runs the job has been configured
+to provide retirement time.
+Retirement time is a
+grace period given to a job to finish
+when a resource claim is about to be preempted.
+The default behavior in many cases is to take as much
+retirement time as the machine offers,
+so this command will rarely appear in a submit description file.
+
+<P>
+When a resource claim is to be preempted, this expression in the
+submit file specifies the maximum run time of the job (in seconds, since
+the job started).
+This expression has no effect,
+if it is greater than the maximum retirement time provided
+by the machine policy.
+If the resource claim is <I>not</I> preempted,
+this expression and the machine retirement policy are irrelevant. 
+If the resource claim <I>is</I> preempted
+the job will be allowed to run until the retirement
+time expires, at which point it is hard-killed.
+The job will be soft-killed when it is getting close
+to the end of retirement in order to give it time
+to gracefully shut down.  The amount of lead-time
+for soft-killing is determined by the maximum vacating
+time granted to the job.
+
+<P>
+Standard universe jobs and any jobs running with <B>nice_user</B><A NAME="85557"></A>
+priority have a default <B>max_job_retirement_time</B><A NAME="85559"></A> of 0,
+so no retirement time is utilized by default.
+In all other cases,
+no default value is provided,
+so the maximum amount of retirement time is utilized by default.
+
+<P>
+Setting this expression does not affect the job's resource
+requirements or preferences.  
+For a job to only run on
+a machine with a minimum <TT>MaxJobRetirementTime</TT>,
+or to preferentially run on such machines, explicitly
+specify this in the requirements and/or rank expressions.
+
+<P>
+<A NAME="84564"></A>
+<A NAME="man-condor-submit-nice-user"></A></DD>
+<DT><STRONG>nice_user = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">True |  False<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>Normally, when a machine
+becomes available to HTCondor, HTCondor decides which job to run based upon
+user and job priorities. Setting <B>nice_user</B> equal to <TT>True</TT>
+tells HTCondor not to use your regular user priority, but that this job
+should have last priority among all users and all jobs. So jobs
+submitted in this fashion run only on machines which no other
+non-nice_user job wants -- a true bottom-feeder job! This is very
+handy if a user has some jobs they wish to run, but do not wish to use
+resources that could instead be used to run other people's HTCondor jobs. Jobs
+submitted in this fashion have <TT>"nice-user."</TT> prepended to
+the owner name when viewed from <I>condor_q</I> or <I>condor_userprio</I>.  The
+default value is <TT>False</TT>.
+
+<P>
+<A NAME="84572"></A>
+<A NAME="man-condor-submit-noop-job"></A></DD>
+<DT><STRONG>noop_job = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">ClassAd Boolean Expression<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>When this boolean expression is <TT>True</TT>,
+the job is immediately removed from the queue,
+and HTCondor makes no attempt at running the job.
+The log file for the job will show a
+job submitted event and a job terminated event,
+along with an exit code of 0,
+unless the user specifies a different signal or exit code.
+
+<P>
+<A NAME="84575"></A>
+<A NAME="man-condor-submit-noop-job-exit-code"></A></DD>
+<DT><STRONG>noop_job_exit_code = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">return value<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>When <B>noop_job</B><A NAME="85571"></A> is in the submit description file
+and evaluates to <TT>True</TT>,
+this command allows the job
+to specify the return value as shown in the job's log file
+job terminated event.
+If not specified, the job will show as having terminated with status 0.
+This overrides any value specified with <B>noop_job_exit_signal</B><A NAME="85574"></A>.
+
+<P>
+<A NAME="84580"></A>
+<A NAME="man-condor-submit-noop-job-exit-signal"></A></DD>
+<DT><STRONG>noop_job_exit_signal = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">signal number<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>When <B>noop_job</B><A NAME="85576"></A> is in the submit description file
+and evaluates to <TT>True</TT>,
+this command allows the job
+to specify the signal number that the job's log event will show
+the job having terminated with.
+
+<P>
+<A NAME="84584"></A>
+<A NAME="man-condor-submit-remote-initialdir"></A></DD>
+<DT><STRONG>remote_initialdir = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">directory-path<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>The path specifies the directory in which the job is to be
+executed on the remote machine.  This is currently supported in all
+universes except for the standard universe.
+
+<P>
+<A NAME="84586"></A>
+<A NAME="man-condor-submit-rendezvousdir"></A></DD>
+<DT><STRONG>rendezvousdir = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">directory-path<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>Used to specify the
+shared file system directory to be used for file system authentication
+when submitting to a remote scheduler.  Should be a path to a preexisting
+directory.
+
+<P>
+<A NAME="84588"></A>
+<A NAME="man-condor-submit-run-as-owner"></A></DD>
+<DT><STRONG>run_as_owner = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">True |  False<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>A boolean value that causes the job to be run under the login of 
+the submitter,
+if supported by the joint configuration of the submit and execute machines.
+On Unix platforms, this defaults to <TT>True</TT>,
+and on Windows platforms, it defaults to <TT>False</TT>.
+May not be used with <B>load_profile</B><A NAME="85581"></A>.
+See the HTCondor manual Platform-Specific Information chapter
+for administrative details on
+configuring Windows to support this option.
+
+<P>
+<A NAME="84593"></A>
+<A NAME="man-condor-submit-stack-size"></A></DD>
+<DT><STRONG>stack_size = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">size in bytes<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>This command applies only to Linux platform jobs that are not standard
+universe jobs.
+An integer number of bytes, representing the amount of stack space to be 
+allocated for the job.
+This value replaces the default allocation of stack space,
+which is unlimited in size.
+
+<P>
+<A NAME="84595"></A>
+<A NAME="man-condor-submit-submit-event-notes"></A></DD>
+<DT><STRONG>submit_event_notes = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">note<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>A string that is appended to the submit event in the job's log file.
+For DAGMan jobs, the string <TT>DAG Node:</TT> and the node's name is
+automatically defined for <B>submit_event_notes</B>,
+causing the logged submit event to identify the DAG node job submitted. 
+
+<P>
+</DD>
+<DT><STRONG>+<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">attribute<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"> = <IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">value<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"></STRONG></DT>
+<DD>A line which begins with a '+'
+(plus) character instructs <I>condor_submit</I> to insert the
+following <I>attribute</I> into the job ClassAd with the given 
+<I>value</I>. 
+
+<P>
+</DD>
+</DL> 
+
+<P>
+<A NAME="84603"></A>
+<I>PRE AND POST SCRIPTS IMPLEMENTED WITH SPECIALLY-NAMED ATTRIBUTES</I>
+<DL>
+<DD><P>
+<A NAME="man-condor-submit-prescript"></A><A NAME="84607"></A>
+</DD>
+<DT><STRONG>+PreCmd = <TT>"</TT><IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">executable<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"><TT>"</TT></STRONG></DT>
+<DD>A vanilla universe job may specify that a script is to be run 
+on the execute machine before the job, and this is called a prescript.
+Definition of this specifically-named attribute causes the script,
+identified by path and file name, to be executed. 
+The prescript could prepare or initialize the job.
+Note that this definition of a prescript is different from the PRE script 
+described in DAGMan.
+The prescript is not automatically transferred with the job,
+as the main executable is, 
+so it must be entered into the <B>transfer_input_files</B><A NAME="85591"></A> list,
+when file transfer is enabled.
+
+<P>
+<A NAME="man-condor-submit-preargs"></A><A NAME="84612"></A>
+</DD>
+<DT><STRONG>+PreArgs = <TT>"</TT><IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">argument_list<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"><TT>"</TT></STRONG></DT>
+<DD>Defines command line arguments for the prescript, 
+presuming the Old argument syntax.
+
+<P>
+<A NAME="man-condor-submit-prearguments"></A><A NAME="84616"></A>
+</DD>
+<DT><STRONG>+PreArguments = <TT>"</TT><IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">argument_list<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"><TT>"</TT></STRONG></DT>
+<DD>Defines command line arguments for the prescript, 
+presuming the New argument syntax.
+An exception to the syntax is that double
+quotes must be escaped with a backslash instead of another double
+quote. 
+
+<P>
+Note that if both +PreArgs and +PreArguments are specified, the
++PreArguments value is used and the +PreArgs value is ignored.
+
+<P>
+<A NAME="man-condor-submit-postscript"></A><A NAME="84620"></A>
+</DD>
+<DT><STRONG>+PostCmd = <TT>"</TT><IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">executable<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"><TT>"</TT></STRONG></DT>
+<DD>A vanilla universe job may specify that a script is to be run 
+on the execute machine after the job exits, and this is called a postscript.
+Definition of this specifically-named attribute causes the script,
+identified by path and file name, to be executed. 
+The postscript is run if the job exits, but not if the job is evicted.
+Note that this definition of a postscript is different from the POST script 
+described in DAGMan.
+The postscript is not automatically transferred with the job,
+as the main executable is, 
+so it must be entered into the <B>transfer_input_files</B><A NAME="85593"></A> list,
+when file transfer is enabled.
+
+<P>
+<A NAME="man-condor-submit-postargs"></A><A NAME="84625"></A>
+</DD>
+<DT><STRONG>+PostArgs = <TT>"</TT><IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">argument_list<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"><TT>"</TT></STRONG></DT>
+<DD>Defines command line arguments for the postscript, 
+presuming the Old argument syntax.
+
+<P>
+<A NAME="man-condor-submit-postarguments"></A><A NAME="84629"></A>
+</DD>
+<DT><STRONG>+PostArguments = <TT>"</TT><IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">argument_list<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$"><TT>"</TT></STRONG></DT>
+<DD>Defines command line arguments for the postscript, 
+presuming the New argument syntax.
+An exception to the syntax is that double
+quotes must be escaped with a backslash instead of another double
+quote mark.
+
+<P>
+Note that if both +PostArgs and +PostArguments are specified, the
++PostArguments value is used and the +PostArgs value is ignored.
+
+<P>
+</DD>
+</DL> 
+
+<P>
+If any of the prescript or postscript values are not enclosed
+in double quotes, they are silently ignored.
+
+<P>
+Below is an example of the use of starter pre and post scripts:
+
+<P>
+<PRE>
++PreCmd		= "my_pre"
++PreArgs	= "pre\"arg1 prea'rg2"
++PostCmd	= "my_post"
++PostArguments	= "post\"arg1 'post''ar g2'"
+</PRE>
+
+<P>
+For this example <TT>PreArgs</TT> generates a first argument of
+<code>pre"a1"</code> and a second argument of <code>pre'a2</code>.
+<TT>PostArguments</TT> generates a first argument of
+<code>post"a1</code> and a second argument of <code>post'a 2</code>.
+
+<P>
+<I>MACROS AND COMMENTS</I>
+
+<P>
+<A NAME="macro-in-submit-description-file"></A><A NAME="84639"></A>
+In addition to commands, the submit description file can contain macros
+and comments.
+
+<P>
+<DL>
+<DT><STRONG>Macros</STRONG></DT>
+<DD>Parameterless macros in the form of 
+<TT>$(macro_name:default initial value)</TT>
+may be used anywhere in HTCondor submit description files
+to provide textual substitution at submit time.
+Macros can be defined by lines in the form of 
+<PRE> 
+        &lt;macro_name&gt; = &lt;string&gt;
+</PRE> 
+Two pre-defined macros are supplied by the submit description file parser.
+The
+<TT>$(Cluster)</TT><A NAME="85598"></A><A NAME="85599"></A> macro supplies the value of the
+<A NAME="84645"></A>
+<A NAME="84646"></A>
+<A NAME="84647"></A>
+<TT>ClusterId</TT> job
+ClassAd attribute, and the
+<TT>$(Process)</TT><A NAME="85604"></A><A NAME="85605"></A> macro supplies the value of the
+<TT>ProcId</TT> job
+ClassAd attribute.
+These macros are
+intended to aid in the specification of input/output files, arguments,
+etc., for clusters with lots of jobs, and/or could be used to supply an
+HTCondor process with its own cluster and process numbers on the command
+line.
+
+<P>
+The <TT>$(Node)</TT><A NAME="85610"></A><A NAME="85611"></A> macro is defined for parallel universe jobs,
+and is especially relevant for MPI applications.
+It is a unique value assigned for the duration of the job
+that essentially identifies the machine (slot) on which a program is
+executing.
+Values assigned start at 0 and increase monotonically.
+The values are assigned as the parallel job is about to start.
+
+<P>
+Recursive definition of macros is permitted.
+An example of a construction that works is the following: 
+<PRE>
+foo = bar
+foo =  snap $(foo)
+</PRE>
+As a result, <TT>foo = snap bar</TT>.
+
+<P>
+Note that both left- and right- recursion works, so 
+<PRE>
+foo = bar
+foo =  $(foo) snap
+</PRE>
+has as its result <TT>foo = bar snap</TT>.
+
+<P>
+The construction 
+<PRE>
+foo = $(foo) bar
+</PRE>
+by itself will <I>not</I> work, as it does not have an initial base case.
+Mutually recursive constructions such as: 
+<PRE>
+B = bar 
+C = $(B)
+B = $(C) boo
+</PRE>
+will <I>not</I> work, and will fill memory with expansions.
+
+<P>
+A default value may be specified, for use if the macro has no definition.
+Consider the example
+<PRE>
+D = $(E:24)
+</PRE>
+Where <TT>E</TT> is not defined within the submit description
+file, the default value 24 is used, resulting in 
+<PRE>
+D = 24
+</PRE>
+This is of limited value, as the scope of macro substitution is
+the submit description file.
+Thus, either the macro is or is not defined within the submit description
+file.
+If the macro is defined, then the default value is useless.
+If the macro is not defined, then there is no point in using it in a 
+submit command.
+
+<P>
+<A NAME="84669"></A>
+To use the dollar sign character (<code>$</code>) as a literal,
+without macro expansion, use
+<PRE>
+$(DOLLAR)
+</PRE>
+
+<P>
+In addition to the normal macro, there is also a special kind of macro
+called a <I>substitution macro</I>
+<A NAME="84673"></A>
+that allows the substitution of
+a machine ClassAd attribute value defined on the resource machine itself
+(gotten after a match to the machine has been made)
+into specific commands within the
+submit description file. The substitution macro is of the form:
+<PRE> 
+$$(attribute)
+</PRE>
+As this form of the substitution macro is only evaluated within
+the context of the machine ClassAd,
+use of a scope resolution prefix 
+<TT>TARGET.</TT> or <TT>MY.</TT> is not allowed.
+
+<P>
+A common use of this form of the substitution macro is for the heterogeneous
+submission of an executable:
+<PRE>
+executable = povray.$$(OpSys).$$(Arch)
+</PRE>
+Values for the <TT>OpSys</TT> and <TT>Arch</TT> attributes are substituted at
+match time for any given resource. This example allows HTCondor to automatically
+choose the correct executable for the matched machine.
+
+<P>
+An extension to the syntax of the substitution macro provides an
+alternative string to use if the machine attribute within the
+substitution macro is undefined.
+The syntax appears as:
+<PRE> 
+$$(attribute:string_if_attribute_undefined)
+</PRE>
+
+<P>
+An example using this extended syntax provides a path name to a
+required input file.
+Since the file can be placed in different locations on
+different machines, the file's path name is given as an argument
+to the program.
+<PRE> 
+arguments = $$(input_file_path:/usr/foo)
+</PRE>
+On the machine, if the attribute <TT>input_file_path</TT> is not
+defined, then the path <TT>/usr/foo</TT> is used instead.
+
+<P>
+A further extension to the syntax of the substitution macro allows the
+evaluation of a ClassAd expression to define the value.
+In this form, the expression may refer to machine attributes
+by prefacing them with the <TT>TARGET.</TT> scope resolution prefix.
+To place a ClassAd expression into the substitution macro,
+square brackets are added to delimit the expression.
+The syntax appears as:
+<PRE> 
+$$([ClassAd expression])
+</PRE>
+An example of a job that uses this syntax may be one that
+wants to know how much memory it can use. 
+The application cannot detect this itself, as it would potentially use
+all of the memory on a multi-slot machine.
+So the job determines the memory per slot, 
+reducing it by 10% to account for miscellaneous overhead,
+and passes this as a command line argument to the application.
+In the submit description file will be
+<PRE> 
+arguments = --memory $$([TARGET.Memory * 0.9])
+</PRE>
+
+<P>
+<A NAME="84693"></A>
+To insert two dollar sign characters (<code>$$</code>) as literals
+into a ClassAd string, use
+<PRE>
+$$(DOLLARDOLLAR)
+</PRE>
+
+<P>
+<A NAME="84696"></A>
+<A NAME="84697"></A>
+<A NAME="84698"></A>
+The environment macro, $ENV, allows the evaluation of an environment
+variable to be used in setting a submit description file command.
+The syntax used is
+<PRE> 
+$ENV(variable)
+</PRE>
+An example submit description file command that uses this functionality
+evaluates the submitter's home directory in order to set the
+path and file name of a log file:
+<PRE> 
+log = $ENV(HOME)/jobs/logfile
+</PRE>
+The environment variable is evaluated when the submit description
+file is processed.
+
+<P>
+<A NAME="84703"></A>
+<A NAME="84704"></A>
+<A NAME="84705"></A>
+The $RANDOM_CHOICE macro allows a random choice to be made
+from a given list of parameters at submission time.
+For an expression, if some randomness needs to be generated,
+the macro may appear as
+<PRE> 
+    $RANDOM_CHOICE(0,1,2,3,4,5,6)
+</PRE>
+When evaluated, one of the parameters values will be chosen. 
+
+<P>
+</DD>
+<DT><STRONG>Comments</STRONG></DT>
+<DD>Blank lines and lines beginning with a 
+pound sign
+('#')
+character are ignored by the submit description file parser. 
+
+<P>
+</DD>
+</DL>
+
+<P>
+
+<H2><A NAME="SECTION0012555000000000000000">
+Exit Status</A>
+</H2>
+
+<P>
+<I>condor_submit</I> will exit with a status value of 0 (zero) upon success, and a
+non-zero value upon failure.
+
+<P>
+<A NAME="condor-submit-examples"></A>
+<H2><A NAME="SECTION0012556000000000000000">
+Examples</A>
+</H2>
+
+<P>
+
+<UL>
+<LI>Submit Description File Example 1: This example queues three jobs for
+execution by HTCondor. The first will be given command line arguments of
+<I>15</I> and <I>2000</I>, and it will write its standard output
+to <TT>foo.out1</TT>.
+The second will be given command line arguments of 
+<I>30</I> and <I>2000</I>, and it will
+write its standard output to <TT>foo.out2</TT>.
+Similarly the third will have
+arguments of 
+<I>45</I> and <I>6000</I>, and it will use <TT>foo.out3</TT> for its standard
+output. Standard error output (if any) from all three programs will
+appear in <TT>foo.error</TT>.
+
+<P>
+<PRE>
+      ####################
+      #
+      # submit description file
+      # Example 1: queuing multiple jobs with differing
+      # command line arguments and output files.
+      #                                                                      
+      ####################                                                   
+                                                                         
+      Executable     = foo                                                   
+      Universe       = standard
+                                                                         
+      Arguments      = 15 2000                                               
+      Output  = foo.out1                                                     
+      Error   = foo.err1
+      Queue                                                                  
+                                                                         
+      Arguments      = 30 2000                                               
+      Output  = foo.out2                                                     
+      Error   = foo.err2
+      Queue                                                                  
+                                                                         
+      Arguments      = 45 6000                                               
+      Output  = foo.out3                                                     
+      Error   = foo.err3
+      Queue
+</PRE>
+<P>
+</LI>
+<LI>Submit Description File Example 2: This submit description file
+example queues 150
+runs of program <I>foo</I> which must have been compiled and linked for
+an Intel x86 processor running RHEL 3.
+HTCondor will not attempt
+to run the processes on machines which have less than 32 Megabytes of
+physical memory, and it will run them on machines which have at least 64
+Megabytes, if such machines are available.
+Stdin, stdout, and stderr will
+refer to <TT>in.0</TT>, <TT>out.0</TT>, and <TT>err.0</TT> for the first run
+of this program (process 0).
+Stdin, stdout, and stderr will refer to
+<TT>in.1</TT>, <TT>out.1</TT>, and <TT>err.1</TT> for process 1, and so forth.
+A log file containing entries
+about where and when HTCondor runs, takes checkpoints, and migrates processes
+in this cluster will be written into file <TT>foo.log</TT>.
+
+<P>
+<PRE>
+      ####################                                                    
+      #                                                                       
+      # Example 2: Show off some fancy features including
+      # use of pre-defined macros and logging.                                
+      #                                                                       
+      ####################                                                    
+                                                                          
+      Executable     = foo                                                    
+      Universe       = standard
+      Requirements   = OpSys == "LINUX" &amp;&amp; Arch =="INTEL"
+      Rank           = Memory &gt;= 64
+      Request_Memory = 32 Mb
+      Image_Size     = 28 Mb
+                                                                          
+      Error   = err.$(Process)                                                
+      Input   = in.$(Process)                                                 
+      Output  = out.$(Process)                                                
+      Log = foo.log                                                                       
+      Queue 150
+</PRE>
+<P>
+</LI>
+<LI>Submit Description File Example 3:  This example targets the 
+<I>/bin/sleep</I> program to run only on a platform running a 
+RHEL 6 operating system.
+The example presumes that the pool contains machines running more than one
+version of Linux, 
+and this job needs the particular operating system to run correctly.
+
+<P>
+<PRE>
+      ####################                                                    
+      #                                                                       
+      # Example 3: Run on a RedHat 6 machine
+      #                                                                       
+      ####################                                                    
+      Universe     = vanilla
+      Executable   = /bin/sleep
+      Arguments    = 30
+      Requirements = (OpSysAndVer == "RedHat6")
+                                                                          
+      Error   = err.$(Process)                                                
+      Input   = in.$(Process)                                                 
+      Output  = out.$(Process)                                                
+      Log     = sleep.log                                                                       
+      Queue
+</PRE>
+<P>
+</LI>
+<LI>Command Line example: The following command uses the
+<B>-append</B> option to add two commands before the job(s) is queued.
+A log file and an error log file are specified.
+The submit description file is unchanged.
+<PRE>
+condor_submit -a "log = out.log" -a "error = error.log" mysubmitfile
+</PRE>Note that each of the added commands is contained within quote marks
+because there are space characters within the command.
+
+<P>
+</LI>
+<LI><TT>periodic_remove</TT> example:
+A job should be removed from the queue,
+if the total suspension time of the job
+is more than half of the run time of the job.
+
+<P>
+Including the command
+<PRE>
+   periodic_remove = CumulativeSuspensionTime &gt; 
+                     ((RemoteWallClockTime - CumulativeSuspensionTime) / 2.0)
+</PRE>in the submit description file causes this to happen.
+
+<P>
+</LI>
+</UL> 
+
+<P>
+
+<H2><A NAME="SECTION0012557000000000000000">
+General Remarks</A>
+</H2>
+
+<UL>
+<LI>For security reasons, HTCondor will refuse to run any jobs submitted
+by user root (UID = 0) or by a user whose default group is group wheel
+(GID = 0). Jobs submitted by user root or a user with a default group of
+wheel will appear to sit forever in the queue in an idle state. 
+
+<P>
+</LI>
+<LI>All path names specified in the submit description file must be
+less than 256 characters in length, and command line arguments must be
+less than 4096 characters in length; otherwise, <I>condor_submit</I> gives a
+warning message but the jobs will not execute properly. 
+
+<P>
+</LI>
+<LI>Somewhat understandably, behavior gets bizarre if the user makes
+the mistake of requesting multiple HTCondor jobs to write to the
+same file, and/or if the user alters any files that need to be accessed
+by an HTCondor job which is still in the queue.
+For example, the compressing of data or
+output files before an HTCondor job has completed is a common mistake.
+
+<P>
+</LI>
+<LI>To disable checkpointing for Standard Universe jobs, include the
+line:
+<PRE>
+      +WantCheckpoint = False
+</PRE>
+in the submit description file before the queue command(s).
+</LI>
+</UL>
+
+<P>
+
+<H2><A NAME="SECTION0012558000000000000000">
+See Also</A>
+</H2>
+HTCondor User Manual
+
+<P>
+
+<H2><A NAME="SECTION0012559000000000000000">
+Author</A>
+</H2> Center for High Throughput Computing, University of Wisconsin-Madison
+  
+<H2><A NAME="SECTION00125510000000000000000">
+Copyright</A>
+</H2> 
+  Copyright &#169; 1990-2015 Center for High Throughput Computing, 
+  Computer Sciences Department, 
+  University of Wisconsin-Madison, Madison, WI.  All Rights Reserved.  
+	Licensed under the Apache License, Version 2.0.  
+
+<P>
+
+  <HR>
+<!--Navigation Panel-->
+<A NAME="tex2html4276"
+  HREF="condor_submit_dag.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html4270"
+  HREF="11_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html4264"
+  HREF="condor_store_cred.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html4272"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html4274"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4277"
+  HREF="condor_submit_dag.html">condor_submit_dag</A>
+<B> Up:</B> <A NAME="tex2html4271"
+  HREF="11_Command_Reference.html">11. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html4265"
+  HREF="condor_store_cred.html">condor_store_cred</A>
+ &nbsp; <B>  <A NAME="tex2html4273"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html4275"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

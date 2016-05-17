@@ -1,0 +1,475 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>11. Appendix B: Magic Numbers</TITLE>
+<META NAME="description" CONTENT="11. Appendix B: Magic Numbers">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="Index.html">
+<LINK REL="previous" HREF="10_Appendix_A.html">
+<LINK REL="up" HREF="ref.html">
+<LINK REL="next" HREF="Index.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html4109"
+  HREF="Index.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html4103"
+  HREF="ref.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html4097"
+  HREF="10_Appendix_A.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html4105"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html4107"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4110"
+  HREF="Index.html">Index</A>
+<B> Up:</B> <A NAME="tex2html4104"
+  HREF="ref.html">CondorVersion 7.6.2 Manual</A>
+<B> Previous:</B> <A NAME="tex2html4098"
+  HREF="10_Appendix_A.html">10. Appendix A: ClassAd</A>
+ &nbsp; <B>  <A NAME="tex2html4106"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html4108"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION001200000000000000000"></A>
+<A NAME="sec:Magic-Numbers"></A>
+<BR>
+11. Appendix B:  Magic Numbers
+</H1>
+
+<P>
+<DIV ALIGN="CENTER">
+</DIV>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<A NAME="84190"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>Table 11.1:</STRONG>
+<I>condor_shadow</I> Exit Codes</CAPTION>
+<TR><TD ALIGN="CENTER"><I>Value</I></TD>
+<TD ALIGN="LEFT"><I>Error Name</I></TD>
+<TD ALIGN="LEFT"><I>Description</I></TD>
+</TR>
+<TR><TD ALIGN="CENTER">4</TD>
+<TD ALIGN="LEFT">JOB_EXCEPTION</TD>
+<TD ALIGN="LEFT">the job exited with an exception</TD>
+</TR>
+<TR><TD ALIGN="CENTER">44</TD>
+<TD ALIGN="LEFT">DPRINTF_ERROR</TD>
+<TD ALIGN="LEFT">there was a fatal error with dprintf()</TD>
+</TR>
+<TR><TD ALIGN="CENTER">100</TD>
+<TD ALIGN="LEFT">JOB_EXITED</TD>
+<TD ALIGN="LEFT">the job exited (not killed)</TD>
+</TR>
+<TR><TD ALIGN="CENTER">101</TD>
+<TD ALIGN="LEFT">JOB_CKPTED</TD>
+<TD ALIGN="LEFT">the job did produce a checkpoint</TD>
+</TR>
+<TR><TD ALIGN="CENTER">102</TD>
+<TD ALIGN="LEFT">JOB_KILLED</TD>
+<TD ALIGN="LEFT">the job was killed</TD>
+</TR>
+<TR><TD ALIGN="CENTER">103</TD>
+<TD ALIGN="LEFT">JOB_COREDUMPED</TD>
+<TD ALIGN="LEFT">the job was killed and a core file was produced</TD>
+</TR>
+<TR><TD ALIGN="CENTER">105</TD>
+<TD ALIGN="LEFT">JOB_NO_MEM</TD>
+<TD ALIGN="LEFT">not enough memory to start the condor_shadow</TD>
+</TR>
+<TR><TD ALIGN="CENTER">106</TD>
+<TD ALIGN="LEFT">JOB_SHADOW_USAGE</TD>
+<TD ALIGN="LEFT">incorrect arguments to condor_shadow</TD>
+</TR>
+<TR><TD ALIGN="CENTER">107</TD>
+<TD ALIGN="LEFT">JOB_NOT_CKPTED</TD>
+<TD ALIGN="LEFT">the job vacated without a checkpoint</TD>
+</TR>
+<TR><TD ALIGN="CENTER">107</TD>
+<TD ALIGN="LEFT">JOB_SHOULD_REQUEUE</TD>
+<TD ALIGN="LEFT">same number as JOB_NOT_CKPTED,</TD>
+</TR>
+<TR><TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">to achieve the same behavior.</TD>
+</TR>
+<TR><TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">This exit code implies that we want</TD>
+</TR>
+<TR><TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">the job to be put back in the job queue</TD>
+</TR>
+<TR><TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">and run again.</TD>
+</TR>
+<TR><TD ALIGN="CENTER">108</TD>
+<TD ALIGN="LEFT">JOB_NOT_STARTED</TD>
+<TD ALIGN="LEFT">can not connect to the <I>condor_startd</I> or request refused</TD>
+</TR>
+<TR><TD ALIGN="CENTER">109</TD>
+<TD ALIGN="LEFT">JOB_BAD_STATUS</TD>
+<TD ALIGN="LEFT">job status != RUNNING on start up</TD>
+</TR>
+<TR><TD ALIGN="CENTER">110</TD>
+<TD ALIGN="LEFT">JOB_EXEC_FAILED</TD>
+<TD ALIGN="LEFT">exec failed for some reason other than ENOMEM</TD>
+</TR>
+<TR><TD ALIGN="CENTER">111</TD>
+<TD ALIGN="LEFT">JOB_NO_CKPT_FILE</TD>
+<TD ALIGN="LEFT">there is no checkpoint file (as it was lost)</TD>
+</TR>
+<TR><TD ALIGN="CENTER">112</TD>
+<TD ALIGN="LEFT">JOB_SHOULD_HOLD</TD>
+<TD ALIGN="LEFT">the job should be put on hold</TD>
+</TR>
+<TR><TD ALIGN="CENTER">113</TD>
+<TD ALIGN="LEFT">JOB_SHOULD_REMOVE</TD>
+<TD ALIGN="LEFT">the job should be removed</TD>
+</TR>
+<TR><TD ALIGN="CENTER">114</TD>
+<TD ALIGN="LEFT">JOB_MISSED_DEFERRAL_TIME</TD>
+<TD ALIGN="LEFT">the job goes on hold, because it did not run within the</TD>
+</TR>
+<TR><TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">specified window of time</TD>
+</TR>
+<TR><TD ALIGN="CENTER">115</TD>
+<TD ALIGN="LEFT">JOB_EXITED_AND_CLAIM_CLOSING</TD>
+<TD ALIGN="LEFT">the job exited (not killed) but the <I>condor_startd</I></TD>
+</TR>
+<TR><TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT">is not accepting any more jobs on this claim</TD>
+</TR>
+</TABLE>
+</DIV>
+<BR>
+<DIV ALIGN="CENTER">
+</DIV>
+
+<P>
+<DIV ALIGN="CENTER">
+</DIV>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<A NAME="84191"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>Table 11.2:</STRONG>
+User Log Event Codes</CAPTION>
+<TR><TD ALIGN="LEFT"><I>Event Code</I></TD>
+<TD ALIGN="CENTER"><I>Description</I></TD>
+</TR>
+<TR><TD ALIGN="LEFT">0</TD>
+<TD ALIGN="CENTER">Submit</TD>
+</TR>
+<TR><TD ALIGN="LEFT">1</TD>
+<TD ALIGN="CENTER">Execute</TD>
+</TR>
+<TR><TD ALIGN="LEFT">2</TD>
+<TD ALIGN="CENTER">Executable error</TD>
+</TR>
+<TR><TD ALIGN="LEFT">3</TD>
+<TD ALIGN="CENTER">Checkpointed</TD>
+</TR>
+<TR><TD ALIGN="LEFT">4</TD>
+<TD ALIGN="CENTER">Job evicted</TD>
+</TR>
+<TR><TD ALIGN="LEFT">5</TD>
+<TD ALIGN="CENTER">Job terminated</TD>
+</TR>
+<TR><TD ALIGN="LEFT">6</TD>
+<TD ALIGN="CENTER">Image size</TD>
+</TR>
+<TR><TD ALIGN="LEFT">7</TD>
+<TD ALIGN="CENTER">Shadow exception</TD>
+</TR>
+<TR><TD ALIGN="LEFT">8</TD>
+<TD ALIGN="CENTER">Generic</TD>
+</TR>
+<TR><TD ALIGN="LEFT">9</TD>
+<TD ALIGN="CENTER">Job aborted</TD>
+</TR>
+<TR><TD ALIGN="LEFT">10</TD>
+<TD ALIGN="CENTER">Job suspended</TD>
+</TR>
+<TR><TD ALIGN="LEFT">11</TD>
+<TD ALIGN="CENTER">Job unsuspended</TD>
+</TR>
+<TR><TD ALIGN="LEFT">12</TD>
+<TD ALIGN="CENTER">Job held</TD>
+</TR>
+<TR><TD ALIGN="LEFT">13</TD>
+<TD ALIGN="CENTER">Job released</TD>
+</TR>
+<TR><TD ALIGN="LEFT">14</TD>
+<TD ALIGN="CENTER">Node execute</TD>
+</TR>
+<TR><TD ALIGN="LEFT">15</TD>
+<TD ALIGN="CENTER">Node terminated</TD>
+</TR>
+<TR><TD ALIGN="LEFT">16</TD>
+<TD ALIGN="CENTER">Post script terminated</TD>
+</TR>
+<TR><TD ALIGN="LEFT">17</TD>
+<TD ALIGN="CENTER">Globus submit (no longer used)</TD>
+</TR>
+<TR><TD ALIGN="LEFT">18</TD>
+<TD ALIGN="CENTER">Globus submit failed</TD>
+</TR>
+<TR><TD ALIGN="LEFT">19</TD>
+<TD ALIGN="CENTER">Globus resource up (no longer used)</TD>
+</TR>
+<TR><TD ALIGN="LEFT">20</TD>
+<TD ALIGN="CENTER">Globus resource down (no longer used)</TD>
+</TR>
+<TR><TD ALIGN="LEFT">21</TD>
+<TD ALIGN="CENTER">Remote error</TD>
+</TR>
+<TR><TD ALIGN="LEFT">22</TD>
+<TD ALIGN="CENTER">Job disconnected</TD>
+</TR>
+<TR><TD ALIGN="LEFT">23</TD>
+<TD ALIGN="CENTER">Job reconnected</TD>
+</TR>
+<TR><TD ALIGN="LEFT">24</TD>
+<TD ALIGN="CENTER">Job reconnect failed</TD>
+</TR>
+<TR><TD ALIGN="LEFT">25</TD>
+<TD ALIGN="CENTER">Grid resource up</TD>
+</TR>
+<TR><TD ALIGN="LEFT">26</TD>
+<TD ALIGN="CENTER">Grid resource down</TD>
+</TR>
+<TR><TD ALIGN="LEFT">27</TD>
+<TD ALIGN="CENTER">Grid submit</TD>
+</TR>
+<TR><TD ALIGN="LEFT">28</TD>
+<TD ALIGN="CENTER">Job ClassAd attribute values added to event log</TD>
+</TR>
+<TR><TD ALIGN="LEFT">29</TD>
+<TD ALIGN="CENTER">Job status unknown</TD>
+</TR>
+<TR><TD ALIGN="LEFT">30</TD>
+<TD ALIGN="CENTER">Job status known</TD>
+</TR>
+<TR><TD ALIGN="LEFT">31</TD>
+<TD ALIGN="CENTER">Job stage in</TD>
+</TR>
+<TR><TD ALIGN="LEFT">32</TD>
+<TD ALIGN="CENTER">Job stage out</TD>
+</TR>
+</TABLE>
+</DIV>
+<BR>
+<DIV ALIGN="CENTER">
+</DIV>
+
+<P>
+<DIV ALIGN="CENTER">
+</DIV>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<A NAME="84192"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>Table 11.3:</STRONG>
+Well-Known Port Numbers</CAPTION>
+<TR><TD ALIGN="LEFT"><I>Server</I></TD>
+<TD ALIGN="CENTER"><I>Port Number</I></TD>
+</TR>
+<TR><TH ALIGN="LEFT"><I>condor_negotiator</I></TH>
+<TD ALIGN="CENTER">9614 (obsolete, now dynamically allocated)</TD>
+</TR>
+<TR><TH ALIGN="LEFT"><I>condor_collector</I></TH>
+<TD ALIGN="CENTER">9618</TD>
+</TR>
+<TR><TD ALIGN="LEFT">GT2 gatekeeper</TD>
+<TD ALIGN="CENTER">2119</TD>
+</TR>
+<TR><TD ALIGN="LEFT">gridftp</TD>
+<TD ALIGN="CENTER">2811</TD>
+</TR>
+<TR><TD ALIGN="LEFT">GT4 web services</TD>
+<TD ALIGN="CENTER">8443</TD>
+</TR>
+<TR><TD ALIGN="LEFT">GCB local</TD>
+<TD ALIGN="CENTER">65430</TD>
+</TR>
+<TR><TD ALIGN="LEFT">GCB public</TD>
+<TD ALIGN="CENTER">65432</TD>
+</TR>
+</TABLE>
+</DIV>
+<BR>
+<DIV ALIGN="CENTER">
+</DIV>
+
+<P>
+<DIV ALIGN="CENTER">
+</DIV>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<A NAME="84193"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>Table 11.4:</STRONG>
+DaemonCore Commands</CAPTION>
+<TR><TD ALIGN="LEFT"><I>Number</I></TD>
+<TD ALIGN="CENTER"><I>Name</I></TD>
+</TR>
+<TR><TD ALIGN="LEFT">60000</TD>
+<TD ALIGN="CENTER">DC_RAISESIGNAL</TD>
+</TR>
+<TR><TD ALIGN="LEFT">60001</TD>
+<TD ALIGN="CENTER">DC_PROCESSEXIT</TD>
+</TR>
+<TR><TD ALIGN="LEFT">60002</TD>
+<TD ALIGN="CENTER">DC_CONFIG_PERSIST</TD>
+</TR>
+<TR><TD ALIGN="LEFT">60003</TD>
+<TD ALIGN="CENTER">DC_CONFIG_RUNTIME</TD>
+</TR>
+<TR><TD ALIGN="LEFT">60004</TD>
+<TD ALIGN="CENTER">DC_RECONFIG</TD>
+</TR>
+<TR><TD ALIGN="LEFT">60005</TD>
+<TD ALIGN="CENTER">DC_OFF_GRACEFUL</TD>
+</TR>
+<TR><TD ALIGN="LEFT">60006</TD>
+<TD ALIGN="CENTER">DC_OFF_FAST</TD>
+</TR>
+<TR><TD ALIGN="LEFT">60007</TD>
+<TD ALIGN="CENTER">DC_CONFIG_VAL</TD>
+</TR>
+<TR><TD ALIGN="LEFT">60008</TD>
+<TD ALIGN="CENTER">DC_CHILDALIVE</TD>
+</TR>
+<TR><TD ALIGN="LEFT">60009</TD>
+<TD ALIGN="CENTER">DC_SERVICEWAITPIDS</TD>
+</TR>
+<TR><TD ALIGN="LEFT">60010</TD>
+<TD ALIGN="CENTER">DC_AUTHENTICATE</TD>
+</TR>
+<TR><TD ALIGN="LEFT">60011</TD>
+<TD ALIGN="CENTER">DC_NOP</TD>
+</TR>
+<TR><TD ALIGN="LEFT">60012</TD>
+<TD ALIGN="CENTER">DC_RECONFIG_FULL</TD>
+</TR>
+<TR><TD ALIGN="LEFT">60013</TD>
+<TD ALIGN="CENTER">DC_FETCH_LOG</TD>
+</TR>
+<TR><TD ALIGN="LEFT">60014</TD>
+<TD ALIGN="CENTER">DC_INVALIDATE_KEY</TD>
+</TR>
+<TR><TD ALIGN="LEFT">60015</TD>
+<TD ALIGN="CENTER">DC_OFF_PEACEFUL</TD>
+</TR>
+<TR><TD ALIGN="LEFT">60016</TD>
+<TD ALIGN="CENTER">DC_SET_PEACEFUL_SHUTDOWN</TD>
+</TR>
+<TR><TD ALIGN="LEFT">60017</TD>
+<TD ALIGN="CENTER">DC_TIME_OFFSET</TD>
+</TR>
+<TR><TD ALIGN="LEFT">60018</TD>
+<TD ALIGN="CENTER">DC_PURGE_LOG</TD>
+</TR>
+</TABLE>
+</DIV>
+<BR>
+<DIV ALIGN="CENTER">
+</DIV>
+
+<P>
+<DIV ALIGN="CENTER">
+</DIV>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<A NAME="84194"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>Table 11.5:</STRONG>
+DaemonCore Daemon Exit Codes</CAPTION>
+<TR><TD ALIGN="LEFT"><I>Exit Code</I></TD>
+<TD ALIGN="CENTER"><I>Description</I></TD>
+</TR>
+<TR><TD ALIGN="LEFT">0</TD>
+<TD ALIGN="CENTER">Normal exit of daemon</TD>
+</TR>
+<TR><TD ALIGN="LEFT">99</TD>
+<TD ALIGN="CENTER"><TT>DAEMON_SHUTDOWN</TT> <A NAME="84206"></A> <A NAME="84207"></A> evaluated to <TT>True</TT></TD>
+</TR>
+</TABLE>
+</DIV>
+<BR>
+<DIV ALIGN="CENTER">
+</DIV>
+
+<P>
+
+<A NAME="index"></A><HR>
+<!--Navigation Panel-->
+<A NAME="tex2html4109"
+  HREF="Index.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html4103"
+  HREF="ref.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html4097"
+  HREF="10_Appendix_A.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html4105"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html4107"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4110"
+  HREF="Index.html">Index</A>
+<B> Up:</B> <A NAME="tex2html4104"
+  HREF="ref.html">CondorVersion 7.6.2 Manual</A>
+<B> Previous:</B> <A NAME="tex2html4098"
+  HREF="10_Appendix_A.html">10. Appendix A: ClassAd</A>
+ &nbsp; <B>  <A NAME="tex2html4106"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html4108"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,297 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>2.7 Priorities and Preemption</TITLE>
+<META NAME="description" CONTENT="2.7 Priorities and Preemption">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="2_8Java_Applications.html">
+<LINK REL="previous" HREF="2_6Managing_Job.html">
+<LINK REL="up" HREF="2_Users_Manual.html">
+<LINK REL="next" HREF="2_8Java_Applications.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html1069"
+  HREF="2_8Java_Applications.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1063"
+  HREF="2_Users_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1057"
+  HREF="2_6Managing_Job.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1065"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1067"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1070"
+  HREF="2_8Java_Applications.html">2.8 Java Applications</A>
+<B> Up:</B> <A NAME="tex2html1064"
+  HREF="2_Users_Manual.html">2. Users' Manual</A>
+<B> Previous:</B> <A NAME="tex2html1058"
+  HREF="2_6Managing_Job.html">2.6 Managing a Job</A>
+ &nbsp; <B>  <A NAME="tex2html1066"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1068"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html1071"
+  HREF="2_7Priorities_Preemption.html#SECTION00371000000000000000">2.7.1 Job Priority</A>
+<LI><A NAME="tex2html1072"
+  HREF="2_7Priorities_Preemption.html#SECTION00372000000000000000">2.7.2 User priority</A>
+<LI><A NAME="tex2html1073"
+  HREF="2_7Priorities_Preemption.html#SECTION00373000000000000000">2.7.3 Details About How HTCondor Jobs Vacate Machines</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00370000000000000000"></A><A NAME="sec:Priorities"></A>
+<BR>
+2.7 Priorities and Preemption
+</H1>
+
+<P>
+HTCondor has two independent priority controls: <I>job</I>
+priorities and <I>user</I> priorities.  
+
+<P>
+
+<H2><A NAME="SECTION00371000000000000000">
+2.7.1 Job Priority</A>
+</H2>
+
+<P>
+<A NAME="3621"></A>
+<A NAME="3622"></A>
+Job priorities allow a user to assign a priority level to
+each of their own submitted HTCondor jobs,
+in order to control the order of job execution.
+This handles the situation in which a user has more jobs
+queued, waiting to be executed, than there are machines available.
+Setting a job priority identifies the ordering in which 
+that user's jobs are executed; a higher job priority job is matched and
+executed before a lower priority job.
+A job priority can be any integer, and larger values are of higher priority.
+So, 0 is a higher job priority than -3,
+and 6 is a higher job priority than 5.
+
+<P>
+<A NAME="3623"></A>
+For the simple case, each job can be given a distinct priority.
+For an already queued job, 
+its priority may be set with the <I>condor_prio</I> command;
+see the example in section&nbsp;<A HREF="2_6Managing_Job.html#sec:job-prio">2.6.4</A>, or the
+<I>condor_prio</I> manual page&nbsp;<A HREF="condor_prio.html#man-condor-prio"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for details.
+This sets the value of job ClassAd attribute <TT>JobPrio</TT>. 
+
+<P>
+A fine-grained categorization of jobs and their ordering
+is available for experts by using the job ClassAd attributes:
+<TT>PreJobPrio1</TT>,
+<TT>PreJobPrio2</TT>,
+<TT>JobPrio</TT>,
+<TT>PostJobPrio1</TT>, or
+<TT>PostJobPrio2</TT>.
+
+<P>
+
+<H2><A NAME="SECTION00372000000000000000"></A><A NAME="sec:user-priority-explained"></A>
+<BR>
+2.7.2 User priority
+</H2>
+
+<P>
+<A NAME="3635"></A>
+<A NAME="3636"></A>
+<A NAME="3637"></A>
+Machines are allocated to users based upon a user's priority.
+A lower numerical value for user priority means higher priority,
+so a user with priority 5 will get more resources than
+a user with priority 50.
+User priorities in HTCondor can be examined with the <I>condor_userprio</I>
+command (see page&nbsp;<A HREF="condor_userprio.html#man-condor-userprio"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>).
+<A NAME="3640"></A>
+HTCondor administrators can set and change individual user priorities
+with the same utility.
+
+<P>
+HTCondor continuously calculates the share of available machines that each
+user should be allocated.    This share is inversely related to the ratio
+between user priorities.
+For example, a user with a priority of 10 will get twice as many
+machines as a user with a priority of 20.
+The priority of each individual user changes according to
+the number of resources the individual is using.
+Each user starts out with the best possible priority: 0.5.
+If the number of machines a user currently has is greater than 
+the user priority,
+the user priority will worsen by numerically increasing over time.
+If the number of machines is less then the priority,
+the priority will improve by numerically decreasing over time. 
+The long-term result is fair-share access across all users.
+The speed at which HTCondor adjusts the priorities is
+controlled with the configuration variable <TT>PRIORITY_HALFLIFE</TT><A NAME="3915"></A><A NAME="3916"></A>,
+an exponential half-life value.
+The default is one day.
+If a user that has user priority of 100 and is
+utilizing 100 machines removes all his/her jobs,
+one day later that user's
+priority will be 50, and two days later the priority will be 25.
+
+<P>
+HTCondor enforces that each user gets his/her fair share of machines
+according to user priority both when allocating machines which become
+available and by priority preemption of currently allocated machines.
+For instance, if a low priority user is utilizing all available machines
+and suddenly a higher priority user submits jobs, HTCondor will
+immediately take a checkpoint and vacate jobs belonging to the lower priority
+user. This will free up machines that HTCondor will then give over to the
+higher priority user. HTCondor will not starve the lower priority user; it
+will preempt only enough jobs so that the higher priority user's fair
+share can be realized (based upon the ratio between user priorities). To
+prevent thrashing of the system due to priority preemption, the HTCondor 
+site administrator can define a <TT>PREEMPTION_REQUIREMENTS</TT><A NAME="3920"></A><A NAME="3921"></A> expression in HTCondor's configuration.
+The default expression that ships with HTCondor is configured to only preempt 
+lower priority jobs that have run
+for at least one hour. So in the previous example, in the worse case it
+could take up to a maximum of one hour until the higher priority user
+receives a fair share of machines.
+For a general discussion of
+limiting preemption,
+please see
+section <A HREF="#sec:Disabling_Preemption"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> of the Administrator's manual.
+
+<P>
+User priorities are keyed on <TT>&lt;username&gt;@&lt;domain&gt;</TT>, for example
+<TT>johndoe@cs.wisc.edu</TT>. The domain name to use, if any, is configured by
+the HTCondor site administrator.  Thus, user priority and therefore resource
+allocation is not impacted by which machine the user submits from or
+even if the user submits jobs from multiple machines.
+
+<P>
+<A NAME="3646"></A>
+<A NAME="3647"></A>
+An extra feature is the ability to submit a job as
+a <I>nice</I> job (see page&nbsp;<A HREF="#man-condor-submit-nice"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>).
+Nice jobs artificially boost the user priority 
+by ten million just for the nice job.
+This effectively means that nice jobs will only run on
+machines that no other HTCondor job (that is, non-niced job) wants.
+In a similar fashion, an HTCondor administrator could set
+the user priority of any specific HTCondor user very high.
+If done, for example, with a guest account,
+the guest could only use cycles not wanted by other users of the system.
+
+<P>
+
+<H2><A NAME="SECTION00373000000000000000"></A><A NAME="sec:Vacate-Explained"></A>
+<BR>
+2.7.3 Details About How HTCondor Jobs Vacate Machines
+</H2>
+
+<P>
+<A NAME="3651"></A>
+<A NAME="3652"></A>
+When HTCondor needs a job to vacate a machine for whatever reason, it
+sends the job an asynchronous signal specified in the <TT>KillSig</TT>
+attribute of the job's ClassAd.
+The value of this attribute can be specified by
+the user at submit time by placing the <B>kill_sig</B> option in the
+HTCondor submit description file.  
+
+<P>
+If a program wanted to do some special work when required
+to vacate a machine, the program may set up a
+signal handler to use a trappable signal as an indication
+to clean up.
+When submitting this job, this clean up signal is specified to be used with
+<B>kill_sig</B>.
+Note that the clean up work needs to be quick.
+If the job takes too long to go away, HTCondor
+follows up with a SIGKILL signal which immediately terminates the
+process.
+
+<P>
+<A NAME="3656"></A>
+A job that is linked using <I>condor_compile</I>
+and is subsequently submitted into the standard universe, 
+will checkpoint and exit upon receipt of a SIGTSTP signal.
+Thus, SIGTSTP is
+the default value for <TT>KillSig</TT> when submitting to the standard
+universe.
+The user's code may still checkpoint itself at any time
+by calling one of the following functions exported by the HTCondor libraries:
+<DL>
+<DT><STRONG><TT>ckpt()()</TT></STRONG></DT>
+<DD>Performs a checkpoint and then returns.
+</DD>
+<DT><STRONG><TT>ckpt_and_exit()()</TT></STRONG></DT>
+<DD>Checkpoints and exits; HTCondor will then
+restart the process again later, potentially on a different machine.
+</DD>
+</DL>
+
+<P>
+For jobs submitted into the vanilla universe, the default value for
+<TT>KillSig</TT> is SIGTERM,
+the usual method to nicely terminate a Unix program.
+
+<P>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1069"
+  HREF="2_8Java_Applications.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1063"
+  HREF="2_Users_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1057"
+  HREF="2_6Managing_Job.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1065"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1067"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1070"
+  HREF="2_8Java_Applications.html">2.8 Java Applications</A>
+<B> Up:</B> <A NAME="tex2html1064"
+  HREF="2_Users_Manual.html">2. Users' Manual</A>
+<B> Previous:</B> <A NAME="tex2html1058"
+  HREF="2_6Managing_Job.html">2.6 Managing a Job</A>
+ &nbsp; <B>  <A NAME="tex2html1066"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1068"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

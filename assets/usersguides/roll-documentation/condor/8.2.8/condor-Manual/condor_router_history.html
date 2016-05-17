@@ -1,0 +1,213 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<link rel="canonical" href="http://research.cs.wisc.edu/htcondor/manual/current/condor_router_history.html">
+
+<TITLE>condor_router_history</TITLE>
+<META NAME="description" CONTENT="condor_router_history">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="condor_router_q.html">
+<LINK REL="previous" HREF="condor_rmdir.html">
+<LINK REL="up" HREF="11_Command_Reference.html">
+<LINK REL="next" HREF="condor_router_q.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html4066"
+  HREF="condor_router_q.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html4060"
+  HREF="11_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html4054"
+  HREF="condor_rmdir.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html4062"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html4064"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4067"
+  HREF="condor_router_q.html">condor_router_q</A>
+<B> Up:</B> <A NAME="tex2html4061"
+  HREF="11_Command_Reference.html">11. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html4055"
+  HREF="condor_rmdir.html">condor_rmdir</A>
+ &nbsp; <B>  <A NAME="tex2html4063"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html4065"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html4068"
+  HREF="condor_router_history.html#SECTION0012451000000000000000">Synopsis</A>
+<LI><A NAME="tex2html4069"
+  HREF="condor_router_history.html#SECTION0012452000000000000000">Description</A>
+<LI><A NAME="tex2html4070"
+  HREF="condor_router_history.html#SECTION0012453000000000000000">Options</A>
+<LI><A NAME="tex2html4071"
+  HREF="condor_router_history.html#SECTION0012454000000000000000">Exit Status</A>
+<LI><A NAME="tex2html4072"
+  HREF="condor_router_history.html#SECTION0012455000000000000000">Author</A>
+<LI><A NAME="tex2html4073"
+  HREF="condor_router_history.html#SECTION0012456000000000000000">Copyright</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION0012450000000000000000"></A><A NAME="man-condor-router-history"></A>
+<BR>
+<I>condor_router_history</I>
+</H1> Display the history for routed jobs
+  
+<P>
+
+<P>
+<A NAME="79469"></A>
+<A NAME="79470"></A>
+
+<P>
+
+<H2><A NAME="SECTION0012451000000000000000">
+Synopsis</A>
+</H2>
+<B><I>condor_router_history</I></B>
+[<code>--</code><B>h</B>]
+
+<P>
+<B><I>condor_router_history</I></B>
+[<code>--</code><B>show_records</B>]
+[<code>--</code><B>show_iwd</B>]
+[<code>--</code><B>age</B> <I>days</I>]
+[<code>--</code><B>days</B> <I>days</I>]
+[<code>--</code><B>start</B> <I>"YYYY-MM-DD HH:MM"</I>]
+
+<P>
+
+<H2><A NAME="SECTION0012452000000000000000">
+Description</A>
+</H2>
+<I>condor_router_history</I> summarizes statistics for routed jobs
+over the previous 24 hours.
+With no command line options, statistics for run time,
+number of jobs completed, and number of jobs aborted are 
+listed per route (site).
+
+<P>
+
+<H2><A NAME="SECTION0012453000000000000000">
+Options</A>
+</H2>
+  
+<P>
+  <DL>
+<DT><STRONG><B>--h</B></STRONG></DT>
+<DD>Display usage information and exit.
+  
+<BR>  
+</DD>
+<DT><STRONG><B>--show_records</B></STRONG></DT>
+<DD>Displays individual records in addition to the summary.
+  
+<BR>  
+</DD>
+<DT><STRONG><B>--show_iwd</B></STRONG></DT>
+<DD>Include working directory in displayed records.
+  
+<BR>  
+</DD>
+<DT><STRONG><B>--age </B><I>days</I></STRONG></DT>
+<DD>Set the ending time of the summary to be <I>days</I> days ago.
+  
+<BR>  
+</DD>
+<DT><STRONG><B>--days </B><I>days</I></STRONG></DT>
+<DD>Set the number of days to summarize.
+  
+<BR>  
+</DD>
+<DT><STRONG><B>--start </B><I>"YYYY-MM-DD HH:MM"</I></STRONG></DT>
+<DD>Set the start time of the summary.
+  
+<BR>  
+</DD>
+</DL>
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION0012454000000000000000">
+Exit Status</A>
+</H2>
+<I>condor_router_history</I> will exit with a status of 0 (zero) upon
+success, and non-zero otherwise.
+
+<P>
+
+<H2><A NAME="SECTION0012455000000000000000">
+Author</A>
+</H2> Center for High Throughput Computing, University of Wisconsin-Madison
+  
+<H2><A NAME="SECTION0012456000000000000000">
+Copyright</A>
+</H2> 
+  Copyright &#169; 1990-2015 Center for High Throughput Computing, 
+  Computer Sciences Department, 
+  University of Wisconsin-Madison, Madison, WI.  All Rights Reserved.  
+	Licensed under the Apache License, Version 2.0.  
+
+  <HR>
+<!--Navigation Panel-->
+<A NAME="tex2html4066"
+  HREF="condor_router_q.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html4060"
+  HREF="11_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html4054"
+  HREF="condor_rmdir.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html4062"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html4064"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4067"
+  HREF="condor_router_q.html">condor_router_q</A>
+<B> Up:</B> <A NAME="tex2html4061"
+  HREF="11_Command_Reference.html">11. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html4055"
+  HREF="condor_rmdir.html">condor_rmdir</A>
+ &nbsp; <B>  <A NAME="tex2html4063"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html4065"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

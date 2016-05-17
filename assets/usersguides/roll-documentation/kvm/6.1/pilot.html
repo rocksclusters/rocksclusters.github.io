@@ -1,0 +1,621 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Remotely Controlling VMs with Pilot</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE=" Kvm Users Guide "
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Using the KVM Roll"
+HREF="using.html"><LINK
+REL="PREVIOUS"
+TITLE=" Physical Frontend with Virtual Compute Nodes "
+HREF="using-vm-physical-frontend.html"><LINK
+REL="NEXT"
+TITLE="KVM Networking (Advanced)"
+HREF="network.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Kvm</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/kvmbanner.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="using-vm-physical-frontend.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 3. Using the KVM Roll</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="network.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="PILOT"
+>3.5. Remotely Controlling VMs with Pilot</A
+></H1
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="PILOT-OVERVIEW"
+>3.5.1. Pilot Overview</A
+></H2
+><P
+>"Pilot" is a program that can be used on Windows, Mac OS X and Linux systems to
+remotely and securely control VMs that are housed on Rocks Clusters.
+Pilot communicates to the "Airboss" (see section <A
+HREF="using-virtual-clusters.html#AIRBOSS"
+>The Airboss</A
+>
+for more info) on a Rocks frontend.
+Pilot can power off, power on, install and connect to the
+console of VMs.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="PILOT-INSTALL"
+>3.5.2. Installing Pilot</A
+></H2
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="PILOT-INSTALL-MAC"
+>3.5.2.1. Installing Pilot on Mac OS X</A
+></H3
+><P
+>Open a "terminal" session and execute:</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>$ curl -o pilot.py http://www.rocksclusters.org/ftp-site/pub/rocks/extra/pilot/pilot.py
+$ chmod a+x pilot.py
+$ curl -o TightVncViewer.jar http://www.rocksclusters.org/ftp-site/pub/rocks/extra/pilot/osx/TightVncViewer.jar
+$ curl -o foundation-python-extras.dmg http://www.rocksclusters.org/ftp-site/pub/rocks/extra/pilot/osx/foundation-python-extras.dmg</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><P
+>Install the "foundation-python-extras.dmg" package:</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>$ open foundation-python-extras.dmg</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><P
+>This will open a window with a picture of an open box icon with the label
+"foundation-python-extras.pkg" under it.
+Double click on the open box icon.</P
+><P
+>This will open an installation window.
+Click on the default settings to properly install this package.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="PILOT-INSTALL-WINDOWS"
+>3.5.2.2. Installing Pilot on Windows</A
+></H3
+><P
+>The following procedure has been tested on Windows 7, 32-bit.</P
+><P
+>First, you'll need to install "curl" on your machine.
+Download and unzip the following file:</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>http://am.net/lib/TOOLS/curl/curl-7.21.2-ssl-sspi-zlib-static-bin-w32.zip</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><P
+>Then, from the Rocks web site, download:</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>http://www.rocksclusters.org/ftp-site/pub/rocks/extra/pilot/windows/DLSupport.bat</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><P
+>Open a Windows Command Prompt and execute:</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>PATH=%PATH%;&#60;directory for unzipped curl&#62;
+DLsupport</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><P
+>The above will download: Pilot, VCredist, Python v2.7, OpenSSL and M2Crypto.</P
+><P
+>Install VCredist, Python v2.7, OpenSSL and M2Crypto by executing:</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>vcredist_x86.exe
+python-2.7.msi
+Win32OpenSSL_Light-1_0_0a.exe
+M2Crytpo-0.20.2.win32-py2.7.exe</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><P
+>If you don't already have an SSH client, you'll need to download one.
+We suggest Putty:</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>http://the.earth.li/~sgtatham/putty/latest/x86/putty-0.60-installer.exe</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><P
+>Most Windows PCs already have Java installed.
+Pilot has been tested with versions available from:</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>http://www.java.com/en/download/</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="PILOT-KEY-PAIR"
+>3.5.3. Create a Public/Private Key Pair</A
+></H2
+><P
+>Pilot uses a private/public key pair to authenticate its messages with
+the Airboss.
+If you haven't already created a key pair and associated the public key with
+the virtual frontend of the cluster you wish to remotely control, then login to
+the physical frontend that houses your virtual cluster and execute the
+procedure found here: <A
+HREF="using-virtual-clusters.html#CREATING-KEYS"
+>Creating an RSA Key Pair</A
+>.</P
+><P
+>Then copy the private key to the same directory on your machine where you have
+installed "pilot.py".</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="PILOT-SSH-TUNNEL"
+>3.5.4. Open an SSH Tunnel from Your Machine to the Physical Frontend</A
+></H2
+><P
+>Pilot sends messages to the Airboss on port 8677.
+We'll need to open a secure tunnel and forward port 8677 from your local
+machine to the Rocks frontend where the Airboss is running.</P
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="PILOT-SSH-TUNNEL-MAC"
+>3.5.4.1. Mac OS X SSH Tunneling</A
+></H3
+><P
+>Open a new terminal session and execute:</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>$ ssh -L 8677:localhost:8677 root@beopen.rocksclusters.org</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><P
+>Be sure to replace "beopen.rocksclusters.org" with the FQDN of your frontend.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="PILOT-SSH-TUNNEL-WINDOWS"
+>3.5.4.2. Windows SSH Tunneling</A
+></H3
+><P
+>If using PUTTY, a guide to setting up tunnels can be found here:</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>http://docs.cs.byu.edu/general/ssh_tunnels.html#use-putty-to-set-up-a-tunnel</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="USING-PILOT-POWER"
+>3.5.5. Using Pilot for Remote VM Power Control</A
+></H2
+><P
+>Before you get started, open a new terminal session on your machine.
+Pilot is a command-line utility.</P
+><P
+>To power on a VM, you must know the MAC address of the VM you wish to power on.
+Assuming you want to power on the VM named "frontend-0-0-0" on your
+physical frontend, execute:</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks list host interface frontend-0-0-0
+SUBNET  IFACE MAC               IP              NETMASK       MODULE NAME                  VLAN OPTIONS CHANNEL
+private eth0  76:77:6e:40:00:00 10.1.255.251    255.255.0.0   ------ frontend-0-0-0        2    ------- -------
+public  eth1  76:77:6e:40:00:01 137.110.119.118 255.255.255.0 ------ frontend-0-0-0-public 0    ------- -------</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><P
+>The VM frontend-0-0-0 has the MAC addresses of 76:77:6e:40:00:00 and
+76:77:6e:40:00:01.
+You can use either with pilot.</P
+><P
+>To power on frontend-0-0-0, execute:</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>$ ./pilot.py set host power host=76:77:6e:40:00:00 key=private.key action=on</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><P
+>To power off frontend-0-0-0, execute:</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>$ ./pilot.py set host power host=76:77:6e:40:00:00 key=private.key action=off</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><P
+>To power on and to force frontend-0-0-0 to install, execute:</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>$ ./pilot.py set host power host=76:77:6e:40:00:00 key=private.key action=install</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="USING-PILOT-CONSOLE"
+>3.5.6. Using Pilot to Connect to a VM's Console</A
+></H2
+><P
+>You can also connect to a VMs console with pilot by executing:</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>$ ./pilot.py open host console host=76:77:6e:40:00:00 key=private.key</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><DIV
+CLASS="WARNING"
+><P
+></P
+><TABLE
+CLASS="WARNING"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/warning.png"
+HSPACE="5"
+ALT="Warning"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>When you connect to a VM's console, you will see two mouse pointers, that is,
+the mouse pointers are not in "sync".
+You will have to experiment to find which pointer is the true pointer for the
+console.</P
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="using-vm-physical-frontend.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="network.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Physical Frontend with Virtual Compute Nodes</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="using.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>KVM Networking (Advanced)</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

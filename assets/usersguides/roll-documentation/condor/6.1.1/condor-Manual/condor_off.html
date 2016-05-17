@@ -1,0 +1,370 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<link rel="canonical" href="http://research.cs.wisc.edu/htcondor/manual/current/condor_off.html">
+
+<TITLE>condor_off</TITLE>
+<META NAME="description" CONTENT="condor_off">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="condor_on.html">
+<LINK REL="previous" HREF="condor_master.html">
+<LINK REL="up" HREF="11_Command_Reference.html">
+<LINK REL="next" HREF="condor_on.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html3580"
+  HREF="condor_on.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3574"
+  HREF="11_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3568"
+  HREF="condor_master.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3576"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3578"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3581"
+  HREF="condor_on.html">condor_on</A>
+<B> Up:</B> <A NAME="tex2html3575"
+  HREF="11_Command_Reference.html">11. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3569"
+  HREF="condor_master.html">condor_master</A>
+ &nbsp; <B>  <A NAME="tex2html3577"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3579"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html3582"
+  HREF="condor_off.html#SECTION0012261000000000000000">Synopsis</A>
+<LI><A NAME="tex2html3583"
+  HREF="condor_off.html#SECTION0012262000000000000000">Description</A>
+<LI><A NAME="tex2html3584"
+  HREF="condor_off.html#SECTION0012263000000000000000">Options</A>
+<LI><A NAME="tex2html3585"
+  HREF="condor_off.html#SECTION0012264000000000000000">Exit Status</A>
+<LI><A NAME="tex2html3586"
+  HREF="condor_off.html#SECTION0012265000000000000000">Examples</A>
+<LI><A NAME="tex2html3587"
+  HREF="condor_off.html#SECTION0012266000000000000000">Author</A>
+<LI><A NAME="tex2html3588"
+  HREF="condor_off.html#SECTION0012267000000000000000">Copyright</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION0012260000000000000000"></A><A NAME="man-condor-off"></A>
+<BR>
+<I>condor_off</I>
+</H1> Shutdown HTCondor daemons
+  
+<P>
+
+<H2><A NAME="SECTION0012261000000000000000">
+Synopsis</A>
+</H2><B><I>condor_off</I></B>
+
+[<B>-help <IMG
+ WIDTH="10" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img62.png"
+ ALT="$\vert$"> -version</B>]
+
+<P>
+<B><I>condor_off</I></B>
+[<B>-graceful <IMG
+ WIDTH="10" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img62.png"
+ ALT="$\vert$"> -fast  <IMG
+ WIDTH="10" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img62.png"
+ ALT="$\vert$"> -peaceful <IMG
+ WIDTH="10" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img62.png"
+ ALT="$\vert$"> -force-graceful</B>]
+
+[<B>-debug</B>]
+
+[<B>-pool  </B><I>centralmanagerhostname[:portnumber]</I>] 
+[<B>-name </B><I>hostname</I> <IMG
+ WIDTH="10" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img62.png"
+ ALT="$\vert$"> <I>hostname</I> <IMG
+ WIDTH="10" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img62.png"
+ ALT="$\vert$">
+<B>-addr </B><I>"<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">a.b.c.d:port<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$">"</I> <IMG
+ WIDTH="10" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img62.png"
+ ALT="$\vert$"> <I>"<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">a.b.c.d:port<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$">"</I> <IMG
+ WIDTH="10" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img62.png"
+ ALT="$\vert$"> 
+<B>-constraint </B><I>expression</I> <IMG
+ WIDTH="10" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img62.png"
+ ALT="$\vert$"> <B>-all</B> ]
+
+[<B>-daemon  </B><I>daemonname</I>]
+
+<P>
+<A NAME="69650"></A>
+<A NAME="69651"></A>
+
+<P>
+
+<H2><A NAME="SECTION0012262000000000000000">
+Description</A>
+</H2>
+
+<P>
+<I>condor_off</I> shuts down a set of the HTCondor daemons running on a set of
+one or more machines.
+It does this cleanly so that checkpointable jobs may gracefully exit with
+minimal loss of work.
+
+<P>
+The command <I>condor_off</I> without any arguments will shut down
+all daemons except <I>condor_master</I>.
+The <I>condor_master</I> can then handle both local and remote
+requests to restart the other HTCondor daemons if need be.  To restart
+HTCondor running on a machine, see the <I>condor_on</I> command.
+
+<P>
+With the <B>-daemon </B><I>master</I> option, <I>condor_off</I> will shut down
+all daemons including the <I>condor_master</I>.
+Specification using the <B>-daemon</B> option
+will shut down
+only the specified daemon.
+
+<P>
+For security reasons of authentication and authorization,
+this command requires <TT>ADMINISTRATOR</TT> level of access.
+
+<P>
+
+<H2><A NAME="SECTION0012263000000000000000">
+Options</A>
+</H2>
+  
+<P>
+  <DL>
+<DT><STRONG><B>-help</B></STRONG></DT>
+<DD>Display usage information
+<BR></DD>
+<DT><STRONG><B>-version</B></STRONG></DT>
+<DD>Display version information
+<BR>
+	
+</DD>
+<DT><STRONG><B>-graceful</B></STRONG></DT>
+<DD>Gracefully shutdown daemons (the default)
+<BR>	
+</DD>
+<DT><STRONG><B>-fast</B></STRONG></DT>
+<DD>Quickly shutdown daemons. 
+A minimum of the first two characters of this option must be specified,
+to distinguish it from the <B>-force-graceful</B> command.
+<BR>	
+</DD>
+<DT><STRONG><B>-peaceful</B></STRONG></DT>
+<DD>Wait indefinitely for jobs to finish
+<BR>	
+</DD>
+<DT><STRONG><B>-force-graceful</B></STRONG></DT>
+<DD>Force a graceful shutdown, even after issuing a <B>-peaceful</B> command.
+A minimum of the first two characters of this option must be specified,
+to distinguish it from the <B>-fast</B> command.
+<BR>	
+</DD>
+<DT><STRONG><B>-debug</B></STRONG></DT>
+<DD>Causes debugging information to be sent to
+<TT>stderr</TT>, based on the value of the configuration variable
+<TT>TOOL_DEBUG</TT>
+<BR>
+	
+</DD>
+<DT><STRONG><B>-pool </B><I>centralmanagerhostname[:portnumber]</I></STRONG></DT>
+<DD>Specify a pool by giving the
+	central manager's host name and an optional port number
+<BR></DD>
+<DT><STRONG><B>-name </B><I>hostname</I></STRONG></DT>
+<DD>Send the command to a machine identified by <I>hostname</I>
+<BR></DD>
+<DT><STRONG><I>hostname</I></STRONG></DT>
+<DD>Send the command to a machine identified by <I>hostname</I>
+<BR></DD>
+<DT><STRONG><B>-addr </B><I>"<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">a.b.c.d:port<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$">"</I></STRONG></DT>
+<DD>Send the command
+	to a machine's master located at <I>"<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">a.b.c.d:port<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$">"</I>
+<BR></DD>
+<DT><STRONG><I>"<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">a.b.c.d:port<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$">"</I></STRONG></DT>
+<DD>Send the command
+	to a machine located at <I>"<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">a.b.c.d:port<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$">"</I>
+<BR></DD>
+<DT><STRONG><B>-constraint </B><I>expression</I></STRONG></DT>
+<DD>Apply this command only
+        to machines matching the given ClassAd <I>expression</I>
+<BR></DD>
+<DT><STRONG><B>-all</B></STRONG></DT>
+<DD>Send the command
+	to all machines in the pool
+<BR>
+	
+</DD>
+<DT><STRONG><B>-daemon </B><I>daemonname</I></STRONG></DT>
+<DD>Send the command to the named daemon. Without this option,
+the command is sent to the <I>condor_master</I> daemon.
+<BR>
+  
+</DD>
+</DL>
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION0012264000000000000000">
+Exit Status</A>
+</H2>
+<I>condor_off</I> will exit with a status value of 0 (zero) upon success,
+and it will exit with the value 1 (one) upon failure.
+
+<P>
+
+<H2><A NAME="SECTION0012265000000000000000">
+Examples</A>
+</H2>
+To shut down all daemons (other than <I>condor_master</I>) on the
+local host:
+<PRE>
+% condor_off
+</PRE>
+
+<P>
+To shut down only the <I>condor_collector</I> on three named machines:
+<PRE>
+% condor_off  cinnamon cloves vanilla -daemon collector
+</PRE>
+
+<P>
+To shut down daemons within a pool of machines other than the
+local pool, use the <B>-pool</B> option.
+The argument is the name of the central manager for the pool.
+Note that one or more machines within the pool must be
+specified as the targets for the command.
+This command shuts down all daemons except the <I>condor_master</I>
+on the single machine named <B>cae17</B> within the
+pool of machines that has <B>condor.cae.wisc.edu</B> as
+its central manager:
+<PRE>
+% condor_off  -pool condor.cae.wisc.edu -name cae17
+</PRE>
+
+<P>
+
+<H2><A NAME="SECTION0012266000000000000000">
+Author</A>
+</H2> Center for High Throughput Computing, University of Wisconsin-Madison
+  
+<H2><A NAME="SECTION0012267000000000000000">
+Copyright</A>
+</H2> 
+  Copyright &#169; 1990-2013 Center for High Throughput Computing, 
+  Computer Sciences Department, 
+  University of Wisconsin-Madison, Madison, WI.  All Rights Reserved.  
+	Licensed under the Apache License, Version 2.0.  
+
+  <HR>
+<!--Navigation Panel-->
+<A NAME="tex2html3580"
+  HREF="condor_on.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3574"
+  HREF="11_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3568"
+  HREF="condor_master.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3576"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3578"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3581"
+  HREF="condor_on.html">condor_on</A>
+<B> Up:</B> <A NAME="tex2html3575"
+  HREF="11_Command_Reference.html">11. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3569"
+  HREF="condor_master.html">condor_master</A>
+ &nbsp; <B>  <A NAME="tex2html3577"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3579"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

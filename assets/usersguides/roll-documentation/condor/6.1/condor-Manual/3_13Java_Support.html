@@ -1,0 +1,228 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>3.13 Java Support Installation</TITLE>
+<META NAME="description" CONTENT="3.13 Java Support Installation">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="3_14Virtual_Machines.html">
+<LINK REL="previous" HREF="3_12Setting_Up.html">
+<LINK REL="up" HREF="3_Administrators_Manual.html">
+<LINK REL="next" HREF="3_14Virtual_Machines.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html1688"
+  HREF="3_14Virtual_Machines.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1682"
+  HREF="3_Administrators_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1676"
+  HREF="3_12Setting_Up.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1684"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1686"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1689"
+  HREF="3_14Virtual_Machines.html">3.14 Virtual Machines</A>
+<B> Up:</B> <A NAME="tex2html1683"
+  HREF="3_Administrators_Manual.html">3. Administrators' Manual</A>
+<B> Previous:</B> <A NAME="tex2html1677"
+  HREF="3_12Setting_Up.html">3.12 Setting Up for</A>
+ &nbsp; <B>  <A NAME="tex2html1685"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1687"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION004130000000000000000"></A><A NAME="sec:java-install"></A>
+<BR>
+3.13 Java Support Installation
+</H1>
+
+<P>
+<A NAME="37820"></A>
+<A NAME="37821"></A>
+
+<P>
+Compiled Java programs may be executed (under Condor) on
+any
+execution site with a
+<A NAME="37822"></A>
+<A NAME="37823"></A>
+Java Virtual Machine (JVM).
+To do this,
+Condor must be informed of some details of the
+JVM installation.
+
+<P>
+Begin by installing a Java distribution according to the vendor's
+instructions.
+We have successfully used the Sun Java Developer's Kit,
+but any distribution should suffice.
+Your machine may have
+been delivered with a JVM already installed - installed code
+is frequently found in <TT>/usr/bin/java</TT>.
+
+<P>
+Condor's configuration includes the location of the installed
+JVM.
+Edit the configuration file.
+Modify the <TT>JAVA</TT> <A NAME="37859"></A> <A NAME="37860"></A> entry to point to the JVM binary,
+typically <TT>/usr/bin/java</TT>.
+Restart the <I>condor_startd</I> daemon on that host.  For example,
+
+<P>
+<PRE>
+% condor_restart -startd bluejay
+</PRE>
+
+<P>
+The <I>condor_startd</I> daemon takes a few moments to exercise the Java
+capabilities of the <I>condor_starter</I>, query its properties,
+and then advertise the machine
+to the pool as Java-capable.
+If the set up succeeded, then <I>condor_status</I> will
+tell you the host is now Java-capable by printing the Java
+vendor and the version number:
+
+<P>
+<PRE>
+% condor_status -java bluejay
+</PRE>
+
+<P>
+After a suitable amount of time, if this command does not give any output,
+then the <I>condor_starter</I>  is having difficulty executing the JVM.
+The exact cause of the problem depends on the details of the
+JVM, the local installation, and a variety of other factors.
+We can offer only limited advice on these matters,
+but here is an approach to solving the problem.
+
+<P>
+To reproduce the test that the <I>condor_starter</I> is attempting,
+try running the Java <I>condor_starter</I> directly.  To find
+where the <I>condor_starter</I> is installed, run this command:
+
+<P>
+<PRE>
+% condor_config_val STARTER
+</PRE>
+
+<P>
+This command prints out the path to the <I>condor_starter</I>,
+perhaps something like this:
+
+<P>
+<PRE>
+/usr/condor/sbin/condor_starter
+</PRE>
+
+<P>
+Use this path to execute the <I>condor_starter</I> directly
+with the <I>-classad</I> argument.
+This tells the starter to run its tests and display its properties.
+
+<P>
+<PRE>
+/usr/condor/sbin/condor_starter -classad
+</PRE>
+
+<P>
+This command will display a short list of cryptic properties, such as:
+
+<P>
+<PRE>
+IsDaemonCore = True
+HasFileTransfer = True
+HasMPI = True
+CondorVersion = "$CondorVersion: 7.1.0 Mar 26 2008 BuildID: 80210 $"
+</PRE>
+
+<P>
+If the Java configuration is correct, there will also
+be a short list of Java properties, such as:
+
+<P>
+<PRE>
+JavaVendor = "Sun Microsystems Inc."
+JavaVersion = "1.2.2"
+JavaMFlops = 9.279696
+HasJava = True
+</PRE>
+
+<P>
+If the Java installation is incorrect, then any error
+messages from the shell or Java will be printed
+on the error stream instead.
+
+<P>
+The Sun JVM sets a value of 64 Mbytes for the Java Maxheap Argument,
+which Condor uses.
+This value is often too small for the application.
+The administrator can change this value through configuration by setting
+a different value for <TT>JAVA_EXTRA_ARGUMENTS</TT> <A NAME="37887"></A> <A NAME="37888"></A>.
+
+<P>
+<PRE>
+JAVA_EXTRA_ARGUMENTS = -Xmx1024m
+</PRE>Note that if a specific job sets the value in the submit description
+file, using the submit command <B>java_vm_args</B>,
+this job's value takes precedence over a configured value.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1688"
+  HREF="3_14Virtual_Machines.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1682"
+  HREF="3_Administrators_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1676"
+  HREF="3_12Setting_Up.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1684"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1686"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1689"
+  HREF="3_14Virtual_Machines.html">3.14 Virtual Machines</A>
+<B> Up:</B> <A NAME="tex2html1683"
+  HREF="3_Administrators_Manual.html">3. Administrators' Manual</A>
+<B> Previous:</B> <A NAME="tex2html1677"
+  HREF="3_12Setting_Up.html">3.12 Setting Up for</A>
+ &nbsp; <B>  <A NAME="tex2html1685"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1687"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

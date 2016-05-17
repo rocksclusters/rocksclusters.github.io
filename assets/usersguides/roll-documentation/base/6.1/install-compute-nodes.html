@@ -1,0 +1,470 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+> Install Your Compute Nodes </TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE=" Installing a Rocks Cluster "
+HREF="installing.html"><LINK
+REL="PREVIOUS"
+TITLE=" Install and Configure Your Frontend "
+HREF="install-frontend.html"><LINK
+REL="NEXT"
+TITLE=" Upgrade or Reconfigure Your Existing Frontend "
+HREF="upgrade-frontend.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Base</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="install-frontend.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 3. Installing a Rocks Cluster</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="upgrade-frontend.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="INSTALL-COMPUTE-NODES"
+>3.3. Install Your Compute Nodes</A
+></H1
+><P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>	Login to the frontend node as <SAMP
+CLASS="COMPUTEROUTPUT"
+>root</SAMP
+>.
+	</P
+></LI
+><LI
+><P
+>	Run the program which captures compute node DHCP requests and puts
+	their information into the Rocks MySQL database:
+	</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># insert-ethers</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>	This presents a screen that looks like:
+	</P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/insert-ethers-1.png"></P
+></DIV
+><DIV
+CLASS="WARNING"
+><P
+></P
+><TABLE
+CLASS="WARNING"
+WIDTH="90%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/warning.png"
+HSPACE="5"
+ALT="Warning"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	If your frontend and compute nodes are connected via a managed
+	ethernet switch, you'll want to select 'Ethernet Switches' from 
+	the list above.
+	This is because the default behavior of many managed ethernet switches
+	is to issue DHCP requests in order to receive an IP address that
+	clients can use to configure and monitor the switch.
+	</P
+><P
+>	When <SAMP
+CLASS="COMPUTEROUTPUT"
+>insert-ethers</SAMP
+> captures the DHCP
+	request for the managed switch, it will configure it as an ethernet
+	switch and store that information in the MySQL database on the
+	frontend.
+	</P
+><P
+>	As a side note, you may have to wait several minutes before the
+	ethernet switch broadcasts its DHCP request.
+	If after 10 minutes (or if
+	<SAMP
+CLASS="COMPUTEROUTPUT"
+>insert-ethers</SAMP
+> has correctly detected
+	and configured the ethernet switch), then you should quit
+	<SAMP
+CLASS="COMPUTEROUTPUT"
+>insert-ethers</SAMP
+> by hitting the
+	<SAMP
+CLASS="COMPUTEROUTPUT"
+>F8</SAMP
+> key.
+	</P
+><P
+>	Now, restart <SAMP
+CLASS="COMPUTEROUTPUT"
+>insert-ethers</SAMP
+> and
+	continue reading below to configure your compute nodes.
+	</P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>	Take the default selection, <SAMP
+CLASS="COMPUTEROUTPUT"
+>Compute</SAMP
+>,
+	hit 'Ok'.
+	</P
+></LI
+><LI
+><P
+>	Then you'll see:
+	</P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/insert-ethers-2.png"></P
+></DIV
+><P
+>	This indicates that <SAMP
+CLASS="COMPUTEROUTPUT"
+>insert-ethers</SAMP
+>
+	is waiting for new compute nodes.
+	</P
+></LI
+><LI
+><P
+>	Power up the first compute node.
+	</P
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="90%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/note.png"
+HSPACE="5"
+ALT="Note"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>	The BIOS boot order of your compute nodes should be: CD,
+	PXE (Network Boot), Hard Disk.
+	</P
+><P
+>	If your compute nodes don't support PXE,
+	then you'll need to boot your compute nodes with the Kernel Roll CD.
+	</P
+><P
+>	If you don't have a CD drive in your compute nodes and if the
+	network adapters in your compute nodes don't support PXE,
+	see <A
+HREF="faq-installation.html#FLOPPY-BOOT"
+>Using a Floppy to PXE boot</A
+>.
+	</P
+></TD
+></TR
+></TABLE
+></DIV
+></LI
+><LI
+><P
+>	When the frontend machine receives the DHCP request from the compute
+	node, you will see something similar to:
+	</P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/insert-ethers-3.png"></P
+></DIV
+><P
+>	This indicates that <SAMP
+CLASS="COMPUTEROUTPUT"
+>insert-ethers</SAMP
+>
+	received the DHCP request from the compute node, inserted it into the
+	database and updated all configuration files (e.g.,
+	<SAMP
+CLASS="COMPUTEROUTPUT"
+>/etc/hosts, /etc/dhcpd.conf</SAMP
+> and DNS).
+	</P
+><P
+>	The above screen will be displayed for a few seconds and then you'll
+	see the following:
+	</P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/insert-ethers-4.png"></P
+></DIV
+><P
+>In the above image, insert-ethers has discovered a
+compute node.
+The "( )" next to compute-0-0 indicates the node has not yet requested a
+kickstart file.
+You will see this type of output for each compute node that is successfully identified by insert-ethers. </P
+><DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/insert-ethers-5.png"></P
+></DIV
+><A
+NAME="AEN892"
+></A
+><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><P
+><EM
+>Figure:</EM
+> The compute node has successfully requested a kickstart file from the frontend. If there are no more compute nodes, you may now quit insert-ethers. Kickstart files are retrieved via HTTPS. If there was an error during the transmission, the error code will be visible instead of "*". </P
+></BLOCKQUOTE
+></LI
+><LI
+><P
+>	At this point, you can monitor the installation by using
+	<SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks-console</SAMP
+>.
+	Just extract the name of the installing compute node from the
+	<SAMP
+CLASS="COMPUTEROUTPUT"
+>insert-ethers</SAMP
+> output (in the example
+	above, the compute node name is
+	<SAMP
+CLASS="COMPUTEROUTPUT"
+>compute-0-0</SAMP
+>), and execute:
+	</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks-console compute-0-0</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>	After you've installed all the compute nodes in a cabinet,
+	quit <SAMP
+CLASS="COMPUTEROUTPUT"
+>insert-ethers</SAMP
+> by hitting
+	the 'F8' key.
+	</P
+></LI
+><LI
+><P
+>	After you've installed all the compute nodes in the first cabinet and
+	you wish to install the compute nodes in the next cabinet, just
+	start <SAMP
+CLASS="COMPUTEROUTPUT"
+>insert-ethers</SAMP
+> like:
+	</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># insert-ethers --cabinet=1</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>	This will name all new compute nodes like
+	<SAMP
+CLASS="COMPUTEROUTPUT"
+>compute-1-0</SAMP
+>, 
+	<SAMP
+CLASS="COMPUTEROUTPUT"
+>compute-1-1</SAMP
+>, ... 
+	</P
+></LI
+></OL
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="install-frontend.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="upgrade-frontend.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Install and Configure Your Frontend</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="installing.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Upgrade or Reconfigure Your Existing Frontend</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

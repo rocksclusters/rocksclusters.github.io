@@ -1,0 +1,195 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>8.2 Upgrading from the 7.4 series to the 7.6 series of Condor</TITLE>
+<META NAME="description" CONTENT="8.2 Upgrading from the 7.4 series to the 7.6 series of Condor">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="8_3Stable_Release.html">
+<LINK REL="previous" HREF="8_1Introduction_Condor.html">
+<LINK REL="up" HREF="8_Version_History.html">
+<LINK REL="next" HREF="8_3Stable_Release.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html2234"
+  HREF="8_3Stable_Release.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2228"
+  HREF="8_Version_History.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2222"
+  HREF="8_1Introduction_Condor.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2230"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2232"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2235"
+  HREF="8_3Stable_Release.html">8.3 Stable Release Series</A>
+<B> Up:</B> <A NAME="tex2html2229"
+  HREF="8_Version_History.html">8. Version History and</A>
+<B> Previous:</B> <A NAME="tex2html2223"
+  HREF="8_1Introduction_Condor.html">8.1 Introduction to Condor</A>
+ &nbsp; <B>  <A NAME="tex2html2231"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2233"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00920000000000000000"></A><A NAME="sec:gotchas"></A>
+<BR>
+8.2 Upgrading from the 7.4 series to the 7.6 series of Condor
+</H1>
+
+<P>
+<A NAME="51124"></A>
+While upgrading from the 7.4 series of Condor to the 7.6 series will
+bring many new features and improvements introduced in the 7.5 series of
+Condor, it will also introduce changes that administrators of sites
+running from an older Condor version should be aware of when
+planning an upgrade.
+Here is a list of items that administrators should be aware of.
+
+<P>
+
+<UL>
+<LI>Previously, Condor's RPM packaging installed into <TT>/opt</TT>.
+  Now, the RPM install paths adhere to the Linux Standard Base File System
+  Hierarchy Standard (LSB-FHS), meaning Condor will be installed by default
+  into appropriate subdirectories within <TT>/usr</TT>.  
+  See section&nbsp;<A HREF="3_2Installation.html#sec:install-rpms">3.2.6</A> for updated RPM information. 
+
+<P>
+</LI>
+<LI>The feature set once known as the Startd Cron or as Hawkeye is now
+  called <I>Daemon ClassAd Hooks</I>.  Besides the new name, the mechanisms
+  have been updated, and the configuration has changed.
+  Sites using this functionality are strongly encouraged to
+  update their configuration file to adhere to the new syntax. 
+  Configuration file syntax introduced in Condor version 7.2 
+  is still compatible with Condor version 7.6,
+  but the syntax of Condor version 7.0 is unlikely to work as expected.
+  See section&nbsp;<A HREF="4_4Hooks.html#sec:daemon-classad-hooks">4.4.3</A> for documentation.
+
+<P>
+</LI>
+<LI>For those who compile Condor from the source code, 
+  rather than using packages of pre-built executables, 
+  Condor is now built using <I>cmake</I> on all platforms.
+  This means the process for building Condor from source code has changed.
+  For instructions, 
+  see the Condor Wiki at <A NAME="tex2html104"
+  HREF="http://wiki.condorproject.org">http://wiki.condorproject.org</A>, and follow 
+
+the Wiki link to the section on Building and Testing Condor.
+
+<P>
+</LI>
+<LI>Quill and Stork are no longer included in the binary packages
+  released from the Condor Project. Instead, both are available as
+  <I>Contribution Modules</I>. 
+  Contribution Modules are optional packages that add functionality to Condor,
+  but are provided and maintained outside of the core code base, 
+  often by third parties. 
+  To add Quill and/or Stork to Condor, 
+  see the Condor Wiki at <A NAME="tex2html105"
+  HREF="http://wiki.condorproject.org">http://wiki.condorproject.org</A>, follow 
+
+the Wiki link, and see the section titled User FAQs.
+
+<P>
+</LI>
+<LI>The layout in the <TT>SPOOL</TT> directory has changed.
+  As a result,
+  be certain to upgrade all Condor binaries on a given host at the same time.
+  That is, do not try to run Condor version 7.6 <I>condor_schedd</I> daemons 
+  and Condor version 7.4 <I>condor_shadow</I> daemons on the same machine.
+  Also, should you need to revert back to an older version of
+  Condor after running Condor version 7.6 (hopefully not the case!),
+  be aware of release notes for Condor version 7.5.5 regarding the 
+  <TT>SPOOL</TT> directory in section&nbsp;<A HREF="8_4Development_Release.html#sec:New-7-5-5">8.4</A>.
+
+<P>
+</LI>
+<LI>Issues regarding the detection of keyboard activity on Linux and
+  especially on Windows Vista/7 have been addressed. Bottom line: if you
+  want Condor to detect keyboard/mouse activity on either of these
+  platforms, ensure that the subsystem <TT>KBDD</TT> is listed in the
+  <TT>DAEMON_LIST</TT> configuration variable definition on start up.
+
+<P>
+</LI>
+<LI>On Windows platforms,
+  the MSI installer has been rewritten (using WiX) to better
+  support Windows 7. While the installation process is essentially the same,
+  a handful of arguments that control an <I>unattended</I> MSI installation
+  have changed, such as the arguments controlling HDFS installation.  See
+  section&nbsp;<A HREF="3_2Installation.html#sec:nt-unattended-install-procedure">3.2.5</A> for the updated list of
+  unattended installation arguments.
+
+<P>
+</LI>
+<LI>The submit description file commands for grid jobs using a
+<B>grid_resource</B> type of amazon has changed. Users will need to
+edit their submit description files for jobs destined for Amazon to
+include an EC2 URL. See section&nbsp;<A HREF="5_3Grid_Universe.html#sec:Amazon-submit">5.3.7</A>.
+
+<P>
+</LI>
+</UL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html2234"
+  HREF="8_3Stable_Release.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2228"
+  HREF="8_Version_History.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2222"
+  HREF="8_1Introduction_Condor.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2230"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2232"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2235"
+  HREF="8_3Stable_Release.html">8.3 Stable Release Series</A>
+<B> Up:</B> <A NAME="tex2html2229"
+  HREF="8_Version_History.html">8. Version History and</A>
+<B> Previous:</B> <A NAME="tex2html2223"
+  HREF="8_1Introduction_Condor.html">8.1 Introduction to Condor</A>
+ &nbsp; <B>  <A NAME="tex2html2231"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2233"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

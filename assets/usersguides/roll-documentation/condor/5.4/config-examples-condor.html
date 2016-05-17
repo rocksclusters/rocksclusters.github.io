@@ -1,0 +1,185 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Examples of Condor Configuration</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE=" Condor Roll: Users Guide "
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Customizing the Condor Roll"
+HREF="customizing.html"><LINK
+REL="PREVIOUS"
+TITLE="Using a pool password to secure Condor Communications"
+HREF="condor-password-security.html"><LINK
+REL="NEXT"
+TITLE="Reconfiguring Condor after Installation "
+HREF="reconfiguring-condor.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Condor Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/condor.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="condor-password-security.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 4. Customizing the Condor Roll</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="reconfiguring-condor.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="CONFIG-EXAMPLES-CONDOR"
+>4.3. Examples of Condor Configuration</A
+></H1
+><P
+>The following are short examples of how to customize Condor using 
+Rocks commands.
+
+<P
+></P
+><UL
+><LI
+><P
+>Enable Condor Client on all VM-Containers Appliances:
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks add appliance attr vm-container Condor_Client true </SAMP
+></P
+></LI
+><LI
+><P
+>Disable Condor on particular node:
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks set host attr compute-0-0 Condor_Client false </SAMP
+></P
+></LI
+><LI
+><P
+>Define a New Condor Master:
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks set attr Condor_Master central-master.my.edu </SAMP
+></P
+></LI
+></UL
+>&#13;</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="condor-password-security.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="reconfiguring-condor.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Using a pool password to secure Condor Communications</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="customizing.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Reconfiguring Condor after Installation</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

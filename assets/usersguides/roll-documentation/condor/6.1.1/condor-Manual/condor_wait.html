@@ -1,0 +1,316 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<link rel="canonical" href="http://research.cs.wisc.edu/htcondor/manual/current/condor_wait.html">
+
+<TITLE>condor_wait</TITLE>
+<META NAME="description" CONTENT="condor_wait">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="condor_who.html">
+<LINK REL="previous" HREF="condor_version.html">
+<LINK REL="up" HREF="11_Command_Reference.html">
+<LINK REL="next" HREF="condor_who.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html4336"
+  HREF="condor_who.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html4330"
+  HREF="11_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html4324"
+  HREF="condor_version.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html4332"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html4334"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4337"
+  HREF="condor_who.html">condor_who</A>
+<B> Up:</B> <A NAME="tex2html4331"
+  HREF="11_Command_Reference.html">11. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html4325"
+  HREF="condor_version.html">condor_version</A>
+ &nbsp; <B>  <A NAME="tex2html4333"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html4335"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html4338"
+  HREF="condor_wait.html#SECTION0012621000000000000000">Synopsis</A>
+<LI><A NAME="tex2html4339"
+  HREF="condor_wait.html#SECTION0012622000000000000000">Description</A>
+<LI><A NAME="tex2html4340"
+  HREF="condor_wait.html#SECTION0012623000000000000000">Options</A>
+<LI><A NAME="tex2html4341"
+  HREF="condor_wait.html#SECTION0012624000000000000000">General Remarks</A>
+<LI><A NAME="tex2html4342"
+  HREF="condor_wait.html#SECTION0012625000000000000000">Examples</A>
+<LI><A NAME="tex2html4343"
+  HREF="condor_wait.html#SECTION0012626000000000000000">Exit Status</A>
+<LI><A NAME="tex2html4344"
+  HREF="condor_wait.html#SECTION0012627000000000000000">Author</A>
+<LI><A NAME="tex2html4345"
+  HREF="condor_wait.html#SECTION0012628000000000000000">Copyright</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION0012620000000000000000"></A><A NAME="man-condor-wait"></A>
+<BR>
+<I>condor_wait</I>
+</H1> Wait for jobs to finish
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION0012621000000000000000">
+Synopsis</A>
+</H2>
+<B><I>condor_wait</I></B>
+
+[<B>-help <IMG
+ WIDTH="10" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img62.png"
+ ALT="$\vert$"> -version</B>]
+
+<P>
+<B><I>condor_wait</I></B>
+[<B>-debug</B>]
+[<B>-status</B>]
+[<B>-echo</B>]
+[<B>-wait  </B><I>seconds</I>]
+[<B>-num  </B><I>number-of-jobs</I>]
+<I>log-file</I>
+[<B>job ID</B>]
+
+<P>
+<A NAME="86622"></A>
+<A NAME="86623"></A>
+
+<P>
+
+<H2><A NAME="SECTION0012622000000000000000">
+Description</A>
+</H2>
+
+<P>
+<I>condor_wait</I> watches a job event log file
+(created with the <B>log</B> command within a submit description file)
+and returns when one or more jobs from the
+log have completed or aborted.
+
+<P>
+Because <I>condor_wait</I> expects to find at least one job submitted
+event in the log file, at least one job must have been successfully submitted
+with <I>condor_submit</I> before <I>condor_wait</I> is executed.
+
+<P>
+<I>condor_wait</I> will wait forever for jobs to finish, unless
+a shorter wait time is specified.
+
+<P>
+
+<H2><A NAME="SECTION0012623000000000000000">
+Options</A>
+</H2>
+  
+<P>
+  <DL>
+<DT><STRONG><B>-help</B></STRONG></DT>
+<DD>Display usage information
+<BR></DD>
+<DT><STRONG><B>-version</B></STRONG></DT>
+<DD>Display version information
+<BR>
+    
+</DD>
+<DT><STRONG><B>-debug</B></STRONG></DT>
+<DD>Show extra debugging information.
+<BR>    
+</DD>
+<DT><STRONG><B>-status</B></STRONG></DT>
+<DD>Show job start and terminate information.
+<BR>    
+</DD>
+<DT><STRONG><B>-echo</B></STRONG></DT>
+<DD>Print the events out to <TT>stdout</TT>.
+<BR>    
+</DD>
+<DT><STRONG><B>-wait </B><I>seconds</I></STRONG></DT>
+<DD>Wait no more than the
+    integer number of <I>seconds</I>.
+    The default is unlimited time.
+<BR>    
+</DD>
+<DT><STRONG><B>-num </B><I>number-of-jobs</I></STRONG></DT>
+<DD>Wait for the integer
+    <I>number-of-jobs</I> jobs to end. The default is all jobs in the
+    log file.
+<BR>    
+</DD>
+<DT><STRONG>log file</STRONG></DT>
+<DD>The name of the log file to watch for
+    information about the job.
+<BR>    
+</DD>
+<DT><STRONG>job ID</STRONG></DT>
+<DD>A specific job or set of jobs to watch.
+    <A NAME="86826"></A>
+    If the <B>job ID</B> is only the job ClassAd attribute <TT>ClusterId</TT>,
+    then <I>condor_wait</I> waits for all jobs with the given 
+    <TT>ClusterId</TT>.
+    If the <B>job ID</B> is a pair of the 
+    job ClassAd attributes, given by <TT>ClusterId</TT>.<TT>ProcId</TT>,
+    then <I>condor_wait</I> waits for the specific job with this <B>job ID</B>.
+    If this option is not specified, all jobs that exist in the log file
+    when <I>condor_wait</I> is invoked will be watched.
+<BR>
+<P>
+</DD>
+</DL>
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION0012624000000000000000">
+General Remarks</A>
+</H2>
+
+<P>
+<I>condor_wait</I> is an inexpensive way to test or wait for the completion
+of a job or a whole cluster, if you are trying to get a process
+outside of HTCondor to synchronize with a job or set of jobs.
+
+<P>
+It can also be used to wait for the completion of a limited subset of
+jobs, via the <B>-num</B> option.
+
+<P>
+
+<H2><A NAME="SECTION0012625000000000000000">
+Examples</A>
+</H2>
+
+<P>
+<PRE>
+condor_wait logfile
+</PRE>
+This command waits for all jobs that exist in <TT>logfile</TT> to complete.
+
+<P>
+<PRE>
+condor_wait logfile 40
+</PRE>
+This command waits for all jobs that exist in <TT>logfile</TT> 
+with a job ClassAd attribute <TT>ClusterId</TT> of
+40 to complete.
+
+<P>
+<PRE>
+condor_wait -num 2 logfile
+</PRE>
+This command waits for any two jobs that exist in <TT>logfile</TT> to
+complete.
+
+<P>
+<PRE>
+condor_wait logfile 40.1
+</PRE>
+This command waits for job 40.1 that exists in <TT>logfile</TT> to
+complete.
+
+<P>
+<PRE>
+condor_wait -wait 3600 logfile 40.1
+</PRE>
+This waits for job 40.1 to
+complete by watching <TT>logfile</TT>, but it will not wait more than one
+hour (3600 seconds).
+
+<P>
+
+<H2><A NAME="SECTION0012626000000000000000">
+Exit Status</A>
+</H2>
+
+<P>
+<I>condor_wait</I> exits with 0 if and only if the specified job or jobs
+have completed or
+aborted. <I>condor_wait</I> returns 1 if unrecoverable errors occur, such
+as a missing log file, if the job does not exist in the log file, or
+the user-specified waiting time has expired.
+
+<P>
+
+<H2><A NAME="SECTION0012627000000000000000">
+Author</A>
+</H2> Center for High Throughput Computing, University of Wisconsin-Madison
+  
+<H2><A NAME="SECTION0012628000000000000000">
+Copyright</A>
+</H2> 
+  Copyright &#169; 1990-2013 Center for High Throughput Computing, 
+  Computer Sciences Department, 
+  University of Wisconsin-Madison, Madison, WI.  All Rights Reserved.  
+	Licensed under the Apache License, Version 2.0.  
+
+  <HR>
+<!--Navigation Panel-->
+<A NAME="tex2html4336"
+  HREF="condor_who.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html4330"
+  HREF="11_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html4324"
+  HREF="condor_version.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html4332"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html4334"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4337"
+  HREF="condor_who.html">condor_who</A>
+<B> Up:</B> <A NAME="tex2html4331"
+  HREF="11_Command_Reference.html">11. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html4325"
+  HREF="condor_version.html">condor_version</A>
+ &nbsp; <B>  <A NAME="tex2html4333"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html4335"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

@@ -1,0 +1,319 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<link rel="canonical" href="http://research.cs.wisc.edu/htcondor/manual/current/condor_ping.html">
+
+<TITLE>condor_ping</TITLE>
+<META NAME="description" CONTENT="condor_ping">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="condor_power.html">
+<LINK REL="previous" HREF="condor_on.html">
+<LINK REL="up" HREF="11_Command_Reference.html">
+<LINK REL="next" HREF="condor_power.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html3622"
+  HREF="condor_power.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3616"
+  HREF="11_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3610"
+  HREF="condor_on.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3618"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3620"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3623"
+  HREF="condor_power.html">condor_power</A>
+<B> Up:</B> <A NAME="tex2html3617"
+  HREF="11_Command_Reference.html">11. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3611"
+  HREF="condor_on.html">condor_on</A>
+ &nbsp; <B>  <A NAME="tex2html3619"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3621"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html3624"
+  HREF="condor_ping.html#SECTION0012281000000000000000">Synopsis</A>
+<LI><A NAME="tex2html3625"
+  HREF="condor_ping.html#SECTION0012282000000000000000">Description</A>
+<LI><A NAME="tex2html3626"
+  HREF="condor_ping.html#SECTION0012283000000000000000">Options</A>
+<LI><A NAME="tex2html3627"
+  HREF="condor_ping.html#SECTION0012284000000000000000">Examples</A>
+<LI><A NAME="tex2html3628"
+  HREF="condor_ping.html#SECTION0012285000000000000000">Exit Status</A>
+<LI><A NAME="tex2html3629"
+  HREF="condor_ping.html#SECTION0012286000000000000000">Author</A>
+<LI><A NAME="tex2html3630"
+  HREF="condor_ping.html#SECTION0012287000000000000000">Copyright</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION0012280000000000000000"></A><A NAME="man-condor-ping"></A>
+<BR>
+<I>condor_ping</I>
+</H1> Attempt a security negotiation to determine if it succeeds
+  
+<P>
+
+<H2><A NAME="SECTION0012281000000000000000">
+Synopsis</A>
+</H2><B><I>condor_ping</I></B>
+
+[<B>-help <IMG
+ WIDTH="10" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img62.png"
+ ALT="$\vert$"> -version</B>]
+
+<P>
+<B><I>condor_ping</I></B>
+[<B>-debug</B>]
+[<B>-address  </B><I>&lt;a.b.c.d:port&gt;</I>]
+[<B>-pool  </B><I>host name</I>]
+[<B>-name  </B><I>daemon name</I>]
+[<B>-type  </B><I>subsystem</I>]
+[<B>-config  </B><I>filename</I>]
+[<B>-quiet | -table | -verbose</B>]
+<I>token</I>
+[<I>token [... ]</I>]
+
+<P>
+<A NAME="70312"></A>
+<A NAME="70313"></A>
+
+<P>
+
+<H2><A NAME="SECTION0012282000000000000000">
+Description</A>
+</H2>
+<I>condor_ping</I> attempts a security negotiation to discover whether the
+configuration is set such that the negotiation succeeds.
+The target of the negotiation is defined by one or a combination of 
+the <B>address</B>, <B>pool</B>, <B>name</B>, or <B>type</B> options.
+If no target is specified,
+the default target is the <I>condor_schedd</I> daemon on the local machine.
+
+<P>
+One or more <I>token</I>s may be listed,
+thereby specifying one or more authorization level to impersonate in
+security negotiation.
+A token is the value <TT>ALL</TT>, an authorization level,
+a command name, or the integer value of a command.
+The many command names and their associated integer values will more
+likely be used by experts,
+and they are defined in the file <TT>condor_includes/condor_commands.h</TT>. 
+
+<P>
+An authorization level may be one of the following strings.
+If <TT>ALL</TT> is listed, 
+then negotiation is attempted for each of these possible authorization levels.
+<DL>
+<DT><STRONG>READ</STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG>WRITE</STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG>ADMINISTRATOR</STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG>SOAP</STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG>CONFIG</STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG>OWNER</STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG>DAEMON</STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG>NEGOTIATOR</STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG>ADVERTISE_MASTER</STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG>ADVERTISE_STARTD</STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG>ADVERTISE_SCHEDD</STRONG></DT>
+<DD>
+</DD>
+<DT><STRONG>CLIENT</STRONG></DT>
+<DD>
+</DD>
+</DL>
+
+<P>
+
+<H2><A NAME="SECTION0012283000000000000000">
+Options</A>
+</H2>
+  
+<P>
+  <DL>
+<DT><STRONG><B>-help</B></STRONG></DT>
+<DD>Display usage information
+<BR></DD>
+<DT><STRONG><B>-version</B></STRONG></DT>
+<DD>Display version information
+<BR>
+  
+</DD>
+<DT><STRONG><B>-debug</B></STRONG></DT>
+<DD>Print extra debugging information as the command
+    executes.
+<BR>  
+</DD>
+<DT><STRONG><B>-config </B><I>filename</I></STRONG></DT>
+<DD>Attempt the negotiation based on the contents of the configuration file
+    contents in file <I>filename</I>.  
+<BR>  
+</DD>
+<DT><STRONG><B>-address </B><I>&lt;a.b.c.d:port&gt;</I></STRONG></DT>
+<DD>Target the given IP address with the negotiation attempt.  
+<BR>  
+</DD>
+<DT><STRONG><B>-pool </B><I>hostname</I></STRONG></DT>
+<DD>Target the given <I>host</I> with the negotiation attempt. 
+    May be combined with specifications defined by <B>name</B> 
+    and <B>type</B> options. 
+<BR>  
+</DD>
+<DT><STRONG><B>-name </B><I>daemonname</I></STRONG></DT>
+<DD>Target the daemon given by <I>daemonname</I> with the negotiation attempt. 
+    
+<BR>  
+</DD>
+<DT><STRONG><B>-type </B><I>subsystem</I></STRONG></DT>
+<DD>Target the daemon identified by <I>subsystem</I>, 
+    one of the values of the predefined <TT>$(SUBSYSTEM)</TT> macro. 
+<BR>  
+</DD>
+<DT><STRONG><B>-quiet</B></STRONG></DT>
+<DD>Set exit status only; no output displayed.
+<BR>  
+</DD>
+<DT><STRONG><B>-table</B></STRONG></DT>
+<DD>Output is displayed with one result per line,
+    in a table format.
+<BR>  
+</DD>
+<DT><STRONG><B>-verbose</B></STRONG></DT>
+<DD>Display all available output.
+<BR>  
+</DD>
+</DL>
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION0012284000000000000000">
+Examples</A>
+</H2>
+
+<P>
+The example Unix command
+<PRE>
+condor_ping  -address "&lt;127.0.0.1:9618&gt;" -table READ WRITE DAEMON
+</PRE>
+places double quote marks around the sinful string to prevent the
+less than and the greater than characters from causing redirect of
+input and output.
+The given IP address is targeted with 3 attempts to negotiate:
+one at the <TT>READ</TT> authorization level, 
+one at the <TT>WRITE</TT> authorization level, 
+and one at the <TT>DAEMON</TT> authorization level.
+
+<P>
+
+<H2><A NAME="SECTION0012285000000000000000">
+Exit Status</A>
+</H2>
+
+<P>
+<I>condor_ping</I> will exit with the status value of the negotiation
+it attempted,
+where 0 (zero) indicates success, and 1 (one) indicates failure.
+If multiple security negotiations were attempted, 
+the exit status will be the logical OR of all values.
+
+<P>
+
+<H2><A NAME="SECTION0012286000000000000000">
+Author</A>
+</H2> Center for High Throughput Computing, University of Wisconsin-Madison
+  
+<H2><A NAME="SECTION0012287000000000000000">
+Copyright</A>
+</H2> 
+  Copyright &#169; 1990-2013 Center for High Throughput Computing, 
+  Computer Sciences Department, 
+  University of Wisconsin-Madison, Madison, WI.  All Rights Reserved.  
+	Licensed under the Apache License, Version 2.0.  
+
+  <HR>
+<!--Navigation Panel-->
+<A NAME="tex2html3622"
+  HREF="condor_power.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3616"
+  HREF="11_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3610"
+  HREF="condor_on.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3618"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3620"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3623"
+  HREF="condor_power.html">condor_power</A>
+<B> Up:</B> <A NAME="tex2html3617"
+  HREF="11_Command_Reference.html">11. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3611"
+  HREF="condor_on.html">condor_on</A>
+ &nbsp; <B>  <A NAME="tex2html3619"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3621"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

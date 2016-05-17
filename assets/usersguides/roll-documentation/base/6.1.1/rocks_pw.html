@@ -1,0 +1,367 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Rocks Password Infrastructure</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Changes to Rocks Security Infrastructure"
+HREF="passwd_sec.html"><LINK
+REL="PREVIOUS"
+TITLE="Changes to Rocks Security Infrastructure"
+HREF="passwd_sec.html"><LINK
+REL="NEXT"
+TITLE="Rocks Secure Attribute Infrastructure"
+HREF="rocks_sec_attr.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Base</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="passwd_sec.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Appendix D. Changes to Rocks Security Infrastructure</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="rocks_sec_attr.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="ROCKS_PW"
+>D.1. Rocks Password Infrastructure</A
+></H1
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS_PW_CURRENT_DESIGN"
+>D.1.1. Current Design</A
+></H2
+><P
+>Currently, the root password for the frontend is elicited from the user during
+the frontend installation. Once the password is obtained, 3 crypted versions are
+generated from the root password. One version is the UNIX crypt version, which
+forms the root password for the cluster, another is the portable password format
+which is used for wordpress access. The third is an SHA version which is used as
+the MySQL root password. These three crypted passwords are stored in the
+database as shadow attributes.</P
+><P
+>When compute nodes are installed the root password that is stored in the
+database is transferred over to the compute node as an XML entity. This way we
+maintain root password consistency between client nodes and frontend. Any
+changes made to the root password on the frontend using the
+<B
+CLASS="COMMAND"
+>passwd</B
+> command is propogated to the compute
+nodes using the 411 system.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS_PW_CHANGES"
+>D.1.2. Changes to the Design</A
+></H2
+><P
+>From the above description of the existing design, we can see that the root
+password is stored in multiple places and used for multiple purposes. We
+determined that this was not the optimal security situation, and could use
+changes.</P
+><P
+>The way we've implemented changes are as follows:</P
+><P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>		As soon as the root password is obtained from the admin, it is
+		converted to only the UNIX crypt format. It is used during the
+		installation to set the root password, and is not used for any
+		other purposes, and is not stored in the database.
+		</P
+></LI
+><LI
+><P
+>		Random passwords are generated for root access to the database
+		and access to the wordpress engine.
+		</P
+></LI
+><LI
+><P
+>		The root account on each compute node gets a random root
+		password.
+		</P
+></LI
+><LI
+><P
+>		The 411 system uses plugins to filter the content of the
+		password and shadow files so that it does not transmit
+		information about any accounts with UID under 500. Therefore,
+		any changes made to the root password on the frontend is not
+		propagated to the compute nodes.
+		</P
+></LI
+><LI
+><P
+>		To change the root password for the compute nodes, the admin may
+		now use the "secure attribute" infrastructure in Rocks. The
+		admin may also use the <B
+CLASS="COMMAND"
+>passwd</B
+>
+		command on the compute nodes to change the password without fear
+		of override.
+		</P
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="90%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/note.png"
+HSPACE="5"
+ALT="Note"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>You may NOT use both the secure attributes and the
+		passwd command to change the password on the compute nodes. If
+		you do, the value in the secure attributes table always
+		wins.</P
+></TD
+></TR
+></TABLE
+></DIV
+></LI
+><LI
+><P
+>To change the root password on the frontend, you can now
+		use the <B
+CLASS="COMMAND"
+>passwd</B
+>command, and not worry about
+		changing any of the other passwords in the cluster.</P
+></LI
+></OL
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROOT_PW_CHANGES"
+>D.1.3. Changing the root password on a compute node</A
+></H2
+><P
+>	This section describes how to change the root password for compute
+	nodes. It uses the <A
+HREF="rocks_sec_attr.html"
+>rocks secure attribute
+	infrastructure</A
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks set host sec_attr compute attr=root_pw
+  Enter root_pw: 
+Confirm root_pw: 
+# rocks list host sec_attr compute
+HOST         ATTR    VALUE                              ENC  
+compute-0-0: root_pw $1$G55uZRrO$5MI7Nv14U5yWfKAlauqPE0 crypt
+compute-0-1: root_pw $1$G55uZRrO$5MI7Nv14U5yWfKAlauqPE0 crypt
+# rocks sync host sec_attr compute</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+><B
+CLASS="COMMAND"
+>rocks set host sec_attr</B
+> creates the
+	entry in the database.</P
+></LI
+><LI
+><P
+><B
+CLASS="COMMAND"
+>rocks sync host sec_attr</B
+> changes the
+	root password on the compute nodes.</P
+></LI
+></OL
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/note.png"
+HSPACE="5"
+ALT="Note"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>The admin can also set different root password for each node</P
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="passwd_sec.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="rocks_sec_attr.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Changes to Rocks Security Infrastructure</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="passwd_sec.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Rocks Secure Attribute Infrastructure</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,4659 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>set</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Command Reference"
+HREF="c2310.html"><LINK
+REL="PREVIOUS"
+TITLE="save"
+HREF="x6475.html"><LINK
+REL="NEXT"
+TITLE="swap"
+HREF="x8127.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Base</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x6475.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 9. Command Reference</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x8127.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="AEN6488"
+>9.15. set</A
+></H1
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-SET-APPLIANCE-ATTR"
+>9.15.1. set appliance attr</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks set appliance attr</B
+>  {appliance} {attr} {value} [attr=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [value=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Sets an attribute to an appliance and sets the associated values 
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>appliance</DT
+><DD
+><P
+>&#13;	Name of appliance
+	
+	</P
+></DD
+><DT
+>attr</DT
+><DD
+><P
+>&#13;	Name of the attribute
+	
+	</P
+></DD
+><DT
+>value</DT
+><DD
+><P
+>&#13;	Value of the attribute
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>attr=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	same as attr argument
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>value=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	same as value argument
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks set appliance attr compute sge False</DT
+><DD
+><P
+>&#13;	Sets the sge attribution to False for compute appliances
+	
+	</P
+></DD
+><DT
+># rocks set appliance attr compute sge attr=cpus value=2</DT
+><DD
+><P
+>&#13;	same as above
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>related commands</B
+></P
+><DL
+><DT
+><A
+HREF="x4253.html#ROCKS-LIST-APPLIANCE-ATTR"
+>list appliance attr</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+><DT
+><A
+HREF="x4253.html#ROCKS-LIST-HOST-ATTR"
+>list host attr</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+><DT
+><A
+HREF="x5104.html#ROCKS-REMOVE-APPLIANCE-ATTR"
+>remove appliance attr</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+><DT
+><A
+HREF="x5104.html#ROCKS-REMOVE-HOST-ATTR"
+>remove host attr</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+><DT
+><A
+HREF="x6488.html#ROCKS-SET-HOST-ATTR"
+>set host attr</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-SET-ATTR"
+>9.15.2. set attr</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks set attr</B
+>  {attr} {value} [attr=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [value=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Sets a global attribute for all nodes
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>attr</DT
+><DD
+><P
+>&#13;	Name of the attribute
+	
+	</P
+></DD
+><DT
+>value</DT
+><DD
+><P
+>&#13;	Value of the attribute
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>attr=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	same as attr argument
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>value=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	same as value argument
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks set attr sge False</DT
+><DD
+><P
+>&#13;	Sets the sge attribution to False
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>related commands</B
+></P
+><DL
+><DT
+><A
+HREF="x4253.html#ROCKS-LIST-ATTR"
+>list attr</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+><DT
+><A
+HREF="x5104.html#ROCKS-REMOVE-ATTR"
+>remove attr</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-SET-HOST-ATTR"
+>9.15.3. set host attr</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks set host attr</B
+>  {host} {attr} {value} [attr=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [value=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Sets an attribute to a host and sets the associated values 
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	Host name of machine
+	
+	</P
+></DD
+><DT
+>attr</DT
+><DD
+><P
+>&#13;	Name of the attribute
+	
+	</P
+></DD
+><DT
+>value</DT
+><DD
+><P
+>&#13;	Value of the attribute
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>attr=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	same as attr argument
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>value=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	same as value argument
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks set host attr compute-0-0 cpus 2</DT
+><DD
+><P
+>&#13;	Sets the number of cpus of compute-0-0 to 2
+	
+	</P
+></DD
+><DT
+># rocks set host attr compute-0-0 attr=cpus value=2</DT
+><DD
+><P
+>&#13;	same as above
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>related commands</B
+></P
+><DL
+><DT
+><A
+HREF="x4253.html#ROCKS-LIST-HOST-ATTR"
+>list host attr</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+><DT
+><A
+HREF="x5104.html#ROCKS-REMOVE-HOST-ATTR"
+>remove host attr</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-SET-HOST-BOOT"
+>9.15.4. set host boot</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks set host boot</B
+>  {host...} [action=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Set a bootaction for a host. A hosts action can be set to 'install' 
+	or to 'os' (also, 'run' is a synonym for 'os').
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	One or more host names.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>action=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The label name for the bootaction. This must be one of: 'os',
+	'install', or 'run'.
+
+	If no action is supplied, then only the configuration file for the
+	list of hosts will be rewritten.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks set host boot compute-0-0 action=os</DT
+><DD
+><P
+>&#13;	On the next boot, compute-0-0 will boot the profile based on its
+	"run action". To see the node's "run action", execute:
+	"rocks list host compute-0-0" and examine the value in the
+	"RUNACTION" column.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-SET-HOST-BOOTFLAGS"
+>9.15.5. set host bootflags</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks set host bootflags</B
+>  {host...} [flags=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Set the boot flags for a host. The boot flags will applied to the
+	configuration file that a host uses to boot the running kernel. For
+	example, if a node uses GRUB as its boot loader, the boot flags will 
+	part of the 'append' line.
+	
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	Zero, one or more host names. If no host names are supplied, then the
+	global bootflag will be set.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>flags=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The boot flags to set for the host.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks set host bootflags compute-0-0 flags="mem=1024M"</DT
+><DD
+><P
+>&#13;	Apply the kernel boot flags "mem=1024M" to compute-0-0.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-SET-HOST-COMMENT"
+>9.15.6. set host comment</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks set host comment</B
+>  {host...} {comment} [comment=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Set the comment field for a list of hosts.
+	
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	One or more host names.
+	
+	</P
+></DD
+><DT
+>comment</DT
+><DD
+><P
+>&#13;	The string to assign to the comment field for each host.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>comment=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of the comment argument.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks set host comment compute-0-0 "Fast Node"</DT
+><DD
+><P
+>&#13;	Sets the comment field to "Fast Node" for compute-0-0.
+	
+	</P
+></DD
+><DT
+># rocks set host comment compute-0-0 compute-0-1 "Slow Node"</DT
+><DD
+><P
+>&#13;	Sets the comment field to "Slow Node" for compute-0-0 and compute-0-1.
+	
+	</P
+></DD
+><DT
+># rocks set host comment compute-0-0 compute-0-1 comment="Slow Node"</DT
+><DD
+><P
+>&#13;	Same as above.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-SET-HOST-CPUS"
+>9.15.7. set host cpus</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks set host cpus</B
+>  {host...} {cpus} [cpus=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Set the number of CPUs for a list of hosts.
+	
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	One or more host names.
+	
+	</P
+></DD
+><DT
+>cpus</DT
+><DD
+><P
+>&#13;	The number of CPUs to assign to each host.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>cpus=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of the cpus argument.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks set host cpus compute-0-0 2</DT
+><DD
+><P
+>&#13;	Sets the CPU value to 2 for compute-0-0.
+	
+	</P
+></DD
+><DT
+># rocks set host cpus compute-0-0 compute-0-1 4</DT
+><DD
+><P
+>&#13;	Sets the CPU value to 4 for compute-0-0 and compute-0-1.
+	
+	</P
+></DD
+><DT
+># rocks set host cpus compute-0-0 compute-0-1 cpus=4</DT
+><DD
+><P
+>&#13;	Same as above.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-SET-HOST-INSTALLACTION"
+>9.15.8. set host installaction</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks set host installaction</B
+>  {host...} {action} [action=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Set the install action for a list of hosts.
+	
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	One or more host names.
+	
+	</P
+></DD
+><DT
+>action</DT
+><DD
+><P
+>&#13;	The install action to assign to each host. To get a list of all actions,
+	execute: "rocks list bootaction".
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>action=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of the action argument.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks set host installaction compute-0-0 install</DT
+><DD
+><P
+>&#13;	Sets the install action to "install" for compute-0-0.
+	
+	</P
+></DD
+><DT
+># rocks set host installaction compute-0-0 compute-0-1 "install i386"</DT
+><DD
+><P
+>&#13;	Sets the install action to "install i386" for compute-0-0 and compute-0-1.
+	
+	</P
+></DD
+><DT
+># rocks set host installaction compute-0-0 compute-0-1 action="install i386"</DT
+><DD
+><P
+>&#13;	Same as above.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-SET-HOST-INTERFACE-CHANNEL"
+>9.15.9. set host interface channel</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks set host interface channel</B
+>  {host...} {iface} {channel} [channel=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [iface=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Sets the channel for a named interface.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	One or more hosts.
+	
+	</P
+></DD
+><DT
+>iface</DT
+><DD
+><P
+>&#13; 	Interface that should be updated. This may be a logical interface or 
+ 	the MAC address of the interface.
+ 	
+	</P
+></DD
+><DT
+>channel</DT
+><DD
+><P
+>&#13;	The channel for an interface. Use channel=NULL to clear.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>channel=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of the channel argument.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>iface=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of the iface argument.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks set host interface channel compute-0-0 iface=eth1 channel="bond0"</DT
+><DD
+><P
+>&#13;	Sets the channel for eth1 to be "bond0" (i.e., it associates eth1 with
+	the bonded interface named "bond0").
+	
+	</P
+></DD
+><DT
+># rocks set host interface channel compute-0-0 iface=eth1 channel=NULL</DT
+><DD
+><P
+>&#13;	Clear the channel entry.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-SET-HOST-INTERFACE-IFACE"
+>9.15.10. set host interface iface</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks set host interface iface</B
+>  {host...} {mac} {iface} [iface=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [mac=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Sets the logical interface of a mac address for particular hosts.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	One or more named hosts.
+	
+	</P
+></DD
+><DT
+>mac</DT
+><DD
+><P
+>&#13;	MAC address of the interface  whose logical interface will be reassigned
+ 	
+	</P
+></DD
+><DT
+>iface</DT
+><DD
+><P
+>&#13;	Logical interface.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>iface=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of the iface argument.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>mac=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of the mac argument.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks set host interface iface compute-0-0 00:0e:0c:a7:5d:ff eth1</DT
+><DD
+><P
+>&#13;	Sets the logical interface of MAC address 00:0e:0c:a7:5d:ff to be eth1 
+	
+	</P
+></DD
+><DT
+># rocks set host interface iface compute-0-0 iface=eth1 mac=00:0e:0c:a7:5d:ff</DT
+><DD
+><P
+>&#13;	Same as above.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>related commands</B
+></P
+><DL
+><DT
+><A
+HREF="x2312.html#ROCKS-ADD-HOST"
+>add host</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-SET-HOST-INTERFACE-IP"
+>9.15.11. set host interface ip</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks set host interface ip</B
+>  {host} {iface} {ip} [iface=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [ip=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Sets the IP address for the named interface for one host.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	Host name.
+	
+	</P
+></DD
+><DT
+>iface</DT
+><DD
+><P
+>&#13; 	Interface that should be updated. This may be a logical interface or 
+ 	the mac address of the interface.
+ 	
+	</P
+></DD
+><DT
+>ip</DT
+><DD
+><P
+>&#13;	The IP address of the interface. Usually of the form nnn.nnn.nnn.nnn
+	where n is a decimal digit. This format is not enforced. Use IP=NULL
+	to clear.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>iface=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of the iface argument.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>ip=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of the ip argument.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks set host interface ip compute-0-0 eth1 192.168.0.10</DT
+><DD
+><P
+>&#13;	Sets the IP Address for the eth1 device on host compute-0-0.
+	
+	</P
+></DD
+><DT
+># rocks set host interface ip compute-0-0 iface=eth1 ip=192.168.0.10</DT
+><DD
+><P
+>&#13;	Same as above.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>related commands</B
+></P
+><DL
+><DT
+><A
+HREF="x2312.html#ROCKS-ADD-HOST"
+>add host</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+><DT
+><A
+HREF="x6488.html#ROCKS-SET-HOST-INTERFACE-IFACE"
+>set host interface iface</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+><DT
+><A
+HREF="x6488.html#ROCKS-SET-HOST-INTERFACE-IP"
+>set host interface ip</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+><DT
+><A
+HREF="x6488.html#ROCKS-SET-HOST-INTERFACE-MODULE"
+>set host interface module</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-SET-HOST-INTERFACE-MAC"
+>9.15.12. set host interface mac</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks set host interface mac</B
+>  {host} {iface} {mac} [iface=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [mac=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Sets the mac address for named interface on host.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	Host name.
+	
+	</P
+></DD
+><DT
+>iface</DT
+><DD
+><P
+>&#13; 	Interface that should be updated. This may be a logical interface or 
+ 	the mac address of the interface.
+ 	
+	</P
+></DD
+><DT
+>mac</DT
+><DD
+><P
+>&#13;	The mac address of the interface. Usually of the form dd:dd:dd:dd:dd:dd
+	where d is a hex digit. This format is not enforced. Use mac=NULL to
+	clear the mac address.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>iface=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of the iface argument.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>mac=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of the mac argument.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks set host interface mac compute-0-0 eth1 00:0e:0c:a7:5d:ff</DT
+><DD
+><P
+>&#13;	Sets the MAC Address for the eth1 device on host compute-0-0.
+	
+	</P
+></DD
+><DT
+># rocks set host interface mac compute-0-0 iface=eth1 mac=00:0e:0c:a7:5d:ff</DT
+><DD
+><P
+>&#13;	Same as above.
+	
+	</P
+></DD
+><DT
+># rocks set host interface mac compute-0-0 iface=eth1 mac=NULL</DT
+><DD
+><P
+>&#13;	clears the mac address from the database
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>related commands</B
+></P
+><DL
+><DT
+><A
+HREF="x2312.html#ROCKS-ADD-HOST"
+>add host</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-SET-HOST-INTERFACE-MODULE"
+>9.15.13. set host interface module</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks set host interface module</B
+>  {host...} {iface} {module} [iface=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [module=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Sets the device module for a named interface. On Linux this will get
+	translated to an entry in /etc/modprobe.conf.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	One or more hosts.
+	
+	</P
+></DD
+><DT
+>iface</DT
+><DD
+><P
+>&#13; 	Interface that should be updated. This may be a logical interface or 
+ 	the MAC address of the interface.
+ 	
+	</P
+></DD
+><DT
+>module</DT
+><DD
+><P
+>&#13;	The software device module of interface. Use module=NULL to clear.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>iface=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of the iface argument.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>module=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of the module argument.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks set host interface module compute-0-0 eth1 e1000</DT
+><DD
+><P
+>&#13;	Sets the device module for eth1 to be e1000 on host compute-0-0.
+	
+	</P
+></DD
+><DT
+># rocks set host interface module compute-0-0 iface=eth1 module=e1000</DT
+><DD
+><P
+>&#13;	Same as above.
+	
+	</P
+></DD
+><DT
+># rocks set host interface module compute-0-0 iface=eth1 module=NULL</DT
+><DD
+><P
+>&#13;	Clear the module entry.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>related commands</B
+></P
+><DL
+><DT
+><A
+HREF="x2312.html#ROCKS-ADD-HOST"
+>add host</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-SET-HOST-INTERFACE-NAME"
+>9.15.14. set host interface name</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks set host interface name</B
+>  {host} {iface} {name} [iface=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [name=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Sets the logical name of a network interface on a particular host.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	Host name.
+	
+	</P
+></DD
+><DT
+>iface</DT
+><DD
+><P
+>&#13; 	Interface that should be updated. This may be a logical interface or 
+ 	the MAC address of the interface.
+ 	
+	</P
+></DD
+><DT
+>name</DT
+><DD
+><P
+>&#13;	Name of this interface (e.g. newname). This is only the
+	name associated with a certain interface. FQDNs are disallowed.
+	To set the domain or zone for an interface, use the
+	"rocks add network" command, and then associate the interface
+	with the network
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>iface=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of the iface argument.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>name=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of the name argument. 
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks set host interface name compute-0-0 eth1 cluster-0-0</DT
+><DD
+><P
+>&#13;	Sets the name for the eth1 device on host compute-0-0 to
+	cluster-0-0.zonename. The zone is decided by the subnet that the
+	interface is attached to.
+	
+	</P
+></DD
+><DT
+># rocks set host interface name compute-0-0 iface=eth1 name=c0-0</DT
+><DD
+><P
+>&#13;	Same as above.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>related commands</B
+></P
+><DL
+><DT
+><A
+HREF="x2312.html#ROCKS-ADD-HOST"
+>add host</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+><DT
+><A
+HREF="x2312.html#ROCKS-ADD-NETWORK"
+>add network</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-SET-HOST-INTERFACE-OPTIONS"
+>9.15.15. set host interface options</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks set host interface options</B
+>  {host...} {iface} [iface=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [options=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Sets the options for a device module for a named interface. On Linux,
+	this will get translated to an entry in /etc/modprobe.conf.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	One or more hosts.
+	
+	</P
+></DD
+><DT
+>iface</DT
+><DD
+><P
+>&#13; 	Interface that should be updated. This may be a logical interface or 
+ 	the MAC address of the interface.
+ 	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>iface=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of the iface argument.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>options=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The options for an interface. Use options=NULL to clear.
+	In Rocks 5.4 (linux): options='dhcp' or options='noreport' have
+	special meaning. Bonded interfaces use options field to set up
+	bonding options.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks set host interface options compute-0-0 iface=eth1 options="Speed=10"</DT
+><DD
+><P
+>&#13;	Sets the option "Speed=10" for eth1 on e1000 on host compute-0-0.
+	
+	</P
+></DD
+><DT
+># rocks set host interface options compute-0-0 iface=eth1 options=NULL</DT
+><DD
+><P
+>&#13;	Clear the options entry.
+	
+	</P
+></DD
+><DT
+># rocks set host interface options compute-0-0 iface=eth0 options="dhcp"</DT
+><DD
+><P
+>&#13;	Linux only: Configure eth0 interface for DHCP instead of static.
+	
+	</P
+></DD
+><DT
+># rocks set host interface options compute-0-0 iface=eth0 options="noreport"</DT
+><DD
+><P
+>&#13;	Linux only:  Tell rocks report host interface to ignore this interface
+	when writing configuration files
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-SET-HOST-INTERFACE-SUBNET"
+>9.15.16. set host interface subnet</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks set host interface subnet</B
+>  {host...} {iface} {subnet} [iface=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [subnet=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Sets the subnet for named interface on one of more hosts. 
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	One or more named hosts.
+	
+	</P
+></DD
+><DT
+>iface</DT
+><DD
+><P
+>&#13; 	Interface that should be updated. This may be a logical interface or 
+ 	the MAC address of the interface.
+ 	
+	</P
+></DD
+><DT
+>subnet</DT
+><DD
+><P
+>&#13;	The subnet address of the interface. This is a named subnet and must be
+	listable by the command 'rocks list network'.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>iface=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of the iface argument.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>subnet=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of the subnet argument.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks set host interface subnet compute-0-0 eth1 public</DT
+><DD
+><P
+>&#13;	Sets eth1 to be on the public subnet.
+	
+	</P
+></DD
+><DT
+># rocks set host interface mac compute-0-0 iface=eth1 subnet=public</DT
+><DD
+><P
+>&#13;	Same as above.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>related commands</B
+></P
+><DL
+><DT
+><A
+HREF="x2312.html#ROCKS-ADD-HOST"
+>add host</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-SET-HOST-INTERFACE-VLAN"
+>9.15.17. set host interface vlan</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks set host interface vlan</B
+>  {host...} {iface} {vlan} [iface=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [vlan=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Sets the VLAN ID for an interface on one of more hosts. 
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	One or more named hosts.
+	
+	</P
+></DD
+><DT
+>iface</DT
+><DD
+><P
+>&#13; 	Interface that should be updated. This may be a logical interface or 
+ 	the mac address of the interface.
+ 	
+	</P
+></DD
+><DT
+>vlan</DT
+><DD
+><P
+>&#13;	The VLAN ID that should be updated. This must be an integer and the
+	pair 'subnet/vlan' must be defined in the VLANs table.
+ 	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>iface=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of the iface argument.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>vlan=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of the vlan argument.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks set host interface vlan compute-0-0-0 eth0 3</DT
+><DD
+><P
+>&#13;	Sets compute-0-0-0's private interface to VLAN ID 3.
+	
+	</P
+></DD
+><DT
+># rocks set host interface vlan compute-0-0-0 subnet=eth0 vlan=3</DT
+><DD
+><P
+>&#13;	Same as above.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>related commands</B
+></P
+><DL
+><DT
+><A
+HREF="x2312.html#ROCKS-ADD-HOST"
+>add host</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-SET-HOST-MEMBERSHIP"
+>9.15.18. set host membership</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks set host membership</B
+>  {host...} {membership} [membership=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Set the membership for hosts.
+	
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	One or more host names.
+	
+	</P
+></DD
+><DT
+>membership</DT
+><DD
+><P
+>&#13;	The membership to assign to each host.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>membership=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of the membership argument.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks set host membership "NAS Appliance" nas-0-0</DT
+><DD
+><P
+>&#13;	Sets the membership to 'NAS Appliance' for nas-0-0.
+	
+	</P
+></DD
+><DT
+># rocks set host membership "NAS Appliance" membership=nas-0-0</DT
+><DD
+><P
+>&#13;	Same as above.
+	
+	</P
+></DD
+><DT
+># rocks set host membership Compute</DT
+><DD
+><P
+>&#13;	Sets the membership to 'Compute' for all known hosts.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-SET-HOST-NAME"
+>9.15.19. set host name</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks set host name</B
+>  {host} {name} [name=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Rename a host.
+	
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	The current name of the host.
+	
+	</P
+></DD
+><DT
+>name</DT
+><DD
+><P
+>&#13;	The new name for the host.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>name=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of the 'name' argument.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks set host name compute-0-0 new-compute-0-0</DT
+><DD
+><P
+>&#13;	Changes the name of compute-0-0 to new-compute-0-0.
+	
+	</P
+></DD
+><DT
+># rocks set host cpus compute-0-0 name=new-compute-0-1</DT
+><DD
+><P
+>&#13;	Same as above.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-SET-HOST-POWER"
+>9.15.20. set host power</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks set host power</B
+>  {host...} [action=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [key=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Turn the power for a host on or off.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	One or more host names.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>action=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The power setting. This must be one of 'on', 'off' or 'install'.
+	The 'install' action will turn the power on and force the host to
+	install.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>key=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	A private key that will be used to authenticate the request. This
+        should be a file name that contains the private key.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks set host power compute-0-0 action=on</DT
+><DD
+><P
+>&#13;	Turn on the power for compute-0-0.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-SET-HOST-RACK"
+>9.15.21. set host rack</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks set host rack</B
+>  {host...} {rack} [rack=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Set the rack number for a list of hosts.
+	
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	One or more host names.
+	
+	</P
+></DD
+><DT
+>rack</DT
+><DD
+><P
+>&#13;	The rack number to assign to each host.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>rack=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of rack argument.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks set host rack compute-2-0 2</DT
+><DD
+><P
+>&#13;	Set the rack number to 2 for compute-2-0.
+	
+	</P
+></DD
+><DT
+># rocks set host rack compute-0-0 compute-0-1 0</DT
+><DD
+><P
+>&#13;	Set the rack number to 0 for compute-0-0 and compute-0-1.
+	
+	</P
+></DD
+><DT
+># rocks set host rack compute-0-0 compute-0-1 rack=0</DT
+><DD
+><P
+>&#13;	Same as above.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-SET-HOST-RANK"
+>9.15.22. set host rank</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks set host rank</B
+>  {host...} {rank} [rank=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Set the rank number for a list of hosts.
+	
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	One or more host names.
+	
+	</P
+></DD
+><DT
+>rank</DT
+><DD
+><P
+>&#13;	The rank number to assign to each host.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>rank=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of rank argument.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks set host rank compute-0-2 2</DT
+><DD
+><P
+>&#13;	Set the rank number to 2 for compute-0-2.
+	
+	</P
+></DD
+><DT
+># rocks set host rank compute-0-0 compute-1-0 0</DT
+><DD
+><P
+>&#13;	Set the rank number to 0 for compute-0-0 and compute-1-0.
+	
+	</P
+></DD
+><DT
+># rocks set host rank compute-0-0 compute-1-0 rank=0</DT
+><DD
+><P
+>&#13;	Same as above.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-SET-HOST-ROLL"
+>9.15.23. set host roll</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks set host roll</B
+>  {host} {name} {version} {arch} [arch=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [name=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [os=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [version=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Associates a roll with a frontend appliance.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	Host name of a frontend machine.
+	
+	</P
+></DD
+><DT
+>name</DT
+><DD
+><P
+>&#13;	Name of the roll (e.g., 'base').
+	
+	</P
+></DD
+><DT
+>version</DT
+><DD
+><P
+>&#13;	Version of the roll (e.g., '5.2').
+	
+	</P
+></DD
+><DT
+>arch</DT
+><DD
+><P
+>&#13;	Architecture of the roll (e.g., 'x86_64').
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>arch=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Same as 'arch' argument.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>name=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Same as 'name' argument.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>os=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The OS version. The default is 'linux'.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>version=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Same as 'version' argument.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks set host roll frontend-0-0-0 base 5.2 x86_64</DT
+><DD
+><P
+>&#13;	Associates the roll with name/version/arch of 'base/5.2/x86_64' to
+	frontend-0-0-0.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>related commands</B
+></P
+><DL
+><DT
+><A
+HREF="x4253.html#ROCKS-LIST-HOST-ROLL"
+>list host roll</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-SET-HOST-RUNACTION"
+>9.15.24. set host runaction</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks set host runaction</B
+>  {host...} {action} [action=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Set the run action for a list of hosts.
+	
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	One or more host names.
+	
+	</P
+></DD
+><DT
+>action</DT
+><DD
+><P
+>&#13;	The run action to assign to each host. To get a list of all actions,
+	execute: "rocks list bootaction".
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>action=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of the action argument.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks set host runaction compute-0-0 os</DT
+><DD
+><P
+>&#13;	Sets the run action to "os" for compute-0-0.
+	
+	</P
+></DD
+><DT
+># rocks set host runaction compute-0-0 compute-0-1 memtest</DT
+><DD
+><P
+>&#13;	Sets the run action to "memtest" for compute-0-0 and compute-0-1.
+	
+	</P
+></DD
+><DT
+># rocks set host runaction compute-0-0 compute-0-1 action=memtest</DT
+><DD
+><P
+>&#13;	Same as above.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-SET-HOST-SEC_ATTR"
+>9.15.25. set host sec_attr</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks set host sec_attr</B
+>  {host} [attr=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [crypted=<TT
+CLASS="REPLACEABLE"
+><I
+>boolean</I
+></TT
+>] [enc=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [value=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Set a host-specific secure attribute to the database.
+	The user also has the option of not supplying the
+	value on the command line. The command will prompt
+	the user to enter the secure attribute value, and
+	will not echo this value on screen.
+
+	If the user chooses to enter the value for the secure
+	attribute by prompt, then the value entered must be in
+	an unencrypted form.
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	Host name of machine
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>attr=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Name of the attribute
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>crypted=<TT
+CLASS="REPLACEABLE"
+><I
+>boolean</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Is "value" already crypted or not
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>enc=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Encryption scheme to use to crypt the value. Currently
+	supported values are "sha", "crypt", "portable".
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>value=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Value of the attribute. If value is a file, read the value from that file
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks set host sec_attr compute-0-0 attr=db_pw  value=DatabasePassword crypted=false enc=sha</DT
+><DD
+><P
+>&#13;	Sets a secure attribute called db_pw to the crypted value
+	of "DatabasePassword" using the sha1 encoding schema.
+	
+	</P
+></DD
+><DT
+># rocks set host sec_attr compute-0-0 attr=db_pw  value=77e6674e6d71f898d5fc79424117c86731ca7498 crypted=true</DT
+><DD
+><P
+>&#13;	Same as above
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-SET-NETWORK-MTU"
+>9.15.26. set network mtu</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks set network mtu</B
+>  {network...} {mtu} [mtu=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Sets the MTU for one or more named networks.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>network</DT
+><DD
+><P
+> 
+	One or more named networks that should have the defined MTU.
+	
+	</P
+></DD
+><DT
+>mtu</DT
+><DD
+><P
+>&#13;	MTU that named networks should have.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>mtu=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of 'mtu' argument.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks set network mtu optiputer 9000</DT
+><DD
+><P
+>&#13;	Sets the "optiputer" MTU address to 9000.
+	
+	</P
+></DD
+><DT
+># rocks set network mtu optiputer mtu=9000</DT
+><DD
+><P
+>&#13;	Same as above.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>related commands</B
+></P
+><DL
+><DT
+><A
+HREF="x2312.html#ROCKS-ADD-NETWORK"
+>add network</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+><DT
+><A
+HREF="x6488.html#ROCKS-SET-NETWORK-NETMASK"
+>set network netmask</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-SET-NETWORK-NETMASK"
+>9.15.27. set network netmask</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks set network netmask</B
+>  {network...} {netmask} [netmask=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Sets the network mask for one or more named networks .
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>network</DT
+><DD
+><P
+> 
+	One or more named networks that should have the defined netmask.
+	
+	</P
+></DD
+><DT
+>netmask</DT
+><DD
+><P
+>&#13;	Netmask that named networks should have.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>netmask=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of netmask argument.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks set network netmask optiputer 255.255.255.0</DT
+><DD
+><P
+>&#13;	Sets the netmask for the "optiputer" network to a class-c address
+	space.
+	
+	</P
+></DD
+><DT
+># rocks set network netmask optiputer netmask=255.255.255.0</DT
+><DD
+><P
+>&#13;	Same as above.
+	
+	</P
+></DD
+><DT
+># rocks set network netmask optiputer cavewave 255.255.0.0</DT
+><DD
+><P
+>&#13;	Sets the netmask for the "optiputer" and "cavewave" networks to
+	a class-b address space.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>related commands</B
+></P
+><DL
+><DT
+><A
+HREF="x2312.html#ROCKS-ADD-NETWORK"
+>add network</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+><DT
+><A
+HREF="x6488.html#ROCKS-SET-NETWORK-SUBNET"
+>set network subnet</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-SET-NETWORK-SERVEDNS"
+>9.15.28. set network servedns</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks set network servedns</B
+>  {network} {servedns} [servedns=<TT
+CLASS="REPLACEABLE"
+><I
+>bool</I
+></TT
+>]</P
+><P
+>&#13;	Sets/Unsets the capability for serving DNS
+	for a given subnet
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>network</DT
+><DD
+><P
+>&#13;	Name of the Network
+	
+	</P
+></DD
+><DT
+>servedns</DT
+><DD
+><P
+>&#13;	True/False
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>servedns=<TT
+CLASS="REPLACEABLE"
+><I
+>bool</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	True/False
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-SET-NETWORK-SUBNET"
+>9.15.29. set network subnet</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks set network subnet</B
+>  {network...} {subnet} [subnet=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Sets the subnet for one or more named networks.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>network</DT
+><DD
+><P
+> 
+	One or more named networks that should have the defined subnet.
+	
+	</P
+></DD
+><DT
+>subnet</DT
+><DD
+><P
+>&#13;	Subnet that named networks should have.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>subnet=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of subnet argument.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks set network subnet optiputer 132.239.51.0</DT
+><DD
+><P
+>&#13;	Sets the "optiputer" subnet address to 132.239.51.0.
+	
+	</P
+></DD
+><DT
+># rocks set network subnet optiputer subnet=132.239.51.0</DT
+><DD
+><P
+>&#13;	Same as above.
+	
+	</P
+></DD
+><DT
+># rocks set network subnet optiputer cavewave 67.58.32.0</DT
+><DD
+><P
+>&#13;	Sets both the "optiputer" and "cavewave" subnet addresses to the
+	same value of 67.58.32.0.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>related commands</B
+></P
+><DL
+><DT
+><A
+HREF="x2312.html#ROCKS-ADD-NETWORK"
+>add network</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+><DT
+><A
+HREF="x6488.html#ROCKS-SET-NETWORK-NETMASK"
+>set network netmask</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-SET-NETWORK-ZONE"
+>9.15.30. set network zone</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks set network zone</B
+>  {network} {zone} [zone=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Set the zone/domain name associated with a subnet
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>network</DT
+><DD
+><P
+>&#13;	Network Name
+	
+	</P
+></DD
+><DT
+>zone</DT
+><DD
+><P
+>&#13;	Zone / Domain that the network belongs to.
+	Example: optiputer.net
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>zone=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Zone / Domain that the network belongs to.
+	Example: optiputer.net
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-SET-OS-ATTR"
+>9.15.31. set os attr</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks set os attr</B
+>  {os} {attr} {value} [attr=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [value=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Sets an attribute to an os and sets the associated values 
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>os</DT
+><DD
+><P
+>&#13;	Name of os
+	
+	</P
+></DD
+><DT
+>attr</DT
+><DD
+><P
+>&#13;	Name of the attribute
+	
+	</P
+></DD
+><DT
+>value</DT
+><DD
+><P
+>&#13;	Value of the attribute
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>attr=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	same as attr argument
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>value=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	same as value argument
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks set os attr linux sge False</DT
+><DD
+><P
+>&#13;	Sets the sge attribution to False for linux nodes
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-SET-SEC_ATTR"
+>9.15.32. set sec_attr</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks set sec_attr</B
+>  {attr} [crypted=<TT
+CLASS="REPLACEABLE"
+><I
+>boolean</I
+></TT
+>] [enc=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [value=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Set a secure attribute to the database.
+	The user also has the option of not supplying the
+	value on the command line. The command will prompt
+	the user to enter the secure attribute value, and
+	will not echo this value on screen.
+
+	If the user chooses to enter the value for the secure
+	attribute by prompt, then the value entered must be in
+	an unencrypted form.
+	
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>attr</DT
+><DD
+><P
+>&#13;	Name of the attribute
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>crypted=<TT
+CLASS="REPLACEABLE"
+><I
+>boolean</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Is "value" already crypted or not
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>enc=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Encryption scheme to use to crypt the value. Currently
+	supported values are "sha", "crypt", "portable".
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>value=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Value of the attribute. If value is a file, read the value from the file
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks set sec_attr db_pw  value=DatabasePassword crypted=false enc=sha</DT
+><DD
+><P
+>&#13;	Sets a secure attribute called db_pw to the crypted
+	value of "DatabasePassword" using the sha1 encoding schema.
+	
+	</P
+></DD
+><DT
+># rocks set sec_attr db_pw  value=77e6674e6d71f898d5fc79424117c86731ca7498 crypted=true</DT
+><DD
+><P
+>&#13;	Same as above
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-SET-VAR"
+>9.15.33. set var</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks set var</B
+>  {service} {component} {value} [appliance=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [component=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [service=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [value=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Set variables in the Rocks key/value database. Variables are
+	defined as quad of (Appliance, Service, Component, Value). 
+	Within a node XML file, values can be retrieved as
+	&#60;var name="Service_Component"/&#62;.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>service</DT
+><DD
+><P
+>&#13;	Defines the service name. e.g., service=Kickstart.
+	
+	</P
+></DD
+><DT
+>component</DT
+><DD
+><P
+>&#13;	Defines the component name. e.g., component=PublicDNS.
+	
+	</P
+></DD
+><DT
+>value</DT
+><DD
+><P
+>&#13;	Defines the value for the variable.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>appliance=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	If supplied, restricts to the named appliance.
+	See 'rocks list appliance' for a listing of appliances.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>component=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of component argument.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>service=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of service argument.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>value=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of value argument.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks set var service=Condor component=Master value=localhost</DT
+><DD
+><P
+>&#13;	Set the variable name &#60;var name="Condor_Master"/&#62; to 'localhost'.
+	
+	</P
+></DD
+><DT
+># rocks set var service=Condor component=Master value=localhost appliance=compute</DT
+><DD
+><P
+>&#13;	Set the variable name &#60;var name="Condor_Master"/&#62; to 'localhost'
+	and associate it with only compute appliances.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x6475.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x8127.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>save</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="c2310.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>swap</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

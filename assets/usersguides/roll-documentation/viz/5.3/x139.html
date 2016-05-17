@@ -1,0 +1,324 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Definitions</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Viz Roll: Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Attributes"
+HREF="c137.html"><LINK
+REL="PREVIOUS"
+TITLE="Attributes"
+HREF="c137.html"><LINK
+REL="NEXT"
+TITLE="Installing"
+HREF="c222.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Viz Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/resized-eye.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="c137.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 2. Attributes</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="c222.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="AEN139"
+>2.1. Definitions</A
+></H1
+><DIV
+CLASS="TABLE"
+><A
+NAME="AEN141"
+></A
+><P
+><B
+>Table 2-1. Tile Appliance</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><COL><TBODY
+><TR
+><TD
+>Name</TD
+><TD
+>Type</TD
+><TD
+>Default</TD
+></TR
+><TR
+><TD
+>cuda</TD
+><TD
+>bool</TD
+><TD
+>false</TD
+></TR
+><TR
+><TD
+>viz_nvidia_driver_options</TD
+><TD
+>string</TD
+><TD
+>--no-network -s</TD
+></TR
+><TR
+><TD
+>viz_nvidia_driver</TD
+><TD
+>string</TD
+><TD
+>/opt/viz/drivers/nvidia.run</TD
+></TR
+><TR
+><TD
+>viz_tile_bottom_bezel</TD
+><TD
+>int</TD
+><TD
+>80</TD
+></TR
+><TR
+><TD
+>viz_tile_left_bezel</TD
+><TD
+>int</TD
+><TD
+>100</TD
+></TR
+><TR
+><TD
+>viz_tile_resolution</TD
+><TD
+>string</TD
+><TD
+>1920x1200</TD
+></TR
+><TR
+><TD
+>viz_tile_right_bezel</TD
+><TD
+>int</TD
+><TD
+>100</TD
+></TR
+><TR
+><TD
+>viz_tile_top_bezel</TD
+><TD
+>int</TD
+><TD
+>80</TD
+></TR
+><TR
+><TD
+>x11</TD
+><TD
+>bool</TD
+><TD
+>true</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>cuda</DT
+><DD
+><P
+>If set to True all host with this attribute will have the CUDA toolkit included int the packages installed on the machine.  
+If the host is already installed this will take affect on the next re-installation.  
+Enabling this does not automatically set the nVidia driver to be the CUDA driver, and may required the viz_nvidia_driver attribute to also be changed.
+			</P
+></DD
+><DT
+>viz_nvidia_driver_options</DT
+><DD
+><P
+>The command line arguments passed to the nVidia driver installation script.
+The default values work for all drivers included in the Viz Roll, and the
+attribute should not be modified unless needed.
+			</P
+></DD
+><DT
+>viz_nvidia_driver</DT
+><DD
+><P
+>The full pathname of the nVidia driver installation script.
+The Viz Roll installs both the production nVidia driver and beta-CUDA driver installation script.  This attribute is used to select which driver is installed on first boot after a tile node is first installed (or re-installed).
+			</P
+></DD
+><DT
+>viz_tile_bottom_bezel</DT
+><DD
+><P
+>The size in pixels of the tile's bottom edge bezel (mullion).
+			</P
+></DD
+><DT
+>viz_tile_left_bezel</DT
+><DD
+><P
+>The size in pixels of the tile's left edge bezel (mullion).
+			</P
+></DD
+><DT
+>viz_tile_resolution</DT
+><DD
+><P
+>The pixel resolution of the tile in the standard X11 format of COLxROW.
+			</P
+></DD
+><DT
+>viz_tile_right_bezel</DT
+><DD
+><P
+>The size in pixels of the tile's right edge bezel (mullion).
+			</P
+></DD
+><DT
+>viz_tile_top_bezel</DT
+><DD
+><P
+>The size in pixels of the tile's top edge bezel (mullion).
+			</P
+></DD
+><DT
+>x11</DT
+><DD
+><P
+>If True one of more X11 displays are configured on the tile machine.
+This attribute is from the Rocks base and should not be changed.
+			</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="c137.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="c222.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Attributes</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="c137.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Installing</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

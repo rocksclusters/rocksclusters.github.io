@@ -1,0 +1,548 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>3.8 The Checkpoint Server</TITLE>
+<META NAME="description" CONTENT="3.8 The Checkpoint Server">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="3_9DaemonCore.html">
+<LINK REL="previous" HREF="3_7Networking_includes.html">
+<LINK REL="up" HREF="3_Administrators_Manual.html">
+<LINK REL="next" HREF="3_9DaemonCore.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html1263"
+  HREF="3_9DaemonCore.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1257"
+  HREF="3_Administrators_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1251"
+  HREF="3_7Networking_includes.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1259"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1261"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1264"
+  HREF="3_9DaemonCore.html">3.9 DaemonCore</A>
+<B> Up:</B> <A NAME="tex2html1258"
+  HREF="3_Administrators_Manual.html">3. Administrators' Manual</A>
+<B> Previous:</B> <A NAME="tex2html1252"
+  HREF="3_7Networking_includes.html">3.7 Networking (includes sections</A>
+ &nbsp; <B>  <A NAME="tex2html1260"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1262"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html1265"
+  HREF="3_8Checkpoint_Server.html#SECTION00481000000000000000">3.8.1  Preparing to Install
+a Checkpoint Server</A>
+<LI><A NAME="tex2html1266"
+  HREF="3_8Checkpoint_Server.html#SECTION00482000000000000000">3.8.2 Installing the Checkpoint Server Module</A>
+<LI><A NAME="tex2html1267"
+  HREF="3_8Checkpoint_Server.html#SECTION00483000000000000000">3.8.3  
+Configuring the Pool to Use Multiple Checkpoint Servers</A>
+<LI><A NAME="tex2html1268"
+  HREF="3_8Checkpoint_Server.html#SECTION00484000000000000000">3.8.4  
+Checkpoint Server Domains</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00480000000000000000"></A><A NAME="sec:Ckpt-Server"></A>
+<BR>
+3.8  The Checkpoint Server
+</H1>
+
+<P>
+<A NAME="31093"></A>
+<A NAME="31094"></A>
+<A NAME="31199"></A>
+<A NAME="31200"></A>
+<A NAME="31097"></A>
+A Checkpoint Server maintains a repository for checkpoint files.
+Within Condor, checkpoints may be produced only for standard universe jobs.
+Using checkpoint servers reduces the disk requirements of submitting
+machines in the pool, since the submitting machines no longer need to
+store checkpoint files locally.
+Checkpoint server machines should have a large amount of disk space
+available, and they should have a fast connection to machines
+in the Condor pool.
+
+<P>
+If the spool directories are on a network file system, then
+checkpoint files will make two trips over the network: one between the
+submitting machine and the execution machine, and a second between the
+submitting machine and the network file server.
+A checkpoint server configured to use the server's local disk
+means that the checkpoint file will travel only once over the
+network, between the execution machine and the checkpoint server.
+The pool may also obtain checkpointing network performance benefits by
+using multiple checkpoint servers, as discussed below.
+
+<P>
+Note that it is a good idea to pick very stable machines for the checkpoint
+servers.
+If individual checkpoint servers crash, the Condor system will continue to
+operate, although poorly.  
+While the Condor system will recover from a checkpoint server crash
+as best it can, there are two problems that can and will occur:
+
+<OL>
+<LI>A checkpoint cannot be sent to a checkpoint server that
+is not functioning.
+Jobs will keep trying to contact the checkpoint server, backing
+off exponentially in the time they wait between attempts.
+Normally, jobs only have a limited time to checkpoint before they are
+kicked off the machine.
+So, if the checkpoint server is down for a long period of time,
+chances are that a lot of work will be lost by jobs being killed 
+without writing a checkpoint. 
+
+<P>
+</LI>
+<LI>If a checkpoint is not available from the checkpoint server,
+a job cannot be retrieved, and it will either have to be restarted from
+the beginning, or the job will wait for the server to come back on line.
+This behavior is controlled with the
+<TT>MAX_DISCARDED_RUN_TIME</TT> <A NAME="31212"></A> <A NAME="31213"></A> configuration variable.
+This variable represents the maximum amount of CPU time the job is
+willing to discard, by starting a job over from its beginning if the
+checkpoint server is not responding to requests.
+
+<P>
+</LI>
+</OL>
+
+<P>
+
+<H2><A NAME="SECTION00481000000000000000"></A><A NAME="Prepare-Ckpt-Server"></A>
+<BR>
+3.8.1  Preparing to Install
+a Checkpoint Server
+</H2> 
+
+<P>
+The location of checkpoint files changes upon the installation
+of a checkpoint server.
+A configuration change will cause 
+currently queued jobs with checkpoints
+to not be able to find their checkpoints.
+This results in the jobs with checkpoints
+remaining indefinitely queued,
+due to the lack of finding their checkpoints.
+It is therefore best to 
+either remove jobs from the queues or let them complete
+before installing a checkpoint server.
+It is advisable to shut the pool down before doing any
+maintenance on the checkpoint server.  
+See section&nbsp;<A HREF="3_10Pool_Management.html#sec:Pool-Management">3.10</A> on
+page&nbsp;<A HREF="3_10Pool_Management.html#sec:Pool-Management"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for details on shutting
+down the pool. 
+
+<P>
+A graduated installation of the checkpoint server may be
+accomplished by 
+configuring submit machines as their queues empty.
+
+<P>
+
+<H2><A NAME="SECTION00482000000000000000"></A><A NAME="Install-Ckpt-Server-Module"></A>
+<BR>
+3.8.2 Installing the Checkpoint Server Module
+</H2> 
+
+<P>
+The files relevant to a checkpoint server are
+<PRE>
+        sbin/condor_ckpt_server
+        etc/examples/condor_config.local.ckpt.server
+</PRE>
+
+<P>
+<TT>condor_ckpt_server</TT> is the checkpoint server binary.
+<TT>condor_condor_config.local.ckpt.server</TT> is an example
+configuration for a checkpoint server. The settings embodied in this
+file must be customized with site-specific information.
+
+<P>
+There are three steps necessary towards running a checkpoint server:
+
+<OL>
+<LI>Configure the checkpoint server.
+</LI>
+<LI>Start the checkpoint server.
+</LI>
+<LI>Configure the pool to use the checkpoint server.
+</LI>
+</OL>
+
+<P>
+<DL>
+<DT><STRONG>Configure the Checkpoint Server</STRONG></DT>
+<DD><P>
+<A NAME="31112"></A>
+Place settings in the local configuration file of
+the checkpoint server.
+The file <TT>etc/examples/condor_config.local.ckpt.server</TT> contains
+a template for the needed configuration. Insert these into the local
+configuration file of the checkpoint server machine. 
+
+<P>
+The value of <TT>CKPT_SERVER_DIR</TT> <A NAME="31224"></A> <A NAME="31225"></A>  
+must be customized.
+This variable defines the location of checkpoint files.
+It is better if this location is within a very fast local file system,
+and preferably a RAID. 
+The speed of this file system will have a direct impact on the speed
+at which checkpoint files can be retrieved from the remote machines. 
+
+<P>
+The other optional variables are:
+<DL>
+<DT><STRONG><TT>DAEMON_LIST</TT> <A NAME="31229"></A> <A NAME="31230"></A></STRONG></DT>
+<DD>Described in
+section&nbsp;<A HREF="3_3Configuration.html#sec:Master-Config-File-Entries">3.3.9</A>.  
+To have the checkpoint server managed by the <I>condor_master</I>,
+the <TT>DAEMON_LIST</TT> variable's value must list both <TT>MASTER</TT>
+and <TT>CKPT_SERVER</TT>.
+Also add <TT>STARTD</TT> to allow jobs to run on the checkpoint server machine.
+Similarly, add <TT>SCHEDD</TT> to permit the submission of jobs from the
+checkpoint server machine. 
+
+<P>
+</DD>
+</DL>
+
+<P>
+The remainder of these variables are the checkpoint server-specific versions
+of the Condor logging entries, as described in
+section&nbsp;<A HREF="3_3Configuration.html#sec:Daemon-Logging-Config-File-Entries">3.3.4</A> on
+page&nbsp;<A HREF="3_3Configuration.html#sec:Daemon-Logging-Config-File-Entries"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+<DL>
+<DT><STRONG><TT>CKPT_SERVER_LOG</TT> <A NAME="31241"></A> <A NAME="31242"></A></STRONG></DT>
+<DD>The location of the checkpoint server log.
+
+<P>
+</DD>
+<DT><STRONG><TT>MAX_CKPT_SERVER_LOG</TT> <A NAME="31246"></A> <A NAME="31247"></A></STRONG></DT>
+<DD>Sets the maximum
+size of the checkpoint server log, before it is saved and the
+log file restarted.
+
+<P>
+</DD>
+<DT><STRONG><TT>CKPT_SERVER_DEBUG</TT> <A NAME="31251"></A> <A NAME="31252"></A></STRONG></DT>
+<DD>Regulates the amount of information
+printed in the log file.
+Currently, the only debug level supported is <TT>D_ALWAYS</TT>.
+
+<P>
+</DD>
+</DL>
+
+<P>
+</DD>
+<DT><STRONG>Start the Checkpoint Server</STRONG></DT>
+<DD><P>
+To start the newly configured checkpoint server,
+restart Condor on that host to enable
+the <I>condor_master</I> to notice the new configuration.
+Do this by sending a <I>condor_restart</I> command from any machine
+with administrator access to the pool.
+See section&nbsp;<A HREF="3_6Security.html#sec:Host-Security">3.6.9</A> on
+page&nbsp;<A HREF="3_6Security.html#sec:Host-Security"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for full details about IP/host-based
+security in Condor. 
+
+<P>
+Note that when the <I>condor_ckpt_server</I> starts up, it will immediately
+inspect any checkpoint files in the location described by the
+<TT>CKPT_SERVER_DIR</TT> variable, and determine if any of them are stale.
+Stale checkpoint files will be removed.
+
+<P>
+</DD>
+<DT><STRONG>Configure the Pool to Use the Checkpoint Server</STRONG></DT>
+<DD><P>
+After the checkpoint server is running,
+modify a few configuration variables to let the other machines in the pool
+know about the new server:
+
+<P>
+<DL>
+<DT><STRONG><TT>USE_CKPT_SERVER</TT> <A NAME="31265"></A> <A NAME="31266"></A></STRONG></DT>
+<DD>A boolean value that should be set to
+   <TT>True</TT> to enable the use of the checkpoint server.
+
+<P>
+</DD>
+<DT><STRONG><TT>CKPT_SERVER_HOST</TT> <A NAME="31271"></A> <A NAME="31272"></A></STRONG></DT>
+<DD>Provides the full host name 
+   of the machine that is now running the checkpoint server.  
+</DD>
+</DL>
+
+<P>
+It is most convenient to set these variables in the pool's
+global configuration file,
+so that they affect all submission machines.
+However, it is permitted to configure each submission machine separately
+(using local configuration files), for example if it is desired that not all
+submission machines begin using the checkpoint server at one time.
+If the variable <TT>USE_CKPT_SERVER</TT> is set to <TT>False</TT>,
+the submission machine will not use a checkpoint server.
+
+<P>
+Once these variables are in place,
+send the command <I>condor_reconfig</I> to all machines in the pool,
+so the changes take effect.
+This is described in section&nbsp;<A HREF="3_10Pool_Management.html#sec:Reconfigure-Pool">3.10.2</A> on
+page&nbsp;<A HREF="3_10Pool_Management.html#sec:Reconfigure-Pool"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+</DD>
+</DL>
+
+<P>
+
+<H2><A NAME="SECTION00483000000000000000"></A><A NAME="Configure-Multiple-Ckpt-Server"></A>
+<BR>
+3.8.3  
+Configuring the Pool to Use Multiple Checkpoint Servers
+</H2>
+
+<P>
+<A NAME="31151"></A>
+
+<P>
+A Condor pool may use multiple checkpoint servers.
+The deployment of
+checkpoint servers across the
+network improves the performance of checkpoint production.
+In this case, Condor machines are configured to send checkpoints to the
+<I>nearest</I> checkpoint server.
+There are two main performance benefits to deploying multiple checkpoint
+servers:
+
+<UL>
+<LI>Checkpoint-related network traffic is localized by
+intelligent placement of checkpoint servers.
+</LI>
+<LI>Better performance implies that jobs spend less time
+dealing with checkpoints, and more time doing useful work,
+leading to jobs having a higher success rate before returning a
+machine to its owner, and workstation
+owners see Condor jobs leave their machines quicker.
+</LI>
+</UL>
+
+<P>
+With multiple checkpoint servers running in the pool, the
+following configuration changes are required to make them active.
+
+<P>
+Set <TT>USE_CKPT_SERVER</TT> <A NAME="31280"></A> <A NAME="31281"></A> to <TT>True</TT> (the default) on all
+submitting machines where Condor jobs should use a checkpoint server.
+Additionally, variable <TT>STARTER_CHOOSES_CKPT_SERVER</TT> <A NAME="31286"></A> <A NAME="31287"></A> should be set to
+<TT>True</TT> (the default) on these submitting machines.
+When <TT>True</TT>, this variable specifies that the checkpoint server
+specified by the machine running the job should be used instead of the
+checkpoint server specified by the submitting machine.
+See section&nbsp;<A HREF="3_3Configuration.html#sec:Checkpoint-Server-Config-File-Entries">3.3.8</A> on
+page&nbsp;<A HREF="3_3Configuration.html#sec:Checkpoint-Server-Config-File-Entries"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for more
+details.
+This allows the job to use the checkpoint server closest to the
+machine on which it is running, instead of the server closest to the
+submitting machine.
+For convenience, set these parameters in the
+global configuration file.
+
+<P>
+Second, set <TT>CKPT_SERVER_HOST</TT> <A NAME="31293"></A> <A NAME="31294"></A> on each machine.
+This identifies the full host name of the checkpoint server machine,
+and should be the host name of the nearest server to the machine.
+In the case of multiple checkpoint servers, set this
+in the local configuration file.
+
+<P>
+Third, send a
+<I>condor_reconfig</I> command to all machines in the pool, 
+so that the changes take effect.
+This is described in section&nbsp;<A HREF="3_10Pool_Management.html#sec:Reconfigure-Pool">3.10.2</A> on
+page&nbsp;<A HREF="3_10Pool_Management.html#sec:Reconfigure-Pool"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+After completing these three steps, the jobs in the pool will
+send their checkpoints to the nearest checkpoint server.
+On restart, a job will remember where its checkpoint was
+stored and retrieve it from the appropriate server.
+After a job successfully writes a checkpoint to a new server, it will
+remove any previous checkpoints left on other servers.
+
+<P>
+Note that if the configured checkpoint server is unavailable,
+the job will keep trying to contact that server.
+It will not use alternate checkpoint servers.
+This may change in future versions of Condor.
+
+<P>
+
+<H2><A NAME="SECTION00484000000000000000"></A><A NAME="Checkpoint-Server-Domains"></A>
+<BR>
+3.8.4  
+Checkpoint Server Domains
+</H2>
+
+<P>
+The configuration described in the previous section ensures that jobs
+will always write checkpoints to their nearest checkpoint server.  In
+some circumstances, it is also useful to configure Condor to localize
+checkpoint read transfers, which occur when the job restarts from its
+last checkpoint on a new machine.  To localize these transfers, 
+it is desired
+to schedule the job on a machine which is near the checkpoint
+server on which the job's checkpoint is stored.
+
+<P>
+In terminology, all of the machines configured to use checkpoint
+server <I>A</I> are in <I>checkpoint server domain A</I>.
+To localize checkpoint transfers, 
+jobs which run on machines in a given
+checkpoint server domain should continue running on machines in that domain,
+thereby transferring checkpoint files in a single local area of the network.
+There are two possible configurations which specify what a
+job should do when there are no available machines in its checkpoint
+server domain:
+
+<UL>
+<LI>The job can remain idle until a workstation in its checkpoint
+server domain becomes available.
+</LI>
+<LI>The job can try to immediately begin executing on a machine
+in another checkpoint server domain.  In this case, the job transfers
+to a new checkpoint server domain.
+</LI>
+</UL>
+These two configurations are described below.
+
+<P>
+The first step in implementing checkpoint server domains is to include
+the name of the nearest checkpoint server in the machine
+ClassAd, so this information can be used in job scheduling decisions.
+To do this, add the following configuration to each machine:
+<PRE>
+  CkptServer = "$(CKPT_SERVER_HOST)"
+  STARTD_ATTRS = $(STARTD_ATTRS), CkptServer
+</PRE>
+For convenience, set these variables in the global configuration file.
+Note that this example assumes that
+<TT>STARTD_ATTRS</TT> is previously defined in the configuration.
+If not, then use the following configuration instead:
+<PRE>
+  CkptServer = "$(CKPT_SERVER_HOST)"
+  STARTD_ATTRS = CkptServer
+</PRE>
+With this configuration, all machine ClassAds will include a <TT>CkptServer</TT>
+attribute, which is the name of the checkpoint server closest to this
+machine.  So, the <TT>CkptServer</TT> attribute defines the checkpoint
+server domain of each machine.
+
+<P>
+To restrict jobs to one checkpoint server domain,
+modify the jobs' <TT>Requirements</TT> expression as follows:
+<PRE>
+  Requirements = ((LastCkptServer == TARGET.CkptServer) || (LastCkptServer =?= UNDEFINED))
+</PRE>This <TT>Requirements</TT> expression uses the <TT>LastCkptServer</TT>
+attribute in the job's ClassAd, which specifies where the job last
+wrote a checkpoint, and the <TT>CkptServer</TT> attribute in the
+machine ClassAd, which specifies the checkpoint server domain.  If the
+job has not yet written a checkpoint, the <TT>LastCkptServer</TT>
+attribute will be <TT>Undefined</TT>, and the job will be able to execute in
+any checkpoint server domain.  However, once the job performs a
+checkpoint,
+<TT>LastCkptServer</TT> will be defined and the job will be restricted to the
+checkpoint server domain where it started running.
+
+<P>
+To instead allow jobs to transfer to other checkpoint
+server domains when there are no available machines in the current
+checkpoint server domain, modify the jobs' <TT>Rank</TT> expression
+as follows:
+<PRE>
+  Rank = ((LastCkptServer == TARGET.CkptServer) || (LastCkptServer =?= UNDEFINED))
+</PRE>This <TT>Rank</TT> expression will evaluate to 1 for machines in the
+job's checkpoint server domain and 0 for other machines.  So, the job
+will prefer to run on machines in its checkpoint server domain, but if
+no such machines are available, the job will run in a new checkpoint
+server domain.
+
+<P>
+The checkpoint server domain <TT>Requirements</TT> or <TT>Rank</TT> expressions 
+can be automatically appended 
+to all standard universe jobs submitted in the pool using
+the configuration variables
+<TT>APPEND_REQ_STANDARD</TT> or <TT>APPEND_RANK_STANDARD</TT>.
+See section&nbsp;<A HREF="3_3Configuration.html#sec:Submit-Config-File-Entries">3.3.14</A> on
+page&nbsp;<A HREF="3_3Configuration.html#sec:Submit-Config-File-Entries"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for more details.
+<A NAME="31197"></A>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1263"
+  HREF="3_9DaemonCore.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1257"
+  HREF="3_Administrators_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1251"
+  HREF="3_7Networking_includes.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1259"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1261"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1264"
+  HREF="3_9DaemonCore.html">3.9 DaemonCore</A>
+<B> Up:</B> <A NAME="tex2html1258"
+  HREF="3_Administrators_Manual.html">3. Administrators' Manual</A>
+<B> Previous:</B> <A NAME="tex2html1252"
+  HREF="3_7Networking_includes.html">3.7 Networking (includes sections</A>
+ &nbsp; <B>  <A NAME="tex2html1260"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1262"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

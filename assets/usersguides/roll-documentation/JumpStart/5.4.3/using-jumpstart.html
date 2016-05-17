@@ -1,0 +1,277 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Installing Solaris Support</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE=" JumpStart Users Guide "
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Using the JumpStart Roll"
+HREF="using.html"><LINK
+REL="PREVIOUS"
+TITLE="Using the JumpStart Roll"
+HREF="using.html"><LINK
+REL="NEXT"
+TITLE="Installing Solaris Backend Nodes"
+HREF="installing-backend.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>JumpStart Users Guide: 	<DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/sun_rocks_graphic.png"
+WIDTH="500"></P
+></DIV
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="using.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 2. Using the JumpStart Roll</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="installing-backend.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="USING-JUMPSTART"
+>2.1. Installing Solaris Support</A
+></H1
+><P
+>After your frontend is installed with the JumpStart roll,
+the administrator will need to add Solaris Support.</P
+><P
+></P
+><UL
+><LI
+><P
+>On your frontend, create <TT
+CLASS="LITERAL"
+>/export/dvd/</TT
+></P
+></LI
+><LI
+><P
+>Using your web browser/ftp client navigate to
+	<A
+HREF="ftp://ftp.rocksclusters.org/pub/rocks/rocks-5.4.3/sunos/"
+TARGET="_top"
+>Rocks FTP site</A
+>
+	</P
+></LI
+><LI
+><P
+>Download the sunos rolls. This includes</P
+><P
+></P
+><UL
+><LI
+><P
+>base-5.4.3.sunos.iso &#8212;<EM
+>Required</EM
+>&#8212;Provides base of Rocks for Solaris</P
+></LI
+><LI
+><P
+>jumpstart-5.4.3.sunos.iso &#8212;<EM
+>Required</EM
+>&#8212;Provides Solaris jumpstart support</P
+></LI
+><LI
+><P
+>ganglia-5.4.3.sunos.iso &#8212; <EM
+>Optional</EM
+>&#8212;Download if you've installed ganglia on the frontend.</P
+></LI
+><LI
+><P
+>hpc-5.4.3.sunos.iso &#8212; <EM
+>Optional</EM
+>&#8212;Download if you've installed the HPC roll on the frontend</P
+></LI
+></UL
+></LI
+><LI
+><P
+>Download the Solaris 10 update 9 iso image from the 
+	<A
+HREF="http://www.oracle.com/technetwork/server-storage/solaris/downloads/index.html"
+TARGET="_top"
+>Solaris 10 Download Page</A
+>.</P
+><P
+>Oracle requires the user to agree to the Solaris 10 EULA before downloading the bits.</P
+><P
+></P
+><UL
+><LI
+><P
+>sol-10-u9-ga-x86-dvd.iso&#8212;<EM
+>Required</EM
+>&#8212;Provides Solaris 10u9 OS bits</P
+></LI
+></UL
+><P
+>Download the Solaris Companion iso image from the
+	<A
+HREF="http://sunfreeware.com/companioncd.html"
+TARGET="_top"
+>Sun Freeware site</A
+>.</P
+><P
+></P
+><UL
+><LI
+><P
+>sol-10-u9-companion-ga.iso&#8212;<EM
+>Required</EM
+>&#8212;Provides additional Solaris 10u9 OS bits</P
+></LI
+></UL
+></LI
+><LI
+><P
+>Make sure you download Solaris 10 OS, x64/x86 version. SPARC is not supported.</P
+></LI
+><LI
+><P
+>Assuming all the iso images are in <TT
+CLASS="LITERAL"
+>/export/dvd</TT
+>, run the following commands</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># cd /export/dvd
+# rocks add roll *.iso
+# rocks create soldist</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+></UL
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="using.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="installing-backend.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Using the JumpStart Roll</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="using.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Installing Solaris Backend Nodes</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

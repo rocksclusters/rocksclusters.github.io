@@ -1,0 +1,5372 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>11. Appendix A: ClassAd Attributes</TITLE>
+<META NAME="description" CONTENT="11. Appendix A: ClassAd Attributes">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="12_Appendix_B.html">
+<LINK REL="previous" HREF="10_Command_Reference.html">
+<LINK REL="up" HREF="ref.html">
+<LINK REL="next" HREF="12_Appendix_B.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html4528"
+  HREF="12_Appendix_B.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html4522"
+  HREF="ref.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html4516"
+  HREF="uniq_pid_undertaker.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html4524"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html4526"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4529"
+  HREF="12_Appendix_B.html">12. Appendix B: Magic</A>
+<B> Up:</B> <A NAME="tex2html4523"
+  HREF="ref.html">CondorVersion 7.8.5 Manual</A>
+<B> Previous:</B> <A NAME="tex2html4517"
+  HREF="uniq_pid_undertaker.html">uniq_pid_undertaker</A>
+ &nbsp; <B>  <A NAME="tex2html4525"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html4527"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION001200000000000000000"></A>
+<A NAME="sec:ClassAd-Attributes"></A>
+<BR>
+11. Appendix A:  ClassAd Attributes
+</H1>
+
+<H2><A NAME="SECTION001201000000000000000"></A><A NAME="sec:ClassAd-Types"></A>
+<BR>
+ClassAd Types
+</H2>
+
+<P>
+ClassAd attributes vary, 
+depending on the entity producing the ClassAd.
+Therefore, each ClassAd has an attribute named <TT>MyType</TT>,
+which describes the type of ClassAd.
+In addition, the <I>condor_collector</I> appends attributes to
+any daemon's ClassAd, whenever the <I>condor_collector</I> is
+queried. These additional attributes are listed in
+the unnumbered subsection labeled ClassAd Attributes Added by the <I>condor_collector</I>
+on page&nbsp;<A HREF="11_Appendix_A.html#sec:Collector-Added-Attributes"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+Here is a list of defined values for <TT>MyType</TT>,
+as well as a reference to a list attributes relevant to
+that type.
+
+<P>
+<DL>
+<DT><STRONG><TT>Job</TT></STRONG></DT>
+<DD>Each submitted job describes its state, for use by the
+  <I>condor_negotiator</I> daemon in finding a machine upon which to
+  run the job.
+  ClassAd attributes that appear in a job ClassAd are listed and described in
+  the unnumbered subsection labeled Job ClassAd Attributes
+  on page&nbsp;<A HREF="11_Appendix_A.html#sec:Job-ClassAd-Attributes"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+</DD>
+<DT><STRONG><TT>Machine</TT></STRONG></DT>
+<DD>Each machine in the pool (and hence, the <I>condor_startd</I> daemon running
+   on that machine) describes its state.
+  ClassAd attributes that appear in a machine ClassAd 
+  are listed and described in
+  the unnumbered subsection labeled Machine ClassAd Attributes
+  on page&nbsp;<A HREF="11_Appendix_A.html#sec:Machine-ClassAd-Attributes"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+</DD>
+<DT><STRONG><TT>DaemonMaster</TT></STRONG></DT>
+<DD>Each <I>condor_master</I> daemon describes its state.
+  ClassAd attributes that appear in a DaemonMaster ClassAd 
+  are listed and described in
+  the unnumbered subsection labeled DaemonMaster ClassAd Attributes
+  on page&nbsp;<A HREF="11_Appendix_A.html#sec:DaemonMaster-ClassAd-Attributes"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+</DD>
+<DT><STRONG><TT>Scheduler</TT></STRONG></DT>
+<DD>Each <I>condor_schedd</I> daemon describes its state.
+  ClassAd attributes that appear in a Scheduler ClassAd 
+  are listed and described in
+  the unnumbered subsection labeled Scheduler ClassAd Attributes
+  on page&nbsp;<A HREF="11_Appendix_A.html#sec:Scheduler-ClassAd-Attributes"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+</DD>
+<DT><STRONG><TT>Negotiator</TT></STRONG></DT>
+<DD>Each <I>condor_negotiator</I> daemon describes its state.
+  ClassAd attributes that appear in a Negotiator ClassAd 
+  are listed and described in
+  the unnumbered subsection labeled Negotiator ClassAd Attributes
+  on page&nbsp;<A HREF="11_Appendix_A.html#sec:Negotiator-ClassAd-Attributes"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+</DD>
+<DT><STRONG><TT>Submitter</TT></STRONG></DT>
+<DD>Each submitter is described by a ClassAd.
+  ClassAd attributes that appear in a Submitter ClassAd 
+  are listed and described in
+  the unnumbered subsection labeled Submitter ClassAd Attributes
+  on page&nbsp;<A HREF="11_Appendix_A.html#sec:Submitter-ClassAd-Attributes"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+</DD>
+<DT><STRONG><TT>Defrag</TT></STRONG></DT>
+<DD>Each <I>condor_defrag</I> daemon describes its state.
+  ClassAd attributes that appear in a Defrag ClassAd 
+  are listed and described in
+  the unnumbered subsection labeled Defrag ClassAd Attributes
+  on page&nbsp;<A HREF="11_Appendix_A.html#sec:Defrag-ClassAd-Attributes"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+</DD>
+<DT><STRONG><TT>Collector</TT></STRONG></DT>
+<DD>Each <I>condor_collector</I> daemon describes its state.
+  ClassAd attributes that appear in a Collector ClassAd 
+  are listed and described in
+  the unnumbered subsection labeled Collector ClassAd Attributes
+  on page&nbsp;<A HREF="11_Appendix_A.html#sec:Collector-ClassAd-Attributes"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+</DD>
+<DT><STRONG><TT>Query</TT></STRONG></DT>
+<DD>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\fbox{This section has not yet been written}$
+ -->
+<IMG
+ WIDTH="312" HEIGHT="46" ALIGN="MIDDLE" BORDER="0"
+ SRC="img44.png"
+ ALT="\fbox{This section has not yet been written}">
+</DIV>
+  
+<P>
+</DD>
+</DL>
+
+<P>
+In addition, statistics are published for each DaemonCore daemon.
+These attributes are listed and described in
+the unnumbered subsection labeled DaemonCore Statistics Attributes
+on page&nbsp;<A HREF="11_Appendix_A.html#sec:DaemonCore-Statistics-Attributes"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+
+<H2><A NAME="SECTION001202000000000000000"></A><A NAME="sec:Job-ClassAd-Attributes"></A>
+<BR>
+Job ClassAd Attributes
+</H2>
+<DL>
+<DD><A NAME="85979"></A>
+<P>
+<A NAME="85980"></A>
+<A NAME="85981"></A>
+</DD>
+<DT><STRONG><TT>Absent</TT>:</STRONG></DT>
+<DD>Boolean set to true <TT>True</TT> if the ad is absent.
+
+<P>
+<A NAME="85984"></A>
+<A NAME="85985"></A>
+</DD>
+<DT><STRONG><TT>AllRemoteHosts</TT>:</STRONG></DT>
+<DD>String containing a comma-separated list
+of all the remote machines running a parallel or mpi universe job.
+
+<P>
+<A NAME="85987"></A>
+<A NAME="85988"></A>
+</DD>
+<DT><STRONG><TT>Args</TT>:</STRONG></DT>
+<DD>String representing the arguments passed to the job.
+
+<P>
+<A NAME="85990"></A>
+<A NAME="85991"></A>
+</DD>
+<DT><STRONG><TT>CkptArch</TT>:</STRONG></DT>
+<DD>String describing the architecture of the machine
+this job executed on at the time it last produced a checkpoint.
+If the job has never produced a checkpoint,
+this attribute is <TT>undefined</TT>.
+
+<P>
+<A NAME="85994"></A>
+<A NAME="85995"></A>
+</DD>
+<DT><STRONG><TT>CkptOpSys</TT>:</STRONG></DT>
+<DD>String describing the operating system of
+the machine
+this job executed on at the time it last produced a checkpoint.
+If the job has never produced a checkpoint,
+this attribute is <TT>undefined</TT>.
+
+<P>
+<A NAME="85998"></A>
+<A NAME="85999"></A>
+<A NAME="86000"></A>
+<A NAME="86001"></A>
+</DD>
+<DT><STRONG><TT>ClusterId</TT>:</STRONG></DT>
+<DD>Integer cluster identifier for this job.
+A cluster is a group of jobs that were submitted together.  Each
+job has its own unique job identifier within the cluster, but shares a
+common cluster identifier.
+The value changes each time a job or set of jobs are queued for
+execution under Condor.
+
+<P>
+<A NAME="86003"></A>
+<A NAME="86004"></A>
+</DD>
+<DT><STRONG><TT>Cmd</TT>:</STRONG></DT>
+<DD>The path to and the file name of the job to be executed.
+
+<P>
+<A NAME="86006"></A>
+<A NAME="86007"></A>
+</DD>
+<DT><STRONG><TT>ConcurrencyLimits</TT>:</STRONG></DT>
+<DD>A string list,
+delimited by commas and space characters.
+The items in the list
+identify named resources that the job requires.
+
+<P>
+<A NAME="86009"></A>
+<A NAME="86010"></A>
+<A NAME="CommittedTime"></A></DD>
+<DT><STRONG><TT>CommittedTime</TT>:</STRONG></DT>
+<DD>The number of seconds of wall clock time
+that the job has been allocated a machine,
+excluding the time spent on run attempts that
+were evicted without a checkpoint.  
+Like <TT>RemoteWallClockTime</TT>,
+this includes time the job spent in a suspended state,
+so the total committed wall time spent running is 
+<PRE>
+CommittedTime - CommittedSuspensionTime
+</PRE>
+
+<P>
+<A NAME="86016"></A>
+<A NAME="86017"></A>
+<A NAME="CommittedSlotTime"></A></DD>
+<DT><STRONG><TT>CommittedSlotTime</TT>:</STRONG></DT>
+<DD>This attribute is identical to
+<TT>CommittedTime</TT> except that the time is multiplied by the
+<TT>SlotWeight</TT> of the machine(s) that ran the job.  This relies
+on <TT>SlotWeight</TT> being listed in <TT>SYSTEM_JOB_MACHINE_ATTRS</TT> <A NAME="86716"></A> <A NAME="86717"></A>.
+
+<P>
+<A NAME="86024"></A>
+<A NAME="86025"></A>
+</DD>
+<DT><STRONG><TT>CompletionDate</TT>:</STRONG></DT>
+<DD>The time when the job completed,
+or the value 0 if the job has not yet completed.
+Measured in the
+number of seconds since the epoch (00:00:00 UTC, Jan 1, 1970).
+
+<P>
+<A NAME="86027"></A>
+<A NAME="86028"></A>
+</DD>
+<DT><STRONG><TT>CommittedSuspensionTime</TT>:</STRONG></DT>
+<DD>A running total of the number of
+seconds the job has spent in suspension during time in which the job was
+not evicted without a checkpoint.  This number is updated when the job is
+checkpointed and when it exits.
+
+<P>
+<A NAME="86030"></A>
+<A NAME="86031"></A>
+<A NAME="CumulativeSlotTime"></A></DD>
+<DT><STRONG><TT>CumulativeSlotTime</TT>:</STRONG></DT>
+<DD>This attribute is identical to
+<TT>RemoteWallClockTime</TT> except that the time is multiplied by the
+<TT>SlotWeight</TT> of the machine(s) that ran the job.  This relies
+on <TT>SlotWeight</TT> being listed in <TT>SYSTEM_JOB_MACHINE_ATTRS</TT> <A NAME="86727"></A> <A NAME="86728"></A>.
+
+<P>
+<A NAME="86038"></A>
+<A NAME="86039"></A>
+</DD>
+<DT><STRONG><TT>CumulativeSuspensionTime</TT>:</STRONG></DT>
+<DD>A running total of the number of
+seconds the job has spent in suspension for the life of the job.
+
+<P>
+<A NAME="86041"></A>
+<A NAME="86042"></A>
+<A NAME="CumulativeTransferTime"></A></DD>
+<DT><STRONG><TT>CumulativeTransferTime</TT>:</STRONG></DT>
+<DD>The total time, in seconds, that 
+condor has spent transferring the input and output sandboxes for the life of the job.
+
+<P>
+<A NAME="86045"></A>
+<A NAME="86046"></A>
+</DD>
+<DT><STRONG><TT>CurrentHosts</TT>:</STRONG></DT>
+<DD>The number of hosts in the claimed state,
+due to this job.
+
+<P>
+<A NAME="86048"></A>
+<A NAME="86049"></A>
+</DD>
+<DT><STRONG><TT>DAGManJobId</TT>:</STRONG></DT>
+<DD>For a DAGMan node job only,
+the <TT>ClusterId</TT> job ClassAd attribute
+of the <I>condor_dagman</I> job which is the parent of this node job.
+It is only one layer deep for nested DAGs.
+
+<P>
+<A NAME="86053"></A>
+<A NAME="86054"></A>
+</DD>
+<DT><STRONG><TT>DAGParentNodeNames</TT>:</STRONG></DT>
+<DD>For a DAGMan node job only,
+a comma separated list of each <I>JobName</I> which is a parent node of
+this job's node.
+This attribute is passed through to the job via the <I>condor_submit</I>
+command line, if it does not exceed the line length defined with
+<TT>_POSIX_ARG_MAX</TT>. For example, if a node job has two parents
+with <I>JobName</I>s B and C, the <I>condor_submit</I> command line will 
+contain
+<PRE>
+  -append +DAGParentNodeNames=B,C
+</PRE>
+
+<P>
+<A NAME="86063"></A>
+<A NAME="86064"></A>
+</DD>
+<DT><STRONG><TT>DeltacloudAvailableActions</TT>:</STRONG></DT>
+<DD>Used for grid-type deltacloud jobs.
+For a running job,
+Condor sets this string to contain a comma-separated list of actions
+that can be performed on a Deltacloud instance, 
+as given by the selected service.
+
+<P>
+<A NAME="86066"></A>
+<A NAME="86067"></A>
+</DD>
+<DT><STRONG><TT>DeltacloudHardwareProfile</TT>:</STRONG></DT>
+<DD>String taken from the submit description file command
+<B>deltacloud_hardware_profile</B>. Specifies the
+hardware configuration to be used for a grid-type deltacloud
+job.
+
+<P>
+<A NAME="86070"></A>
+<A NAME="86071"></A>
+</DD>
+<DT><STRONG><TT>DeltacloudHardwareProfileCpu</TT>:</STRONG></DT>
+<DD>String taken from the submit description file command
+<B>deltacloud_hardware_profile_cpu</B>. Specifies CPU
+details in the hardware configuration to be used for a grid-type
+deltacloud job.
+
+<P>
+<A NAME="86074"></A>
+<A NAME="86075"></A>
+</DD>
+<DT><STRONG><TT>DeltacloudHardwareProfileMemory</TT>:</STRONG></DT>
+<DD>String taken from the submit description file command
+<B>deltacloud_hardware_profile_memory</B>. Specifies memory (RAM)
+details in the hardware configuration to be used for a grid-type
+deltacloud job.
+
+<P>
+<A NAME="86078"></A>
+<A NAME="86079"></A>
+</DD>
+<DT><STRONG><TT>DeltacloudHardwareProfileStorage</TT>:</STRONG></DT>
+<DD>String taken from the submit description file command
+<B>deltacloud_hardware_profile_storage</B>. Specifies memory (disk)
+details in the hardware configuration to be used for a grid-type
+deltacloud job.
+
+<P>
+<A NAME="86082"></A>
+<A NAME="86083"></A>
+</DD>
+<DT><STRONG><TT>DeltacloudImageId</TT>:</STRONG></DT>
+<DD>String taken from the submit description file command
+<B>deltacloud_image_id</B>.
+Specifies the virtual machine image to use for a grid-type deltacloud
+job.
+
+<P>
+<A NAME="86086"></A>
+<A NAME="86087"></A>
+</DD>
+<DT><STRONG><TT>DeltacloudKeyname</TT>:</STRONG></DT>
+<DD>String taken from the submit description file command
+<B>deltacloud_keyname</B>.
+Specifies the SSH key pair to use for a grid-type deltacloud job.
+
+<P>
+<A NAME="86090"></A>
+<A NAME="86091"></A>
+</DD>
+<DT><STRONG><TT>DeltacloudPasswordFile</TT>:</STRONG></DT>
+<DD>String taken from the submit description file command
+<B>deltacloud_password_file</B>.
+Specifies a file containing the secret key to be used to authenticate
+with the Deltacloud service for a grid-type deltacloud job.
+
+<P>
+<A NAME="86094"></A>
+<A NAME="86095"></A>
+</DD>
+<DT><STRONG><TT>DeltacloudPrivateNetworkAddresses</TT>:</STRONG></DT>
+<DD>For a running Deltacloud instance,
+Condor receives and sets this comma-separated list of the private IP addresses
+allocated to the running virtual machine.
+
+<P>
+<A NAME="86097"></A>
+<A NAME="86098"></A>
+</DD>
+<DT><STRONG><TT>DeltacloudPublicNetworkAddresses</TT>:</STRONG></DT>
+<DD>For a running Deltacloud instance,
+Condor receives and sets this comma-separated list of the public IP addresses
+allocated to the running virtual machine.
+
+<P>
+<A NAME="86100"></A>
+<A NAME="86101"></A>
+</DD>
+<DT><STRONG><TT>DeltacloudRealmId</TT>:</STRONG></DT>
+<DD>String taken from the submit description file command
+<B>deltacloud_ream_id</B>.
+Specifies the realm to be used for a grid-type deltacloud job.
+
+<P>
+<A NAME="86104"></A>
+<A NAME="86105"></A>
+</DD>
+<DT><STRONG><TT>DeltacloudUserData</TT>:</STRONG></DT>
+<DD>String taken from the submit description file command
+<B>deltacloud_user_data</B>.
+Specifies a block of data to be provided to the instance
+for a grid-type deltacloud job.
+
+<P>
+<A NAME="86108"></A>
+<A NAME="86109"></A>
+</DD>
+<DT><STRONG><TT>DeltacloudUsername</TT>:</STRONG></DT>
+<DD>String taken from the submit description file command
+<B>deltacloud_username</B>.
+Specifies the user name to be used to authenticate
+with the Deltacloud service for a grid-type deltacloud job.
+
+<P>
+<A NAME="86112"></A>
+<A NAME="86113"></A>
+</DD>
+<DT><STRONG><TT>DiskUsage</TT>:</STRONG></DT>
+<DD>Amount of disk space (Kbytes) in the Condor
+execute directory on the execute machine that this job has used.
+An initial value may be set at the job's request, placing into the
+job's submit description file a setting such as
+<PRE>
+  # 1 megabyte initial value
+  +DiskUsage = 1024
+</PRE>
+<B>vm</B> universe jobs will default to an initial value of the disk
+image size. 
+If not initialized by the job,
+non-<B>vm</B> universe jobs will default to an initial value of the 
+sum of the job's executable and all input files.
+
+<P>
+<A NAME="86119"></A>
+<A NAME="86120"></A>
+</DD>
+<DT><STRONG><TT>EC2AccessKeyId</TT>:</STRONG></DT>
+<DD>Used for grid type ec2 jobs;
+a string taken from the definition of the submit description file command
+<B>ec2_access_key_id</B>.
+Defines the path and file name of the file containing the EC2 Query API's
+access key.
+
+<P>
+<A NAME="86123"></A>
+<A NAME="86124"></A>
+</DD>
+<DT><STRONG><TT>EC2AmiID</TT>:</STRONG></DT>
+<DD>Used for grid type ec2 jobs;
+a string taken from the definition of the submit description file command
+<B>ec2_ami_id</B>.
+Identifies the machine image of the instance.
+
+<P>
+<A NAME="86127"></A>
+<A NAME="86128"></A>
+</DD>
+<DT><STRONG><TT>EC2ElasticIp</TT>:</STRONG></DT>
+<DD>Used for grid type ec2 jobs;
+a string taken from the definition of the submit description file command
+<B>ec2_elastic_ip</B>.
+Specifies an Elastic IP address to associate with the instance.
+
+<P>
+<A NAME="86131"></A>
+<A NAME="86132"></A>
+</DD>
+<DT><STRONG><TT>EC2InstanceName</TT>:</STRONG></DT>
+<DD>Used for grid type ec2 jobs;
+a string set for the job once the instance starts running, 
+as assigned by the EC2 service, 
+that represents the unique ID assigned to the instance by the EC2 service.
+
+<P>
+<A NAME="86134"></A>
+<A NAME="86135"></A>
+</DD>
+<DT><STRONG><TT>EC2InstanceType</TT>:</STRONG></DT>
+<DD>Used for grid type ec2 jobs;
+a string taken from the definition of the submit description file command
+<B>ec2_instance_type</B>.
+Specifies a service-specific instance type.
+
+<P>
+<A NAME="86138"></A>
+<A NAME="86139"></A>
+</DD>
+<DT><STRONG><TT>EC2KeyPair</TT>:</STRONG></DT>
+<DD>Used for grid type ec2 jobs;
+a string taken from the definition of the submit description file command
+<B>ec2_key_pair</B>.
+Defines the key pair associated with the EC2 instance. 
+
+<P>
+<A NAME="86142"></A>
+<A NAME="86143"></A>
+</DD>
+<DT><STRONG><TT>EC2TagNames</TT>:</STRONG></DT>
+<DD>Used for grid type ec2 jobs;
+a string taken from the definition of the submit description file command
+<B>ec2_tag_names</B>.
+Defines the set, and case, of tags associated with the EC2 instance. 
+
+<P>
+<A NAME="86146"></A>
+<A NAME="86147"></A>
+</DD>
+<DT><STRONG><TT>EC2RemoteVirtualMachineName</TT>:</STRONG></DT>
+<DD>Used for grid type ec2 jobs;
+a string set for the job once the instance starts running, 
+as assigned by the EC2 service, that represents
+the host name upon which the instance runs, such that the
+user can communicate with the running instance.
+
+<P>
+<A NAME="86149"></A>
+<A NAME="86150"></A>
+</DD>
+<DT><STRONG><TT>EC2SecretAccessKey</TT>:</STRONG></DT>
+<DD>Used for grid type ec2 jobs;
+a string taken from the definition of the submit description file command
+<B>ec2_secret_access_key</B>.
+Defines that path and file name of the file 
+containing the EC2 Query API's secret access key.
+
+<P>
+<A NAME="86153"></A>
+<A NAME="86154"></A>
+</DD>
+<DT><STRONG><TT>EC2SecurityGroups</TT>:</STRONG></DT>
+<DD>Used for grid type ec2 jobs;
+a string taken from the definition of the submit description file command
+<B>ec2_security_groups</B>.
+Defines the list of EC2 security groups which should be associated with the job.
+
+<P>
+<A NAME="86157"></A>
+<A NAME="86158"></A>
+</DD>
+<DT><STRONG><TT>EC2UserData</TT>:</STRONG></DT>
+<DD>Used for grid type ec2 jobs;
+a string taken from the definition of the submit description file command
+<B>ec2_user_data</B>.
+Defines a block of data that can be accessed by the virtual machine.
+
+<P>
+<A NAME="86161"></A>
+<A NAME="86162"></A>
+</DD>
+<DT><STRONG><TT>EC2UserDataFile</TT>:</STRONG></DT>
+<DD>Used for grid type ec2 jobs;
+a string taken from the definition of the submit description file command
+<B>ec2_user_data_file</B>.
+Specifies a path and file name of a file containing 
+data that can be accessed by the virtual machine.
+
+<P>
+<A NAME="86165"></A>
+<A NAME="86166"></A>
+</DD>
+<DT><STRONG><TT>EmailAttributes</TT>:</STRONG></DT>
+<DD>A string containing a comma-separated
+list of job ClassAd attributes. For each attribute name in the list,
+its value will be included in the e-mail notification upon job completion.
+
+<P>
+<A NAME="86168"></A>
+<A NAME="86169"></A>
+</DD>
+<DT><STRONG><TT>EnteredCurrentStatus</TT>:</STRONG></DT>
+<DD>An integer containing the
+epoch time of when the job entered into its current status
+So for example, if the job is on hold, the ClassAd expression
+<PRE>
+    CurrentTime - EnteredCurrentStatus
+</PRE>
+will equal the number of seconds that the job has been on hold.
+
+<P>
+<A NAME="86173"></A>
+<A NAME="86174"></A>
+</DD>
+<DT><STRONG><TT>ExecutableSize</TT>:</STRONG></DT>
+<DD>Size of the executable in Kbytes.
+
+<P>
+<A NAME="86176"></A>
+<A NAME="86177"></A>
+</DD>
+<DT><STRONG><TT>ExitBySignal</TT>:</STRONG></DT>
+<DD>An attribute that is <TT>True</TT>
+when a user job exits via a signal and <TT>False</TT> otherwise.
+For some grid universe jobs, how the job exited is
+unavailable. In this case, <TT>ExitBySignal</TT> is set to  <TT>False</TT>.
+
+<P>
+<A NAME="86183"></A>
+<A NAME="86184"></A>
+</DD>
+<DT><STRONG><TT>ExitCode</TT>:</STRONG></DT>
+<DD>When a user job exits by means other than a signal,
+this is the exit return code of the user job.
+For some grid universe jobs, how the job exited is
+unavailable. In this case, <TT>ExitCode</TT> is set to  0.
+
+<P>
+<A NAME="86187"></A>
+<A NAME="86188"></A>
+</DD>
+<DT><STRONG><TT>ExitSignal</TT>:</STRONG></DT>
+<DD>When a user job exits by means of an unhandled 
+signal, this attribute takes on the numeric value of the signal.
+For some grid universe jobs, how the job exited is
+unavailable. In this case, <TT>ExitSignal</TT> will be undefined.
+
+<P>
+<A NAME="86191"></A>
+<A NAME="86192"></A>
+</DD>
+<DT><STRONG><TT>ExitStatus</TT>:</STRONG></DT>
+<DD>The way that Condor previously dealt with
+a job's exit status.
+This attribute should no longer be used.
+It is not always accurate in
+heterogeneous pools, or if the job exited with a signal.
+Instead, see the attributes: <TT>ExitBySignal</TT>,
+<TT>ExitCode</TT>, and
+<TT>ExitSignal</TT>.
+
+<P>
+<A NAME="86197"></A>
+<A NAME="86198"></A>
+</DD>
+<DT><STRONG><TT>GridJobStatus</TT>:</STRONG></DT>
+<DD>A string containing the job's status as
+reported by the remote job management system.
+
+<P>
+<A NAME="86200"></A>
+<A NAME="86201"></A>
+</DD>
+<DT><STRONG><TT>GridResource</TT>:</STRONG></DT>
+<DD>A string defined by the right hand side
+of the the submit description file command <B>grid_resource</B>.
+It specifies the target grid type, plus additional parameters
+specific to the grid type.
+
+<P>
+<A NAME="86204"></A>
+<A NAME="86205"></A>
+</DD>
+<DT><STRONG><TT>HoldKillSig</TT>:</STRONG></DT>
+<DD>Currently only for scheduler and local
+universe jobs,
+a string containing a name of
+a signal to be sent to the job if the job is put on hold.
+
+<P>
+<A NAME="86207"></A>
+<A NAME="86208"></A>
+</DD>
+<DT><STRONG><TT>HoldReason</TT>:</STRONG></DT>
+<DD>A string containing a human-readable
+message about why a job is on hold.
+This is the message that will be displayed in response to
+the command <code>condor_q -hold</code>.
+It can be used to determine if a job should be released or not.
+
+<P>
+<A NAME="86210"></A>
+<A NAME="86211"></A>
+</DD>
+<DT><STRONG><TT>HoldReasonCode</TT>:</STRONG></DT>
+<DD>An integer value that represents the
+reason that a job was put on hold.
+
+<P>
+<DIV ALIGN="CENTER">
+</DIV>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57><I>Integer Code</I></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=255><I>Reason for Hold</I></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=113><I>HoldReasonSubCode</I></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57>1</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=255>The user put the job on hold with <I>condor_hold</I>.</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=113>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57>2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=255>Globus middleware reported an error.</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=113>The GRAM error number.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57>3</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=255>The <TT>PERIODIC_HOLD</TT> expression evaluated to <TT>True</TT>.</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=113>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57>4</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=255>The credentials for the job are invalid.</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=113>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57>5</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=255>A job policy expression evaluated to <TT>Undefined</TT>.</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=113>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57>6</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=255>The <I>condor_starter</I> failed to start the executable.</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=113>The Unix  error number.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57>7</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=255>The standard output file for the job could not be opened.</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=113>The Unix  error number.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57>8</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=255>The standard input file for the job could not be opened.</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=113>The Unix  error number.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57>9</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=255>The standard output stream for the job could not be opened.</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=113>The Unix  error number.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57>10</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=255>The standard input stream for the job could not be opened.</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=113>The Unix  error number.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57>11</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=255>An internal Condor protocol error was encountered when transferring files.</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=113>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57>12</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=255>The <I>condor_starter</I> failed to download input files.</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=113>The Unix  error number.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57>13</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=255>The <I>condor_starter</I> failed to upload output files.</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=113>The Unix  error number.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57>14</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=255>The initial working directory of the job cannot be accessed.</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=113>The Unix  error number.</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57>15</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=255>The user requested the job be submitted on hold.</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=113>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57>16</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=255>Input files are being spooled.</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=113>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57>17</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=255>A standard universe job is not compatible with the
+  <I>condor_shadow</I> version available on the submitting machine.</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=113>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57>18</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=255>An internal Condor protocol error was encountered when transferring
+  files.</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=113>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57>19</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=255><TT>&lt;Keyword&gt;_HOOK_PREPARE_JOB</TT> <A NAME="86832"></A> <A NAME="86833"></A> was defined but could not be executed or returned failure.</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=113>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57>20</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=255>The job missed its deferred execution time and therefore failed to run.</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=113>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57>21</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=255>The job was put on hold because <TT>WANT_HOLD</TT> <A NAME="86837"></A> <A NAME="86838"></A> in the machine policy was true.</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=113>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57>22</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=255>Unable to initialize user log.</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=113>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57>23</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=255>Failed to access user account.</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=113>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57>24</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=255>No compatible shadow.</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=113>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57>25</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=255>Invalid cron settings.</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=113>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57>26</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=255><TT>SYSTEM_PERIODIC_HOLD</TT> <A NAME="86842"></A> <A NAME="86843"></A> evaluated to true.</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=113>&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57>27</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=255>The system periodic job policy evaluated to undefined.</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=113>&nbsp;</TD>
+</TR>
+</TABLE>
+</DIV>
+<BR>
+<DIV ALIGN="CENTER">
+</DIV>
+
+<P>
+<A NAME="86236"></A>
+<A NAME="86237"></A>
+</DD>
+<DT><STRONG><TT>HoldReasonSubCode</TT>:</STRONG></DT>
+<DD>An integer value that represents further
+information to go along with the <TT>HoldReasonCode</TT>, for
+some values of <TT>HoldReasonCode</TT>.
+See <TT>HoldReasonCode</TT> for the values.
+
+<P>
+<A NAME="86242"></A>
+</DD>
+<DT><STRONG><TT>HookKeyword</TT>:</STRONG></DT>
+<DD>A string that uniquely identifies
+a set of job hooks, and added to the ClassAd once a job is fetched.
+
+<P>
+<A NAME="86244"></A>
+<A NAME="86245"></A>
+</DD>
+<DT><STRONG><TT>ImageSize</TT>:</STRONG></DT>
+<DD>Maximum observed memory image size
+(i.e. virtual memory) of the
+job in Kbytes.  The initial value is equal to the size of the
+executable for non-vm universe jobs, and 0 for vm universe jobs.
+When the job writes a checkpoint, the <TT>ImageSize</TT>
+attribute is set to the size of the checkpoint file (since the
+checkpoint file contains the job's memory image).
+A vanilla universe job's <TT>ImageSize</TT> is recomputed
+internally every 15 seconds.
+How quickly this updated information becomes visible to <I>condor_q</I> is
+controlled by <TT>SHADOW_QUEUE_UPDATE_INTERVAL</TT> and
+<TT>STARTER_UPDATE_INTERVAL</TT>.
+
+<P>
+Under Linux, <TT>ProportionalSetSize</TT> is a better indicator of
+memory usage for jobs with significant sharing of memory between
+processes, because <TT>ImageSize</TT> is simply the sum of virtual
+memory sizes across all of the processes in the job, which may count
+the same memory pages more than once.
+
+<P>
+<A NAME="86254"></A>
+<A NAME="86255"></A>
+<A NAME="IwdFlushNFSCache-job-attribute"></A></DD>
+<DT><STRONG><TT>IwdFlushNFSCache</TT>:</STRONG></DT>
+<DD>A boolean expression that controls
+whether or not Condor attempts to flush a submit machine's NFS cache,
+in order to refresh a Condor job's initial working directory.
+The value will be <TT>True</TT>, unless a job explicitly adds this
+attribute, setting it to <TT>False</TT>.
+
+<P>
+<A NAME="86260"></A>
+<A NAME="86261"></A>
+<A NAME="JobAdInformationAttrs-job-attribute"></A></DD>
+<DT><STRONG><TT>JobAdInformationAttrs</TT>:</STRONG></DT>
+<DD>A comma-separated list
+of attribute names.  The named attributes and their values are written
+in the user log whenever any event is being written to the log.
+This is the same as the configuration setting
+<TT>EVENT_LOG_INFORMATION_ATTRS</TT> (see
+page&nbsp;<A HREF="3_3Configuration.html#param:EventLogJobAdInformationAttrs"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>) but it applies to
+the user log instead of the system event log.
+
+<P>
+<A NAME="86266"></A>
+<A NAME="86267"></A>
+<A NAME="JobCurrentStartDate-job-attribute"></A></DD>
+<DT><STRONG><TT>JobCurrentStartDate</TT>:</STRONG></DT>
+<DD>Time at which the job most recently began
+running.  Measured in the
+number of seconds since the epoch (00:00:00 UTC, Jan 1, 1970).  
+
+<P>
+<A NAME="86270"></A>
+<A NAME="86271"></A>
+<A NAME="JobCurrentStartExecutingDate-job-attribute"></A></DD>
+<DT><STRONG><TT>JobCurrentStartExecutingDate</TT>:</STRONG></DT>
+<DD>Time at which the job most recently finished
+transfering its input sandbox and began executing.  Measured in the
+number of seconds since the epoch (00:00:00 UTC, Jan 1, 1970)
+
+<P>
+<A NAME="86274"></A>
+<A NAME="86275"></A>
+<A NAME="JobCurrentStartTransferOutputDate-job-attribute"></A></DD>
+<DT><STRONG><TT>JobCurrentStartTransferOutputDate</TT>:</STRONG></DT>
+<DD>Time at which the job most recently finished
+executing and began transferring its output sandbox.  Measured in the
+number of seconds since the epoch (00:00:00 UTC, Jan 1, 1970)
+
+<P>
+<A NAME="86278"></A>
+<A NAME="86279"></A>
+</DD>
+<DT><STRONG><TT>JobLeaseDuration</TT>:</STRONG></DT>
+<DD>The number of seconds set for
+a job lease, the amount of time that a job may continue running
+on a remote resource,
+despite its submitting machine's lack of response.
+See section&nbsp;<A HREF="2_13Special_Environment.html#sec:Job-Lease">2.13.4</A> for details on job leases.
+
+<P>
+<A NAME="86282"></A>
+<A NAME="86283"></A>
+</DD>
+<DT><STRONG><TT>JobMaxVacateTime</TT>:</STRONG></DT>
+<DD>An integer expression that specifies
+the time in seconds requested by the job for being allowed to
+gracefully shut down.
+
+<P>
+<A NAME="86285"></A>
+<A NAME="86286"></A>
+</DD>
+<DT><STRONG><TT>JobPrio</TT>:</STRONG></DT>
+<DD>Integer priority for this job, set by
+<I>condor_submit</I> or <I>condor_prio</I>.  The default value is 0.  The higher
+the number, the greater (better) the priority.
+
+<P>
+<A NAME="86290"></A>
+<A NAME="86291"></A>
+</DD>
+<DT><STRONG><TT>JobRunCount</TT>:</STRONG></DT>
+<DD>This attribute is retained for backwards
+  compatibility.  It may go away in the future.  It is equivalent to
+  <TT>NumShadowStarts</TT> for all universes except <B>scheduler</B>.
+  For the <B>scheduler</B> universe, this attribute is equivalent to
+  <TT>NumJobStarts</TT>.
+
+<P>
+<A NAME="86297"></A>
+<A NAME="86298"></A>
+</DD>
+<DT><STRONG><TT>JobStartDate</TT>:</STRONG></DT>
+<DD>Time at which the job first began
+running.  Measured in the
+number of seconds since the epoch (00:00:00 UTC, Jan 1, 1970).
+
+<P>
+<A NAME="86300"></A>
+<A NAME="86301"></A>
+<A NAME="86302"></A>
+</DD>
+<DT><STRONG><TT>JobStatus</TT>:</STRONG></DT>
+<DD>Integer which indicates the current
+status of the job.
+<DIV ALIGN="CENTER">
+</DIV>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57><I>Value</I></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=283><I>Status</I></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57>1</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=283>Idle</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57>2</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=283>Running</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57>3</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=283>Removed</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57>4</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=283>Completed</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57>5</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=283>Held</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57>6</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=283>Transferring Output</TD>
+</TR>
+</TABLE>
+</DIV>
+<BR>
+<DIV ALIGN="CENTER">
+</DIV>
+
+<P>
+<A NAME="86314"></A>
+<A NAME="86315"></A>
+<A NAME="86316"></A>
+<A NAME="86317"></A>
+</DD>
+<DT><STRONG><TT>JobUniverse</TT>:</STRONG></DT>
+<DD>Integer which indicates the job
+universe.
+
+<P>
+<DIV ALIGN="CENTER">
+</DIV>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57><I>Value</I></TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=85><I>Universe</I></TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57>1</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=85>standard</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57>5</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=85>vanilla</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57>7</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=85>scheduler</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57>8</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=85>MPI</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57>9</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=85>grid</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57>10</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=85>java</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57>11</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=85>parallel</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57>12</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=85>local</TD>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=57>13</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=85>vm</TD>
+</TR>
+</TABLE>
+</DIV>
+<BR>
+<DIV ALIGN="CENTER">
+</DIV>
+
+<P>
+<A NAME="86329"></A>
+<A NAME="86330"></A>
+</DD>
+<DT><STRONG><TT>KeepClaimIdle</TT>:</STRONG></DT>
+<DD>An integer value that represents the number
+of seconds that the <I>condor_schedd</I> will continue to keep a claim,
+in the Claimed Idle state,
+after the job with this attribute defined completes, 
+and there are no other jobs ready to run from this user.
+This attribute may improve the performance of linear DAGs,
+in the case when a dependent job can not be scheduled until its
+parent has completed.
+Extending the claim on the machine may permit the dependent job to be
+scheduled with less delay than with waiting for the <I>condor_negotiator</I>
+to match with a new machine. 
+
+<P>
+<A NAME="86334"></A>
+<A NAME="86335"></A>
+</DD>
+<DT><STRONG><TT>KillSig</TT>:</STRONG></DT>
+<DD>The Unix signal number that the job wishes to be
+sent before being forcibly killed.
+It is relevant only for jobs running on Unix machines.
+
+<P>
+<A NAME="86337"></A>
+<A NAME="86338"></A>
+</DD>
+<DT><STRONG><TT>KillSigTimeout</TT>:</STRONG></DT>
+<DD>This attribute is replaced by the
+functionality in <TT>JobMaxVacateTime</TT> as of Condor version 7.7.3.
+The number of seconds that the job
+(other than the standard universe) requests the <I>condor_starter</I> wait
+after sending the signal defined as <TT>KillSig</TT> and before forcibly
+removing the job.
+The actual amount of time will be the minimum of this value
+and the execute machine's configuration variable <TT>KILLING_TIMEOUT</TT> <A NAME="86895"></A> <A NAME="86896"></A>.
+
+<P>
+<A NAME="86344"></A>
+<A NAME="86345"></A>
+</DD>
+<DT><STRONG><TT>LastCheckpointPlatform</TT>:</STRONG></DT>
+<DD>An opaque string which is the
+<TT>CheckpointPlatform</TT> identifier from the last machine where this
+standard universe job had successfully produced a checkpoint.
+
+<P>
+<A NAME="86348"></A>
+<A NAME="86349"></A>
+</DD>
+<DT><STRONG><TT>LastCkptServer</TT>:</STRONG></DT>
+<DD>Host name of the last checkpoint
+server used by this job.  When a pool is using multiple checkpoint
+servers, this tells the job where to find its checkpoint file.
+
+<P>
+<A NAME="86351"></A>
+<A NAME="86352"></A>
+</DD>
+<DT><STRONG><TT>LastCkptTime</TT>:</STRONG></DT>
+<DD>Time at which the job last performed a
+successful checkpoint.  Measured in the number of seconds since the
+epoch (00:00:00 UTC, Jan 1, 1970).
+
+<P>
+<A NAME="86354"></A>
+<A NAME="86355"></A>
+</DD>
+<DT><STRONG><TT>LastMatchTime</TT>:</STRONG></DT>
+<DD>An integer containing the epoch time
+when the job was last successfully matched with a resource (gatekeeper) Ad.
+
+<P>
+<A NAME="86357"></A>
+<A NAME="86358"></A>
+</DD>
+<DT><STRONG><TT>LastRejMatchReason</TT>:</STRONG></DT>
+<DD>If, at any point in the past,
+this job failed to match with a resource ad,
+this attribute will contain a string with a
+human-readable message about why the match failed.
+
+<P>
+<A NAME="86360"></A>
+<A NAME="86361"></A>
+</DD>
+<DT><STRONG><TT>LastRejMatchTime</TT>:</STRONG></DT>
+<DD>An integer containing the epoch
+time when Condor-G last tried to find a match for the job,
+but failed to do so.
+
+<P>
+<A NAME="86363"></A>
+<A NAME="86364"></A>
+</DD>
+<DT><STRONG><TT>LastSuspensionTime</TT>:</STRONG></DT>
+<DD>Time at which the job last performed a
+successful suspension.  Measured in the number of seconds since the
+epoch (00:00:00 UTC, Jan 1, 1970).
+
+<P>
+<A NAME="86366"></A>
+<A NAME="86367"></A>
+</DD>
+<DT><STRONG><TT>LastVacateTime</TT>:</STRONG></DT>
+<DD>Time at which the job was last
+evicted from a remote workstation.  Measured in the number of seconds
+since the epoch (00:00:00 UTC, Jan 1, 1970).
+
+<P>
+<A NAME="86369"></A>
+<A NAME="86370"></A>
+</DD>
+<DT><STRONG><TT>LeaveJobInQueue</TT>:</STRONG></DT>
+<DD>A boolean expression that defaults to
+<TT>False</TT>, causing the job to be removed from the queue upon completion.
+An exception is if the job is submitted using <TT>condor_submit -spool</TT>.
+For this case, the default expression causes the job to be kept in the queue
+for 10 days after completion.
+
+<P>
+<A NAME="86374"></A>
+<A NAME="86375"></A>
+</DD>
+<DT><STRONG><TT>LocalSysCpu</TT>:</STRONG></DT>
+<DD>An accumulated number of seconds of 
+system CPU time that the job caused to the machine upon which
+the job was submitted.
+
+<P>
+<A NAME="86377"></A>
+<A NAME="86378"></A>
+</DD>
+<DT><STRONG><TT>LocalUserCpu</TT>:</STRONG></DT>
+<DD>An accumulated number of seconds of 
+user CPU time that the job caused to the machine upon which
+the job was submitted.
+
+<P>
+<A NAME="86380"></A>
+<A NAME="86381"></A>
+</DD>
+<DT><STRONG><TT>MachineAttr&lt;X&gt;&lt;N&gt;</TT>:</STRONG></DT>
+<DD>Machine attribute of name <TT>&lt;X&gt;</TT> that is placed into this job ClassAd,
+as specified by the configuration variable
+<TT>SYSTEM_JOB_MACHINE_ATTRS</TT>.
+With the potential for multiple run attempts, <TT>&lt;N&gt;</TT> represents
+an integer value providing historical values of this machine attribute
+for multiple runs.
+The most recent run will have a value of <TT>&lt;N&gt;</TT> equal to <TT>0</TT>.
+The next most recent run will have a value of <TT>&lt;N&gt;</TT> equal to <TT>1</TT>.
+
+<P>
+<A NAME="86390"></A>
+<A NAME="86391"></A>
+</DD>
+<DT><STRONG><TT>MaxHosts</TT>:</STRONG></DT>
+<DD>The maximum number of hosts that this job would
+like to claim. As long as <TT>CurrentHosts</TT> is the same as
+<TT>MaxHosts</TT>, no more hosts are negotiated for.
+
+<P>
+<A NAME="86395"></A>
+<A NAME="86396"></A>
+</DD>
+<DT><STRONG><TT>MaxJobRetirementTime</TT>:</STRONG></DT>
+<DD>Maximum time in seconds to let this
+job run uninterrupted before kicking it off when it is being preempted.
+This can only decrease the amount of time from what the corresponding
+startd expression allows.
+
+<P>
+<A NAME="86398"></A>
+<A NAME="86399"></A>
+</DD>
+<DT><STRONG><TT>MemoryUsage</TT>:</STRONG></DT>
+<DD>An integer expression in units of Mbytes that
+represents the peak memory usage for the job.
+Its purpose is to be compared with the value defined by a job with the
+<B>request_memory</B> submit command,
+for purposes of policy evaluation.
+
+<P>
+<A NAME="86402"></A>
+<A NAME="86403"></A>
+</DD>
+<DT><STRONG><TT>MinHosts</TT>:</STRONG></DT>
+<DD>The minimum number of hosts that must be in
+the claimed state for this job, before the job may enter the running state.
+
+<P>
+<A NAME="86405"></A>
+<A NAME="86406"></A>
+</DD>
+<DT><STRONG><TT>NextJobStartDelay</TT>:</STRONG></DT>
+<DD>An integer number of seconds delay time
+after this job starts until the next job is started. The value is limited
+by the configuration variable <TT>MAX_NEXT_JOB_START_DELAY</TT> <A NAME="86930"></A> <A NAME="86931"></A>.
+
+<P>
+<A NAME="86409"></A>
+<A NAME="86410"></A>
+</DD>
+<DT><STRONG><TT>NiceUser</TT>:</STRONG></DT>
+<DD>Boolean value which when <TT>True</TT> indicates
+that this job is a <I>nice</I> job, raising its user priority value, 
+thus causing it to run on a machine only when no other Condor jobs want 
+the machine.
+
+<P>
+<A NAME="86414"></A>
+<A NAME="86415"></A>
+</DD>
+<DT><STRONG><TT>NTDomain</TT>:</STRONG></DT>
+<DD>A string that identifies the NT domain under
+which a job's owner authenticates on a platform running Windows.
+
+<P>
+<A NAME="86417"></A>
+<A NAME="86418"></A>
+</DD>
+<DT><STRONG><TT>NumCkpts</TT>:</STRONG></DT>
+<DD>A count of the number of checkpoints
+written by this job during its lifetime.
+
+<P>
+<A NAME="86420"></A>
+<A NAME="86421"></A>
+</DD>
+<DT><STRONG><TT>NumGlobusSubmits</TT>:</STRONG></DT>
+<DD>An integer that is incremented each
+time the <I>condor_gridmanager</I> receives confirmation of a successful job
+submission into Globus.
+
+<P>
+<A NAME="86424"></A>
+<A NAME="86425"></A>
+</DD>
+<DT><STRONG><TT>NumJobMatches</TT>:</STRONG></DT>
+<DD>An integer that is incremented by the
+<I>condor_schedd</I> each time the job is matched with a resource ad by the
+negotiator.
+
+<P>
+<A NAME="86428"></A>
+<A NAME="86429"></A>
+</DD>
+<DT><STRONG><TT>NumJobStarts</TT>:</STRONG></DT>
+<DD>An integer count of the number of times the
+  job started executing.
+  This is not (yet) defined for <B>standard</B> universe jobs.
+
+<P>
+<A NAME="86432"></A>
+<A NAME="86433"></A>
+</DD>
+<DT><STRONG><TT>NumJobReconnects</TT>:</STRONG></DT>
+<DD>An integer count of the number of times a
+  job successfully reconnected after being disconnected.
+  This occurs when the
+  <I>condor_shadow</I> and <I>condor_starter</I> lose contact,
+  for example because of
+  transient network failures or a <I>condor_shadow</I> or <I>condor_schedd</I>
+  restart.
+  This attribute is only defined for jobs that can reconnected:
+  those in the <B>vanilla</B> and <B>java</B> universes.
+
+<P>
+<A NAME="86441"></A>
+<A NAME="86442"></A>
+</DD>
+<DT><STRONG><TT>NumPids</TT>:</STRONG></DT>
+<DD>A count of the number of child processes that
+this job has.
+
+<P>
+<A NAME="86444"></A>
+<A NAME="86445"></A>
+</DD>
+<DT><STRONG><TT>NumRestarts</TT>:</STRONG></DT>
+<DD>A count of the number of restarts from a
+checkpoint attempted by this job during its lifetime.
+
+<P>
+<A NAME="86447"></A>
+<A NAME="86448"></A>
+</DD>
+<DT><STRONG><TT>NumShadowExceptions</TT>:</STRONG></DT>
+<DD>An integer count of the number of
+  times the <I>condor_shadow</I> daemon had a fatal error for a given job.
+
+<P>
+<A NAME="86451"></A>
+<A NAME="86452"></A>
+</DD>
+<DT><STRONG><TT>NumShadowStarts</TT>:</STRONG></DT>
+<DD>An integer count of the number of
+  times a <I>condor_shadow</I> daemon was started for a given job.
+  This attribute is not defined for
+  <B>scheduler</B> universe jobs, since
+  they do not have a <I>condor_shadow</I> daemon associated with them.
+  For <B>local</B> universe jobs, this attribute <I>is</I>
+  defined, even though the process that manages the job is technically
+  a <I>condor_starter</I> rather than a <I>condor_shadow</I>.  
+  This keeps the management of the
+  local universe and other universes as similar as possible.
+
+<P>
+<A NAME="86461"></A>
+<A NAME="86462"></A>
+</DD>
+<DT><STRONG><TT>NumSystemHolds</TT>:</STRONG></DT>
+<DD>An integer that is incremented each time
+Condor-G places a job on hold due to some sort of error condition.  This
+counter is useful, since Condor-G will always place a job on hold when it
+gives up on some error condition.  Note that if the user places the job
+on hold using the <I>condor_hold</I> command, this attribute is not incremented.
+
+<P>
+<A NAME="attribute-OtherJobRemoveRequirements"></A><A NAME="86466"></A>
+<A NAME="86467"></A>
+</DD>
+<DT><STRONG><TT>OtherJobRemoveRequirements</TT>:</STRONG></DT>
+<DD>A string that defines a list of jobs.
+When the job with this attribute defined is removed,
+all other jobs defined by the list are also removed.
+The string is an expression that defines a constraint equivalent to
+the one implied by the command 
+<PRE>
+  condor_rm -constraint &lt;constraint&gt;
+</PRE>
+This attribute is used for jobs managed with <I>condor_dagman</I> to ensure
+that node jobs of the DAG are removed when the <I>condor_dagman</I> job
+itself is removed.  Note that the list of jobs defined by this attribute
+must not form a cyclic removal of jobs,
+or the <I>condor_schedd</I> will go into an infinite loop 
+when any of the jobs is removed.
+
+<P>
+<A NAME="86474"></A>
+<A NAME="86475"></A>
+</DD>
+<DT><STRONG><TT>Owner</TT>:</STRONG></DT>
+<DD>String describing the user who submitted this
+job.
+
+<P>
+<A NAME="86477"></A>
+<A NAME="86478"></A>
+</DD>
+<DT><STRONG><TT>ParallelShutdownPolicy</TT>:</STRONG></DT>
+<DD>A string that is only relevant
+to parallel universe jobs.  Without this attribute defined, the default
+policy applied to parallel universe jobs is to consider the whole job
+completed when the first node exits, killing processes running on
+all remaining nodes.  If defined to the following strings, Condor's
+behavior changes:
+  <DL>
+<DT><STRONG><TT>"WAIT_FOR_ALL"</TT></STRONG></DT>
+<DD>Condor will wait until every node in 
+  the parallel job has completed to consider the job finished.
+  
+</DD>
+</DL>
+
+<P>
+<A NAME="86483"></A>
+<A NAME="86484"></A>
+</DD>
+<DT><STRONG><TT>PreserveRelativeExecutable</TT>:</STRONG></DT>
+<DD>When <TT>True</TT>, 
+the <I>condor_starter</I> will not prepend <TT>Iwd</TT>
+to <TT>Cmd</TT>, when <TT>Cmd</TT> is a relative path name
+and <TT>TransferExecutable</TT> is <TT>False</TT>.  
+The default value is <TT>False</TT>.
+This attribute is primarily of interest for users of 
+<TT>USER_JOB_WRAPPER</TT>
+for the purpose of allowing an executable's location to be resolved 
+by the user's path in the job wrapper.
+
+<P>
+<A NAME="86495"></A>
+<A NAME="86496"></A>
+<A NAME="86497"></A>
+<A NAME="86498"></A>
+</DD>
+<DT><STRONG><TT>ProcId</TT>:</STRONG></DT>
+<DD>Integer process identifier for this job.
+Within a cluster of many jobs,
+each job has the same <TT>ClusterId</TT>, but will have a unique <TT>ProcId</TT>.
+Within a cluster, assignment of a <TT>ProcId</TT> value will start
+with the value 0.
+The job (process) identifier described here is unrelated to operating
+system PIDs.
+
+<P>
+<A NAME="86503"></A>
+<A NAME="86504"></A>
+</DD>
+<DT><STRONG><TT>ProportionalSetSizeKb</TT>:</STRONG></DT>
+<DD>On Linux execute machines with kernel version more recent than 2.6.27,
+this is the maximum observed proportional set size (PSS) in Kbytes,
+summed across all processes in the job.
+If the execute machine does not
+support monitoring of PSS or PSS has not yet been measured,
+this attribute will be undefined.  
+PSS differs from <TT>ImageSize</TT> in how memory shared
+between processes is accounted.
+The PSS for one process is the sum of that process' memory pages 
+divided by the number of processes sharing each of the pages.
+<TT>ImageSize</TT> is the same,
+except there is no division by the number of processes sharing the pages.
+
+<P>
+<A NAME="86508"></A>
+<A NAME="86509"></A>
+</DD>
+<DT><STRONG><TT>QDate</TT>:</STRONG></DT>
+<DD>Time at which the job was submitted to the job
+queue.  Measured in the
+number of seconds since the epoch (00:00:00 UTC, Jan 1, 1970).
+
+<P>
+<A NAME="86511"></A>
+<A NAME="86512"></A>
+</DD>
+<DT><STRONG><TT>ReleaseReason</TT>:</STRONG></DT>
+<DD>A string containing a human-readable
+message about why the job was released from hold.
+
+<P>
+<A NAME="86514"></A>
+<A NAME="86515"></A>
+</DD>
+<DT><STRONG><TT>RemoteIwd</TT>:</STRONG></DT>
+<DD>The path to the directory in which
+a job is to be executed on a remote machine.
+
+<P>
+<A NAME="86517"></A>
+<A NAME="86518"></A>
+</DD>
+<DT><STRONG><TT>RemotePool</TT>:</STRONG></DT>
+<DD>The name of the collector of the pool in which
+a job is running via flocking.  This attribute is not defined if the job
+is not running via flocking.
+
+<P>
+<A NAME="86520"></A>
+<A NAME="86521"></A>
+</DD>
+<DT><STRONG><TT>LastRemotePool</TT>:</STRONG></DT>
+<DD>The name of the collector of the pool in which
+a job ran via flocking in the most recent run attempt.  This attribute is not
+defined if the job did not run via flocking.
+
+<P>
+<A NAME="86523"></A>
+<A NAME="86524"></A>
+</DD>
+<DT><STRONG><TT>RemoteSysCpu</TT>:</STRONG></DT>
+<DD>The total number of seconds
+of system CPU time (the time spent at system calls) the job used
+on remote machines.  This does not count time spent on run attempts that
+were evicted without a checkpoint.
+
+<P>
+<A NAME="86526"></A>
+<A NAME="86527"></A>
+</DD>
+<DT><STRONG><TT>RemoteUserCpu</TT>:</STRONG></DT>
+<DD>The total number of seconds
+of user CPU time the job used on remote machines.  This does not
+count time spent on run attempts that were evicted without a checkpoint.
+
+<P>
+<A NAME="86529"></A>
+<A NAME="86530"></A>
+<A NAME="RemoteWallClockTime"></A></DD>
+<DT><STRONG><TT>RemoteWallClockTime</TT>:</STRONG></DT>
+<DD>Cumulative number of seconds
+the job has been allocated a machine.
+This also includes time spent in suspension (if any),
+so the total real time spent running is 
+<PRE>
+RemoteWallClockTime - CumulativeSuspensionTime
+</PRE>
+Note that this number does not get reset to
+zero when a job is forced to migrate from one machine to another.
+<TT>CommittedTime</TT>, on the other hand, is just like
+<TT>RemoteWallClockTime</TT> except it does get reset to 0 whenever
+the job is evicted without a checkpoint.
+
+<P>
+<A NAME="86537"></A>
+<A NAME="86538"></A>
+</DD>
+<DT><STRONG><TT>RemoveKillSig</TT>:</STRONG></DT>
+<DD>Currently only for scheduler universe jobs,
+a string containing a name of
+a signal to be sent to the job if the job is removed.
+
+<P>
+<A NAME="86540"></A>
+<A NAME="86541"></A>
+</DD>
+<DT><STRONG><TT>RequestCpus</TT>:</STRONG></DT>
+<DD>The number of CPUs requested for this job.
+If dynamic <I>condor_startd</I> provisioning is enabled,
+it is the minimum number of CPUs that are needed in the created dynamic slot.
+
+<P>
+<A NAME="86544"></A>
+<A NAME="86545"></A>
+</DD>
+<DT><STRONG><TT>RequestDisk</TT>:</STRONG></DT>
+<DD>The amount of disk space in Kbytes requested 
+for this job.
+If dynamic <I>condor_startd</I> provisioning is enabled,
+it is the minimum amount of disk space needed in the created dynamic slot.
+
+<P>
+<A NAME="86548"></A>
+<A NAME="86549"></A>
+</DD>
+<DT><STRONG><TT>RequestedChroot</TT>:</STRONG></DT>
+<DD>A full path to the directory that the job
+requests the <I>condor_starter</I> use as an argument to <TT>chroot()</TT>.
+
+<P>
+<A NAME="86553"></A>
+<A NAME="86554"></A>
+</DD>
+<DT><STRONG><TT>RequestMemory</TT>:</STRONG></DT>
+<DD>The amount of memory space in Mbytes 
+requested for this job.
+If dynamic <I>condor_startd</I> provisioning is enabled,
+it is the minimum amount of memory needed in the created dynamic slot.
+If not set by the job, its definition is specified by 
+configuration variable <TT>JOB_DEFAULT_REQUESTMEMORY</TT> <A NAME="87029"></A> <A NAME="87030"></A>.
+
+<P>
+<A NAME="86558"></A>
+<A NAME="86559"></A>
+</DD>
+<DT><STRONG><TT>ResidentSetSize</TT>:</STRONG></DT>
+<DD>Maximum observed
+physical memory in use by the job in Kbytes while running.
+
+<P>
+<A NAME="86561"></A>
+<A NAME="86562"></A>
+</DD>
+<DT><STRONG><TT>StackSize</TT>:</STRONG></DT>
+<DD>Utilized for Linux jobs only, 
+the number of bytes allocated for stack space for this job.
+This number of bytes replaces the default allocation of 512 Mbytes.
+
+<P>
+<A NAME="86564"></A>
+<A NAME="86565"></A>
+</DD>
+<DT><STRONG><TT>StageOutFinish</TT>:</STRONG></DT>
+<DD>An attribute representing a Unix epoch time that is defined for a job that is
+spooled to a remote site using <TT>condor_submit -spool</TT> or Condor-C
+and causes Condor to hold the output in the spool while the job waits 
+in the queue in the <TT>Completed</TT> state.
+This attribute is defined when retrieval of the output finishes.
+
+<P>
+<A NAME="86569"></A>
+<A NAME="86570"></A>
+</DD>
+<DT><STRONG><TT>StageOutStart</TT>:</STRONG></DT>
+<DD>An attribute representing a Unix epoch time that is defined for a job that is
+spooled to a remote site using <TT>condor_submit -spool</TT> or Condor-C
+and causes Condor to hold the output in the spool while the job waits 
+in the queue in the <TT>Completed</TT> state.
+This attribute is defined when retrieval of the output begins.
+
+<P>
+<A NAME="86574"></A>
+<A NAME="86575"></A>
+</DD>
+<DT><STRONG><TT>StreamErr</TT>:</STRONG></DT>
+<DD>An attribute utilized only for grid universe jobs.
+The default value is <TT>True</TT>.
+If <TT>True</TT>, and <TT>TransferErr</TT> is <TT>True</TT>, then 
+standard error is streamed back to the submit machine, instead
+of doing the transfer (as a whole) after the job completes.
+If <TT>False</TT>, then
+standard error is transferred back to the submit machine
+(as a whole) after the job completes.
+If <TT>TransferErr</TT> is <TT>False</TT>, then this job attribute is ignored.
+
+<P>
+<A NAME="86584"></A>
+<A NAME="86585"></A>
+</DD>
+<DT><STRONG><TT>StreamOut</TT>:</STRONG></DT>
+<DD>An attribute utilized only for grid universe jobs.
+The default value is <TT>True</TT>.
+If <TT>True</TT>, and <TT>TransferOut</TT> is <TT>True</TT>, then 
+job output is streamed back to the submit machine, instead
+of doing the transfer (as a whole) after the job completes.
+If <TT>False</TT>, then
+job output is transferred back to the submit machine
+(as a whole) after the job completes.
+If <TT>TransferOut</TT> is <TT>False</TT>, then this job attribute is ignored.
+
+<P>
+<A NAME="86594"></A>
+<A NAME="86595"></A>
+</DD>
+<DT><STRONG><TT>SubmitterAutoregroup</TT>:</STRONG></DT>
+<DD>A boolean attribute defined
+by the <I>condor_negotiator</I> when it makes a match. 
+It will be <TT>True</TT> if the resource was claimed via negotiation
+when the configuration variable <TT>GROUP_AUTOREGROUP</TT> <A NAME="87062"></A> <A NAME="87063"></A> was <TT>True</TT>.
+It will be <TT>False</TT> otherwise.
+
+<P>
+<A NAME="86602"></A>
+<A NAME="86603"></A>
+</DD>
+<DT><STRONG><TT>SubmitterGroup</TT>:</STRONG></DT>
+<DD>The accounting group name defined
+by the <I>condor_negotiator</I> when it makes a match. 
+
+<P>
+<A NAME="86606"></A>
+<A NAME="86607"></A>
+</DD>
+<DT><STRONG><TT>SubmitterNegotiatingGroup</TT>:</STRONG></DT>
+<DD>The accounting group name under
+which the resource negotiated when it was claimed, 
+as set by the <I>condor_negotiator</I>. 
+
+<P>
+<A NAME="86610"></A>
+<A NAME="86611"></A>
+</DD>
+<DT><STRONG><TT>TotalSuspensions</TT>:</STRONG></DT>
+<DD>A count of the number of times this job
+has been suspended during its lifetime.
+
+<P>
+<A NAME="86613"></A>
+<A NAME="86614"></A>
+</DD>
+<DT><STRONG><TT>TransferErr</TT>:</STRONG></DT>
+<DD>An attribute utilized only for grid universe jobs.
+The default value is <TT>True</TT>.
+If <TT>True</TT>, then the error output from the job
+is transferred from the remote machine back to the submit machine.
+The name of the file after transfer is the file referred to
+by job attribute <TT>Err</TT>.
+If <TT>False</TT>, no transfer takes place (remote to submit machine),
+and the name of the file is the file referred to
+by job attribute <TT>Err</TT>.
+
+<P>
+<A NAME="86621"></A>
+<A NAME="86622"></A>
+</DD>
+<DT><STRONG><TT>TransferExecutable</TT>:</STRONG></DT>
+<DD>An attribute utilized only for grid universe jobs.
+The default value is <TT>True</TT>.
+If <TT>True</TT>, then the job executable is transferred from the submit
+machine to the remote machine.
+The name of the file (on the submit machine)
+that is transferred is given by the
+job attribute <TT>Cmd</TT>.
+If <TT>False</TT>, no transfer takes place, and
+the name of the file used (on the remote machine) will be as
+given in the job attribute <TT>Cmd</TT>.
+
+<P>
+<A NAME="86629"></A>
+<A NAME="86630"></A>
+</DD>
+<DT><STRONG><TT>TransferIn</TT>:</STRONG></DT>
+<DD>An attribute utilized only for grid universe jobs.
+The default value is <TT>True</TT>.
+If <TT>True</TT>, then the job input is transferred from the submit
+machine to the remote machine.
+The name of the file that is transferred is given by the
+job attribute <TT>In</TT>.
+If <TT>False</TT>, then the job's input is taken from a file on the
+remote machine (pre-staged), and 
+the name of the file is given by the job attribute <TT>In</TT>.
+
+<P>
+<A NAME="86637"></A>
+<A NAME="86638"></A>
+</DD>
+<DT><STRONG><TT>TransferOut</TT>:</STRONG></DT>
+<DD>An attribute utilized only for grid universe jobs.
+The default value is <TT>True</TT>.
+If <TT>True</TT>, then the output from the job
+is transferred from the remote machine back to the submit machine.
+The name of the file after transfer is the file referred to
+by job attribute <TT>Out</TT>.
+If <TT>False</TT>, no transfer takes place (remote to submit machine),
+and the name of the file is the file referred to
+by job attribute <TT>Out</TT>.
+
+<P>
+<A NAME="86645"></A>
+</DD>
+<DT><STRONG><TT>WantGracefulRemoval</TT>:</STRONG></DT>
+<DD>A boolean expression that,
+when <TT>True</TT>, specifies that a graceful shutdown of the job
+should be done when the job is removed or put on hold.
+
+<P>
+<A NAME="86648"></A>
+</DD>
+<DT><STRONG><TT>WindowsBuildNumber</TT>:</STRONG></DT>
+<DD>An integer, extracted from the
+platform type of the machine upon which this job is submitted,
+representing a build number for a Windows operating system.
+This attribute only exists for jobs submitted from Windows machines.
+
+<P>
+<A NAME="86650"></A>
+</DD>
+<DT><STRONG><TT>WindowsMajorVersion</TT>:</STRONG></DT>
+<DD>An integer, extracted from the
+platform type of the machine upon which this job is submitted,
+representing a major version number (currently 5 or 6)
+for a Windows operating system.
+This attribute only exists for jobs submitted from Windows machines.
+
+<P>
+<A NAME="86652"></A>
+</DD>
+<DT><STRONG><TT>WindowsMinorVersion</TT>:</STRONG></DT>
+<DD>An integer, extracted from the
+platform type of the machine upon which this job is submitted, 
+representing a minor version number (currently 0, 1, or 2)
+for a Windows operating system.
+This attribute only exists for jobs submitted from Windows machines.
+
+<P>
+<A NAME="86654"></A>
+<A NAME="86655"></A>
+</DD>
+<DT><STRONG><TT>X509UserProxy</TT>:</STRONG></DT>
+<DD>The full path and file name of the file containing the X.509 user proxy.
+
+<P>
+<A NAME="86657"></A>
+<A NAME="86658"></A>
+</DD>
+<DT><STRONG><TT>X509UserProxyExpiration</TT>:</STRONG></DT>
+<DD>For a job that defines the submit description file command
+<B>x509userproxy</B>, this is the time at which the indicated
+X.509 proxy credential will expire, measured in the
+number of seconds since the epoch (00:00:00 UTC, Jan 1, 1970).
+
+<P>
+<A NAME="86661"></A>
+<A NAME="86662"></A>
+</DD>
+<DT><STRONG><TT>X509UserProxyEmail</TT>:</STRONG></DT>
+<DD>
+</DD>
+<DT></DT>
+<DD>For a job with an X.509 proxy credential, this is the email
+address extracted from the proxy.
+
+<P>
+<A NAME="86664"></A>
+<A NAME="86665"></A>
+</DD>
+<DT><STRONG><TT>X509UserProxyFirstFQAN</TT>:</STRONG></DT>
+<DD>For a vanilla or grid universe job that defines the submit description
+file command <B>x509userproxy</B>, 
+this is the VOMS Fully Qualified Attribute Name (FQAN) of
+the primary role of the credential. 
+A credential may have multiple roles defined, 
+but by convention the one listed first is the primary role. 
+
+<P>
+<A NAME="86668"></A>
+<A NAME="86669"></A>
+</DD>
+<DT><STRONG><TT>X509UserProxyFQAN</TT>:</STRONG></DT>
+<DD>For a vanilla or grid universe job that defines the submit description
+file command <B>x509userproxy</B>, 
+this is a serialized list of the DN and all FQAN.
+A comma is used as a separator,
+and any existing commas in the DN or FQAN are replaced with the string
+<TT>&amp;comma;</TT>.
+Likewise, any ampersands in the DN or FQAN are replaced with
+<TT>&amp;amp;</TT>.
+
+<P>
+<A NAME="86674"></A>
+<A NAME="86675"></A>
+</DD>
+<DT><STRONG><TT>X509UserProxySubject</TT>:</STRONG></DT>
+<DD>For a vanilla or grid universe job that defines the submit description
+file command <B>x509userproxy</B>, 
+this attribute contains the Distinguished Name (DN) of the credential
+used to submit the job.
+
+<P>
+<A NAME="86678"></A>
+<A NAME="86679"></A>
+</DD>
+<DT><STRONG><TT>X509UserProxyVOName</TT>:</STRONG></DT>
+<DD>For a vanilla or grid universe job that defines the submit description
+file command <B>x509userproxy</B>, 
+this is the name of the VOMS virtual organization (VO) that 
+the user's credential is part of. 
+
+<P>
+<A NAME="86682"></A>
+<A NAME="86683"></A>
+</DD>
+<DT><STRONG><TT>DelegateJobGSICredentialsLifetime</TT>:</STRONG></DT>
+<DD>An integer that specifies the maximum number of seconds for which
+delegated proxies should be valid.  The default behavior is determined
+by the configuration
+setting <TT>DELEGATE_JOB_GSI_CREDENTIALS_LIFETIME</TT> <A NAME="87120"></A> <A NAME="87121"></A>, which
+defaults to one day.  A value of 0 indicates that the delegated proxy
+should be valid for as long as allowed by the credential used to
+create the proxy.  This setting currently only applies to proxies
+delegated for non-grid jobs and Condor-C jobs.  It does not currently
+apply to globus grid jobs, which always behave as though this setting
+were 0.  This setting has no effect if the configuration
+setting <TT>DELEGATE_JOB_GSI_CREDENTIALS</TT> <A NAME="87125"></A> <A NAME="87126"></A> is false, because in
+that case the job proxy is copied rather than delegated.
+
+<P>
+</DD>
+</DL>
+
+<P>
+The following job ClassAd attributes are relevant only for
+<B>vm</B> universe jobs.
+
+<P>
+<DL>
+<DD><A NAME="86690"></A>
+</DD>
+<DT><STRONG><TT>VM_MACAddr</TT>:</STRONG></DT>
+<DD>The MAC address of the virtual
+machine's network interface,
+in the standard format of six groups of
+two hexadecimal digits separated by colons.
+This attribute is currently limited to apply only to Xen virtual machines.
+<P>
+</DD>
+</DL>
+
+<P>
+
+<H2><A NAME="SECTION001203000000000000000"></A><A NAME="sec:Machine-ClassAd-Attributes"></A>
+<BR>
+Machine ClassAd Attributes
+</H2>
+<DL>
+<DD><A NAME="87450"></A>
+<A NAME="87451"></A>
+</DD>
+<DT><STRONG><TT>Activity</TT>:</STRONG></DT>
+<DD>String which describes Condor job activity on the machine.
+Can have one of the following values:
+	<DL>
+<DT><STRONG><TT>"Idle"</TT>:</STRONG></DT>
+<DD>There is no job activity
+	
+</DD>
+<DT><STRONG><TT>"Busy"</TT>:</STRONG></DT>
+<DD>A job is busy running
+	
+</DD>
+<DT><STRONG><TT>"Suspended"</TT>:</STRONG></DT>
+<DD>A job is currently suspended
+	
+</DD>
+<DT><STRONG><TT>"Vacating"</TT>:</STRONG></DT>
+<DD>A job is currently checkpointing
+	
+</DD>
+<DT><STRONG><TT>"Killing"</TT>:</STRONG></DT>
+<DD>A job is currently being killed
+	
+</DD>
+<DT><STRONG><TT>"Benchmarking"</TT>:</STRONG></DT>
+<DD>The startd is running benchmarks
+	
+</DD>
+<DT><STRONG><TT>"Retiring"</TT>:</STRONG></DT>
+<DD>Waiting for a job to finish or for the maximum retirement time to expire
+	
+</DD>
+</DL>
+<A NAME="87462"></A>
+</DD>
+<DT><STRONG><TT>Arch</TT>:</STRONG></DT>
+<DD>String with the architecture of the machine.  
+Currently supported architectures have the following string
+definitions:
+	<DL>
+<DT><STRONG><TT>"INTEL"</TT>:</STRONG></DT>
+<DD>Intel x86 CPU (Pentium, Xeon, etc).
+	
+</DD>
+<DT><STRONG><TT>"X86_64"</TT>:</STRONG></DT>
+<DD>AMD/Intel 64-bit X86
+	
+</DD>
+</DL>
+These strings show definitions for architectures no longer supported:
+	<DL>
+<DT><STRONG><TT>"IA64"</TT>:</STRONG></DT>
+<DD>Intel Itanium
+	
+</DD>
+<DT><STRONG><TT>"SUN4u"</TT>:</STRONG></DT>
+<DD>Sun UltraSparc CPU
+	
+</DD>
+<DT><STRONG><TT>"SUN4x"</TT>:</STRONG></DT>
+<DD>A Sun Sparc CPU other than an UltraSparc, i.e.
+sun4m or sun4c CPU found in older Sparc workstations such as the Sparc&nbsp;10, 
+Sparc&nbsp;20, IPC, IPX, etc.
+	
+</DD>
+<DT><STRONG><TT>"PPC"</TT>:</STRONG></DT>
+<DD>32-bit PowerPC
+	
+</DD>
+<DT><STRONG><TT>"PPC64"</TT>:</STRONG></DT>
+<DD>64-bit PowerPC
+	
+</DD>
+</DL>
+<A NAME="87475"></A>
+</DD>
+<DT><STRONG><TT>CanHibernate</TT>:</STRONG></DT>
+<DD>The <I>condor_startd</I> has the capability to 
+shut down or hibernate a machine when certain configurable criteria are met.
+However, before the <I>condor_startd</I> can shut down a machine, 
+the hardware itself must support hibernation, as must the operating system. 
+When the <I>condor_startd</I> initializes, 
+it checks for this support.
+If the machine has the ability to hibernate, 
+then this boolean ClassAd attribute will be <TT>True</TT>.
+By default, it is <TT>False</TT>.
+<A NAME="87482"></A>
+</DD>
+<DT><STRONG><TT>CheckpointPlatform</TT>:</STRONG></DT>
+<DD>A string which opaquely encodes various
+aspects about a machine's operating system, hardware, and kernel
+attributes.
+It is used to identify systems where previously taken checkpoints for
+the standard universe may resume.
+<A NAME="87484"></A>
+</DD>
+<DT><STRONG><TT>ClockDay</TT>:</STRONG></DT>
+<DD>The day of the week, 
+where 0 = Sunday, 1 = Monday, ... , and 6 = Saturday. 
+<A NAME="87486"></A>
+</DD>
+<DT><STRONG><TT>ClockMin</TT>:</STRONG></DT>
+<DD>The number of minutes passed since midnight.
+<A NAME="87488"></A>
+</DD>
+<DT><STRONG><TT>CondorLoadAvg</TT>:</STRONG></DT>
+<DD>The portion of the load average generated 
+by Condor, either from remote jobs or running benchmarks.
+<A NAME="87490"></A>
+</DD>
+<DT><STRONG><TT>ConsoleIdle</TT>:</STRONG></DT>
+<DD>The number of seconds since activity on the system
+console keyboard or console mouse has last been detected.
+<A NAME="87492"></A>
+</DD>
+<DT><STRONG><TT>Cpus</TT>:</STRONG></DT>
+<DD>The number of CPUs in this slot.
+It is 1 for a single CPU slot, 2 for a dual CPU slot, etc.
+<A NAME="87494"></A>
+</DD>
+<DT><STRONG><TT>CurrentRank</TT>:</STRONG></DT>
+<DD>A float which represents this machine
+owner's affinity
+for running the Condor job which it is currently hosting.  If not
+currently hosting a Condor job, <TT>CurrentRank</TT> is 0.0.
+When a machine is claimed,
+the attribute's value is computed by evaluating the machine's
+<TT>Rank</TT> expression with respect to the current job's ClassAd.
+<A NAME="87498"></A>
+</DD>
+<DT><STRONG><TT>Disk</TT>:</STRONG></DT>
+<DD>The amount of disk space on this machine available for
+the job in Kbytes ( e.g. 23000 = 23 megabytes ).  Specifically, this
+is the amount of disk space available in the directory specified in
+the Condor configuration files by the <TT>EXECUTE</TT> <A NAME="87966"></A> <A NAME="87967"></A> macro, minus any
+space reserved with the <TT>RESERVED_DISK</TT> <A NAME="87971"></A> <A NAME="87972"></A> macro.
+<A NAME="87502"></A>
+</DD>
+<DT><STRONG><TT>Draining</TT>:</STRONG></DT>
+<DD>This attribute is <TT>True</TT> when the slot
+is draining and undefined if not.
+<A NAME="87505"></A>
+</DD>
+<DT><STRONG><TT>DrainingRequestId</TT>:</STRONG></DT>
+<DD>This attribute contains a string that
+is the request id of the draining request that put this slot in a draining
+state.  It is undefined if the slot is not draining.
+<A NAME="87507"></A>
+</DD>
+<DT><STRONG><TT>DotNetVersions</TT>:</STRONG></DT>
+<DD>The .NET framework versions
+currently installed on this computer. 
+Default format is a comma delimited list. 
+Current definitions:
+  <DL>
+<DT><STRONG><TT>"1.1"</TT>:</STRONG></DT>
+<DD>for .Net Framework 1.1
+  
+</DD>
+<DT><STRONG><TT>"2.0"</TT>:</STRONG></DT>
+<DD>for .Net Framework 2.0
+  
+</DD>
+<DT><STRONG><TT>"3.0"</TT>:</STRONG></DT>
+<DD>for .Net Framework 3.0
+  
+</DD>
+<DT><STRONG><TT>"3.5"</TT>:</STRONG></DT>
+<DD>for .Net Framework 3.5
+  
+</DD>
+<DT><STRONG><TT>"4.0Client"</TT>:</STRONG></DT>
+<DD>for .Net Framework 4.0 Client install
+  
+</DD>
+<DT><STRONG><TT>"4.0Full"</TT>:</STRONG></DT>
+<DD>for .Net Framework 4.0 Full install
+  
+</DD>
+</DL>
+<A NAME="87517"></A>
+<A NAME="DynamicSlot-machine-attribute"></A> 
+</DD>
+<DT><STRONG><TT>DynamicSlot</TT>:</STRONG></DT>
+<DD>For SMP machines that allow dynamic
+partitioning of a slot,
+this boolean value identifies that this dynamic slot may be partitioned.
+<A NAME="87520"></A>
+</DD>
+<DT><STRONG><TT>EnteredCurrentActivity</TT>:</STRONG></DT>
+<DD>Time at which the machine
+entered the current Activity (see <TT>Activity</TT> entry above).  On
+all platforms (including NT), this is measured in the number of
+integer seconds since the Unix epoch (00:00:00 UTC, Jan 1, 1970).
+<A NAME="87523"></A>
+</DD>
+<DT><STRONG><TT>ExpectedMachineGracefulDrainingBadput</TT>:</STRONG></DT>
+<DD>The
+job runtime in cpu-seconds that would be lost if graceful draining
+were initiated at the time this ad was published.  This calculation assumes
+that jobs will run for the full retirement time and then be evicted
+without saving a checkpoint.
+<A NAME="87525"></A>
+</DD>
+<DT><STRONG><TT>ExpectedMachineGracefulDrainingCompletion</TT>:</STRONG></DT>
+<DD>Time at
+which graceful draining of the machine could complete if it were
+initiated at the time this ad was published.  This is measured in the
+number of integer seconds since the Unix epoch (00:00:00 UTC, Jan 1,
+1970).  This value is computed with the assumption that the machine
+policy will not suspend jobs during draining while the machine is
+waiting for the job to use up its retirement time.  If suspension
+happens, the upper bound on how long draining could take is
+unlimited.  To avoid suspension during draining, the <TT>SUSPEND</TT>
+and <TT>CONTINUE</TT> expressions could be configured to pay
+attention to the <TT>Draining</TT> attribute.
+<A NAME="87530"></A>
+</DD>
+<DT><STRONG><TT>ExpectedMachineGracefulQuickBadput</TT>:</STRONG></DT>
+<DD>The
+job runtime in cpu-seconds that would be lost if quick draining
+were initiated at the time this ad was published.  This calculation assumes
+that all evicted jobs will not save a checkpoint.
+<A NAME="87532"></A>
+</DD>
+<DT><STRONG><TT>ExpectedMachineQuickDrainingCompletion</TT>:</STRONG></DT>
+<DD>Time at
+which quick draining of the machine could complete if it were
+initiated at the time this ad was published.  This is measured in the
+number of integer seconds since the Unix epoch (00:00:00 UTC, Jan 1,
+1970).
+<A NAME="87534"></A>
+</DD>
+<DT><STRONG><TT>FileSystemDomain</TT>:</STRONG></DT>
+<DD>A domain name configured by the
+Condor administrator which describes a cluster of machines which all
+access the same, uniformly-mounted, networked file systems usually via
+NFS or AFS.  This is useful for Vanilla universe jobs which require
+remote file access.
+<A NAME="87536"></A>
+</DD>
+<DT><STRONG><TT>HasVM</TT>:</STRONG></DT>
+<DD>A boolean value added to the machine ClassAd
+when the configuration triggers the detection of virtual machine
+software.
+<A NAME="87538"></A>
+</DD>
+<DT><STRONG><TT>IsWakeAble</TT>:</STRONG></DT>
+<DD>A boolean value that when <TT>True</TT> identifies
+that the machine has the capability to be woken into a 
+fully powered and running state by receiving a Wake On LAN (WOL) packet.
+This ability is a function of the operating system, 
+the network adapter in the machine 
+(notably, wireless network adapters usually do not have this function),
+and BIOS settings. 
+When the <I>condor_startd</I> initializes, 
+it tries to detect if the operating system and network adapter both support 
+waking from hibernation by receipt of a WOL packet.
+The default value is <TT>False</TT>.
+<A NAME="87543"></A>
+</DD>
+<DT><STRONG><TT>IsWakeEnabled</TT>:</STRONG></DT>
+<DD>If the hardware and software have the capacity 
+to be woken into a fully powered and running state by receiving 
+a Wake On LAN (WOL) packet,
+this feature can still be disabled via the BIOS or software.
+If BIOS or the operating system have disabled this feature, 
+the <I>condor_startd</I> sets this boolean attribute to <TT>False</TT>.
+<A NAME="87547"></A>
+</DD>
+<DT><STRONG><TT>JobVM_VCPUS</TT>:</STRONG></DT>
+<DD>An attribute defined if a vm universe job
+is running on this slot.  Defined by the number of virtualized CPUs
+in the virtual machine.
+<A NAME="87549"></A>
+</DD>
+<DT><STRONG><TT>KeyboardIdle</TT>:</STRONG></DT>
+<DD>The number of seconds since activity on any
+keyboard or mouse associated with this machine has last been detected.
+Unlike <TT>ConsoleIdle</TT>, <TT>KeyboardIdle</TT> also takes activity 
+on pseudo-terminals into
+account (i.e. virtual ``keyboard'' activity from telnet and rlogin
+sessions as well).  Note that <TT>KeyboardIdle</TT> will always be equal to or
+less than <TT>ConsoleIdle</TT>.
+<A NAME="87555"></A>
+</DD>
+<DT><STRONG><TT>KFlops</TT>:</STRONG></DT>
+<DD>Relative floating point performance as determined via a
+Linpack benchmark.
+<A NAME="87557"></A>
+</DD>
+<DT><STRONG><TT>LastDrainStartTime</TT>:</STRONG></DT>
+<DD>Time when draining of this
+<I>condor_startd</I> was last initiated (e.g. due to <I>condor_defrag</I> or
+<I>condor_drain</I>).
+<A NAME="87562"></A>
+</DD>
+<DT><STRONG><TT>LastHeardFrom</TT>:</STRONG></DT>
+<DD>Time when the Condor central manager last
+received a status update from this machine.  
+Expressed as 
+the number of integer seconds since the Unix epoch (00:00:00 UTC, Jan 1, 1970).
+Note: This attribute is only inserted by the central manager once it
+receives the ClassAd.
+It is not present in the <I>condor_startd</I> copy of the ClassAd.
+Therefore, you could not use this attribute in defining <I>condor_startd</I>
+expressions (and you would not want to).
+<A NAME="87566"></A>
+</DD>
+<DT><STRONG><TT>LoadAvg</TT>:</STRONG></DT>
+<DD>A floating point number with the machine's current load
+average.
+<A NAME="87568"></A>
+</DD>
+<DT><STRONG><TT>Machine</TT>:</STRONG></DT>
+<DD>A string with the machine's fully qualified host name.
+<A NAME="87570"></A>
+</DD>
+<DT><STRONG><TT>MachineMaxVacateTime</TT>:</STRONG></DT>
+<DD>An integer expression that specifies
+the time in seconds the machine will allow the job to gracefully shut
+down.
+<A NAME="87572"></A>
+</DD>
+<DT><STRONG><TT>Memory</TT>:</STRONG></DT>
+<DD>The amount of RAM in megabytes.
+<A NAME="87574"></A>
+</DD>
+<DT><STRONG><TT>Mips</TT>:</STRONG></DT>
+<DD>Relative integer performance as determined via a Dhrystone
+benchmark.
+
+<P>
+<A NAME="87576"></A>
+</DD>
+<DT><STRONG><TT>MonitorSelfAge</TT>:</STRONG></DT>
+<DD>The number of seconds that this daemon
+  has been running.
+
+<P>
+<A NAME="87578"></A>
+</DD>
+<DT><STRONG><TT>MonitorSelfCPUUsage</TT>:</STRONG></DT>
+<DD>The fraction of recent CPU time utilized
+  by this daemon. 
+
+<P>
+<A NAME="87580"></A>
+</DD>
+<DT><STRONG><TT>MonitorSelfImageSize</TT>:</STRONG></DT>
+<DD>The amount of virtual memory consumed by
+  this daemon in Kbytes.
+
+<P>
+<A NAME="87582"></A>
+</DD>
+<DT><STRONG><TT>MonitorSelfRegisteredSocketCount</TT>:</STRONG></DT>
+<DD>The current number of sockets
+  registered by this daemon.
+
+<P>
+<A NAME="87584"></A>
+</DD>
+<DT><STRONG><TT>MonitorSelfResidentSetSize</TT>:</STRONG></DT>
+<DD>The amount of resident memory
+  used by this daemon in Kbytes.
+
+<P>
+<A NAME="87586"></A>
+</DD>
+<DT><STRONG><TT>MonitorSelfSecuritySessions</TT>:</STRONG></DT>
+<DD>The number of open (cached)
+  security sessions for this daemon.
+
+<P>
+<A NAME="87588"></A>
+</DD>
+<DT><STRONG><TT>MonitorSelfTime</TT>:</STRONG></DT>
+<DD>The  time, represented as the number of
+  second elapsed since the Unix epoch (00:00:00 UTC, Jan 1, 1970),
+  at which this daemon last checked and set the attributes with names that
+  begin with the string <TT>MonitorSelf</TT>.
+
+<P>
+<A NAME="87591"></A>
+</DD>
+<DT><STRONG><TT>MyAddress</TT>:</STRONG></DT>
+<DD>String with the IP and port address of the
+<I>condor_startd</I> daemon which is publishing this machine ClassAd.
+When using CCB, <I>condor_shared_port</I>, and/or an additional private
+network interface, that information will be included here as well.
+
+<P>
+<A NAME="87595"></A>
+</DD>
+<DT><STRONG><TT>MyType</TT>:</STRONG></DT>
+<DD>The ClassAd type; always set to the literal string <TT>"Machine"</TT>.
+<A NAME="87598"></A>
+</DD>
+<DT><STRONG><TT>Name</TT>:</STRONG></DT>
+<DD>The name of this resource; typically the same value as
+the <TT>Machine</TT> attribute, but could be customized by the site
+administrator.
+On SMP machines, the <I>condor_startd</I> will divide the CPUs up into separate
+slots, each with with a unique name.
+These names will be of the form ``slot#@full.hostname'', for example,
+``slot1@vulture.cs.wisc.edu'', which signifies slot number 1 from
+vulture.cs.wisc.edu.
+<A NAME="87602"></A>
+</DD>
+<DT><STRONG><TT>OpSys</TT>:</STRONG></DT>
+<DD>String describing the operating system running on this
+machine.  
+Currently supported operating systems have the following string
+definitions:
+	<DL>
+<DT><STRONG><TT>"LINUX"</TT>:</STRONG></DT>
+<DD>for LINUX 2.0.x, LINUX 2.2.x,
+	LINUX 2.4.x, or LINUX 2.6.x kernel systems
+	
+</DD>
+<DT><STRONG><TT>"OSX"</TT>:</STRONG></DT>
+<DD>for Darwin
+	
+</DD>
+<DT><STRONG><TT>"FREEBSD7"</TT>:</STRONG></DT>
+<DD>for FreeBSD 7
+	
+</DD>
+<DT><STRONG><TT>"FREEBSD8"</TT>:</STRONG></DT>
+<DD>for FreeBSD 8
+	
+</DD>
+<DT><STRONG><TT>"WINDOWS"</TT>:</STRONG></DT>
+<DD>for all versions of Windows
+	
+</DD>
+<DT><STRONG><TT>"SOLARIS5.10"</TT>:</STRONG></DT>
+<DD>for Solaris 2.10 or 5.10
+	
+</DD>
+<DT><STRONG><TT>"SOLARIS5.11"</TT>:</STRONG></DT>
+<DD>for Solaris 2.11 or 5.11
+	
+</DD>
+</DL>
+These strings show definitions for operating systems no longer supported:
+	<DL>
+<DT><STRONG><TT>"SOLARIS28"</TT>:</STRONG></DT>
+<DD>for Solaris 2.8 or 5.8
+	
+</DD>
+<DT><STRONG><TT>"SOLARIS29"</TT>:</STRONG></DT>
+<DD>for Solaris 2.9 or 5.9
+	
+</DD>
+</DL>
+<A NAME="87617"></A>
+</DD>
+<DT><STRONG><TT>OpSysAndVer</TT>:</STRONG></DT>
+<DD>A string indicating an operating system and
+a version number.
+
+<P>
+For Linux operating systems, it is the value of the <TT>OpSysName</TT> attribute 
+concatenated with the string version of the <TT>OpSysMajorVersion</TT> attribute:
+	<DL>
+<DT><STRONG><TT>"RedHat5"</TT>:</STRONG></DT>
+<DD>for RedHat Linux version 5
+	
+</DD>
+<DT><STRONG><TT>"RedHat6"</TT>:</STRONG></DT>
+<DD>for RedHat Linux version 6
+	
+</DD>
+<DT><STRONG><TT>"Fedora16"</TT>:</STRONG></DT>
+<DD>for Fedora Linux version 16
+	
+</DD>
+<DT><STRONG><TT>"Debian5"</TT>:</STRONG></DT>
+<DD>for Debian Linux version 5
+	
+</DD>
+<DT><STRONG><TT>"Debian6"</TT>:</STRONG></DT>
+<DD>for Debian Linux version 6
+	
+</DD>
+</DL>
+For MacOS operating systems, it is the value of the <TT>OpSysShortName</TT> 
+attribute concatenated with the string version of the <TT>OpSysVer</TT> attribute: 
+	<DL>
+<DT><STRONG><TT>"MacOSX605"</TT>:</STRONG></DT>
+<DD>for MacOS version 10.6.5 (Snow Leopard)
+	
+</DD>
+<DT><STRONG><TT>"MacOSX703"</TT>:</STRONG></DT>
+<DD>for MacOS version 10.7.3 (Lion)
+	
+</DD>
+</DL>
+For BSD operating systems, it is the value of the <TT>OpSysName</TT> attribute 
+concatenated with the string version of the <TT>OpSysMajorVersion</TT> attribute:
+	<DL>
+<DT><STRONG><TT>"FREEBSD7"</TT>:</STRONG></DT>
+<DD>for FreeBSD version 7
+	
+</DD>
+<DT><STRONG><TT>"FREEBSD8"</TT>:</STRONG></DT>
+<DD>for FreeBSD version 8
+	
+</DD>
+</DL>
+For Solaris Unix operating systems, 
+it is the same value as the <TT>OpSys</TT> attribute: 
+	<DL>
+<DT><STRONG><TT>"SOLARIS5.10"</TT>:</STRONG></DT>
+<DD>for Solaris 2.10 or 5.10
+	
+</DD>
+<DT><STRONG><TT>"SOLARIS5.11"</TT>:</STRONG></DT>
+<DD>for Solaris 2.11 or 5.11
+	
+</DD>
+</DL>
+For Windows operating systems, it is the value of the <TT>OpSys</TT> attribute 
+concatenated with the string version of the <TT>OpSysMajorVersion</TT> attribute:
+	<DL>
+<DT><STRONG><TT>"WINDOWS500"</TT>:</STRONG></DT>
+<DD>for Windows 2000
+	
+</DD>
+<DT><STRONG><TT>"WINDOWS501"</TT>:</STRONG></DT>
+<DD>for Windows XP
+	
+</DD>
+<DT><STRONG><TT>"WINDOWS502"</TT>:</STRONG></DT>
+<DD>for Windows Server 2003
+	
+</DD>
+<DT><STRONG><TT>"WINDOWS600"</TT>:</STRONG></DT>
+<DD>for Windows Vista
+	
+</DD>
+<DT><STRONG><TT>"WINDOWS601"</TT>:</STRONG></DT>
+<DD>for Windows 7
+	
+</DD>
+</DL>
+<A NAME="87654"></A>
+</DD>
+<DT><STRONG><TT>OpSysLegacy</TT>:</STRONG></DT>
+<DD>A string that holds the long-standing values for the <TT>OpSys</TT> attribute.
+Currently supported operating systems have the following string
+definitions:
+	<DL>
+<DT><STRONG><TT>"LINUX"</TT>:</STRONG></DT>
+<DD>for LINUX 2.0.x, LINUX 2.2.x, LINUX 2.4.x, or LINUX 2.6.x kernel systems
+	
+</DD>
+<DT><STRONG><TT>"OSX"</TT>:</STRONG></DT>
+<DD>for Darwin
+	
+</DD>
+<DT><STRONG><TT>"FREEBSD7"</TT>:</STRONG></DT>
+<DD>for FreeBSD version 7
+	
+</DD>
+<DT><STRONG><TT>"FREEBSD8"</TT>:</STRONG></DT>
+<DD>for FreeBSD version 8
+	
+</DD>
+<DT><STRONG><TT>"SOLARIS5.10"</TT>:</STRONG></DT>
+<DD>for Solaris 2.10 or 5.10
+	
+</DD>
+<DT><STRONG><TT>"SOLARIS5.11"</TT>:</STRONG></DT>
+<DD>for Solaris 2.11 or 5.11
+	
+</DD>
+<DT><STRONG><TT>"WINDOWS"</TT>:</STRONG></DT>
+<DD>for all versions of Windows
+	
+</DD>
+</DL>
+<A NAME="87666"></A>
+</DD>
+<DT><STRONG><TT>OpSysLongName</TT>:</STRONG></DT>
+<DD>A string giving a full description of 
+the operating system.
+	<DL>
+<DT><STRONG><TT>"Red Hat Enterprise Linux Server release 5.7 (Tikanga)"</TT>:</STRONG></DT>
+<DD>for RedHat Linux version 5
+	
+</DD>
+<DT><STRONG><TT>"Red Hat Enterprise Linux Server release 6.2 (Santiago)"</TT>:</STRONG></DT>
+<DD>for RedHat Linux version 6
+	
+</DD>
+<DT><STRONG><TT>"Fedora release 16 (Verne)"</TT>:</STRONG></DT>
+<DD>for Fedora Linux version 16
+	
+</DD>
+<DT><STRONG><TT>"MacOSX 6.5"</TT>:</STRONG></DT>
+<DD>for MacOS version 10.6.5 (Snow Leopard)
+	
+</DD>
+<DT><STRONG><TT>"MacOSX 7.3"</TT>:</STRONG></DT>
+<DD>for MacOS version 10.7.3 (Lion)
+	
+</DD>
+<DT><STRONG><TT>"FreeBSD8.2-RELEASE-p3"</TT>:</STRONG></DT>
+<DD>for FreeBSD version 8
+	
+</DD>
+<DT><STRONG><TT>"SOLARIS5.10"</TT>:</STRONG></DT>
+<DD>for Solaris 2.10 or 5.10
+	
+</DD>
+<DT><STRONG><TT>"SOLARIS5.11"</TT>:</STRONG></DT>
+<DD>for Solaris 2.11 or 5.11
+	
+</DD>
+<DT><STRONG><TT>"Windows XP SP3"</TT>:</STRONG></DT>
+<DD>for Windows XP
+	
+</DD>
+<DT><STRONG><TT>"Windows 7 SP2"</TT>:</STRONG></DT>
+<DD>for Windows 7
+	
+</DD>
+</DL>
+<A NAME="87680"></A>
+</DD>
+<DT><STRONG><TT>OpSysMajorVersion</TT>:</STRONG></DT>
+<DD>An integer value representing the major version of the operating system.
+	<DL>
+<DT><STRONG><TT>5</TT>:</STRONG></DT>
+<DD>for RedHat Linux version 5
+	
+</DD>
+<DT><STRONG><TT>6</TT>:</STRONG></DT>
+<DD>for RedHat Linux version 6
+	
+</DD>
+<DT><STRONG><TT>16</TT>:</STRONG></DT>
+<DD>for Fedora Linux version 16
+	
+</DD>
+<DT><STRONG><TT>6</TT>:</STRONG></DT>
+<DD>for MacOS version 10.6.5 (Snow Leopard)
+	
+</DD>
+<DT><STRONG><TT>7</TT>:</STRONG></DT>
+<DD>for MacOS version 10.7.3 (Lion)
+	
+</DD>
+<DT><STRONG><TT>7</TT>:</STRONG></DT>
+<DD>for FreeBSD version 7
+	
+</DD>
+<DT><STRONG><TT>8</TT>:</STRONG></DT>
+<DD>for FreeBSD version 8
+	
+</DD>
+<DT><STRONG><TT>5</TT>:</STRONG></DT>
+<DD>for Solaris 2.10, 5.10, 2.11, or 5.11
+	
+</DD>
+<DT><STRONG><TT>501</TT>:</STRONG></DT>
+<DD>for Windows XP
+	
+</DD>
+<DT><STRONG><TT>600</TT>:</STRONG></DT>
+<DD>for Windows Vista
+	
+</DD>
+<DT><STRONG><TT>601</TT>:</STRONG></DT>
+<DD>for Windows 7
+	
+</DD>
+</DL>
+<A NAME="87695"></A>
+</DD>
+<DT><STRONG><TT>OpSysName</TT>:</STRONG></DT>
+<DD>A string containing a terse description of the operating system.
+	<DL>
+<DT><STRONG><TT>"RedHat"</TT>:</STRONG></DT>
+<DD>for RedHat Linux version 6
+	
+</DD>
+<DT><STRONG><TT>"Fedora"</TT>:</STRONG></DT>
+<DD>for Fedora Linux version 16
+	
+</DD>
+<DT><STRONG><TT>"SnowLeopard"</TT>:</STRONG></DT>
+<DD>for MacOS version 10.6.5 (Snow Leopard)
+	
+</DD>
+<DT><STRONG><TT>"Lion"</TT>:</STRONG></DT>
+<DD>for MacOS version 10.7.3 (Lion)
+	
+</DD>
+<DT><STRONG><TT>"FREEBSD"</TT>:</STRONG></DT>
+<DD>for FreeBSD version 7 or 8
+	
+</DD>
+<DT><STRONG><TT>"SOLARIS5.10"</TT>:</STRONG></DT>
+<DD>for Solaris 2.10 or 5.10
+	
+</DD>
+<DT><STRONG><TT>"SOLARIS5.11"</TT>:</STRONG></DT>
+<DD>for Solaris 2.11 or 5.11
+	
+</DD>
+<DT><STRONG><TT>"WindowsXP"</TT>:</STRONG></DT>
+<DD>for Windows XP
+	
+</DD>
+<DT><STRONG><TT>"WindowsVista"</TT>:</STRONG></DT>
+<DD>for Windows Vista
+	
+</DD>
+<DT><STRONG><TT>"Windows7"</TT>:</STRONG></DT>
+<DD>for Windows 7
+	
+</DD>
+</DL>
+<A NAME="87709"></A>
+</DD>
+<DT><STRONG><TT>OpSysShortName</TT>:</STRONG></DT>
+<DD>A string containing a short name for
+the operating system.
+	<DL>
+<DT><STRONG><TT>"RedHat"</TT>:</STRONG></DT>
+<DD>for RedHat Linux version 5 or 6
+	
+</DD>
+<DT><STRONG><TT>"Fedora"</TT>:</STRONG></DT>
+<DD>for Fedora Linux version 16
+	
+</DD>
+<DT><STRONG><TT>"Debian"</TT>:</STRONG></DT>
+<DD>for Debian Linux version 5 or 6
+	
+</DD>
+<DT><STRONG><TT>"MacOSX"</TT>:</STRONG></DT>
+<DD>for MacOS version 10.6.5 (Snow Leopard) or 
+for MacOS version 10.7.3 (Lion)
+	
+</DD>
+<DT><STRONG><TT>"FreeBSD"</TT>:</STRONG></DT>
+<DD>for FreeBSD version 7 or 8
+	
+</DD>
+<DT><STRONG><TT>"SOLARIS5.10"</TT>:</STRONG></DT>
+<DD>for Solaris 2.10 or 5.10
+	
+</DD>
+<DT><STRONG><TT>"SOLARIS5.11"</TT>:</STRONG></DT>
+<DD>for Solaris 2.11 or 5.11
+	
+</DD>
+<DT><STRONG><TT>"XP"</TT>:</STRONG></DT>
+<DD>for Windows XP
+	
+</DD>
+<DT><STRONG><TT>"Vista"</TT>:</STRONG></DT>
+<DD>for Windows Vista
+	
+</DD>
+<DT><STRONG><TT>"7"</TT>:</STRONG></DT>
+<DD>for Windows 7
+	
+</DD>
+</DL>
+<A NAME="87723"></A>
+</DD>
+<DT><STRONG><TT>OpSysVer</TT>:</STRONG></DT>
+<DD>An integer value representing the operating system
+version number.
+	<DL>
+<DT><STRONG><TT>602</TT>:</STRONG></DT>
+<DD>for RedHat Linux version 6.2
+	
+</DD>
+<DT><STRONG><TT>1600</TT>:</STRONG></DT>
+<DD>for Fedora Linux version 16.0
+	
+</DD>
+<DT><STRONG><TT>704</TT>:</STRONG></DT>
+<DD>for FreeBSD version 7.4
+	
+</DD>
+<DT><STRONG><TT>802</TT>:</STRONG></DT>
+<DD>for FreeBSD version 8.2
+	
+</DD>
+<DT><STRONG><TT>605</TT>:</STRONG></DT>
+<DD>for MacOS version 10.6.5 (Snow Leopard)
+	
+</DD>
+<DT><STRONG><TT>703</TT>:</STRONG></DT>
+<DD>for MacOS version 10.7.3 (Lion)
+	
+</DD>
+<DT><STRONG><TT>500</TT>:</STRONG></DT>
+<DD>for Windows 2000
+	
+</DD>
+<DT><STRONG><TT>501</TT>:</STRONG></DT>
+<DD>for Windows XP
+	
+</DD>
+<DT><STRONG><TT>502</TT>:</STRONG></DT>
+<DD>for Windows Server 2003
+	
+</DD>
+<DT><STRONG><TT>600</TT>:</STRONG></DT>
+<DD>for Windows Vista or Windows Server 2008
+	
+</DD>
+<DT><STRONG><TT>601</TT>:</STRONG></DT>
+<DD>for Windows 7 or Windows Server 2008
+	
+</DD>
+</DL>
+<A NAME="87738"></A>
+</DD>
+<DT><STRONG><TT>Requirements</TT>:</STRONG></DT>
+<DD>A boolean, which when evaluated within the context
+of the machine ClassAd and a job ClassAd, must evaluate to
+TRUE before Condor will allow the job to use this machine.
+<A NAME="87740"></A>
+</DD>
+<DT><STRONG><TT>MaxJobRetirementTime</TT>:</STRONG></DT>
+<DD>An expression giving the
+maximum time in seconds that the startd will wait for the job to
+finish before kicking it off if it needs to do so.  This is evaluated
+in the context of the job ClassAd, so it may refer to job attributes
+as well as machine attributes.
+<A NAME="87742"></A>
+<A NAME="PartitionableSlot-machine-attribute"></A> 
+</DD>
+<DT><STRONG><TT>PartitionableSlot</TT>:</STRONG></DT>
+<DD>For SMP machines,
+a boolean value identifying that this slot may be partitioned.
+<A NAME="87745"></A>
+</DD>
+<DT><STRONG><TT>SlotID</TT>:</STRONG></DT>
+<DD>For SMP machines, the integer
+that identifies the slot.
+The value will be <code>X</code> for the slot with 
+<PRE>
+name="slotX@full.hostname"
+</PRE>
+For non-SMP machines with one slot, the value will be 1.
+<U>NOTE</U>: This attribute was added in Condor version 6.9.3.
+For older versions of Condor, see <TT>VirtualMachineID</TT> below.
+<A NAME="87750"></A>
+</DD>
+<DT><STRONG><TT>SlotWeight</TT>:</STRONG></DT>
+<DD>This specifies the weight of the slot when
+  calculating usage, computing fair shares, and enforcing group
+  quotas.  For example, claiming a slot with <TT>SlotWeight = 2</TT> is
+  equivalent to claiming two <TT>SlotWeight = 1</TT> slots.
+  See the description of <TT>SlotWeight</TT> on
+  page&nbsp;<A HREF="3_3Configuration.html#param:SlotWeight"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+<A NAME="87756"></A>
+</DD>
+<DT><STRONG><TT>StartdIpAddr</TT>:</STRONG></DT>
+<DD>String with the IP and port address of the
+<I>condor_startd</I> daemon which is publishing this machine ClassAd.
+When using CCB, <I>condor_shared_port</I>, and/or an additional private
+network interface, that information will be included here as well.
+
+<P>
+<A NAME="87760"></A>
+</DD>
+<DT><STRONG><TT>State</TT>:</STRONG></DT>
+<DD>String which publishes the machine's Condor state.
+Can be:
+	<DL>
+<DT><STRONG><TT>"Owner"</TT>:</STRONG></DT>
+<DD>The machine owner is using the machine, and
+it is unavailable to Condor.
+	
+</DD>
+<DT><STRONG><TT>"Unclaimed"</TT>:</STRONG></DT>
+<DD>The machine is available to run Condor jobs,
+but a good match is either not available or not 
+yet found.
+	
+</DD>
+<DT><STRONG><TT>"Matched"</TT>:</STRONG></DT>
+<DD>The Condor central manager has found a good
+match for this resource, but a Condor scheduler has not yet claimed it.
+	
+</DD>
+<DT><STRONG><TT>"Claimed"</TT>:</STRONG></DT>
+<DD>The machine is claimed by a remote
+<I>condor_schedd</I> and is probably running a job.
+	
+</DD>
+<DT><STRONG><TT>"Preempting"</TT>:</STRONG></DT>
+<DD>A Condor job is being preempted (possibly
+via checkpointing) in order to clear the machine for either a higher
+priority job or because the machine owner wants the machine back.
+	
+</DD>
+<DT><STRONG><TT>"Drained"</TT>:</STRONG></DT>
+<DD>This slot is not accepting jobs,
+because the machine is being drained.
+	
+</DD>
+</DL>   <A NAME="87771"></A>
+</DD>
+<DT><STRONG><TT>TargetType</TT>:</STRONG></DT>
+<DD>Describes what type of ClassAd to match with.
+Always set to the string literal <TT>"Job"</TT>, because machine ClassAds
+always want to be matched with jobs, and vice-versa.
+<A NAME="87774"></A>
+</DD>
+<DT><STRONG><TT>TotalCpus</TT>:</STRONG></DT>
+<DD>The number of CPUs that are on the machine.
+This is in contrast with <TT>Cpus</TT>,
+which is the number of CPUs in the slot.
+<A NAME="87777"></A>
+</DD>
+<DT><STRONG><TT>TotalMachineDrainingBadput</TT>:</STRONG></DT>
+<DD>The
+total job runtime in cpu-seconds that has been lost due to job evictions
+caused by draining since this <I>condor_startd</I> began executing.  In
+this calculation, it is assumed that jobs are evicted without
+checkpointing.
+<A NAME="87780"></A>
+</DD>
+<DT><STRONG><TT>TotalMachineDrainingUnclaimedTime</TT>:</STRONG></DT>
+<DD>The
+total machine-wide time in cpu-seconds that has not been used
+(i.e. not matched to a job submitter) due to draining since this
+<I>condor_startd</I> began executing.
+<A NAME="87783"></A>
+</DD>
+<DT><STRONG><TT>TotalTimeBackfillBusy</TT>:</STRONG></DT>
+<DD>The number of seconds
+that this machine (slot) has accumulated within the
+backfill busy state and activity pair since the <I>condor_startd</I>
+began executing.
+This attribute will only be defined if it has a value greater than 0.
+<A NAME="87786"></A>
+</DD>
+<DT><STRONG><TT>TotalTimeBackfillIdle</TT>:</STRONG></DT>
+<DD>The number of seconds
+that this machine (slot) has accumulated within the
+backfill idle state and activity pair since the <I>condor_startd</I>
+began executing.
+This attribute will only be defined if it has a value greater than 0.
+<A NAME="87789"></A>
+</DD>
+<DT><STRONG><TT>TotalTimeBackfillKilling</TT>:</STRONG></DT>
+<DD>The number of seconds
+that this machine (slot) has accumulated within the
+backfill killing state and activity pair since the <I>condor_startd</I>
+began executing.
+This attribute will only be defined if it has a value greater than 0.
+<A NAME="87792"></A>
+</DD>
+<DT><STRONG><TT>TotalTimeClaimedBusy</TT>:</STRONG></DT>
+<DD>The number of seconds
+that this machine (slot) has accumulated within the
+claimed busy state and activity pair since the <I>condor_startd</I>
+began executing.
+This attribute will only be defined if it has a value greater than 0.
+<A NAME="87795"></A>
+</DD>
+<DT><STRONG><TT>TotalTimeClaimedIdle</TT>:</STRONG></DT>
+<DD>The number of seconds
+that this machine (slot) has accumulated within the
+claimed idle state and activity pair since the <I>condor_startd</I>
+began executing.
+This attribute will only be defined if it has a value greater than 0.
+<A NAME="87798"></A>
+</DD>
+<DT><STRONG><TT>TotalTimeClaimedRetiring</TT>:</STRONG></DT>
+<DD>The number of seconds
+that this machine (slot) has accumulated within the
+claimed retiring state and activity pair since the <I>condor_startd</I>
+began executing.
+This attribute will only be defined if it has a value greater than 0.
+<A NAME="87801"></A>
+</DD>
+<DT><STRONG><TT>TotalTimeClaimedSuspended</TT>:</STRONG></DT>
+<DD>The number of seconds
+that this machine (slot) has accumulated within the
+claimed suspended state and activity pair since the <I>condor_startd</I>
+began executing.
+This attribute will only be defined if it has a value greater than 0.
+<A NAME="87804"></A>
+</DD>
+<DT><STRONG><TT>TotalTimeMatchedIdle</TT>:</STRONG></DT>
+<DD>The number of seconds
+that this machine (slot) has accumulated within the
+matched idle state and activity pair since the <I>condor_startd</I>
+began executing.
+This attribute will only be defined if it has a value greater than 0.
+<A NAME="87807"></A>
+</DD>
+<DT><STRONG><TT>TotalTimeOwnerIdle</TT>:</STRONG></DT>
+<DD>The number of seconds
+that this machine (slot) has accumulated within the
+owner idle state and activity pair since the <I>condor_startd</I>
+began executing.
+This attribute will only be defined if it has a value greater than 0.
+<A NAME="87810"></A>
+</DD>
+<DT><STRONG><TT>TotalTimePreemptingKilling</TT>:</STRONG></DT>
+<DD>The number of seconds
+that this machine (slot) has accumulated within the
+preempting killing state and activity pair since the <I>condor_startd</I>
+began executing.
+This attribute will only be defined if it has a value greater than 0.
+<A NAME="87813"></A>
+</DD>
+<DT><STRONG><TT>TotalTimePreemptingVacating</TT>:</STRONG></DT>
+<DD>The number of seconds
+that this machine (slot) has accumulated within the
+preempting vacating state and activity pair since the <I>condor_startd</I>
+began executing.
+This attribute will only be defined if it has a value greater than 0.
+<A NAME="87816"></A>
+</DD>
+<DT><STRONG><TT>TotalTimeUnclaimedBenchmarking</TT>:</STRONG></DT>
+<DD>The number of seconds
+that this machine (slot) has accumulated within the
+unclaimed benchmarking state and activity pair since the <I>condor_startd</I>
+began executing.
+This attribute will only be defined if it has a value greater than 0.
+<A NAME="87819"></A>
+</DD>
+<DT><STRONG><TT>TotalTimeUnclaimedIdle</TT>:</STRONG></DT>
+<DD>The number of seconds
+that this machine (slot) has accumulated within the
+unclaimed idle state and activity pair since the <I>condor_startd</I>
+began executing.
+This attribute will only be defined if it has a value greater than 0.
+<A NAME="87822"></A>
+</DD>
+<DT><STRONG><TT>UidDomain</TT>:</STRONG></DT>
+<DD>a domain name configured by the Condor 
+administrator which describes a cluster of machines which all have 
+the same <TT>passwd</TT> file entries, and therefore all have the same logins.
+<A NAME="87825"></A>
+</DD>
+<DT><STRONG><TT>VirtualMachineID</TT>:</STRONG></DT>
+<DD>Starting with Condor version 6.9.3, this attribute is now longer used.
+Instead, use <TT>SlotID</TT>, as described above.
+This will only be present if <TT>ALLOW_VM_CRUFT</TT> <A NAME="88229"></A> <A NAME="88230"></A> is TRUE.
+<A NAME="87829"></A>
+</DD>
+<DT><STRONG><TT>VirtualMemory</TT>:</STRONG></DT>
+<DD>The amount of currently available virtual memory 
+(swap space) expressed in Kbytes.
+On Linux platforms, it is the sum of paging space and physical memory, 
+which more accurately represents the virtual memory size of the machine. 
+<A NAME="87831"></A>
+</DD>
+<DT><STRONG><TT>VM_AvailNum</TT>:</STRONG></DT>
+<DD>The maximum number of vm universe jobs that
+can be started on this machine. This maximum is set by the configuration
+variable <TT>VM_MAX_NUMBER</TT> <A NAME="88236"></A> <A NAME="88237"></A>. 
+<A NAME="87834"></A>
+</DD>
+<DT><STRONG><TT>VM_Guest_Mem</TT>:</STRONG></DT>
+<DD>An attribute defined if a vm universe job
+is running on this slot.  Defined by the amount of memory in use by the 
+virtual machine, given in Mbytes.
+<A NAME="87836"></A>
+</DD>
+<DT><STRONG><TT>VM_Memory</TT>:</STRONG></DT>
+<DD>Gives the amount of memory available for starting 
+additional VM jobs on this machine, given in Mbytes.
+The maximum value is set by the configuration variable <TT>VM_MEMORY</TT> <A NAME="88243"></A> <A NAME="88244"></A>.
+<A NAME="87839"></A>
+</DD>
+<DT><STRONG><TT>VM_Networking</TT>:</STRONG></DT>
+<DD>A boolean value indicating whether networking 
+is allowed for virtual machines on this machine.
+<A NAME="87841"></A>
+</DD>
+<DT><STRONG><TT>VM_Type</TT>:</STRONG></DT>
+<DD>The type of virtual machine software that can run
+on this machine.  The value is set by the configuration variable
+<TT>VM_TYPE</TT> <A NAME="88250"></A> <A NAME="88251"></A>.
+<A NAME="87844"></A>
+</DD>
+<DT><STRONG><TT>WindowsBuildNumber</TT>:</STRONG></DT>
+<DD>An integer, extracted from the
+platform type, representing a build number 
+for a Windows operating system.
+This attribute only exists on Windows machines.
+<A NAME="87846"></A>
+</DD>
+<DT><STRONG><TT>WindowsMajorVersion</TT>:</STRONG></DT>
+<DD>An integer, extracted from the
+platform type, representing a major version number (currently 5 or 6)
+for a Windows operating system.
+This attribute only exists on Windows machines.
+<A NAME="87848"></A>
+</DD>
+<DT><STRONG><TT>WindowsMinorVersion</TT>:</STRONG></DT>
+<DD>An integer, extracted from the
+platform type, representing a minor version number (currently 0, 1, or 2)
+for a Windows operating system.
+This attribute only exists on Windows machines.
+
+<P>
+</DD>
+</DL>
+
+<P>
+In addition, there are a few attributes that are automatically
+inserted into the machine ClassAd whenever a resource is in the
+Claimed state:
+
+<P>
+<DL>
+<DD><A NAME="87852"></A>
+</DD>
+<DT><STRONG><TT>ClientMachine</TT>:</STRONG></DT>
+<DD>The host name of the machine that has
+claimed this resource
+<P>
+<A NAME="87854"></A>
+</DD>
+<DT><STRONG><TT>RemoteAutoregroup</TT>:</STRONG></DT>
+<DD>A boolean attribute which is <TT>True</TT>
+if this resource was claimed via negotiation 
+when the configuration variable <TT>GROUP_AUTOREGROUP</TT> <A NAME="88261"></A> <A NAME="88262"></A> is <TT>True</TT>.
+It is <TT>False</TT> otherwise.
+
+<P>
+<A NAME="87860"></A>
+</DD>
+<DT><STRONG><TT>RemoteGroup</TT>:</STRONG></DT>
+<DD>The accounting group name corresponding to
+the submitter that claimed this resource.
+
+<P>
+<A NAME="87862"></A>
+</DD>
+<DT><STRONG><TT>RemoteNegotiatingGroup</TT>:</STRONG></DT>
+<DD>The accounting group name under
+which this resource negotiated when it was claimed.  This attribute will
+frequently be the same as attribute <TT>RemoteGroup</TT>,
+but it may differ in cases such
+as when configuration variable <TT>GROUP_AUTOREGROUP</TT> <A NAME="88271"></A> <A NAME="88272"></A> is <TT>True</TT>,
+in which case it will have the name of the root group, 
+identified as <TT>&lt;none&gt;</TT>.
+
+<P>
+<A NAME="87868"></A>
+</DD>
+<DT><STRONG><TT>RemoteOwner</TT>:</STRONG></DT>
+<DD>The name of the user who originally
+claimed this resource.
+
+<P>
+<A NAME="87870"></A>
+</DD>
+<DT><STRONG><TT>RemoteUser</TT>:</STRONG></DT>
+<DD>The name of the user who is currently
+using this resource.
+In general, this will always be the same as the <TT>RemoteOwner</TT>,
+but in some cases, a resource can be claimed by one entity that hands
+off the resource to another entity which uses it.
+In that case, <TT>RemoteUser</TT> would hold the name of the entity
+currently using the resource, while <TT>RemoteOwner</TT> would hold
+the name of the entity that claimed the resource.
+
+<P>
+<A NAME="87875"></A>
+</DD>
+<DT><STRONG><TT>PreemptingOwner</TT>:</STRONG></DT>
+<DD>The name of the user who is preempting
+the job that is currently running on this resource.
+
+<P>
+<A NAME="87877"></A>
+</DD>
+<DT><STRONG><TT>PreemptingUser</TT>:</STRONG></DT>
+<DD>The name of the user who is preempting
+the job that is currently running on this resource.  The relationship
+between <TT>PreemptingUser</TT> and <TT>PreemptingOwner</TT> is the same
+as the relationship between <TT>RemoteUser</TT> and <TT>RemoteOwner</TT>.
+
+<P>
+<A NAME="87883"></A>
+</DD>
+<DT><STRONG><TT>PreemptingRank</TT>:</STRONG></DT>
+<DD>A float which represents this machine
+owner's affinity for running the Condor job which is waiting for the
+current job to finish or be preempted.  If not currently hosting a
+Condor job, <TT>PreemptingRank</TT> is undefined.  When a machine is
+claimed and there is already a job running, the attribute's value is
+computed by evaluating the machine's <TT>Rank</TT> expression with
+respect to the preempting job's ClassAd.
+
+<P>
+<A NAME="87887"></A>
+</DD>
+<DT><STRONG><TT>TotalClaimRunTime</TT>:</STRONG></DT>
+<DD>A running total of the amount of
+time (in seconds) that all jobs (under the same claim) ran
+(have spent in the Claimed/Busy state).
+
+<P>
+<A NAME="87889"></A>
+</DD>
+<DT><STRONG><TT>TotalClaimSuspendTime</TT>:</STRONG></DT>
+<DD>A running total of the amount of
+time (in seconds) that all jobs (under the same claim) have been
+suspended (in the Claimed/Suspended state).
+
+<P>
+<A NAME="87891"></A>
+</DD>
+<DT><STRONG><TT>TotalJobRunTime</TT>:</STRONG></DT>
+<DD>A running total of the amount of
+time (in seconds) that a single job ran
+(has spent in the Claimed/Busy state).
+
+<P>
+<A NAME="87893"></A>
+</DD>
+<DT><STRONG><TT>TotalJobSuspendTime</TT>:</STRONG></DT>
+<DD>A running total of the amount of
+time (in seconds) that a single job has been suspended
+(in the Claimed/Suspended state).
+
+<P>
+</DD>
+</DL>
+
+<P>
+There are a few attributes that are only inserted into the
+machine ClassAd if a job is currently executing.  
+If the resource is claimed but no job are running, none of these
+attributes will be defined.
+
+<P>
+<DL>
+<DD><A NAME="87897"></A>
+</DD>
+<DT><STRONG><TT>JobId</TT>:</STRONG></DT>
+<DD>The job's identifier (for example,
+<code>152.3</code>), as seen from <I>condor_q</I>
+on the submitting machine.
+<P>
+<A NAME="87900"></A>
+</DD>
+<DT><STRONG><TT>JobStart</TT>:</STRONG></DT>
+<DD>The time stamp in integer seconds of when the job began
+executing, since the Unix epoch (00:00:00 UTC, Jan 1, 1970).  For idle
+machines, the value is <TT>UNDEFINED</TT>.
+
+<P>
+<A NAME="87903"></A>
+</DD>
+<DT><STRONG><TT>LastPeriodicCheckpoint</TT>:</STRONG></DT>
+<DD>If the job has performed a
+periodic checkpoint, this attribute will be defined and will hold the
+time stamp of when the last periodic checkpoint was begun.
+If the job has yet to perform a periodic checkpoint, or cannot
+checkpoint at all, the <TT>LastPeriodicCheckpoint</TT> attribute will
+not be defined.
+
+<P>
+</DD>
+</DL>
+
+<P>
+<A NAME="87907"></A>
+There are a few attributes that are applicable to machines that
+are offline, that is, hibernating.
+
+<P>
+<DL>
+<DD><A NAME="87909"></A>
+</DD>
+<DT><STRONG><TT>MachineLastMatchTime</TT>:</STRONG></DT>
+<DD>The Unix epoch time when this offline 
+ClassAd
+would have been matched to a job, if the machine were online.  
+In addition,
+the slot1 ClassAd of a multi-slot machine will have 
+<TT>slot&lt;X&gt;_MachineLastMatchTime</TT> defined,
+where <TT>&lt;X&gt;</TT> is replaced by the slot id of each of the slots
+with <TT>MachineLastMatchTime</TT> defined.
+<P>
+<A NAME="87914"></A>
+</DD>
+<DT><STRONG><TT>Offline</TT>:</STRONG></DT>
+<DD>A boolean value, that when <TT>True</TT>,
+indicates this machine is in an offline state in the <I>condor_collector</I>.
+Such ClassAds are stored persistently, 
+such that they will continue to exist after the <I>condor_collector</I> restarts.
+
+<P>
+<A NAME="87919"></A>
+</DD>
+<DT><STRONG><TT>Unhibernate</TT>:</STRONG></DT>
+<DD>A boolean expression that specifies when
+a hibernating machine should be woken up, for example, by <I>condor_rooster</I>.
+
+<P>
+</DD>
+</DL>
+
+<P>
+Finally, the single attribute, 
+<TT>CurrentTime</TT>, is defined by the ClassAd
+environment.
+<DL>
+<DD><A NAME="87925"></A>
+</DD>
+<DT><STRONG><TT>CurrentTime</TT>:</STRONG></DT>
+<DD>Evaluates to the 
+the number of integer seconds since the Unix epoch (00:00:00 UTC, Jan 1, 1970).
+</DD>
+</DL>
+
+<P>
+
+<H2><A NAME="SECTION001204000000000000000"></A><A NAME="sec:DaemonMaster-ClassAd-Attributes"></A>
+<BR>
+DaemonMaster ClassAd Attributes
+</H2>
+<A NAME="88403"></A>
+<DL>
+<DD><A NAME="88405"></A>
+</DD>
+<DT><STRONG><TT>CkptServer</TT>:</STRONG></DT>
+<DD>A string with with the fully qualified
+host name of the machine running a checkpoint server.
+
+<P>
+<A NAME="88407"></A>
+</DD>
+<DT><STRONG><TT>DaemonStartTime</TT>:</STRONG></DT>
+<DD>The time that this daemon was
+  started, represented as the number of second elapsed since
+  the Unix epoch (00:00:00 UTC, Jan 1, 1970).
+
+<P>
+<A NAME="88409"></A>
+</DD>
+<DT><STRONG><TT>Machine</TT>:</STRONG></DT>
+<DD>A string with the machine's fully qualified 
+  host name.
+
+<P>
+<A NAME="88411"></A>
+</DD>
+<DT><STRONG><TT>MasterIpAddr</TT>:</STRONG></DT>
+<DD>String with the IP and port address of the
+<I>condor_master</I> daemon which is publishing this DaemonMaster ClassAd.
+
+<P>
+<A NAME="88414"></A>
+</DD>
+<DT><STRONG><TT>MonitorSelfAge</TT>:</STRONG></DT>
+<DD>The number of seconds that this daemon
+  has been running.
+
+<P>
+<A NAME="88416"></A>
+</DD>
+<DT><STRONG><TT>MonitorSelfCPUUsage</TT>:</STRONG></DT>
+<DD>The fraction of recent CPU time utilized
+  by this daemon. 
+
+<P>
+<A NAME="88418"></A>
+</DD>
+<DT><STRONG><TT>MonitorSelfImageSize</TT>:</STRONG></DT>
+<DD>The amount of virtual memory consumed by
+  this daemon in Kbytes.
+
+<P>
+<A NAME="88420"></A>
+</DD>
+<DT><STRONG><TT>MonitorSelfRegisteredSocketCount</TT>:</STRONG></DT>
+<DD>The current number of sockets
+  registered by this daemon.
+
+<P>
+<A NAME="88422"></A>
+</DD>
+<DT><STRONG><TT>MonitorSelfResidentSetSize</TT>:</STRONG></DT>
+<DD>The amount of resident memory
+  used by this daemon in Kbytes.
+
+<P>
+<A NAME="88424"></A>
+</DD>
+<DT><STRONG><TT>MonitorSelfSecuritySessions</TT>:</STRONG></DT>
+<DD>The number of open (cached)
+  security sessions for this daemon.
+
+<P>
+<A NAME="88426"></A>
+</DD>
+<DT><STRONG><TT>MonitorSelfTime</TT>:</STRONG></DT>
+<DD>The  time, represented as the number of
+  second elapsed since the Unix epoch (00:00:00 UTC, Jan 1, 1970),
+  at which this daemon last checked and set the attributes with names that
+  begin with the string <TT>MonitorSelf</TT>.
+
+<P>
+<A NAME="88429"></A>
+</DD>
+<DT><STRONG><TT>MyAddress</TT>:</STRONG></DT>
+<DD>Description is not yet written.
+
+<P>
+<A NAME="88431"></A>
+</DD>
+<DT><STRONG><TT>MyCurrentTime</TT>:</STRONG></DT>
+<DD>The time, represented as the number of
+  second elapsed since the Unix epoch (00:00:00 UTC, Jan 1, 1970),
+  at which the <I>condor_master</I> daemon last sent a ClassAd update to the
+  <I>condor_collector</I>.
+
+<P>
+<A NAME="88435"></A>
+</DD>
+<DT><STRONG><TT>Name</TT>:</STRONG></DT>
+<DD>The name of this resource; typically the same value as
+  the <TT>Machine</TT> attribute, but could be customized by the site
+  administrator.
+  On SMP machines, the <I>condor_startd</I> will divide the CPUs up into separate
+  slots, each with with a unique name.
+  These names will be of the form ``slot#@full.hostname'', for example,
+  ``slot1@vulture.cs.wisc.edu'', which signifies slot number 1 from
+  vulture.cs.wisc.edu.
+
+<P>
+<A NAME="88439"></A>
+</DD>
+<DT><STRONG><TT>PublicNetworkIpAddr</TT>:</STRONG></DT>
+<DD>Description is not yet written.
+
+<P>
+<A NAME="88441"></A>
+</DD>
+<DT><STRONG><TT>RealUid</TT>:</STRONG></DT>
+<DD>The UID under which the <I>condor_master</I> is started.
+
+<P>
+<A NAME="88444"></A>
+</DD>
+<DT><STRONG><TT>UpdateSequenceNumber</TT>:</STRONG></DT>
+<DD>An integer, starting at zero,
+  and incremented with each ClassAd update sent to the <I>condor_collector</I>.
+  The <I>condor_collector</I> uses this value to sequence the updates it
+  receives.
+
+<P>
+</DD>
+</DL>
+
+<P>
+
+<H2><A NAME="SECTION001205000000000000000"></A><A NAME="sec:Scheduler-ClassAd-Attributes"></A>
+<BR>
+Scheduler ClassAd Attributes
+</H2>
+<A NAME="88522"></A>
+<DL>
+<DD><A NAME="88524"></A>
+</DD>
+<DT><STRONG><TT>DaemonCoreDutyCycle</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+the ratio of the time spent handling 
+  messages and events to the elapsed time for the time period defined by
+  <TT>StatsLifetime</TT> of this <I>condor_schedd</I>.
+  A value near 0.0 indicates an idle daemon, 
+  while a value near 1.0 indicates a daemon running at or above capacity.
+
+<P>
+<A NAME="88528"></A>
+</DD>
+<DT><STRONG><TT>DaemonStartTime</TT>:</STRONG></DT>
+<DD>The time that this daemon was
+  started, represented as the number of second elapsed since
+    the Unix epoch (00:00:00 UTC, Jan 1, 1970).
+
+<P>
+<A NAME="88530"></A>
+</DD>
+<DT><STRONG><TT>DetectedCpus</TT>:</STRONG></DT>
+<DD>The number of detected machine CPUs/cores.
+
+<P>
+<A NAME="88532"></A>
+</DD>
+<DT><STRONG><TT>DetectedMemory</TT>:</STRONG></DT>
+<DD>The amount of detected machine RAM in MBytes.
+
+<P>
+<A NAME="88534"></A>
+</DD>
+<DT><STRONG><TT>JobQueueBirthdate</TT>:</STRONG></DT>
+<DD>Description is not yet written.
+
+<P>
+<A NAME="88536"></A>
+</DD>
+<DT><STRONG><TT>JobsAccumBadputTime</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the sum of the all of the time jobs which did not complete successfully 
+  have spent running over the lifetime of this <I>condor_schedd</I>.
+
+<P>
+<A NAME="88539"></A>
+</DD>
+<DT><STRONG><TT>JobsAccumRunningTime</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the sum of the all of the time jobs have spent running
+  in the time interval defined by attribute <TT>StatsLifetime</TT>.
+
+<P>
+<A NAME="88542"></A>
+</DD>
+<DT><STRONG><TT>JobsAccumTimeToStart</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the sum of all the time jobs have spent waiting to start
+  in the time interval defined by attribute <TT>StatsLifetime</TT>.
+
+<P>
+<A NAME="88545"></A>
+</DD>
+<DT><STRONG><TT>JobsBadputRuntimes</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  a histogram count of jobs that did not complete successfully, 
+  as classified by time spent running,
+  over the lifetime of this <I>condor_schedd</I>.
+  Counts within the histogram are separated by a comma and a space, 
+  where the time interval classification is defined in the ClassAd attribute
+  <TT>JobsRuntimesHistogramBuckets</TT>.
+
+<P>
+<A NAME="88549"></A>
+</DD>
+<DT><STRONG><TT>JobsBadputSizes</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  a histogram count of jobs that did not complete successfully,
+  as classified by image size,
+  over the lifetime of this <I>condor_schedd</I>.
+  Counts within the histogram are separated by a comma and a space, 
+  where the size classification is defined in the ClassAd attribute
+  <TT>JobsSizesHistogramBuckets</TT>.
+
+<P>
+<A NAME="88553"></A>
+</DD>
+<DT><STRONG><TT>JobsCheckpointed</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the number of times jobs that have exited 
+  with a <I>condor_shadow</I> exit code of <TT>JOB_CKPTED</TT>
+  in the time interval defined by attribute <TT>StatsLifetime</TT>.
+
+<P>
+<A NAME="88558"></A>
+</DD>
+<DT><STRONG><TT>JobsCompleted</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the number of jobs successfully completed
+  in the time interval defined by attribute <TT>StatsLifetime</TT>.
+
+<P>
+<A NAME="88561"></A>
+</DD>
+<DT><STRONG><TT>JobsCompletedRuntimes</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  a histogram count of jobs that completed successfully 
+  as classified by time spent running,
+  over the lifetime of this <I>condor_schedd</I>.
+  Counts within the histogram are separated by a comma and a space, 
+  where the time interval classification is defined in the ClassAd attribute
+  <TT>JobsRuntimesHistogramBuckets</TT>.
+
+<P>
+<A NAME="88565"></A>
+</DD>
+<DT><STRONG><TT>JobsCompletedSizes</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  a histogram count of jobs that completed successfully
+  as classified by image size,
+  over the lifetime of this <I>condor_schedd</I>.
+  Counts within the histogram are separated by a comma and a space, 
+  where the size classification is defined in the ClassAd attribute
+  <TT>JobsSizesHistogramBuckets</TT>.
+
+<P>
+<A NAME="88569"></A>
+</DD>
+<DT><STRONG><TT>JobsCoredumped</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the number of times that jobs have exited 
+  with a <I>condor_shadow</I> exit code of <TT>JOB_COREDUMPED</TT>
+  in the time interval defined by attribute <TT>StatsLifetime</TT>.
+
+<P>
+<A NAME="88574"></A>
+</DD>
+<DT><STRONG><TT>JobsDebugLogError</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the number of times that jobs have exited 
+  with a <I>condor_shadow</I> exit code of <TT>DPRINTF_ERROR</TT>
+  in the time interval defined by attribute <TT>StatsLifetime</TT>.
+
+<P>
+<A NAME="88579"></A>
+</DD>
+<DT><STRONG><TT>JobsExecFailed</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the number of times that jobs have exited 
+  with a <I>condor_shadow</I> exit code of <TT>JOB_EXEC_FAILED</TT>
+  in the time interval defined by attribute <TT>StatsLifetime</TT>.
+
+<P>
+<A NAME="88584"></A>
+</DD>
+<DT><STRONG><TT>JobsExited</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the number of times that jobs that exited 
+  (successfully or not)
+  in the time interval defined by attribute <TT>StatsLifetime</TT>.
+
+<P>
+<A NAME="88587"></A>
+</DD>
+<DT><STRONG><TT>JobsExitedAndClaimClosing</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the number of times jobs have exited 
+  with a <I>condor_shadow</I> exit code of <TT>JOB_EXITED_AND_CLAIM_CLOSING</TT>
+  in the time interval defined by attribute <TT>StatsLifetime</TT>.
+
+<P>
+<A NAME="88592"></A>
+</DD>
+<DT><STRONG><TT>JobsExitedNormally</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the number of times that jobs have exited 
+  with a <I>condor_shadow</I> exit code of <TT>JOB_EXITED</TT> or with an
+  exit code of <TT>JOB_EXITED_AND_CLAIM_CLOSING</TT>
+  in the time interval defined by attribute <TT>StatsLifetime</TT>.
+
+<P>
+<A NAME="88598"></A>
+</DD>
+<DT><STRONG><TT>JobsExitException</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the number of times that jobs 
+  have exited with a <I>condor_shadow</I> exit code of <TT>JOB_EXCEPTION</TT>
+  or with an unknown status
+  in the time interval defined by attribute <TT>StatsLifetime</TT>.
+
+<P>
+<A NAME="88603"></A>
+</DD>
+<DT><STRONG><TT>JobsKilled</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the number of times that jobs 
+  have exited with a <I>condor_shadow</I> exit code of <TT>JOB_KILLED</TT>
+  in the time interval defined by attribute <TT>StatsLifetime</TT>.
+
+<P>
+<A NAME="88608"></A>
+</DD>
+<DT><STRONG><TT>JobsMissedDeferralTime</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the number of times that jobs
+  have exited with a <I>condor_shadow</I> exit code of 
+  <TT>JOB_MISSED_DEFERRAL_TIME</TT>
+  in the time interval defined by attribute <TT>StatsLifetime</TT>.
+
+<P>
+<A NAME="88613"></A>
+</DD>
+<DT><STRONG><TT>JobsNotStarted</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the number of times that jobs 
+  have exited with a <I>condor_shadow</I> exit code of 
+  <TT>JOB_NOT_STARTED</TT>
+  in the time interval defined by attribute <TT>StatsLifetime</TT>.
+
+<P>
+<A NAME="88618"></A>
+</DD>
+<DT><STRONG><TT>JobsRunningRuntimes</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  a histogram count of jobs currently running,
+  as classified by elapsed runtime.
+  Counts within the histogram are separated by a comma and a space, 
+  where the time interval classification is defined in the ClassAd attribute
+  <TT>JobsRuntimesHistogramBuckets</TT>.
+
+<P>
+<A NAME="88621"></A>
+</DD>
+<DT><STRONG><TT>JobsRunningSizes</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  a histogram count of jobs currently running,
+  as classified by image size.
+  Counts within the histogram are separated by a comma and a space, 
+  where the size classification is defined in the ClassAd attribute
+  <TT>JobsSizesHistogramBuckets</TT>.
+
+<P>
+<A NAME="88624"></A>
+</DD>
+<DT><STRONG><TT>JobsRuntimesHistogramBuckets</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the predefined bucket boundaries for histogram statistics that
+  classify run times.
+  Defined as
+<PRE>
+  JobsRuntimesHistogramBuckets = "30Sec, 1Min, 3Min, 10Min, 30Min, 1Hr, 3Hr, 
+          6Hr, 12Hr, 1Day, 2Day, 4Day, 8Day, 16Day"
+</PRE>
+<P>
+<A NAME="88628"></A>
+</DD>
+<DT><STRONG><TT>JobsShadowNoMemory</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the number of times that jobs have exited 
+  because there was not enough memory to start the <I>condor_shadow</I>
+  in the time interval defined by attribute <TT>StatsLifetime</TT>.
+
+<P>
+<A NAME="88632"></A>
+</DD>
+<DT><STRONG><TT>JobsShouldHold</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the number of times that jobs 
+  have exited with a <I>condor_shadow</I> exit code of <TT>JOB_SHOULD_HOLD</TT>
+  in the time interval defined by attribute <TT>StatsLifetime</TT>.
+
+<P>
+<A NAME="88637"></A>
+</DD>
+<DT><STRONG><TT>JobsShouldRemove</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the number of times that jobs 
+  have exited with a <I>condor_shadow</I> exit code of <TT>JOB_SHOULD_REMOVE</TT>
+  in the time interval defined by attribute <TT>StatsLifetime</TT>.
+
+<P>
+<A NAME="88642"></A>
+</DD>
+<DT><STRONG><TT>JobsShouldRequeue</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the number of times that jobs 
+  have exited with a <I>condor_shadow</I> exit code of <TT>JOB_SHOULD_REQUEUE</TT>
+  in the time interval defined by attribute <TT>StatsLifetime</TT>.
+
+<P>
+<A NAME="88647"></A>
+</DD>
+<DT><STRONG><TT>JobsSizesHistogramBuckets</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the predefined bucket boundaries for histogram statistics that
+  classify image sizes.
+  Defined as
+<PRE>
+  JobsSizesHistogramBuckets = "64Kb, 256Kb, 1Mb, 4Mb, 16Mb, 64Mb, 256Mb,
+          1Gb, 4Gb, 16Gb, 64Gb, 256Gb"
+</PRE>
+<P>
+<A NAME="88651"></A>
+</DD>
+<DT><STRONG><TT>JobsStarted</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the number of jobs started
+  in the time interval defined by attribute <TT>StatsLifetime</TT>.
+
+<P>
+<A NAME="88654"></A>
+</DD>
+<DT><STRONG><TT>JobsSubmitted</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the number of jobs submitted
+  in the time interval defined by attribute <TT>StatsLifetime</TT>.
+
+<P>
+<A NAME="88657"></A>
+</DD>
+<DT><STRONG><TT>Machine</TT>:</STRONG></DT>
+<DD>A string with the machine's fully qualified 
+  host name.
+
+<P>
+<A NAME="88659"></A>
+</DD>
+<DT><STRONG><TT>MaxJobsRunning</TT>:</STRONG></DT>
+<DD>The same integer value as set by the
+  evaluation of the configuration variable <TT>MAX_JOBS_RUNNING</TT> <A NAME="89052"></A> <A NAME="89053"></A>.
+  See the definition at section&nbsp;<A HREF="3_3Configuration.html#param:MaxJobsRunning">3.3.11</A> on
+  page&nbsp;<A HREF="3_3Configuration.html#param:MaxJobsRunning"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+<A NAME="88664"></A>
+</DD>
+<DT><STRONG><TT>MonitorSelfAge</TT>:</STRONG></DT>
+<DD>The number of seconds that this daemon
+  has been running.
+
+<P>
+<A NAME="88666"></A>
+</DD>
+<DT><STRONG><TT>MonitorSelfCPUUsage</TT>:</STRONG></DT>
+<DD>The fraction of recent CPU time utilized
+  by this daemon. 
+
+<P>
+<A NAME="88668"></A>
+</DD>
+<DT><STRONG><TT>MonitorSelfImageSize</TT>:</STRONG></DT>
+<DD>The amount of virtual memory consumed by
+  this daemon in Kbytes.
+
+<P>
+<A NAME="88670"></A>
+</DD>
+<DT><STRONG><TT>MonitorSelfRegisteredSocketCount</TT>:</STRONG></DT>
+<DD>The current number of sockets
+  registered by this daemon.
+
+<P>
+<A NAME="88672"></A>
+</DD>
+<DT><STRONG><TT>MonitorSelfResidentSetSize</TT>:</STRONG></DT>
+<DD>The amount of resident memory
+  used by this daemon in Kbytes.
+
+<P>
+<A NAME="88674"></A>
+</DD>
+<DT><STRONG><TT>MonitorSelfSecuritySessions</TT>:</STRONG></DT>
+<DD>The number of open (cached)
+  security sessions for this daemon.
+
+<P>
+<A NAME="88676"></A>
+</DD>
+<DT><STRONG><TT>MonitorSelfTime</TT>:</STRONG></DT>
+<DD>The  time, represented as the number of
+  second elapsed since the Unix epoch (00:00:00 UTC, Jan 1, 1970),
+  at which this daemon last checked and set the attributes with names that
+  begin with the string <TT>MonitorSelf</TT>.
+
+<P>
+<A NAME="88679"></A>
+</DD>
+<DT><STRONG><TT>MyAddress</TT>:</STRONG></DT>
+<DD>Description is not yet written.
+
+<P>
+<A NAME="88681"></A>
+</DD>
+<DT><STRONG><TT>MyCurrentTime</TT>:</STRONG></DT>
+<DD>The time, represented as the number of 
+  second elapsed since the Unix epoch (00:00:00 UTC, Jan 1, 1970),
+  at which the <I>condor_schedd</I> daemon last sent a ClassAd update to the
+  <I>condor_collector</I>.
+
+<P>
+<A NAME="88685"></A>
+</DD>
+<DT><STRONG><TT>Name</TT>:</STRONG></DT>
+<DD>The name of this resource; typically the same value as
+  the <TT>Machine</TT> attribute, but could be customized by the site
+  administrator.
+  On SMP machines, the <I>condor_startd</I> will divide the CPUs up into separate
+  slots, each with with a unique name.
+  These names will be of the form ``slot#@full.hostname'', for example,
+  ``slot1@vulture.cs.wisc.edu'', which signifies slot number 1 from
+  vulture.cs.wisc.edu.
+
+<P>
+<A NAME="88689"></A>
+</DD>
+<DT><STRONG><TT>NumUsers</TT>:</STRONG></DT>
+<DD>The integer number of distinct users with jobs in
+  this <I>condor_schedd</I>'s queue.
+
+<P>
+<A NAME="88692"></A>
+</DD>
+<DT><STRONG><TT>PublicNetworkIpAddr</TT>:</STRONG></DT>
+<DD>Description is not yet written.
+
+<P>
+<A NAME="88694"></A>
+</DD>
+<DT><STRONG><TT>RecentDaemonCoreDutyCycle</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the ratio of the time spent 
+  handling messages and events to the elapsed time 
+  in the previous time interval defined by attribute <TT>RecentStatsLifetime</TT>.
+
+<P>
+<A NAME="88697"></A>
+</DD>
+<DT><STRONG><TT>RecentJobsAccumBadputTime</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the sum of the all of the time that jobs which did not complete successfully 
+  have spent running 
+  in the previous time interval defined by attribute <TT>RecentStatsLifetime</TT>.
+
+<P>
+<A NAME="88700"></A>
+</DD>
+<DT><STRONG><TT>RecentJobsAccumRunningTime</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the sum of the all of the time jobs 
+  which have exited 
+  in the previous time interval defined by attribute <TT>RecentStatsLifetime</TT>
+  spent running.
+
+<P>
+<A NAME="88703"></A>
+</DD>
+<DT><STRONG><TT>RecentJobsAccumTimeToStart</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the sum of all the time jobs 
+  which have exited
+  in the previous time interval defined by attribute <TT>RecentStatsLifetime</TT>
+  had spent waiting to start.
+
+<P>
+<A NAME="88706"></A>
+</DD>
+<DT><STRONG><TT>RecentJobsBadputRuntimes</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  a histogram count of jobs that did not complete successfully,
+  as classified by time spent running,
+  in the previous time interval defined by attribute <TT>RecentStatsLifetime</TT>.
+  Counts within the histogram are separated by a comma and a space,
+  where the time interval classification is defined in the ClassAd attribute
+  <TT>JobsRuntimesHistogramBuckets</TT>.
+
+<P>
+<A NAME="88710"></A>
+</DD>
+<DT><STRONG><TT>RecentJobsBadputSizes</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  a histogram count of jobs that did not complete successfully,
+  as classified by image size,
+  in the previous time interval defined by attribute <TT>RecentStatsLifetime</TT>.
+  Counts within the histogram are separated by a comma and a space, 
+  where the size classification is defined in the ClassAd attribute
+  <TT>JobsSizesHistogramBuckets</TT>.
+
+<P>
+<A NAME="88714"></A>
+</DD>
+<DT><STRONG><TT>RecentJobsCheckpointed</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the number of times jobs that have exited 
+  with a <I>condor_shadow</I> exit code of <TT>JOB_CKPTED</TT>
+  in the previous time interval defined by attribute <TT>RecentStatsLifetime</TT>.
+
+<P>
+<A NAME="88719"></A>
+</DD>
+<DT><STRONG><TT>RecentJobsCompleted</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the number of jobs successfully completed
+  in the previous time interval defined by attribute <TT>RecentStatsLifetime</TT>.
+
+<P>
+<A NAME="88722"></A>
+</DD>
+<DT><STRONG><TT>RecentJobsCompletedRuntimes</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  a histogram count of jobs that completed successfully, 
+  as classified by time spent running,
+  in the previous time interval defined by attribute <TT>RecentStatsLifetime</TT>.
+  Counts within the histogram are separated by a comma and a space,
+  where the time interval classification is defined in the ClassAd attribute
+  <TT>JobsRuntimesHistogramBuckets</TT>.
+
+<P>
+<A NAME="88726"></A>
+</DD>
+<DT><STRONG><TT>RecentJobsCompletedSizes</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  a histogram count of jobs that completed successfully,
+  as classified by image size,
+  in the previous time interval defined by attribute <TT>RecentStatsLifetime</TT>.
+  Counts within the histogram are separated by a comma and a space, 
+  where the size classification is defined in the ClassAd attribute
+  <TT>JobsSizesHistogramBuckets</TT>.
+
+<P>
+<A NAME="88730"></A>
+</DD>
+<DT><STRONG><TT>RecentJobsCoredumped</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the number of times that jobs have exited 
+  with a <I>condor_shadow</I> exit code of <TT>JOB_COREDUMPED</TT> 
+  in the previous time interval defined by attribute <TT>RecentStatsLifetime</TT>.
+
+<P>
+<A NAME="88735"></A>
+</DD>
+<DT><STRONG><TT>RecentJobsDebugLogError</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the number of times that jobs have exited 
+  with a <I>condor_shadow</I> exit code of <TT>DPRINTF_ERROR</TT> 
+  in the previous time interval defined by attribute <TT>RecentStatsLifetime</TT>.
+
+<P>
+<A NAME="88740"></A>
+</DD>
+<DT><STRONG><TT>RecentJobsExecFailed</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the number of times that jobs have exited 
+  with a <I>condor_shadow</I> exit code of <TT>JOB_EXEC_FAILED</TT> 
+  in the previous time interval defined by attribute <TT>RecentStatsLifetime</TT>.
+
+<P>
+<A NAME="88745"></A>
+</DD>
+<DT><STRONG><TT>RecentJobsExited</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the number of times that jobs have exited normally
+  in the previous time interval defined by attribute <TT>RecentStatsLifetime</TT>.
+
+<P>
+<A NAME="88748"></A>
+</DD>
+<DT><STRONG><TT>RecentJobsExitedAndClaimClosing</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the number of times that jobs 
+  have exited with a <I>condor_shadow</I> exit code of 
+  <TT>JOB_EXITED_AND_CLAIM_CLOSING</TT>
+  in the previous time interval defined by attribute <TT>RecentStatsLifetime</TT>.
+
+<P>
+<A NAME="88753"></A>
+</DD>
+<DT><STRONG><TT>RecentJobsExitedNormally</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the number of times that jobs have exited 
+  with a <I>condor_shadow</I> exit code of <TT>JOB_EXITED</TT> or with an
+  exit code of <TT>JOB_EXITED_AND_CLAIM_CLOSING</TT>
+  in the previous time interval defined by attribute <TT>RecentStatsLifetime</TT>.
+
+<P>
+<A NAME="88759"></A>
+</DD>
+<DT><STRONG><TT>RecentJobsExitException</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the number of times that jobs 
+  have exited with a <I>condor_shadow</I> exit code of <TT>JOB_EXCEPTION</TT>
+  or with an unknown status
+  in the previous time interval defined by attribute <TT>RecentStatsLifetime</TT>.
+
+<P>
+<A NAME="88764"></A>
+</DD>
+<DT><STRONG><TT>RecentJobsKilled</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the number of times that jobs 
+  have exited with a <I>condor_shadow</I> exit code of <TT>JOB_KILLED</TT>
+  in the previous time interval defined by attribute <TT>RecentStatsLifetime</TT>.
+
+<P>
+<A NAME="88769"></A>
+</DD>
+<DT><STRONG><TT>RecentJobsMissedDeferralTime</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the number of times that jobs 
+  have exited with a <I>condor_shadow</I> exit code of 
+  <TT>JOB_MISSED_DEFERRAL_TIME</TT>
+  in the previous time interval defined by attribute <TT>RecentStatsLifetime</TT>.
+
+<P>
+<A NAME="88774"></A>
+</DD>
+<DT><STRONG><TT>RecentJobsNotStarted</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the number of times that jobs 
+  have exited with a <I>condor_shadow</I> exit code of <TT>JOB_NOT_STARTED</TT>
+  in the previous time interval defined by attribute <TT>RecentStatsLifetime</TT>.
+
+<P>
+<A NAME="88779"></A>
+</DD>
+<DT><STRONG><TT>RecentJobsShadowNoMemory</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the number of times that jobs have exited 
+  because there was not enough memory to start the <I>condor_shadow</I>
+  in the previous time interval defined by attribute <TT>RecentStatsLifetime</TT>.
+
+<P>
+<A NAME="88783"></A>
+</DD>
+<DT><STRONG><TT>RecentJobsShouldHold</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the number of times that jobs
+  have exited with a <I>condor_shadow</I> exit code of <TT>JOB_SHOULD_HOLD</TT>
+  in the previous time interval defined by attribute <TT>RecentStatsLifetime</TT>.
+
+<P>
+<A NAME="88788"></A>
+</DD>
+<DT><STRONG><TT>RecentJobsShouldRemove</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the number of times that jobs 
+  have exited with a <I>condor_shadow</I> exit code of <TT>JOB_SHOULD_REMOVE</TT>
+  in the previous time interval defined by attribute <TT>RecentStatsLifetime</TT>.
+
+<P>
+<A NAME="88793"></A>
+</DD>
+<DT><STRONG><TT>RecentJobsShouldRequeue</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the number of times that jobs 
+  have exited with a <I>condor_shadow</I> exit code of <TT>JOB_SHOULD_REQUEUE</TT>
+  in the previous time interval defined by attribute <TT>RecentStatsLifetime</TT>.
+
+<P>
+<A NAME="88798"></A>
+</DD>
+<DT><STRONG><TT>RecentJobsStarted</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the number of jobs started
+  in the previous time interval defined by attribute <TT>RecentStatsLifetime</TT>.
+
+<P>
+<A NAME="88801"></A>
+</DD>
+<DT><STRONG><TT>RecentJobsSubmitted</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the number of jobs submitted
+  in the previous time interval defined by attribute <TT>RecentStatsLifetime</TT>.
+
+<P>
+<A NAME="88804"></A>
+</DD>
+<DT><STRONG><TT>RecentShadowsReconnections</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the number of times that <I>condor_shadow</I>  daemons lost 
+  connection to their <I>condor_starter</I> daemons and successfully reconnected
+  in the previous time interval defined by attribute <TT>RecentStatsLifetime</TT>.
+  This statistic only appears in the Scheduler ClassAd if the level of
+  verbosity set by the configuration variable <TT>STATISTICS_TO_PUBLISH</TT>
+  is set to 2 or higher.
+
+<P>
+<A NAME="88810"></A>
+</DD>
+<DT><STRONG><TT>RecentShadowsRecycled</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the number of times <I>condor_shadow</I> 
+  processes have been recycled for use with a new job
+  in the previous time interval defined by attribute <TT>RecentStatsLifetime</TT>.
+  This statistic only appears in the Scheduler ClassAd if the level of
+  verbosity set by the configuration variable <TT>STATISTICS_TO_PUBLISH</TT>
+  is set to 2 or higher.
+
+<P>
+<A NAME="88815"></A>
+</DD>
+<DT><STRONG><TT>RecentShadowsStarted</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the number of <I>condor_shadow</I> daemons started
+  in the previous time interval defined by attribute <TT>RecentStatsLifetime</TT>.
+
+<P>
+<A NAME="88819"></A>
+</DD>
+<DT><STRONG><TT>RecentStatsLifetime</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the time in seconds over which statistics values have been collected 
+  for attributes with names that begin with <TT>Recent</TT>.
+  This value starts at 0, and it may grow to a value as large as
+  the value defined for attribute <TT>RecentWindowMax</TT>. 
+
+<P>
+<A NAME="88823"></A>
+</DD>
+<DT><STRONG><TT>RecentStatsTickTime</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the time that attributes with names that begin with <TT>Recent</TT> 
+  were last updated,
+  represented as the number of seconds elapsed since
+  the Unix epoch (00:00:00 UTC, Jan 1, 1970).
+  This statistic only appears in the Scheduler ClassAd if the level of
+  verbosity set by the configuration variable <TT>STATISTICS_TO_PUBLISH</TT>
+  is set to 2 or higher.
+
+<P>
+<A NAME="88827"></A>
+</DD>
+<DT><STRONG><TT>RecentWindowMax</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the maximum time in seconds over which 
+  attributes with names that begin with <TT>Recent</TT> are collected.
+  The value is set by the configuration variable
+  <TT>STATISTICS_WINDOW_SECONDS</TT> <A NAME="89201"></A> <A NAME="89202"></A>, which defaults to 1200 seconds
+  (20 minutes). 
+  This statistic only appears in the Scheduler ClassAd if the level of
+  verbosity set by the configuration variable <TT>STATISTICS_TO_PUBLISH</TT>
+  is set to 2 or higher.
+
+<P>
+<A NAME="88832"></A>
+</DD>
+<DT><STRONG><TT>ScheddIpAddr</TT>:</STRONG></DT>
+<DD>String with the IP and port address of the
+<I>condor_schedd</I> daemon which is publishing this Scheduler ClassAd.
+
+<P>
+<A NAME="88835"></A>
+</DD>
+<DT><STRONG><TT>ServerTime</TT>:</STRONG></DT>
+<DD>Description is not yet written.
+
+<P>
+<A NAME="88837"></A>
+</DD>
+<DT><STRONG><TT>ShadowsReconnections</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the number of times <I>condor_shadow</I>s lost 
+  connection to their <I>condor_starter</I>s and successfully reconnected
+  in the previous <TT>StatsLifetime</TT> seconds.
+  This statistic only appears in the Scheduler ClassAd if the level of
+  verbosity set by the configuration variable <TT>STATISTICS_TO_PUBLISH</TT>
+  is set to 2 or higher.
+
+<P>
+<A NAME="88843"></A>
+</DD>
+<DT><STRONG><TT>ShadowsRecycled</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the number of times <I>condor_shadow</I> processes have been 
+  recycled for use with a new job
+  in the previous <TT>StatsLifetime</TT> seconds.
+  This statistic only appears in the Scheduler ClassAd if the level of
+  verbosity set by the configuration variable <TT>STATISTICS_TO_PUBLISH</TT>
+  is set to 2 or higher.
+
+<P>
+<A NAME="88848"></A>
+</DD>
+<DT><STRONG><TT>ShadowsRunning</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the number of <I>condor_shadow</I> daemons currently running 
+  that are owned by this <I>condor_schedd</I>.
+
+<P>
+<A NAME="88852"></A>
+</DD>
+<DT><STRONG><TT>ShadowsRunningPeak</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the maximum number of <I>condor_shadow</I> daemons running at one time
+  that were owned by this <I>condor_schedd</I> over the lifetime of 
+  this <I>condor_schedd</I>.
+
+<P>
+<A NAME="88857"></A>
+</DD>
+<DT><STRONG><TT>ShadowsStarted</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the number of <I>condor_shadow</I> daemons started
+  in the previous time interval defined by attribute <TT>StatsLifetime</TT>.
+
+<P>
+<A NAME="88861"></A>
+</DD>
+<DT><STRONG><TT>StartLocalUniverse</TT>:</STRONG></DT>
+<DD>The same boolean value as set in the
+  configuration variable <TT>START_LOCAL_UNIVERSE</TT> <A NAME="89240"></A> <A NAME="89241"></A>.
+  See the definition at section&nbsp;<A HREF="3_3Configuration.html#param:StartLocalUniverse">3.3.11</A> on
+  page&nbsp;<A HREF="3_3Configuration.html#param:StartLocalUniverse"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+<A NAME="88866"></A>
+</DD>
+<DT><STRONG><TT>StartSchedulerUniverse</TT>:</STRONG></DT>
+<DD>The same boolean value as set in the
+  configuration variable <TT>START_SCHEDULER_UNIVERSE</TT> <A NAME="89246"></A> <A NAME="89247"></A>.
+  See the definition at section&nbsp;<A HREF="3_3Configuration.html#param:StartSchedulerUniverse">3.3.11</A> on
+  page&nbsp;<A HREF="3_3Configuration.html#param:StartSchedulerUniverse"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+<A NAME="88871"></A>
+</DD>
+<DT><STRONG><TT>StatsLastUpdateTime</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the time that statistics about jobs were last updated,
+  represented as the number of seconds elapsed since
+  the Unix epoch (00:00:00 UTC, Jan 1, 1970).
+  This statistic only appears in the Scheduler ClassAd if the level of
+  verbosity set by the configuration variable <TT>STATISTICS_TO_PUBLISH</TT>
+  is set to 2 or higher.
+
+<P>
+<A NAME="88874"></A>
+</DD>
+<DT><STRONG><TT>StatsLifetime</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining
+  the time in seconds over which statistics have been collected
+  for attributes with names that do <I>not</I> begin with <TT>Recent</TT>.
+  This statistic only appears in the Scheduler ClassAd if the level of
+  verbosity set by the configuration variable <TT>STATISTICS_TO_PUBLISH</TT>
+  is set to 2 or higher.
+
+<P>
+<A NAME="88879"></A>
+</DD>
+<DT><STRONG><TT>TotalFlockedJobs</TT>:</STRONG></DT>
+<DD>The total number of jobs from this
+  <I>condor_schedd</I> daemon that are currently flocked to other pools.
+
+<P>
+<A NAME="88882"></A>
+</DD>
+<DT><STRONG><TT>TotalHeldJobs</TT>:</STRONG></DT>
+<DD>The total number of jobs from this
+  <I>condor_schedd</I> daemon that are currently on hold.
+
+<P>
+<A NAME="88885"></A>
+</DD>
+<DT><STRONG><TT>TotalIdleJobs</TT>:</STRONG></DT>
+<DD>The total number of jobs from this
+  <I>condor_schedd</I> daemon that are currently idle.
+
+<P>
+<A NAME="88888"></A>
+</DD>
+<DT><STRONG><TT>TotalJobAds</TT>:</STRONG></DT>
+<DD>The total number of all jobs (in all 
+  states) from this <I>condor_schedd</I> daemon.
+
+<P>
+<A NAME="88891"></A>
+</DD>
+<DT><STRONG><TT>TotalLocalIdleJobs</TT>:</STRONG></DT>
+<DD>The total number of 
+  <B>local</B> <B> universe</B> jobs from this
+  <I>condor_schedd</I> daemon that are currently idle.
+
+<P>
+<A NAME="88896"></A>
+</DD>
+<DT><STRONG><TT>TotalLocalRunningJobs</TT>:</STRONG></DT>
+<DD>The total number of 
+  <B>local</B> <B> universe</B> jobs from this
+  <I>condor_schedd</I> daemon that are currently running.
+
+<P>
+<A NAME="88901"></A>
+</DD>
+<DT><STRONG><TT>TotalRemovedJobs</TT>:</STRONG></DT>
+<DD>The current number of all running jobs
+  from this <I>condor_schedd</I> daemon that have remove requests.
+
+<P>
+<A NAME="88904"></A>
+</DD>
+<DT><STRONG><TT>TotalRunningJobs</TT>:</STRONG></DT>
+<DD>The total number of jobs from this
+  <I>condor_schedd</I> daemon that are currently running.
+
+<P>
+<A NAME="88907"></A>
+</DD>
+<DT><STRONG><TT>TotalSchedulerIdleJobs</TT>:</STRONG></DT>
+<DD>The total number of 
+  <B>scheduler</B> <B> universe</B> jobs from this
+  <I>condor_schedd</I> daemon that are currently idle.
+
+<P>
+<A NAME="88912"></A>
+</DD>
+<DT><STRONG><TT>TotalSchedulerRunningJobs</TT>:</STRONG></DT>
+<DD>The total number of 
+  <B>scheduler</B> <B> universe</B> jobs from this
+  <I>condor_schedd</I> daemon that are currently running.
+
+<P>
+<A NAME="88917"></A>
+</DD>
+<DT><STRONG><TT>UpdateInterval</TT>:</STRONG></DT>
+<DD>The interval, in seconds,
+  between publication of this <I>condor_schedd</I> ClassAd and
+  the previous publication.
+
+<P>
+<A NAME="88920"></A>
+</DD>
+<DT><STRONG><TT>UpdateSequenceNumber</TT>:</STRONG></DT>
+<DD>An integer, starting at zero,
+  and incremented with each ClassAd update sent to the <I>condor_collector</I>.
+  The <I>condor_collector</I> uses this value to sequence the updates it
+  receives.
+
+<P>
+<A NAME="88924"></A>
+</DD>
+<DT><STRONG><TT>VirtualMemory</TT>:</STRONG></DT>
+<DD>Description is not yet written.
+
+<P>
+<A NAME="88926"></A>
+</DD>
+<DT><STRONG><TT>WantResAd</TT>:</STRONG></DT>
+<DD>A boolean value that when <TT>True</TT>
+  causes the <I>condor_negotiator</I> daemon to send to this <I>condor_schedd</I>
+  daemon a full machine ClassAd corresponding to a matched job.
+
+<P>
+</DD>
+</DL>
+
+<P>
+
+<H2><A NAME="SECTION001206000000000000000"></A><A NAME="sec:Negotiator-ClassAd-Attributes"></A>
+<BR>
+Negotiator ClassAd Attributes
+</H2>
+<A NAME="89530"></A>
+<DL>
+<DD><A NAME="89532"></A>
+</DD>
+<DT><STRONG><TT>DaemonStartTime</TT>:</STRONG></DT>
+<DD>The time that this daemon was
+started, represented as the number of second elapsed since
+the Unix epoch (00:00:00 UTC, Jan 1, 1970).
+<P>
+<A NAME="attr:LastNegotiationCycleActiveSubmitterCount_SPMlt_X_SPMgt_"></A><A NAME="89535"></A>
+</DD>
+<DT><STRONG><TT>LastNegotiationCycleActiveSubmitterCount&lt;X&gt;</TT>:</STRONG></DT>
+<DD>The integer number of submitters
+the <I>condor_negotiator</I> attempted to negotiate with in the negotiation cycle.
+The number <TT>&lt;X&gt;</TT> appended to the attribute name indicates how
+many negotiation cycles ago this cycle happened.
+
+<P>
+<A NAME="attr:LastNegotiationCycleCandidateSlots_SPMlt_X_SPMgt_"></A><A NAME="89540"></A>
+</DD>
+<DT><STRONG><TT>LastNegotiationCycleCandidateSlots&lt;X&gt;</TT>:</STRONG></DT>
+<DD>The number of slot ClassAds after filtering by 
+<TT>NEGOTIATOR_SLOT_POOLSIZE_CONSTRAINT</TT> <A NAME="89668"></A> <A NAME="89669"></A>.
+This is the number of slots actually considered for matching.
+The number <TT>&lt;X&gt;</TT> appended to the attribute name indicates how many 
+negotiation cycles ago this cycle happened.
+
+<P>
+<A NAME="attr:LastNegotiationCycleDuration_SPMlt_X_SPMgt_"></A><A NAME="89545"></A>
+</DD>
+<DT><STRONG><TT>LastNegotiationCycleDuration&lt;X&gt;</TT>:</STRONG></DT>
+<DD>The number of seconds
+that it took to complete the negotiation cycle.  The number <TT>&lt;X&gt;</TT>
+appended to the attribute name indicates how many negotiation cycles
+ago this cycle happened.
+
+<P>
+<A NAME="attr:LastNegotiationCycleEnd_SPMlt_X_SPMgt_"></A><A NAME="89549"></A>
+</DD>
+<DT><STRONG><TT>LastNegotiationCycleEnd&lt;X&gt;</TT>:</STRONG></DT>
+<DD>The time, represented as the number of seconds since the Unix epoch,
+at which the negotiation cycle ended. 
+The number <TT>&lt;X&gt;</TT> appended to the attribute name 
+indicates how many negotiation cycles ago this cycle happened.
+
+<P>
+<A NAME="attr:LastNegotiationCycleMatches_SPMlt_X_SPMgt_"></A><A NAME="89553"></A>
+</DD>
+<DT><STRONG><TT>LastNegotiationCycleMatches&lt;X&gt;</TT>:</STRONG></DT>
+<DD>The number of successful
+matches that were made in the negotiation cycle.
+The number <TT>&lt;X&gt;</TT> appended to the attribute name 
+indicates how many negotiation cycles ago this cycle happened.
+
+<P>
+<A NAME="attr:LastNegotiationCycleMatchRate_SPMlt_X_SPMgt_"></A><A NAME="89557"></A>
+</DD>
+<DT><STRONG><TT>LastNegotiationCycleMatchRate&lt;X&gt;</TT>:</STRONG></DT>
+<DD>The number of matched jobs divided by the duration of this cycle giving
+jobs per second.
+The number <TT>&lt;X&gt;</TT> appended to the attribute name indicates 
+how many negotiation cycles ago this cycle happened.
+
+<P>
+<A NAME="attr:LastNegotiationCycleMatchRateSustained_SPMlt_X_SPMgt_"></A><A NAME="89561"></A>
+</DD>
+<DT><STRONG><TT>LastNegotiationCycleMatchRateSustained&lt;X&gt;</TT>:</STRONG></DT>
+<DD>The number of matched jobs divided by the period of this cycle giving
+jobs per second.
+The period is the time elapsed between the end of the previous cycle 
+and the end of this cycle,
+and so this rate includes the interval between cycles.
+The number <TT>&lt;X&gt;</TT> appended to the attribute name indicates 
+how many negotiation cycles ago this cycle happened.
+
+<P>
+<A NAME="attr:LastNegotiationCycleNumIdleJobs_SPMlt_X_SPMgt_"></A><A NAME="89565"></A>
+</DD>
+<DT><STRONG><TT>LastNegotiationCycleNumIdleJobs&lt;X&gt;</TT>:</STRONG></DT>
+<DD>The number of idle jobs considered for matchmaking.  
+The number <TT>&lt;X&gt;</TT> appended to the attribute name indicates 
+how many negotiation cycles ago this cycle happened.
+
+<P>
+<A NAME="attr:LastNegotiationCycleNumJobsConsidered_SPMlt_X_SPMgt_"></A><A NAME="89569"></A>
+</DD>
+<DT><STRONG><TT>LastNegotiationCycleNumJobsConsidered&lt;X&gt;</TT>:</STRONG></DT>
+<DD>The number of jobs requests returned from the schedulers for consideration.
+The number <TT>&lt;X&gt;</TT> appended to the attribute name indicates 
+how many  negotiation  cycles ago this cycle happened.
+
+<P>
+<A NAME="attr:LastNegotiationCycleNumSchedulers_SPMlt_X_SPMgt_"></A><A NAME="89573"></A>
+</DD>
+<DT><STRONG><TT>LastNegotiationCycleNumSchedulers&lt;X&gt;</TT>:</STRONG></DT>
+<DD>The number of individual schedulers negotiated with during matchmaking.
+The number <TT>&lt;X&gt;</TT> appended to the attribute name indicates 
+how many negotiation cycles ago this cycle happened.
+
+<P>
+<A NAME="attr:LastNegotiationCyclePeriod_SPMlt_X_SPMgt_"></A><A NAME="89577"></A>
+</DD>
+<DT><STRONG><TT>LastNegotiationCyclePeriod&lt;X&gt;</TT>:</STRONG></DT>
+<DD>The number of seconds elapsed between the end of the previous 
+negotiation cycle and the end of this cycle.  
+The number <TT>&lt;X&gt;</TT> appended to the attribute name indicates 
+how many negotiation cycles ago this cycle happened.
+
+<P>
+<A NAME="attr:LastNegotiationCyclePhase1Duration_SPMlt_X_SPMgt_"></A><A NAME="89581"></A>
+</DD>
+<DT><STRONG><TT>LastNegotiationCyclePhase1Duration&lt;X&gt;</TT>:</STRONG></DT>
+<DD>The duration, in seconds, of Phase 1 of the negotiation cycle: 
+the process of getting job, submitter and claim ClassAds from the 
+<I>condor_collector</I>.
+The number <TT>&lt;X&gt;</TT> appended to the attribute name indicates 
+how many negotiation cycles ago this cycle happened.
+
+<P>
+<A NAME="attr:LastNegotiationCyclePhase2Duration_SPMlt_X_SPMgt_"></A><A NAME="89586"></A>
+</DD>
+<DT><STRONG><TT>LastNegotiationCyclePhase2Duration&lt;X&gt;</TT>:</STRONG></DT>
+<DD>The duration, in seconds, of Phase 2 of the negotiation cycle: 
+the process of filtering slots and processing accounting group configuration. 
+The number <TT>&lt;X&gt;</TT> appended to the attribute name indicates 
+how many negotiation cycles ago this cycle happened.
+
+<P>
+<A NAME="attr:LastNegotiationCyclePhase3Duration_SPMlt_X_SPMgt_"></A><A NAME="89590"></A>
+</DD>
+<DT><STRONG><TT>LastNegotiationCyclePhase3Duration&lt;X&gt;</TT>:</STRONG></DT>
+<DD>The duration, in seconds, of Phase 3 of the negotiation cycle: 
+sorting submitters by priority.  
+The number <TT>&lt;X&gt;</TT> appended to the attribute name indicates 
+how many negotiation cycles ago this cycle happened.
+
+<P>
+<A NAME="attr:LastNegotiationCyclePhase4Duration_SPMlt_X_SPMgt_"></A><A NAME="89594"></A>
+</DD>
+<DT><STRONG><TT>LastNegotiationCyclePhase4Duration&lt;X&gt;</TT>:</STRONG></DT>
+<DD>The duration, in seconds, of Phase 4 of the negotiation cycle: 
+the process of matching slots to jobs in conjunction with the schedulers. 
+The number <TT>&lt;X&gt;</TT> appended to the attribute name indicates 
+how many negotiation cycles ago this cycle happened.
+
+<P>
+<A NAME="attr:LastNegotiationCycleRejections_SPMlt_X_SPMgt_"></A><A NAME="89598"></A>
+</DD>
+<DT><STRONG><TT>LastNegotiationCycleRejections&lt;X&gt;</TT>:</STRONG></DT>
+<DD>The number of
+rejections that occurred in the negotiation cycle.  The number <TT>&lt;X&gt;</TT>
+appended to the attribute name indicates how many negotiation cycles
+ago this cycle happened.
+
+<P>
+<A NAME="attr:LastNegotiationCycleSlotShareIter_SPMlt_X_SPMgt_"></A><A NAME="89602"></A>
+</DD>
+<DT><STRONG><TT>LastNegotiationCycleSlotShareIter&lt;X&gt;</TT>:</STRONG></DT>
+<DD>The number of iterations performed during the negotiation cycle.
+Each iteration includes the reallocation of remaining slots to 
+accounting groups,
+as defined by the implementation of hierarchical group quotas, 
+together with the negotiation for those slots.
+The maximum number of iterations is limited by the configuration variable
+<TT>GROUP_QUOTA_MAX_ALLOCATION_ROUNDS</TT> <A NAME="89705"></A> <A NAME="89706"></A>.
+The number <TT>&lt;X&gt;</TT> appended to the attribute name indicates 
+how many negotiation cycles ago this cycle happened.
+
+<P>
+<A NAME="attr:LastNegotiationCycleSubmittersFailed_SPMlt_X_SPMgt_"></A><A NAME="89607"></A>
+</DD>
+<DT><STRONG><TT>LastNegotiationCycleSubmittersFailed&lt;X&gt;</TT>:</STRONG></DT>
+<DD>A string containing
+a space and comma-separated list of the names of all submitters who
+failed to negotiate in the negotiation cycle.  One possible cause of
+failure is a communication timeout.  This list does not include
+submitters who ran out of time due
+to <TT>NEGOTIATOR_MAX_TIME_PER_SUBMITTER</TT> <A NAME="89712"></A> <A NAME="89713"></A>.  Those are listed
+separately in <TT>LastNegotiationCycleSubmittersOutOfTime&lt;X&gt;</TT>.
+The number <TT>&lt;X&gt;</TT> appended to the attribute name indicates how
+many negotiation cycles ago this cycle happened.
+
+<P>
+<A NAME="attr:LastNegotiationCycleSubmittersOutOfTime_SPMlt_X_SPMgt_"></A><A NAME="89613"></A>
+</DD>
+<DT><STRONG><TT>LastNegotiationCycleSubmittersOutOfTime&lt;X&gt;</TT>:</STRONG></DT>
+<DD>A string containing
+a space and comma separated list of the names of all submitters who
+ran out of time due to <TT>NEGOTIATOR_MAX_TIME_PER_SUBMITTER</TT> <A NAME="89720"></A> <A NAME="89721"></A>
+in the negotiation cycle.  The number <TT>&lt;X&gt;</TT> appended to the
+attribute name indicates how many negotiation cycles ago this cycle
+happened.
+
+<P>
+<A NAME="attr:LastNegotiationCycleSubmittersShareLimit"></A><A NAME="89618"></A>
+</DD>
+<DT><STRONG><TT>LastNegotiationCycleSubmittersShareLimit</TT>:</STRONG></DT>
+<DD>A string containing a space and comma separated list of names of submitters 
+who encountered their fair-share slot limit during the negotiation cycle.  
+The number <TT>&lt;X&gt;</TT> appended to the attribute name indicates how
+many negotiation cycles ago this cycle happened.
+
+<P>
+<A NAME="attr:LastNegotiationCycleTime_SPMlt_X_SPMgt_"></A><A NAME="89622"></A>
+</DD>
+<DT><STRONG><TT>LastNegotiationCycleTime&lt;X&gt;</TT>:</STRONG></DT>
+<DD>The time, represented as the number of second elapsed since the Unix
+epoch (00:00:00 UTC, Jan 1, 1970), at which the negotiation cycle started.
+The number <TT>&lt;X&gt;</TT> appended to the attribute name
+indicates how many negotiation cycles ago this cycle happened.
+
+<P>
+<A NAME="attr:LastNegotiationCycleTotalSlots_SPMlt_X_SPMgt_"></A><A NAME="89626"></A>
+</DD>
+<DT><STRONG><TT>LastNegotiationCycleTotalSlots&lt;X&gt;</TT>:</STRONG></DT>
+<DD>The total number of slot ClassAds received by the <I>condor_negotiator</I>.
+The number <TT>&lt;X&gt;</TT> appended to the attribute name indicates 
+how many negotiation cycles ago this cycle happened.
+
+<P>
+<A NAME="attr:LastNegotiationCycleTrimmedSlots_SPMlt_X_SPMgt_"></A><A NAME="89631"></A>
+</DD>
+<DT><STRONG><TT>LastNegotiationCycleTrimmedSlots&lt;X&gt;</TT>:</STRONG></DT>
+<DD>The number of slot ClassAds left after trimming currently claimed slots 
+(when enabled).
+The number <TT>&lt;X&gt;</TT> appended to the attribute name indicates 
+how many negotiation cycles ago this cycle happened.
+
+<P>
+<A NAME="89634"></A>
+</DD>
+<DT><STRONG><TT>Machine</TT>:</STRONG></DT>
+<DD>A string with the machine's fully qualified 
+host name.
+
+<P>
+<A NAME="89636"></A>
+</DD>
+<DT><STRONG><TT>MyAddress</TT>:</STRONG></DT>
+<DD>Description is not yet written.
+
+<P>
+<A NAME="89638"></A>
+</DD>
+<DT><STRONG><TT>MyCurrentTime</TT>:</STRONG></DT>
+<DD>The time, represented as the number of 
+second elapsed since the Unix epoch (00:00:00 UTC, Jan 1, 1970),
+at which the <I>condor_schedd</I> daemon last sent a ClassAd update to the
+<I>condor_collector</I>.
+
+<P>
+<A NAME="89642"></A>
+</DD>
+<DT><STRONG><TT>Name</TT>:</STRONG></DT>
+<DD>The name of this resource; typically the same value as
+the <TT>Machine</TT> attribute, but could be customized by the site
+administrator.
+On SMP machines, the <I>condor_startd</I> will divide the CPUs up into separate
+slots, each with with a unique name.
+These names will be of the form <TT>slot#@full.hostname</TT>, for example,
+<TT>slot1@vulture.cs.wisc.edu</TT>, which signifies slot number 1 from
+<TT>vulture.cs.wisc.edu</TT>.
+
+<P>
+<A NAME="89649"></A>
+</DD>
+<DT><STRONG><TT>NegotiatorIpAddr</TT>:</STRONG></DT>
+<DD>String with the IP and port address of the
+<I>condor_negotiator</I> daemon which is publishing this Negotiator ClassAd.
+
+<P>
+<A NAME="89652"></A>
+</DD>
+<DT><STRONG><TT>PublicNetworkIpAddr</TT>:</STRONG></DT>
+<DD>Description is not yet written.
+
+<P>
+<A NAME="89654"></A>
+</DD>
+<DT><STRONG><TT>UpdateSequenceNumber</TT>:</STRONG></DT>
+<DD>An integer, starting at zero,
+and incremented with each ClassAd update sent to the <I>condor_collector</I>.
+The <I>condor_collector</I> uses this value to sequence the updates it
+receives.
+
+<P>
+</DD>
+</DL>
+
+<P>
+
+<H2><A NAME="SECTION001207000000000000000"></A><A NAME="sec:Submitter-ClassAd-Attributes"></A>
+<BR>
+Submitter ClassAd Attributes
+</H2>
+<A NAME="89824"></A>
+
+<P>
+<DL>
+<DD><A NAME="89826"></A>
+<A NAME="89855"></A>
+</DD>
+<DT><STRONG><TT>FlockedJobs</TT>:</STRONG></DT>
+<DD>The number of jobs from this submitter 
+that are running in another pool.
+<P>
+<A NAME="89829"></A>
+<A NAME="89856"></A>
+</DD>
+<DT><STRONG><TT>HeldJobs</TT>:</STRONG></DT>
+<DD>The number of jobs from this submitter 
+that are in the hold state.
+
+<P>
+<A NAME="89832"></A>
+<A NAME="89857"></A>
+</DD>
+<DT><STRONG><TT>IdleJobs</TT>:</STRONG></DT>
+<DD>The number of jobs from this submitter 
+that are now idle.
+
+<P>
+<A NAME="89835"></A>
+<A NAME="89858"></A>
+</DD>
+<DT><STRONG><TT>Name</TT>:</STRONG></DT>
+<DD>The fully qualified name of the user or accounting group.
+It will be of the form <TT>name@submit.domain</TT>.
+
+<P>
+<A NAME="89839"></A>
+<A NAME="89859"></A>
+</DD>
+<DT><STRONG><TT>RunningJobs</TT>:</STRONG></DT>
+<DD>The number of jobs from this submitter 
+that are running now.
+
+<P>
+<A NAME="89842"></A>
+<A NAME="89860"></A>
+</DD>
+<DT><STRONG><TT>ScheddIpAddr</TT>:</STRONG></DT>
+<DD>The IP address associated with the
+<I>condor_schedd</I> daemon used by the submitter.
+
+<P>
+<A NAME="89846"></A>
+<A NAME="89861"></A>
+</DD>
+<DT><STRONG><TT>ScheddName</TT>:</STRONG></DT>
+<DD>The fully qualified host name of the machine 
+that the submitter submitted from.
+It will be of the form <TT>submit.domain</TT>.
+
+<P>
+<A NAME="89850"></A>
+<A NAME="89862"></A>
+</DD>
+<DT><STRONG><TT>SubmitterTag</TT>:</STRONG></DT>
+<DD>The fully qualified host name of the
+central manager of the pool used by the submitter,
+if the job flocked to the local pool.
+Or, it will be the empty string if submitter submitted from within
+the local pool.
+
+<P>
+</DD>
+</DL>
+
+<P>
+
+<H2><A NAME="SECTION001208000000000000000"></A><A NAME="sec:Defrag-ClassAd-Attributes"></A>
+<BR>
+Defrag ClassAd Attributes
+</H2>
+<A NAME="89906"></A>
+<DL>
+<DD><A NAME="89908"></A>
+</DD>
+<DT><STRONG><TT>AvgDrainingBadput</TT>:</STRONG></DT>
+<DD>Fraction of time CPUs
+in the pool have spent on jobs that were killed during draining of the
+  machine.  This is calculated in each polling interval by looking
+  at <TT>TotalMachineDrainingBadput</TT>.  
+  Therefore, it treats evictions of jobs that do and do not produce
+  checkpoints the same.
+  When the <I>condor_startd</I> restarts, its counters start over from 0, so the
+  average is only over the time since the daemons have been alive.
+
+<P>
+<A NAME="89912"></A>
+</DD>
+<DT><STRONG><TT>AvgDrainingUnclaimedTime</TT>:</STRONG></DT>
+<DD>Fraction of time CPUs
+  in the pool have spent unclaimed by a user during
+  draining of the machine.  This is calculated in each polling interval
+  by looking at <TT>TotalMachineDrainingUnclaimedTime</TT>.  
+  When the <I>condor_startd</I> restarts, its counters start over from 0, so the
+  average is only over the time since the daemons have been alive.
+
+<P>
+<A NAME="89916"></A>
+</DD>
+<DT><STRONG><TT>DaemonStartTime</TT>:</STRONG></DT>
+<DD>The time that this daemon was started, 
+  represented as the number of seconds elapsed since
+  the Unix epoch (00:00:00 UTC, Jan 1, 1970).
+
+<P>
+<A NAME="89918"></A>
+</DD>
+<DT><STRONG><TT>DrainFailures</TT>:</STRONG></DT>
+<DD>Total count of failed attempts
+  to initiate draining during the lifetime of this <I>condor_defrag</I> daemon.
+
+<P>
+<A NAME="89921"></A>
+</DD>
+<DT><STRONG><TT>DrainSuccesses</TT>:</STRONG></DT>
+<DD>Total count of successful attempts
+  to initiate draining during the lifetime of this <I>condor_defrag</I> daemon.
+
+<P>
+<A NAME="89924"></A>
+</DD>
+<DT><STRONG><TT>Machine</TT>:</STRONG></DT>
+<DD>A string with the machine's fully qualified 
+  host name.
+
+<P>
+<A NAME="89926"></A>
+</DD>
+<DT><STRONG><TT>MachinesDraining</TT>:</STRONG></DT>
+<DD>Number of machines that were observed
+  to be draining in the last polling interval.
+
+<P>
+<A NAME="89928"></A>
+</DD>
+<DT><STRONG><TT>MachinesDrainingPeak</TT>:</STRONG></DT>
+<DD>Largest number of machines that were
+ever observed to be draining.
+
+<P>
+<A NAME="89930"></A>
+</DD>
+<DT><STRONG><TT>MonitorSelfAge</TT>:</STRONG></DT>
+<DD>The number of seconds that this daemon
+  has been running.
+
+<P>
+<A NAME="89932"></A>
+</DD>
+<DT><STRONG><TT>MonitorSelfCPUUsage</TT>:</STRONG></DT>
+<DD>The fraction of recent CPU time utilized
+  by this daemon. 
+
+<P>
+<A NAME="89934"></A>
+</DD>
+<DT><STRONG><TT>MonitorSelfImageSize</TT>:</STRONG></DT>
+<DD>The amount of virtual memory consumed by
+  this daemon in Kbytes.
+
+<P>
+<A NAME="89936"></A>
+</DD>
+<DT><STRONG><TT>MonitorSelfRegisteredSocketCount</TT>:</STRONG></DT>
+<DD>The current number of sockets
+  registered by this daemon.
+
+<P>
+<A NAME="89938"></A>
+</DD>
+<DT><STRONG><TT>MonitorSelfResidentSetSize</TT>:</STRONG></DT>
+<DD>The amount of resident memory
+  used by this daemon in Kbytes.
+
+<P>
+<A NAME="89940"></A>
+</DD>
+<DT><STRONG><TT>MonitorSelfSecuritySessions</TT>:</STRONG></DT>
+<DD>The number of open (cached)
+  security sessions for this daemon.
+
+<P>
+<A NAME="89942"></A>
+</DD>
+<DT><STRONG><TT>MonitorSelfTime</TT>:</STRONG></DT>
+<DD>The  time, represented as the number of
+  seconds elapsed since the Unix epoch (00:00:00 UTC, Jan 1, 1970),
+  at which this daemon last checked and set the attributes with names that
+  begin with the string <TT>MonitorSelf</TT>.
+
+<P>
+<A NAME="89945"></A>
+</DD>
+<DT><STRONG><TT>MyAddress</TT>:</STRONG></DT>
+<DD>Description is not yet written.
+
+<P>
+<A NAME="89947"></A>
+</DD>
+<DT><STRONG><TT>MyCurrentTime</TT>:</STRONG></DT>
+<DD>The time, represented as the number of 
+  seconds elapsed since the Unix epoch (00:00:00 UTC, Jan 1, 1970),
+  at which the <I>condor_defrag</I> daemon last sent a ClassAd update to the
+  <I>condor_collector</I>.
+
+<P>
+<A NAME="89951"></A>
+</DD>
+<DT><STRONG><TT>Name</TT>:</STRONG></DT>
+<DD>The name of this daemon; typically the same value as
+  the <TT>Machine</TT> attribute, but could be customized by the site
+  administrator via the configuration variable <TT>DEFRAG_NAME</TT> <A NAME="90010"></A> <A NAME="90011"></A>.
+
+<P>
+<A NAME="89955"></A>
+</DD>
+<DT><STRONG><TT>RecentDrainFailures</TT>:</STRONG></DT>
+<DD>Count of failed attempts
+  to initiate draining during the past <TT>RecentStatsLifetime</TT> seconds.
+
+<P>
+<A NAME="89958"></A>
+</DD>
+<DT><STRONG><TT>RecentDrainSuccesses</TT>:</STRONG></DT>
+<DD>Count of successful attempts
+  to initiate draining during the past <TT>RecentStatsLifetime</TT> seconds.
+
+<P>
+<A NAME="89961"></A>
+</DD>
+<DT><STRONG><TT>RecentStatsLifetime</TT>:</STRONG></DT>
+<DD>A Statistics attribute defining 
+  the time in seconds over which statistics values have been collected 
+  for attributes with names that begin with <TT>Recent</TT>. 
+
+<P>
+<A NAME="89964"></A>
+</DD>
+<DT><STRONG><TT>UpdateSequenceNumber</TT>:</STRONG></DT>
+<DD>An integer, starting at zero,
+  and incremented with each ClassAd update sent to the <I>condor_collector</I>.
+  The <I>condor_collector</I> uses this value to sequence the updates it
+  receives.
+
+<P>
+<A NAME="89968"></A>
+</DD>
+<DT><STRONG><TT>WholeMachines</TT>:</STRONG></DT>
+<DD>Number of machines that were observed
+  to be defragmented in the last polling interval.
+
+<P>
+<A NAME="89970"></A>
+</DD>
+<DT><STRONG><TT>WholeMachinesPeak</TT>:</STRONG></DT>
+<DD>Largest number of machines that were
+  ever observed to be simultaneously defragmented.
+
+<P>
+</DD>
+</DL>
+
+<P>
+
+<H2><A NAME="SECTION001209000000000000000"></A><A NAME="sec:Collector-ClassAd-Attributes"></A>
+<BR>
+Collector ClassAd Attributes
+</H2>
+<A NAME="90079"></A>
+<DL>
+<DD><A NAME="90081"></A>
+</DD>
+<DT><STRONG><TT>CollectorIpAddr</TT>:</STRONG></DT>
+<DD>String with the IP and port address of the
+<I>condor_collector</I> daemon which is publishing this ClassAd.
+
+<P>
+<A NAME="90084"></A>
+</DD>
+<DT><STRONG><TT>CurrentJobsRunningAll</TT>:</STRONG></DT>
+<DD>An integer value representing the sum of
+  all jobs running under all universes.
+
+<P>
+<A NAME="90086"></A>
+</DD>
+<DT><STRONG><TT>CurrentJobsRunning&lt;universe&gt;</TT>:</STRONG></DT>
+<DD>An integer value representing
+  the current number of jobs running under the universe which forms 
+  the attribute name.  For example
+<PRE>
+  CurrentJobsRunningVanilla = 567
+</PRE>
+  identifies that the <I>condor_collector</I> counts 567 vanilla universe jobs
+  currently running.
+  <TT>&lt;universe&gt;</TT> is one of 
+  <TT>Unknown</TT>, <TT>Standard</TT>, <TT>Vanilla</TT>, <TT>Scheduler</TT>,
+  <TT>Java</TT>, <TT>Parallel</TT>, <TT>VM</TT>, or <TT>Local</TT>.
+  There are other universes, but they are not listed here, as they represent
+  ones that are no longer used in Condor.
+
+<P>
+<A NAME="90100"></A>
+</DD>
+<DT><STRONG><TT>DaemonStartTime</TT>:</STRONG></DT>
+<DD>The time that this daemon was
+  started, represented as the number of second elapsed since
+  the Unix epoch (00:00:00 UTC, Jan 1, 1970).
+
+<P>
+<A NAME="90102"></A>
+</DD>
+<DT><STRONG><TT>HostsClaimed</TT>:</STRONG></DT>
+<DD>Description is not yet written.
+
+<P>
+<A NAME="90104"></A>
+</DD>
+<DT><STRONG><TT>HostsOwner</TT>:</STRONG></DT>
+<DD>Description is not yet written.
+
+<P>
+<A NAME="90106"></A>
+</DD>
+<DT><STRONG><TT>HostsTotal</TT>:</STRONG></DT>
+<DD>Description is not yet written.
+
+<P>
+<A NAME="90108"></A>
+</DD>
+<DT><STRONG><TT>HostsUnclaimed</TT>:</STRONG></DT>
+<DD>Description is not yet written.
+
+<P>
+<A NAME="90110"></A>
+</DD>
+<DT><STRONG><TT>IdleJobs</TT>:</STRONG></DT>
+<DD>Description is not yet written.
+
+<P>
+<A NAME="90112"></A>
+</DD>
+<DT><STRONG><TT>Machine</TT>:</STRONG></DT>
+<DD>A string with the machine's fully qualified 
+  host name.
+
+<P>
+<A NAME="90114"></A>
+</DD>
+<DT><STRONG><TT>MaxJobsRunning&lt;universe</TT>:</STRONG></DT>
+<DD>An integer value representing 
+  the sum of all <TT>MaxJobsRunning&lt;universe&gt;</TT> values.
+
+<P>
+<A NAME="90117"></A>
+</DD>
+<DT><STRONG><TT>MaxJobsRunning&lt;universe&gt;</TT>:</STRONG></DT>
+<DD>An integer value representing 
+  largest number of currently running jobs ever seen
+  under the universe which forms the attribute name, 
+  over the life of this <I>condor_collector</I> process.
+  For example
+<PRE>
+  MaxJobsRunningVanilla = 401
+</PRE>
+  identifies that the <I>condor_collector</I> saw 401 vanilla universe jobs
+  currently running at one point in time, and that was the largest
+  number it had encountered.
+  <TT>&lt;universe&gt;</TT> is one of 
+  <TT>Unknown</TT>, <TT>Standard</TT>, <TT>Vanilla</TT>, <TT>Scheduler</TT>,
+  <TT>Java</TT>, <TT>Parallel</TT>, <TT>VM</TT>, or <TT>Local</TT>.
+  There are other universes, but they are not listed here, as they represent
+  ones that are no longer used in Condor.
+
+<P>
+<A NAME="90132"></A>
+</DD>
+<DT><STRONG><TT>MyAddress</TT>:</STRONG></DT>
+<DD>Description is not yet written.
+
+<P>
+<A NAME="90134"></A>
+</DD>
+<DT><STRONG><TT>MyCurrentTime</TT>:</STRONG></DT>
+<DD>The time, represented as the number of 
+  second elapsed since the Unix epoch (00:00:00 UTC, Jan 1, 1970),
+  at which the <I>condor_schedd</I> daemon last sent a ClassAd update to the
+  <I>condor_collector</I>.
+
+<P>
+<A NAME="90138"></A>
+</DD>
+<DT><STRONG><TT>Name</TT>:</STRONG></DT>
+<DD>The name of this resource; typically the same value as
+  the <TT>Machine</TT> attribute, but could be customized by the site
+  administrator.
+  On SMP machines, the <I>condor_startd</I> will divide the CPUs up into separate
+  slots, each with with a unique name.
+  These names will be of the form ``slot#@full.hostname'', for example,
+  ``slot1@vulture.cs.wisc.edu'', which signifies slot number 1 from
+  vulture.cs.wisc.edu.
+
+<P>
+<A NAME="90142"></A>
+</DD>
+<DT><STRONG><TT>RunningJobs</TT>:</STRONG></DT>
+<DD>Description is not yet written.
+
+<P>
+<A NAME="90144"></A>
+</DD>
+<DT><STRONG><TT>UpdateInterval</TT>:</STRONG></DT>
+<DD>Description is not yet written.
+
+<P>
+<A NAME="90146"></A>
+</DD>
+<DT><STRONG><TT>UpdateSequenceNumber</TT>:</STRONG></DT>
+<DD>An integer that begins at 0,
+   and increments by one each time the same ClassAd is again advertised.
+
+<P>
+</DD>
+</DL>
+
+<P>
+
+<H2><A NAME="SECTION0012010000000000000000"></A><A NAME="sec:Collector-Added-Attributes"></A>
+<A NAME="90151"></A>
+<BR>
+ClassAd Attributes Added by the <I>condor_collector</I>
+</H2>
+
+<P>
+<DL>
+<DD><A NAME="90153"></A>
+</DD>
+<DT><STRONG><TT>AuthenticatedIdentity</TT>:</STRONG></DT>
+<DD>The authenticated name assigned
+by the <I>condor_collector</I> to the daemon that published the ClassAd.
+
+<P>
+<A NAME="90156"></A>
+</DD>
+<DT><STRONG><TT>LastHeardFrom</TT>:</STRONG></DT>
+<DD>The time inserted into a daemon's
+  ClassAd representing the time that this <I>condor_collector</I>
+  last received a message from the daemon.
+  Time is  represented as the number of second elapsed since
+  the Unix epoch (00:00:00 UTC, Jan 1, 1970).
+  This attribute is added if <TT>COLLECTOR_DAEMON_STATS</TT> is <TT>True</TT>.
+
+<P>
+<A NAME="90161"></A>
+</DD>
+<DT><STRONG><TT>UpdatesHistory</TT>:</STRONG></DT>
+<DD>A bitmap representing the status of
+  the most recent updates received from the daemon. 
+  This attribute is only added if <TT>COLLECTOR_DAEMON_HISTORY_SIZE</TT> <A NAME="90253"></A> <A NAME="90254"></A>
+  is non-zero. 
+  See page&nbsp;<A HREF="3_3Configuration.html#param:CollectorDaemonHistorySize"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for more information on
+  this setting.
+  This attribute is added if <TT>COLLECTOR_DAEMON_STATS</TT> is <TT>True</TT>.
+
+<P>
+<A NAME="90167"></A>
+</DD>
+<DT><STRONG><TT>UpdatesLost</TT>:</STRONG></DT>
+<DD>An integer count of the number of updates
+  from the daemon that the <I>condor_collector</I> can definitively determine
+  were lost since the <I>condor_collector</I> started running.
+  This attribute is added if <TT>COLLECTOR_DAEMON_STATS</TT> is <TT>True</TT>.
+
+<P>
+<A NAME="90173"></A>
+</DD>
+<DT><STRONG><TT>UpdatesSequenced</TT>:</STRONG></DT>
+<DD>An integer count of the number of updates
+  received from the daemon,
+  for which the <I>condor_collector</I> can tell how many were or were not lost,
+  since the <I>condor_collector</I> started running.
+  This attribute is added if <TT>COLLECTOR_DAEMON_STATS</TT> is <TT>True</TT>.
+
+<P>
+<A NAME="90179"></A>
+</DD>
+<DT><STRONG><TT>UpdatesTotal</TT>:</STRONG></DT>
+<DD>An integer count started when the
+  <I>condor_collector</I> started running, representing the sum
+  of the number of updates actually received from the daemon plus
+  the number of updates that the <I>condor_collector</I> determined were lost.
+  This attribute is added if <TT>COLLECTOR_DAEMON_STATS</TT> is <TT>True</TT>.
+
+<P>
+</DD>
+</DL>
+
+<P>
+
+<H2><A NAME="SECTION0012011000000000000000"></A><A NAME="sec:DaemonCore-Statistics-Attributes"></A>
+<BR>
+DaemonCore Statistics Attributes
+</H2>
+<A NAME="90338"></A>
+
+<P>
+<DL>
+<DD><A NAME="90340"></A>
+</DD>
+<DT><STRONG><TT>DebugOuts</TT>:</STRONG></DT>
+<DD>Description not yet written.
+<P>
+<A NAME="90342"></A>
+</DD>
+<DT><STRONG><TT>PipeMessages</TT>:</STRONG></DT>
+<DD>Description not yet written.
+
+<P>
+<A NAME="90344"></A>
+</DD>
+<DT><STRONG><TT>PipeRuntime</TT>:</STRONG></DT>
+<DD>Description not yet written.
+
+<P>
+<A NAME="90346"></A>
+</DD>
+<DT><STRONG><TT>SelectWaittime</TT>:</STRONG></DT>
+<DD>Description not yet written.
+
+<P>
+<A NAME="90348"></A>
+</DD>
+<DT><STRONG><TT>SignalRuntime</TT>:</STRONG></DT>
+<DD>Description not yet written.
+
+<P>
+<A NAME="90350"></A>
+</DD>
+<DT><STRONG><TT>Signals</TT>:</STRONG></DT>
+<DD>Description not yet written.
+
+<P>
+<A NAME="90352"></A>
+</DD>
+<DT><STRONG><TT>SocketRuntime</TT>:</STRONG></DT>
+<DD>Description not yet written.
+
+<P>
+<A NAME="90354"></A>
+</DD>
+<DT><STRONG><TT>SockMessages</TT>:</STRONG></DT>
+<DD>Description not yet written.
+
+<P>
+<A NAME="90356"></A>
+</DD>
+<DT><STRONG><TT>TimerRuntime</TT>:</STRONG></DT>
+<DD>Description not yet written.
+
+<P>
+<A NAME="90358"></A>
+</DD>
+<DT><STRONG><TT>TimersFired</TT>:</STRONG></DT>
+<DD>Description not yet written.
+
+<P>
+</DD>
+</DL>
+
+<P>
+<BR><HR>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><UL>
+<LI><A NAME="tex2html4530"
+  HREF="11_Appendix_A.html#SECTION001201000000000000000">ClassAd Types</A>
+<LI><A NAME="tex2html4531"
+  HREF="11_Appendix_A.html#SECTION001202000000000000000">Job ClassAd Attributes</A>
+<LI><A NAME="tex2html4532"
+  HREF="11_Appendix_A.html#SECTION001203000000000000000">Machine ClassAd Attributes</A>
+<LI><A NAME="tex2html4533"
+  HREF="11_Appendix_A.html#SECTION001204000000000000000">DaemonMaster ClassAd Attributes</A>
+<LI><A NAME="tex2html4534"
+  HREF="11_Appendix_A.html#SECTION001205000000000000000">Scheduler ClassAd Attributes</A>
+<LI><A NAME="tex2html4535"
+  HREF="11_Appendix_A.html#SECTION001206000000000000000">Negotiator ClassAd Attributes</A>
+<LI><A NAME="tex2html4536"
+  HREF="11_Appendix_A.html#SECTION001207000000000000000">Submitter ClassAd Attributes</A>
+<LI><A NAME="tex2html4537"
+  HREF="11_Appendix_A.html#SECTION001208000000000000000">Defrag ClassAd Attributes</A>
+<LI><A NAME="tex2html4538"
+  HREF="11_Appendix_A.html#SECTION001209000000000000000">Collector ClassAd Attributes</A>
+<LI><A NAME="tex2html4539"
+  HREF="11_Appendix_A.html#SECTION0012010000000000000000">ClassAd Attributes Added by the <I>condor_collector</I></A>
+<LI><A NAME="tex2html4540"
+  HREF="11_Appendix_A.html#SECTION0012011000000000000000">DaemonCore Statistics Attributes</A>
+</UL></UL>
+<!--End of Table of Child-Links-->
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html4528"
+  HREF="12_Appendix_B.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html4522"
+  HREF="ref.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html4516"
+  HREF="uniq_pid_undertaker.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html4524"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html4526"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4529"
+  HREF="12_Appendix_B.html">12. Appendix B: Magic</A>
+<B> Up:</B> <A NAME="tex2html4523"
+  HREF="ref.html">CondorVersion 7.8.5 Manual</A>
+<B> Previous:</B> <A NAME="tex2html4517"
+  HREF="uniq_pid_undertaker.html">uniq_pid_undertaker</A>
+ &nbsp; <B>  <A NAME="tex2html4525"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html4527"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,293 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>procd_ctl</TITLE>
+<META NAME="description" CONTENT="procd_ctl">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="uniq_pid_midwife.html">
+<LINK REL="previous" HREF="install_release.html">
+<LINK REL="up" HREF="10_Command_Reference.html">
+<LINK REL="next" HREF="uniq_pid_midwife.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html4467"
+  HREF="uniq_pid_midwife.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html4461"
+  HREF="10_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html4455"
+  HREF="install_release.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html4463"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html4465"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4468"
+  HREF="uniq_pid_midwife.html">uniq_pid_midwife</A>
+<B> Up:</B> <A NAME="tex2html4462"
+  HREF="10_Command_Reference.html">10. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html4456"
+  HREF="install_release.html">install_release</A>
+ &nbsp; <B>  <A NAME="tex2html4464"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html4466"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html4469"
+  HREF="procd_ctl.html#SECTION0011611000000000000000">Synopsis</A>
+<LI><A NAME="tex2html4470"
+  HREF="procd_ctl.html#SECTION0011612000000000000000">Description</A>
+<LI><A NAME="tex2html4471"
+  HREF="procd_ctl.html#SECTION0011613000000000000000">Options</A>
+<LI><A NAME="tex2html4472"
+  HREF="procd_ctl.html#SECTION0011614000000000000000">General Remarks</A>
+<LI><A NAME="tex2html4473"
+  HREF="procd_ctl.html#SECTION0011615000000000000000">Exit Status</A>
+<LI><A NAME="tex2html4474"
+  HREF="procd_ctl.html#SECTION0011616000000000000000">Author</A>
+<LI><A NAME="tex2html4475"
+  HREF="procd_ctl.html#SECTION0011617000000000000000">Copyright</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION0011610000000000000000"></A><A NAME="man-procd-ctl"></A>
+<BR>
+procd_ctl
+</H1> command line interface to the <I>condor_procd</I>
+  
+<P>
+
+<H2><A NAME="SECTION0011611000000000000000">
+Synopsis</A>
+</H2><B>procd_ctl</B> 
+<B>-h</B>
+
+<P>
+<B>procd_ctl</B> 
+<B>-A </B><I>address-file</I>
+[<B>command</B>]
+
+<P>
+<A NAME="85090"></A>
+<A NAME="85091"></A>
+
+<P>
+
+<H2><A NAME="SECTION0011612000000000000000">
+Description</A>
+</H2>
+
+<P>
+This is a programmatic interface to the <I>condor_procd</I> daemon. 
+It may be used to 
+cause the <I>condor_procd</I> to do anything that the <I>condor_procd</I>
+is capable of doing,
+such as tracking and managing process families.
+
+<P>
+This is a program only available for the Linux ports of Condor.
+
+<P>
+<I>procd_ctl</I> honors the discovery algorithm for Condor's configuration
+files, which specify debugging information.
+As such, if Condor is not installed or the configuration files are
+unavailable,
+then set the environment variable <TT>CONDOR_CONFIG</TT> 
+to <TT>/dev/null</TT> to be utilized by the discovery algorithm.
+
+<P>
+The <B>-h</B> option prints out usage information and exits.
+The  <I>address-file</I> specification within the <B>-A</B> argument
+specifies the path and file name of the address file
+which the named pipe clients must use to speak with the <I>condor_procd</I>.
+
+<P>
+One command is given to the <I>condor_procd</I>. 
+The choices for the command are defined by the Options. 
+
+<P>
+
+<H2><A NAME="SECTION0011613000000000000000">
+Options</A>
+</H2>
+  
+<P>
+  <DL>
+<DT><STRONG><B>TRACK_BY_ASSOCIATED_GID</B> <I>GID</I> [<I>PID</I>]</STRONG></DT>
+<DD>Use the specified <I>GID</I> to track the specified family rooted at 
+  <I>PID</I>.  
+  If the optional <I>PID</I> is not specified, 
+  then the PID used is the one given or assumed by <I>condor_procd</I>.
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>GET_USAGE</B> [<I>PID</I>]</STRONG></DT>
+<DD>Get the total usage information about the PID family at <I>PID</I>.
+  If the optional <I>PID</I> is not specified, 
+  then the PID used is the one given or assumed by <I>condor_procd</I>.
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>DUMP</B> [<I>PID</I>]</STRONG></DT>
+<DD>Print out information about both the root <I>PID</I> being watched 
+  and the tree of processes under this root <I>PID</I>.
+  If the optional <I>PID</I> is not specified, 
+  then the PID used is the one given or assumed by <I>condor_procd</I>.
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>LIST</B> [<I>PID</I>]</STRONG></DT>
+<DD>With no <I>PID</I> given, print out information about all 
+  the watched processes.  
+  If the optional <I>PID</I> is specified,
+  print out information about the process specified by <I>PID</I> 
+  and all its child processes.
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>SIGNAL_PROCESS</B> <I>signal</I> [<I>PID</I>]</STRONG></DT>
+<DD>Send the <I>signal</I> to the process specified by <I>PID</I>.
+  If the optional <I>PID</I> is not specified, 
+  then the PID used is the one given or assumed by <I>condor_procd</I>.
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>SUSPEND_FAMILY</B> <I>PID</I></STRONG></DT>
+<DD>Suspend the process family rooted at <I>PID</I>.
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>CONTINUE_FAMILY</B> <I>PID</I></STRONG></DT>
+<DD>Continue execution of the process family rooted at <I>PID</I>.
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>KILL_FAMILY</B> <I>PID</I></STRONG></DT>
+<DD>Kill the process family rooted at <I>PID</I>.
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>UNREGISTER_FAMILY</B> <I>PID</I></STRONG></DT>
+<DD>Stop tracking the process family rooted at <I>PID</I>.
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>SNAPSHOT</B></STRONG></DT>
+<DD>Perform a snapshot of the tracked family tree.
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>QUIT</B></STRONG></DT>
+<DD>Disconnect from the <I>condor_procd</I> and exit.
+<BR>
+<P>
+</DD>
+</DL>
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION0011614000000000000000">
+General Remarks</A>
+</H2>
+
+<P>
+This program may be used in a standalone mode, independent of
+Condor, to track process families. The programs <I>procd_ctl</I> and
+<I>gidd_alloc</I> are used with the <I>condor_procd</I> in standalone mode
+to interact with the daemon and inquire about certain state of running
+processes on the machine, respectively.
+
+<P>
+
+<H2><A NAME="SECTION0011615000000000000000">
+Exit Status</A>
+</H2>
+
+<P>
+<I>procd_ctl</I> will exit with a status value of 0 (zero) upon success,
+and it will exit with the value 1 (one) upon failure.
+
+<P>
+
+<H2><A NAME="SECTION0011616000000000000000">
+Author</A>
+</H2> Condor Team, University of Wisconsin-Madison
+  
+<H2><A NAME="SECTION0011617000000000000000">
+Copyright</A>
+</H2> 
+  Copyright &#169; 1990-2012 Condor Team, Computer Sciences Department, 
+  University of Wisconsin-Madison, Madison, WI.  All Rights Reserved.  
+	Licensed under the Apache License, Version 2.0.
+
+<P>
+See the <I>Condor Version 7.8.5 Manual</I> or
+	<A NAME="tex2html470"
+  HREF="http://www.condorproject.org/license">http://www.condorproject.org/license</A>
+for
+  additional notices. 
+
+
+  <HR>
+<!--Navigation Panel-->
+<A NAME="tex2html4467"
+  HREF="uniq_pid_midwife.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html4461"
+  HREF="10_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html4455"
+  HREF="install_release.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html4463"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html4465"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4468"
+  HREF="uniq_pid_midwife.html">uniq_pid_midwife</A>
+<B> Up:</B> <A NAME="tex2html4462"
+  HREF="10_Command_Reference.html">10. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html4456"
+  HREF="install_release.html">install_release</A>
+ &nbsp; <B>  <A NAME="tex2html4464"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html4466"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

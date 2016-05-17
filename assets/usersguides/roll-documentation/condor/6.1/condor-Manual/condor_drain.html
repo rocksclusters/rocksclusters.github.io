@@ -1,0 +1,309 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<link rel="canonical" href="http://research.cs.wisc.edu/condor/manual/current/condor_drain.html">
+
+<TITLE>condor_drain</TITLE>
+<META NAME="description" CONTENT="condor_drain">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="condor_fetchlog.html">
+<LINK REL="previous" HREF="condor_dagman.html">
+<LINK REL="up" HREF="10_Command_Reference.html">
+<LINK REL="next" HREF="condor_fetchlog.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html3496"
+  HREF="condor_fetchlog.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3490"
+  HREF="10_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3484"
+  HREF="condor_dagman.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3492"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3494"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3497"
+  HREF="condor_fetchlog.html">condor_fetchlog</A>
+<B> Up:</B> <A NAME="tex2html3491"
+  HREF="10_Command_Reference.html">10. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3485"
+  HREF="condor_dagman.html">condor_dagman</A>
+ &nbsp; <B>  <A NAME="tex2html3493"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3495"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html3498"
+  HREF="condor_drain.html#SECTION0011151000000000000000">Synopsis</A>
+<LI><A NAME="tex2html3499"
+  HREF="condor_drain.html#SECTION0011152000000000000000">Description</A>
+<LI><A NAME="tex2html3500"
+  HREF="condor_drain.html#SECTION0011153000000000000000">Options</A>
+<LI><A NAME="tex2html3501"
+  HREF="condor_drain.html#SECTION0011154000000000000000">Exit Status</A>
+<LI><A NAME="tex2html3502"
+  HREF="condor_drain.html#SECTION0011155000000000000000">Author</A>
+<LI><A NAME="tex2html3503"
+  HREF="condor_drain.html#SECTION0011156000000000000000">Copyright</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION0011150000000000000000"></A><A NAME="man-condor-drain"></A>
+<BR>
+<I>condor_drain</I>
+</H1> Control draining of an execute machine
+  
+<P>
+
+<H2><A NAME="SECTION0011151000000000000000">
+Synopsis</A>
+</H2><B><I>condor_drain</I></B>
+[<B>-help</B>]
+
+<P>
+<B><I>condor_drain</I></B>
+
+[<B>-debug</B>]
+
+[<B>-pool  </B><I>pool-name</I>]
+[<B>-graceful | -quick | -fast</B>]
+[<B>-resume-on-completion</B>]
+[<B>-check  </B><I>expr</I>]
+<I>machine-name </I>
+
+<P>
+<B><I>condor_drain</I></B>
+
+[<B>-debug</B>]
+
+[<B>-pool  </B><I>pool-name</I>]
+<B>-cancel</B>
+[<B>-request-id  </B><I>id</I>]
+<I>machine-name </I>
+
+<P>
+<A NAME="65951"></A>
+<A NAME="65952"></A>
+
+<P>
+
+<H2><A NAME="SECTION0011152000000000000000">
+Description</A>
+</H2>
+
+<P>
+<I>condor_drain</I> is an administrative command used to control the draining
+of all slots on an execute machine.  
+When a machine is draining, 
+it will not accept any new jobs.  
+Which machine to drain is specified by the argument <I>machine-name</I>,
+and will be the same as the machine ClassAd attribute <TT>Machine</TT>. 
+
+<P>
+How currently running jobs are treated 
+depends on the draining schedule that is chosen with a command-line option:
+
+<P>
+<DL>
+<DT><STRONG><B>-graceful</B></STRONG></DT>
+<DD>Initiate a graceful eviction of the job.  
+This means all promises that have been made to the job are honored, 
+including <TT>MaxJobRetirementTime</TT>.  
+The eviction of jobs is coordinated to reduce idle time.  
+This means that if one slot has a job with a long
+retirement time and the other slots have jobs with shorter retirement times, 
+the effective retirement time for all of the jobs is the longer one.
+If no draining schedule is specified, 
+<B>-graceful</B> is chosen by default.
+
+<P>
+</DD>
+<DT><STRONG><B>-quick</B></STRONG></DT>
+<DD><TT>MaxJobRetirementTime</TT> is not honored.  
+Eviction of jobs is immediately initiated.  
+Jobs are given time to shut down and produce checkpoints,
+ according to the usual policy, that is, 
+given by <TT>MachineMaxVacateTime</TT>.
+
+<P>
+</DD>
+<DT><STRONG><B>-fast</B></STRONG></DT>
+<DD>Jobs are immediately hard-killed,
+with no chance to gracefully shut down or produce a checkpoint.
+
+<P>
+</DD>
+</DL>
+
+<P>
+Once draining is complete, the machine will enter the Drained/Idle
+state.  To resume normal operation (negotiation) at that time 
+or any previous time during draining,
+the <B>-cancel</B> option may be used.  
+The <B>-resume-on-completion</B> option results in
+automatic resumption of normal operation once draining has completed, 
+and may be used when initiating draining.  
+This is useful for forcing a machine with a partitionable
+slots to join all of the resources back together into one machine,
+facilitating de-fragmentation and whole machine negotiation.
+
+<P>
+
+<H2><A NAME="SECTION0011153000000000000000">
+Options</A>
+</H2>
+  
+<P>
+  <DL>
+<DT><STRONG><B>-help</B></STRONG></DT>
+<DD>Display brief usage information and exit. 
+<BR>  
+</DD>
+<DT><STRONG><B>-debug</B></STRONG></DT>
+<DD>Causes debugging information to be sent to
+<TT>stderr</TT>, based on the value of the configuration variable
+<TT>TOOL_DEBUG</TT>
+<BR>
+  
+</DD>
+<DT><STRONG><B>-pool </B><I>pool-name</I></STRONG></DT>
+<DD>Specify an alternate Condor pool,
+    if the default one is not desired.
+<BR>  
+</DD>
+<DT><STRONG><B>-graceful</B></STRONG></DT>
+<DD>(the default) Honor the maximum vacate and 
+    retirement time policy.
+<BR>  
+</DD>
+<DT><STRONG><B>-quick</B></STRONG></DT>
+<DD>Honor the maximum vacate time,
+    but not the retirement time policy.
+<BR>  
+</DD>
+<DT><STRONG><B>-fast</B></STRONG></DT>
+<DD>Honor neither the maximum vacate time policy
+    nor the retirement time policy.
+<BR>  
+</DD>
+<DT><STRONG><B>-resume-on-completion</B></STRONG></DT>
+<DD>When done draining, 
+    resume normal operation, such that potentially the whole machine could
+    be claimed.
+<BR>  
+</DD>
+<DT><STRONG><B>-check </B><I>expr</I></STRONG></DT>
+<DD>Abort draining,
+    if <TT>expr</TT> is not true for all slots to be drained.
+<BR>  
+</DD>
+<DT><STRONG><B>-cancel</B></STRONG></DT>
+<DD>Cancel a prior draining request,
+    to permit the <I>condor_negotiator</I> to use the machine again.
+<BR>  
+</DD>
+<DT><STRONG><B>-request-id </B><I>id</I></STRONG></DT>
+<DD>Specify a specific draining request 
+    to cancel,
+    where <I>id</I> is given by the <TT>DrainingRequestId</TT> 
+    machine ClassAd attribute.
+<BR>  
+</DD>
+</DL>
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION0011154000000000000000">
+Exit Status</A>
+</H2>
+
+<P>
+<I>condor_drain</I> will exit with a non-zero status value if it fails and
+zero status if it succeeds.
+
+<P>
+
+<H2><A NAME="SECTION0011155000000000000000">
+Author</A>
+</H2> Condor Team, University of Wisconsin-Madison
+  
+<H2><A NAME="SECTION0011156000000000000000">
+Copyright</A>
+</H2> 
+  Copyright &#169; 1990-2012 Condor Team, Computer Sciences Department, 
+  University of Wisconsin-Madison, Madison, WI.  All Rights Reserved.  
+	Licensed under the Apache License, Version 2.0.
+
+<P>
+See the <I>Condor Version 7.8.5 Manual</I> or
+	<A NAME="tex2html418"
+  HREF="http://www.condorproject.org/license">http://www.condorproject.org/license</A>
+for
+  additional notices. 
+
+
+  <HR>
+<!--Navigation Panel-->
+<A NAME="tex2html3496"
+  HREF="condor_fetchlog.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3490"
+  HREF="10_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3484"
+  HREF="condor_dagman.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3492"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3494"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3497"
+  HREF="condor_fetchlog.html">condor_fetchlog</A>
+<B> Up:</B> <A NAME="tex2html3491"
+  HREF="10_Command_Reference.html">10. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3485"
+  HREF="condor_dagman.html">condor_dagman</A>
+ &nbsp; <B>  <A NAME="tex2html3493"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3495"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,285 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Cluster-Fork</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE=" HPC Roll: Users Guide "
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Using"
+HREF="using.html"><LINK
+REL="PREVIOUS"
+TITLE=" Using mpirun from MPICH"
+HREF="using-mpirun-ethernet.html"><LINK
+REL="NEXT"
+TITLE="Rocks Copyright"
+HREF="rocks-copyright.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>HPC Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/hpc.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="using-mpirun-ethernet.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 3. Using</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="rocks-copyright.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="CLUSTER-FORK"
+>3.3. Cluster-Fork</A
+></H1
+><P
+>Cluster-Fork runs a command on compute nodes of your cluster.</P
+><P
+>Often we want to execute parallel jobs consisting of standard UNIX commands. By "parallel" we mean the same command runs on multiple nodes of the cluster. We use these simple parallel jobs to move files, to run small tests, and to perform various administrative tasks.</P
+><P
+>Rocks provides a simple tool for this purpose called <TT
+CLASS="LITERAL"
+>cluster-fork</TT
+>. For example, to list all your processes on the compute nodes of the cluster:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>$ cluster-fork ps -U$USER</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>By default, cluster-fork uses a simple series of ssh connections to launch the task serially on every compute node in the cluster. Cluster-fork is smart enough to ignore dead nodes. Usually the job is "blocking": cluster-fork waits for the job to start on one node before moving to the next. By using the <TT
+CLASS="LITERAL"
+>--bg</TT
+> flag you can instruct cluster-fork to start the jobs in the background. This corresponds to the "-f" ssh flag.</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>$ cluster-fork --bg hostname</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Often you wish to name the nodes your job is started on. This can be done by using an SQL statement or by specifying the nodes using a special shorthand.</P
+><P
+>The first method of naming nodes uses the SQL database on the frontend. We need an SQL statement that returns a column of node names. For example, to run a command on compute nodes in the first rack of your cluster exectute:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>$ cluster-fork --query="select name from nodes where name like 'compute-1-%'" [cmd]</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>The next method of requires us to explicitly name each node. When launching a job on many nodes of a large cluster this often becomes cumbersome. We provide a special shorthand to help with this task. This shorthand, borrowed from the MPD job launcher, allows us to specify large ranges of nodes quickly and concisely.</P
+><P
+>The shorthand is based on similarly-named nodes and uses the <TT
+CLASS="LITERAL"
+>--nodes</TT
+> option. To specify a node range <EM
+>compute-0-0 compute-0-1 compute-0-2</EM
+>, we write <EM
+>--nodes=compute-0-%d:0-2</EM
+>. This scheme works best when the names share a common prefix, and the variables between names are numeric. Rocks compute nodes are named with such a convention.</P
+><P
+>Other shorthand examples:</P
+><P
+></P
+><UL
+><LI
+><P
+>Discontinuous ranges:</P
+><P
+><EM
+>compute-0-%d:0,2-3</EM
+> --&#62;
+<TT
+CLASS="LITERAL"
+>compute-0-0 compute-0-2 compute-0-3</TT
+></P
+></LI
+><LI
+><P
+>Multiple elements:</P
+><P
+><EM
+>compute-0-%d:0-1 compute-1-%d:0-1</EM
+> --&#62;
+<TT
+CLASS="LITERAL"
+>compute-0-0 compute-0-1 compute-1-0 compute-1-1</TT
+></P
+></LI
+><LI
+><P
+>Factoring out duplicates:</P
+><P
+><EM
+>2*compute-0-%d:0-1 compute-0-%d:2-2</EM
+> --&#62;
+<TT
+CLASS="LITERAL"
+>compute-0-0 compute-0-0 compute-0-1 compute-0-1 compute-0-2</TT
+></P
+></LI
+></UL
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>$ cluster-fork --nodes="compute-2-%d:0-32 compute-3-%d:0-32" ps -U$USER</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>The previous example lists the processes for the current user on 64 nodes in racks two and three.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="using-mpirun-ethernet.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="rocks-copyright.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Using mpirun from MPICH</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="using.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Rocks Copyright</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

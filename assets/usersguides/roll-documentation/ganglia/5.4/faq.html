@@ -1,0 +1,232 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Frequently Asked Questions</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE=" Ganglia Roll: Users Guide "
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE=" Monitoring Multiple Clusters with Ganglia"
+HREF="x257.html"><LINK
+REL="NEXT"
+TITLE="Rocks Copyright"
+HREF="rocks-copyright.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="APPENDIX"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Ganglia Roll: Users Guide: 		
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x257.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="rocks-copyright.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="APPENDIX"
+><H1
+><A
+NAME="FAQ"
+></A
+>Appendix A. Frequently Asked Questions</H1
+><DIV
+CLASS="QANDASET"
+><DL
+><DT
+>A.1. <A
+HREF="faq.html#GANGLIA-RESTART"
+>I see IP addresses not names in my Ganglia graphs. Why is this?</A
+></DT
+><DT
+>A.2. <A
+HREF="faq.html#GANGLIA-PARSE-ERROR"
+>When looking at the Ganglia page, I dont see graphs, just the error:</A
+></DT
+></DL
+><DIV
+CLASS="QANDAENTRY"
+><DIV
+CLASS="QUESTION"
+><P
+><A
+NAME="GANGLIA-RESTART"
+></A
+><B
+>A.1. </B
+>I see IP addresses not names in my Ganglia graphs. Why is this?</P
+></DIV
+><DIV
+CLASS="ANSWER"
+><P
+><B
+> </B
+>The DNS system in the cluster sometimes causes Ganglia to record bogus node names (usually their IP addresses). To clear this situation, restart the "gmond" and "gmetad" services on the frontend. This action may be useful later, as it will flush any dead nodes from the Ganglia output.</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># service gmond restart
+# service gmetad restart</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><P
+>This method is also useful when replacing or renaming nodes in your cluster.</P
+></DIV
+></DIV
+><DIV
+CLASS="QANDAENTRY"
+><DIV
+CLASS="QUESTION"
+><P
+><A
+NAME="GANGLIA-PARSE-ERROR"
+></A
+><B
+>A.2. </B
+>When looking at the Ganglia page, I dont see graphs, just the error:</P
+><P
+><SAMP
+CLASS="COMPUTEROUTPUT"
+>There was an error collecting ganglia data (127.0.0.1:8652): XML 
+error: not well-formed (invalid token) at xxx</SAMP
+></P
+></DIV
+><DIV
+CLASS="ANSWER"
+><P
+><B
+> </B
+>This indicates a parse error in the Ganglia gmond XML output. It is generally
+caused by non-XML characters (&#38; especially) in the cluster name or cluster
+owner fields, although any ganglia field (including node names) with these
+characters will cause this problem.&#13;</P
+><P
+>We hope future versions of Ganglia will correctly escape all names to
+make them XML safe. If you have a bad name, to edit
+<TT
+CLASS="LITERAL"
+>/etc/ganglia/gmond.conf</TT
+> on the frontend node, remove the
+offending characters, then restart gmond.&#13;</P
+></DIV
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x257.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="rocks-copyright.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Monitoring Multiple Clusters with Ganglia</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Rocks Copyright</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

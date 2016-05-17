@@ -1,0 +1,918 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>2.6 Managing a Job</TITLE>
+<META NAME="description" CONTENT="2.6 Managing a Job">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="2_7Priorities_Preemption.html">
+<LINK REL="previous" HREF="2_5Submitting_Job.html">
+<LINK REL="up" HREF="2_Users_Manual.html">
+<LINK REL="next" HREF="2_7Priorities_Preemption.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html664"
+  HREF="2_7Priorities_Preemption.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html658"
+  HREF="2_Users_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html652"
+  HREF="2_5Submitting_Job.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html660"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html662"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html665"
+  HREF="2_7Priorities_Preemption.html">2.7 Priorities and Preemption</A>
+<B> Up:</B> <A NAME="tex2html659"
+  HREF="2_Users_Manual.html">2. Users' Manual</A>
+<B> Previous:</B> <A NAME="tex2html653"
+  HREF="2_5Submitting_Job.html">2.5 Submitting a Job</A>
+ &nbsp; <B>  <A NAME="tex2html661"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html663"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html666"
+  HREF="2_6Managing_Job.html#SECTION00361000000000000000">2.6.1 Checking on the progress of jobs</A>
+<LI><A NAME="tex2html667"
+  HREF="2_6Managing_Job.html#SECTION00362000000000000000">2.6.2 Removing a job from the queue</A>
+<LI><A NAME="tex2html668"
+  HREF="2_6Managing_Job.html#SECTION00363000000000000000">2.6.3 Placing a job on hold</A>
+<LI><A NAME="tex2html669"
+  HREF="2_6Managing_Job.html#SECTION00364000000000000000">2.6.4 Changing the priority of jobs</A>
+<LI><A NAME="tex2html670"
+  HREF="2_6Managing_Job.html#SECTION00365000000000000000">2.6.5 Why is the job not running?</A>
+<LI><A NAME="tex2html671"
+  HREF="2_6Managing_Job.html#SECTION00366000000000000000">2.6.6 In the log file</A>
+<LI><A NAME="tex2html672"
+  HREF="2_6Managing_Job.html#SECTION00367000000000000000">2.6.7 Job Completion</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00360000000000000000">
+2.6 Managing a Job</A>
+</H1>
+This section provides a brief summary of what can be done once jobs
+are submitted. The basic mechanisms for monitoring a job are
+introduced, but the commands are discussed briefly.
+You are encouraged to
+look at the man pages of the commands referred to (located in
+Chapter&nbsp;<A HREF="9_Command_Reference.html#sec:command-reference">9</A> beginning on
+page&nbsp;<A HREF="9_Command_Reference.html#sec:command-reference"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>) for more information. 
+
+<P>
+When jobs are submitted, Condor will attempt to find resources
+to run the jobs. 
+A list of all those with jobs submitted
+may be obtained through <I>condor_status</I>
+<A NAME="3065"></A>
+with the 
+<I>-submitters</I> option. 
+An example of this would yield output similar to:
+<PRE>
+%  condor_status -submitters
+
+Name                 Machine      Running IdleJobs HeldJobs
+
+ballard@cs.wisc.edu  bluebird.c         0       11        0
+nice-user.condor@cs. cardinal.c         6      504        0
+wright@cs.wisc.edu   finch.cs.w         1        1        0
+jbasney@cs.wisc.edu  perdita.cs         0        0        5
+
+                           RunningJobs           IdleJobs           HeldJobs
+
+ ballard@cs.wisc.edu                 0                 11                  0
+ jbasney@cs.wisc.edu                 0                  0                  5
+nice-user.condor@cs.                 6                504                  0
+  wright@cs.wisc.edu                 1                  1                  0
+
+               Total                 7                516                  5
+</PRE>
+<P>
+
+<H2><A NAME="SECTION00361000000000000000">
+2.6.1 Checking on the progress of jobs</A>
+</H2>
+At any time, you can check on the status of your jobs with the <I>condor_q</I>
+command.
+<A NAME="3071"></A>
+This command displays the status of all queued jobs.
+An example of the output from <I>condor_q</I> is
+<PRE>
+%  condor_q
+
+-- Submitter: submit.chtc.wisc.edu : &lt;128.104.55.9:32772&gt; : submit.chtc.wisc.edu
+ ID      OWNER            SUBMITTED     RUN_TIME ST PRI SIZE CMD               
+711197.0   aragorn         1/15 19:18   0+04:29:33 H  0   0.0  script.sh         
+894381.0   frodo           3/16 09:06  82+17:08:51 R  0   439.5 elk elk.in        
+894386.0   frodo           3/16 09:06  82+20:21:28 R  0   219.7 elk elk.in        
+894388.0   frodo           3/16 09:06  81+17:22:10 R  0   439.5 elk elk.in        
+1086870.0   gollum          4/27 09:07   0+00:10:14 I  0   7.3  condor_dagman     
+1086874.0   gollum          4/27 09:08   0+00:00:01 H  0   0.0  RunDC.bat         
+1297254.0   legolas         5/31 18:05  14+17:40:01 R  0   7.3  condor_dagman     
+1297255.0   legolas         5/31 18:05  14+17:39:55 R  0   7.3  condor_dagman     
+1297256.0   legolas         5/31 18:05  14+17:39:55 R  0   7.3  condor_dagman     
+1297259.0   legolas         5/31 18:05  14+17:39:55 R  0   7.3  condor_dagman     
+1297261.0   legolas         5/31 18:05  14+17:39:55 R  0   7.3  condor_dagman     
+1302278.0   legolas         6/4  12:22   1+00:05:37 I  0   390.6 mdrun_1.sh        
+1304740.0   legolas         6/5  00:14   1+00:03:43 I  0   390.6 mdrun_1.sh        
+1304967.0   legolas         6/5  05:08   0+00:00:00 I  0   0.0  mdrun_1.sh        
+
+14 jobs; 4 idle, 8 running, 2 held
+</PRE><FONT SIZE="-1"> 
+</FONT>This output contains many columns of information about the
+queued jobs.
+<A NAME="3075"></A>
+<A NAME="3076"></A>
+The <code>ST</code> column (for status) shows the status of
+current jobs in the queue. An <code>R</code> in the status column
+means the the job is currently running.
+An <code>I</code> stands for idle. 
+The job is not running right
+now, because it is waiting for a machine to become available. 
+The status
+<code>H</code> is the hold state. In the hold state,
+the job will not be scheduled to
+run until it is released (see the <I>condor_hold</I>
+reference page located on page&nbsp;<A HREF="condor_hold.html#man-condor-hold"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>
+and the <I>condor_release</I>
+reference page located on page&nbsp;<A HREF="condor_release.html#man-condor-release"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>).
+The <code>RUN_TIME</code> time reported for a job is the time that has been
+committed to the job.
+
+<P>
+Another useful method of tracking the progress of jobs is through the
+user log.  If you have specified a <TT>log</TT> command in 
+your submit file, the progress of the job may be followed by viewing the
+log file.  Various events such as execution commencement, checkpoint, eviction 
+and termination are logged in the file.
+Also logged is the time at which the event occurred.
+
+<P>
+When a job begins to run, Condor starts up a <I>condor_shadow</I> process
+<A NAME="3083"></A>
+<A NAME="3084"></A>
+on the submit machine.  The shadow process is the mechanism by which the
+remotely executing jobs can access the environment from which it was
+submitted, such as input and output files.  
+
+<P>
+It is normal for a machine which has submitted hundreds of jobs to have 
+hundreds of <I>condor_shadow</I> processes running on the machine.
+Since the text segments of all these processes is the same,
+the load on the submit machine is usually not significant.
+If there is degraded performance, limit 
+the number of jobs that can run simultaneously by reducing the 
+<TT>MAX_JOBS_RUNNING</TT> <A NAME="3335"></A> <A NAME="3336"></A> configuration variable.
+
+<P>
+You can also find all the machines that are running your job through the
+<I>condor_status</I> command.
+<A NAME="3088"></A>
+For example, to find all the machines that are
+running jobs submitted by <TT>breach@cs.wisc.edu</TT>, type:
+<PRE>
+%  condor_status -constraint 'RemoteUser == "breach@cs.wisc.edu"'
+
+Name       Arch     OpSys        State      Activity   LoadAv Mem  ActvtyTime
+
+alfred.cs. INTEL    SOLARIS251   Claimed    Busy       0.980  64    0+07:10:02
+biron.cs.w INTEL    SOLARIS251   Claimed    Busy       1.000  128   0+01:10:00
+cambridge. INTEL    SOLARIS251   Claimed    Busy       0.988  64    0+00:15:00
+falcons.cs INTEL    SOLARIS251   Claimed    Busy       0.996  32    0+02:05:03
+happy.cs.w INTEL    SOLARIS251   Claimed    Busy       0.988  128   0+03:05:00
+istat03.st INTEL    SOLARIS251   Claimed    Busy       0.883  64    0+06:45:01
+istat04.st INTEL    SOLARIS251   Claimed    Busy       0.988  64    0+00:10:00
+istat09.st INTEL    SOLARIS251   Claimed    Busy       0.301  64    0+03:45:00
+...
+</PRE>To find all the machines that are running any job at all, type:
+<PRE>
+%  condor_status -run
+
+Name       Arch     OpSys        LoadAv RemoteUser           ClientMachine  
+
+adriana.cs INTEL    SOLARIS251   0.980  hepcon@cs.wisc.edu   chevre.cs.wisc.
+alfred.cs. INTEL    SOLARIS251   0.980  breach@cs.wisc.edu   neufchatel.cs.w
+amul.cs.wi SUN4u    SOLARIS251   1.000  nice-user.condor@cs. chevre.cs.wisc.
+anfrom.cs. SUN4x    SOLARIS251   1.023  ashoks@jules.ncsa.ui jules.ncsa.uiuc
+anthrax.cs INTEL    SOLARIS251   0.285  hepcon@cs.wisc.edu   chevre.cs.wisc.
+astro.cs.w INTEL    SOLARIS251   1.000  nice-user.condor@cs. chevre.cs.wisc.
+aura.cs.wi SUN4u    SOLARIS251   0.996  nice-user.condor@cs. chevre.cs.wisc.
+balder.cs. INTEL    SOLARIS251   1.000  nice-user.condor@cs. chevre.cs.wisc.
+bamba.cs.w INTEL    SOLARIS251   1.574  dmarino@cs.wisc.edu  riola.cs.wisc.e
+bardolph.c INTEL    SOLARIS251   1.000  nice-user.condor@cs. chevre.cs.wisc.
+...
+</PRE>
+<P>
+
+<H2><A NAME="SECTION00362000000000000000">
+2.6.2 Removing a job from the queue</A>
+</H2>
+A job can be removed from the queue at any time by using the <I>condor_rm</I>
+<A NAME="3096"></A>
+command.  If the job that is being removed is currently running, the job
+is killed without a checkpoint, and its queue entry is removed.  
+The following example shows the queue of jobs before and after
+a job is removed.
+<PRE>
+%  condor_q
+
+-- Submitter: froth.cs.wisc.edu : &lt;128.105.73.44:33847&gt; : froth.cs.wisc.edu
+ ID      OWNER            SUBMITTED    CPU_USAGE ST PRI SIZE CMD               
+ 125.0   jbasney         4/10 15:35   0+00:00:00 I  -10 1.2  hello.remote      
+ 132.0   raman           4/11 16:57   0+00:00:00 R  0   1.4  hello             
+
+2 jobs; 1 idle, 1 running, 0 held
+
+%  condor_rm 132.0
+Job 132.0 removed.
+
+%  condor_q
+
+-- Submitter: froth.cs.wisc.edu : &lt;128.105.73.44:33847&gt; : froth.cs.wisc.edu
+ ID      OWNER            SUBMITTED    CPU_USAGE ST PRI SIZE CMD               
+ 125.0   jbasney         4/10 15:35   0+00:00:00 I  -10 1.2  hello.remote      
+
+1 jobs; 1 idle, 0 running, 0 held
+</PRE>
+<P>
+
+<H2><A NAME="SECTION00363000000000000000"></A>
+<A NAME="3100"></A>
+<A NAME="3101"></A>
+<A NAME="3102"></A>
+<BR>
+2.6.3 Placing a job on hold
+</H2>
+A job in the queue may be placed on hold by running the command
+<I>condor_hold</I>.
+A job in the hold state remains in the hold state until later released
+for execution by the command <I>condor_release</I>.
+
+<P>
+Use of the <I>condor_hold</I> command causes a hard kill signal to be sent
+to a currently running job (one in the running state).
+For a standard universe job, this means that no checkpoint is
+generated before the job stops running and enters the hold state.
+When released, this standard universe job continues its execution
+using the most recent checkpoint available.
+
+<P>
+Jobs in universes other than the standard universe that are running
+when placed on hold will start over from the beginning when 
+released.
+
+<P>
+The manual page for <I>condor_hold</I>
+on page&nbsp;<A HREF="condor_hold.html#man-condor-hold"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>
+and the manual page for <I>condor_release</I>
+on page&nbsp;<A HREF="condor_release.html#man-condor-release"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>
+contain usage details.
+
+<P>
+
+<H2><A NAME="SECTION00364000000000000000"></A><A NAME="sec:job-prio"></A>
+<BR>
+2.6.4 Changing the priority of jobs
+</H2>
+
+<P>
+<A NAME="3111"></A>
+<A NAME="3112"></A>
+In addition to the priorities assigned to each user, Condor also provides
+each user with the capability of assigning priorities to each submitted job.
+These job priorities are local to each queue and can be any integer value, with
+higher values meaning better priority.
+
+<P>
+The default priority of a job is 0, but can be changed using the <I>condor_prio</I>
+command.
+<A NAME="3114"></A>
+For example, to change the priority of a job to -15,
+<PRE>
+%  condor_q raman
+
+-- Submitter: froth.cs.wisc.edu : &lt;128.105.73.44:33847&gt; : froth.cs.wisc.edu
+ ID      OWNER            SUBMITTED    CPU_USAGE ST PRI SIZE CMD               
+ 126.0   raman           4/11 15:06   0+00:00:00 I  0   0.3  hello             
+
+1 jobs; 1 idle, 0 running, 0 held
+
+%  condor_prio -p -15 126.0
+
+%  condor_q raman
+
+-- Submitter: froth.cs.wisc.edu : &lt;128.105.73.44:33847&gt; : froth.cs.wisc.edu
+ ID      OWNER            SUBMITTED    CPU_USAGE ST PRI SIZE CMD               
+ 126.0   raman           4/11 15:06   0+00:00:00 I  -15 0.3  hello             
+
+1 jobs; 1 idle, 0 running, 0 held
+</PRE>
+<P>
+It is important to note that these <I>job</I> priorities are completely 
+different from the <I>user</I> priorities assigned by Condor.  Job priorities
+do not impact user priorities.  They are only a mechanism for the user to
+identify the relative importance of jobs among all the jobs submitted by the
+user to that specific queue.
+
+<P>
+
+<H2><A NAME="SECTION00365000000000000000"></A><A NAME="sec:job-not-running"></A>
+<A NAME="3120"></A>
+<A NAME="3121"></A>
+<BR>
+2.6.5 Why is the job not running?
+</H2>
+Users occasionally find that their jobs do not run.
+There are many possible reasons why a specific job is not running.
+The following prose attempts to identify some of the potential issues
+behind why a job is not running.
+
+<P>
+At the most basic level, the user knows the status of a job by
+using <I>condor_q</I> to see that the job is not running.
+By far, the most common reason (to the novice Condor job submitter)
+why the job is not running is that Condor has not yet 
+been through its periodic negotiation cycle,
+in which queued jobs are assigned to machines within the pool 
+and begin their execution.
+This periodic event occurs by default once every 5 minutes,
+implying that the user ought to wait a few minutes before
+searching for reasons why the job is not running.
+
+<P>
+Further inquiries are dependent on whether the job has 
+never run at all, or has run for at least a little bit.
+
+<P>
+For jobs that have never run,
+<A NAME="3123"></A>
+many problems can be diagnosed by using the <B>-analyze</B>
+or the <B>-better-analyze</B> option of the <I>condor_q</I> command.
+For example, a job (assigned the cluster.process value of
+331228.2359) submitted to the local pool at UW-Madison
+is not running.
+Running <I>condor_q</I>'s analyzer provided the following information:
+<PRE>
+% condor_q -pool condor -name beak -analyze 331228.2359
+
+
+-- Schedd: beak.cs.wisc.edu : &lt;128.105.146.14:30918&gt;
+ ID      OWNER            SUBMITTED     RUN_TIME ST PRI SIZE CMD
+ ---
+331228.2359:  Run analysis summary.  Of 819 machines,
+    159 are rejected by your job's requirements
+    137 reject your job because of their own requirements
+    488 match but are serving users with a better priority in the pool
+     11 match but reject the job for unknown reasons
+     24 match but will not currently preempt their existing job
+      0 are available to run your job
+</PRE>
+<P>
+This example also shows that the job does not run because the job
+does not have a high enough priority to cause any of 488 other running jobs
+to be preempted.
+
+<P>
+While the analyzer can diagnose most common problems, there are some situations
+that it cannot reliably detect due to the instantaneous and local nature of the
+information it uses to detect the problem.  Thus, it may be that the analyzer
+reports that resources are available to service the request, but the job still 
+has not run.  In most of these situations, the delay is transient, and the
+job will run following the next negotiation cycle.
+
+<P>
+A second class of problems represents jobs that do or did run,
+for at least a short while, but are no longer running.
+The first issue is identifying whether the job is in this category.
+The <I>condor_q</I> command is not enough; it only tells the
+current state of the job.
+The needed information will be in the <B>log</B> file 
+or the <B>error</B> file, as defined in the submit description file
+for the job.
+If these files are not defined, then there is little hope of
+determining if the job ran at all.
+For a job that ran, even for the briefest amount of time,
+the <B>log</B> file will contain an event of type 1,
+which will contain the string
+<code>Job executing on host</code>.
+
+<P>
+A job may run for a short time, before failing due to a file permission
+problem.
+The log file used by the <I>condor_shadow</I> daemon will contain more information
+if this is the problem.
+This log file is associated with the machine on which the job was submitted.
+The location and name of this log file may be discovered on the
+submitting machine, using the command
+<PRE>
+%  condor_config_val SHADOW_LOG
+</PRE>
+<P>
+Memory and swap space problems may be identified by looking at the log
+file used by the <I>condor_schedd</I> daemon.
+The location and name of this log file may be discovered on the
+submitting machine, using the command
+<PRE>
+%  condor_config_val SCHEDD_LOG
+</PRE>A swap space problem will show in the log with the following message:
+<PRE>
+2/3 17:46:53 Swap space estimate reached! No more jobs can be run!
+12/3 17:46:53     Solution: get more swap space, or set RESERVED_SWAP = 0
+12/3 17:46:53     0 jobs matched, 1 jobs idle
+</PRE>As an explanation,
+Condor computes the total swap space on the submit machine.
+It then tries to limit the total number of jobs it
+will spawn based on an estimate of the size of the <I>condor_shadow</I>
+daemon's memory footprint and a configurable amount of swap space
+that should be reserved.
+This is done to avoid the
+situation within a very large pool
+in which all the jobs are submitted from a single host.
+The huge number of <I>condor_shadow</I> processes would
+overwhelm the submit machine,
+and it would run out of swap space and thrash.
+
+<P>
+Things can go wrong if a machine has a lot of physical memory and
+little or no swap space.
+Condor does not consider the physical memory size,
+so the situation occurs where Condor thinks
+it has no swap space to work with,
+and it will not run the submitted jobs.
+
+<P>
+To see how much swap space Condor thinks a given machine has, use
+the output of a <I>condor_status</I> command of the following form:
+
+<P>
+<PRE>
+% condor_status -schedd [hostname] -long | grep VirtualMemory
+</PRE>If the value listed is 0, then this is what is confusing Condor.
+There are two ways to fix the problem:
+
+<P>
+
+<OL>
+<LI>Configure the machine with some real swap space.
+
+<P>
+</LI>
+<LI>Disable this check within Condor.
+Define the amount of reserved swap space for the submit machine to 0.
+Set <TT>RESERVED_SWAP</TT> <A NAME="3382"></A> <A NAME="3383"></A> to 0 in the configuration file:
+
+<P>
+<PRE>
+RESERVED_SWAP = 0
+</PRE>
+
+<P>
+and then send a <I>condor_restart</I> to the submit machine.
+</LI>
+</OL>
+
+<P>
+
+<H2><A NAME="SECTION00366000000000000000"></A><A NAME="sec:job-log-events"></A>
+<A NAME="3154"></A>
+<A NAME="3155"></A>
+<BR>
+2.6.6 In the log file
+</H2>
+In a job's log file are a log of events (a listing of events in
+chronological order) that occurred during the life of the job.
+The formatting of the events is always the same, 
+so that they may be machine readable.
+Four fields are always present,
+and they will most often be followed by other fields that give further
+information that is specific to the type of event.
+
+<P>
+The first field in an event is the numeric value assigned as the
+event type in a 3-digit format.
+The second field identifies the job which generated the event. 
+Within parentheses are the ClassAd job attributes of
+<TT>ClusterId</TT> value, 
+<TT>ProcId</TT> value, 
+and the MPI-specific rank for MPI universe jobs or a set of zeros
+(for jobs run under universes other than MPI),
+separated by periods.
+The third field is the date and time of the event logging.  
+The fourth field is a string that briefly describes the event.
+Fields that follow the fourth field give further information for the specific
+event type.
+
+<P>
+These are all of the events that can show up in a job log file:
+
+<P>
+<B>Event Number:</B> 000 
+<BR><B>Event Name:</B> Job submitted 
+<BR><B>Event Description:</B> This event occurs when a user submits a job.
+It is the first event you will see for a job, and it should only occur
+once. 
+
+<P>
+<B>Event Number:</B> 001 
+<BR><B>Event Name:</B> Job executing 
+<BR><B>Event Description:</B> This shows up when a job is running.
+It might occur more than once.
+
+<P>
+<B>Event Number:</B> 002 
+<BR><B>Event Name:</B> Error in executable 
+<BR><B>Event Description:</B> The job couldn't be run because the
+executable was bad.
+
+<P>
+<B>Event Number:</B> 003 
+<BR><B>Event Name:</B> Job was checkpointed 
+<BR><B>Event Description:</B> The job's complete state was written to a checkpoint
+file.  
+This might happen without the job being removed from a machine,
+because the checkpointing can happen periodically. 
+
+<P>
+<B>Event Number:</B> 004 
+<BR><B>Event Name:</B> Job evicted from machine 
+<BR><B>Event Description:</B> A job was removed from a machine before it finished,
+usually for a policy reason: perhaps an interactive user has claimed
+the computer, or perhaps another job is higher priority.
+
+<P>
+<B>Event Number:</B> 005 
+<BR><B>Event Name:</B> Job terminated 
+<BR><B>Event Description:</B> The job has completed.
+
+<P>
+<B>Event Number:</B> 006 
+<BR><B>Event Name:</B> Image size of job updated 
+<BR><B>Event Description:</B> This is informational. 
+It is referring to the memory that the job is using while running. It
+does not reflect the state of the job.
+
+<P>
+<B>Event Number:</B> 007 
+<BR><B>Event Name:</B> Shadow exception 
+<BR><B>Event Description:</B> 
+The <I>condor_shadow</I>, a program on the submit computer that watches
+over the job and performs some services for the job, failed for some
+catastrophic reason. The job will leave the machine and go back into
+the queue.
+
+<P>
+<B>Event Number:</B> 008 
+<BR><B>Event Name:</B> Generic log event 
+<BR><B>Event Description:</B> Not used.
+
+<P>
+<B>Event Number:</B> 009 
+<BR><B>Event Name:</B> Job aborted 
+<BR><B>Event Description:</B> The user canceled the job.
+
+<P>
+<B>Event Number:</B> 010 
+<BR><B>Event Name:</B> Job was suspended 
+<BR><B>Event Description:</B> The job is still on the computer, but it is no longer
+executing. 
+This is usually for a policy reason, like an interactive user using
+the computer. 
+
+<P>
+<B>Event Number:</B> 011 
+<BR><B>Event Name:</B> Job was unsuspended 
+<BR><B>Event Description:</B> The job has resumed execution, after being
+suspended earlier. 
+
+<P>
+<B>Event Number:</B> 012 
+<BR><B>Event Name:</B> Job was held 
+<BR><B>Event Description:</B> The user has paused the job, perhaps with
+the <I>condor_hold</I> command.
+It was stopped, and will go back into the queue again until it is
+aborted or released. 
+
+<P>
+<B>Event Number:</B> 013 
+<BR><B>Event Name:</B> Job was released 
+<BR><B>Event Description:</B> The user is requesting that a job on hold be re-run.
+
+<P>
+<B>Event Number:</B> 014 
+<BR><B>Event Name:</B> Parallel node executed 
+<BR><B>Event Description:</B> A parallel (MPI) program is running on a node.
+
+<P>
+<B>Event Number:</B> 015 
+<BR><B>Event Name:</B> Parallel node terminated 
+<BR><B>Event Description:</B> A parallel (MPI) program has completed on a node.
+
+<P>
+<B>Event Number:</B> 016 
+<BR><B>Event Name:</B> POST script terminated 
+<BR><B>Event Description:</B> A node in a DAGMan work flow has a script
+that should be run after a job. 
+The script is run on the submit host. 
+This event signals that the post script has completed.
+
+<P>
+<B>Event Number:</B> 017 
+<BR><B>Event Name:</B> Job submitted to Globus 
+<BR><B>Event Description:</B> A grid job has been delegated to Globus
+(version 2, 3, or 4).
+
+<P>
+<B>Event Number:</B> 018 
+<BR><B>Event Name:</B> Globus submit failed 
+<BR><B>Event Description:</B> The attempt to delegate a job to Globus
+failed. 
+
+<P>
+<B>Event Number:</B> 019 
+<BR><B>Event Name:</B> Globus resource up 
+<BR><B>Event Description:</B> The Globus resource that a job wants to run
+on was unavailable, but is now available.
+
+<P>
+<B>Event Number:</B> 020 
+<BR><B>Event Name:</B> Detected Down Globus Resource 
+<BR><B>Event Description:</B> The Globus resource that a job wants to run
+on has become unavailable. 
+
+<P>
+<B>Event Number:</B> 021 
+<BR><B>Event Name:</B> Remote error 
+<BR><B>Event Description:</B> The <I>condor_starter</I> (which monitors the job
+on the execution machine) has failed.
+
+<P>
+<B>Event Number:</B> 022 
+<BR><B>Event Name:</B> Remote system call socket lost 
+<BR><B>Event Description:</B> The <I>condor_shadow</I> and <I>condor_starter</I>
+(which communicate while the job runs) have lost contact.
+
+<P>
+<B>Event Number:</B> 023 
+<BR><B>Event Name:</B> Remote system call socket reestablished 
+<BR><B>Event Description:</B> The <I>condor_shadow</I> and <I>condor_starter</I>
+(which communicate while the job runs) have been able to resume
+contact before the job lease expired.
+
+<P>
+<B>Event Number:</B> 024 
+<BR><B>Event Name:</B> Remote system call reconnect failure 
+<BR><B>Event Description:</B> The <I>condor_shadow</I> and <I>condor_starter</I>
+(which communicate while the job runs) were unable to resume
+contact before the job lease expired.
+
+<P>
+<B>Event Number:</B> 025 
+<BR><B>Event Name:</B> Grid Resource Back Up 
+<BR><B>Event Description:</B> A grid resource that was previously
+unavailable is now available.
+
+<P>
+<B>Event Number:</B> 026 
+<BR><B>Event Name:</B> Detected Down Grid Resource 
+<BR><B>Event Description:</B> The grid resource that a job is to
+run on is unavailable.
+
+<P>
+<B>Event Number:</B> 027 
+<BR><B>Event Name:</B> Job submitted to grid resource 
+<BR><B>Event Description:</B> A job has been submitted,
+and is under the auspices of the grid resource.
+
+<P>
+<B>Event Number:</B> 028 
+<BR><B>Event Name:</B> Job ad information event triggered. 
+<BR><B>Event Description:</B> Extra job ad attributes. This event is
+written as a supplement to other events when the configuration
+parameter <TT>EVENT_LOG_JOB_AD_INFORMATION_ATTRS</TT> <A NAME="3496"></A> <A NAME="3497"></A> is set.
+
+<P>
+<B>Event Number:</B> 029 
+<BR><B>Event Name:</B> The job's remote status is unknown 
+<BR><B>Event Description:</B> No updates of the job's remote status
+have been received for 15 minutes.
+
+<P>
+<B>Event Number:</B> 030 
+<BR><B>Event Name:</B> The job's remote status is known again 
+<BR><B>Event Description:</B> An update has been received for a job whose
+remote status was previous logged as unknown.
+
+<P>
+
+<H2><A NAME="SECTION00367000000000000000"></A><A NAME="sec:job-completion"></A>
+<A NAME="3262"></A>
+<BR>
+2.6.7 Job Completion
+</H2>
+
+<P>
+When your Condor job completes(either through normal means or abnormal
+termination by signal), Condor will remove it from the job queue (i.e.,
+it will no longer appear in the output of <I>condor_q</I>) and insert it into
+the job history file.  You can examine the job history file with the
+<I>condor_history</I> command. If you specified a log file in your submit
+description file, then the job exit status will be recorded there as well.
+
+<P>
+By default, Condor will send you an email message
+when your job completes.  You can modify this behavior with the
+<I>condor_submit</I> ``notification'' command.
+The message will include the exit status of your job (i.e., the
+argument your job passed to the exit system call when it completed) or
+notification that your job was killed by a signal.  It will also
+include the following statistics (as appropriate) about your job:
+
+<P>
+<DL>
+<DT><STRONG>Submitted at:</STRONG></DT>
+<DD>when the job was submitted with <I>condor_submit</I>
+
+<P>
+</DD>
+<DT><STRONG>Completed at:</STRONG></DT>
+<DD>when the job completed
+
+<P>
+</DD>
+<DT><STRONG>Real Time:</STRONG></DT>
+<DD>elapsed time between when the job was submitted and
+when it completed (days hours:minutes:seconds)
+
+<P>
+</DD>
+<DT><STRONG>Run Time:</STRONG></DT>
+<DD>total time the job was running (i.e., real time minus
+queuing time)
+
+<P>
+</DD>
+<DT><STRONG>Committed Time:</STRONG></DT>
+<DD>total run time that contributed to job
+completion (i.e., run time minus the run time that was lost because
+the job was evicted without performing a checkpoint)
+
+<P>
+</DD>
+<DT><STRONG>Remote User Time:</STRONG></DT>
+<DD>total amount of committed time the job spent
+executing in user mode
+
+<P>
+</DD>
+<DT><STRONG>Remote System Time:</STRONG></DT>
+<DD>total amount of committed time the job spent
+executing in system mode 
+
+<P>
+</DD>
+<DT><STRONG>Total Remote Time:</STRONG></DT>
+<DD>total committed CPU time for the job
+
+<P>
+</DD>
+<DT><STRONG>Local User Time:</STRONG></DT>
+<DD>total amount of time this job's
+<I>condor_shadow</I> (remote system call server) spent executing in user
+mode
+
+<P>
+</DD>
+<DT><STRONG>Local System Time:</STRONG></DT>
+<DD>total amount of time this job's
+<I>condor_shadow</I> spent executing in system mode
+
+<P>
+</DD>
+<DT><STRONG>Total Local Time:</STRONG></DT>
+<DD>total CPU usage for this job's <I>condor_shadow</I>
+
+<P>
+</DD>
+<DT><STRONG>Leveraging Factor:</STRONG></DT>
+<DD>the ratio of total remote time to total
+system time (a factor below 1.0 indicates that the job ran
+inefficiently, spending more CPU time performing remote system calls
+than actually executing on the remote machine)
+
+<P>
+</DD>
+<DT><STRONG>Virtual Image Size:</STRONG></DT>
+<DD>memory size of the job, computed when the
+job checkpoints
+
+<P>
+</DD>
+<DT><STRONG>Checkpoints written:</STRONG></DT>
+<DD>number of successful checkpoints performed
+by the job
+
+<P>
+</DD>
+<DT><STRONG>Checkpoint restarts:</STRONG></DT>
+<DD>number of times the job successfully
+restarted from a checkpoint
+
+<P>
+</DD>
+<DT><STRONG>Network:</STRONG></DT>
+<DD>total network usage by the job for checkpointing and
+remote system calls
+
+<P>
+</DD>
+<DT><STRONG>Buffer Configuration:</STRONG></DT>
+<DD>configuration of remote system call I/O
+buffers
+
+<P>
+</DD>
+<DT><STRONG>Total I/O:</STRONG></DT>
+<DD>total file I/O detected by the remote system call
+library
+
+<P>
+</DD>
+<DT><STRONG>I/O by File:</STRONG></DT>
+<DD>I/O statistics per file produced by the remote
+system call library
+
+<P>
+</DD>
+<DT><STRONG>Remote System Calls:</STRONG></DT>
+<DD>listing of all remote system calls
+performed (both Condor-specific and Unix system calls) with a count of
+the number of times each was performed
+
+<P>
+</DD>
+</DL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html664"
+  HREF="2_7Priorities_Preemption.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html658"
+  HREF="2_Users_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html652"
+  HREF="2_5Submitting_Job.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html660"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html662"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html665"
+  HREF="2_7Priorities_Preemption.html">2.7 Priorities and Preemption</A>
+<B> Up:</B> <A NAME="tex2html659"
+  HREF="2_Users_Manual.html">2. Users' Manual</A>
+<B> Previous:</B> <A NAME="tex2html653"
+  HREF="2_5Submitting_Job.html">2.5 Submitting a Job</A>
+ &nbsp; <B>  <A NAME="tex2html661"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html663"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

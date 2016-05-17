@@ -1,0 +1,1456 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>8.6 Development Release Series 7.1</TITLE>
+<META NAME="description" CONTENT="8.6 Development Release Series 7.1">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="8_7Stable_Release.html">
+<LINK REL="previous" HREF="8_5Stable_Release.html">
+<LINK REL="up" HREF="8_Version_History.html">
+<LINK REL="next" HREF="8_7Stable_Release.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html2298"
+  HREF="8_7Stable_Release.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2292"
+  HREF="8_Version_History.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2286"
+  HREF="8_5Stable_Release.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2294"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2296"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2299"
+  HREF="8_7Stable_Release.html">8.7 Stable Release Series</A>
+<B> Up:</B> <A NAME="tex2html2293"
+  HREF="8_Version_History.html">8. Version History and</A>
+<B> Previous:</B> <A NAME="tex2html2287"
+  HREF="8_5Stable_Release.html">8.5 Stable Release Series</A>
+ &nbsp; <B>  <A NAME="tex2html2295"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2297"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html2300"
+  HREF="8_6Development_Release.html#SECTION00961000000000000000">Version 7.1.4</A>
+<LI><A NAME="tex2html2301"
+  HREF="8_6Development_Release.html#SECTION00962000000000000000">Version 7.1.3</A>
+<LI><A NAME="tex2html2302"
+  HREF="8_6Development_Release.html#SECTION00963000000000000000">Version 7.1.2</A>
+<LI><A NAME="tex2html2303"
+  HREF="8_6Development_Release.html#SECTION00964000000000000000">Version 7.1.1</A>
+<LI><A NAME="tex2html2304"
+  HREF="8_6Development_Release.html#SECTION00965000000000000000">Version 7.1.0</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00960000000000000000"></A><A NAME="sec:History-7-1"></A>
+<BR>
+8.6 Development Release Series 7.1
+</H1>
+
+<P>
+This is the development release series of Condor.
+The details of each version are described below.
+
+<P>
+
+<H2><A NAME="SECTION00961000000000000000"></A><A NAME="sec:New-7-1-4"></A>
+<BR>
+Version 7.1.4
+</H2>
+
+<P>
+Release Notes:
+
+<P>
+
+<UL>
+<LI>The owner of the log file for the <I>condor_vm-gahp</I>
+has changed to the <TT>condor</TT> user.
+In Condor 7.1.2 and previous versions, it was owned by the
+user that the virtual machine is started under.
+Therefore, the owner of and permissions on an existing log file
+are likely to be incorrect.
+To correct the problem, an administrator may modify file
+permissions such that the <TT>condor</TT> user may read and
+write the log file.
+Alternatively, an administrator may delete the file, and
+Condor will create a new file with the expected owner and
+permissions.
+In addition, the definition for <TT>VM_GAHP_LOG</TT> <A NAME="53333"></A> <A NAME="53334"></A>
+in the <TT>condor_config.generic</TT> file has changed for
+Condor 7.1.3.
+
+<P>
+</LI>
+<LI>The <B>vm</B> universe no longer supports the use of 
+the <B>xm</B>
+command for running Xen virtual machines. The <B>virsh</B> tool
+should be used instead.
+
+<P>
+</LI>
+<LI>Condor no longer supports the standard universe feature in its
+ports to Solaris. We may resurrect this feature in the future if demand
+for it on this port grows again to sufficient levels.
+
+<P>
+</LI>
+</UL>
+
+<P>
+New Features:
+
+<P>
+
+<UL>
+<LI>Local entries in the configuration file may now be specified
+by pre-pending a local name and a period to the normal name.
+Local settings take precedence over the other settings.
+The local name can be specified on the command line to all daemons via
+the new <B>-local-name</B> command line option. 
+
+<P>
+See section&nbsp;<A HREF="3_3Configuration.html#sec:Config-File-Macros">3.3.1</A> 
+for more details on how the local name will be used in the configuration,
+and section&nbsp;<A HREF="3_9DaemonCore.html#sec:DaemonCore-Arguments">3.9.2</A> 
+for more details on the command line parameters.
+
+<P>
+</LI>
+<LI>Dynamic Startd Provisioning: New configuration options allow for slots
+	to be broken into job-sized pieces. While this feature is still under
+	ongoing development, we felt that what we had so far, although not yet
+	fulfilling our complete vision, is useful enough in its present form to
+	bring value to some installations.
+
+<P>
+</LI>
+<LI><I>condor_submit_dag</I> is now automatically run recursively on
+nested DAGs (unless the new <B>-no_recurse</B> option is specified).
+See <A HREF="2_10DAGMan_Applications.html#sec:DAGsinDAGs"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for details.
+
+<P>
+</LI>
+<LI>Added the new <TT>SUBDAG EXTERNAL</TT> keyword (for specifying nested
+DAGs) to <I>condor_dagman</I>.  See <A HREF="2_10DAGMan_Applications.html#sec:DAGsinDAGs"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for details.
+
+<P>
+</LI>
+<LI>It is now possible to have multiple rotations of the ``event
+  log'' file, such as ``EventLog'', ``EventLog.1'', ``EventLog.2'', ...
+
+<P>
+</LI>
+<LI>The VM universe can now run VMware virtual machines on machines using
+privilege separation without requiring the <I>condor_vm-gahp</I> binary to be
+setuid root. Running the <I>condor_vm-gahp</I> as setuid root is no longer
+supported for VMware or Xen.
+
+<P>
+</LI>
+<LI>Condor now supports the ability for the <I>condor_master</I> to run a
+  program as it shuts down.  This can be particularly useful for doing
+  a graceful shutdown, followed by, a reboot.  This is
+  accomplished through the new 
+  <TT>MASTER_SHUTDOWN_&lt;Name&gt;</TT> configuration variable.
+  The configuration variable <TT>MASTER_SHUTDOWN_&lt;Name&gt;</TT>
+  is defined on page <A HREF="3_3Configuration.html#param:MasterShutdownProgram"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>),
+  and the manual page for <I>condor_set_shutdown</I>
+  is on page&nbsp;<A HREF="condor_set_shutdown.html#man-condor-set-shutdown"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+</LI>
+<LI>The <I>condor_lease_manager</I> is a new daemon.  It
+  provides a mechanism for managing leases to resources described by
+  Condor's ClassAd mechanism.  These resources and leases are managed
+  to be persistent.
+
+<P>
+</LI>
+<LI>VM universe now works with privilege separation (PrivSep)
+for VMware jobs. Xen is still not supported in PrivSep mode.
+
+<P>
+</LI>
+<LI>Added the <I>DIR</I> directive for the <TT>SPLICE</TT> keyword in
+the DAGMan language.
+Please read section&nbsp;<A HREF="2_10DAGMan_Applications.html#sec:DAGSplicing">2.10.6</A> on page <A HREF="2_10DAGMan_Applications.html#sec:DAGSplicing"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for
+more information.
+
+<P>
+</LI>
+<LI>For gt4 type grid jobs (i.e. WS GRAM), include a request to retry
+failed attempts at file clean-up in the RSL job description.
+
+<P>
+</LI>
+<LI>Improved the scalability of some algorithms used by the
+<I>condor_schedd</I> and <I>condor_negotiator</I> when dealing with large
+numbers of startds.
+
+<P>
+</LI>
+<LI>Added the ability for the <I>condor_master</I> (actually, any
+  DaemonCore process with children) to kill child
+  processes that have quit responding SIGABRT instead of SIGKILL.
+  This is for debugging purposes on UNIX systems, and is controlled by
+  the new <TT>NOT_RESPONDING_WANT_CORE</TT> configuration
+  parameter.  If the child process is configured with
+  <TT>CREATE_CORE_FILES</TT> enabled, the child process will then
+  generate a core dump.
+  This feature is currently implemented only on UNIX systems.
+
+<P>
+See
+  <TT>NOT_RESPONDING_WANT_CORE</TT>
+  on page <A HREF="3_3Configuration.html#param:NotRespondingWantCore"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>,
+  <TT>NOT_RESPONDING_TIMEOUT</TT>
+  on page<A HREF="3_3Configuration.html#param:NotRespondingTimeout"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>,
+  and
+  <TT>CREATE_CORE_FILES</TT>
+  on page <A HREF="3_3Configuration.html#param:CreateCoreFiles"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>
+  for more details.
+
+<P>
+</LI>
+<LI>Condor can now be configured to keep a backup of the job queue
+  log on a local file system in case <I>condor_schedd</I> operations
+  involving writes, flushes, or syncs to the job queue log fail.  This
+  is most likely to happen when the job queue log is stored on a
+  network file system like NFS. Such a backup enables an administrator
+  to see that a job failed to submit, but does not perform any
+  automatic recovery.  See below for the these configuration parameters.
+
+<P>
+</LI>
+<LI>Added preliminary support for ``Green Computing''.  This is
+  supported only on Linux and Windows.
+  See section&nbsp;<A HREF="3_16Power_Management.html#sec:power-man">3.16</A> on page&nbsp;<A HREF="3_16Power_Management.html#sec:power-man"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> on
+  ``Power Management'' for more details.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Configuration Variable Additions and Changes:
+
+<P>
+
+<UL>
+<LI>Local versions of configuration parameters can now be specified
+  via the use of the ``-local-name'' command line parameters (see the
+  above ``New Features'' entry).
+
+<P>
+</LI>
+<LI>A new configuration parameter
+  <TT>EVENT_LOG_MAX_ROTATIONS</TT> has been added to allow
+  multiple rotations of the event log file.
+  See <A HREF="3_3Configuration.html#param:EventLogMaxRotations"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for details.
+
+<P>
+</LI>
+<LI>A new configuration parameter
+  <TT>EVENT_LOG_ROTATION_LOCK</TT> has been added to allow
+  allow configuration of an alternate file for Condor to use while
+  rotating event log files.
+  See <A HREF="3_3Configuration.html#param:EventLogRotationLock"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for details.
+
+<P>
+</LI>
+<LI>The configuration parameter <TT>MAX_EVENT_LOG</TT> has been
+  renamed to <TT>EVENT_LOG_MAX_SIZE</TT>.  For backward
+  compatibility, if <TT>EVENT_LOG_MAX_SIZE</TT> is not defined,
+  Condor will also try <TT>MAX_EVENT_LOG</TT>.
+  See <A HREF="3_3Configuration.html#param:EventLogMaxSize"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for details.
+
+<P>
+</LI>
+<LI>The <I>condor_vm-gahp</I> no longer requires its own configuration
+  file. It now uses the normal Condor configuration file. Parameters
+  that used to reside in the <I>condor_vm-gahp</I>'s file should now be placed
+  in the Condor configuration file.
+
+<P>
+</LI>
+<LI>The following VM universe-related configuration parameters have
+  been removed:
+  
+<UL>
+<LI><TT>VM_GAHP_CONFIG</TT>
+</LI>
+<LI><TT>VM_MAX_MEMORY</TT>
+</LI>
+<LI><TT>XEN_CONTROLLER</TT>
+</LI>
+<LI><TT>XEN_VIF_PARAMETER</TT>
+</LI>
+<LI><TT>XEN_NAT_VIF_PARAMETER</TT>
+</LI>
+<LI><TT>XEN_BRIDGE_VIF_PARAMETER</TT>
+</LI>
+<LI><TT>XEN_IMAGE_IO_TYPE</TT>
+  
+</LI>
+</UL>
+
+<P>
+<TT>VMWARE_LOCAL_SETTINGS_FILE</TT>
+  and <TT>XEN_LOCAL_SETTINGS_FILE</TT> have been added. They allow
+  a machine administrator to add settings to the virtual machine
+  configuration files written by Condor for VMware and Xen.
+  See <A HREF="3_3Configuration.html#param:VMwareLocalSettingsFile"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> and
+  <A HREF="3_3Configuration.html#param:XenLocalSettingsFile"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for details.
+
+<P>
+</LI>
+<LI>The configuration parameter family
+  <TT>MASTER_SHUTDOWN_&lt;Name&gt;</TT> can be used in conjunction
+  with <I>condor_set_shutdown</I> to cause the <I>condor_master</I> to execute
+  a specified program as it shuts down.  See
+  <A HREF="3_3Configuration.html#param:MasterShutdownProgram"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> and <I>condor_set_shutdown</I>
+  manual page for more details.
+
+<P>
+</LI>
+<LI>The configuration parameter
+  <TT>NOT_RESPONDING_WANT_CORE</TT> controls the type of signal
+  sent to child processes that DaemonCore has determined are no longer
+  responding.  See the above discussion of the addition of this
+  feature and <TT>NOT_RESPONDING_WANT_CORE</TT> on page
+  <A HREF="3_3Configuration.html#param:NotRespondingWantCore"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for details.
+
+<P>
+</LI>
+<LI>The configuration parameter <TT>LOCAL_QUEUE_BACKUP_DIR</TT> <A NAME="53407"></A> <A NAME="53408"></A>
+  should be set to the pathname of a directory that is writable by
+  the Condor user and is located on a non-network file system.
+  This is part of the ``Job Queue Backup'' feature, above.
+
+<P>
+</LI>
+<LI>The configuration parameter
+  <TT>LOCAL_XACT_BACKUP_FILTER</TT> <A NAME="53412"></A> <A NAME="53413"></A> controls whether or not the
+  <I>condor_schedd</I> will attempt to keep backups of transactions that
+  were not written the job queue log.  If it is set to to
+  <TT>FAILED</TT>, the <I>condor_schedd</I> will attempt to keep a backup
+  of the transaction in the local queue backup directory,
+  defined by <TT>LOCAL_QUEUE_BACKUP_DIR</TT>,
+  only if operations fail on the job queue log.  If it is set
+  to none <TT>NONE</TT>, no backups should be performed even in the
+  event of failure.  If it is set to <TT>ALL</TT>, then at all
+  transactions should be backed up.  The <TT>ALL</TT> value will
+  create quite a large number of files and slow the <I>condor_schedd</I>
+  substantially; it is only likely to be useful for users who are
+  developing or debugging Condor.
+  This is part of the Job Queue Backup feature.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Bugs Fixed:
+
+<P>
+
+<UL>
+<LI>In some rare cases, the <I>condor_startd</I> failed to fully preempt jobs.
+The job itself was killed, but the <I>condor_starter</I> process watching over
+it would not be killed.  The slot would then stay in the Preempting state
+indefinitely.
+
+<P>
+</LI>
+<LI><I>condor_q</I> performed poorly when querying a remote pool, using
+<B>-pool</B>.  It was using an older latency-bound protocol even when
+the remote <I>condor_schedd</I> was new enough to use the improved protocol
+that first appeared in version 6.9.3.
+
+<P>
+</LI>
+<LI>When using <TT>USE_VISIBLE_DESKTOP</TT> <A NAME="53438"></A> <A NAME="53439"></A> the user's (slot or owner)
+access-control entry removed from the Desktop's access-control list.  This
+fixes the previous behavior were users were added and never removed, 
+resulting in an overflow in access-control list, which can only contain 
+a fixed number of access-control entries.
+
+<P>
+</LI>
+<LI>Fixed a bug where if log line caching was enabled in <I>condor_dagman</I>
+and <I>condor_dagman</I> failed during the recovery process, the cache would
+stay active. Now the cache is disabled in all cases at the end of recovery.
+
+<P>
+</LI>
+<LI>Fixed a couple of bugs relevant only to the <TT>GLEXEC_STARTER</TT> <A NAME="53447"></A> <A NAME="53448"></A>
+mode of operation. One bug would result in the <TT>SPOOL</TT> <A NAME="53452"></A> <A NAME="53453"></A> directory being
+deleted if local universe jobs (which are not supported in
+<TT>GLEXEC_STARTER</TT> mode) were submitted. The other bug prevented
+COD jobs from running. Neither of these are problems for the newer
+recommended <TT>GLEXEC_JOB</TT> <A NAME="53458"></A> <A NAME="53459"></A> mode.
+
+<P>
+</LI>
+<LI>Fixed a bug that could cause the <I>condor_procd</I> to crash, depending
+on the timing of its process snapshots.
+
+<P>
+</LI>
+<LI>Fixed a bug that caused job status notifications from WS GRAM 4.2
+servers to be lost.
+
+<P>
+</LI>
+<LI>Fixed a file descriptor leak in the <I>condor_vm-gahp</I>.
+
+<P>
+</LI>
+<LI>Jobs now go on hold with a clear hold reason if a path to a
+directory is put in the transfer files list.  Previously, the attempt
+to run the job would simply fail and return to the idle state.
+
+<P>
+</LI>
+<LI>If <TT>MAX_EVENT_LOG</TT> <A NAME="53467"></A> <A NAME="53468"></A> set to 0, then let event log grow without 
+  bounds.  Previously this behavior was broken, and setting
+  <TT>MAX_EVENT_LOG</TT> <A NAME="53472"></A> <A NAME="53473"></A> to 0 resulted in the log rotating with every
+  event.  Now it works as documented.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Known Bugs:
+
+<P>
+
+<UL>
+<LI>When fixing the <TT>USE_VISIBLE_DESKTOP</TT> <A NAME="53477"></A> <A NAME="53478"></A> bug, a new one was
+inadvertently introduced.  The bug manifests irrespective of the definition
+of <TT>USE_VISIBLE_DESKTOP</TT> <A NAME="53482"></A> <A NAME="53483"></A>: the new code attempts to remove the current 
+user's access-control entry from the Desktop's access-control list even when
+it was not added by Condor.  This has the effect of inhibiting the creation
+of new process for the logged on user.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Additions and Changes to the Manual:
+
+<P>
+
+<UL>
+<LI>The extra space character injected into the names of Condor
+daemons and programs has been removed.
+
+<P>
+</LI>
+<LI>Previously undocumented Condor Perl module subroutines have
+been documented.
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<H2><A NAME="SECTION00962000000000000000"></A><A NAME="sec:New-7-1-3"></A>
+<BR>
+Version 7.1.3
+</H2>
+
+<P>
+Release Notes:
+
+<P>
+
+<UL>
+<LI>This developer release includes the majority of the bug fixes released
+	in stable version 7.0.5, including the security patches documented in that
+	release.  See section&nbsp;<A HREF="8_7Stable_Release.html#sec:New-7-0-5">8.7</A> below.
+
+<P>
+</LI>
+<LI>Updated the version of Globus Toolkit: The Condor binaries are now
+	linked against Globus v4.2.0.
+
+<P>
+</LI>
+<LI>Updated the version of OpenSSL: The Condor binaries are now linked
+	against OpenSSL 0.9.8h.
+
+<P>
+</LI>
+<LI>Updated the version of GCB: The Condor binaries are now linked
+	against GCB 1.5.6.
+
+<P>
+</LI>
+<LI>Changes to the <TT>ALLOW_*</TT> and <TT>DENY_*</TT> configuration
+	variables no longer require the use of the <B>-full</B> option to
+	<I>condor_reconfig</I> upon reconfiguration.
+
+<P>
+</LI>
+</UL>
+
+<P>
+New Features:
+
+<P>
+
+<UL>
+<LI>Added a new mechanism termed <I>Concurrency Limits</I>.  This
+mechanism allows the Condor pool administrator to define an arbitrary
+number of consumable resources in the configuration file of the
+matchmaker.  The availability of these consumable resources will be taken
+into account during the matchmaking process.  Individual jobs can specify
+how many of each type of consumable resource is required.  
+Typical applications of Concurrency Limits could include management of
+software licenses, database connections, or any other consumable resource
+that is external to Condor.  NOTE: Documentation still being written on
+this feature.
+See section&nbsp;<A HREF="3_13Setting_Up.html#sec:Concurrency-Limits">3.13.14</A>) for documentation.
+
+<P>
+</LI>
+<LI>Added support for Condor to manage serial high throughput computing
+workloads on the IBM Blue Gene supercomputer.  The IBM Blue Gene/P is now
+a supported platform.
+
+<P>
+</LI>
+<LI>Extended Job Hooks (see section&nbsp;<A HREF="4_4Job_Hooks.html#sec:job-hooks">4.4</A>) to allow for
+alternate transformation and/or monitoring engines for the Job Router (see
+section&nbsp;<A HREF="5_6Condor_Job.html#sec:JobRouter">5.6</A>.  Routing is still controlled by the Job
+Router, but if Job Router Hooks are configured, then external programs or
+scripts can be used to transform and monitor the job instead of Condor's
+internal engine.
+
+<P>
+</LI>
+<LI>Added support for the new protocol for WS GRAM introduced in Globus
+4.2. For each WS GRAM resource, Condor automatically determines whether it is
+speaking the 4.0 or 4.2 version of the protocol and responds appropriately.
+When setting <B>grid_resource</B> in the submit file, use
+<B>gt4</B> for both WS GRAM 4.0 and 4.2.
+
+<P>
+</LI>
+<LI>Added the ability for Windows slot users to load and run their jobs
+within the context of their profile. 
+This includes the <TT>My Documents</TT> directory 
+hierarchy, its monikers, and the user's registry hive.
+To use the profile, add a <B>load_profile</B> command to the 
+submit description file.  A current restriction prevents the use of
+<B>load_profile</B> 
+in conjunction with <B>run_as_owner</B>. Please refer to 
+section&nbsp;<A HREF="6_2Microsoft_Windows.html#sec:windows-load-profile">6.2.5</A> for further details.
+
+<P>
+</LI>
+<LI>The <TT>StarterLog</TT> file for local universe jobs now displays the job id
+in each line in the file, so that interleaved messages relevant to
+different jobs running concurrently can be identified.
+
+<P>
+</LI>
+<LI>Added the <B>-AllowVersionMismatch</B> command line option to
+<I>condor_submit_dag</I> and <I>condor_dagman</I> to (if absolutely necessary)
+allow a version mismatch between <I>condor_dagman</I> and the
+<TT>.condor.sub</TT> file used to submit it.
+This permits a Condor version mismatch between
+<I>condor_submit_dag</I> and <I>condor_dagman</I>).
+
+<P>
+</LI>
+<LI>Streamlined the protocol between submit and execute machines; in some
+instances, fewer messages will be exchanged over the network.
+
+<P>
+</LI>
+<LI>When network requests are denied because of the authorization
+policy, Condor now logs an explanation in the daemon log that denied
+the request.  This helps the administrator understand why the policy
+denied the request, in case it is not obvious.  A similar explanation
+may be logged for requests that are accepted.  This is only generated
+if <TT>D_SECURITY</TT> <A NAME="53514"></A> <A NAME="53515"></A> is added to the daemon's debug options.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Configuration Variable Additions and Changes:
+
+<P>
+
+<UL>
+<LI>Added the new configuration variable
+<TT>MAX_PENDING_STARTD_CONTACTS</TT> <A NAME="53519"></A> <A NAME="53520"></A>.  This limits the
+number of simultaneous connection attempts by the <I>condor_schedd</I> when
+it is requesting claims from the <I>condor_startd</I>s.  The intention is
+to protect the <I>condor_schedd</I> from being overloaded by authentication
+operations.  The default is 0, which indicates no limit.
+
+<P>
+</LI>
+<LI>Added the new configuration variable
+<TT>SEC_INVALIDATE_SESSIONS_VIA_TCP</TT> <A NAME="53530"></A> <A NAME="53531"></A>,  which
+defaults to <TT>True</TT>.  Previously, attempts to use an invalid security
+session resulted in a UDP rather than a TCP response.  In networks with
+different firewall rules for UDP and TCP, the filtering of the session
+invalidation messages was easily overlooked, since it would not
+typically happen during the initial vetting of the pool.  If these
+packets were filtered out, then at the subsequent <I>condor_collector</I>
+restart, no daemons would be able to advertise themselves to the
+pool until their existing security sessions expired.  The old behavior
+can be achieved by setting this configuration parameter to <TT>False</TT>.
+
+<P>
+</LI>
+<LI>Added the new configuration variable
+<TT>SEC_ENABLE_MATCH_PASSWORD_AUTHENTICATION</TT> <A NAME="53539"></A> <A NAME="53540"></A>.
+This is a special authentication mechanism designed to minimize
+overhead in the <I>condor_schedd</I> when communicating with the execute
+machine.  Essentially, matchmaking results in a secret being shared
+between the <I>condor_schedd</I> and <I>condor_startd</I>, and this is used to
+establish a strong security session between the execute and submit
+daemons without going through the usual security negotiation protocol.
+This is especially important when operating at large scale over high
+latency networks, as in a glidein pool with one submit machine and thousands of
+execute machines on a network with 0.1 second round trip times.  See
+<A HREF="3_3Configuration.html#param:SecEnableMatchPasswordAuthentication"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for
+details.
+
+<P>
+</LI>
+<LI>Added configuration entry <TT>GLEXEC_JOB</TT> <A NAME="53550"></A> <A NAME="53551"></A> which replaces the
+functionality previously encapsulated in <TT>GLEXEC_STARTER</TT> <A NAME="53555"></A> <A NAME="53556"></A>.  Using
+<TT>GLEXEC_JOB</TT> enables privilege separation in Condor via glexec in a
+manner much more consistent with how Condor's own privilege separation
+mechanism works.  Specifically, the user identity switching will now occur
+between the <I>condor_starter</I> and the actual user job.
+
+<P>
+</LI>
+<LI>Added configuration parameter <TT>AMAZON_GAHP_WORKER_MAX_NUM</TT> <A NAME="53563"></A> <A NAME="53564"></A>
+to specify a ceiling on the number of threads spawned on the submit
+machine to support jobs running on Amazon EC2.  Defaults to 5.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Bugs Fixed:
+
+<P>
+
+<UL>
+<LI>Includes bug fixes from Condor v7.0.5, including the security fixes.
+	See section&nbsp;<A HREF="8_7Stable_Release.html#sec:New-7-0-5">8.7</A>.
+
+<P>
+</LI>
+<LI>Fixed a bug in the <I>condor_schedd</I> that would cause it to
+except if a crontab entry was incorrectly formatted.
+
+<P>
+</LI>
+<LI>Fixed a bug in the CondorView server (collector) that caused it
+to except (crash) when it received a machine ClassAd without a valid state.
+It now logs this under level <TT>D_ALWAYS</TT> and ignores the ClassAd.
+
+<P>
+</LI>
+<LI>Fixed a bug from Condor version 7.1.2 that would cause 
+Condor daemons to start
+consuming a lot of cpu time after rare types of communication failures
+during security negotiation.
+
+<P>
+</LI>
+<LI>Fixed a bug from Condor version 7.1.2 that in rare cases could cause
+Condor to fail to recognize when a call to exec() fails on Unix
+platforms.
+
+<P>
+</LI>
+<LI>Fixed problems with configuration parameter
+<TT>JOB_INHERITS_STARTER_ENVIRONMENT</TT> <A NAME="53571"></A> <A NAME="53572"></A> when using PrivSep.
+
+<P>
+</LI>
+<LI>Improved the deletion of Amazon EC2 jobs when the server is
+unreachable.
+
+<P>
+</LI>
+<LI>Fixed problems with Condor parallel universe jobs when recovering from
+	a reboot of the submit machine.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Known Bugs:
+
+<P>
+
+<UL>
+<LI>None.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Additions and Changes to the Manual:
+
+<P>
+
+<UL>
+<LI>None.
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<H2><A NAME="SECTION00963000000000000000"></A><A NAME="sec:New-7-1-2"></A>
+<BR>
+Version 7.1.2
+</H2>
+
+<P>
+Release Notes:
+
+<P>
+
+<UL>
+<LI>None.
+
+<P>
+</LI>
+</UL>
+
+<P>
+New Features:
+
+<P>
+
+<UL>
+<LI>Added <TT>formatTime()</TT>, a built-in ClassAd function to create a
+  formatted representation of the time.  A detailed description of this
+  function is available in section&nbsp;<A HREF="4_1Condor_s_ClassAd.html#sec:classadFunctions">4.1.1</A>, which
+  documents all of the available built-in ClassAd functions.
+
+<P>
+</LI>
+<LI>Improved Condor's authentication handshake, so that daemons such
+as the <I>condor_schedd</I>, which initiate connections to other daemons,
+spend less time waiting for responses.
+Authentication over high latency
+networks is still rather expensive in Condor, so it still may be
+necessary to scale up by running more <I>condor_schedd</I> and <I>condor_collector</I>
+daemons than one would need for equivalent workloads on a low latency network.
+Additional improvements in this area are planned.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Configuration Variable Additions and Changes:
+
+<P>
+
+<UL>
+<LI>None.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Bugs Fixed:
+
+<P>
+
+<UL>
+<LI>Fixed a memory leak, introduced in Condor version 7.1.1, which caused the
+  <I>condor_startd</I> daemon to grow without bound.
+
+<P>
+</LI>
+<LI>Fixed a bug in <I>condor_dagman</I> that caused the user log file of
+the first node job in a DAG to get created with 0600 permissions,
+regardless of the user's umask.  Note that this fix involved removing
+the <B>-condorlog</B> and <B>-storklog</B> command-line arguments from
+<I>condor_submit_dag</I> and <I>condor_dagman</I>.
+
+<P>
+</LI>
+<LI>Fixed a problem from Condor version 7.1.1 that in some cases caused the
+<I>condor_starter</I> to stop sending updates about the job status or
+to send updates too frequently.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Known Bugs:
+
+<P>
+
+<UL>
+<LI>None.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Additions and Changes to the Manual:
+
+<P>
+
+<UL>
+<LI>None.
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<H2><A NAME="SECTION00964000000000000000"></A><A NAME="sec:New-7-1-1"></A>
+<BR>
+Version 7.1.1
+</H2>
+
+<P>
+Release Notes:
+
+<P>
+
+<UL>
+<LI>None.
+
+<P>
+</LI>
+</UL>
+
+<P>
+New Features:
+
+<P>
+
+<UL>
+<LI>Added a new feature to <I>condor_dagman</I> which caches the log lines
+emitted to the dagman.out file when in recovery mode and emits the
+cache as one call to the logging subsystem when the cache size limit is
+reached. Under NFS conditions, this prevents an open and close per line
+of the log and greatly improves performance. This feature is off by
+default and is controlled by <TT>DAGMAN_DEBUG_CACHE_ENABLE</TT>, which
+takes a boolean, and  <TT>DAGMAN_DEBUG_CACHE_SIZE</TT>, which is an
+integer in bytes of how big the cache should be before flushing.
+
+<P>
+</LI>
+<LI>Included some Windows example jobs (submit files and binaries).
+
+<P>
+</LI>
+<LI>Added a new feature to the DAGMan language called splicing. Please
+read section&nbsp;<A HREF="2_10DAGMan_Applications.html#sec:DAGSplicing">2.10.6</A> on page <A HREF="2_10DAGMan_Applications.html#sec:DAGSplicing"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+</LI>
+<LI>The Prepare Job Hook can now modify the job ClassAd before execution.
+For a complete description of the new hook system, read
+section&nbsp;<A HREF="4_4Job_Hooks.html#sec:job-hooks">4.4</A> on page&nbsp;<A HREF="4_4Job_Hooks.html#sec:job-hooks"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+</LI>
+<LI>Condor now coerces the result of $$([]) expressions within
+submit description files to strings.
+This means that submit files can do simple arithmetic.
+For example, you can describe a command-line argument as:
+
+<P>
+arguments = $$([$(PROCESS)+100])
+
+<P>
+and <I>condor_submit</I> will expand the argument to be the expected value.
+
+<P>
+</LI>
+<LI>Condor daemons now periodically update the <TT>ctime</TT> of their
+  log files, instead of the <TT>mtime</TT>, as they previously did.
+  At start up, the daemons use this <TT>ctime</TT> 
+  to determine how long they may have been down.
+
+<P>
+</LI>
+<LI>Added the capability to the <I>condor_startd</I> to allow it to power 
+  down machines based a user specified policy.  See 
+  section&nbsp;<A HREF="3_16Power_Management.html#sec:power-man">3.16</A> on <A HREF="3_16Power_Management.html#sec:power-man"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> on
+  Power Management for more details.
+
+<P>
+</LI>
+<LI><I>condor_off</I> now supports the <B>-peaceful</B> option for the
+  <I>condor_schedd</I>, in addition to the existing support that already existed for
+  the <I>condor_startd</I>.  When peacefully shut down,
+  the <I>condor_schedd</I> stops starting new
+  jobs and waits for all running jobs to finish before exiting.  The
+  default shut down behavior is still <B>-graceful</B>, which checkpoints
+  and stops all running standard universe jobs and gracefully
+  disconnects from other types of jobs in the hopes of later restarting
+  and reconnecting to them without any disturbance to the running job.
+
+<P>
+</LI>
+<LI>The <I>condor_job_router</I> now supports deletion of attributes
+  when transforming job ClassAds from vanilla to grid universe.  It also
+  behaves more deterministically when choosing from multiple possible
+  routes.  Rather than picking one at random, it uses a round-robin
+  selection.
+
+<P>
+</LI>
+<LI><I>condor_dagman</I> now checks that its submit file was generated by
+a <I>condor_submit_dag</I> with the same version as <I>condor_dagman</I> itself.
+It is a fatal error for the versions to differ.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Configuration Variable Additions and Changes:
+
+<P>
+
+<UL>
+<LI>Added <TT>DAGMAN_DEBUG_CACHE_ENABLE</TT> and 
+  <TT>DAGMAN_DEBUG_CACHE_SIZE</TT> which allow DAGMan to maintain a
+  cache of log lines and write out the cache as one open/write/close
+  sequence.  <TT>DAGMAN_DEBUG_CACHE_ENABLE</TT> is a boolean
+  which turns on the ability for caching and defaults to <TT>False</TT>.
+  <TT>DAGMAN_DEBUG_CACHE_SIZE</TT> is a positive integer and represents
+  the size of the cache in bytes and defaults to 5 Megabytes.
+
+<P>
+</LI>
+<LI>The existing <TT>BIND_ALL_INTERFACES</TT> <A NAME="53633"></A> <A NAME="53634"></A> configuration variable
+  now defaults to <TT>True</TT>.
+
+<P>
+</LI>
+<LI>Added the <TT>HIBERNATE</TT> <A NAME="53639"></A> <A NAME="53640"></A> expression, which, when evaluated in
+  the context of each slot, determines if a machine should enter
+  a low power state. See page&nbsp;<A HREF="3_3Configuration.html#param:Hibernate"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for more 
+  information.
+
+<P>
+</LI>
+<LI>Added the <TT>HIBERNATE_CHECK_INTERVAL</TT> <A NAME="53644"></A> <A NAME="53645"></A> configuration variable,
+  which, if set to a non-zero value, enables the <I>condor_startd</I> to place the 
+  machine in a low power state based on the evaluation of the
+  <TT>HIBERNATE</TT> expression.  See 
+  page&nbsp;<A HREF="3_3Configuration.html#param:HibernateCheckInterval"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for more information.
+
+<P>
+</LI>
+<LI>The existing <TT>VALID_SPOOL_FILES</TT> <A NAME="53652"></A> <A NAME="53653"></A> configuration variable
+  now automatically includes <TT>SCHEDD.lock</TT>,
+  the lock file used for high availability <I>condor_schedd</I> fail over.
+  Other high availability lock files are not currently included.
+
+<P>
+</LI>
+<LI>Added the <TT>SEC_DEFAULT_AUTHENTICATION_TIMEOUT</TT> <A NAME="53660"></A> <A NAME="53661"></A> configuration
+  variable, where the definition <TT>DEFAULT</TT> may be replaced
+  by the usual list of contexts for security settings
+  (for example, <TT>CLIENT</TT>, <TT>READ</TT>, and <TT>WRITE</TT>).
+  This specifies the number of seconds that Condor should
+  allow for the authentication of network connections to complete.
+  Previously, GSI authentication was hard-coded to allow 5 minutes
+  for authentication.
+  Now it uses the same default as all other methods: 20 seconds.
+
+<P>
+</LI>
+<LI>Added the <TT>STARTER_UPDATE_INTERVAL_TIMESLICE</TT> <A NAME="53669"></A> <A NAME="53670"></A> configuration
+  variable, which
+  specifies the highest fraction of time that the <I>condor_starter</I> should spend
+  collecting monitoring information about the job, such as disk usage.
+  It defaults to 0.1.  If checking the disk usage of the job takes a
+  long time, the <I>condor_starter</I> will monitor less frequently than 
+  specified by <TT>STARTER_UPDATE_INTERVAL</TT>.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Bugs Fixed:
+
+<P>
+
+<UL>
+<LI>Fixed a bug introduced in 7.1.0 affecting configurations in
+which authentication of all communication between the <I>condor_shadow</I>
+and <I>condor_schedd</I> is required.  This caused failure in the final update
+after the job had finished running.  The result was that the job would return
+to the idle state to run again.
+
+<P>
+</LI>
+<LI>Fixed a bug in Java universe where each slot would be told to
+  potentially use all the memory on the machine.  Now, each JVM 
+  receives the physical memory divided by the number of slots.
+
+<P>
+</LI>
+<LI>On Windows, slot users would sometimes show up in the Windows Welcome
+  Screen.  This has now been resolved.
+  The slot users need to be manually
+  removed for this to take effect and the machine may need to be rebooted for
+  the setting to be honored.
+
+<P>
+</LI>
+<LI>Fixed a bug in the ClassAd <TT>string()</TT> function.
+  The function now properly converts integers and floats
+  to their string representation.
+
+<P>
+</LI>
+<LI>The Windows Installer is now completely internationalized: it will no 
+  longer fail to install because of a missing "Users" group; instead, it
+  will use the regionally appropriate group.
+
+<P>
+</LI>
+<LI>Interoperability with Samba (as a PDC) has been improved.  Condor 
+  uses a fast form of login during credential validation.  Unfortunately, 
+  this login procedure fails under Samba, even if the credentials are 
+  valid.  The new behavior is to attempt the fast login, and on failure, 
+  fall back to the slower form.
+
+<P>
+</LI>
+<LI>Windows slot users no longer have the Batch Privilege added, nor 
+  does Condor first attempt a Batch login for slot users.  This was 
+  causing permission problems on hardened versions of Windows, such 
+  as Windows Sever 2003, in that not interactive users lacked the 
+  permission to run batch files (via the <I>cmd.exe</I> tool). This affected 
+  any user submitting jobs that used batch files as the executable.
+
+<P>
+</LI>
+<LI>If the <TT>IWD</TT> is not defined in a job classified
+  ad that was either fetched by the <I>condor_startd</I> via job hooks, or
+  pushed to the <I>condor_startd</I> via COD, the <I>condor_starter</I> no
+  longer treats this as a fatal error, and instead uses the temporary
+  job execution sandbox as the initial working directory.
+
+<P>
+</LI>
+<LI>Made some fixes to the new-style rescue DAG feature:
+
+<UL>
+<LI><I>condor_submit_dag</I> no longer needs the <B>-force</B> flag if a rescue
+DAG will be run, even if the files generated by <I>condor_submit_dag</I>
+already exist.
+</LI>
+<LI><I>condor_submit_dag</I> with the <B>-force</B> flag now renames any
+existing new-style rescue DAG files, and therefore runs the original DAG.
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI>Fixed a problem that caused new-style rescue DAGs to fail when
+<I>condor_submit_dag</I> is invoked with the <B>-usedagdir</B> flag.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Known Bugs:
+
+<P>
+
+<UL>
+<LI>None.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Additions and Changes to the Manual:
+
+<P>
+
+<UL>
+<LI>The manual now contains Windows installation instructions for
+  controlling the configuration for the <B>vm</B> universe.
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<H2><A NAME="SECTION00965000000000000000"></A><A NAME="sec:New-7-1-0"></A>
+<BR>
+Version 7.1.0
+</H2>
+
+<P>
+Release Notes:
+
+<P>
+
+<UL>
+<LI>Upgrading to 7.1.0 from previous versions of Condor will make
+existing Standard Universe jobs that have already run fail to match to
+machines running Condor 7.1.0 unless the job previously ran on a
+machine using the Red Hat 5.0 release of Condor.  This is because the
+value of the <TT>CheckpointPlatform</TT> attribute of the machine
+ClassAd has changed in order to better represent checkpoint
+compatibility.  If this affects you, you can use <I>condor_qedit</I> to
+change the <TT>LastCheckpointPlatform</TT> attribute of existing
+Standard Universe jobs to match the new <TT>CheckpointPlatform</TT>
+advertised by the machine ClassAd where the job last ran.
+
+<P>
+</LI>
+<LI>Condor no longer supports root configuration files
+(for example, <TT>/etc/condor/condor_config.root</TT>,
+<TT>&nbsp;condor/condor_config.root</TT>, and
+the file defined by the configuration variable
+<TT>LOCAL_ROOT_CONFIG_FILE</TT>).  This feature was intended to
+give limited powers to a Unix administrator to configure some aspects
+of Condor without gaining root powers.  However, given the flexibility
+of the configuration system, we decided that this was not practical.
+As long as Condor is started up as root, it should be clearly
+understood that whoever has the ability to edit the Condor
+configuration files can effectively run arbitrary programs as root.
+
+<P>
+</LI>
+</UL>
+
+<P>
+New Features:
+
+<P>
+
+<UL>
+<LI>In the past, Condor has always sent work to the execute machines
+  by pushing jobs to the <I>condor_startd</I>, either from the
+  <I>condor_schedd</I> or via <I>condor_cod</I>.
+  As of version 7.1.0, The <I>condor_startd</I> now has the ability to pull
+  work by fetching jobs via a system of plug-ins or hooks.
+  Additional hooks are invoked by the <I>condor_starter</I> to help manage
+  work (especially for fetched jobs, but the <I>condor_starter</I> hooks
+  can be defined and invoked for other kinds of jobs as well).
+  For a complete description of the new hook system, read
+  section&nbsp;<A HREF="4_4Job_Hooks.html#sec:job-hooks">4.4</A> on page&nbsp;<A HREF="4_4Job_Hooks.html#sec:job-hooks"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+</LI>
+<LI>Added the capability to insert commands into the <TT>.condor.sub</TT>
+  file produced by <I>condor_submit_dag</I> with the <B>-append</B> and
+  <B>-insert_sub_file</B> command-line arguments to <I>condor_submit_dag</I> and
+  the <TT>DAGMAN_INSERT_SUB_FILE</TT> <A NAME="53736"></A> <A NAME="53737"></A> configuration variable.
+  See the <I>condor_submit_dag</I> manual page on
+  page&nbsp;<A HREF="condor_submit_dag.html#man-condor-submit-dag"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>
+  and the configuration variable definition on
+  page&nbsp;<A HREF="3_3Configuration.html#param:DAGManInsertSubFile"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for more information.
+
+<P>
+</LI>
+<LI>For platforms running a Windows operating system, the <TT>Arch</TT>
+  machine ClassAd attribute more correctly reflects the architectures
+  supported.  Instead of values <TT>"INTEL"</TT> and <TT>"UNDEFINED"</TT>,
+  the values will now be: <TT>"INTEL"</TT> for x86,
+  <TT>"IA64"</TT> for Intel Itanium,
+  and <TT>"X86_64"</TT> for both AMD and Intel 64-bit processors.
+  These values are listed in the unnumbered subsection labeled
+  Machine ClassAd Attributes on page&nbsp;<A HREF="10_Appendix_A.html#sec:Machine-ClassAd-Attributes"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+</LI>
+<LI>The Windows MSI installer now supports extended <B>vm</B> universe 
+  options. These new options include: the ability to set the 
+  networking type, how much memory the <B>vm</B> universe can use 
+  on a host, and
+  the ability to set the version of <I>VMware</I> installed on the host.
+
+<P>
+</LI>
+<LI>The <I>condor_status</I> and <I>condor_q</I> command line tools now have a
+  version option which prints the version of those specific tools.  This
+  can be useful when multiple versions of Condor are installed on the
+  same machine.
+
+<P>
+</LI>
+<LI>The configuration variable <TT>CONDOR_VIEW_HOST</TT> may now
+  contain a port number and may (if desired) refer to a
+  <I>condor_collector</I> daemon running on the same host as the
+  <I>condor_collector</I> that is forwarding ads.  It is also now possible to
+  use the forwarded ads for matchmaking purposes.  For example, several
+  collectors could forward ads to a single aggregating collector which
+  a <I>condor_negotiator</I> then uses as its source of information for
+  matchmaking.
+
+<P>
+</LI>
+<LI><I>condor_dagman</I> deals with rescue DAGs in a more sophisticated
+way; this is especially helpful for nested DAGs.
+See the rescue DAG subsection&nbsp;<A HREF="2_10DAGMan_Applications.html#sec:DAGMan-rescue"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> of the <I>condor_dagman</I>
+manual section for more information.
+
+<P>
+</LI>
+<LI>Additional logging details for unusual error cases to help 
+identify problems.
+
+<P>
+</LI>
+<LI>A new (optional) daemon named <I>condor_job_router</I> has been
+added, so far only on Unix.  It may be configured to transform vanilla
+universe jobs into grid universe jobs, for example to send excess jobs
+to other sites via Condor-C or Condor-G.  For details, see
+page&nbsp;<A HREF="5_6Condor_Job.html#sec:JobRouter"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+</LI>
+<LI>Previously, condor_q <B>-better-analyze</B> was supported on most
+but not all versions of Linux.  It is now supported on all Unix platforms
+but not yet on Windows.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Configuration Variable Additions and Changes:
+
+<P>
+
+<UL>
+<LI>Added new configuration variables
+  <TT>ALLOW_CLIENT</TT> and <TT>DENY_CLIENT</TT> as
+  client-side authorization controls.
+  When using a mutual authentication method (such as GSI, SSL, or Kerberos),
+  these variables allow the specification of
+  which authenticated servers the Condor tools and daemons should
+  trust when they form a connection to the server.
+  Because of the addition of these variables,
+  the GSI-specific, client-side authorization configuration variable
+  <TT>GSI_DAEMON_NAME</TT> <A NAME="53774"></A> <A NAME="53775"></A> is retired, and no longer valid.
+
+<P>
+</LI>
+<LI>Added the <TT>DAGMAN_INSERT_SUB_FILE</TT> <A NAME="53779"></A> <A NAME="53780"></A> variable, which allows a file
+  of commands to be inserted into <TT>.condor.sub</TT> files generated
+  by <I>condor_submit_dag</I>.  See page&nbsp;<A HREF="3_3Configuration.html#param:DAGManInsertSubFile"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>
+  for more information.
+
+<P>
+</LI>
+<LI>The semantics of <TT>CLAIM_WORKLIFE</TT> were previously not
+clearly defined before the start of the first job.  A delay between
+the <I>condor_schedd</I> claiming a slot and the <I>condor_shadow</I> starting a
+job could be caused by the submit machine being very busy or by
+<TT>JOB_START_DELAY</TT>.  Previously, such a delay would
+unpredictably result in the first job being rejected if
+<TT>CLAIM_WORKLIFE</TT> expired during that time.  Now,
+<TT>CLAIM_WORKLIFE</TT> is defined to apply only after the first job
+has started.  Therefore, setting it to zero has the effect of allowing
+exactly one job per claim to run.  The default is still the special
+value -1, which places no limit on how long the slot may continue
+accepting new jobs from the <I>condor_schedd</I> that claimed it.
+
+<P>
+</LI>
+<LI>Added the <TT>DAGMAN_OLD_RESCUE</TT> <A NAME="53797"></A> <A NAME="53798"></A> variable, which controls whether
+<I>condor_dagman</I> writes rescue DAGs in the old way.  See
+page&nbsp;<A HREF="3_3Configuration.html#param:DAGManOldRescue"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for more information.
+
+<P>
+</LI>
+<LI>Added the <TT>DAGMAN_AUTO_RESCUE</TT> <A NAME="53804"></A> <A NAME="53805"></A> variable, which controls
+whether <I>condor_dagman</I> automatically runs an existing rescue DAG.
+See page&nbsp;<A HREF="3_3Configuration.html#param:DAGManAutoRescue"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for more information.
+
+<P>
+</LI>
+<LI>Added the <TT>DAGMAN_MAX_RESCUE_NUM</TT> <A NAME="53811"></A> <A NAME="53812"></A> variable, which
+controls the maximum "new-style" rescue DAG number written or
+automatically run by <I>condor_dagman</I>.
+See page&nbsp;<A HREF="3_3Configuration.html#param:DAGManMaxRescueNum"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for more information.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Bugs Fixed:
+
+<P>
+
+<UL>
+<LI>The Condor Build ID is now printed by <I>condor_version</I> and placed 
+  in the logs for machines running a Windows operating system.
+
+<P>
+</LI>
+<LI><I>condor_quill</I> and the <I>condor_dbmsd</I> correctly register 
+  themselves with the Windows firewall.
+
+<P>
+</LI>
+<LI><I>condor_submit_dag</I> now avoids possibly running off the end
+of the argument list if an argument requiring a value does not have one.
+
+<P>
+</LI>
+<LI>The <I>condor_submit_dag</I> <B>-debug</B> argument now must be
+specified with at least <B>-de</B> to avoid conflict with the
+<B>-dagman</B> argument.
+
+<P>
+</LI>
+<LI>Added missing information about the <B>-config</B> argument to
+<I>condor_submit_dag</I>'s usage message.
+
+<P>
+</LI>
+<LI><I>condor_dagman</I> no longer considers duplicate edges in a DAG a
+fatal error (it is now a warning).
+
+<P>
+</LI>
+</UL>
+
+<P>
+Known Bugs:
+
+<P>
+
+<UL>
+<LI>No hook is invoked if a fetched job does not contain enough data
+  to be spawned by a <I>condor_starter</I> or if other errors prevent the
+  job from being run after the <I>condor_startd</I> agrees to accept the
+  work.
+  This limitation will be addressed in a future version of Condor,
+  most likely via the addition of a new hook invoked whenever the
+  <I>condor_starter</I> fails to spawn a job.
+  For more information about the new hook system included in Condor
+  version 7.1.0, read section&nbsp;<A HREF="4_4Job_Hooks.html#sec:job-hooks">4.4</A> on
+  page&nbsp;<A HREF="4_4Job_Hooks.html#sec:job-hooks"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Additions and Changes to the Manual:
+
+<P>
+
+<UL>
+<LI>Added <TT>"WINNT60"</TT> for the Vista operating system to
+  the documented list of possible values for the machine ClassAd
+  attribute <TT>OpSys</TT>.
+
+<P>
+</LI>
+</UL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html2298"
+  HREF="8_7Stable_Release.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2292"
+  HREF="8_Version_History.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2286"
+  HREF="8_5Stable_Release.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2294"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2296"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2299"
+  HREF="8_7Stable_Release.html">8.7 Stable Release Series</A>
+<B> Up:</B> <A NAME="tex2html2293"
+  HREF="8_Version_History.html">8. Version History and</A>
+<B> Previous:</B> <A NAME="tex2html2287"
+  HREF="8_5Stable_Release.html">8.5 Stable Release Series</A>
+ &nbsp; <B>  <A NAME="tex2html2295"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2297"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

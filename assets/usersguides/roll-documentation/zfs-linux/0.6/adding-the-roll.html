@@ -1,0 +1,331 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Getting the Roll</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE=" zfs-linux Roll: Users Guide "
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Installing the zfs-linux Roll"
+HREF="installing.html"><LINK
+REL="PREVIOUS"
+TITLE="Installing the zfs-linux Roll"
+HREF="installing.html"><LINK
+REL="NEXT"
+TITLE="Updating the zfs-linux Roll"
+HREF="updating.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>zfs-linux Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/zfs-linux.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="installing.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 1. Installing the zfs-linux Roll</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="updating.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="ADDING-THE-ROLL"
+>1.1. Getting the Roll</A
+></H1
+><P
+>The zfs-linux roll is supplies ZFS in source form <EM
+>ONLY</EM
+>.
+This is to comply with the licensing of ZFS that does not allow binary redistribution.
+This means that ZFS must be built on your frontend and the binaries added to your 
+<EM
+>local cluster</EM
+> distribution.    </P
+><P
+>This edition of the zfs-linux roll requires you to manually build and add the binary version 
+of the roll.</P
+><DIV
+CLASS="WARNING"
+><P
+></P
+><TABLE
+CLASS="WARNING"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/warning.png"
+HSPACE="5"
+ALT="Warning"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>The roll follows the process at http://zfsonlinux.org to build rpms.  This has the effect of 
+installing zfs kernel modules on your frontend. If you do not want this, then you should
+build on a development server appliance.</P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>If you choose the zfs-linux roll from a Rocks central server, you the source form of the roll will be installed for you.
+You must then go to the directory  <SAMP
+CLASS="COMPUTEROUTPUT"
+>/opt/zfs/zfs-linux-roll-source</SAMP
+> and build the binary version
+of the roll. The files in that directory are contained in the called <SAMP
+CLASS="COMPUTEROUTPUT"
+>zfs-linux-roll-source-0.6.0-rc12.x86_64.rpm</SAMP
+>. This source can be installed on a Rocks Development Server. To make the <EM
+> binary </EM
+> version of the roll
+<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># cd /opt/zfs/zfs-linux-roll-source
+# make binary-roll</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><P
+>If your roll rebuild completed properly, you should see output similar to the following indicating the
+binary packages that have been built and are part of your local binary roll
+<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>roll-zfs-linux-kickstart-0.6.0-0: 9f3dc5cfb37c5025924222c0707b46b2
+roll-zfs-linux-usersguide-0.6-0: 05c6edbdbcf46cc1395d9e296ab427b3
+spl-0.6.0-rc12: fb8230830b0524e0e8fe2328b2894df0
+spl-modules-0.6.0-rc12.6.32_220.13.1.el6: 79a11d04f63b899d8b5dd1b1c5996aae
+spl-modules-devel-0.6.0-rc12_2.6.32_220.13.1.el6: b42975737edb986f65635480f1ada7fe
+zfs-0.6.0-rc12: 9c10037dacc5595fbdcaf527181ac878
+zfs-devel-0.6.0-rc12: 073ab7f991089b46a160867c9645ad68
+zfs-dracut-0.6.0-rc8: b8e0ad3d479ab1f85ffbadfc9cf24062
+zfs-modules-0.6.0-rc12.6.32_220.13.1.el6: 287f75756a6aa92f8688de4b80d6c183
+zfs-modules-devel-0.6.0-rc12.6.32_220.13.1.el6: 5e17ca87a58e06f63bbeb6ed46b834d3
+zfs-source-roll-0.6.0-1: 5c9de1926da9c9cd53293a7d5b60acd8
+zfs-source-modules-0.6.0-1: 13995fa53ffd2f7d12e7cd9f77336a93
+zfs-test-0.6.0-rc12: eff799a298b011bf49bf73359a4cc54e</PRE
+></FONT
+></TD
+></TR
+></TABLE
+>&#13;</P
+><P
+>If you build on a development server, you must first copy the created iso image to the frontend.
+Once you have the iso image (in the directory where you made the binary roll on the frontend or copied
+to the frontend from a development server, you need to add the roll and rebuild the distribution.
+<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks add roll zfs-linux*iso
+# rocks enable roll zfs-linux
+# pushd /export/rocks/install
+# rocks create distro
+# popd</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><P
+>At this point, any <EM
+>client</EM
+> nodes can be reinstalled with
+ZFS support. You can enable ZFS on your frontend by "running" the roll on the frontend  
+<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks run roll zfs-linux | sh</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ENABLING-ZFS-ON-NODE"
+>1.1.1. Enabling ZFS Support on nodes/appliances</A
+></H2
+><P
+>Any node or appliance can have ZFS support added to it. Whether or not ZFS is installed on a node is controlled
+by an attribute called <SAMP
+CLASS="COMPUTEROUTPUT"
+>zfs</SAMP
+>. The attribute should be set to true, if ZFS support is
+desired for the node.</P
+><P
+>Example: to enable ZFS on all NAS appliances, do the following
+<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks add appliance attr nas attr=zfs value=true </PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="installing.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="updating.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Installing the zfs-linux Roll</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="installing.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Updating the zfs-linux Roll</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

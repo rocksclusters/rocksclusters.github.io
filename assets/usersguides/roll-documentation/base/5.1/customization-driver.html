@@ -1,0 +1,505 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+> Adding a Device Driver </TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Roll: Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE=" Customizing your Rocks Installation "
+HREF="customization.html"><LINK
+REL="PREVIOUS"
+TITLE=" Adding a New Appliance Type to the Cluster "
+HREF="customization-adding-appliance.html"><LINK
+REL="NEXT"
+TITLE=" Extending DNS "
+HREF="dns.local.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Base Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="customization-adding-appliance.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 4. Customizing your Rocks Installation</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="dns.local.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="CUSTOMIZATION-DRIVER"
+>4.9. Adding a Device Driver</A
+></H1
+><P
+>This section describes how to add a device driver to the installation
+environment (<EM
+>initrd.img</EM
+>).
+This enables the installation environment to use the new driver as well
+as installing the device driver into the running environment (that is,
+after the node has installed).</P
+><P
+>This feature is enabled by 
+<A
+HREF="http://dup.et.redhat.com/ddiskit/"
+TARGET="_top"
+>ddiskit</A
+>
+which is maintained by Jon Masters at Red Hat.</P
+><P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>Set up a build environment:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># cd /export
+# hg clone http://fyp.rocksclusters.org/hg/rocks-5.1</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>Go to the directory which holds the device driver code:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># cd /export/rocks-5.1/rocks/src/roll/kernel/src/rocks-boot/enterprise/5/images/drivers</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>In this directory, you'll see some example drivers.
+Let's look at the <EM
+>e1000</EM
+> driver:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># cd e1000</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>If you want to supply a new version of the driver, you'll have to download
+the e1000 source tarball and copy the *.c and *.h files from the tarball
+to this directory.
+Make sure all the *.c and *.h files are listed at the top of the 
+<EM
+>Makefile</EM
+>:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>MODULES := e1000
+
+SOURCES := e1000_main.c e1000_hw.c e1000_ethtool.c e1000_param.c
+
+HEADERS := e1000.h e1000_hw.h e1000_osdep.h</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>You'll need to make sure the proper PCI ids are in the file
+<EM
+>pcitable</EM
+>.
+For example, to test on one of our Dell SC1425's, we added the line:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>0x8086  0x1076  "e1000" "Intel|82541GI/PI Gigabit Ethernet Controller (rev 05)"</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>Now we'll need to specify to the device driver building code that the
+e1000 driver should be built.
+To do this, edit the file 
+<EM
+>subdirs</EM
+>:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># cd ..
+# vi subdirs</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>Change the section from:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>#
+# put a list of all the driver directories that you'd like to build.
+#
+# for example, to build the 'e1000' driver, uncomment the line below:
+#e1000</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>to:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>#
+# put a list of all the driver directories that you'd like to build.
+#
+# for example, to build the 'e1000' driver, uncomment the line below:
+e1000</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>Build the <EM
+>rocks-boot</EM
+> package:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># cd /export/rocks-5.1/rocks/src/roll/kernel/src/rocks-boot
+# make rpm</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>When this completes, copy the binary RPMs into a directory where the
+distribution building utility (<EM
+>rocks-dist</EM
+>) will find
+and include them:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># cp /export/rocks-5.1/rocks/src/roll/kernel/RPMS/x86_64/rocks-boot* \
+	/export/rocks/install/contrib/5.1/x86_64/RPMS/</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="90%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/note.png"
+HSPACE="5"
+ALT="Note"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>If you are building on an i386 system, change the above x86_64 references 
+to i386.</P
+></TD
+></TR
+></TABLE
+></DIV
+></LI
+><LI
+><P
+>Rebuild the distro:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># cd /export/rocks/install
+# rocks create distro</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>Install the newly created <EM
+>initrd.img</EM
+> and its matching
+kernel <EM
+>vmlinuz</EM
+> so PXE booted nodes will get the new
+device drivers:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># cd /export/rocks/install
+# rpm -Uvh --force rocks-dist/x86_64/RedHat/RPMS/rocks-boot-5*.rpm
+# cp /boot/kickstart/default/initrd.img /tftpboot/pxelinux/
+# cp /boot/kickstart/default/vmlinuz /tftpboot/pxelinux/</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>Now PXE boot a node.
+This node will load your new driver and will install this driver into the
+running environment.</P
+></LI
+></OL
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="CUSTOMIZATION-DRIVER-NEW"
+>4.9.1. Adding a New Device Driver (That Isn't One of the Example Drivers)</A
+></H2
+><P
+>If the name of your device driver you wish to add is not one of the example
+device drivers (e.g., ata_piix, cciss, e1000, sk98lin, or tg3), then
+you'll need to create a new directory and populate it with the appropriate
+files.</P
+><P
+>For help on how to populate your new driver directory, see:
+/export/rocks-5.1/rocks/src/roll/kernel/src/rocks-boot/enterprise/5/images/drivers/INSTALL.</P
+><P
+>The rest of the build process follows the same procedure as above starting
+at step 6 where you'll have to add the name of your new driver 
+to the file <EM
+>subdirs</EM
+>.</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="customization-adding-appliance.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="dns.local.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Adding a New Appliance Type to the Cluster</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="customization.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Extending DNS</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

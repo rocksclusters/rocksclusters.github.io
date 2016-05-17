@@ -1,0 +1,1939 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>2.5 Submitting a Job</TITLE>
+<META NAME="description" CONTENT="2.5 Submitting a Job">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="2_6Managing_Job.html">
+<LINK REL="previous" HREF="2_4Road_map_Running.html">
+<LINK REL="up" HREF="2_Users_Manual.html">
+<LINK REL="next" HREF="2_6Managing_Job.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html943"
+  HREF="2_6Managing_Job.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html937"
+  HREF="2_Users_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html931"
+  HREF="2_4Road_map_Running.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html939"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html941"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html944"
+  HREF="2_6Managing_Job.html">2.6 Managing a Job</A>
+<B> Up:</B> <A NAME="tex2html938"
+  HREF="2_Users_Manual.html">2. Users' Manual</A>
+<B> Previous:</B> <A NAME="tex2html932"
+  HREF="2_4Road_map_Running.html">2.4 Road-map for Running</A>
+ &nbsp; <B>  <A NAME="tex2html940"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html942"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html945"
+  HREF="2_5Submitting_Job.html#SECTION00351000000000000000">2.5.1 Sample submit description files</A>
+<UL>
+<LI><A NAME="tex2html946"
+  HREF="2_5Submitting_Job.html#SECTION00351100000000000000">2.5.1.1 Example 1</A>
+<LI><A NAME="tex2html947"
+  HREF="2_5Submitting_Job.html#SECTION00351200000000000000">2.5.1.2 Example 2</A>
+<LI><A NAME="tex2html948"
+  HREF="2_5Submitting_Job.html#SECTION00351300000000000000">2.5.1.3 Example 3</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html949"
+  HREF="2_5Submitting_Job.html#SECTION00352000000000000000">2.5.2 About Requirements and Rank</A>
+<UL>
+<LI><A NAME="tex2html950"
+  HREF="2_5Submitting_Job.html#SECTION00352100000000000000">2.5.2.1 Rank Expression Examples</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html951"
+  HREF="2_5Submitting_Job.html#SECTION00353000000000000000">2.5.3 Submitting Jobs Using a Shared File System</A>
+<LI><A NAME="tex2html952"
+  HREF="2_5Submitting_Job.html#SECTION00354000000000000000">2.5.4 Submitting Jobs Without a Shared File System:
+Condor's File Transfer Mechanism</A>
+<UL>
+<LI><A NAME="tex2html953"
+  HREF="2_5Submitting_Job.html#SECTION00354100000000000000">2.5.4.1 Specifying If and When to Transfer Files
+</A>
+<LI><A NAME="tex2html954"
+  HREF="2_5Submitting_Job.html#SECTION00354200000000000000">2.5.4.2 Specifying What Files to Transfer</A>
+<LI><A NAME="tex2html955"
+  HREF="2_5Submitting_Job.html#SECTION00354300000000000000">2.5.4.3 File Paths for File Transfer</A>
+<LI><A NAME="tex2html956"
+  HREF="2_5Submitting_Job.html#SECTION00354400000000000000">2.5.4.4 Behavior for Error Cases</A>
+<LI><A NAME="tex2html957"
+  HREF="2_5Submitting_Job.html#SECTION00354500000000000000">2.5.4.5 File Transfer Using a URL </A>
+<LI><A NAME="tex2html958"
+  HREF="2_5Submitting_Job.html#SECTION00354600000000000000">2.5.4.6 Requirements and Rank for File Transfer</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html959"
+  HREF="2_5Submitting_Job.html#SECTION00355000000000000000">2.5.5 Environment Variables</A>
+<LI><A NAME="tex2html960"
+  HREF="2_5Submitting_Job.html#SECTION00356000000000000000">2.5.6 Heterogeneous Submit: Execution on Differing Architectures</A>
+<UL>
+<LI><A NAME="tex2html961"
+  HREF="2_5Submitting_Job.html#SECTION00356100000000000000">2.5.6.1 Vanilla Universe Example for Execution on Differing Architectures</A>
+<LI><A NAME="tex2html962"
+  HREF="2_5Submitting_Job.html#SECTION00356200000000000000">2.5.6.2 Standard Universe Example for Execution on Differing Architectures</A>
+<LI><A NAME="tex2html963"
+  HREF="2_5Submitting_Job.html#SECTION00356300000000000000">2.5.6.3 Vanilla Universe Example for Execution on Differing Operating Systems</A>
+</UL></UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00350000000000000000">
+2.5 Submitting a Job</A>
+</H1>
+
+<P>
+<A NAME="1915"></A>
+A job is submitted for execution to Condor using the
+<I>condor_submit</I> command.
+<A NAME="1917"></A>
+<I>condor_submit</I> takes as an argument the name of a
+file called a submit description file.
+<A NAME="1919"></A>
+<A NAME="1920"></A>
+This file contains commands and keywords to direct the queuing of jobs.
+In the submit description file, Condor finds everything it needs
+to know about the job.  Items such as the name of the executable to run,
+the initial working directory, and command-line arguments to the
+program all go into
+the submit description file.  <I>condor_submit</I> creates a job
+ClassAd based upon the information,
+and Condor
+works toward running the job.
+
+<P>
+The contents of a submit file
+<A NAME="1922"></A>
+can save time for Condor users.
+It is easy to submit multiple runs of a program to
+Condor. To run the same program 500 times on 500
+different input data sets, arrange your data files
+accordingly so that each run reads its own input, and each run
+writes its own output.
+Each individual run may have its own initial
+working directory, stdin, stdout, stderr, command-line arguments, and
+shell environment.
+A program that directly opens its own
+files will read the file names to use either from stdin
+or from the command line. 
+A program that opens a static filename every time
+will need to use a separate subdirectory for the output of each run.
+
+<P>
+The <I>condor_submit</I> manual page 
+is on page&nbsp;<A HREF="condor_submit.html#man-condor-submit"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> and
+contains a complete and full description of how to use <I>condor_submit</I>.
+It also includes descriptions of all the commands that may be placed
+into a submit description file.
+In addition, the index lists entries for each command under the
+heading of Submit Commands.
+
+<P>
+
+<H2><A NAME="SECTION00351000000000000000"></A><A NAME="sec:sample-submit-files"></A>
+<BR>
+2.5.1 Sample submit description files
+</H2>  
+
+<P>
+In addition to the examples of submit description files given
+in the 
+<I>condor_submit</I> manual page, here are a few more.
+<A NAME="1928"></A>
+
+<P>
+
+<H3><A NAME="SECTION00351100000000000000">
+2.5.1.1 Example 1</A>
+</H3> 
+
+<P>
+Example 1 is one of the simplest submit description
+files possible. It queues up one copy of the program <I>foo</I>
+(which had been created by <I>condor_compile</I>)
+for execution by Condor.
+Since no platform is specified, Condor will use its default,
+which is to run the job on a machine which has the
+same architecture and operating system as the machine from which it was
+submitted. 
+No 
+<TT>input</TT>,
+<TT>output</TT>, and
+<TT>error</TT>
+commands are given in the submit
+description file, so the
+files <TT>stdin</TT>, <TT>stdout</TT>, and <TT>stderr</TT> will all refer to 
+<TT>/dev/null</TT>.
+The program may produce output by explicitly opening a file and writing to
+it.
+A log file, <TT>foo.log</TT>, will also be produced that contains events
+the job had during its lifetime inside of Condor.
+When the job finishes, its exit conditions will be noted in the log file.
+It is recommended that you always have a log file so you know what
+happened to your jobs.
+<PRE>
+  ####################                                                    
+  # 
+  # Example 1                                                            
+  # Simple condor job description file                                    
+  #                                                                       
+  ####################                                                    
+                                                                          
+  Executable   = foo                                                    
+  Universe     = standard                                                    
+  Log          = foo.log                                                    
+  Queue
+</PRE>
+
+<P>
+
+<H3><A NAME="SECTION00351200000000000000">
+2.5.1.2 Example 2</A>
+</H3>
+
+<P>
+Example 2 queues two copies of the program <I>mathematica</I>. The
+first copy will run in directory <TT>run_1</TT>, and the second will run in
+directory <TT>run_2</TT>. For both queued copies, 
+<TT>stdin</TT> will be <TT>test.data</TT>,
+<TT>stdout</TT> will be <TT>loop.out</TT>, and
+<TT>stderr</TT> will be <TT>loop.error</TT>.
+There will be two sets of files written,
+as the files are each written to their own directories.
+This is a convenient way to organize data if you
+have a large group of Condor jobs to run. The example file 
+shows program submission of
+<I>mathematica</I> as a vanilla universe job.
+This may be necessary if the source
+and/or object code to <I>mathematica</I> is not available.
+
+<P>
+The <B>request_memory</B> command is included to insure
+that the <I>mathematica</I> jobs match with and then execute on
+pool machines that provide at least 1 GByte of memory.
+
+<P>
+<PRE>
+  ####################     
+  #                       
+  # Example 2: demonstrate use of multiple     
+  # directories for data organization.      
+  #                                        
+  ####################                    
+                                         
+  executable     = mathematica          
+  universe       = vanilla                   
+  input          = test.data                
+  output         = loop.out                
+  error          = loop.error             
+  log            = loop.log                                                    
+  request_memory = 1 GB
+                                  
+  initialdir     = run_1         
+  queue                         
+                               
+  initialdir     = run_2      
+  queue
+</PRE>
+
+<P>
+
+<H3><A NAME="SECTION00351300000000000000">
+2.5.1.3 Example 3</A>
+</H3>
+
+<P>
+The submit description file for Example 3 queues 150
+<A NAME="1959"></A>
+runs of program <I>foo</I> which has been compiled and linked for
+LINUX running on a 32-bit Intel processor.
+This job requires Condor to run the program on machines which have
+greater than 32 Mbytes of physical memory, and expresses a
+preference to run the program on machines with more than 64 Mbytes.
+It also advises Condor that this standard universe job will
+use up to 28000 Kbytes of memory when running.
+Each of the 150 runs of the program is given its own process number,
+starting with process number 0.
+So, files 
+<TT>stdin</TT>, <TT>stdout</TT>, and <TT>stderr</TT> will
+refer to <TT>in.0</TT>, <TT>out.0</TT>, and <TT>err.0</TT> for the first run
+of the program,
+<TT>in.1</TT>, <TT>out.1</TT>,
+and <TT>err.1</TT> for the second run of the program, and so forth.
+A log file containing entries
+about when and where Condor runs, checkpoints, and migrates processes for
+all the 150 queued programs
+will be written into the single file <TT>foo.log</TT>.
+<PRE>
+  ####################                    
+  #
+  # Example 3: Show off some fancy features including
+  # use of pre-defined macros and logging.
+  #
+  ####################                                                    
+
+  Executable     = foo                                                    
+  Universe       = standard                                                    
+  requirements   = OpSys == "LINUX" &amp;&amp; Arch =="INTEL"     
+  rank           = Memory &gt;= 64
+  image_size     = 28000
+  request_memory = 32
+
+  error   = err.$(Process)                                                
+  input   = in.$(Process)                                                 
+  output  = out.$(Process)                                                
+  log     = foo.log
+
+  queue 150
+</PRE>
+
+<P>
+<A NAME="1973"></A>
+
+<P>
+
+<H2><A NAME="SECTION00352000000000000000"></A><A NAME="sec:user-man-req-and-rank"></A>
+<BR>
+2.5.2 About Requirements and Rank
+</H2>
+
+<P>
+The 
+<TT>requirements</TT> and <TT>rank</TT> commands in the submit description file
+are powerful and flexible. 
+<A NAME="1977"></A>
+<A NAME="1978"></A>
+<A NAME="1979"></A>
+<A NAME="1980"></A>
+<A NAME="1981"></A>
+Using them effectively requires care, and this section presents
+those details.
+
+<P>
+Both <TT>requirements</TT> and <TT>rank</TT> need to be specified 
+as valid Condor ClassAd expressions, however, default values are set by the
+<I>condor_submit</I> program if these are not defined in the submit description file.
+From the <I>condor_submit</I> manual page and the above examples, you see
+that writing ClassAd expressions is intuitive, especially if you
+are familiar with the programming language C.  There are some
+pretty nifty expressions you can write with ClassAds.
+A complete description of ClassAds and their expressions
+can be found in section&nbsp;<A HREF="4_1Condor_s_ClassAd.html#sec:classad-reference">4.1</A> on 
+page&nbsp;<A HREF="4_1Condor_s_ClassAd.html#sec:classad-reference"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+All of the commands in the submit description file are case insensitive, 
+<I>except</I> for the ClassAd attribute string values.
+ClassAd attribute names are
+case insensitive, but ClassAd string
+values are <I>case preserving</I>.
+
+<P>
+Note that the comparison operators
+(<code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>, and <code>==</code>)
+compare strings
+case insensitively.  The special comparison operators 
+<code>=?=</code> and <code>=!=</code>
+compare strings case sensitively.
+
+<P>
+A  <B>requirements</B> or <B>rank</B> command in
+the submit description file may utilize attributes
+that appear in a machine or a job ClassAd.
+Within the submit description file (for a job) the
+prefix <code>MY.</code> (on a ClassAd attribute name)
+causes a reference to the job ClassAd attribute,
+and the prefix <code>TARGET.</code> causes a reference to 
+a potential machine or matched machine ClassAd attribute.
+
+<P>
+The <I>condor_status</I> command displays
+<A NAME="1993"></A>
+statistics about machines within the pool.
+The <B>-l</B> option displays the
+machine ClassAd attributes for all machines in the Condor pool.
+The job ClassAds, if there are jobs in the queue, can be seen
+with the <I>condor_q -l</I> command.
+This shows all the defined attributes for current jobs in the queue.
+
+<P>
+A list of defined ClassAd attributes for job ClassAds
+is given in the unnumbered Appendix on 
+page&nbsp;<A HREF="11_Appendix_A.html#sec:Job-ClassAd-Attributes"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+A list of defined ClassAd attributes for machine ClassAds
+is given in the unnumbered Appendix on 
+page&nbsp;<A HREF="11_Appendix_A.html#sec:Machine-ClassAd-Attributes"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+
+<H3><A NAME="SECTION00352100000000000000"></A><A NAME="rank-examples"></A>
+<BR>
+2.5.2.1 Rank Expression Examples
+</H3>
+
+<P>
+<A NAME="1999"></A>
+<A NAME="2000"></A>
+<A NAME="2001"></A>
+When considering the match between a job and a machine, rank is used
+to choose a match from among all machines that satisfy the job's
+requirements and are available to the user, after accounting for
+the user's priority and the machine's rank of the job.
+The rank expressions, simple or complex, define a numerical value
+that expresses preferences.
+
+<P>
+The job's <TT>Rank</TT> expression evaluates to one of three values.
+It can be UNDEFINED, ERROR, or a floating point value.
+If <TT>Rank</TT> evaluates to a floating point value,
+the best match will be the one with the largest, positive value.
+If no <TT>Rank</TT> is given 
+in the submit description file,
+then Condor substitutes a default value of 0.0 when considering
+machines to match.
+If the job's <TT>Rank</TT> of a given machine evaluates
+to UNDEFINED or ERROR,
+this same value of 0.0 is used.
+Therefore, the machine is still considered for a match,
+but has no ranking above any other.
+
+<P>
+A boolean expression evaluates to the numerical value of 1.0
+if true, and 0.0 if false.
+
+<P>
+The following <TT>Rank</TT> expressions provide examples to
+follow.
+
+<P>
+For a job that desires the machine with the most available memory:
+<PRE>
+   Rank = memory
+</PRE>
+
+<P>
+For a job that prefers to run on a friend's machine
+on Saturdays and Sundays:
+<PRE>
+   Rank = ( (clockday == 0) || (clockday == 6) )
+          &amp;&amp; (machine == "friend.cs.wisc.edu")
+</PRE>
+
+<P>
+For a job that prefers to run on one of three specific machines:
+<PRE>
+   Rank = (machine == "friend1.cs.wisc.edu") ||
+          (machine == "friend2.cs.wisc.edu") ||
+          (machine == "friend3.cs.wisc.edu")
+</PRE>
+
+<P>
+For a job that wants the machine with the best floating point
+performance (on Linpack benchmarks):
+<PRE>
+   Rank = kflops
+</PRE>
+This particular example highlights a difficulty with <TT>Rank</TT> expression
+evaluation as currently defined.
+While all machines have floating point processing ability,
+not all machines will have the <TT>kflops</TT> attribute defined.
+For machines where this attribute is not defined,
+<TT>Rank</TT> will evaluate to the value UNDEFINED, and
+Condor will use a default rank of the machine of 0.0.
+The <TT>Rank</TT> attribute will only rank machines where
+the attribute is defined.
+Therefore, the machine with the highest floating point
+performance may not be the one given the highest rank.
+
+<P>
+So, it is wise when writing a <TT>Rank</TT> expression to check
+if the expression's evaluation will lead to the expected
+resulting ranking of machines.
+This can be accomplished using the <I>condor_status</I> command with the
+<I>-constraint</I> argument.  This allows the user to see a list of
+machines that fit a constraint.
+To see which machines in the pool have <TT>kflops</TT> defined,
+use
+<PRE>
+condor_status -constraint kflops
+</PRE>
+Alternatively, to see a list of machines where 
+<TT>kflops</TT> is not defined, use
+<PRE>
+condor_status -constraint "kflops=?=undefined"
+</PRE>
+
+<P>
+For a job that prefers specific machines in a specific order:
+<PRE>
+   Rank = ((machine == "friend1.cs.wisc.edu")*3) +
+          ((machine == "friend2.cs.wisc.edu")*2) +
+           (machine == "friend3.cs.wisc.edu")
+</PRE>
+If the machine being ranked is <TT>friend1.cs.wisc.edu</TT>, then the
+expression
+<PRE>
+   (machine == "friend1.cs.wisc.edu")
+</PRE>
+is true, and gives the value 1.0.
+The expressions
+<PRE>
+   (machine == "friend2.cs.wisc.edu")
+</PRE>
+and
+<PRE>
+   (machine == "friend3.cs.wisc.edu")
+</PRE>
+are false, and give the value 0.0.
+Therefore, <TT>Rank</TT> evaluates to the value 3.0.
+In this way, machine <TT>friend1.cs.wisc.edu</TT> is ranked higher than
+machine <TT>friend2.cs.wisc.edu</TT>,
+machine <TT>friend2.cs.wisc.edu</TT>
+is ranked higher than 
+machine <TT>friend3.cs.wisc.edu</TT>,
+and all three of these machines are ranked higher than others.
+
+<P>
+
+<P>
+
+<H2><A NAME="SECTION00353000000000000000"></A><A NAME="sec:shared-fs"></A> 
+<A NAME="2296"></A>
+<A NAME="2297"></A>
+<BR>
+2.5.3 Submitting Jobs Using a Shared File System
+</H2>
+
+<P>
+If vanilla, java, or parallel universe
+jobs are submitted without using the File Transfer mechanism, 
+Condor must use a shared file system to access input and output
+files. 
+In this case, the job <I>must</I> be able to access the data files
+from any machine on which it could potentially run.
+
+<P>
+As an example, suppose a job is submitted from blackbird.cs.wisc.edu,
+and the job requires a particular data file called
+<TT>/u/p/s/psilord/data.txt</TT>.  If the job were to run on
+cardinal.cs.wisc.edu, the file <TT>/u/p/s/psilord/data.txt</TT> must be
+available through either NFS or AFS for the job to run correctly.
+
+<P>
+Condor allows users to ensure their jobs have access to the right
+shared files by using the <TT>FileSystemDomain</TT> and
+<TT>UidDomain</TT> machine ClassAd attributes.
+These attributes specify which machines have access to the same shared
+file systems.
+All machines that mount the same shared directories in the same
+locations are considered to belong to the same file system domain.
+Similarly, all machines that share the same user information (in
+particular, the same UID, which is important for file systems like
+NFS) are considered part of the same UID domain.
+
+<P>
+The default configuration for Condor places each machine
+in its own UID domain and file system domain, using the full host name of the
+machine as the name of the domains.
+So, if a pool <I>does</I> have access to a shared file system,
+the pool administrator <I>must</I> correctly configure Condor 
+such that all
+the machines mounting the same files have the same
+<TT>FileSystemDomain</TT> configuration.
+Similarly, all machines that share common user information must be
+configured to have the same <TT>UidDomain</TT> configuration.
+
+<P>
+When a job relies on a shared file system,
+Condor uses the
+<TT>requirements</TT> expression to ensure that the job runs
+on a machine in the
+correct <TT>UidDomain</TT> and <TT>FileSystemDomain</TT>.
+In this case, the default <TT>requirements</TT> expression specifies
+that the job must run on a machine with the same <TT>UidDomain</TT>
+and <TT>FileSystemDomain</TT> as the machine from which the job
+is submitted.
+This default is almost always correct.
+However, in a pool spanning multiple <TT>UidDomain</TT>s and/or
+<TT>FileSystemDomain</TT>s, the user may need to specify a different
+<TT>requirements</TT> expression to have the job run on the correct
+machines.
+
+<P>
+For example, imagine a pool made up of both desktop workstations and a
+dedicated compute cluster.
+Most of the pool, including the compute cluster, has access to a
+shared file system, but some of the desktop machines do not.
+In this case, the administrators would probably define the
+<TT>FileSystemDomain</TT> to be <TT>cs.wisc.edu</TT> for all the machines
+that mounted the shared files, and to the full host name for each
+machine that did not. An example is <TT>jimi.cs.wisc.edu</TT>.
+
+<P>
+In this example,
+a user wants to submit vanilla universe jobs from her own desktop
+machine (jimi.cs.wisc.edu) which does not mount the shared file system
+(and is therefore in its own file system domain, in its own world).
+But, she wants the jobs to be able to run on more than just her own
+machine (in particular, the compute cluster), so she puts the program
+and input files onto the shared file system.
+When she submits the jobs, she needs to tell Condor to send them to
+machines that have access to that shared data, so she specifies a
+different <TT>requirements</TT> expression than the default:
+<PRE>
+   Requirements = TARGET.UidDomain == "cs.wisc.edu" &amp;&amp; \
+                  TARGET.FileSystemDomain == "cs.wisc.edu"
+</PRE>
+
+<P>
+<U>WARNING</U>: If there is <I>no</I> shared file system, or the Condor pool
+administrator does not configure the <TT>FileSystemDomain</TT>
+setting correctly (the default is that each machine in a pool is in
+its own file system and UID domain), a user submits a job that cannot
+use remote system calls (for example, a vanilla universe job), and the
+user does not enable Condor's File Transfer mechanism, the job will
+<I>only</I> run on the machine from which it was submitted.
+
+<P>
+
+<H2><A NAME="SECTION00354000000000000000"></A><A NAME="sec:file-transfer"></A>
+<BR>
+2.5.4 Submitting Jobs Without a Shared File System:
+Condor's File Transfer Mechanism
+</H2> 
+
+<P>
+<A NAME="2326"></A>
+<A NAME="2327"></A>
+<A NAME="2328"></A>
+<A NAME="2329"></A>
+
+<P>
+Condor works well without a shared file system.
+The Condor file transfer mechanism permits the user to select which files are
+transferred and under which circumstances.
+Condor can transfer any files needed by a job from
+the machine where the job was submitted into a
+remote scratch directory on the machine where the
+job is to be executed.
+Condor executes the job
+and transfers output back to the submitting machine.
+The user specifies which files and directories to transfer,
+and at what point the output files should be copied back to the
+submitting machine.
+This specification is done within the job's submit description file.
+
+<P>
+
+<H3><A NAME="SECTION00354100000000000000"></A><A NAME="sec:file-transfer-if-when"></A>
+<BR>
+2.5.4.1 Specifying If and When to Transfer Files
+
+</H3>
+
+<P>
+To enable the file transfer mechanism, place two commands
+in the job's submit description file:
+<B>should_transfer_files</B> and <B>when_to_transfer_output</B>.
+<A NAME="2333"></A>
+<A NAME="2334"></A>
+By default, they will be:
+
+<P>
+<PRE>
+  should_transfer_files = IF_NEEDED
+  when_to_transfer_output = ON_EXIT
+</PRE>
+
+<P>
+Setting the <B>should_transfer_files</B> command explicitly
+enables or disables the file transfer mechanism.
+The command takes on one of three possible values:
+
+<OL>
+<LI><code>YES</code>: Condor transfers both the executable and the file
+defined by the <B>input</B> command from the machine where the job is
+submitted to the remote machine where the job is to be executed.
+The file defined by the <B>output</B> command as well as any files
+created by the execution of the job are transferred back to the machine
+where the job was submitted.
+When they are transferred and the directory location of the files
+is determined by the command <B>when_to_transfer_output</B>.
+
+<P>
+</LI>
+<LI><code>IF_NEEDED</code>: Condor transfers files if the job is
+matched with and to be executed on a machine in a
+different <TT>FileSystemDomain</TT> than the
+one the submit machine belongs to, the same as if 
+<code>should_transfer_files = YES</code>.
+If the job is matched with a machine in the local <TT>FileSystemDomain</TT>,
+Condor will not transfer files and relies
+on the shared file system.
+
+<P>
+</LI>
+<LI><code>NO</code>: Condor's file transfer mechanism is disabled. 
+
+<P>
+</LI>
+</OL>
+
+<P>
+The <B>when_to_transfer_output</B> command tells Condor when output
+files are to be transferred back to the submit machine.
+The command takes on one of two possible values:
+
+<P>
+
+<OL>
+<LI><code>ON_EXIT</code>: Condor transfers the file defined by the
+<B>output</B> command,
+ as well as any other files in the remote scratch directory created by the job,
+back to the submit machine only when the job exits on its own.
+
+<P>
+</LI>
+<LI><code>ON_EXIT_OR_EVICT</code>: Condor behaves the same as described
+for the value <code>ON_EXIT</code> when the job exits on its own.
+However, if, and each time the job is evicted from a machine,
+<I>files are transferred back at eviction time</I>.  The files that
+are transferred back at eviction time may include intermediate files
+that are not part of the final output of the job.  Before the job
+starts running again, all of the files that were stored when the job
+was last evicted are copied to the job's new remote scratch
+directory.
+
+<P>
+The purpose of saving files at eviction time is to allow the job to
+resume from where it left off.
+This is similar to using the checkpoint feature of the standard universe,
+but just specifying <code>ON_EXIT_OR_EVICT</code> is not enough to make a job 
+capable of producing or utilizing checkpoints.
+The job must be designed to save and restore its state
+using the files that are saved at eviction time.
+
+<P>
+The files that are transferred back at eviction time are not stored in
+the location where the job's final output will be written when the job exits.
+Condor manages these files automatically,
+so usually the only reason for a user to worry about them 
+is to make sure that there is enough space to store them.
+The files are stored on the submit machine in a temporary directory within the
+directory defined by the configuration variable <TT>SPOOL</TT>. 
+The directory is named using the <TT>ClusterId</TT> and <TT>ProcId</TT> job
+ClassAd attributes.  The directory name takes the form:
+<PRE>
+   &lt;X mod 10000&gt;/&lt;Y mod 10000&gt;/cluster&lt;X&gt;.proc&lt;Y&gt;.subproc0
+</PRE>
+where <code>&lt;X&gt;</code> is the value of <TT>ClusterId</TT>, and 
+<code>&lt;Y&gt;</code> is the value of <TT>ProcId</TT>. 
+As an example, if job 735.0 is evicted, it will produce the directory
+<PRE>
+   $(SPOOL)/735/0/cluster735.proc0.subproc0
+</PRE>
+
+<P>
+</LI>
+</OL>
+
+<P>
+The default values for these two submit commands make sense as
+used together.
+If only <B>should_transfer_files</B> is set, 
+and set to the value <TT>NO</TT>, 
+then the default value for an unspecified 
+<B>when_to_transfer_output</B> will be <TT>NEVER</TT>.
+Likewise,
+If only <B>when_to_transfer_output</B> is set,
+and set to the value <TT>ON_EXIT_OR_EVICT</TT>,
+then the default value for an unspecified
+<B>should_transfer_files</B> will be <TT>YES</TT>.
+
+<P>
+Note that the combination of
+<PRE>
+  should_transfer_files = IF_NEEDED
+  when_to_transfer_output = ON_EXIT_OR_EVICT
+</PRE>
+would produce undefined file access semantics.
+Therefore, this combination is prohibited by <I>condor_submit</I>.
+
+<P>
+
+<H3><A NAME="SECTION00354200000000000000">
+2.5.4.2 Specifying What Files to Transfer</A>
+</H3>
+
+<P>
+If the file transfer mechanism is enabled,
+Condor will transfer the following files before the job
+is run on a remote machine.
+
+<OL>
+<LI>the executable, as defined with the <B>executable</B> command
+</LI>
+<LI>the input, as defined with the <B>input</B> command
+</LI>
+<LI>any jar files, for the <B>java</B> universe,
+  as defined with the <B>jar_files</B> command
+</LI>
+</OL>
+If the job requires other input files,
+the submit description file should utilize the
+<B>transfer_input_files</B> command.
+This comma-separated list specifies any other files or directories that Condor is to
+transfer to the remote scratch directory,
+to set up the execution environment for the job before it is run.
+These files are placed in the same directory as the job's executable.
+For example:
+
+<P>
+<PRE>
+  should_transfer_files = YES
+  when_to_transfer_output = ON_EXIT
+  transfer_input_files = file1,file2
+</PRE>
+This example explicitly enables the file transfer mechanism,
+and it transfers the executable, the file specified by the <B>input</B>
+command, any jar files specified by the <B>jar_files</B> command,
+and files <TT>file1</TT> and <TT>file2</TT>.
+
+<P>
+If the file transfer mechanism is enabled,
+Condor will transfer the following files from the execute machine
+back to the submit machine after the job exits.
+
+<OL>
+<LI>the output file, as defined with the <B>output</B> command
+</LI>
+<LI>the error file, as defined with the <B>error</B> command
+</LI>
+<LI>any files created by the job in the remote scratch directory;
+this only occurs for jobs other than <B>grid</B>
+universe, and for Condor-C <B>grid</B> universe jobs;
+directories created by the job within the remote scratch directory
+are ignored for this automatic detection of files to be transferred.
+</LI>
+</OL>
+
+<P>
+A path given for <B>output</B> and <B>error</B> commands represents
+a path on the submit machine.  If no path is specified, the directory
+specified with <B>initialdir</B> is used, and if that is not specified,
+the directory from which the job was submitted is used.
+At the time the job is submitted, zero-length files are created
+on the submit machine, at the given path for the files defined by the  
+<B>output</B> and <B>error</B> commands.
+This permits job submission failure, if these files cannot be written by
+Condor.
+
+<P>
+To <I>restrict</I> the output files 
+or permit entire directory contents to be transferred,
+specify the exact list with  <B>transfer_output_files</B>.
+Delimit the list of file names, directory names, or paths with commas.
+When this list is defined, and any of the files or directories
+do not exist as the job exits,
+Condor considers this an error, and places the job on hold.
+When this list is defined, automatic detection of output files created by
+the job is disabled.
+Paths specified in this list refer to locations on the execute
+machine.  
+The naming and placement of files and directories relies on the
+term <I>base name</I>.  
+By example, the path <TT>a/b/c</TT> has the base name <TT>c</TT>.
+It is the file name or directory name with all directories
+leading up to that name stripped off.
+On the submit machine, the transferred files or directories
+are named using only the base name.
+Therefore, each output file or directory must have a different name,
+even if they originate from different paths.
+
+<P>
+For <B>grid</B> universe jobs other than than Condor-C grid jobs,
+files to be transferred 
+(other than standard output and standard error)
+must be specified using <B>transfer_output_files</B>
+in the submit description file, because automatic detection of new files
+created by the job does not take place.
+
+<P>
+Here are examples to promote understanding of what files and
+directories are transferred, and how they are named after transfer.
+Assume that the job produces the following structure within the
+remote scratch directory:
+<PRE>
+      o1
+      o2
+      d1 (directory)
+          o3
+          o4
+</PRE>
+
+<P>
+If the submit description file sets
+<PRE>
+   transfer_output_files = o1,o2,d1
+</PRE>
+then transferred back to the submit machine will be
+<PRE>
+      o1
+      o2
+      d1 (directory)
+          o3
+          o4
+</PRE>
+Note that the directory <TT>d1</TT> and all its contents are specified,
+and therefore transferred.  
+If the directory <TT>d1</TT> is not created by the job before exit,
+then the job is placed on hold. 
+If the directory <TT>d1</TT> is created by the job before exit,
+but is empty, this is not an error.
+
+<P>
+If, instead, the submit description file sets
+<PRE>
+   transfer_output_files = o1,o2,d1/o3
+</PRE>
+then transferred back to the submit machine will be
+<PRE>
+      o1
+      o2
+      o3
+</PRE>
+Note that only the base name is used in the naming and placement
+of the file specified with <TT>d1/o3</TT>.
+
+<P>
+
+<H3><A NAME="SECTION00354300000000000000">
+2.5.4.3 File Paths for File Transfer</A>
+</H3>
+
+<P>
+The file transfer mechanism specifies file names and/or paths on
+both the file system of the submit machine and on the
+file system of the execute machine.
+Care must be taken to know which machine, submit or execute,
+is utilizing the file name and/or path. 
+
+<P>
+Files in the <B>transfer_input_files</B> command
+are specified as they are accessed on the submit machine.
+The job, as it executes, accesses files as they are
+found on the execute machine.
+
+<P>
+There are three ways to specify files and paths
+for <B>transfer_input_files</B>:
+
+<OL>
+<LI>Relative to the current working directory as the job is submitted,
+if the submit command <B>initialdir</B> is not specified.
+</LI>
+<LI>Relative to the initial directory, if the submit command 
+<B>initialdir</B> is specified.
+</LI>
+<LI>Absolute.
+</LI>
+</OL>
+
+<P>
+Before executing the program, Condor copies the
+executable, an input file as specified
+by the submit command <B>input</B>,
+along with any input files specified 
+by <B>transfer_input_files</B>.
+All these files are placed into
+a remote scratch directory on the execute machine,
+in which the program runs.
+Therefore,
+the executing program must access input files relative to its
+working directory.
+Because all files and directories listed for transfer are placed into a single,
+flat directory,
+inputs must be uniquely named to
+avoid collision when transferred.
+A collision causes the last file in the list to
+overwrite the earlier one.
+
+<P>
+Both relative and absolute paths may be used in
+<B>transfer_output_files</B>.  Relative paths are relative to
+the job's remote scratch directory on the execute machine.
+When the files and directories are copied back to the submit machine, they
+are placed in the job's initial working directory as the base name of
+the original path.  An alternate name or path may be specified by using
+<B>transfer_output_remaps</B>.
+
+<P>
+A job may create files outside the remote scratch directory
+but within the file system of the execute machine,
+in a directory such as <TT>/tmp</TT>,
+if this directory is guaranteed to exist and be
+accessible on all possible execute machines.
+However,
+Condor will not automatically
+transfer such files back after execution completes, nor will it clean
+up these files.
+
+<P>
+Here are several examples to illustrate the use of file transfer.
+The program executable is called <I>my_program</I>,
+and it uses three command-line arguments as it executes: 
+two input file names and an output file name.
+The program executable and the submit description file 
+for this job are located in directory
+<TT>/scratch/test</TT>. 
+
+<P>
+Here is the directory tree as it exists on the submit machine,
+for all the examples:
+<PRE>
+/scratch/test (directory)
+      my_program.condor (the submit description file)
+      my_program (the executable)
+      files (directory)
+          logs2 (directory)
+          in1 (file)
+          in2 (file)
+      logs (directory)
+</PRE>
+
+<P>
+<DL>
+<DT><STRONG>Example 1</STRONG></DT>
+<DD><P>
+This first example explicitly transfers input files.
+These input files to be transferred
+are specified relative to the directory where the job is submitted.
+An output file specified in the <B>arguments</B> command, <TT>out1</TT>,
+is created when the job is executed.
+It will be transferred back into the directory <TT>/scratch/test</TT>.
+
+<P>
+<PRE>
+# file name:  my_program.condor
+# Condor submit description file for my_program
+Executable      = my_program
+Universe        = vanilla
+Error           = logs/err.$(cluster)
+Output          = logs/out.$(cluster)
+Log             = logs/log.$(cluster)
+
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+transfer_input_files = files/in1,files/in2
+
+Arguments       = in1 in2 out1
+Queue
+</PRE>
+<P>
+The log file is written on the submit machine, and is not involved
+with the file transfer mechanism.
+</DD>
+<DT><STRONG>Example 2</STRONG></DT>
+<DD><P>
+This second example is identical to Example 1,
+except that absolute paths to the input files are specified,
+instead of relative paths to the input files.
+
+<P>
+<PRE>
+# file name:  my_program.condor
+# Condor submit description file for my_program
+Executable      = my_program
+Universe        = vanilla
+Error           = logs/err.$(cluster)
+Output          = logs/out.$(cluster)
+Log             = logs/log.$(cluster)
+
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+transfer_input_files = /scratch/test/files/in1,/scratch/test/files/in2
+
+Arguments       = in1 in2 out1
+Queue
+</PRE>
+<P>
+</DD>
+<DT><STRONG>Example 3</STRONG></DT>
+<DD><P>
+This third example illustrates the use of the 
+submit command <B>initialdir</B>, and its effect
+on the paths used for the various files.
+The expected location of the 
+executable is not affected by the 
+<B>initialdir</B> command.
+All other files
+(specified by <B>input</B>, <B>output</B>, <B>error</B>,
+<B>transfer_input_files</B>,
+as well as files modified or created by the job
+and automatically transferred back)
+are located relative to the specified <B>initialdir</B>.
+Therefore, the output file, <TT>out1</TT>,
+will be placed in the <code>files</code> directory.
+Note that the <TT>logs2</TT> directory
+exists to make this example work correctly.
+
+<P>
+<PRE>
+# file name:  my_program.condor
+# Condor submit description file for my_program
+Executable      = my_program
+Universe        = vanilla
+Error           = logs2/err.$(cluster)
+Output          = logs2/out.$(cluster)
+Log             = logs2/log.$(cluster)
+
+initialdir      = files
+
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+transfer_input_files = in1,in2
+
+Arguments       = in1 in2 out1
+Queue
+</PRE>
+<P>
+</DD>
+<DT><STRONG>Example 4 - Illustrates an Error</STRONG></DT>
+<DD><P>
+This example illustrates a job that will fail.
+The files specified using the
+<B>transfer_input_files</B> command work
+correctly (see Example 1).
+However,
+relative paths to files in the
+<B>arguments</B> command
+cause the executing program to fail.
+The file system on the submission side may utilize
+relative paths to files,
+however those files are placed into the single,
+flat, remote scratch directory on the execute machine.
+
+<P>
+<PRE>
+# file name:  my_program.condor
+# Condor submit description file for my_program
+Executable      = my_program
+Universe        = vanilla
+Error           = logs/err.$(cluster)
+Output          = logs/out.$(cluster)
+Log             = logs/log.$(cluster)
+
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+transfer_input_files = files/in1,files/in2
+
+Arguments       = files/in1 files/in2 files/out1
+Queue
+</PRE>
+<P>
+This example fails with the following error:
+<PRE>
+err: files/out1: No such file or directory.
+</PRE>
+<P>
+</DD>
+<DT><STRONG>Example 5 - Illustrates an Error</STRONG></DT>
+<DD><P>
+As with Example 4,
+this example illustrates a job that will fail.
+The executing program's use of 
+absolute paths cannot work.
+
+<P>
+<PRE>
+# file name:  my_program.condor
+# Condor submit description file for my_program
+Executable      = my_program
+Universe        = vanilla
+Error           = logs/err.$(cluster)
+Output          = logs/out.$(cluster)
+Log             = logs/log.$(cluster)
+
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+transfer_input_files = /scratch/test/files/in1, /scratch/test/files/in2
+
+Arguments = /scratch/test/files/in1 /scratch/test/files/in2 /scratch/test/files/out1
+Queue
+</PRE>
+<P>
+The job fails with the following error:
+<PRE>
+err: /scratch/test/files/out1: No such file or directory.
+</PRE>
+<P>
+</DD>
+<DT><STRONG>Example 6</STRONG></DT>
+<DD><P>
+This example illustrates a case
+where the executing program creates an output file in a directory
+other than within the remote scratch directory that the 
+program executes within.
+The file creation may or may not cause an error,
+depending on the existence and permissions
+of the directories on the remote file system.
+
+<P>
+The output file <TT>/tmp/out1</TT> is transferred back to the job's
+initial working directory as <TT>/scratch/test/out1</TT>.
+
+<P>
+<PRE>
+# file name:  my_program.condor
+# Condor submit description file for my_program
+Executable      = my_program
+Universe        = vanilla
+Error           = logs/err.$(cluster)
+Output          = logs/out.$(cluster)
+Log             = logs/log.$(cluster)
+
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+transfer_input_files = files/in1,files/in2
+transfer_output_files = /tmp/out1
+
+Arguments       = in1 in2 /tmp/out1
+Queue
+</PRE>
+<P>
+</DD>
+</DL>
+
+<P>
+
+<H3><A NAME="SECTION00354400000000000000">
+2.5.4.4 Behavior for Error Cases</A>
+</H3>
+This section describes Condor's behavior for some error cases
+in dealing with the transfer of files.
+<DL>
+<DT><STRONG>Disk Full on Execute Machine</STRONG></DT>
+<DD>When transferring any files from the submit machine to the remote scratch
+  directory,
+  if the disk is full on the execute machine,
+  then the job is place on hold.
+</DD>
+<DT><STRONG>Error Creating Zero-Length Files on Submit Machine</STRONG></DT>
+<DD>As a job is submitted, Condor creates zero-length files as placeholders
+  on the submit machine for the files defined by 
+  <B>output</B> and <B>error</B>.
+  If these files cannot be created, then job submission fails.
+
+<P>
+This job submission failure avoids having the job run to completion,
+  only to be unable to transfer the job's output due to permission errors.
+</DD>
+<DT><STRONG>Error When Transferring Files from Execute Machine to Submit Machine</STRONG></DT>
+<DD>When a job exits, or potentially when a job is evicted from an execute
+  machine, one or more files may be transferred from the execute machine
+  back to the machine on which the job was submitted.
+
+<P>
+During transfer, if any of the following three similar types of errors occur,
+  the job is put on hold as the error occurs.
+  
+<OL>
+<LI>If the file cannot be opened on the submit machine, for example
+    because the system is out of inodes.
+</LI>
+<LI>If the file cannot be written on the submit machine, for example
+    because the permissions do not permit it.
+</LI>
+<LI>If the write of the file on the submit machine fails, for example
+    because the system is out of disk space.
+  
+</LI>
+</OL>
+</DD>
+</DL>
+
+<P>
+
+<H3><A NAME="SECTION00354500000000000000"></A><A NAME="sec:file-transfer-by-URL"></A>
+<A NAME="2474"></A>
+<A NAME="2475"></A>
+<A NAME="2476"></A>
+<BR>
+2.5.4.5 File Transfer Using a URL 
+</H3>
+
+<P>
+Instead of file transfer that goes only between the submit machine
+and the execute machine,
+Condor has the ability to transfer files from a location specified
+by a URL for a job's input file,
+or from the execute machine to a location specified by a URL
+for a job's output file(s).
+This capability requires administrative set up, 
+as described in section&nbsp;<A HREF="3_12Setting_Up.html#sec:URL-transfer">3.12.2</A>.
+
+<P>
+The transfer of an input file is restricted to
+vanilla and vm universe jobs only.
+Condor's file transfer mechanism must be enabled.
+Therefore, the submit description file for the job will define both
+<B>should_transfer_files</B> and <B>when_to_transfer_output</B>.
+In addition, the URL for any files specified with a URL are
+given in the <B>transfer_input_files</B> command.
+An example portion of the submit description file for a job
+that has a single file specified with a URL:
+
+<P>
+<PRE>
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+transfer_input_files = http://www.full.url/path/to/filename
+</PRE>
+<P>
+The destination file is given by the file name within the URL. 
+
+<P>
+For the transfer of the entire contents of the output sandbox,
+which are all files that the job creates or modifies,
+Condor's file transfer mechanism must be enabled.
+In this sample portion of the submit description file,
+the first two commands explicitly enable file transfer,
+and the added <B>output_destination</B> command provides
+both the protocol to be used and the destination of the transfer.
+<PRE>
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+output_destination = urltype://path/to/destination/directory
+</PRE>Note that with this feature, no files are transferred back to the 
+submit machine.  
+This does not interfere with the streaming of output. 
+
+<P>
+If only a subset of the output sandbox should be transferred,
+the subset is specified by further adding a submit command of the form:
+<PRE>
+transfer_output_files = file1, file2
+</PRE>
+<P>
+
+<H3><A NAME="SECTION00354600000000000000">
+2.5.4.6 Requirements and Rank for File Transfer</A>
+</H3>
+
+<P>
+<A NAME="2489"></A>
+The <TT>requirements</TT> expression for a job must depend
+on the <code>should_transfer_files</code> command.
+The job must specify the correct logic to ensure that the job is matched
+with a resource that meets the file transfer needs.
+If no <TT>requirements</TT> expression is in the submit description file,
+or if the expression specified does not refer to the
+attributes listed below, <I>condor_submit</I> adds an
+appropriate clause to the <TT>requirements</TT> expression for the job.
+<I>condor_submit</I> appends these clauses with a logical AND, <code>&amp;&amp;</code>,
+to ensure that the proper conditions are met.
+Here are the default clauses corresponding to the different values of
+<code>should_transfer_files</code>:
+
+<P>
+
+<OL>
+<LI><code>should_transfer_files = YES</code> results in the addition of
+the clause <code>(HasFileTransfer)</code>.
+  If the job is always going to transfer files, it is required to 
+  match with a machine that has the capability to transfer files.
+
+<P>
+</LI>
+<LI><code>should_transfer_files = NO</code> results in the addition of
+  <code>(TARGET.FileSystemDomain == MY.FileSystemDomain)</code>.
+  In addition, Condor automatically adds the
+  <TT>FileSystemDomain</TT> attribute to the job ClassAd, with whatever
+  string is defined for the <I>condor_schedd</I> to which the job is
+  submitted.
+  If the job is not using the file transfer mechanism, Condor assumes
+  it will need a shared file system, and therefore, a machine in the
+  same <TT>FileSystemDomain</TT> as the submit machine.
+
+<P>
+</LI>
+<LI><code>should_transfer_files = IF_NEEDED</code> results in the addition of
+<PRE>
+  (HasFileTransfer || (TARGET.FileSystemDomain == MY.FileSystemDomain))
+</PRE>  If Condor will optionally transfer files, it must require
+  that the machine is <I>either</I> capable of transferring files
+  <I>or</I> in the same file system domain.
+
+<P>
+</LI>
+</OL>
+
+<P>
+To ensure that the job is matched to a machine with enough local disk
+space to hold all the transferred files, Condor automatically adds the
+<TT>DiskUsage</TT> job attribute.
+This attribute includes the total
+size of the job's executable and all input files to be transferred.
+Condor then adds an additional clause to the <TT>Requirements</TT>
+expression that states that the remote machine must have at least
+enough available disk space to hold all these files:
+<PRE>
+  &amp;&amp; (Disk &gt;= DiskUsage)
+</PRE>
+
+<P>
+<A NAME="2508"></A>
+If <code>should_transfer_files = IF_NEEDED</code> and the job prefers
+to run on a machine in the local file system domain
+over transferring files,
+but is still willing to allow the job to run remotely and transfer files,
+the <TT>Rank</TT> expression works well.  Use:
+
+<P>
+<PRE>
+rank = (TARGET.FileSystemDomain == MY.FileSystemDomain)
+</PRE>
+<P>
+The <TT>Rank</TT> expression is a floating point value,
+so if other items are considered in ranking the possible machines this job
+may run on, add the items:
+
+<P>
+<PRE>
+Rank = kflops + (TARGET.FileSystemDomain == MY.FileSystemDomain)
+</PRE>
+<P>
+The value of <TT>kflops</TT> can vary widely among machines,
+so this <TT>Rank</TT> expression will likely not do as it intends.
+To place emphasis on the job running in the same file system domain,
+but still consider floating point speed among the machines 
+in the file system domain,
+weight the part of the expression that is matching the file system domains.
+For example: 
+
+<P>
+<PRE>
+Rank = kflops + (10000 * (TARGET.FileSystemDomain == MY.FileSystemDomain))
+</PRE>
+<P>
+
+<H2><A NAME="SECTION00355000000000000000">
+2.5.5 Environment Variables</A>
+</H2>
+
+<P>
+<A NAME="2520"></A>
+<A NAME="2521"></A>
+The environment under which a job executes often contains
+information that is potentially useful to the job.
+Condor allows a user to both set and reference environment
+variables for a job or job cluster.
+
+<P>
+Within a submit description file, the user may define environment
+variables for the job's environment by using the 
+<B>environment</B> command.
+See within the <I>condor_submit</I> manual page at
+section&nbsp;<A HREF="condor_submit.html#man-condor-submit-environment">10</A> for more details about this command.
+
+<P>
+The submitter's entire environment can be copied into the job
+ClassAd for the job at job submission.
+The <B>getenv</B> command within the submit description file
+does this,
+as described at section&nbsp;<A HREF="condor_submit.html#man-condor-submit-getenv">10</A>.
+
+<P>
+If the environment is set with the <B>environment</B> command <I>and</I>
+<B>getenv</B> is also set to true, values specified with
+<B>environment</B> override values in the submitter's environment,
+regardless of the order of the <B>environment</B> and <B>getenv</B>
+commands.
+
+<P>
+Commands within the submit description file may reference the
+environment variables of the submitter as a job is submitted.
+Submit description file commands use <code>$ENV(EnvironmentVariableName)</code>
+to reference the value of an environment variable.
+
+<P>
+Condor sets several additional environment variables for each executing
+job that may be useful for the job to reference.
+
+<P>
+
+<UL>
+<LI><TT>_CONDOR_SCRATCH_DIR</TT>
+<A NAME="2535"></A>
+<A NAME="2536"></A>
+ gives the directory
+where the job may place temporary data files. 
+This directory is unique for every job that is run,
+and its contents are deleted by Condor
+when the job stops running on a machine, no matter how the job completes.
+
+<P>
+</LI>
+<LI><TT>_CONDOR_SLOT</TT>
+<A NAME="2538"></A>
+<A NAME="2539"></A>
+gives the name of the slot (for SMP machines), on which the job is run.
+On machines with only a single slot, the value of this variable will be
+<code>1</code>, just like the <TT>SlotID</TT> attribute in the machine's
+ClassAd.
+This setting is available in all universes.
+See section&nbsp;<A HREF="3_12Setting_Up.html#sec:Configuring-SMP">3.12.8</A> for more details about SMP
+machines and their configuration.
+
+<P>
+</LI>
+<LI><TT>CONDOR_VM</TT>
+<A NAME="2543"></A>
+<A NAME="2544"></A>
+equivalent to <TT>_CONDOR_SLOT</TT> described above, except that it is
+only available in the standard universe.
+<U>NOTE</U>: As of Condor version 6.9.3, this environment variable is no longer
+used.
+It will only be defined if the <TT>ALLOW_VM_CRUFT</TT> <A NAME="2770"></A> <A NAME="2771"></A> configuration
+variable is set to <TT>True</TT>.
+
+<P>
+</LI>
+<LI><TT>X509_USER_PROXY</TT>
+<A NAME="2549"></A>
+<A NAME="2550"></A>
+gives the full path to the X.509 user proxy file if one is
+associated with the job.  Typically, a user will specify
+<B>x509userproxy</B> in the submit description file.
+This setting is currently available in the
+local, java, and vanilla universes.
+
+<P>
+</LI>
+<LI><TT>_CONDOR_JOB_AD</TT>
+<A NAME="2553"></A>
+<A NAME="2554"></A>
+is the path to a file in the job's scratch directory which contains
+the job ad for the currently running job.  The job ad is current
+as of the start of the job, but is not updated during the running
+of the job.  The job may read attributes and their values out of
+this file as it runs, but any changes will not be acted on in any
+way by Condor.  The format is the same as the output of the
+<I>condor_q</I>  <B>-l</B> command.  This environment variable may be particularly
+useful in a USER_JOB_WRAPPER.
+
+<P>
+</LI>
+<LI><TT>_CONDOR_MACHINE_AD</TT>
+<A NAME="2558"></A>
+<A NAME="2559"></A>
+is the path to a file in the job's scratch directory which contains
+the machine ad for the slot the currently running job is using.  
+The machine ad is current as of the start of the job, but is not updated during the running
+of the job.  The format is the same as the output of the
+<I>condor_status</I>  <B>-l</B> command.
+
+<P>
+</LI>
+<LI><TT>_CONDOR_JOB_IWD</TT>
+<A NAME="2563"></A>
+<A NAME="2564"></A>
+is the path to the initial working directory the job was born with.
+
+<P>
+</LI>
+<LI><TT>_CONDOR_WRAPPER_ERROR_FILE</TT>
+<A NAME="2566"></A>
+<A NAME="2567"></A>
+is only set when the administrator has installed a USER_JOB_WRAPPER.
+If this file exists, Condor assumes that the job wrapper has failed
+and copies the contents of the file to the StarterLog for the administrator
+to debug the problem.
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<H2><A NAME="SECTION00356000000000000000">
+2.5.6 Heterogeneous Submit: Execution on Differing Architectures</A>
+</H2> 
+
+<P>
+<A NAME="2570"></A>
+<A NAME="2571"></A>
+<A NAME="2572"></A>
+If executables are available for the different platforms of machines
+in the Condor pool,
+Condor can be allowed the choice of a larger number of machines
+when allocating a machine for a job.
+Modifications to the submit description file allow this choice
+of platforms.
+
+<P>
+A simplified example is a cross submission.
+An executable is available for one platform, but
+the submission is done from a different platform.
+Given the correct executable, the <TT>requirements</TT> command in
+the submit description file specifies the target architecture.
+For example, an executable compiled for a 32-bit Intel processor
+running  Windows Vista, submitted
+from an Intel architecture running Linux would add the 
+<TT>requirement</TT>
+<PRE>
+  requirements = Arch == "INTEL" &amp;&amp; OpSys == "WINDOWS"
+</PRE>
+Without this <TT>requirement</TT>, <I>condor_submit</I>
+will assume that the program is to be executed on
+a machine with the same platform as the machine where the job
+is submitted.
+
+<P>
+Cross submission works for all universes except <TT>scheduler</TT> and
+<TT>local</TT>.
+See section&nbsp;<A HREF="5_3Grid_Universe.html#sec:Grid-Matchmaking">5.3.9</A> for how matchmaking works in the
+<TT>grid</TT> universe.
+The burden is on the user to both obtain and specify
+the correct executable for the target architecture.
+To list the architecture and operating systems of the machines
+in a pool, run <I>condor_status</I>.
+
+<P>
+
+<H3><A NAME="SECTION00356100000000000000">
+2.5.6.1 Vanilla Universe Example for Execution on Differing Architectures</A>
+</H3> 
+
+<P>
+A more complex example of a heterogeneous submission
+occurs when a job may be executed on
+many different architectures to gain full
+use of a diverse architecture and operating system pool.
+If the executables are available for the different architectures,
+then a modification to the submit description file
+will allow Condor to choose an executable after an
+available machine is chosen.
+
+<P>
+A special-purpose Machine Ad substitution macro can be used in
+string
+attributes in the submit description file.
+The macro has the form
+<PRE>
+  $$(MachineAdAttribute)
+</PRE>
+The $$() informs Condor to substitute the requested 
+<TT>MachineAdAttribute</TT> 
+from the machine where the job will be executed.
+
+<P>
+An example of the heterogeneous job submission
+has executables available for two platforms:
+RHEL 3 on both 32-bit and 64-bit Intel processors.
+This example uses <I>povray</I>
+to render images using a popular free rendering engine.
+
+<P>
+The substitution macro chooses a specific executable after
+a platform for running the job is chosen.
+These executables must therefore be named based on the
+machine attributes that describe a platform.
+The executables named <PRE>
+  povray.LINUX.INTEL
+  povray.LINUX.X86_64
+</PRE>
+will work correctly for the macro
+<PRE>
+  povray.$$(OpSys).$$(Arch)
+</PRE>
+
+<P>
+The executables or links to executables with this name
+are placed into the initial working directory so that they may be
+found by Condor. 
+A submit description file that queues three jobs for this example:
+
+<P>
+<PRE>
+  ####################
+  #
+  # Example of heterogeneous submission
+  #
+  ####################
+
+  universe     = vanilla
+  Executable   = povray.$$(OpSys).$$(Arch)
+  Log          = povray.log
+  Output       = povray.out.$(Process)
+  Error        = povray.err.$(Process)
+
+  Requirements = (Arch == "INTEL" &amp;&amp; OpSys == "LINUX") || \
+                 (Arch == "X86_64" &amp;&amp; OpSys =="LINUX") 
+
+  Arguments    = +W1024 +H768 +Iimage1.pov
+  Queue 
+
+  Arguments    = +W1024 +H768 +Iimage2.pov
+  Queue 
+
+  Arguments    = +W1024 +H768 +Iimage3.pov
+  Queue
+</PRE>
+
+<P>
+These jobs are submitted to the vanilla universe
+to assure that once a job is started on a specific platform,
+it will finish running on that platform.
+Switching platforms in the middle of job execution cannot
+work correctly.
+
+<P>
+There are two common errors made with the substitution macro.
+The first is the use of a non-existent <TT>MachineAdAttribute</TT>.
+If the specified <TT>MachineAdAttribute</TT> does not
+exist in the machine's ClassAd, then Condor will place
+the job in the held state until the problem is resolved.
+
+<P>
+The second common error occurs due to an incomplete job set up.
+For example, the submit description file given above specifies
+three available executables.
+If one is missing, Condor reports back that an
+executable is missing when it happens to match the
+job with a resource that requires the missing binary.
+
+<P>
+
+<H3><A NAME="SECTION00356200000000000000">
+2.5.6.2 Standard Universe Example for Execution on Differing Architectures</A>
+</H3> 
+
+<P>
+Jobs submitted to the standard universe may produce checkpoints.
+A checkpoint can then be used to start up and continue execution
+of a partially completed job.
+For a partially completed job, the checkpoint and the job are specific
+to a platform.
+If migrated to a different machine, correct execution requires that
+the platform must remain the same.
+
+<P>
+In previous versions of Condor, the author of the heterogeneous
+submission file would need to write extra policy expressions in the
+<TT>requirements</TT> expression to force Condor to choose the
+same type of platform when continuing a checkpointed job.
+However, since it is needed in the common case, this
+additional policy is now automatically added
+to the <TT>requirements</TT> expression.
+The additional expression is added
+provided the user does not use
+<TT>CkptArch</TT> in the <TT>requirements</TT> expression.
+Condor will remain backward compatible for those users who have explicitly
+specified <TT>CkptRequirements</TT>-implying use of <TT>CkptArch</TT>,
+in their <TT>requirements</TT> expression.
+
+<P>
+The expression added when the attribute <TT>CkptArch</TT> is not specified 
+will default to
+
+<P>
+<PRE>
+  # Added by Condor
+  CkptRequirements = ((CkptArch == Arch) || (CkptArch =?= UNDEFINED)) &amp;&amp; \
+                      ((CkptOpSys == OpSys) || (CkptOpSys =?= UNDEFINED))
+
+  Requirements = (&lt;user specified policy&gt;) &amp;&amp; $(CkptRequirements)
+</PRE>
+<P>
+The behavior of the <TT>CkptRequirements</TT> expressions and its addition to
+<TT>requirements</TT> is as follows.
+The <TT>CkptRequirements</TT> expression guarantees correct operation
+in the two possible cases for a job.
+In the first case, the job has not produced a checkpoint.
+The ClassAd attributes <TT>CkptArch</TT> and <TT>CkptOpSys</TT>
+will be undefined, and therefore the meta operator (<code>=?=</code>)
+evaluates to true.
+In the second case, the job has produced a checkpoint.
+The Machine ClassAd is restricted to require further execution
+only on a machine of the same platform.
+The attributes <TT>CkptArch</TT> and <TT>CkptOpSys</TT>
+will be defined, ensuring that the platform chosen for further
+execution will be the same as the one used just before the
+checkpoint.
+
+<P>
+Note that this restriction of platforms also applies to platforms where
+the executables are binary compatible.
+
+<P>
+The complete submit description file for this example:
+
+<P>
+<PRE>
+  ####################
+  #
+  # Example of heterogeneous submission
+  #
+  ####################
+
+  universe     = standard
+  Executable   = povray.$$(OpSys).$$(Arch)
+  Log          = povray.log
+  Output       = povray.out.$(Process)
+  Error        = povray.err.$(Process)
+
+  # Condor automatically adds the correct expressions to insure that the
+  # checkpointed jobs will restart on the correct platform types.
+  Requirements = ( (Arch == "INTEL" &amp;&amp; OpSys == "LINUX") || \
+                 (Arch == "X86_64" &amp;&amp; OpSys == "LINUX") )
+
+  Arguments    = +W1024 +H768 +Iimage1.pov
+  Queue 
+
+  Arguments    = +W1024 +H768 +Iimage2.pov
+  Queue 
+
+  Arguments    = +W1024 +H768 +Iimage3.pov
+  Queue
+</PRE>
+
+<P>
+
+<H3><A NAME="SECTION00356300000000000000">
+2.5.6.3 Vanilla Universe Example for Execution on Differing Operating Systems</A>
+</H3> 
+
+<P>
+The addition of several related OpSys attributes assists in selection of specific operating systems and versions in heterogeneous pools.
+
+<P>
+<PRE>
+  ####################
+  #
+  # Example of submission targeting RedHat platforms in a heterogeneous Linux pool
+  #
+  ####################
+
+  universe     = vanilla
+  Executable   = /bin/date
+  Log          = distro.log
+  Output       = distro.out
+  Error        = distro.err
+
+  Requirements = (OpSysName == "RedHat")
+
+  Queue
+</PRE>
+
+<P>
+<PRE>
+  ####################
+  #
+  # Example of submission targeting RedHat 6 platforms in a heterogeneous Linux pool
+  #
+  ####################
+
+  universe     = vanilla
+  Executable   = /bin/date
+  Log          = distro.log
+  Output       = distro.out
+  Error        = distro.err
+
+  Requirements = ( OpSysName == "RedHat" &amp;&amp; OpSysMajorVersion == 6)
+
+  Queue
+</PRE>
+
+<P>
+Here is a more compact way to specify a RedHat 6 platform.
+
+<P>
+<PRE>
+  ####################
+  #
+  # Example of submission targeting RedHat 6 platforms in a heterogeneous Linux pool
+  #
+  ####################
+
+  universe     = vanilla
+  Executable   = /bin/date
+  Log          = distro.log
+  Output       = distro.out
+  Error        = distro.err
+
+  Requirements = ( OpSysAndVer == "RedHat6")
+
+  Queue
+</PRE>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html943"
+  HREF="2_6Managing_Job.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html937"
+  HREF="2_Users_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html931"
+  HREF="2_4Road_map_Running.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html939"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html941"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html944"
+  HREF="2_6Managing_Job.html">2.6 Managing a Job</A>
+<B> Up:</B> <A NAME="tex2html938"
+  HREF="2_Users_Manual.html">2. Users' Manual</A>
+<B> Previous:</B> <A NAME="tex2html932"
+  HREF="2_4Road_map_Running.html">2.4 Road-map for Running</A>
+ &nbsp; <B>  <A NAME="tex2html940"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html942"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

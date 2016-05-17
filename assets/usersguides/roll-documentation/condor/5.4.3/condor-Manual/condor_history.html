@@ -1,0 +1,316 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>condor_history</TITLE>
+<META NAME="description" CONTENT="condor_history">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="condor_hold.html">
+<LINK REL="previous" HREF="condor_glidein.html">
+<LINK REL="up" HREF="9_Command_Reference.html">
+<LINK REL="next" HREF="condor_hold.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html3165"
+  HREF="condor_hold.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3159"
+  HREF="9_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3153"
+  HREF="condor_glidein.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3161"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3163"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3166"
+  HREF="condor_hold.html">condor_hold</A>
+<B> Up:</B> <A NAME="tex2html3160"
+  HREF="9_Command_Reference.html">9. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3154"
+  HREF="condor_glidein.html">condor_glidein</A>
+ &nbsp; <B>  <A NAME="tex2html3162"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3164"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html3167"
+  HREF="condor_history.html#SECTION0010181000000000000000">Synopsis</A>
+<LI><A NAME="tex2html3168"
+  HREF="condor_history.html#SECTION0010182000000000000000">Description</A>
+<LI><A NAME="tex2html3169"
+  HREF="condor_history.html#SECTION0010183000000000000000">Options</A>
+<LI><A NAME="tex2html3170"
+  HREF="condor_history.html#SECTION0010184000000000000000">Examples</A>
+<LI><A NAME="tex2html3171"
+  HREF="condor_history.html#SECTION0010185000000000000000">Exit Status</A>
+<LI><A NAME="tex2html3172"
+  HREF="condor_history.html#SECTION0010186000000000000000">Author</A>
+<LI><A NAME="tex2html3173"
+  HREF="condor_history.html#SECTION0010187000000000000000">Copyright</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION0010180000000000000000"></A><A NAME="man-condor-history"></A>
+<BR>
+<I>condor_history</I>
+</H1> View log of Condor jobs completed to date
+  
+<P>
+
+<H2><A NAME="SECTION0010181000000000000000">
+Synopsis</A>
+</H2>
+<B><I>condor_history</I></B>
+[<B>-help</B>] 
+
+<P>
+<B><I>condor_history</I></B>
+[<B>-backwards</B>]
+[<B>-completedsince  </B><I>postgrestimestamp</I>]
+[<B>-constraint  </B><I>expr</I>]
+[<B>-f  </B><I>filename</I>]
+[<B>-format  </B><I>formatString AttributeName</I>]
+[<B>-l | -long | -xml</B>] 
+[<B>-match  </B><I>number</I>]
+[<B>-name  </B><I>schedd-name</I>]
+[<B>cluster | cluster.process | owner</B>]
+
+<P>
+
+<H2><A NAME="SECTION0010182000000000000000">
+Description</A>
+</H2>
+<I>condor_history</I> displays a summary of all Condor jobs listed in the
+specified history files, or in the Quill database, when Quill is enabled.
+If no history files are specified (with the <B>-f</B> option) 
+and Quill is not enabled, the local
+history file as specified in Condor's configuration file
+(<TT><TT>$(SPOOL)</TT>/history</TT> by default) is read.  
+The default listing summarizes (in chronological order)
+each job on a single line, and  contains the following items:
+
+<P>
+<A NAME="64803"></A>
+<A NAME="64804"></A>
+
+<P>
+<DL>
+<DT><STRONG>ID</STRONG></DT>
+<DD>The cluster/process id of the job. 
+</DD>
+<DT><STRONG>OWNER</STRONG></DT>
+<DD>The owner of the job. 
+</DD>
+<DT><STRONG>SUBMITTED</STRONG></DT>
+<DD>The month, day, hour, and minute the job was submitted to the queue. 
+</DD>
+<DT><STRONG>RUN_TIME</STRONG></DT>
+<DD>Remote wall clock time accumulated by the job to date in days, hours, minutes, and seconds.  See the definition of
+<TT>RemoteWallClockTime</TT> on page&nbsp;<A HREF="10_Appendix_A.html#RemoteWallClockTime"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+</DD>
+<DT><STRONG>ST</STRONG></DT>
+<DD>Completion status of the job (C = completed and X = removed).
+</DD>
+<DT><STRONG>COMPLETED</STRONG></DT>
+<DD>The time the job was completed.
+</DD>
+<DT><STRONG>CMD</STRONG></DT>
+<DD>The name of the executable. 
+</DD>
+</DL>
+
+<P>
+If a job ID (in the form of <I>cluster_id</I> or <I>cluster_id.proc_id</I>) or an
+<I>owner</I> is provided, output will be restricted to jobs with the
+specified IDs and/or submitted by the specified owner.  
+The <I>-constraint</I> option can be used to display jobs that satisfy a
+specified boolean expression.
+
+<P>
+The history file is kept in chronological order,
+implying that new entries are appended at the end of the
+file.
+As of Condor version 6.7.19,
+the format of the history file is altered to enable faster
+reading of the history file backwards (most recent job first).
+History files written with earlier versions of Condor,
+as well as those that have entries of both
+the older and newer format
+need to be converted to the new format.
+See the <I>condor_convert_history</I> manual page 
+on page&nbsp;<A HREF="condor_convert_history.html#man-condor-convert-history"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>
+for details on converting history files to the new format.
+
+<P>
+
+<H2><A NAME="SECTION0010183000000000000000">
+Options</A>
+</H2>
+  
+<P>
+  <DL>
+<DT><STRONG><B>-help</B></STRONG></DT>
+<DD>Display usage information and exit.
+<BR>  
+</DD>
+<DT><STRONG><B>-backwards</B></STRONG></DT>
+<DD>List jobs in reverse chronological
+    order. The job most recently added to the history file is first.
+<BR>  
+</DD>
+<DT><STRONG><B>-completedsince </B><I>postgrestimestamp</I></STRONG></DT>
+<DD>When Quill
+    is enabled, display only job
+    ads that were in the Completed job state on or after the date and
+    time given by the <I>postgrestimestamp</I>. 
+    The <I>postgrestimestamp</I> follows the syntax as given for
+    <I>PostgreSQL</I> version 8.0. The behavior of this option
+    is undefined when Quill is <I>not</I> enabled. 
+<BR>  
+</DD>
+<DT><STRONG><B>-constraint </B><I>expr</I></STRONG></DT>
+<DD>Display jobs that satisfy the
+    expression.
+<BR>  
+</DD>
+<DT><STRONG><B>-f </B><I>filename</I></STRONG></DT>
+<DD>Use the specified file instead of the
+    default history file. When Quill is enabled, this option will force 
+    the query to read from the history file, and not the database.
+<BR>  
+</DD>
+<DT><STRONG><B>-format </B><I>formatString</I>AttributeName</STRONG></DT>
+<DD>Display jobs
+    with a custom format. See the <I>condor_q</I> man page <B>-format</B> option
+    for details.
+<BR>  
+</DD>
+<DT><STRONG><B>-l</B> or <B>-long</B></STRONG></DT>
+<DD>Display job ads in long format.
+<BR>  
+</DD>
+<DT><STRONG><B>-match </B><I>number</I></STRONG></DT>
+<DD>Limit the number of jobs displayed
+    to <I>number</I>.
+<BR>  
+</DD>
+<DT><STRONG><B>-name </B><I>schedd-name</I></STRONG></DT>
+<DD>When Quill is enabled,
+    query job ClassAds from the named <I>condor_schedd</I> daemon,
+    not the default <I>condor_schedd</I> daemon.
+<BR>  
+</DD>
+<DT><STRONG><B>-xml</B></STRONG></DT>
+<DD>Display job ClassAds in xml format.
+      The xml format is fully defined at
+      <A NAME="tex2html129"
+  HREF="http://www.cs.wisc.edu/condor/classad/refman/">http://www.cs.wisc.edu/condor/classad/refman/</A>.
+<BR>
+</DD>
+</DL>
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION0010184000000000000000">
+Examples</A>
+</H2>
+
+<P>
+To see all historical jobs since April 1, 2005 at 1pm,
+<PRE>
+%condor_history -completedsince '04/01/2005 13:00'
+</PRE>
+<P>
+
+<H2><A NAME="SECTION0010185000000000000000">
+Exit Status</A>
+</H2>
+
+<P>
+<I>condor_history</I> will exit with a status value of 0 (zero) upon success,
+and it will exit with the value 1 (one) upon failure.
+
+<P>
+
+<H2><A NAME="SECTION0010186000000000000000">
+Author</A>
+</H2> Condor Team, University of Wisconsin-Madison
+  
+<H2><A NAME="SECTION0010187000000000000000">
+Copyright</A>
+</H2> 
+  Copyright &#169; 1990-2011 Condor Team, Computer Sciences Department, 
+  University of Wisconsin-Madison, Madison, WI.  All Rights Reserved.  
+	Licensed under the Apache License, Version 2.0.
+
+<P>
+See the <I>Condor Version 7.6.2 Manual</I> or
+	<A NAME="tex2html130"
+  HREF="http://www.condorproject.org/license">http://www.condorproject.org/license</A>
+for
+  additional notices. 
+
+
+  <HR>
+<!--Navigation Panel-->
+<A NAME="tex2html3165"
+  HREF="condor_hold.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3159"
+  HREF="9_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3153"
+  HREF="condor_glidein.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3161"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3163"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3166"
+  HREF="condor_hold.html">condor_hold</A>
+<B> Up:</B> <A NAME="tex2html3160"
+  HREF="9_Command_Reference.html">9. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3154"
+  HREF="condor_glidein.html">condor_glidein</A>
+ &nbsp; <B>  <A NAME="tex2html3162"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3164"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

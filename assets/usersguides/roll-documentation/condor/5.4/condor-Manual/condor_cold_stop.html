@@ -1,0 +1,356 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>condor_cold_stop</TITLE>
+<META NAME="description" CONTENT="condor_cold_stop">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="condor_compile.html">
+<LINK REL="previous" HREF="condor_cold_start.html">
+<LINK REL="up" HREF="9_Command_Reference.html">
+<LINK REL="next" HREF="condor_compile.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html2957"
+  HREF="condor_compile.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2951"
+  HREF="9_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2945"
+  HREF="condor_cold_start.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2953"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2955"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2958"
+  HREF="condor_compile.html">condor_compile</A>
+<B> Up:</B> <A NAME="tex2html2952"
+  HREF="9_Command_Reference.html">9. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html2946"
+  HREF="condor_cold_start.html">condor_cold_start</A>
+ &nbsp; <B>  <A NAME="tex2html2954"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2956"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html2959"
+  HREF="condor_cold_stop.html#SECTION001081000000000000000">Synopsis</A>
+<LI><A NAME="tex2html2960"
+  HREF="condor_cold_stop.html#SECTION001082000000000000000">Description</A>
+<LI><A NAME="tex2html2961"
+  HREF="condor_cold_stop.html#SECTION001083000000000000000">Options</A>
+<LI><A NAME="tex2html2962"
+  HREF="condor_cold_stop.html#SECTION001084000000000000000">Exit Status</A>
+<LI><A NAME="tex2html2963"
+  HREF="condor_cold_stop.html#SECTION001085000000000000000">Examples</A>
+<LI><A NAME="tex2html2964"
+  HREF="condor_cold_stop.html#SECTION001086000000000000000">See Also</A>
+<LI><A NAME="tex2html2965"
+  HREF="condor_cold_stop.html#SECTION001087000000000000000">Author</A>
+<LI><A NAME="tex2html2966"
+  HREF="condor_cold_stop.html#SECTION001088000000000000000">Copyright</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION001080000000000000000"></A><A NAME="man-condor-cold-stop"></A>
+<BR>
+<I>condor_cold_stop</I>
+</H1> reliably shut down and uninstall a running Condor instance
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION001081000000000000000">
+Synopsis</A>
+</H2><B><I>condor_cold_stop</I></B>
+<B>-help</B>
+
+<P>
+<B><I>condor_cold_stop</I></B>
+[<B>-force</B>]
+[<B>-basedir  </B><I>directory</I>]
+[<B>-localdir  </B><I>directory</I>]
+[<B>-runlocalconfig  </B><I>file</I>]
+[<B>-cleaninstall</B>]
+[<B>-cleanlocal</B>]
+[<B>-stop</B>]
+[<B>-logarchive  </B><I>archive</I>]
+[<B>-spoolarchive  </B><I>archive</I>]
+[<B>-execarchive  </B><I>archive</I>]
+[<B>-filelock</B>]
+[<B>-pid</B>]
+[<B>-artifact  </B><I>file</I>]
+[<B>-nogurl</B>]
+[<B>-globuslocation  </B><I>directory</I>]
+<B>-configfile </B><I>file</I>
+
+<P>
+<A NAME="59378"></A>
+<A NAME="59379"></A>
+<A NAME="59380"></A>
+
+<P>
+
+<H2><A NAME="SECTION001082000000000000000">
+Description</A>
+</H2>
+<I>condor_cold_stop</I> reliably shuts down and uninstall a
+running Condor instance.  
+This program first uses <I>condor_local_stop</I> to
+reliably shut down the running Condor instance.
+It then uses <I>condor_cleanup_local</I> to create and store archives of the
+<TT>log</TT>, <TT>spool</TT>, and <TT>execute</TT> directories.
+Its last task is to 
+uninstall the Condor binaries and libraries using <I>cleanup_release</I>.
+
+<P>
+
+<H2><A NAME="SECTION001083000000000000000">
+Options</A>
+</H2>
+  
+<P>
+  <DL>
+<DT><STRONG><B>-artifact </B><I>file</I></STRONG></DT>
+<DD>Uses <I>file</I> as the artifact file to determine whether the
+    <I>condor_master</I> daemon is still alive. 
+  
+<BR>  
+</DD>
+<DT><STRONG><B>-basedir </B><I>directory</I></STRONG></DT>
+<DD>Directory where the Condor installation can be found.
+    When not specified, the current working directory is assumed.
+  
+<BR>  
+</DD>
+<DT><STRONG><B>-cleaninstall</B></STRONG></DT>
+<DD>Remove the Condor installation.
+    If none of the options 
+    <B>-cleaninstall</B>, <B>-cleanlocal</B>, or <B>-stop</B>
+    are specified, the program behaves as though
+    all of them have been provided.
+  
+<BR>  
+</DD>
+<DT><STRONG><B>-cleanlocal</B></STRONG></DT>
+<DD>The program will remove the <TT>log</TT>, <TT>spool</TT>, <TT>exec</TT>
+    directories for this Condor instance. 
+    If none of the options
+    <B>-cleaninstall</B>, <B>-cleanlocal</B>, or <B>-stop</B>
+    are specified, the program behaves as though 
+    all of them have been provided.
+  
+<BR>  
+</DD>
+<DT><STRONG><B>-configfile </B><I>file</I></STRONG></DT>
+<DD>The same configuration file path given to <I>condor_cold_start</I>.
+    This program assumes the file is in the installation directory or
+    the current working directory. 
+  
+<BR>  
+</DD>
+<DT><STRONG><B>-execarchive </B><I>archive</I></STRONG></DT>
+<DD>The program will create a tar'ed and gzip'ed archive of the
+    <TT>execute</TT> directory and stores it as <I>archive</I>.  The
+    <I>archive</I> can be a file path or a grid-ftp url.
+  
+<BR>  
+</DD>
+<DT><STRONG><B>-filelock</B></STRONG></DT>
+<DD>Determine whether the <I>condor_master</I> daemon has exited
+    using a file lock undertaker.  This option must match the
+    corresponding option given to <I>condor_cold_start</I>.
+  
+<BR>  
+</DD>
+<DT><STRONG><B>-force</B></STRONG></DT>
+<DD>Ignore the status of the <I>condor_schedd</I> daemon (whether it has
+    jobs in the queue or not) when shutting down Condor.
+  
+<BR>  
+</DD>
+<DT><STRONG><B>-globuslocation </B><I>directory</I></STRONG></DT>
+<DD>The directory containing the Globus installation.  This option is
+    required if any of the options of the form <B>-*archive</B> are used,
+    and Globus is not installed in <TT>/opt/globus</TT>.
+  
+<BR>  
+</DD>
+<DT><STRONG><B>-localdir </B><I>directory</I></STRONG></DT>
+<DD>Directory where the <TT>log</TT>, <TT>spool</TT>, and <TT>execute</TT>
+    directories are stored for this running instance of Condor.
+    Required if the <B>-cleanlocal</B> option is specified.
+  
+<BR>  
+</DD>
+<DT><STRONG><B>-logarchive </B><I>archive</I></STRONG></DT>
+<DD>The program will create a tar'ed and gzip'ed archive of the
+    <TT>log</TT> directory and stores it as <I>archive</I>.  The
+    <I>archive</I> can be a file path or a grid-ftp url.
+  
+<BR>  
+</DD>
+<DT><STRONG><B>-nogurl</B></STRONG></DT>
+<DD>Do not use <I>globus-url-copy</I> to store the archives.
+    This implies that the archives can only be stored on
+    mounted file systems.
+  
+<BR>  
+</DD>
+<DT><STRONG><B>-pid</B></STRONG></DT>
+<DD>Determine whether the <I>condor_master</I> daemon has exited
+    using a unique process id undertaker.  This option must match the
+    corresponding option given to <I>condor_cold_start</I>.
+  
+<BR>  
+</DD>
+<DT><STRONG><B>-runlocalconfig </B><I>file</I></STRONG></DT>
+<DD>Bind <I>file</I> into the configuration used by this instance of
+    Condor.  This option should the one provided to
+    <I>condor_cold_start</I>.
+  
+<BR>  
+</DD>
+<DT><STRONG><B>-spoolarchive </B><I>archive</I></STRONG></DT>
+<DD>The program will create a tar'ed and gzip'ed archive of the
+    <TT>spool</TT> directory and stores it as <I>archive</I>.  The
+    <I>archive</I> can be a file path or a grid-ftp url.
+  
+<BR>  
+</DD>
+<DT><STRONG><B>-stop</B></STRONG></DT>
+<DD>The program will shut down this running instance of Condor.
+    If none of the options 
+    <B>-cleaninstall</B>, <B>-cleanlocal</B>, or <B>-stop</B>
+    are specified, the program behaves as though
+    all of them have been provided.
+  
+<BR>  
+</DD>
+</DL>
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION001084000000000000000">
+Exit Status</A>
+</H2>
+<I>condor_cold_stop</I> will exit with a status value of 0 (zero) upon
+success, and non-zero otherwise.
+
+<P>
+
+<H2><A NAME="SECTION001085000000000000000">
+Examples</A>
+</H2>
+
+<P>
+To shut down a Condor instance on the target machine:
+
+<P>
+<PRE>
+% condor_cold_stop -configfile condor_config.mobile
+</PRE>
+
+<P>
+To shutdown a Condor instance and archive the log directory:
+
+<P>
+<PRE>
+% condor_cold_stop -configfile condor_config.mobile \
+  -logarchive /tmp/log.tar.gz
+</PRE>
+
+<P>
+
+<H2><A NAME="SECTION001086000000000000000">
+See Also</A>
+</H2>
+<I>condor_cold_start</I> (on page&nbsp;<A HREF="condor_cold_start.html#man-condor-cold-start"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>),
+<I>filelock_undertaker</I> (on page&nbsp;<A HREF="filelock_undertaker.html#man-filelock-undertaker"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>), 
+<I>uniq_pid_undertaker</I> (on page&nbsp;<A HREF="uniq_pid_undertaker.html#man-uniq-pid-undertaker"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>).
+
+<P>
+
+<H2><A NAME="SECTION001087000000000000000">
+Author</A>
+</H2> Condor Team, University of Wisconsin-Madison
+  
+<H2><A NAME="SECTION001088000000000000000">
+Copyright</A>
+</H2> 
+  Copyright &#169; 1990-2010 Condor Team, Computer Sciences Department, 
+  University of Wisconsin-Madison, Madison, WI.  All Rights Reserved.  
+	Licensed under the Apache License, Version 2.0.
+
+<P>
+See the <I>Condor Version 7.4.4 Manual</I> or
+	<A NAME="tex2html110"
+  HREF="http://www.condorproject.org/license">http://www.condorproject.org/license</A>
+for
+  additional notices. 
+
+
+  <HR>
+<!--Navigation Panel-->
+<A NAME="tex2html2957"
+  HREF="condor_compile.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2951"
+  HREF="9_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2945"
+  HREF="condor_cold_start.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2953"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2955"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2958"
+  HREF="condor_compile.html">condor_compile</A>
+<B> Up:</B> <A NAME="tex2html2952"
+  HREF="9_Command_Reference.html">9. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html2946"
+  HREF="condor_cold_start.html">condor_cold_start</A>
+ &nbsp; <B>  <A NAME="tex2html2954"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2956"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,251 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+> Release 3.2.0 - changes from 3.1.0 </TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Roll: Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Release Notes"
+HREF="release-notes.html"><LINK
+REL="PREVIOUS"
+TITLE="Release 4.3 - changes from 4.2.1"
+HREF="x8256.html"><LINK
+REL="NEXT"
+TITLE="Release 3.2.0 - changes from 3.1.0"
+HREF="x8317.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Base Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x8256.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Appendix B. Release Notes</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x8317.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="AEN8291"
+>B.5. Release 3.2.0 - changes from 3.1.0</A
+></H1
+><P
+>	New Feature - Added the Condor Roll.
+	This brings the distributed high-throughput features from the
+	Condor project to Rocks clusters.
+	</P
+><P
+>	New Feature - Added the Area51 Roll.
+	This roll contains security tools and services to check the
+	integrity of the files and operating system on your cluster.
+	</P
+><P
+>	New Feature - Ganglia RSS news event service.
+	</P
+><P
+>	Enhancement - Improved network handling for compute nodes: any
+	interface may be used for the cluster private network, not simply
+	the default "eth0".
+	</P
+><P
+>	Enhancement - Better support for cross-architecture clusters containing
+	x86 and x86_64 machines. 
+	</P
+><P
+>	Enhancement - GM device driver now builds and loads on compute nodes
+	that have a custom kernel (e.g., a kernel from kernel.org).
+	</P
+><P
+>	Enhancement - Software RAID for custom compute node partitioning
+	is supported.
+	</P
+><P
+>	Enhancement - Added variables for root and swap partition.
+	If you only want to change the size of root and/or swap, you only
+	have to reassign two XML variables.
+	</P
+><P
+>	Enhancement - The default root partition size has been increased
+	to 6 GB (up from 4 GB).
+	</P
+><P
+>	Enhancement - SGE ganglia monitor added.
+	The state of all SGE jobs can be tracked from the frontend's web page.
+	</P
+><P
+>	Enhancement - PXE support extended to support floppy-based Etherboot and
+	ia64.
+	</P
+><P
+>	Enhancement - EKV uses ssh instead of telnet for security.
+	</P
+><P
+>	Enhancement - New Myrinet MPICH version 1.2.5..12.
+	</P
+><P
+>	Enhancement, Java Roll -- Updated JDK to version 1.4.2_04
+	</P
+><P
+>	Enhancement - Latest software updates recompiled for three architectures
+	from RHEL source rpms.
+	</P
+><P
+>	Enhancement - Automatic MySQL Cluster database backup.
+	</P
+><P
+>	Enhancement - MAC addresses are included for each node in the
+	"Cluster Labels" output.
+	</P
+><P
+>	Enhancement - Frontend rescue mode on the Rocks Base CD enabled.
+	By typing "frontend rescue" at the boot prompt will give you
+	a shell in which you can examine the state of the frontend.
+	</P
+><P
+>	Bug Fix - 411 hardened. More reliable notification of changed files.
+	Correct Makefile encrypts login files on frontend first-boot. 
+	</P
+><P
+>	Bug Fix - Multiple CD drives are supported for bringing up a
+	frontend.
+	If you have more than one CD drive connected to your frontend,
+	the installer will now correctly identify which CD you are using.
+	</P
+><P
+>	Bug Fix - Ganglia metrics are now saved on frontend reboot.
+	After a reboot, all Ganglia history will be restored from the
+	previous boot.
+	</P
+><P
+>	Bug Fix - PVFS compiled with -mcmodel=kernel on Opteron.
+	</P
+><P
+>	Bug Fix - XML escape characters (e.g., &#38;, &#60;, &#62;) are
+	supported in the installation screens (e.g., the Cluster Information
+	screen and the Root Password screen).
+	</P
+><P
+>	Bug Fix, Intel Roll - All the Intel compiler libraries are now copied
+	to the compute nodes.
+	</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x8256.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x8317.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Release 4.3 - changes from 4.2.1</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="release-notes.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Release 3.2.0 - changes from 3.1.0</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

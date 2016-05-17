@@ -1,0 +1,1157 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Command Reference</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Users Guide"
+HREF="index.html"><LINK
+REL="PREVIOUS"
+TITLE=" System Update "
+HREF="update.html"><LINK
+REL="NEXT"
+TITLE="add"
+HREF="x2312.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="CHAPTER"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Base</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="update.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x2312.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="CHAPTER"
+><H1
+><A
+NAME="AEN2310"
+></A
+>Chapter 9. Command Reference</H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Table of Contents</B
+></DT
+><DT
+>9.1. <A
+HREF="x2312.html"
+>add</A
+></DT
+><DD
+><DL
+><DT
+>9.1.1. <A
+HREF="x2312.html#ROCKS-ADD-APPLIANCE"
+>add appliance</A
+></DT
+><DT
+>9.1.2. <A
+HREF="x2312.html#ROCKS-ADD-APPLIANCE-ATTR"
+>add appliance attr</A
+></DT
+><DT
+>9.1.3. <A
+HREF="x2312.html#ROCKS-ADD-APPLIANCE-ROUTE"
+>add appliance route</A
+></DT
+><DT
+>9.1.4. <A
+HREF="x2312.html#ROCKS-ADD-ATTR"
+>add attr</A
+></DT
+><DT
+>9.1.5. <A
+HREF="x2312.html#ROCKS-ADD-BOOTACTION"
+>add bootaction</A
+></DT
+><DT
+>9.1.6. <A
+HREF="x2312.html#ROCKS-ADD-DISTRIBUTION"
+>add distribution</A
+></DT
+><DT
+>9.1.7. <A
+HREF="x2312.html#ROCKS-ADD-FIREWALL"
+>add firewall</A
+></DT
+><DT
+>9.1.8. <A
+HREF="x2312.html#ROCKS-ADD-HOST"
+>add host</A
+></DT
+><DT
+>9.1.9. <A
+HREF="x2312.html#ROCKS-ADD-HOST-ALIAS"
+>add host alias</A
+></DT
+><DT
+>9.1.10. <A
+HREF="x2312.html#ROCKS-ADD-HOST-ATTR"
+>add host attr</A
+></DT
+><DT
+>9.1.11. <A
+HREF="x2312.html#ROCKS-ADD-HOST-BONDED"
+>add host bonded</A
+></DT
+><DT
+>9.1.12. <A
+HREF="x2312.html#ROCKS-ADD-HOST-INTERFACE"
+>add host interface</A
+></DT
+><DT
+>9.1.13. <A
+HREF="x2312.html#ROCKS-ADD-HOST-KEY"
+>add host key</A
+></DT
+><DT
+>9.1.14. <A
+HREF="x2312.html#ROCKS-ADD-HOST-ROUTE"
+>add host route</A
+></DT
+><DT
+>9.1.15. <A
+HREF="x2312.html#ROCKS-ADD-HOST-SEC_ATTR"
+>add host sec_attr</A
+></DT
+><DT
+>9.1.16. <A
+HREF="x2312.html#ROCKS-ADD-NETWORK"
+>add network</A
+></DT
+><DT
+>9.1.17. <A
+HREF="x2312.html#ROCKS-ADD-OS-ATTR"
+>add os attr</A
+></DT
+><DT
+>9.1.18. <A
+HREF="x2312.html#ROCKS-ADD-OS-ROUTE"
+>add os route</A
+></DT
+><DT
+>9.1.19. <A
+HREF="x2312.html#ROCKS-ADD-ROLL"
+>add roll</A
+></DT
+><DT
+>9.1.20. <A
+HREF="x2312.html#ROCKS-ADD-ROUTE"
+>add route</A
+></DT
+><DT
+>9.1.21. <A
+HREF="x2312.html#ROCKS-ADD-SEC_ATTR"
+>add sec_attr</A
+></DT
+><DT
+>9.1.22. <A
+HREF="x2312.html#ROCKS-ADD-VAR"
+>add var</A
+></DT
+></DL
+></DD
+><DT
+>9.2. <A
+HREF="x3513.html"
+>config</A
+></DT
+><DT
+>9.3. <A
+HREF="x3561.html"
+>create</A
+></DT
+><DD
+><DL
+><DT
+>9.3.1. <A
+HREF="x3561.html#ROCKS-CREATE-DISTRO"
+>create distro</A
+></DT
+><DT
+>9.3.2. <A
+HREF="x3561.html#ROCKS-CREATE-KEYS"
+>create keys</A
+></DT
+><DT
+>9.3.3. <A
+HREF="x3561.html#ROCKS-CREATE-MIRROR"
+>create mirror</A
+></DT
+><DT
+>9.3.4. <A
+HREF="x3561.html#ROCKS-CREATE-NEW-ROLL"
+>create new roll</A
+></DT
+><DT
+>9.3.5. <A
+HREF="x3561.html#ROCKS-CREATE-PACKAGE"
+>create package</A
+></DT
+><DT
+>9.3.6. <A
+HREF="x3561.html#ROCKS-CREATE-ROLL"
+>create roll</A
+></DT
+></DL
+></DD
+><DT
+>9.4. <A
+HREF="x3842.html"
+>disable</A
+></DT
+><DT
+>9.5. <A
+HREF="x3911.html"
+>dump</A
+></DT
+><DD
+><DL
+><DT
+>9.5.1. <A
+HREF="x3911.html#ROCKS-DUMP"
+>dump</A
+></DT
+><DT
+>9.5.2. <A
+HREF="x3911.html#ROCKS-DUMP-APPLIANCE"
+>dump appliance</A
+></DT
+><DT
+>9.5.3. <A
+HREF="x3911.html#ROCKS-DUMP-APPLIANCE-ATTR"
+>dump appliance attr</A
+></DT
+><DT
+>9.5.4. <A
+HREF="x3911.html#ROCKS-DUMP-APPLIANCE-ROUTE"
+>dump appliance route</A
+></DT
+><DT
+>9.5.5. <A
+HREF="x3911.html#ROCKS-DUMP-ATTR"
+>dump attr</A
+></DT
+><DT
+>9.5.6. <A
+HREF="x3911.html#ROCKS-DUMP-FIREWALL"
+>dump firewall</A
+></DT
+><DT
+>9.5.7. <A
+HREF="x3911.html#ROCKS-DUMP-HOST"
+>dump host</A
+></DT
+><DT
+>9.5.8. <A
+HREF="x3911.html#ROCKS-DUMP-HOST-ATTR"
+>dump host attr</A
+></DT
+><DT
+>9.5.9. <A
+HREF="x3911.html#ROCKS-DUMP-HOST-BOOT"
+>dump host boot</A
+></DT
+><DT
+>9.5.10. <A
+HREF="x3911.html#ROCKS-DUMP-HOST-INTERFACE"
+>dump host interface</A
+></DT
+><DT
+>9.5.11. <A
+HREF="x3911.html#ROCKS-DUMP-HOST-KEY"
+>dump host key</A
+></DT
+><DT
+>9.5.12. <A
+HREF="x3911.html#ROCKS-DUMP-HOST-ROLL"
+>dump host roll</A
+></DT
+><DT
+>9.5.13. <A
+HREF="x3911.html#ROCKS-DUMP-HOST-ROUTE"
+>dump host route</A
+></DT
+><DT
+>9.5.14. <A
+HREF="x3911.html#ROCKS-DUMP-NETWORK"
+>dump network</A
+></DT
+><DT
+>9.5.15. <A
+HREF="x3911.html#ROCKS-DUMP-OS-ATTR"
+>dump os attr</A
+></DT
+><DT
+>9.5.16. <A
+HREF="x3911.html#ROCKS-DUMP-OS-ROUTE"
+>dump os route</A
+></DT
+><DT
+>9.5.17. <A
+HREF="x3911.html#ROCKS-DUMP-ROUTE"
+>dump route</A
+></DT
+></DL
+></DD
+><DT
+>9.6. <A
+HREF="x4115.html"
+>enable</A
+></DT
+><DT
+>9.7. <A
+HREF="x4184.html"
+>help</A
+></DT
+><DT
+>9.8. <A
+HREF="x4212.html"
+>iterate</A
+></DT
+><DT
+>9.9. <A
+HREF="x4253.html"
+>list</A
+></DT
+><DD
+><DL
+><DT
+>9.9.1. <A
+HREF="x4253.html#ROCKS-LIST-APPLIANCE"
+>list appliance</A
+></DT
+><DT
+>9.9.2. <A
+HREF="x4253.html#ROCKS-LIST-APPLIANCE-ATTR"
+>list appliance attr</A
+></DT
+><DT
+>9.9.3. <A
+HREF="x4253.html#ROCKS-LIST-APPLIANCE-ROUTE"
+>list appliance route</A
+></DT
+><DT
+>9.9.4. <A
+HREF="x4253.html#ROCKS-LIST-APPLIANCE-XML"
+>list appliance xml</A
+></DT
+><DT
+>9.9.5. <A
+HREF="x4253.html#ROCKS-LIST-ATTR"
+>list attr</A
+></DT
+><DT
+>9.9.6. <A
+HREF="x4253.html#ROCKS-LIST-BOOTACTION"
+>list bootaction</A
+></DT
+><DT
+>9.9.7. <A
+HREF="x4253.html#ROCKS-LIST-DISTRIBUTION"
+>list distribution</A
+></DT
+><DT
+>9.9.8. <A
+HREF="x4253.html#ROCKS-LIST-FIREWALL"
+>list firewall</A
+></DT
+><DT
+>9.9.9. <A
+HREF="x4253.html#ROCKS-LIST-HELP"
+>list help</A
+></DT
+><DT
+>9.9.10. <A
+HREF="x4253.html#ROCKS-LIST-HOST"
+>list host</A
+></DT
+><DT
+>9.9.11. <A
+HREF="x4253.html#ROCKS-LIST-HOST-ALIAS"
+>list host alias</A
+></DT
+><DT
+>9.9.12. <A
+HREF="x4253.html#ROCKS-LIST-HOST-APPLIANCE"
+>list host appliance</A
+></DT
+><DT
+>9.9.13. <A
+HREF="x4253.html#ROCKS-LIST-HOST-ATTR"
+>list host attr</A
+></DT
+><DT
+>9.9.14. <A
+HREF="x4253.html#ROCKS-LIST-HOST-BOOT"
+>list host boot</A
+></DT
+><DT
+>9.9.15. <A
+HREF="x4253.html#ROCKS-LIST-HOST-FIREWALL"
+>list host firewall</A
+></DT
+><DT
+>9.9.16. <A
+HREF="x4253.html#ROCKS-LIST-HOST-GRAPH"
+>list host graph</A
+></DT
+><DT
+>9.9.17. <A
+HREF="x4253.html#ROCKS-LIST-HOST-INSTALLFILE"
+>list host installfile</A
+></DT
+><DT
+>9.9.18. <A
+HREF="x4253.html#ROCKS-LIST-HOST-INTERFACE"
+>list host interface</A
+></DT
+><DT
+>9.9.19. <A
+HREF="x4253.html#ROCKS-LIST-HOST-KEY"
+>list host key</A
+></DT
+><DT
+>9.9.20. <A
+HREF="x4253.html#ROCKS-LIST-HOST-MACS"
+>list host macs</A
+></DT
+><DT
+>9.9.21. <A
+HREF="x4253.html#ROCKS-LIST-HOST-MEMBERSHIP"
+>list host membership</A
+></DT
+><DT
+>9.9.22. <A
+HREF="x4253.html#ROCKS-LIST-HOST-PARTITION"
+>list host partition</A
+></DT
+><DT
+>9.9.23. <A
+HREF="x4253.html#ROCKS-LIST-HOST-PROFILE"
+>list host profile</A
+></DT
+><DT
+>9.9.24. <A
+HREF="x4253.html#ROCKS-LIST-HOST-ROLL"
+>list host roll</A
+></DT
+><DT
+>9.9.25. <A
+HREF="x4253.html#ROCKS-LIST-HOST-ROUTE"
+>list host route</A
+></DT
+><DT
+>9.9.26. <A
+HREF="x4253.html#ROCKS-LIST-HOST-SEC_ATTR"
+>list host sec_attr</A
+></DT
+><DT
+>9.9.27. <A
+HREF="x4253.html#ROCKS-LIST-HOST-XML"
+>list host xml</A
+></DT
+><DT
+>9.9.28. <A
+HREF="x4253.html#ROCKS-LIST-LICENSE"
+>list license</A
+></DT
+><DT
+>9.9.29. <A
+HREF="x4253.html#ROCKS-LIST-MEMBERSHIP"
+>list membership</A
+></DT
+><DT
+>9.9.30. <A
+HREF="x4253.html#ROCKS-LIST-NETWORK"
+>list network</A
+></DT
+><DT
+>9.9.31. <A
+HREF="x4253.html#ROCKS-LIST-NODE-XML"
+>list node xml</A
+></DT
+><DT
+>9.9.32. <A
+HREF="x4253.html#ROCKS-LIST-OS-ATTR"
+>list os attr</A
+></DT
+><DT
+>9.9.33. <A
+HREF="x4253.html#ROCKS-LIST-OS-ROUTE"
+>list os route</A
+></DT
+><DT
+>9.9.34. <A
+HREF="x4253.html#ROCKS-LIST-ROLL"
+>list roll</A
+></DT
+><DT
+>9.9.35. <A
+HREF="x4253.html#ROCKS-LIST-ROLL-COMMAND"
+>list roll command</A
+></DT
+><DT
+>9.9.36. <A
+HREF="x4253.html#ROCKS-LIST-ROUTE"
+>list route</A
+></DT
+><DT
+>9.9.37. <A
+HREF="x4253.html#ROCKS-LIST-SEC_ATTR"
+>list sec_attr</A
+></DT
+><DT
+>9.9.38. <A
+HREF="x4253.html#ROCKS-LIST-VAR"
+>list var</A
+></DT
+></DL
+></DD
+><DT
+>9.10. <A
+HREF="x5072.html"
+>open</A
+></DT
+><DT
+>9.11. <A
+HREF="x5104.html"
+>remove</A
+></DT
+><DD
+><DL
+><DT
+>9.11.1. <A
+HREF="x5104.html#ROCKS-REMOVE-APPLIANCE"
+>remove appliance</A
+></DT
+><DT
+>9.11.2. <A
+HREF="x5104.html#ROCKS-REMOVE-APPLIANCE-ATTR"
+>remove appliance attr</A
+></DT
+><DT
+>9.11.3. <A
+HREF="x5104.html#ROCKS-REMOVE-APPLIANCE-ROUTE"
+>remove appliance route</A
+></DT
+><DT
+>9.11.4. <A
+HREF="x5104.html#ROCKS-REMOVE-ATTR"
+>remove attr</A
+></DT
+><DT
+>9.11.5. <A
+HREF="x5104.html#ROCKS-REMOVE-BOOTACTION"
+>remove bootaction</A
+></DT
+><DT
+>9.11.6. <A
+HREF="x5104.html#ROCKS-REMOVE-DISTRIBUTION"
+>remove distribution</A
+></DT
+><DT
+>9.11.7. <A
+HREF="x5104.html#ROCKS-REMOVE-FIREWALL"
+>remove firewall</A
+></DT
+><DT
+>9.11.8. <A
+HREF="x5104.html#ROCKS-REMOVE-HOST"
+>remove host</A
+></DT
+><DT
+>9.11.9. <A
+HREF="x5104.html#ROCKS-REMOVE-HOST-ALIAS"
+>remove host alias</A
+></DT
+><DT
+>9.11.10. <A
+HREF="x5104.html#ROCKS-REMOVE-HOST-ATTR"
+>remove host attr</A
+></DT
+><DT
+>9.11.11. <A
+HREF="x5104.html#ROCKS-REMOVE-HOST-BOOT"
+>remove host boot</A
+></DT
+><DT
+>9.11.12. <A
+HREF="x5104.html#ROCKS-REMOVE-HOST-BOOTFLAGS"
+>remove host bootflags</A
+></DT
+><DT
+>9.11.13. <A
+HREF="x5104.html#ROCKS-REMOVE-HOST-INTERFACE"
+>remove host interface</A
+></DT
+><DT
+>9.11.14. <A
+HREF="x5104.html#ROCKS-REMOVE-HOST-KEY"
+>remove host key</A
+></DT
+><DT
+>9.11.15. <A
+HREF="x5104.html#ROCKS-REMOVE-HOST-PARTITION"
+>remove host partition</A
+></DT
+><DT
+>9.11.16. <A
+HREF="x5104.html#ROCKS-REMOVE-HOST-ROLL"
+>remove host roll</A
+></DT
+><DT
+>9.11.17. <A
+HREF="x5104.html#ROCKS-REMOVE-HOST-ROUTE"
+>remove host route</A
+></DT
+><DT
+>9.11.18. <A
+HREF="x5104.html#ROCKS-REMOVE-HOST-SEC_ATTR"
+>remove host sec_attr</A
+></DT
+><DT
+>9.11.19. <A
+HREF="x5104.html#ROCKS-REMOVE-NETWORK"
+>remove network</A
+></DT
+><DT
+>9.11.20. <A
+HREF="x5104.html#ROCKS-REMOVE-OS"
+>remove os</A
+></DT
+><DT
+>9.11.21. <A
+HREF="x5104.html#ROCKS-REMOVE-OS-ATTR"
+>remove os attr</A
+></DT
+><DT
+>9.11.22. <A
+HREF="x5104.html#ROCKS-REMOVE-OS-ROUTE"
+>remove os route</A
+></DT
+><DT
+>9.11.23. <A
+HREF="x5104.html#ROCKS-REMOVE-ROLL"
+>remove roll</A
+></DT
+><DT
+>9.11.24. <A
+HREF="x5104.html#ROCKS-REMOVE-ROUTE"
+>remove route</A
+></DT
+><DT
+>9.11.25. <A
+HREF="x5104.html#ROCKS-REMOVE-SEC_ATTR"
+>remove sec_attr</A
+></DT
+><DT
+>9.11.26. <A
+HREF="x5104.html#ROCKS-REMOVE-VAR"
+>remove var</A
+></DT
+></DL
+></DD
+><DT
+>9.12. <A
+HREF="x5926.html"
+>report</A
+></DT
+><DD
+><DL
+><DT
+>9.12.1. <A
+HREF="x5926.html#ROCKS-REPORT-BUG"
+>report bug</A
+></DT
+><DT
+>9.12.2. <A
+HREF="x5926.html#ROCKS-REPORT-DBHOST"
+>report dbhost</A
+></DT
+><DT
+>9.12.3. <A
+HREF="x5926.html#ROCKS-REPORT-DISTRO"
+>report distro</A
+></DT
+><DT
+>9.12.4. <A
+HREF="x5926.html#ROCKS-REPORT-HOST"
+>report host</A
+></DT
+><DT
+>9.12.5. <A
+HREF="x5926.html#ROCKS-REPORT-HOST-ATTR"
+>report host attr</A
+></DT
+><DT
+>9.12.6. <A
+HREF="x5926.html#ROCKS-REPORT-HOST-BOOTFLAGS"
+>report host bootflags</A
+></DT
+><DT
+>9.12.7. <A
+HREF="x5926.html#ROCKS-REPORT-HOST-CONFIG411"
+>report host config411</A
+></DT
+><DT
+>9.12.8. <A
+HREF="x5926.html#ROCKS-REPORT-HOST-DHCPD"
+>report host dhcpd</A
+></DT
+><DT
+>9.12.9. <A
+HREF="x5926.html#ROCKS-REPORT-HOST-FIREWALL"
+>report host firewall</A
+></DT
+><DT
+>9.12.10. <A
+HREF="x5926.html#ROCKS-REPORT-HOST-INTERFACE"
+>report host interface</A
+></DT
+><DT
+>9.12.11. <A
+HREF="x5926.html#ROCKS-REPORT-HOST-NETWORK"
+>report host network</A
+></DT
+><DT
+>9.12.12. <A
+HREF="x5926.html#ROCKS-REPORT-HOST-ROLL"
+>report host roll</A
+></DT
+><DT
+>9.12.13. <A
+HREF="x5926.html#ROCKS-REPORT-HOST-ROUTE"
+>report host route</A
+></DT
+><DT
+>9.12.14. <A
+HREF="x5926.html#ROCKS-REPORT-KNOWNHOSTS"
+>report knownhosts</A
+></DT
+><DT
+>9.12.15. <A
+HREF="x5926.html#ROCKS-REPORT-NAMED"
+>report named</A
+></DT
+><DT
+>9.12.16. <A
+HREF="x5926.html#ROCKS-REPORT-POST"
+>report post</A
+></DT
+><DT
+>9.12.17. <A
+HREF="x5926.html#ROCKS-REPORT-RESOLV"
+>report resolv</A
+></DT
+><DT
+>9.12.18. <A
+HREF="x5926.html#ROCKS-REPORT-RESOLV-PRIVATE"
+>report resolv private</A
+></DT
+><DT
+>9.12.19. <A
+HREF="x5926.html#ROCKS-REPORT-SCRIPT"
+>report script</A
+></DT
+><DT
+>9.12.20. <A
+HREF="x5926.html#ROCKS-REPORT-SHOSTS"
+>report shosts</A
+></DT
+><DT
+>9.12.21. <A
+HREF="x5926.html#ROCKS-REPORT-TENTAKEL"
+>report tentakel</A
+></DT
+><DT
+>9.12.22. <A
+HREF="x5926.html#ROCKS-REPORT-VERSION"
+>report version</A
+></DT
+><DT
+>9.12.23. <A
+HREF="x5926.html#ROCKS-REPORT-ZONES"
+>report zones</A
+></DT
+></DL
+></DD
+><DT
+>9.13. <A
+HREF="x6348.html"
+>run</A
+></DT
+><DD
+><DL
+><DT
+>9.13.1. <A
+HREF="x6348.html#ROCKS-RUN-HOST"
+>run host</A
+></DT
+><DT
+>9.13.2. <A
+HREF="x6348.html#ROCKS-RUN-HOST-SEC_ATTR"
+>run host sec_attr</A
+></DT
+><DT
+>9.13.3. <A
+HREF="x6348.html#ROCKS-RUN-ROLL"
+>run roll</A
+></DT
+></DL
+></DD
+><DT
+>9.14. <A
+HREF="x6475.html"
+>save</A
+></DT
+><DT
+>9.15. <A
+HREF="x6488.html"
+>set</A
+></DT
+><DD
+><DL
+><DT
+>9.15.1. <A
+HREF="x6488.html#ROCKS-SET-APPLIANCE-ATTR"
+>set appliance attr</A
+></DT
+><DT
+>9.15.2. <A
+HREF="x6488.html#ROCKS-SET-ATTR"
+>set attr</A
+></DT
+><DT
+>9.15.3. <A
+HREF="x6488.html#ROCKS-SET-HOST-ATTR"
+>set host attr</A
+></DT
+><DT
+>9.15.4. <A
+HREF="x6488.html#ROCKS-SET-HOST-BOOT"
+>set host boot</A
+></DT
+><DT
+>9.15.5. <A
+HREF="x6488.html#ROCKS-SET-HOST-BOOTFLAGS"
+>set host bootflags</A
+></DT
+><DT
+>9.15.6. <A
+HREF="x6488.html#ROCKS-SET-HOST-COMMENT"
+>set host comment</A
+></DT
+><DT
+>9.15.7. <A
+HREF="x6488.html#ROCKS-SET-HOST-CPUS"
+>set host cpus</A
+></DT
+><DT
+>9.15.8. <A
+HREF="x6488.html#ROCKS-SET-HOST-INSTALLACTION"
+>set host installaction</A
+></DT
+><DT
+>9.15.9. <A
+HREF="x6488.html#ROCKS-SET-HOST-INTERFACE-CHANNEL"
+>set host interface channel</A
+></DT
+><DT
+>9.15.10. <A
+HREF="x6488.html#ROCKS-SET-HOST-INTERFACE-IFACE"
+>set host interface iface</A
+></DT
+><DT
+>9.15.11. <A
+HREF="x6488.html#ROCKS-SET-HOST-INTERFACE-IP"
+>set host interface ip</A
+></DT
+><DT
+>9.15.12. <A
+HREF="x6488.html#ROCKS-SET-HOST-INTERFACE-MAC"
+>set host interface mac</A
+></DT
+><DT
+>9.15.13. <A
+HREF="x6488.html#ROCKS-SET-HOST-INTERFACE-MODULE"
+>set host interface module</A
+></DT
+><DT
+>9.15.14. <A
+HREF="x6488.html#ROCKS-SET-HOST-INTERFACE-NAME"
+>set host interface name</A
+></DT
+><DT
+>9.15.15. <A
+HREF="x6488.html#ROCKS-SET-HOST-INTERFACE-OPTIONS"
+>set host interface options</A
+></DT
+><DT
+>9.15.16. <A
+HREF="x6488.html#ROCKS-SET-HOST-INTERFACE-SUBNET"
+>set host interface subnet</A
+></DT
+><DT
+>9.15.17. <A
+HREF="x6488.html#ROCKS-SET-HOST-INTERFACE-VLAN"
+>set host interface vlan</A
+></DT
+><DT
+>9.15.18. <A
+HREF="x6488.html#ROCKS-SET-HOST-MEMBERSHIP"
+>set host membership</A
+></DT
+><DT
+>9.15.19. <A
+HREF="x6488.html#ROCKS-SET-HOST-NAME"
+>set host name</A
+></DT
+><DT
+>9.15.20. <A
+HREF="x6488.html#ROCKS-SET-HOST-POWER"
+>set host power</A
+></DT
+><DT
+>9.15.21. <A
+HREF="x6488.html#ROCKS-SET-HOST-RACK"
+>set host rack</A
+></DT
+><DT
+>9.15.22. <A
+HREF="x6488.html#ROCKS-SET-HOST-RANK"
+>set host rank</A
+></DT
+><DT
+>9.15.23. <A
+HREF="x6488.html#ROCKS-SET-HOST-ROLL"
+>set host roll</A
+></DT
+><DT
+>9.15.24. <A
+HREF="x6488.html#ROCKS-SET-HOST-RUNACTION"
+>set host runaction</A
+></DT
+><DT
+>9.15.25. <A
+HREF="x6488.html#ROCKS-SET-HOST-SEC_ATTR"
+>set host sec_attr</A
+></DT
+><DT
+>9.15.26. <A
+HREF="x6488.html#ROCKS-SET-NETWORK-MTU"
+>set network mtu</A
+></DT
+><DT
+>9.15.27. <A
+HREF="x6488.html#ROCKS-SET-NETWORK-NETMASK"
+>set network netmask</A
+></DT
+><DT
+>9.15.28. <A
+HREF="x6488.html#ROCKS-SET-NETWORK-SERVEDNS"
+>set network servedns</A
+></DT
+><DT
+>9.15.29. <A
+HREF="x6488.html#ROCKS-SET-NETWORK-SUBNET"
+>set network subnet</A
+></DT
+><DT
+>9.15.30. <A
+HREF="x6488.html#ROCKS-SET-NETWORK-ZONE"
+>set network zone</A
+></DT
+><DT
+>9.15.31. <A
+HREF="x6488.html#ROCKS-SET-OS-ATTR"
+>set os attr</A
+></DT
+><DT
+>9.15.32. <A
+HREF="x6488.html#ROCKS-SET-SEC_ATTR"
+>set sec_attr</A
+></DT
+><DT
+>9.15.33. <A
+HREF="x6488.html#ROCKS-SET-VAR"
+>set var</A
+></DT
+></DL
+></DD
+><DT
+>9.16. <A
+HREF="x8127.html"
+>swap</A
+></DT
+><DT
+>9.17. <A
+HREF="x8159.html"
+>sync</A
+></DT
+><DD
+><DL
+><DT
+>9.17.1. <A
+HREF="x8159.html#ROCKS-SYNC-CONFIG"
+>sync config</A
+></DT
+><DT
+>9.17.2. <A
+HREF="x8159.html#ROCKS-SYNC-DNS"
+>sync dns</A
+></DT
+><DT
+>9.17.3. <A
+HREF="x8159.html#ROCKS-SYNC-HOST-FIREWALL"
+>sync host firewall</A
+></DT
+><DT
+>9.17.4. <A
+HREF="x8159.html#ROCKS-SYNC-HOST-NETWORK"
+>sync host network</A
+></DT
+><DT
+>9.17.5. <A
+HREF="x8159.html#ROCKS-SYNC-HOST-SEC_ATTR"
+>sync host sec_attr</A
+></DT
+><DT
+>9.17.6. <A
+HREF="x8159.html#ROCKS-SYNC-HOST-SHAREDKEY"
+>sync host sharedkey</A
+></DT
+><DT
+>9.17.7. <A
+HREF="x8159.html#ROCKS-SYNC-USERS"
+>sync users</A
+></DT
+></DL
+></DD
+><DT
+>9.18. <A
+HREF="x8233.html"
+>update</A
+></DT
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="update.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x2312.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>System Update</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>add</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,378 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>condor_cold_start</TITLE>
+<META NAME="description" CONTENT="condor_cold_start">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="condor_cold_stop.html">
+<LINK REL="previous" HREF="condor_cod.html">
+<LINK REL="up" HREF="9_Command_Reference.html">
+<LINK REL="next" HREF="condor_cold_stop.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html2933"
+  HREF="condor_cold_stop.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2927"
+  HREF="9_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2921"
+  HREF="condor_cod.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2929"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2931"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2934"
+  HREF="condor_cold_stop.html">condor_cold_stop</A>
+<B> Up:</B> <A NAME="tex2html2928"
+  HREF="9_Command_Reference.html">9. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html2922"
+  HREF="condor_cod.html">condor_cod</A>
+ &nbsp; <B>  <A NAME="tex2html2930"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2932"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html2935"
+  HREF="condor_cold_start.html#SECTION001071000000000000000">Synopsis</A>
+<LI><A NAME="tex2html2936"
+  HREF="condor_cold_start.html#SECTION001072000000000000000">Description</A>
+<LI><A NAME="tex2html2937"
+  HREF="condor_cold_start.html#SECTION001073000000000000000">Options</A>
+<LI><A NAME="tex2html2938"
+  HREF="condor_cold_start.html#SECTION001074000000000000000">Exit Status</A>
+<LI><A NAME="tex2html2939"
+  HREF="condor_cold_start.html#SECTION001075000000000000000">Examples</A>
+<LI><A NAME="tex2html2940"
+  HREF="condor_cold_start.html#SECTION001076000000000000000">See Also</A>
+<LI><A NAME="tex2html2941"
+  HREF="condor_cold_start.html#SECTION001077000000000000000">Author</A>
+<LI><A NAME="tex2html2942"
+  HREF="condor_cold_start.html#SECTION001078000000000000000">Copyright</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION001070000000000000000"></A><A NAME="man-condor-cold-start"></A>
+<BR>
+<I>condor_cold_start</I>
+</H1> install and start Condor on this machine
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION001071000000000000000">
+Synopsis</A>
+</H2><B><I>condor_cold_start</I></B>
+<B>-help</B>
+
+<P>
+<B><I>condor_cold_start</I></B>
+[<B>-basedir  </B><I>directory</I>]
+[<B>-force</B>]
+[<B><B>-setuponly</B> | <B>-runonly</B></B>]
+[<B>-arch  </B><I>architecture</I>]
+[<B>-site  </B><I>repository</I>]
+[<B>-localdir  </B><I>directory</I>]
+[<B>-runlocalconfig  </B><I>file</I>]
+[<B>-logarchive  </B><I>archive</I>]
+[<B>-spoolarchive  </B><I>archive</I>]
+[<B>-execarchive  </B><I>archive</I>]
+[<B>-filelock</B>]
+[<B>-pid</B>]
+[<B>-artifact  </B><I>filename</I>]
+[<B>-wget</B>]
+[<B>-globuslocation  </B><I>directory</I>]
+<B>-configfile </B><I>file</I>
+
+<P>
+<A NAME="59400"></A>
+<A NAME="59401"></A>
+<A NAME="59402"></A>
+
+<P>
+
+<H2><A NAME="SECTION001072000000000000000">
+Description</A>
+</H2>
+
+<P>
+<I>condor_cold_start</I> installs and starts Condor on this machine,
+setting up or using a predefined configuration.
+In addition, it has the functionality
+to determine the local architecture if one is not specified.
+Additionally, this program can install pre-made <TT>log</TT>,
+<TT>execute</TT>, and/or
+<TT>spool</TT> directories by specifying the archived versions.
+
+<P>
+
+<H2><A NAME="SECTION001073000000000000000">
+Options</A>
+</H2>
+  
+<P>
+  <DL>
+<DT><STRONG><B>-arch </B><I>architecturestr</I></STRONG></DT>
+<DD>Use the given <I>architecturestr</I> to fetch the installation
+    package.  The string is in the format:
+
+<P>
+&lt;condor_version&gt;-&lt;machine_arch&gt;-&lt;os_name&gt;-&lt;os_version&gt;
+
+<P>
+(for example 6.6.7-i686-Linux-2.4).
+    The portion of this string
+    &lt;condor_version&gt;
+    may be replaced with the string "latest" 
+    (for example, latest-i686-Linux-2.4)
+    to substitute the most recent version of Condor.
+  
+<BR>  
+</DD>
+<DT><STRONG><B>-artifact </B><I>filename</I></STRONG></DT>
+<DD>Use <I>filename</I> for name of the artifact file used to
+    determine whether the <I>condor_master</I> daemon is still alive.
+  
+<BR>  
+</DD>
+<DT><STRONG><B>-basedir </B><I>directory</I></STRONG></DT>
+<DD>The directory to install or find the Condor executables and
+    libraries.  When not specified, the current working directory
+    is assumed.
+  
+<BR></DD>
+<DT><STRONG><B>-execarchive </B><I>archive</I></STRONG></DT>
+<DD>Create the Condor <TT>execute</TT> directory from the given
+    <I>archive</I> file.
+  
+<BR>  
+</DD>
+<DT><STRONG><B>-filelock</B></STRONG></DT>
+<DD>Specifies that this program should use a POSIX file lock midwife
+    program to create an artifact of the birth of a <I>condor_master</I> daemon.
+    A file lock undertaker can later be used to determine whether the
+    <I>condor_master</I> daemon has exited.
+    This is the preferred option when the user wants
+    to check the status of the <I>condor_master</I> daemon from another machine that
+    shares a distributed file system that supports POSIX file locking,
+    for example, AFS.
+  
+<BR>  
+</DD>
+<DT><STRONG><B>-force</B></STRONG></DT>
+<DD>Overwrite previously installed files, if necessary.
+  
+<BR>  
+</DD>
+<DT><STRONG><B>-globuslocation </B><I>directory</I></STRONG></DT>
+<DD>The location of the globus installation on this machine. 
+    When not specified <TT>/opt/globus</TT> is the directory used.
+    This option is only necessary when other options of the
+    form <B>-*archive</B> are specified.
+  
+<BR>  
+</DD>
+<DT><STRONG><B>-help</B></STRONG></DT>
+<DD>Display brief usage information and exit.
+  
+<BR>  
+</DD>
+<DT><STRONG><B>-localdir </B><I>directory</I></STRONG></DT>
+<DD>The directory where the Condor <TT>log</TT>, <TT>spool</TT>,
+    and <TT>execute</TT> directories
+    will be installed.  Each running instance of Condor must have its
+    own local directory. 
+    
+<BR>  
+</DD>
+<DT><STRONG><B>-logarchive </B><I>archive</I></STRONG></DT>
+<DD>Create the Condor log directory from the given <I>archive</I> file.
+  
+<BR>  
+</DD>
+<DT><STRONG><B>-pid</B></STRONG></DT>
+<DD>This program is to use a unique process id midwife
+    program to create an artifact of the birth of a <I>condor_master</I> daemon.
+    A unique pid undertaker can later be used to determine whether the
+    <I>condor_master</I> daemon has exited.
+    This is the default option and the preferred method
+    to check the status of the <I>condor_master</I> daemon from
+    the same machine it was started on.
+  
+<BR>  
+</DD>
+<DT><STRONG><B>-runlocalconfig </B><I>file</I></STRONG></DT>
+<DD>A special local configuration file bound into the Condor
+    configuration at runtime.  This file only affects the instance
+    of Condor started by this command.  No other Condor instance
+    sharing the same global configuration file will be affected.
+  
+<BR>  
+</DD>
+<DT><STRONG><B>-runonly</B></STRONG></DT>
+<DD>Run Condor from the specified installation directory without
+    installing it.  It is possible to run several instantiations of
+    Condor from a single installation.
+  
+<BR>  
+</DD>
+<DT><STRONG><B>-setuponly</B></STRONG></DT>
+<DD>Install Condor without running it.
+  
+<BR>  
+</DD>
+<DT><STRONG><B>-site </B><I>repository</I></STRONG></DT>
+<DD>The ftp, http, gsiftp, or mounted file system directory where the
+    installation packages can be found (for example,
+    <TT>www.cs.example.edu/packages/coldstart</TT>).
+  
+<BR>  
+</DD>
+<DT><STRONG><B>-spoolarchive </B><I>archive</I></STRONG></DT>
+<DD>Create the Condor spool directory from the given <I>archive</I> file.
+  
+<BR>  
+</DD>
+<DT><STRONG><B>-wget</B></STRONG></DT>
+<DD>Use <I>wget</I> to fetch the <TT>log</TT>, <TT>spool</TT>,
+    and <TT>execute</TT> directories,
+    if other options of the form <B>-*archive</B> are specified.
+    <I>wget</I> must be installed on the machine and in the user's path.
+  
+<BR>  
+</DD>
+<DT><STRONG><B>-configfile </B><I>file</I></STRONG></DT>
+<DD>A required option to specify the Condor configuration file to use for this
+    installation.  This file can be located on an http, ftp, or gsiftp
+    site, or alternatively on a mounted file system.
+  
+<BR>  
+</DD>
+</DL>
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION001074000000000000000">
+Exit Status</A>
+</H2>
+<I>condor_cold_start</I> will exit with a status value of 0 (zero) upon
+success, and non-zero otherwise.
+
+<P>
+
+<H2><A NAME="SECTION001075000000000000000">
+Examples</A>
+</H2>
+
+<P>
+To start a Condor installation on the current machine, using
+<TT>http://www.example.com/Condor/deployment</TT> as the installation
+site: 
+<PRE>
+% condor_cold_start \
+  -configfile http://www.example.com/Condor/deployment/condor_config.mobile \
+  -site http://www.example.com/Condor/deployment
+</PRE>
+<P>
+Optionally if this instance of Condor requires a local configuration
+file <TT>condor_config.local</TT>:
+<PRE>
+% condor_cold_start \
+  -configfile http://www.example.com/Condor/deployment/condor_config.mobile \
+  -site http://www.example.com/Condor/deployment \
+  -runlocalconfig condor_config.local
+</PRE>
+<P>
+
+<H2><A NAME="SECTION001076000000000000000">
+See Also</A>
+</H2>
+<I>condor_cold_stop</I> (on page&nbsp;<A HREF="condor_cold_stop.html#man-condor-cold-stop"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>), 
+<I>filelock_midwife</I> (on page&nbsp;<A HREF="filelock_midwife.html#man-filelock-midwife"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>), 
+<I>uniq_pid_midwife</I> (on page&nbsp;<A HREF="uniq_pid_midwife.html#man-uniq-pid-midwife"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>).
+
+<P>
+
+<H2><A NAME="SECTION001077000000000000000">
+Author</A>
+</H2> Condor Team, University of Wisconsin-Madison
+  
+<H2><A NAME="SECTION001078000000000000000">
+Copyright</A>
+</H2> 
+  Copyright &#169; 1990-2011 Condor Team, Computer Sciences Department, 
+  University of Wisconsin-Madison, Madison, WI.  All Rights Reserved.  
+	Licensed under the Apache License, Version 2.0.
+
+<P>
+See the <I>Condor Version 7.6.2 Manual</I> or
+	<A NAME="tex2html115"
+  HREF="http://www.condorproject.org/license">http://www.condorproject.org/license</A>
+for
+  additional notices. 
+
+
+  <HR>
+<!--Navigation Panel-->
+<A NAME="tex2html2933"
+  HREF="condor_cold_stop.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2927"
+  HREF="9_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2921"
+  HREF="condor_cod.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2929"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2931"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2934"
+  HREF="condor_cold_stop.html">condor_cold_stop</A>
+<B> Up:</B> <A NAME="tex2html2928"
+  HREF="9_Command_Reference.html">9. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html2922"
+  HREF="condor_cod.html">condor_cod</A>
+ &nbsp; <B>  <A NAME="tex2html2930"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2932"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

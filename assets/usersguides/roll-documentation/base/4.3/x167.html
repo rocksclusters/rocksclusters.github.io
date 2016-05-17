@@ -1,0 +1,442 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Inspecting and Changing PXE Behaviour</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Base Roll: Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Administration Examples"
+HREF="admin-examples.html"><LINK
+REL="PREVIOUS"
+TITLE="Forcing a Re-install at Next PXE Boot"
+HREF="x159.html"><LINK
+REL="NEXT"
+TITLE="Working with and Modifying Network Configuration"
+HREF="x212.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Base Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x159.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 2. Administration Examples</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x212.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="AEN167"
+>2.5. Inspecting and Changing PXE Behaviour</A
+></H1
+><P
+> 
+There are two parts to the Rocks database for modifying PXE behaviour:
+<EM
+>pxeboot</EM
+> and
+<EM
+>pxeaction</EM
+>.  The pxeboot part determines which logical
+action should be performed. The base roll ships with three logical actions: "os", "install", and "memtest".  The second table in the pxeaction table. The associates a logical action with specific tftp configuration.  The pxeaction table
+supports a default configuration for an action and it supports a per-node 
+override of the default configuration. </P
+><DIV
+CLASS="WARNING"
+><P
+></P
+><TABLE
+CLASS="WARNING"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/warning.png"
+HSPACE="5"
+ALT="Warning"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>It is possible to have commands affect all nodes. In this case use '%' as the host wildcard.  For example <SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks set host pxeboot % action=install </SAMP
+> will cause ALL nodes to reinstall at next pxeboot. </P
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/note.png"
+HSPACE="5"
+ALT="Note"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>For commands that take lists of hosts, it is possible to use an appliance type
+for the host(s) argument. <SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks list appliance</SAMP
+> are the list of valid appliance types. To set the pxeaction of all compute appliances to be install, use
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks set host pxeboot compute action=install </SAMP
+></P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>The following illustrates how to inspect the current action of nodes and then the specifics of each action.</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>[root@vizzy ~]# rocks list host pxeboot
+HOST         ACTION 
+vizzy:       os     
+compute-0-0: os     
+compute-0-1: os     
+compute-1-0: os     
+compute-1-1: install
+compute-2-0: os     
+compute-2-1: os 
+
+
+[root@vizzy ~]# rocks list host pxeaction compute-1-1
+ACTION           COMMAND        ARGS
+install          kernel vmlinuz append ks initrd=initrd.img ramdisk_size=150000
+                                lang= devfs=nomount pxe kssendmac selinux=0
+install headless kernel vmlinuz append ks initrd=initrd.img ramdisk_size=150000
+                                lang= devfs=nomount pxe kssendmac selinux=0 headless vnc
+memtest          kernel memtest -------------------------------------------------
+os               localboot 0    -----------------------------------------------
+[root@vizzy ~]# </PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+> In the above, all nodes are set to pxeboot the "os", except for node compute-1-1. That node will call the pxeboot named "install".  In the case the tftp configuration file contain the details arguments of the listed in the install
+action.  The command <SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks list host pxeaction compute-1-1</SAMP
+> shows the details of each logical action.</P
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN183"
+>2.5.1. Changing a logical PXE action</A
+></H2
+><P
+>It is possible to override the details of a logical action on a per-node
+basis. Suppose that we wanted to make the logical action of "install" for
+compute-1-1 to be headless and to set a flag <SAMP
+CLASS="COMPUTEROUTPUT"
+>acpi=off</SAMP
+>.  Then the following will accomplish this using a Rocks add command. </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>[root@vizzy ~]# rocks add host pxeaction compute-1-1 action=install command="kernel vmlinuz" \
+args="append ks initrd=initrd.img ramdisk_size=150000 lang= devfs=nomount pxe kssendmac selinux=0 headless vnc acpi=off" &#13;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>To inspect that the change is indeed specific to just compute-1-1, then do
+the following</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>[root@vizzy ~]# rocks list host pxeaction compute-1-1
+ACTION           COMMAND        ARGS
+install          kernel vmlinuz append ks initrd=initrd.img ramdisk_size=150000
+                                lang= devfs=nomount pxe kssendmac selinux=0 headless vnc acpi=off
+install headless kernel vmlinuz append ks initrd=initrd.img ramdisk_size=150000
+                                lang= devfs=nomount pxe kssendmac selinux=0 headless vnc         
+memtest          kernel memtest ------------------------------------------------
+os               localboot 0    ------------------------------------------------
+
+[root@vizzy ~]# rocks list host pxeaction compute-1-0 
+ACTION           COMMAND        ARGS
+install          kernel vmlinuz append ks initrd=initrd.img ramdisk_size=150000
+                                lang= devfs=nomount pxe kssendmac selinux=0
+install headless kernel vmlinuz append ks initrd=initrd.img ramdisk_size=150000
+                                lang= devfs=nomount pxe kssendmac selinux=0 headless vnc
+memtest          kernel memtest ------------------------------------------------
+os               localboot 0    ------------------------------------------------</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+> In the above, compute-1-1 has a specific override for its install
+pxeaction. compute-1-0 still retains the default install action. </P
+><DIV
+CLASS="WARNING"
+><P
+></P
+><TABLE
+CLASS="WARNING"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/warning.png"
+HSPACE="5"
+ALT="Warning"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>Manipulating the pxeaction does NOT update the actual tftp configuration file.
+You must use <SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks set pxeboot action=&#60;action&#62; hostname</SAMP
+> to actually write the specific tftp configuration file</P
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/note.png"
+HSPACE="5"
+ALT="Note"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> To remove a specific override of a pxeaction for a node use
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks remove host pxeaction action=&#60;action&#62; hostname</SAMP
+> </P
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN197"
+>2.5.2. Running Memtest86</A
+></H2
+><P
+>&#13;It is often useful to run the memory testing tool
+<A
+HREF="http://www.memtest.org"
+TARGET="_top"
+> memtest86+ </A
+> to determine
+if memory is valid. The straightforward way to accomplish this in
+Rocks 4.3 is to apply the following procedure (in our example case
+for host compute-1-1) </P
+><P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+><SAMP
+CLASS="COMPUTEROUTPUT"
+># rocks set host pxeboot compute-1-1 action=memtest</SAMP
+></P
+></LI
+><LI
+><P
+>Boot node compute-1-1 by power cycle or other means.</P
+></LI
+><LI
+><P
+>After compute-1-1 has successfully started the diagnostic, reset the pxeboot
+parameter
+<SAMP
+CLASS="COMPUTEROUTPUT"
+># rocks set host pxeboot compute-1-1 action=os</SAMP
+></P
+></LI
+></OL
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x159.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x212.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Forcing a Re-install at Next PXE Boot</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="admin-examples.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Working with and Modifying Network Configuration</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

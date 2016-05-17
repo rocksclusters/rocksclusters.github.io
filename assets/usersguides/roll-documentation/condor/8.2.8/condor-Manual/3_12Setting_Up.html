@@ -1,0 +1,2788 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>3.12 Setting Up for Special
+Environments</TITLE>
+<META NAME="description" CONTENT="3.12 Setting Up for Special
+Environments">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="3_13Java_Support.html">
+<LINK REL="previous" HREF="3_11High_Availability.html">
+<LINK REL="up" HREF="3_Administrators_Manual.html">
+<LINK REL="next" HREF="3_13Java_Support.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html1714"
+  HREF="3_13Java_Support.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1708"
+  HREF="3_Administrators_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1702"
+  HREF="3_11High_Availability.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1710"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1712"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1715"
+  HREF="3_13Java_Support.html">3.13 Java Support Installation</A>
+<B> Up:</B> <A NAME="tex2html1709"
+  HREF="3_Administrators_Manual.html">3. Administrators' Manual</A>
+<B> Previous:</B> <A NAME="tex2html1703"
+  HREF="3_11High_Availability.html">3.11 The High Availability</A>
+ &nbsp; <B>  <A NAME="tex2html1711"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1713"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html1716"
+  HREF="3_12Setting_Up.html#SECTION004121000000000000000">3.12.1 Using HTCondor with AFS</A>
+<UL>
+<LI><A NAME="tex2html1717"
+  HREF="3_12Setting_Up.html#SECTION004121100000000000000">3.12.1.1 AFS and HTCondor for Administrators</A>
+<LI><A NAME="tex2html1718"
+  HREF="3_12Setting_Up.html#SECTION004121200000000000000">3.12.1.2 AFS and HTCondor for Users</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1719"
+  HREF="3_12Setting_Up.html#SECTION004122000000000000000">3.12.2 Enabling the Transfer of Files Specified by a URL</A>
+<LI><A NAME="tex2html1720"
+  HREF="3_12Setting_Up.html#SECTION004123000000000000000">3.12.3 Configuring HTCondor for
+Multiple Platforms</A>
+<UL>
+<LI><A NAME="tex2html1721"
+  HREF="3_12Setting_Up.html#SECTION004123100000000000000">3.12.3.1 Platform-Specific
+Configuration File Settings</A>
+<LI><A NAME="tex2html1722"
+  HREF="3_12Setting_Up.html#SECTION004123200000000000000">3.12.3.2 Other Uses for
+Platform-Specific Configuration Files</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1723"
+  HREF="3_12Setting_Up.html#SECTION004124000000000000000">3.12.4 Full Installation of
+condor_compile</A>
+<LI><A NAME="tex2html1724"
+  HREF="3_12Setting_Up.html#SECTION004125000000000000000">3.12.5 The <I>condor_kbdd</I></A>
+<UL>
+<LI><A NAME="tex2html1725"
+  HREF="3_12Setting_Up.html#SECTION004125100000000000000">3.12.5.1 The <I>condor_kbdd</I> on Windows Platforms</A>
+<LI><A NAME="tex2html1726"
+  HREF="3_12Setting_Up.html#SECTION004125200000000000000">3.12.5.2 The <I>condor_kbdd</I> on Linux Platforms</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1727"
+  HREF="3_12Setting_Up.html#SECTION004126000000000000000">3.12.6 Configuring The HTCondorView Server</A>
+<UL>
+<LI><A NAME="tex2html1728"
+  HREF="3_12Setting_Up.html#SECTION004126100000000000000">3.12.6.1 Configuring a Machine to be a HTCondorView Server</A>
+<LI><A NAME="tex2html1729"
+  HREF="3_12Setting_Up.html#SECTION004126200000000000000">3.12.6.2 Configuring a Pool to Report to the HTCondorView Server</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1730"
+  HREF="3_12Setting_Up.html#SECTION004127000000000000000">3.12.7 Running HTCondor Jobs within a Virtual Machine</A>
+<UL>
+<LI><A NAME="tex2html1731"
+  HREF="3_12Setting_Up.html#SECTION004127100000000000000">3.12.7.1 Installation and Configuration</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1732"
+  HREF="3_12Setting_Up.html#SECTION004128000000000000000">3.12.8 HTCondor's Dedicated Scheduling</A>
+<UL>
+<LI><A NAME="tex2html1733"
+  HREF="3_12Setting_Up.html#SECTION004128100000000000000">3.12.8.1 Selecting and Setting Up a Dedicated Scheduler</A>
+<LI><A NAME="tex2html1734"
+  HREF="3_12Setting_Up.html#SECTION004128200000000000000">3.12.8.2 Configuration Examples for Dedicated Resources</A>
+<LI><A NAME="tex2html1735"
+  HREF="3_12Setting_Up.html#SECTION004128300000000000000">3.12.8.3 Preemption with Dedicated Jobs</A>
+<LI><A NAME="tex2html1736"
+  HREF="3_12Setting_Up.html#SECTION004128400000000000000">3.12.8.4 Grouping Dedicated Nodes into Parallel Scheduling Groups</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1737"
+  HREF="3_12Setting_Up.html#SECTION004129000000000000000">3.12.9 Configuring HTCondor for Running Backfill Jobs</A>
+<UL>
+<LI><A NAME="tex2html1738"
+  HREF="3_12Setting_Up.html#SECTION004129100000000000000">3.12.9.1 Overview of Backfill jobs
+in HTCondor</A>
+<LI><A NAME="tex2html1739"
+  HREF="3_12Setting_Up.html#SECTION004129200000000000000">3.12.9.2 Defining the Backfill Policy</A>
+<LI><A NAME="tex2html1740"
+  HREF="3_12Setting_Up.html#SECTION004129300000000000000">3.12.9.3 Overview of the
+ BOINC system</A>
+<LI><A NAME="tex2html1741"
+  HREF="3_12Setting_Up.html#SECTION004129400000000000000">3.12.9.4 Installing the BOINC client
+software</A>
+<LI><A NAME="tex2html1742"
+  HREF="3_12Setting_Up.html#SECTION004129500000000000000">3.12.9.5 Configuring the BOINC client
+under HTCondor</A>
+<LI><A NAME="tex2html1743"
+  HREF="3_12Setting_Up.html#SECTION004129600000000000000">3.12.9.6 BOINC on Windows</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1744"
+  HREF="3_12Setting_Up.html#SECTION0041210000000000000000">3.12.10 Per Job PID Namespaces</A>
+<LI><A NAME="tex2html1745"
+  HREF="3_12Setting_Up.html#SECTION0041211000000000000000">3.12.11 Group ID-Based Process Tracking</A>
+<LI><A NAME="tex2html1746"
+  HREF="3_12Setting_Up.html#SECTION0041212000000000000000">3.12.12 Cgroup-Based Process Tracking</A>
+<LI><A NAME="tex2html1747"
+  HREF="3_12Setting_Up.html#SECTION0041213000000000000000">3.12.13 Limiting Resource Usage with a User Job Wrapper</A>
+<LI><A NAME="tex2html1748"
+  HREF="3_12Setting_Up.html#SECTION0041214000000000000000">3.12.14 Limiting Resource Usage Using Cgroups</A>
+<LI><A NAME="tex2html1749"
+  HREF="3_12Setting_Up.html#SECTION0041215000000000000000">3.12.15 Concurrency Limits</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION004120000000000000000"></A><A NAME="sec:special-environments"></A>
+<BR>
+3.12 Setting Up for Special
+Environments
+</H1> 
+
+<P>
+The following sections describe how to set up HTCondor for use in
+special environments or configurations.
+
+<P>
+
+<H2><A NAME="SECTION004121000000000000000"></A><A NAME="sec:HTCondor-AFS"></A>
+<A NAME="39968"></A>
+<BR>
+3.12.1 Using HTCondor with AFS
+</H2>
+
+<P>
+Configuration variables that allow machines to interact with and
+use a shared file system are given at
+section&nbsp;<A HREF="3_3Configuration.html#sec:Shared-Filesystem-Config-File-Entries">3.3.7</A>.
+
+<P>
+Limitations with AFS occur because
+ HTCondor does not currently have a way to authenticate itself to AFS.
+This is true of the HTCondor daemons that would like to authenticate as
+the AFS user <TT>condor</TT>, and of the <I>condor_shadow</I> which would like to
+authenticate as the user who submitted the job it is serving.
+Since neither of these things can happen yet, there are special
+things to do when interacting with AFS.
+Some of this must be done by the administrator(s) installing HTCondor.
+Other things must be done by HTCondor users who submit jobs.
+
+<P>
+
+<H3><A NAME="SECTION004121100000000000000"></A><A NAME="sec:HTCondor-AFS-Admin"></A>
+<BR>
+3.12.1.1 AFS and HTCondor for Administrators
+</H3>
+
+<P>
+The largest result from the lack of authentication with AFS is that
+the directory defined by the configuration variable <TT>LOCAL_DIR</TT>
+and its subdirectories <TT>log</TT> and <TT>spool</TT> on each machine
+must be either writable to unauthenticated users, or must not be on AFS.
+Making these directories writable a <I>very</I> bad security hole,
+so it is <I>not</I> a viable solution.
+Placing <TT>LOCAL_DIR</TT> onto NFS is acceptable.
+To avoid AFS, place the directory defined for <TT>LOCAL_DIR</TT> on
+a local partition on each machine in the pool.
+This implies running <I>condor_configure</I> to install the release directory and
+configure the pool,
+setting the <TT>LOCAL_DIR</TT> variable to a local partition.
+When that is complete, log into each machine in the pool,
+and run <I>condor_init</I> to set up the local HTCondor directory.
+
+<P>
+The directory defined by <TT>RELEASE_DIR</TT>,
+which holds all the HTCondor binaries,
+libraries, and scripts, can be on AFS.
+None of the HTCondor daemons need to write to these files.
+They only need to read them.
+So, the directory defined by <TT>RELEASE_DIR</TT> only needs to be
+world readable in order to let HTCondor function.
+This makes it easier to
+upgrade the binaries to a newer version at a later date,
+and means that users can find the HTCondor tools in a consistent location
+on all the machines in the pool. 
+Also, the HTCondor configuration files may be placed in a centralized location.
+This is what we do for the UW-Madison's CS department HTCondor pool,
+and it works quite well.
+
+<P>
+Finally, consider setting up some targeted AFS groups to help 
+users deal with HTCondor and AFS better.
+This is discussed in the following manual subsection.
+In short, create an AFS group that
+contains all users, authenticated or not,
+but which is restricted to a given host or subnet.
+These should be made as host-based ACLs with AFS,
+but here at UW-Madison, we have had some trouble getting that working.
+Instead, we have a special group for all machines in our department.
+The users here are required to make their output
+directories on AFS writable to any process running on any of our
+machines, instead of any process on any machine with AFS on the
+Internet.
+
+<P>
+
+<H3><A NAME="SECTION004121200000000000000"></A><A NAME="sec:HTCondor-AFS-Users"></A>
+<BR>
+3.12.1.2 AFS and HTCondor for Users
+</H3>
+
+<P>
+The <I>condor_shadow</I> daemon runs on the machine where jobs are submitted.
+It performs all file system access on behalf of the jobs.
+Because the <I>condor_shadow</I> daemon is not authenticated to AFS
+as the user who submitted the job, the <I>condor_shadow</I> daemon
+will not normally be able to write any output.
+Therefore the directories in which the job will be creating output files
+will need to be world writable; they need to be writable by
+non-authenticated AFS users.
+In addition, the program's <TT>stdout</TT>, <TT>stderr</TT>, log file,
+and any file the program explicitly opens
+will need to be in a directory that is world-writable.
+
+<P>
+An administrator may be able to set up special AFS groups that can make 
+unauthenticated access to the program's files less scary.
+For example, there is
+supposed to be a way for AFS to grant access to any unauthenticated
+process on a given host. 
+If set up,
+write access need only be granted to unauthenticated processes 
+on the submit machine,
+as opposed to any unauthenticated process on the Internet.
+Similarly,
+unauthenticated read access could be granted only to processes running
+on the submit machine.
+
+<P>
+A solution to this problem is to not use AFS for output files.
+If disk space on the submit machine is available in a partition not on AFS,
+submit the jobs from there.
+While the <I>condor_shadow</I> daemon is not authenticated to AFS,
+it does run with the effective UID of the user who submitted the jobs.
+So, on a local (or NFS) file system,
+the <I>condor_shadow</I> daemon will be able to access the files,
+and no special permissions need be granted to anyone other than the job
+submitter.
+If the HTCondor daemons are not invoked as root however,
+the <I>condor_shadow</I> daemon will not be able to run with the submitter's
+effective UID, leading to
+a similar problem as with files on AFS.
+
+<H2><A NAME="SECTION004122000000000000000"></A><A NAME="sec:URL-transfer"></A>
+<A NAME="40049"></A>
+<A NAME="40050"></A>
+<A NAME="40051"></A>
+<BR>
+3.12.2 Enabling the Transfer of Files Specified by a URL
+</H2>
+
+<P>
+Because staging data on the submit machine is not always efficient,
+HTCondor permits input files to be transferred
+from a location specified by a URL;
+likewise, output files may be transferred
+to a location specified by a URL.
+All transfers (both input and output) are accomplished by invoking 
+a <I>plug-in</I>,
+an executable or shell script that handles the task of file transfer.
+
+<P>
+For transferring input files,
+URL specification is limited to jobs running under the vanilla universe 
+and to a vm universe VM image file.
+The execute machine retrieves the files.
+This differs from the normal file transfer mechanism,
+in which transfers are from the machine where the job is submitted
+to the machine where the job is executed.
+Each file to be transferred by specifying a URL, causing a
+plug-in to be invoked, is specified separately in the job submit
+description file with the command <B>transfer_input_files</B><A NAME="40105"></A>;
+see section&nbsp;<A HREF="2_5Submitting_Job.html#sec:file-transfer-by-URL">2.5.4</A> for details.
+
+<P>
+For transferring output files,
+either the entire output sandbox, which are all files produced or
+modified by the job as it executes, or a subset of these files,
+as specified by the submit description file command 
+<B>transfer_output_files</B><A NAME="40107"></A> are transferred to the
+directory specified by the URL.
+The URL itself is specified in the separate submit description file command 
+<B>output_destination</B><A NAME="40109"></A>;
+see section&nbsp;<A HREF="2_5Submitting_Job.html#sec:file-transfer-by-URL">2.5.4</A> for details.
+The plug-in is invoked once for each output file to be transferred.
+
+<P>
+Configuration identifies the availability of the one or more plug-in(s).
+The plug-ins must be installed and available on every execute machine 
+that may run a job which might specify a URL, either for input or for output.
+
+<P>
+URL transfers are enabled by default in the configuration 
+of execute machines.
+Disabling URL transfers is accomplished by setting
+<PRE>
+ENABLE_URL_TRANSFERS = FALSE
+</PRE>
+<P>
+A comma separated list giving the absolute path and name
+of all available plug-ins is specified as in the example:
+<PRE>
+FILETRANSFER_PLUGINS = /opt/condor/plugins/wget-plugin, \
+                       /opt/condor/plugins/hdfs-plugin, \
+                       /opt/condor/plugins/custom-plugin
+</PRE>
+<P>
+The <I>condor_starter</I> invokes all listed plug-ins to determine their 
+capabilities. Each may handle one or more protocols (scheme names).
+The plug-in's response to invocation identifies which protocols
+it can handle.
+When a URL transfer is specified by a job,
+the <I>condor_starter</I> invokes the proper one to do the transfer.
+If more than one plugin is capable of handling a particular protocol,
+then the last one within the list given by <TT>FILETRANSFER_PLUGINS</TT>
+is used.
+
+<P>
+HTCondor assumes that all plug-ins will respond in specific
+ways.
+To determine the capabilities of the plug-ins as to which protocols
+they handle,
+the <I>condor_starter</I> daemon invokes each plug-in giving it the
+command line argument <B>-classad</B>.
+In response to invocation with this command line argument,
+the plug-in must respond with an output of three ClassAd attributes. 
+The first two are fixed:
+<PRE>
+PluginVersion = "0.1"
+PluginType = "FileTransfer"
+</PRE>
+<P>
+The third ClassAd attribute is <TT>SupportedMethods</TT>. 
+This attribute is a string containing a comma separated list of the
+protocols that the plug-in handles.
+So, for example
+<PRE>
+SupportedMethods = "http,ftp,file"
+</PRE>would identify that the three protocols described by <code>http</code>,
+<code>ftp</code>, and <code>file</code> are supported.
+These strings will match the protocol specification as given
+within a URL in a <B>transfer_input_files</B><A NAME="40121"></A> command
+or within a URL in an <B>output_destination</B><A NAME="40123"></A> command 
+in a submit description file for a job.
+
+<P>
+When a job specifies a URL transfer,
+the plug-in is invoked, without the command line argument <B>-classad</B>.
+It will instead be given two other command line arguments.
+For the transfer of input file(s),
+the first will be the URL of the file to retrieve
+and the second will be the absolute path identifying where to place the
+transferred file.
+For the transfer of output file(s),
+the first will be the absolute path on the local machine of the file
+to transfer,
+and the second will be the URL of the directory and file name
+at the destination.
+
+<P>
+The plug-in is expected to do the transfer,
+exiting with status 0 if the transfer was successful, 
+and a non-zero status if the transfer was <I>not</I> successful.
+When <I>not</I> successful, the job is placed on hold,
+and the job ClassAd attribute <TT>HoldReason</TT> will be set as
+appropriate for the job.
+The job ClassAd attribute <TT>HoldReasonSubCode</TT> will be set to
+the exit status of the plug-in.
+
+<P>
+As an example of the transfer of a subset of output files,
+assume that the submit description file contains 
+<PRE>
+output_destination = url://server/some/directory/
+transfer_output_files = foo, bar, qux
+</PRE>HTCondor invokes the plug-in that handles the <TT>url</TT> protocol
+three times.
+The directory delimiter
+(<code>/</code> on Unix, and <code>\</code> on Windows) 
+is appended to the destination URL,
+such that the three (Unix) invocations of the plug-in will appear similar to
+<PRE>
+url_plugin /path/to/local/copy/of/foo url://server/some/directory//foo
+url_plugin /path/to/local/copy/of/bar url://server/some/directory//bar
+url_plugin /path/to/local/copy/of/qux url://server/some/directory//qux
+</PRE>
+<P>
+Note that this functionality is not limited to a predefined set
+of protocols.
+New ones can be invented.
+As an invented example,
+the <code>zkm</code> transfer type writes random bytes to a file.
+The plug-in that handles <code>zkm</code> transfers would respond to 
+invocation with the <B>-classad</B> command line argument with:
+<PRE>
+PluginVersion = "0.1"
+PluginType = "FileTransfer"
+SupportedMethods = "zkm"
+</PRE>And, then when a job requested that this plug-in be invoked,
+for the invented example:
+<PRE>
+transfer_input_files = zkm://128/r-data
+</PRE>the plug-in will be invoked with a first command line argument
+of <code>zkm://128/r-data</code> and a second command line argument giving
+the full path along with the file name <TT>r-data</TT> as the location
+for the plug-in to write 128 bytes of random data.
+
+<P>
+The transfer of output files in this manner was introduced 
+in HTCondor version 7.6.0. 
+Incompatibility and inability to function will result if the executables
+for the <I>condor_starter</I> and <I>condor_shadow</I> are versions earlier
+than HTCondor version 7.6.0.
+Here is the expected behavior for these cases that 
+cannot be backward compatible. 
+
+<UL>
+<LI>If the <I>condor_starter</I> version is earlier than 7.6.0,
+then regardless of the <I>condor_shadow</I> version,
+transfer of output files, as identified in the submit description
+file with the command <B>output_destination</B><A NAME="40141"></A> is ignored.
+The files are transferred back to the submit machine.
+</LI>
+<LI>If the <I>condor_starter</I> version is 7.6.0 or later,
+but the  <I>condor_shadow</I> version is earlier than 7.6.0,
+then the <I>condor_starter</I> will attempt to send the command to the
+<I>condor_shadow</I>, but the <I>condor_shadow</I> will ignore the command.
+No files will be transferred, and the job will be placed on hold.
+</LI>
+</UL>
+
+<H2><A NAME="SECTION004123000000000000000"></A><A NAME="sec:Multiple-Platforms"></A>
+<BR>
+3.12.3 Configuring HTCondor for
+Multiple Platforms
+</H2> 
+
+<P>
+A single, initial configuration file may be used for all platforms 
+in an HTCondor pool, 
+with  platform-specific settings placed in separate files.  
+This greatly
+simplifies administration of a heterogeneous pool by allowing
+specification of platform-independent, global settings in one place, instead of
+separately for each platform.  This is made possible by treating the
+<TT>LOCAL_CONFIG_FILE</TT><A NAME="40260"></A><A NAME="40261"></A> configuration variable as a
+list of files, instead of a single file.  Of course, this only
+helps when using a shared file system for the machines in the
+pool, so that multiple machines can actually share a single set of
+configuration files.
+
+<P>
+With multiple platforms, put all
+platform-independent settings (the vast majority) into the 
+single initial configuration file, 
+which will be shared by all platforms.
+Then, set the <TT>LOCAL_CONFIG_FILE</TT> configuration variable from that
+global configuration file to specify both a platform-specific
+configuration file and
+optionally, a local, machine-specific configuration file.
+
+<P>
+The name of 
+platform-specific configuration files may be specified by using 
+<TT>$(ARCH)</TT> and <TT>$(OPSYS)</TT>, 
+as defined automatically by HTCondor.
+For example, for 32-bit Intel Windows 7
+machines and 64-bit Intel Linux machines,
+the files ought to be named:
+
+<P>
+<PRE>
+  condor_config.INTEL.WINDOWS
+  condor_config.X86_64.LINUX
+</PRE>
+
+<P>
+Then, assuming these files are in the directory defined by the
+<TT>ETC</TT> configuration variable,
+and machine-specific configuration files are in
+the same directory, named by each machine's host name,
+<TT>LOCAL_CONFIG_FILE</TT><A NAME="40269"></A><A NAME="40270"></A> becomes:
+
+<P>
+<PRE>
+LOCAL_CONFIG_FILE = $(ETC)/condor_config.$(ARCH).$(OPSYS), \
+                    $(ETC)/$(HOSTNAME).local
+</PRE>
+<P>
+Alternatively, when using AFS, an <TT>@sys</TT> link may be used to
+specify the platform-specific configuration file,
+which lets AFS resolve this link based on platform name.
+For example, consider
+a soft link named <TT>condor_config.platform</TT> that points to
+<TT>condor_config.@sys</TT>.  In this case, the files might be named:
+
+<P>
+<PRE>
+  condor_config.i386_linux2
+  condor_config.platform -&gt; condor_config.@sys
+</PRE>
+
+<P>
+and the <TT>LOCAL_CONFIG_FILE</TT> configuration variable would be set to
+
+<P>
+<PRE>
+LOCAL_CONFIG_FILE = $(ETC)/condor_config.platform, \
+                    $(ETC)/$(HOSTNAME).local
+</PRE>
+<P>
+
+<H3><A NAME="SECTION004123100000000000000"></A><A NAME="sec:Platform-Specific-Settings"></A>
+<BR>
+3.12.3.1 Platform-Specific
+Configuration File Settings
+</H3>
+
+<P>
+The configuration variables that are truly platform-specific are:
+
+<P>
+<DL>
+<DT><STRONG><TT>RELEASE_DIR</TT><A NAME="40278"></A><A NAME="40279"></A></STRONG></DT>
+<DD>Full path to to the installed
+  HTCondor binaries.  While the configuration files may be shared among
+  different platforms, the binaries certainly cannot.  Therefore,
+  maintain separate release directories for each platform
+  in the pool.  
+
+<P>
+</DD>
+<DT><STRONG><TT>MAIL</TT><A NAME="40283"></A><A NAME="40284"></A></STRONG></DT>
+<DD>The full path to the mail program.  
+
+<P>
+</DD>
+<DT><STRONG><TT>CONSOLE_DEVICES</TT><A NAME="40288"></A><A NAME="40289"></A></STRONG></DT>
+<DD>Which devices in <TT>/dev</TT> should be
+  treated as console devices.
+
+<P>
+</DD>
+<DT><STRONG><TT>DAEMON_LIST</TT><A NAME="40294"></A><A NAME="40295"></A></STRONG></DT>
+<DD>Which daemons the <I>condor_master</I> should
+  start up.  The reason this setting is platform-specific is
+  to distinguish the <I>condor_kbdd</I>.
+  It is needed on many Linux and Windows machines,
+  and it is not needed on other platforms.
+
+<P>
+</DD>
+</DL>
+
+<P>
+Reasonable defaults for all of these configuration variables
+will be found in the
+default configuration files inside a given platform's binary distribution
+(except the <TT>RELEASE_DIR</TT>, since 
+the location of the HTCondor binaries and libraries is installation specific).
+With multiple platforms,
+use one of the <TT>condor_config</TT> files from
+either running <I>condor_configure</I> or from the
+<TT><TT>$(RELEASE_DIR)</TT>/etc/examples/condor_config.generic</TT> file,
+take these settings out,
+save them into a platform-specific file,
+and install the resulting platform-independent file as the global
+configuration file.
+Then,
+find the same settings from the configuration files for any other platforms
+to be set up, and put them in their own platform-specific files.
+Finally, set the <TT>LOCAL_CONFIG_FILE</TT> configuration variable
+to point to
+the appropriate platform-specific file, as described above.
+
+<P>
+Not even all of these configuration variables are necessarily
+going to be different.
+For example, if an installed mail program understands the
+<B>-s</B> option in <TT>/usr/local/bin/mail</TT> on all platforms,
+the <TT>MAIL</TT> macro may be set to that in the global configuration
+file, and not define it anywhere else.
+For a pool with only Linux or Windows machines,
+the <TT>DAEMON_LIST</TT> will be the same for each, so there is no
+reason not to put that in the global configuration file.
+
+<P>
+
+<H3><A NAME="SECTION004123200000000000000"></A><A NAME="sec:Other-Uses-for-Platform-Files"></A>
+<BR>
+3.12.3.2 Other Uses for
+Platform-Specific Configuration Files
+</H3> 
+
+<P>
+It is certainly possible that an installation may want other 
+configuration variables to be platform-specific as well.
+Perhaps a different policy is desired for
+one of the platforms.
+Perhaps different people should get the
+e-mail about problems with the different platforms.
+There is nothing hard-coded about any of this.
+What is shared and
+what should not shared is entirely configurable.
+
+<P>
+Since the <TT>LOCAL_CONFIG_FILE</TT><A NAME="40316"></A><A NAME="40317"></A> macro can be an arbitrary
+list of files, an installation can even break up the global,
+platform-independent settings into separate files.
+In fact, the global configuration file might
+only contain a definition for <TT>LOCAL_CONFIG_FILE</TT>, and all
+other configuration variables would be placed in separate files.  
+
+<P>
+Different people may be given different permissions to change different
+HTCondor settings.  For example, if a user is to be able to
+change certain settings, but nothing else, those
+settings may be placed in a file which was early
+in the <TT>LOCAL_CONFIG_FILE</TT> list,
+to give that user write permission on that file.
+Then, include all the other files after that one.
+In this way, if the user was attempting to
+change settings that the user should not be permitted to change,
+the settings would be overridden.  
+
+<P>
+This mechanism is quite flexible and powerful.  For
+very specific configuration needs, they can probably be met by
+using file permissions, the <TT>LOCAL_CONFIG_FILE</TT> configuration
+variable, and imagination.
+
+<H2><A NAME="SECTION004124000000000000000"></A><A NAME="sec:full-condor-compile"></A>
+<BR>
+3.12.4 Full Installation of
+condor_compile
+</H2> 
+
+<P>
+In order to take advantage of two major HTCondor features: checkpointing
+and remote system calls, users need to relink
+their binaries.  Programs that are not relinked for HTCondor can run 
+under
+HTCondor's vanilla universe. However, these jobs cannot
+take checkpoints and migrate.
+
+<P>
+To relink programs with HTCondor, we provide the 
+<I>condor_compile</I> tool.  As installed by default, <I>condor_compile</I> works
+with the following commands: <I>gcc</I>, <I>g++</I>, <I>g77</I>,
+<I>cc</I>, <I>acc</I>, <I>c89</I>, <I>CC</I>, <I>f77</I>,
+<I>fort77</I>, <I>ld</I>.  
+See the <I>condor_compile</I>(1) man page for details on
+using <I>condor_compile</I>.
+
+<P>
+<I>condor_compile</I> can work transparently with all
+commands on the system, including <I>make</I>.  
+The basic idea here is to replace the system linker (<I>ld</I>) with
+the HTCondor linker.  Then, when a program is to be linked, the HTCondor
+linker figures out whether this binary will be for HTCondor, or for a
+normal binary.  If it is to be a normal compile, the old <I>ld</I> is
+called.  If this binary is to be linked for HTCondor,
+the script
+performs the necessary operations in order to prepare a binary that
+can be used with HTCondor.  In order to differentiate between normal
+builds and HTCondor builds, the user simply places 
+<I>condor_compile</I> before their build command, which sets the
+appropriate environment variable that lets the HTCondor linker script
+know it needs to do its magic.
+
+<P>
+In order to perform this full installation of <I>condor_compile</I>, the
+following steps need to be taken:
+
+<P>
+
+<OL>
+<LI>Rename the system linker from <I>ld</I> to <I>ld.real</I>.
+</LI>
+<LI>Copy the HTCondor linker to the location of the previous 
+<I>ld</I>.
+</LI>
+<LI>Set the owner of the linker to <TT>root</TT>.
+</LI>
+<LI>Set the permissions on the new linker to 755.
+</LI>
+</OL>
+
+<P>
+The actual commands to execute depend upon the platform.
+The location of the system linker (<I>ld</I>), is as follows:
+<PRE>
+	Operating System              Location of ld (ld-path)
+	Linux                         /usr/bin
+</PRE>
+
+<P>
+On these platforms, issue the following commands (as <TT>root</TT>), where
+<I>ld-path</I> is replaced by the path to the system's <I>ld</I>.
+<PRE>
+  mv /[ld-path]/ld /&lt;ld-path&gt;/ld.real
+  cp /usr/local/condor/lib/ld /&lt;ld-path&gt;/ld
+  chown root /&lt;ld-path&gt;/ld
+  chmod 755 /&lt;ld-path&gt;/ld
+</PRE>
+
+<P>
+If you remove HTCondor from your system later on, linking will continue
+to work, since the HTCondor linker will always default to compiling
+normal binaries and simply call the real <I>ld</I>.  In the interest of
+simplicity, it is recommended that you reverse the above changes by
+moving your <I>ld.real</I> linker back to its former position as <I>ld</I>,
+overwriting the HTCondor linker.
+
+<P>
+<U>NOTE</U>: If you ever upgrade your operating system after performing a
+full installation of <I>condor_compile</I>, you will probably have to re-do
+all the steps outlined above.
+Generally speaking, new versions or patches of an operating system
+might replace the system <I>ld</I> binary, which would undo the
+full installation of <I>condor_compile</I>.
+
+<H2><A NAME="SECTION004125000000000000000"></A><A NAME="sec:kbdd"></A>
+<BR>
+3.12.5 The <I>condor_kbdd</I>
+</H2>
+<A NAME="40545"></A>
+<A NAME="40546"></A>
+<A NAME="40498"></A>
+
+<P>
+The HTCondor keyboard daemon, <I>condor_kbdd</I>, monitors X events on
+machines where the operating system does not provide a way of
+monitoring the idle time of the keyboard or mouse.  
+On Linux platforms,
+it is needed to detect USB keyboard activity.
+Otherwise, it is not needed.  
+On Windows platforms,
+the <I>condor_kbdd</I> is the primary way of monitoring the idle time of 
+both the keyboard and mouse.
+
+<P>
+
+<H3><A NAME="SECTION004125100000000000000"></A><A NAME="sec:kbdd-Windows"></A>
+<BR>
+3.12.5.1 The <I>condor_kbdd</I> on Windows Platforms
+</H3>
+
+<P>
+Windows platforms need to use the <I>condor_kbdd</I> to monitor the
+idle time of both the keyboard and mouse.
+By adding <TT>KBDD</TT> to configuration variable <TT>DAEMON_LIST</TT>,
+the <I>condor_master</I> daemon invokes the <I>condor_kbdd</I>,
+which then does the right thing to monitor activity given the
+version of Windows running.
+
+<P>
+With Windows Vista and more recent version of Windows,
+user sessions are moved out of session 0.
+Therefore, the <I>condor_startd</I> service is no longer able to listen 
+to keyboard and mouse events.
+The <I>condor_kbdd</I> will run in an invisible
+window and should not be noticeable by the user,
+except for a listing in the task manager. 
+When the user logs out, the program is terminated by Windows. 
+This implementation also appears in versions of Windows that predate Vista,
+because it adds the capability of monitoring keyboard activity
+from multiple users.
+
+<P>
+To achieve the auto-start with user login, the HTCondor installer adds a
+<I>condor_kbdd</I> entry to the registry key at
+<code>HKLM\Software\Microsoft\Windows\CurrentVersion\Run</code>. 
+On 64-bit versions of Vista and more recent Windows versions,
+the entry is actually placed in
+<code>HKLM\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Run</code>.  
+
+<P>
+In instances where the <I>condor_kbdd</I> is unable to connect to the
+<I>condor_startd</I>,
+it is likely because an
+exception was not properly added to the Windows firewall.
+
+<P>
+
+<H3><A NAME="SECTION004125200000000000000"></A><A NAME="sec:kbdd-Linux"></A>
+<BR>
+3.12.5.2 The <I>condor_kbdd</I> on Linux Platforms
+</H3>
+
+<P>
+On Linux platforms, great measures have been taken to make 
+the <I>condor_kbdd</I> as robust as possible, 
+but the X window system was not designed to facilitate such a need,
+and thus is not as efficient on machines where many users frequently log
+in and out on the console.
+
+<P>
+In order to work with X authority, 
+which is the system by which X authorizes processes to connect to X servers,
+the <I>condor_kbdd</I> needs to run with super user privileges.
+Currently, the <I>condor_kbdd</I> assumes that X
+uses the <TT>HOME</TT> environment variable in order to locate a file
+named <TT>.Xauthority</TT>. 
+This file contains keys necessary to connect to an X server.
+The keyboard daemon attempts to set <TT>HOME</TT>
+to various users' home directories in order to gain a
+connection to the X server and monitor events.
+This may fail to work if the
+keyboard daemon is not allowed to attach to the X server,
+and the state of a machine may be incorrectly set to idle when a user is,
+in fact,
+using the machine.
+
+<P>
+In some environments, the  <I>condor_kbdd</I> will not be able to connect to the X
+server because the user currently logged into the system keeps their
+authentication token for using the X server in a place that no local user on
+the current machine can get to.  
+This may be the case for files on AFS, 
+because the user's <TT>.Xauthority</TT> file is in an AFS home directory.
+
+<P>
+There may also
+be cases where the <I>condor_kbdd</I> may not be run with super user privileges
+because of political reasons,
+but it is still desired to be able to monitor X activity.
+In these cases, change the XDM configuration in order to
+start up the <I>condor_kbdd</I> with the permissions of the logged in user.
+If running X11R6.3, 
+the files to edit will probably be in <TT>/usr/X11R6/lib/X11/xdm</TT>.
+The <TT>.xsession</TT>
+file should start up the <I>condor_kbdd</I> at the end,
+and the <TT>.Xreset</TT> file
+should shut down the <I>condor_kbdd</I>.  
+The <B>-l</B> option can be used to write the daemon's log file to a
+place where the user running the daemon has permission to write a file.
+The file's recommended location will be similar to
+<TT>$HOME/.kbdd.log</TT>,
+since this is a place where every
+user can write, and the file will not get in the way.
+The <B>-pidfile</B> and <B>-k</B>
+options allow
+for easy shut down of the <I>condor_kbdd</I> by storing the process ID in a file.  
+It will be necessary
+to add lines to the XDM configuration similar to
+
+<P>
+<PRE>
+  condor_kbdd -l $HOME/.kbdd.log -pidfile $HOME/.kbdd.pid
+</PRE>
+<P>
+This will start the <I>condor_kbdd</I> as the user who is currently logged in
+and write the log to a file in the directory 
+<TT>$HOME/.kbdd.log/</TT>.  
+This will also save the process ID of the daemon 
+to <TT>~/.kbdd.pid</TT>, 
+so that when the user logs out, XDM can do:
+
+<P>
+<PRE>
+  condor_kbdd -k $HOME/.kbdd.pid
+</PRE>
+<P>
+This will shut down the process recorded in file <TT>~/.kbdd.pid</TT> 
+and exit.
+
+<P>
+To see how well the keyboard daemon is working, review
+the log for the daemon and look for successful connections to the X
+server.  If there are none, the <I>condor_kbdd</I>
+is unable to connect to the machine's X server.
+
+<H2><A NAME="SECTION004126000000000000000"></A><A NAME="sec:Contrib-HTCondorView-Install"></A>
+<BR>
+3.12.6 Configuring The HTCondorView Server
+</H2>
+
+<P>
+<A NAME="40663"></A>
+The HTCondorView server is an alternate use of the
+<I>condor_collector</I>
+that logs information on disk, providing a 
+persistent, historical database of pool state.
+This includes machine state, as well as the state of jobs submitted by
+users.
+
+<P>
+An existing <I>condor_collector</I> may act as the
+HTCondorView collector through configuration.  
+This is the simplest situation, because the only change
+needed is to turn on the logging of historical information.
+The alternative of configuring a new <I>condor_collector</I> to act as the
+HTCondorView collector is slightly more complicated,
+while it offers the
+advantage that the same HTCondorView collector may be used
+for several pools as desired, to aggregate information into one place.
+
+<P>
+The following sections describe how to configure a machine to run a
+HTCondorView server and to configure a pool to send updates to it. 
+
+<P>
+
+<H3><A NAME="SECTION004126100000000000000"></A><A NAME="sec:HTCondorView-Server-Setup"></A>
+<BR>
+3.12.6.1 Configuring a Machine to be a HTCondorView Server
+</H3> 
+
+<P>
+<A NAME="40668"></A>
+
+<P>
+To configure the HTCondorView collector, a few configuration variables
+are added or modified
+for the <I>condor_collector</I> chosen to act
+as the HTCondorView collector.
+These configuration variables are described in 
+section&nbsp;<A HREF="3_3Configuration.html#sec:Collector-Config-File-Entries">3.3.16</A> on
+page&nbsp;<A HREF="3_3Configuration.html#sec:Collector-Config-File-Entries"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+Here are brief explanations of the entries that must be customized:
+
+<P>
+<DL>
+<DT><STRONG><TT>POOL_HISTORY_DIR</TT><A NAME="40728"></A><A NAME="40729"></A></STRONG></DT>
+<DD>The directory where
+historical data will be stored.
+This directory must be writable by whatever user the HTCondorView
+collector is running as (usually the user <TT>condor</TT>).  
+There is a configurable limit to the maximum space required for all
+the files created by the HTCondorView server called
+(<TT>POOL_HISTORY_MAX_STORAGE</TT><A NAME="40734"></A><A NAME="40735"></A>). 
+
+<P>
+<U>NOTE</U>: This directory should be separate and different from the
+<TT>spool</TT> or <TT>log</TT> directories already set up for
+HTCondor.
+There are a few problems putting these files into either of those
+directories.
+
+<P>
+</DD>
+<DT><STRONG><TT>KEEP_POOL_HISTORY</TT><A NAME="40742"></A><A NAME="40743"></A></STRONG></DT>
+<DD>A boolean value that determines
+if the HTCondorView collector should store the historical information.
+It is <TT>False</TT> by default, and must be specified as <TT>True</TT> in
+the local configuration file to enable data collection.
+
+<P>
+</DD>
+</DL>
+
+<P>
+Once these settings are in place in the configuration file for the
+HTCondorView server host, create the directory specified
+in <TT>POOL_HISTORY_DIR</TT> and make it writable by the user the
+HTCondorView collector is running as.
+This is the same user that owns the <TT>CollectorLog</TT> file in
+the <TT>log</TT> directory. The user is usually <TT>condor</TT>.
+
+<P>
+If using the existing <I>condor_collector</I> as the HTCondorView collector,
+no further configuration is needed.  
+To run a different
+<I>condor_collector</I> to act as the HTCondorView collector, configure
+HTCondor to automatically start it.
+
+<P>
+If using a separate host for the HTCondorView collector,
+to start it, add the value <TT>COLLECTOR</TT> to
+<TT>DAEMON_LIST</TT>, and restart HTCondor on that host.
+To run the HTCondorView collector on the same host as another 
+<I>condor_collector</I>,
+ensure that the two <I>condor_collector</I> daemons use different network ports.
+Here is an example configuration in which the main <I>condor_collector</I> and the
+HTCondorView collector are started up by the same <I>condor_master</I> daemon on
+the same machine.  In this example, the HTCondorView collector uses
+port 12345.
+
+<P>
+<PRE>
+  VIEW_SERVER = $(COLLECTOR)
+  VIEW_SERVER_ARGS = -f -p 12345
+  VIEW_SERVER_ENVIRONMENT = "_CONDOR_COLLECTOR_LOG=$(LOG)/ViewServerLog"
+  DAEMON_LIST = MASTER, NEGOTIATOR, COLLECTOR, VIEW_SERVER
+</PRE>
+<P>
+For this change to take effect, restart the
+<I>condor_master</I> on this host.
+This may be accomplished with the <I>condor_restart</I> command,
+if the command is run with
+administrator access to the pool.
+
+<P>
+
+<H3><A NAME="SECTION004126200000000000000"></A><A NAME="sec:HTCondorView-Pool-Setup"></A>
+<BR>
+3.12.6.2 Configuring a Pool to Report to the HTCondorView Server
+</H3> 
+
+<P>
+For the HTCondorView server to function, configure the existing collector to
+forward ClassAd updates to it.
+This configuration is only necessary if 
+the HTCondorView collector is a different collector from the existing
+<I>condor_collector</I> for the pool.
+All the HTCondor daemons in the pool send their ClassAd updates to the
+regular <I>condor_collector</I>, which in turn will forward them on to the
+HTCondorView server.
+
+<P>
+Define the following configuration variable:
+<PRE>
+  CONDOR_VIEW_HOST = full.hostname[:portnumber]
+</PRE>where <code>full.hostname</code> is the full host name of the machine 
+running the HTCondorView collector.
+The full host name is optionally followed by a colon and
+port number.  This is only necessary if the HTCondorView
+collector is configured to use a port number other than the default.
+
+<P>
+Place this setting in the configuration file used by the existing 
+<I>condor_collector</I>.
+It is acceptable to place it in the global configuration file.  The
+HTCondorView collector will ignore this setting (as it should) as it notices
+that it is being asked to forward ClassAds to itself.
+
+<P>
+Once the HTCondorView server is running with this 
+change, send a
+<I>condor_reconfig</I> command to the main <I>condor_collector</I> for the change to
+take effect, so it will begin forwarding updates.  
+A query to the HTCondorView collector will verify that it is working.
+A query example:
+
+<P>
+<PRE>
+  condor_status -pool condor.view.host[:portnumber]
+</PRE>
+<P>
+A <I>condor_collector</I> may also be configured to report to multiple HTCondorView
+servers.  The configuration variable <TT>CONDOR_VIEW_HOST</TT><A NAME="40783"></A><A NAME="40784"></A> can be
+given as a list of HTCondorView servers separated by commas and/or spaces.
+
+<P>
+The following demonstrates an example configuration for two HTCondorView servers,
+where both HTCondorView servers (and the <I>condor_collector</I>) are running on the
+same machine, localhost.localdomain:
+
+<P>
+<PRE>
+VIEWSERV01 = $(COLLECTOR)
+VIEWSERV01_ARGS = -f -p 12345 -local-name VIEWSERV01
+VIEWSERV01_ENVIRONMENT = "_CONDOR_COLLECTOR_LOG=$(LOG)/ViewServerLog01"
+VIEWSERV01.POOL_HISTORY_DIR = $(LOCAL_DIR)/poolhist01
+VIEWSERV01.KEEP_POOL_HISTORY = TRUE
+VIEWSERV01.CONDOR_VIEW_HOST =
+
+VIEWSERV02 = $(COLLECTOR)
+VIEWSERV02_ARGS = -f -p 24680 -local-name VIEWSERV02
+VIEWSERV02_ENVIRONMENT = "_CONDOR_COLLECTOR_LOG=$(LOG)/ViewServerLog02"
+VIEWSERV02.POOL_HISTORY_DIR = $(LOCAL_DIR)/poolhist02
+VIEWSERV02.KEEP_POOL_HISTORY = TRUE
+VIEWSERV02.CONDOR_VIEW_HOST =
+
+CONDOR_VIEW_HOST = localhost.localdomain:12345 localhost.localdomain:24680
+DAEMON_LIST = $(DAEMON_LIST) VIEWSERV01 VIEWSERV02
+</PRE>
+<P>
+Note that the value of <TT>CONDOR_VIEW_HOST</TT><A NAME="40790"></A><A NAME="40791"></A> for VIEWSERV01 and VIEWSERV02
+is unset, to prevent them from inheriting the global value of
+<TT>CONDOR_VIEW_HOST</TT> and attempting to report to themselves 
+or each other.  If the HTCondorView servers are running on different machines where
+there is no global value for <TT>CONDOR_VIEW_HOST</TT>, this precaution
+is not required.
+
+<H2><A NAME="SECTION004127000000000000000"></A><A NAME="sec:Virtual-Machines"></A>
+<A NAME="40869"></A>
+<BR>
+3.12.7 Running HTCondor Jobs within a Virtual Machine
+</H2>
+
+<P>
+HTCondor jobs are formed from executables that are compiled to execute
+on specific platforms.
+This in turn restricts the machines within an HTCondor pool where
+a job may be executed.
+An HTCondor job may now be executed on a 
+virtual machine running VMware, Xen, or KVM.
+This allows Windows executables to run on a Linux machine,
+and Linux executables to run on a Windows machine.
+
+<P>
+In older versions of HTCondor, other parts of the system were also
+referred to as <I>virtual machines</I>, but in all cases, those are now
+known as <I>slots</I>.
+A virtual machine here describes the environment in which
+the outside operating system (called the host) emulates an inner operating
+system (called the inner virtual machine),
+such that an executable appears to run directly
+on the inner virtual machine.
+In other parts of HTCondor, a <I>slot</I> (formerly known as
+<I>virtual machine</I>) refers to the multiple cores of a multi-core
+machine.
+Also, be careful not to confuse the virtual machines discussed here
+with the Java Virtual Machine (JVM) referenced in other parts of this
+manual.
+Targeting an HTCondor job to run on an inner virtual machine is
+also different than using the <B>vm</B> universe. 
+The <B>vm</B> universe lands and starts up a virtual machine
+instance, which is the HTCondor job, on an execute machine.
+
+<P>
+HTCondor has the flexibility to run a job on either the host
+or the inner virtual machine, 
+hence two platforms appear to exist on a single machine.
+Since two platforms are an illusion, HTCondor understands the illusion, 
+allowing an HTCondor job to be executed on only
+one at a time.
+
+<P>
+
+<H3><A NAME="SECTION004127100000000000000"></A><A NAME="sec:Virtual-Machines-Configuration"></A>
+<BR>
+3.12.7.1 Installation and Configuration
+</H3>
+
+<P>
+<A NAME="40877"></A>
+HTCondor must be separately installed, separately configured,
+and separately running on both
+the host and the inner virtual machine.
+
+<P>
+The configuration for the host specifies <TT>VMP_VM_LIST</TT><A NAME="40902"></A><A NAME="40903"></A>.
+This specifies host names or IP addresses of all inner virtual machines
+running on this host.
+An example configuration on the host machine:
+
+<P>
+<PRE>
+VMP_VM_LIST = vmware1.domain.com, vmware2.domain.com
+</PRE>
+<P>
+The configuration for each separate inner virtual machine specifies
+<TT>VMP_HOST_MACHINE</TT><A NAME="40907"></A><A NAME="40908"></A>.
+This specifies the host for the inner virtual machine.
+An example configuration on an inner virtual machine:
+
+<P>
+<PRE>
+VMP_HOST_MACHINE = host.domain.com
+</PRE>
+<P>
+Given this configuration, as well as communication between
+HTCondor daemons running on the host and on the inner virtual machine,
+the policy for when jobs may execute is set by HTCondor.
+While the host is executing an HTCondor job,
+the <TT>START</TT> policy on the inner virtual machine
+is overridden with <TT>False</TT>,
+so no HTCondor jobs will be started on the inner virtual machine.
+Conversely, while the inner virtual machine is executing an HTCondor job,
+the <TT>START</TT> policy on the host
+is overridden with <TT>False</TT>,
+so no HTCondor jobs will be started on the host.
+
+<P>
+The inner virtual machine is further provided with a new syntax for
+referring to the machine ClassAd attributes of its host.
+Any machine ClassAd attribute with a prefix of the string
+<TT>HOST_</TT> explicitly refers to the host's ClassAd attributes.
+The <TT>START</TT> policy on the inner virtual machine
+ought to use this syntax to avoid starting jobs when its host is
+too busy processing other items.
+An example configuration for <TT>START</TT> on an inner virtual machine:
+
+<P>
+<PRE>
+START = ( (KeyboardIdle &gt; 150 ) &amp;&amp; ( HOST_KeyboardIdle &gt; 150 ) \
+        &amp;&amp; ( LoadAvg &lt;= 0.3 ) &amp;&amp; ( HOST_TotalLoadAvg &lt;= 0.3 ) )
+</PRE>
+<H2><A NAME="SECTION004128000000000000000"></A><A NAME="sec:Config-Dedicated-Jobs"></A> 
+<A NAME="40955"></A>
+<A NAME="40956"></A>
+<BR>
+3.12.8 HTCondor's Dedicated Scheduling
+</H2>
+
+<P>
+The dedicated scheduler is a part of the <I>condor_schedd</I> that handles 
+the scheduling of parallel jobs that require more than one machine
+concurrently running per job.  
+MPI applications are a common use for the dedicated scheduler, 
+but parallel applications which do not require MPI can also be run 
+with the dedicated scheduler.
+All jobs which use the parallel universe are routed to the dedicated scheduler
+within the <I>condor_schedd</I> they were submitted to.  
+A default HTCondor installation
+does not configure a dedicated scheduler; 
+the administrator must designate one or more <I>condor_schedd</I> daemons
+to perform as dedicated scheduler.
+
+<P>
+
+<H3><A NAME="SECTION004128100000000000000"></A><A NAME="sec:Setup-Dedicated-Scheduler"></A>
+<BR>
+3.12.8.1 Selecting and Setting Up a Dedicated Scheduler
+</H3>
+
+<P>
+We recommend that you select a single machine within an 
+HTCondor pool to act as the dedicated scheduler.
+This becomes the machine from upon which all users submit their 
+parallel universe jobs.
+The perfect choice for the dedicated scheduler 
+is the single, front-end machine for
+a dedicated cluster of compute nodes.
+For the pool without an obvious choice for a submit machine,
+choose a machine that all users can log into, as well as one
+that is likely to be up and running all the time.
+All of HTCondor's other resource requirements for a submit machine apply to
+this machine, such as having enough disk space in the spool
+directory to hold jobs. See section&nbsp;<A HREF="3_2Installation_Start.html#sec:Preparing-to-Install">3.2.2</A> on
+page&nbsp;<A HREF="3_2Installation_Start.html#sec:Preparing-to-Install"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for details on these issues. 
+
+<P>
+
+<H3><A NAME="SECTION004128200000000000000"></A><A NAME="sec:Configure-Dedicated-Resource"></A>
+<BR>
+3.12.8.2 Configuration Examples for Dedicated Resources
+</H3> 
+
+<P>
+Each execute machine may have its own policy for the execution of jobs,
+as set by configuration.
+Each machine with aspects of its configuration that are dedicated
+identifies the dedicated scheduler.
+And, the ClassAd representing a job to be executed on
+one or more of these dedicated machines includes an identifying attribute.
+An example configuration file with the following various policy settings
+is <TT>/etc/examples/condor_config.local.dedicated.resource</TT>.
+
+<P>
+Each execute machine defines the configuration variable
+<TT>DedicatedScheduler</TT><A NAME="41027"></A><A NAME="41028"></A>, which identifies
+the dedicated scheduler it is managed by.
+The local configuration file contains a modified form of
+
+<P>
+<PRE>
+DedicatedScheduler = "DedicatedScheduler@full.host.name"
+STARTD_ATTRS = $(STARTD_ATTRS), DedicatedScheduler
+</PRE>
+
+<P>
+Substitute the host name of the dedicated scheduler
+machine for the string "<code>full.host.name</code>". 
+
+<P>
+If running personal HTCondor, the name of the scheduler includes
+the user name it was started as, so the configuration appears as:
+
+<P>
+<PRE>
+DedicatedScheduler = "DedicatedScheduler@username@full.host.name"
+STARTD_ATTRS = $(STARTD_ATTRS), DedicatedScheduler
+</PRE>
+
+<P>
+All dedicated execute machines must have policy expressions which allow for
+jobs to always run, but not be preempted.
+The resource must also be configured to prefer jobs from the dedicated 
+scheduler over all other jobs.
+Therefore, configuration gives
+the dedicated scheduler of choice the highest rank.
+It is worth noting that HTCondor puts no other requirements on a
+resource for it to be considered dedicated.  
+
+<P>
+Job ClassAds from the dedicated scheduler 
+contain the attribute <TT>Scheduler</TT>.
+The attribute is defined by a string of the form 
+<PRE>
+Scheduler = "DedicatedScheduler@full.host.name"
+</PRE>
+The host name of the dedicated scheduler
+substitutes for the string <code>full.host.name</code>. 
+
+<P>
+Different resources in the pool may have different dedicated policies
+by varying the local configuration.
+
+<P>
+<DL>
+<DT><STRONG>Policy Scenario: Machine Runs Only Jobs That Require Dedicated Resources</STRONG></DT>
+<DD><P>
+One possible scenario for the use of a dedicated resource
+is to only run jobs that require the dedicated resource.
+To enact this policy, configure the following expressions:
+
+<P>
+<PRE>
+START     = Scheduler =?= $(DedicatedScheduler)
+SUSPEND   = False
+CONTINUE  = True
+PREEMPT   = False
+KILL      = False
+WANT_SUSPEND   = False
+WANT_VACATE    = False
+RANK      = Scheduler =?= $(DedicatedScheduler)
+</PRE>
+
+<P>
+The <TT>START</TT><A NAME="41033"></A><A NAME="41034"></A> expression specifies that a job with the <TT>Scheduler</TT>
+attribute must match the string corresponding
+<TT>DedicatedScheduler</TT> attribute in the machine ClassAd.
+The <TT>RANK</TT><A NAME="41040"></A><A NAME="41041"></A> expression specifies that this same job 
+(with the <TT>Scheduler</TT> attribute)
+has the highest rank.
+This prevents other jobs from preempting it based on user priorities.
+The rest of the expressions disable any other of the <I>condor_startd</I> daemon's
+pool-wide policies, 
+such as those for evicting jobs when keyboard and CPU activity is
+discovered on the machine.
+
+<P>
+</DD>
+<DT><STRONG>Policy Scenario: Run Both Jobs That Do and Do Not Require Dedicated Resources</STRONG></DT>
+<DD><P>
+While the first example works nicely for jobs requiring
+dedicated resources,
+it can 
+lead to poor utilization of the dedicated machines.  
+A more sophisticated strategy allows 
+the machines to run other jobs, when no jobs that
+require dedicated resources exist.
+The machine is
+configured to prefer jobs that require dedicated resources,
+but not prevent others from running.
+
+<P>
+To implement this,
+configure the machine as a dedicated resource as above,
+modifying only the <TT>START</TT> expression:
+
+<P>
+<PRE>
+START = True
+</PRE>
+
+<P>
+</DD>
+<DT><STRONG>Policy Scenario: Adding Desktop Resources To The Mix</STRONG></DT>
+<DD><P>
+A third policy example allows all jobs.
+These desktop machines use a preexisting <TT>START</TT> expression that
+takes the machine owner's usage into account for some jobs.
+The machine does not preempt jobs that must run on dedicated
+resources,
+while it may preempt other jobs as defined by policy.
+So, the default pool policy is used for starting and
+stopping jobs, while jobs that require a dedicated resource always start 
+and are not preempted.
+
+<P>
+The <TT>START</TT>, <TT>SUSPEND</TT>, <TT>PREEMPT</TT>, and
+<TT>RANK</TT> policies are set in the global configuration.
+Locally, the configuration is modified to this hybrid policy
+by adding a second case.
+
+<P>
+<PRE>
+SUSPEND    = Scheduler =!= $(DedicatedScheduler) &amp;&amp; ($(SUSPEND))
+PREEMPT    = Scheduler =!= $(DedicatedScheduler) &amp;&amp; ($(PREEMPT))
+RANK_FACTOR    = 1000000
+RANK   = (Scheduler =?= $(DedicatedScheduler) * $(RANK_FACTOR)) \
+               + $(RANK)
+START  = (Scheduler =?= $(DedicatedScheduler)) || ($(START))
+</PRE>
+
+<P>
+Define <TT>RANK_FACTOR</TT><A NAME="41054"></A><A NAME="41055"></A> to be a
+larger value than the maximum value possible for the existing rank expression.
+<TT>RANK</TT><A NAME="41059"></A><A NAME="41060"></A> is a floating point value, so there is no harm in
+assigning a very large value. 
+
+<P>
+</DD>
+</DL>
+
+<P>
+
+<H3><A NAME="SECTION004128300000000000000"></A><A NAME="sec:Configure-Dedicated-Preemption"></A>
+<BR>
+3.12.8.3 Preemption with Dedicated Jobs
+</H3>
+
+<P>
+The dedicated scheduler can be configured to preempt running parallel
+universe jobs in favor of higher priority parallel universe jobs.
+Note that this is
+different from preemption in other universes, and parallel universe
+jobs cannot
+be preempted either by a machine's user pressing a key or by other means.
+
+<P>
+By default, the dedicated scheduler will never preempt running 
+parallel universe jobs.
+Two configuration variables control preemption of these dedicated 
+resources: 
+<TT>SCHEDD_PREEMPTION_REQUIREMENTS</TT><A NAME="41064"></A><A NAME="41065"></A> and <TT>SCHEDD_PREEMPTION_RANK</TT><A NAME="41069"></A><A NAME="41070"></A>.
+These variables have no default value, 
+so if either are not defined, preemption will never occur. 
+<TT>SCHEDD_PREEMPTION_REQUIREMENTS</TT> must evaluate to 
+<TT>True</TT>
+for a machine to be a candidate for this kind of preemption.
+If more machines are 
+candidates for preemption than needed to satisfy a higher priority job, the
+machines are sorted by <TT>SCHEDD_PREEMPTION_RANK</TT>, and
+only the highest ranked machines are taken.
+
+<P>
+Note that preempting one node of a running parallel universe job 
+requires killing the entire job on all of its nodes.  
+So, when preemption occurs, 
+it may end up freeing more machines than are needed for the new job.
+Also, as HTCondor does not produce checkpoints for parallel universe jobs,
+preempted jobs will be re-run, starting again from the beginning.
+Thus, the administrator should be careful when
+enabling preemption of these dedicated resources.
+Enable dedicated preemption with the configuration:
+
+<P>
+<PRE>
+STARTD_JOB_EXPRS = JobPrio
+SCHEDD_PREEMPTION_REQUIREMENTS = (My.JobPrio &lt; Target.JobPrio)
+SCHEDD_PREEMPTION_RANK = 0.0
+</PRE>
+
+<P>
+In this example, preemption is enabled by user-defined job priority. 
+If a set of machines is running a job at user priority 5,
+and the user submits a new job at user priority 10, 
+the running job will be preempted for the new job.
+The old job is put back in the queue, and will begin again
+from the beginning when assigned to a newly acquired set of machines.
+
+<P>
+
+<H3><A NAME="SECTION004128400000000000000"></A><A NAME="sec:Configure-Dedicated-Groups"></A>
+<A NAME="41004"></A>
+<BR>
+3.12.8.4 Grouping Dedicated Nodes into Parallel Scheduling Groups
+</H3>
+
+<P>
+In some parallel environments, machines are divided into groups, and
+jobs should not cross groups of machines.
+That is, all the nodes of a parallel
+job should be allocated to machines within the same group.  
+The most common example is a pool of machine using InfiniBand switches.
+For example, 
+each switch might connect 16 machines, 
+and a pool might have 160 machines on 10 switches.
+If the InfiniBand switches are not routed to each other, 
+each job must run on machines connected to the same switch.
+The dedicated scheduler's 
+<I>Parallel Scheduling Groups</I> feature supports this operation.
+
+<P>
+Each <I>condor_startd</I> must define which group it belongs to by setting the 
+<TT>ParallelSchedulingGroup</TT><A NAME="41080"></A><A NAME="41081"></A> variable in the configuration file, and 
+advertising it into the machine ClassAd.  
+The value of this variable is a string,
+which should be the same for all <I>condor_startd</I> daemons within a given group.
+The property must be advertised in the <I>condor_startd</I> ClassAd
+by appending <TT>ParallelSchedulingGroup</TT>
+to the <TT>STARTD_ATTRS</TT><A NAME="41090"></A><A NAME="41091"></A> configuration variable.
+
+<P>
+The submit description file for a parallel universe job which
+must not cross group boundaries contains 
+<PRE>
++WantParallelSchedulingGroups = True
+</PRE>
+
+<P>
+The dedicated scheduler enforces the allocation to within a group.
+
+<H2><A NAME="SECTION004129000000000000000"></A><A NAME="sec:Backfill"></A>
+<BR>
+3.12.9 Configuring HTCondor for Running Backfill Jobs
+</H2> 
+
+<P>
+<A NAME="41171"></A>
+
+<P>
+HTCondor can be configured to run
+backfill jobs whenever the <I>condor_startd</I> has no other work to
+perform.
+These jobs are considered the lowest possible priority, but when
+machines would otherwise be idle, the resources can be put to good 
+use.
+
+<P>
+Currently, HTCondor only supports using the Berkeley Open Infrastructure
+for Network Computing (BOINC) to provide the backfill jobs.
+More information about BOINC is available at
+<A NAME="tex2html51"
+  HREF="http://boinc.berkeley.edu">http://boinc.berkeley.edu</A>.
+
+<P>
+The rest of this section provides an overview of how backfill jobs
+work in HTCondor, details for configuring the policy for when backfill
+jobs are started or killed, and details on how to configure HTCondor to
+spawn the BOINC client to perform the work.
+
+<P>
+
+<H3><A NAME="SECTION004129100000000000000"></A><A NAME="sec:Backfill-Overview"></A>
+<BR>
+3.12.9.1 Overview of Backfill jobs
+in HTCondor
+</H3>
+
+<P>
+<A NAME="41175"></A>
+
+<P>
+Whenever a resource controlled by HTCondor is in the Unclaimed/Idle
+state, it is totally idle; neither the interactive user nor an HTCondor
+job is performing any work.
+Machines in this state can be configured to enter the <I>Backfill</I>
+state, which allows the resource to attempt a background
+computation to keep itself busy until other work arrives (either a 
+user returning to use the machine interactively, or a normal HTCondor
+job).
+Once a resource enters the Backfill state, the <I>condor_startd</I> will
+attempt to spawn another program, called a <I>backfill client</I>, to
+launch and manage the backfill computation.
+When other work arrives, the <I>condor_startd</I> will kill the backfill
+client and clean up any processes it has spawned, freeing the machine
+resources for the new, higher priority task.
+More details about the different states an HTCondor resource can enter
+and all of the possible transitions between them are described in
+section&nbsp;<A HREF="3_5Policy_Configuration.html#sec:Configuring-Policy">3.5</A> beginning on
+page&nbsp;<A HREF="3_5Policy_Configuration.html#sec:Configuring-Policy"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>, especially
+sections&nbsp;<A HREF="3_5Policy_Configuration.html#sec:States">3.5.5</A>, <A HREF="3_5Policy_Configuration.html#sec:Activities">3.5.6</A>, and
+<A HREF="3_5Policy_Configuration.html#sec:State-and-Activity-Transitions">3.5.7</A>.
+
+<P>
+At this point, the only backfill system supported by HTCondor is BOINC. 
+The <I>condor_startd</I> has the ability to start and stop the BOINC client
+program at the appropriate times, but otherwise provides no additional
+services to configure the BOINC computations themselves.
+Future versions of HTCondor might provide additional functionality to
+make it easier to manage BOINC computations from within HTCondor.
+For now, the BOINC client must be manually installed and configured
+outside of HTCondor on each backfill-enabled machine.
+
+<P>
+
+<H3><A NAME="SECTION004129200000000000000"></A><A NAME="sec:Backfill-Policy"></A>
+<BR>
+3.12.9.2 Defining the Backfill Policy
+</H3>
+
+<P>
+<A NAME="41187"></A>
+
+<P>
+There are a small set of policy expressions that determine if a
+<I>condor_startd</I> will attempt to spawn a backfill client at all, and if so,
+to control the transitions in to and out of the Backfill state.
+This section briefly lists these expressions.
+More detail can be found in
+section&nbsp;<A HREF="3_3Configuration.html#sec:Startd-Config-File-Entries">3.3.10</A> on
+page&nbsp;<A HREF="3_3Configuration.html#sec:Startd-Config-File-Entries"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+<DL>
+<DT><STRONG><TT>ENABLE_BACKFILL</TT><A NAME="41369"></A><A NAME="41370"></A></STRONG></DT>
+<DD>A boolean value to determine if any
+  backfill functionality should be used.
+  The default value is <TT>False</TT>.
+
+<P>
+</DD>
+<DT><STRONG><TT>BACKFILL_SYSTEM</TT><A NAME="41375"></A><A NAME="41376"></A></STRONG></DT>
+<DD>A string that defines what backfill
+  system to use for spawning and managing backfill computations.
+  Currently, the only supported string is <TT>"BOINC"</TT>.
+
+<P>
+</DD>
+<DT><STRONG><TT>START_BACKFILL</TT><A NAME="41381"></A><A NAME="41382"></A></STRONG></DT>
+<DD>A boolean expression to control if an
+  HTCondor resource should start a backfill client.
+  This expression is only evaluated when the machine is in the Unclaimed/Idle
+  state and the <TT>ENABLE_BACKFILL</TT> expression is <TT>True</TT>.
+
+<P>
+</DD>
+<DT><STRONG><TT>EVICT_BACKFILL</TT><A NAME="41388"></A><A NAME="41389"></A></STRONG></DT>
+<DD>A boolean expression that is evaluated
+  whenever an HTCondor resource is in the Backfill state.
+  A value of <TT>True</TT> indicates the machine should immediately kill the
+  currently running backfill client and any other spawned processes,
+  and return to the Owner state.
+
+<P>
+</DD>
+</DL>
+
+<P>
+The following example shows a possible configuration to enable
+backfill:
+
+<P>
+<PRE>
+# Turn on backfill functionality, and use BOINC
+ENABLE_BACKFILL = TRUE
+BACKFILL_SYSTEM = BOINC
+
+# Spawn a backfill job if we've been Unclaimed for more than 5
+# minutes 
+START_BACKFILL = $(StateTimer) &gt; (5 * $(MINUTE))
+
+# Evict a backfill job if the machine is busy (based on keyboard
+# activity or cpu load)
+EVICT_BACKFILL = $(MachineBusy)
+</PRE>
+<P>
+
+<H3><A NAME="SECTION004129300000000000000"></A><A NAME="sec:Backfill-BOINC-overview"></A>
+<BR>
+3.12.9.3 Overview of the
+ BOINC system
+</H3>
+
+<P>
+<A NAME="41205"></A>
+
+<P>
+The BOINC system is a distributed computing environment for solving
+large scale scientific problems.
+A detailed explanation of this system is beyond the scope of this
+manual.
+Thorough documentation about BOINC is available at their website:
+<A NAME="tex2html52"
+  HREF="http://boinc.berkeley.edu">http://boinc.berkeley.edu</A>.
+However, a brief overview is provided here for sites interested in
+using BOINC with HTCondor to manage backfill jobs. 
+
+<P>
+BOINC grew out of the relatively famous SETI@home computation, where
+volunteers installed special client software, in the form of a
+screen saver, that contacted a centralized server to download work
+units.
+Each work unit contained a set of radio telescope data and the
+computation tried to find patterns in the data, a sign of intelligent
+life elsewhere in the universe, hence the name: "Search for Extra
+Terrestrial Intelligence at home".
+BOINC is developed by the Space Sciences Lab at the University of
+California, Berkeley, by the same people who created SETI@home.
+However, instead of being tied to the specific radio telescope
+application, BOINC is a generic infrastructure by which many different
+kinds of scientific computations can be solved.
+The current generation of SETI@home now runs on top of BOINC, along
+with various physics, biology, climatology, and other applications.
+
+<P>
+The basic computational model for BOINC and the original SETI@home is
+the same: volunteers install BOINC client software,
+called the <I>boinc_client</I>,
+which runs whenever the machine would otherwise be idle.
+However, the BOINC installation on any given machine must be
+configured so that it knows what computations to work for
+instead of always working on a hard coded computation.
+The BOINC terminology for a computation is a <I>project</I>.
+A given BOINC client can be configured to donate all of its cycles to
+a single project, or to split the cycles between projects so that, on
+average, the desired percentage of the computational power is
+allocated to each project.
+Once the <I>boinc_client</I> starts running, 
+it attempts to contact a centralized server for
+each project it has been configured to work for.
+The BOINC software downloads the appropriate platform-specific
+application binary and some work units from the central server for
+each project.
+Whenever the client software completes a given work unit, it once
+again attempts to connect to that project's central server to upload
+the results and download more work.
+
+<P>
+BOINC participants must register at the centralized server for each
+project they wish to donate cycles to.
+The process produces a unique identifier so that the work performed by
+a given client can be credited to a specific user.
+BOINC keeps track of the work units completed by each user, so that
+users providing the most cycles get the highest rankings, 
+and therefore, bragging rights.
+
+<P>
+Because BOINC already handles the problems of distributing the
+application binaries for each scientific computation, the work units,
+and compiling the results, it is a perfect system for managing
+backfill computations in HTCondor.
+Many of the applications that run on top of BOINC produce their own
+application-specific checkpoints, so even if the
+<I>boinc_client</I> is killed, 
+for example, when an HTCondor job arrives
+at a machine, or if the interactive user returns,
+an entire work unit will not necessarily be lost.
+
+<P>
+
+<H3><A NAME="SECTION004129400000000000000"></A><A NAME="sec:Backfill-BOINC-install"></A>
+<BR>
+3.12.9.4 Installing the BOINC client
+software
+</H3>
+
+<P>
+<A NAME="41212"></A>
+
+<P>
+In HTCondor Version 8.2.8, 
+the <I>boinc_client</I> must be manually downloaded, 
+installed and configured outside of HTCondor.
+Download the <I>boinc_client</I> executables at 
+<A NAME="tex2html53"
+  HREF="http://boinc.berkeley.edu/download.php">http://boinc.berkeley.edu/download.php</A>.
+
+<P>
+Once the BOINC client software has been downloaded, the
+<I>boinc_client</I> binary should be placed in a location where the
+HTCondor daemons can use it.
+The path will be specified with the HTCondor configuration variable
+<TT>BOINC_Executable</TT><A NAME="41405"></A><A NAME="41406"></A>.
+
+<P>
+Additionally, a local directory on each machine should be created
+where the BOINC system can write files it needs.
+This directory must not be shared by multiple instances of the BOINC
+software. This is the same restriction as placed on
+the <TT>spool</TT> or <TT>execute</TT> directories used by HTCondor.
+The location of this directory is defined by
+<TT>BOINC_InitialDir</TT><A NAME="41412"></A><A NAME="41413"></A>.
+The directory must be writable by whatever user the
+<I>boinc_client</I> will run as.
+This user is either the same as the user the HTCondor daemons are
+running as, if HTCondor is not running as root, or a user defined via
+the <TT>BOINC_Owner</TT><A NAME="41418"></A><A NAME="41419"></A> configuration variable.
+
+<P>
+Finally, HTCondor administrators wishing to use BOINC for backfill jobs
+must create accounts at the various BOINC projects they want to donate
+cycles to.
+The details of this process vary from project to project.
+Beware that this step must be done manually, as the 
+<I>boinc_client</I> can not automatically
+register a user at a given project, 
+unlike the more fancy GUI version
+of the BOINC client software which many users run as a screen saver. 
+For example, to configure machines to perform work for the
+Einstein@home project (a physics experiment run by the University of
+Wisconsin at Milwaukee), HTCondor administrators should go to
+<A NAME="tex2html54"
+  HREF="http://einstein.phys.uwm.edu/create_account_form.php">http://einstein.phys.uwm.edu/create_account_form.php</A>, fill in
+the web form, and generate a new Einstein@home identity.
+This identity takes the form of a project URL (such as
+http://einstein.phys.uwm.edu) followed by an <I>account key</I>,
+which is a long string of letters and numbers that is used as a unique
+identifier. 
+This URL and account key will be needed when configuring HTCondor to use
+BOINC for backfill computations.
+
+<P>
+
+<H3><A NAME="SECTION004129500000000000000"></A><A NAME="sec:Backfill-BOINC-HTCondor"></A>
+<BR>
+3.12.9.5 Configuring the BOINC client
+under HTCondor
+</H3>
+
+<P>
+<A NAME="41227"></A>
+
+<P>
+After the <I>boinc_client</I>
+has been installed on a given machine, 
+the BOINC projects to join have been selected, 
+and a unique project account key has been created for each project,
+the HTCondor configuration needs to be modified.
+
+<P>
+Whenever the <I>condor_startd</I> decides to spawn the <I>boinc_client</I>
+to perform backfill computations,
+it will spawn a <I>condor_starter</I> to directly launch and monitor the
+<I>boinc_client</I> program.
+This <I>condor_starter</I> is just like the one used to invoke any other HTCondor
+jobs.
+In fact, the argv[0] of the <I>boinc_client</I> will be renamed to
+<I>condor_exec</I>, as described in section&nbsp;<A HREF="2_14Potential_Problems.html#sec:renaming-argv">2.14.1</A> on 
+page&nbsp;<A HREF="2_14Potential_Problems.html#sec:renaming-argv"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+This <I>condor_starter</I> reads
+values out of the HTCondor configuration files to define the job it
+should run, as opposed to getting these values from a job ClassAd
+in the case of a normal HTCondor job.
+All of the configuration variables names for variables to control things 
+such as the path to
+the <I>boinc_client</I> binary to use, the command-line arguments,
+and the initial working directory, are prefixed with the string
+<TT>"BOINC_"</TT>.
+Each of these variables is described as either a required or an
+optional configuration variable. 
+
+<P>
+Required configuration variables:
+
+<P>
+<DL>
+<DT><STRONG><TT>BOINC_Executable</TT><A NAME="41442"></A><A NAME="41443"></A></STRONG></DT>
+<DD><A NAME="param:BoincExecutable"></A> The
+  full path and executable name of the <I>boinc_client</I> binary to use.
+
+<P>
+</DD>
+<DT><STRONG><TT>BOINC_InitialDir</TT><A NAME="41448"></A><A NAME="41449"></A></STRONG></DT>
+<DD><A NAME="param:BoincInitialDir"></A> The
+  full path to the local directory where BOINC should run.
+
+<P>
+</DD>
+<DT><STRONG><TT>BOINC_Universe</TT><A NAME="41453"></A><A NAME="41454"></A></STRONG></DT>
+<DD><A NAME="param:BoincUniverse"></A> The HTCondor
+  universe used for running the <I>boinc_client</I> program.
+  This <I>must</I> be set to <TT>vanilla</TT> for BOINC to work under
+  HTCondor.
+
+<P>
+</DD>
+<DT><STRONG><TT>BOINC_Owner</TT><A NAME="41460"></A><A NAME="41461"></A></STRONG></DT>
+<DD><A NAME="param:BoincOwner"></A> What user the
+  <I>boinc_client</I> program should be run as.
+  This variable is only used if the HTCondor daemons are running as root.
+  In this case, the <I>condor_starter</I> must be told what user identity
+  to switch to before invoking the <I>boinc_client</I>.
+  This can be any valid user on the local system, but it must have
+  write permission in whatever directory is specified by
+  <TT>BOINC_InitialDir</TT>.
+
+<P>
+</DD>
+</DL>
+
+<P>
+Optional configuration variables:
+
+<P>
+<DL>
+<DT><STRONG><TT>BOINC_Arguments</TT><A NAME="41470"></A><A NAME="41471"></A></STRONG></DT>
+<DD><A NAME="param:BoincArguments"></A>  Command-line arguments that should be passed to the
+  <I>boinc_client</I> program.
+  For example, one way to specify the BOINC project to join is to use 
+  the <B>-attach_project</B> argument to specify a project URL and
+  account key.
+  For example:
+
+<P>
+<PRE>
+BOINC_Arguments = --attach_project http://einstein.phys.uwm.edu [account_key]
+</PRE>
+<P>
+</DD>
+<DT><STRONG><TT>BOINC_Environment</TT><A NAME="41478"></A><A NAME="41479"></A></STRONG></DT>
+<DD><A NAME="param:BoincEnvironment"></A>  Environment variables that should be set for the
+  <I>boinc_client</I>.
+
+<P>
+</DD>
+<DT><STRONG><TT>BOINC_Output</TT><A NAME="41484"></A><A NAME="41485"></A></STRONG></DT>
+<DD><A NAME="param:BoincOutput"></A> Full path to
+  the file where <TT>stdout</TT> from the <I>boinc_client</I> should be
+  written.
+  If this variable is not defined, <TT>stdout</TT> will be discarded.
+
+<P>
+</DD>
+<DT><STRONG><TT>BOINC_Error</TT><A NAME="41492"></A><A NAME="41493"></A></STRONG></DT>
+<DD><A NAME="param:BoincError"></A> Full path to
+  the file where <TT>stderr</TT> from the <I>boinc_client</I> should be
+  written.
+  If this macro is not defined, <TT>stderr</TT> will be discarded.
+
+<P>
+</DD>
+</DL>
+
+<P>
+The following example shows one possible usage of these settings:
+
+<P>
+<PRE>
+# Define a shared macro that can be used to define other settings.
+# This directory must be manually created before attempting to run
+# any backfill jobs.
+BOINC_HOME = $(LOCAL_DIR)/boinc
+
+# Path to the boinc_client to use, and required universe setting
+BOINC_Executable = /usr/local/bin/boinc_client
+BOINC_Universe = vanilla
+
+# What initial working directory should BOINC use?
+BOINC_InitialDir = $(BOINC_HOME)
+
+# Where to place stdout and stderr
+BOINC_Output = $(BOINC_HOME)/boinc.out
+BOINC_Error = $(BOINC_HOME)/boinc.err
+</PRE>
+<P>
+If the HTCondor daemons reading this configuration are running as root,
+an additional variable must be defined:
+
+<P>
+<PRE>
+# Specify the user that the boinc_client should run as:
+BOINC_Owner = nobody
+</PRE>
+<P>
+In this case, HTCondor would spawn the <I>boinc_client</I> as
+<TT>nobody</TT>, so the directory specified in <TT>$(BOINC_HOME)</TT>
+would have to be writable by the <TT>nobody</TT> user.
+
+<P>
+A better choice would probably be to create a separate user account
+just for running BOINC jobs, so that the local BOINC installation is
+not writable by other processes running as <TT>nobody</TT>.
+Alternatively, the <TT>BOINC_Owner</TT> could be set to
+<TT>daemon</TT>. 
+
+<P>
+<B>Attaching to a specific BOINC project</B>
+
+<P>
+There are a few ways to attach an HTCondor/BOINC installation to a given
+BOINC project:
+
+<UL>
+<LI>Use the <B>-attach_project</B> argument to the <I>boinc_client</I>
+  program, defined via the <TT>BOINC_Arguments</TT> variable.
+  The <I>boinc_client</I> will only accept a single
+  <B>-attach_project</B> argument, so this method can only be used to
+  attach to one project.
+
+<P>
+</LI>
+<LI>The <I>boinc_cmd</I> command-line tool can perform various
+  BOINC administrative tasks, including attaching to a BOINC project.
+  Using <I>boinc_cmd</I>, the appropriate argument to use is called
+  <B>-project_attach</B>.
+  Unfortunately, the <I>boinc_client</I> must be running for
+  <I>boinc_cmd</I> to work, so this method can only be used once the
+  HTCondor resource has entered the Backfill state and has spawned the
+  <I>boinc_client</I>. 
+
+<P>
+</LI>
+<LI>Manually create account files in the local BOINC directory.
+  Upon start up, the <I>boinc_client</I> will scan its local directory
+  (the directory specified with <TT>BOINC_InitialDir</TT>)
+  for files of the form <TT>account_[URL].xml</TT>, for example,
+  <TT>account_einstein.phys.uwm.edu.xml</TT>. 
+  Any files with a name that matches this convention will be read and
+  processed.
+  The contents of the file define the project URL and the
+  authentication key.
+  The format is:
+
+<P>
+<PRE>
+&lt;account&gt;
+  &lt;master_url&gt;[URL]&lt;/master_url&gt;
+  &lt;authenticator&gt;[key]&lt;/authenticator&gt;
+&lt;/account&gt;
+</PRE>
+<P>
+For example: 
+
+<P>
+<PRE>
+&lt;account&gt;
+  &lt;master_url&gt;http://einstein.phys.uwm.edu&lt;/master_url&gt;
+  &lt;authenticator&gt;aaaa1111bbbb2222cccc3333&lt;/authenticator&gt;
+&lt;/account&gt;
+</PRE>
+<P>
+Of course, the <code>&lt;authenticator&gt;</code> tag would use the real
+authentication key returned when the account was created at a given
+project.
+
+<P>
+These account files can be copied to the local BOINC directory on all
+machines in an HTCondor pool, so administrators can either distribute
+them manually, or use symbolic links to point to a shared file
+system. 
+
+<P>
+</LI>
+</UL>
+
+<P>
+In the two cases of using command-line arguments for
+<I>boinc_client</I> or running the <I>boinc_cmd</I> tool,
+BOINC will write out the resulting account file to the local BOINC directory
+on the machine, and then future invocations of the
+<I>boinc_client</I> will already be attached to the appropriate
+project(s).
+
+<P>
+
+<H3><A NAME="SECTION004129600000000000000"></A><A NAME="sec:Backfill-BOINC-Windows"></A>
+<BR>
+3.12.9.6 BOINC on Windows
+</H3>
+
+<P>
+The Windows version of BOINC has multiple installation methods.
+The preferred method of installation for use with HTCondor is the 
+Shared Installation method.
+Using this method gives all users access to the executables.
+During the installation process 
+
+<OL>
+<LI>Deselect the option which makes BOINC the default screen saver
+</LI>
+<LI>Deselect the option which runs BOINC on start up.
+</LI>
+<LI>Do not launch BOINC at the conclusion of the installation.
+</LI>
+</OL>
+
+<P>
+There are three major differences from the Unix version
+to keep in mind when dealing with the Windows installation:
+
+<P>
+
+<OL>
+<LI>The Windows executables have different names from the Unix versions.  
+The Windows client is called <I>boinc.exe</I>.
+Therefore, the configuration variable <TT>BOINC_Executable</TT><A NAME="41530"></A><A NAME="41531"></A> 
+is written:
+
+<P>
+<PRE>
+BOINC_Executable = C:\PROGRA~1\BOINC\boinc.exe
+</PRE>
+<P>
+The Unix administrative tool <I>boinc_cmd</I> 
+is called <I>boinccmd.exe</I> on Windows.
+
+<P>
+</LI>
+<LI>When using BOINC on Windows, the configuration variable
+<TT>BOINC_InitialDir</TT><A NAME="41537"></A><A NAME="41538"></A> will not be respected fully.
+To work around this difficulty,
+pass the BOINC home directory directly to the BOINC application
+via the <TT>BOINC_Arguments</TT><A NAME="41542"></A><A NAME="41543"></A> configuration variable.
+For Windows, rewrite the argument line as:
+
+<P>
+<PRE>
+BOINC_Arguments = --dir $(BOINC_HOME) \
+          --attach_project http://einstein.phys.uwm.edu [account_key]
+</PRE>
+<P>
+As a consequence of setting the BOINC home directory, some projects may 
+fail with the authentication error:
+<PRE>
+Scheduler request failed: Peer 
+certificate cannot be authenticated 
+with known CA certificates.
+</PRE>
+<P>
+To resolve this issue,
+copy the <TT>ca-bundle.crt</TT> file
+from the BOINC installation directory
+to <TT>$(BOINC_HOME)</TT>.
+This file appears to be project and machine independent,
+and it can therefore be distributed as part of an 
+automated HTCondor installation.
+
+<P>
+</LI>
+<LI>The <TT>BOINC_Owner</TT><A NAME="41549"></A><A NAME="41550"></A> configuration variable behaves differently
+on Windows than it does on Unix.
+Its value may take one of two forms: 
+
+<UL>
+<LI><code>domain\user</code>
+</LI>
+<LI><code>user</code> This form assumes that the user exists in the local domain 
+(that is, on the computer itself).
+</LI>
+</UL>
+
+<P>
+Setting this option causes the addition of the job attribute
+<PRE>
+RunAsUser = True
+</PRE>
+to the backfill client.
+This further implies that the configuration variable
+<TT>STARTER_ALLOW_RUNAS_OWNER</TT><A NAME="41554"></A><A NAME="41555"></A> be set to <TT>True</TT>
+to insure that the local <I>condor_starter</I> be able to run jobs in this 
+manner.
+For more information on the <TT>RunAsUser</TT> attribute, 
+see section&nbsp;<A HREF="7_2Microsoft_Windows.html#sec:windows-run-as-owner">7.2.4</A>. 
+For more information on the the <TT>STARTER_ALLOW_RUNAS_OWNER</TT> 
+configuration variable, see 
+section&nbsp;<A HREF="3_3Configuration.html#param:StarterAllowRunAsOwner">3.3.7</A>.
+
+<P>
+</LI>
+</OL>
+
+<H2><A NAME="SECTION0041210000000000000000"></A><A NAME="sec:PIDNamespaces"></A> 
+<A NAME="41774"></A>
+<A NAME="41775"></A>
+<A NAME="41776"></A>
+<BR>
+3.12.10 Per Job PID Namespaces
+</H2>
+
+<P>
+Per job PID namespaces provide enhanced isolation of one process
+tree from another through kernel level process ID namespaces.
+HTCondor may enable the use of per job PID namespaces for 
+Linux RHEL 6, Debian 6, and more recent kernels.
+
+<P>
+Read about per job PID namespaces <A NAME="tex2html55"
+  HREF="http://lwn.net/Articles/531419/">http://lwn.net/Articles/531419/</A>.
+
+<P>
+The needed isolation of jobs from the same user that execute on the
+same machine as each other is already provided by the implementation
+of slot users as described in section&nbsp;<A HREF="3_6Security.html#sec:RunAsNobody">3.6.13</A>.
+This is the recommended way to implement the prevention of interference
+between more than one job submitted by a single user.
+However, the use of a shared file system by slot users presents
+issues in the ownership of files written by the jobs.
+
+<P>
+The per job PID namespace provides a way to handle the ownership
+of files produced by jobs within a shared file system.
+It also isolates the processes of a job within its PID namespace.
+As a side effect and benefit, the clean up of processes for a job
+within a PID namespace is enhanced. 
+When the process with PID = 1 is killed, 
+the operating system takes care of killing all child processes.
+
+<P>
+To enable the use of per job PID namespaces, 
+set the configuration to include
+
+<P>
+<PRE>
+  USE_PID_NAMESPACES = True
+</PRE>
+
+<P>
+This configuration variable defaults to <TT>False</TT>,
+thus the use of per job PID namespaces is disabled by default.
+
+<H2><A NAME="SECTION0041211000000000000000"></A><A NAME="sec:GroupTracking"></A>
+<BR>
+3.12.11 Group ID-Based Process Tracking
+</H2> 
+
+<P>
+One function that HTCondor often must perform is keeping track of all
+processes created by a job. This is done so that HTCondor can provide
+resource usage statistics about jobs, and also so that HTCondor can properly
+clean up any processes that jobs leave behind when they exit.
+
+<P>
+In general, tracking process families is difficult to do reliably.
+By default HTCondor uses a combination of process parent-child
+relationships, process groups, and information that HTCondor places in a
+job's environment to track process families on a best-effort
+basis. This usually works well, but it can falter for certain
+applications or for jobs that try to evade detection.
+
+<P>
+Jobs that run with a user account dedicated for HTCondor's use
+can be reliably tracked, since all HTCondor needs to do is look for all
+processes running using the given account. Administrators must specify
+in HTCondor's configuration what accounts can be considered dedicated
+via the <TT>DEDICATED_EXECUTE_ACCOUNT_REGEXP</TT><A NAME="41848"></A><A NAME="41849"></A> setting. See
+Section&nbsp;<A HREF="3_6Security.html#sec:RunAsNobody">3.6.13</A> for further details.
+
+<P>
+Ideally, jobs can be reliably tracked regardless of the user account
+they execute under. This can be accomplished with group ID-based
+tracking. This method of tracking requires that a range of dedicated
+<I>group</I> IDs (GID) be set aside for HTCondor's use. The number of GIDs
+that must be set aside for an execute machine is equal to its number
+of execution slots. 
+GID-based tracking is only available on Linux, 
+and it requires that HTCondor runs as <TT>root</TT>.
+
+<P>
+GID-based tracking works by placing a dedicated GID in the
+supplementary group list of a job's initial process. Since modifying
+the supplementary group ID list requires
+<TT>root</TT> privilege, the job will not be able to create processes
+that go unnoticed by HTCondor.
+
+<P>
+Once a suitable GID range has been set aside for process tracking,
+GID-based tracking can be enabled via the
+<TT>USE_GID_PROCESS_TRACKING</TT><A NAME="41855"></A><A NAME="41856"></A> parameter. The minimum and maximum
+GIDs included in the range are specified with the
+<TT>MIN_TRACKING_GID</TT><A NAME="41860"></A><A NAME="41861"></A> and <TT>MAX_TRACKING_GID</TT><A NAME="41865"></A><A NAME="41866"></A>
+settings. For example, the following would enable GID-based tracking
+for an execute machine with 8 slots.
+<PRE>
+USE_GID_PROCESS_TRACKING = True
+MIN_TRACKING_GID = 750
+MAX_TRACKING_GID = 757
+</PRE>
+
+<P>
+If the defined range is too small, such that there is not a GID available
+when starting a job,
+then the <I>condor_starter</I> will fail as it tries to start the job.
+An error message will be logged stating that there are no more tracking GIDs.
+
+<P>
+GID-based process tracking requires use of the <I>condor_procd</I>. If
+<TT>USE_GID_PROCESS_TRACKING</TT> is true, the <I>condor_procd</I> will
+be used regardless of the <TT>USE_PROCD</TT><A NAME="41877"></A><A NAME="41878"></A> setting.  Changes to
+<TT>MIN_TRACKING_GID</TT> and <TT>MAX_TRACKING_GID</TT> require
+a full restart of HTCondor.
+
+<P>
+
+<H2><A NAME="SECTION0041212000000000000000"></A><A NAME="sec:CGroupTracking"></A> 
+<A NAME="41819"></A>
+<BR>
+3.12.12 Cgroup-Based Process Tracking
+</H2>
+
+<P>
+A new feature in Linux version 2.6.24 allows HTCondor to more accurately 
+and safely manage jobs composed of sets of processes.  This Linux 
+feature is called Control Groups, or cgroups for short, and it is 
+available starting with RHEL 6, Debian 6, and related distributions.  
+Documentation about Linux kernel support for cgroups can be found 
+in the Documentation directory in the kernel source code distribution.
+Another good reference is 
+<A NAME="tex2html56"
+  HREF="http://docs.redhat.com/docs/en-US/Red_Hat_Enterprise_Linux/6/html/Resource_Management_Guide/index.html">http://docs.redhat.com/docs/en-US/Red_Hat_Enterprise_Linux/6/html/Resource_Management_Guide/index.html</A>
+Even if cgroup support is built into the kernel, 
+many distributions do not install the cgroup tools by default.
+In order to use cgroups, the tools must be installed.  
+On RPM-based systems, these can be installed with the command
+
+<P>
+<PRE>
+yum install libcgroup\*
+</PRE>
+
+<P>
+After these tools are installed, the cgconfig service needs to be
+running.  It parses the <TT>/etc/cgconfig.conf</TT> file, and makes
+appropriate mounts under <TT>/cgroup</TT>.  Before starting the cgconfig
+service, you will need to edit the file <TT>/etc/cgconfig.conf</TT> to
+add a group specific to HTCondor.
+
+<P>
+Here is an example of the contents of file <TT>/etc/cgconfig.conf</TT> with
+appropriate values for the HTCondor group:
+
+<P>
+<PRE>
+mount {
+        cpu		= /cgroup/cpu;
+        cpuset	= /cgroup/cpuset;
+        cpuacct = /cgroup/cpuacct;
+        memory  = /cgroup/memory;
+        freezer = /cgroup/freezer;
+        blkio   = /cgroup/blkio;
+}
+
+group htcondor {
+		cpu {}
+        cpuacct {}
+        memory {}
+        freezer {}
+        blkio {}
+}
+</PRE>
+
+<P>
+After the <TT>/etc/cgconfig.conf</TT> file has had the htcondor group
+added to it, add and start the cgconfig service by running
+
+<P>
+<PRE>
+chkconfig --add cgconfig
+service cgconfig start
+</PRE>
+
+<P>
+When the cgconfig service is correctly running, the virtual file system
+mounted on <TT>/cgroup</TT> should have several subdirectories under it, and
+there should a an htcondor subdirectory under the directory <TT>/cgroup/cpu</TT>
+
+<P>
+Starting with HTCondor version 7.7.0, 
+the <I>condor_starter</I> daemon can optionally use cgroups
+to accurately track all the processes started by a job, 
+even when quickly-exiting parent processes spawn many child processes.
+As with the GID-based tracking, this is only implemented when a 
+<I>condor_procd</I> daemon is running.  The HTCondor team recommends enabling 
+this feature on Linux platforms that support it.  When cgroup tracking is enabled, 
+HTCondor is able to report a much more accurate
+measurement of the physical memory used by a set of processes.
+
+<P>
+To enable cgroup tracking in HTCondor, once cgroups have been enabled
+in the operating system, set the <TT>BASE_CGROUP</TT><A NAME="41897"></A><A NAME="41898"></A> configuration
+variable to the string that matches the group name specified in the <TT>/etc/cgconfig.conf</TT>
+In the example above, "htcondor" is a good choice.  There is no default value
+for <TT>BASE_CGROUP</TT><A NAME="41903"></A><A NAME="41904"></A>, and if left unset, cgroup tracking will not be used.
+
+<P>
+Kernel cgroups are named in a virtual file system hierarchy. 
+HTCondor will put each running job on the execute node in a distinct cgroup.
+The name of this cgroup is the name of the execute directory for that <I>condor_starter</I>, with
+slashes replaced by underscores, followed by the name and number of the slot.  So, for the
+memory controller, a job running on slot1 would have its cgroup located at
+<TT>/cgroup/memory/htcondor/condor_var_lib_condor_execute_slot1/</TT>.  The <TT>tasks</TT>
+file in this directory will contain a list of all the processes in this cgroup, and
+many other files in this directory have useful information about resource usage
+of this cgroup.  See the kernel documentation for full details.
+
+<P>
+Once cgroup-based tracking is configured, 
+usage should be invisible to the user and administrator.  
+The <I>condor_procd</I> log, as defined by configuration variable
+<TT>PROCD_LOG</TT>, 
+will mention that it is using this method, 
+but no user visible changes should occur,
+other than the impossibility of a quickly-forking process escaping from the
+control of the <I>condor_starter</I>,
+and the more accurate reporting of memory usage.
+
+<H2><A NAME="SECTION0041213000000000000000"></A><A NAME="sec:Resource-Limits"></A> 
+<A NAME="41963"></A>
+<A NAME="41964"></A>
+<BR>
+3.12.13 Limiting Resource Usage with a User Job Wrapper
+</H2>
+
+<P>
+An administrator can strictly limit the usage of system resources
+by jobs for any job that may be wrapped using
+the script defined by the configuration variable
+<TT>USER_JOB_WRAPPER</TT><A NAME="41996"></A><A NAME="41997"></A>.
+These are jobs within universes that are controlled by the
+<I>condor_starter</I> daemon, and they include 
+the <B>vanilla</B>, <B>standard</B>, <B>java</B>,
+<B>local</B>, and <B>parallel</B> universes.
+
+<P>
+The job's ClassAd is written by the <I>condor_starter</I> daemon.
+It will need to contain attributes that the script defined by
+<TT>USER_JOB_WRAPPER</TT> can use to implement 
+platform specific resource limiting actions.
+Examples of resources that may be referred to for limiting purposes
+are RAM, swap space, file descriptors, stack size, and core file size. 
+
+<P>
+An initial sample of a <TT>USER_JOB_WRAPPER</TT> script is provided
+in the installation at
+<TT>$(LIBEXEC)/condor_limits_wrapper.sh</TT>.
+Here is the contents of that file:
+
+<P>
+<PRE>
+#!/bin/bash
+# Copyright 2008 Red Hat, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+if [[ $_CONDOR_MACHINE_AD != "" ]]; then
+   mem_limit=$((`egrep '^Memory' $_CONDOR_MACHINE_AD | cut -d ' ' -f 3` * 1024))
+   disk_limit=`egrep '^Disk' $_CONDOR_MACHINE_AD | cut -d ' ' -f 3`
+
+   ulimit -d $mem_limit
+   if [[ $? != 0 ]] || [[ $mem_limit = "" ]]; then
+      echo "Failed to set Memory Resource Limit" &gt; $_CONDOR_WRAPPER_ERROR_FILE
+      exit 1
+   fi
+   ulimit -f $disk_limit
+   if [[ $? != 0 ]] || [[ $disk_limit = "" ]]; then
+      echo "Failed to set Disk Resource Limit" &gt; $_CONDOR_WRAPPER_ERROR_FILE
+      exit 1
+   fi
+fi
+
+exec "$@"
+error=$?
+echo "Failed to exec($error): $@" &gt; $_CONDOR_WRAPPER_ERROR_FILE
+exit 1
+</PRE>
+<P>
+If used in an unmodified form,
+this script sets the job's limits on a per slot basis for
+memory and disk usage,
+with the limits defined by the values in the machine ClassAd.
+This example file will need to be modified and merged for use with a
+preexisting <TT>USER_JOB_WRAPPER</TT> script.
+
+<P>
+If additional functionality is added to the script,
+an administrator is likely to use the <TT>USER_JOB_WRAPPER</TT> script
+in conjunction with <TT>SUBMIT_EXPRS</TT><A NAME="42015"></A><A NAME="42016"></A> to force the job ClassAd
+to contain attributes that the <TT>USER_JOB_WRAPPER</TT> script
+expects to have defined.
+
+<P>
+The following variables are set in the environment of the
+the <TT>USER_JOB_WRAPPER</TT> script by the <I>condor_starter</I>
+daemon, when the <TT>USER_JOB_WRAPPER</TT> is defined.
+<DL>
+<DT><STRONG><TT>_CONDOR_MACHINE_AD</TT>
+<A NAME="41987"></A></STRONG></DT>
+<DD>The full path and file name of the file containing the machine ClassAd.
+</DD>
+<DT><STRONG><TT>_CONDOR_JOB_AD</TT>
+<A NAME="41989"></A></STRONG></DT>
+<DD>The full path and file name of the file containing the job ClassAd.
+</DD>
+<DT><STRONG><TT>_CONDOR_WRAPPER_ERROR_FILE</TT>
+<A NAME="41991"></A></STRONG></DT>
+<DD>The full path and file name of the file that the <TT>USER_JOB_WRAPPER</TT>
+  script should create, if there is an error.
+  The text in this file will be included in any HTCondor failure messages. 
+</DD>
+</DL>
+
+<H2><A NAME="SECTION0041214000000000000000"></A><A NAME="sec:Resource-Limits-Cgroup"></A> 
+<A NAME="42047"></A>
+<A NAME="42048"></A>
+<A NAME="42049"></A>
+<BR>
+3.12.14 Limiting Resource Usage Using Cgroups
+</H2>
+
+<P>
+While the method described to limit a job's resource usage is portable,
+and it should run on any Linux or BSD or Unix system, 
+it suffers from one large flaw.  
+The flaw is that resource limits imposed are per process, not per job.
+An HTCondor job is often composed of many Unix processes.  
+If the method of limiting resource usage with a user job wrapper
+is used to impose a 2 Gigabyte memory limit, 
+that limit applies to each process in the job individually.  
+If a job created 100 processes, each using just under 2 Gigabytes, 
+the job would continue without the resource limits kicking in.
+Clearly, this is not what the machine owner intends.  
+Moreover,
+the memory limit only applies to the virtual memory size, 
+not the physical memory size, or the resident set size.  
+This can be a problem for jobs
+that use the <TT>mmap</TT> system call to map in a large chunk of virtual memory,
+but only need a small amount of memory at one time.
+Typically, the resource the
+administrator would like to control is physical memory, 
+because when that is in short supply, 
+the machine starts paging, and can become unresponsive very quickly.
+
+<P>
+The <I>condor_starter</I> can, using the Linux cgroup capability,
+apply resource limits collectively to sets of jobs, 
+and apply limits to the physical memory used by a set of processes.  
+The main downside of this technique is that it is only 
+available on relatively new Unix distributions such as RHEL 6 and Debian 6.
+This technique also may require editing of system configuration files.
+
+<P>
+To enable cgroup-based limits, first enable cgroup-based tracking, as
+described in section&nbsp;<A HREF="#sec:CGroupTracking">3.12.12</A>.  
+Once that is set,
+the <I>condor_starter</I> will create a cgroup for each job, and set two
+attributes in that cgroup which control resource usage therein.  
+These
+two attributes are the cpu.shares attribute in the cpu controller, and one
+of two attributes in the memory controller, either memory.limit_in_bytes, or 
+memory.soft_limit_in_bytes.  
+The configuration variable <TT>CGROUP_MEMORY_LIMIT_POLICY</TT><A NAME="42074"></A><A NAME="42075"></A> controls
+whether the hard limit (the former) or the soft limit will be used.  
+If <TT>CGROUP_MEMORY_LIMIT_POLICY</TT> is set to the string <TT>hard</TT>, 
+the hard limit will be used.
+If set to <TT>soft</TT>, the soft limit will be used.  
+Otherwise, no limit will be set if the value is <TT>none</TT>.
+The default is <TT>soft</TT>.
+If the hard limit is in force, then the total amount of physical memory
+used by the sum of all processes in this job will not be allowed to exceed
+the limit.  
+If the processes try to allocate more memory, the allocation will
+succeed, and virtual memory will be allocated, 
+but no additional physical memory will be allocated.
+The system will keep the amount of physical memory constant by swapping some
+page from that job out of memory.  
+However, if the soft limit is in place,
+the job will be allowed to go over the limit if there is free memory 
+available on the system.  
+Only when there is contention between other processes for physical memory
+will the system force physical memory into swap and push
+the physical memory used towards the assigned limit.
+The memory size used in both cases is the machine ClassAd attribute
+<TT>Memory</TT>.
+Note that <TT>Memory</TT> is 
+a static amount when using static slots, but it is dynamic when partitionable 
+slots are used.
+Jobs that exceed the memory limit are put into the Hold state with an
+appropriate hold reason and hold code.
+
+<P>
+In addition to memory, the <I>condor_starter</I> can also control 
+the total amount of CPU used by all processes within a job.
+To do this, it writes a value
+to the cpu.shares attribute of the cgroup cpu controller.  
+The value it writes is copied from the <TT>Cpus</TT> attribute 
+of the machine slot ClassAd.
+Again, like the <TT>Memory</TT> attribute, this value is fixed for static slots,
+but dynamic under partitionable slots.  
+This tells the operating system
+to assign cpu usage proportionally to the number of cpus in the slot.  
+Unlike memory, 
+there is no concept of <TT>soft</TT> or <TT>hard</TT>, 
+so this limit only applies when there is contention for the cpu.
+That is, on an eight core machine, with
+only a single, one-core slot running, and otherwise idle, the job running
+in the one slot could consume all eight cpus concurrently with this limit
+in play, if it is the only thing running.  
+If, however, all eight slots where running jobs, 
+with each configured for one cpu, the cpu usage would be assigned
+equally to each job, regardless of the number of processes in each job.
+
+<H2><A NAME="SECTION0041215000000000000000"></A><A NAME="sec:Concurrency-Limits"></A> 
+<A NAME="42100"></A>
+<BR>
+3.12.15 Concurrency Limits
+</H2>
+
+<P>
+<I>Concurrency limits</I> allow an administrator to limit the number
+of concurrently running jobs that declare that they use some
+pool-wide resource.  
+This limit is applied globally to all jobs
+submitted from all schedulers across one HTCondor pool;
+the limits are <I>not</I> applied to scheduler, local, or grid universe jobs.
+This is useful in the case of a shared resource, 
+such as an NFS or database server that some jobs use, 
+where the administrator needs to limit the
+number of jobs accessing the server.
+
+<P>
+The administrator must predefine the names and capacities of the
+resources to be limited in the negotiator's configuration file.
+The job submitter must declare in the submit description file which 
+resources the job consumes.
+
+<P>
+For example, assume that there are 3 licenses for the X software,
+so HTCondor should constrain the number of running jobs which need the
+X software to 3.  
+The administrator picks XSW as the name of the resource
+and sets the configuration
+<PRE>
+XSW_LIMIT = 3
+</PRE>
+where <TT>XSW</TT> is the invented name of this resource,
+and this name is appended with the string <TT>_LIMIT</TT>.
+With this limit, a maximum of 3 jobs declaring that they need this
+resource may be executed concurrently.
+
+<P>
+In addition to named limits, such as in the example named limit <TT>XSW</TT>,
+configuration may specify a concurrency limit for all resources
+that are not covered by specifically-named limits.
+The configuration variable <TT>CONCURRENCY_LIMIT_DEFAULT</TT><A NAME="42137"></A><A NAME="42138"></A> sets
+this value.  For example,
+<PRE>
+CONCURRENCY_LIMIT_DEFAULT = 1
+</PRE>
+will enforce a limit of at most 1 running job that declares a
+usage of an unnamed resource.
+If <TT>CONCURRENCY_LIMIT_DEFAULT</TT> is omitted from the configuration,
+then no limits are placed on the number of concurrently
+executing jobs for which there is no specifically-named
+concurrency limit.
+
+<P>
+The job must declare its need for a resource by placing a command
+in its submit description file or adding an attribute to the
+job ClassAd.
+In the submit description file, an example job that requires
+the X software adds:
+<PRE>
+concurrency_limits = XSW
+</PRE>
+This results in the job ClassAd attribute
+<PRE>
+ConcurrencyLimits = "XSW"
+</PRE>
+
+<P>
+Jobs may declare that they need more than one type of resource.
+In this case, specify a comma-separated list of resources:
+
+<P>
+<PRE>
+concurrency_limits = XSW, DATABASE, FILESERVER
+</PRE>
+
+<P>
+The units of these limits are arbitrary. 
+This job consumes one unit of each resource.
+Jobs can declare that they use more than one unit with syntax
+that follows the resource name by a colon character and the
+integer number of resources.  
+For example, if the above job uses three units of the file server resource,
+it is declared with
+
+<P>
+<PRE>
+concurrency_limits = XSW, DATABASE, FILESERVER:3
+</PRE>
+
+<P>
+If there are sets of resources which have the same
+capacity for each member of the set,
+the configuration may become tedious,
+as it defines each member of the set individually.
+A shortcut defines a name for a set.
+For example, define the sets called <TT>LARGE</TT> and <TT>SMALL</TT>:
+
+<P>
+<PRE>
+CONCURRENCY_LIMIT_DEFAULT = 5
+CONCURRENCY_LIMIT_DEFAULT_LARGE = 100
+CONCURRENCY_LIMIT_DEFAULT_SMALL = 25
+</PRE>
+
+<P>
+To use the set name in a concurrency limit,
+the syntax follows the set name with a period and then the set member's
+name.
+Continuing this example, 
+there may be a concurrency limit named <TT>LARGE.SWLICENSE</TT>,
+which gets the capacity of the default defined for the
+<TT>LARGE</TT> set, which is 100. 
+A concurrency limit named <TT>LARGE.DBSESSION</TT> will
+also have a limit of 100.
+A concurrency limit named
+<TT>OTHER.LICENSE</TT> will receive the default limit of 5, as
+there is no set named <TT>OTHER</TT>.
+
+<P>
+Note that it is possible, in unusual circumstances, for more jobs to
+be started than should be allowed by the concurrency limits feature.
+In the presence of preemption and dropped updates from the
+<I>condor_startd</I> daemon to the <I>condor_collector</I> daemon, it is
+possible for the limit to be exceeded. If the limits are exceeded,
+HTCondor will not kill any job to reduce the number of running jobs to
+meet the limit.
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1714"
+  HREF="3_13Java_Support.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1708"
+  HREF="3_Administrators_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1702"
+  HREF="3_11High_Availability.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1710"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1712"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1715"
+  HREF="3_13Java_Support.html">3.13 Java Support Installation</A>
+<B> Up:</B> <A NAME="tex2html1709"
+  HREF="3_Administrators_Manual.html">3. Administrators' Manual</A>
+<B> Previous:</B> <A NAME="tex2html1703"
+  HREF="3_11High_Availability.html">3.11 The High Availability</A>
+ &nbsp; <B>  <A NAME="tex2html1711"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1713"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

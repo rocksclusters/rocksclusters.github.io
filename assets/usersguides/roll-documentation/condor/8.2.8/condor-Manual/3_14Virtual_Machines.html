@@ -1,0 +1,341 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>3.14 Virtual Machines</TITLE>
+<META NAME="description" CONTENT="3.14 Virtual Machines">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="3_15Power_Management.html">
+<LINK REL="previous" HREF="3_13Java_Support.html">
+<LINK REL="up" HREF="3_Administrators_Manual.html">
+<LINK REL="next" HREF="3_15Power_Management.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html1776"
+  HREF="3_15Power_Management.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1770"
+  HREF="3_Administrators_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1764"
+  HREF="3_13Java_Support.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1772"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1774"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1777"
+  HREF="3_15Power_Management.html">3.15 Power Management</A>
+<B> Up:</B> <A NAME="tex2html1771"
+  HREF="3_Administrators_Manual.html">3. Administrators' Manual</A>
+<B> Previous:</B> <A NAME="tex2html1765"
+  HREF="3_13Java_Support.html">3.13 Java Support Installation</A>
+ &nbsp; <B>  <A NAME="tex2html1773"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1775"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html1778"
+  HREF="3_14Virtual_Machines.html#SECTION004141000000000000000">3.14.1 Configuration Variables</A>
+<UL>
+<LI><A NAME="tex2html1779"
+  HREF="3_14Virtual_Machines.html#SECTION004141100000000000000">3.14.1.1 VMware-Specific Configuration</A>
+<LI><A NAME="tex2html1780"
+  HREF="3_14Virtual_Machines.html#SECTION004141200000000000000">3.14.1.2 Xen-Specific and KVM-Specific Configuration</A>
+</UL></UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION004140000000000000000"></A><A NAME="sec:vm-install"></A>
+<BR>
+3.14 Virtual Machines
+</H1>
+
+<P>
+<A NAME="42302"></A>
+<A NAME="42303"></A>
+
+<P>
+Virtual machines can be executed on any execution site with VMware, Xen
+(via <I>libvirt</I>), or KVM.
+To do this, HTCondor must be informed of some details of the 
+virtual machine installation, and the execution machines must
+be configured correctly.
+This permits the execution of <B>vm</B> universe jobs.
+
+<P>
+What follows is not a comprehensive list of the options that
+help set up to use the <B>vm</B> universe; rather,
+it is intended to serve as a starting point for those users interested in
+getting <B>vm</B> universe jobs up and running quickly.
+Details of configuration variables are in section&nbsp;<A HREF="3_3Configuration.html#sec:Config-VMs">3.3.27</A>.
+
+<P>
+Begin by installing the virtualization package on all execute machines,
+according to the vendor's instructions.
+We have successfully used VMware, Xen, and KVM.
+If considering running on a Windows system, 
+a <I>Perl</I> distribution will also need to be installed;
+we have successfully used <I>ActivePerl</I>. 
+
+<P>
+For VMware, <I>VMware Server 1</I> must be installed
+and running on the execute machine.
+HTCondor also
+supports using <I>VMware Workstation</I> and <I>VMware Player</I>, version 5.
+Earlier versions of these products may also work.  
+HTCondor will attempt to automatically discern which 
+VMware product is installed.
+If using <I>Player</I>, also install the <I>VIX API</I>,
+which is freely available from VMware.
+
+<P>
+For Xen, there are three things that must exist on 
+an execute machine to fully support <B>vm</B> universe jobs. 
+
+<OL>
+<LI>A Xen-enabled kernel must be running. 
+This running Xen kernel acts as Dom0, in Xen terminology, 
+under which all VMs are started, called DomUs Xen terminology. 
+
+<P>
+</LI>
+<LI>The <I>libvirtd</I> daemon must be available,
+and <I>Xend</I> services must be running. 
+
+<P>
+</LI>
+<LI>The <I>pygrub</I> program must be available,
+for execution of VMs whose disks contain the kernel they will run.
+</LI>
+</OL>
+
+<P>
+For KVM, there are two things that must exist on
+an execute machine to fully support <B>vm</B> universe jobs. 
+
+<OL>
+<LI>The machine must have the KVM kernel module installed and running.
+
+<P>
+</LI>
+<LI>The <I>libvirtd</I> daemon must be installed and running.
+
+<P>
+</LI>
+</OL>
+
+<P>
+
+<H2><A NAME="SECTION004141000000000000000">
+3.14.1 Configuration Variables</A>
+</H2>
+
+<P>
+There are configuration variables related to the virtual machines
+for <B>vm</B> universe jobs.
+Some options are required, while others are optional.
+Here we only discuss those that are required.
+
+<P>
+First, the type of virtual machine that is installed on the
+execute machine must be specified. 
+For now, only one type can be utilized per machine.
+For instance, the following tells HTCondor to use VMware:
+
+<P>
+<PRE>
+VM_TYPE = vmware
+</PRE>
+
+<P>
+The location of the <I>condor_vm-gahp</I> and
+its log file must also be specified on the execute machine.
+On a Windows installation, these options would look like this:
+
+<P>
+<PRE>
+VM_GAHP_SERVER = $(SBIN)/condor_vm-gahp.exe
+VM_GAHP_LOG = $(LOG)/VMGahpLog
+</PRE>
+
+<P>
+
+<H3><A NAME="SECTION004141100000000000000">
+3.14.1.1 VMware-Specific Configuration</A>
+</H3>
+
+<P>
+To use VMware, identify the location of the <I>Perl</I> executable
+on the execute machine.
+In most cases, the default value should suffice:
+
+<P>
+<PRE>
+VMWARE_PERL = perl
+</PRE>
+
+<P>
+This, of course, assumes the <I>Perl</I> executable is in the path
+of the <I>condor_master</I> daemon.
+If this is not the case,
+then a full path to the <I>Perl</I> executable will be required.
+
+<P>
+If using <I>VMware Player</I>, 
+which does not support snapshots,
+configure the <TT>START</TT> expression to reject
+jobs which require snapshots.
+These are jobs that do not have 
+<B>vmware_snapshot_disk</B><A NAME="42404"></A> set to <TT>False</TT>.
+Here is an example modification to the <TT>START</TT> expression. 
+<PRE>
+START = ($(START)) &amp;&amp; (!(TARGET.VMPARAM_VMware_SnapshotDisk =?= TRUE))
+</PRE>
+
+<P>
+The final required configuration is the location of the VMware control script
+used by the <I>condor_vm-gahp</I> on the execute machine
+to talk to the virtual machine hypervisor.
+It is located in HTCondor's <TT>sbin</TT> directory:
+
+<P>
+<PRE>
+VMWARE_SCRIPT = $(SBIN)/condor_vm_vmware
+</PRE>
+
+<P>
+Note that an execute machine's <TT>EXECUTE</TT> variable should not
+contain any symbolic links in its path,
+if the machine is configured to run VMware <B>vm</B> universe jobs.
+Strange behavior has been noted when HTCondor tries to run a 
+<B>vm</B> universe VMware
+job using a path to a VMX file that contains a symbolic link.
+An example of an error message that may appear in such a job's event log:
+<PRE>
+Error from starter on master_vmuniverse_strtd@nostos.cs.wisc
+.edu: register(/scratch/gquinn/condor/git/CONDOR_SRC/src/con
+dor_tests/31426/31426vmuniverse/execute/dir_31534/vmN3hylp_c
+ondor.vmx) = 1/Error: Command failed: A file was not found/(
+ERROR) Can't create snapshot for vm(/scratch/gquinn/condor/g
+it/CONDOR_SRC/src/condor_tests/31426/31426vmuniverse/execute
+/dir_31534/vmN3hylp_condor.vmx)
+</PRE>
+To work around this problem:
+
+<UL>
+<LI>If using file transfer
+(the submit description file contains
+<B>vmware_should_transfer_files = true</B><A NAME="42414"></A>),
+then modify any
+configuration variable <TT>EXECUTE</TT><A NAME="42416"></A><A NAME="42417"></A> values on all execute machines,
+such that they do not contain symbolic link path components.
+</LI>
+<LI>If using a shared file system, ensure that the
+submit description file command
+<B>vmware_dir</B><A NAME="42421"></A> does not use
+symbolic link path name components.
+</LI>
+</UL>
+
+<P>
+
+<H3><A NAME="SECTION004141200000000000000">
+3.14.1.2 Xen-Specific and KVM-Specific Configuration</A>
+</H3>
+
+<P>
+Once the configuration options have been set, restart the <I>condor_startd</I> 
+daemon on that host.  For example:
+
+<P>
+<PRE>
+&gt; condor_restart -startd leovinus
+</PRE>
+
+<P>
+The <I>condor_startd</I> daemon takes a few moments to exercise the VM
+capabilities of the <I>condor_vm-gahp</I>, query its properties, and then 
+advertise the machine to the pool as VM-capable.
+If the set up succeeded,
+ then <I>condor_status</I> will reveal that the host is now 
+VM-capable by printing the VM type and the version number:
+
+<P>
+<PRE>
+&gt; condor_status -vm leovinus
+</PRE>
+
+<P>
+After a suitable amount of time, if this command does not give any output,
+then the <I>condor_vm-gahp</I> is having difficulty executing the VM software.
+The exact cause of the problem depends on the details of the VM, the local 
+installation, and a variety of other factors. We can offer only limited 
+advice on these matters:
+
+<P>
+For Xen and KVM,
+the <B>vm</B> universe is only available when <TT>root</TT> starts HTCondor.
+This is a restriction currently imposed because root privileges are 
+required to create a virtual machine on top of a Xen-enabled kernel.
+Specifically, root is needed 
+to properly use the <I>libvirt</I> utility that controls 
+creation and management of Xen and KVM guest virtual machines.
+This restriction may be lifted in future versions,
+depending on features provided by the underlying tool <I>libvirt</I>.
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1776"
+  HREF="3_15Power_Management.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1770"
+  HREF="3_Administrators_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1764"
+  HREF="3_13Java_Support.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1772"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1774"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1777"
+  HREF="3_15Power_Management.html">3.15 Power Management</A>
+<B> Up:</B> <A NAME="tex2html1771"
+  HREF="3_Administrators_Manual.html">3. Administrators' Manual</A>
+<B> Previous:</B> <A NAME="tex2html1765"
+  HREF="3_13Java_Support.html">3.13 Java Support Installation</A>
+ &nbsp; <B>  <A NAME="tex2html1773"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1775"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

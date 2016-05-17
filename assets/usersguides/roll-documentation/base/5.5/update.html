@@ -1,0 +1,516 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+> System Update </TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE=" Advanced Tasks "
+HREF="advanced-tasks.html"><LINK
+REL="PREVIOUS"
+TITLE=" Adding Kernel Boot Parameters "
+HREF="bootflags.html"><LINK
+REL="NEXT"
+TITLE="Command Reference"
+HREF="c2117.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Base</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="bootflags.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 8. Advanced Tasks</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="c2117.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="UPDATE"
+>8.8. System Update</A
+></H1
+><P
+>There are two ways in which packages can be updated on a Rocks Cluster.
+You can create an update roll and then add it to the distribution 
+(preferred method) or you can update your frontend using YUM and then 
+add the update packages to your distribution. The next two chapters 
+will explain in detail the two methodologies.</P
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="UPDATE-ROLL"
+>8.8.1. System update using update roll</A
+></H2
+><P
+>This approach is preferred over the other because it allows to 
+test the effect of updates on compute nodes and in case of problems 
+there is an easy way to roll back the system to the previous 
+configuration.</P
+><P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>Use rocks create mirror to create an update roll</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>    # rocks create mirror http://mirror.centos.org/centos/6.2/updates/&#60;arch&#62;/Packages/ rollname=update-currentDate </PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>    Where <EM
+>arch</EM
+> is your current architecture (x86_64, i386).
+    </P
+></LI
+><LI
+><P
+>    Add the update roll created by the previous command to your 
+    distribution
+    </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>    # rocks add roll update-currentDate.iso
+    # cd /export/rocks/install
+    # rocks create distro </PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>    New installed nodes will automatically get the updated packages.
+    It is wise to test the update on a compute nodes to verify that 
+    updates did not break anything.
+    To force a node to reinstall, run the command:     </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>    # ssh hostname-0-0 /boot/kickstart/cluster-kickstart </PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>    If something goes wrong you can always revert the updates 
+    removing the update roll.
+    </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>    # rocks remove roll update-currentDate
+    # cd /export/rocks/install
+    # rocks create distro </PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>    After you tested the update on some nodes with the previous step, 
+    you can update the frontend using the standard yum command
+    </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>    # yum update </PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Then reboot the frontend to make the update effective.</P
+></LI
+></OL
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="UPDATES-YUM"
+>8.8.2. System update using YUM</A
+></H2
+><P
+>To update using YUM you first have to update packages on your frontend 
+(for this reason this approach is more risky) and then you can propagate
+the modification to the rest of the cluster. </P
+><P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>    Several repositories are configured, but then disabled by Rocks
+    at install time. This is done so that the user can have full control
+    over the distribution. The local distribution IS a yum repository.
+    If you have created an updates roll as in the previous section, then
+    </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>    # yum clean all
+    # yum check-update 
+    </PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+> might produce output that resembles the following
+    </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>[root@ ~]# yum check-update
+Rocks-6.0                                                | 1.9 kB     00:00     
+Rocks-6.0/primary                                        | 1.1 MB     00:00     
+Rocks-6.0                                                             2183/2183
+keyutils.x86_64                             1.4-3.el6                  Rocks-6.0
+keyutils-libs.x86_64                        1.4-3.el6                  Rocks-6.0
+keyutils-libs-devel.x86_64                  1.4-3.el6                  Rocks-6.0
+[root@ ~]# 
+    </PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+> Alternatively, you can enable the CentOS updates repo and do
+    the following
+    </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>    # yum clean all
+    # yum --enablerepo=updates check-update 
+    </PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+> might produce output that resembles the following
+    </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>[root@ ~]# yum --enablerepo=updates check-update
+updates                                                  | 3.5 kB     00:00     
+
+firefox.x86_64                      10.0.4-1.el6.centos                updates  
+keyutils.x86_64                             1.4-3.el6                  Rocks-6.0
+keyutils-libs.x86_64                        1.4-3.el6                  Rocks-6.0
+keyutils-libs-devel.x86_64                  1.4-3.el6                  Rocks-6.0
+libpng.x86_64                       2:1.2.49-1.el6_2                   updates  
+libpng-devel.x86_64                 2:1.2.49-1.el6_2                   updates  
+libsmbclient.x86_64                 3.5.10-116.el6_2                   updates  
+openssl.x86_64                      1.0.0-20.el6_2.4                   updates  
+openssl-devel.x86_64                1.0.0-20.el6_2.4                   updates  
+qemu-kvm.x86_64                     2:0.12.1.2-2.209.el6_2.4           updates  
+samba-winbind-clients.x86_64        3.5.10-116.el6_2                   updates  
+xorg-x11-server-Xephyr.x86_64       1.10.4-6.el6_2.1.0.1.centos        updates  
+xorg-x11-server-Xorg.x86_64         1.10.4-6.el6_2.1.0.1.centos        updates  
+xorg-x11-server-common.x86_64       1.10.4-6.el6_2.1.0.1.centos        updates  
+xulrunner.x86_64                    10.0.4-1.el6.centos                updates  
+[root@ ~]# 
+    </PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>    Now, Actually install the updates on your frontend
+    </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>    # yum --enablerepo=updates update
+    </PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>    When YUM installs update packages on your system, it stores a copy of 
+    downloaded RPMs in the directory 
+    <TT
+CLASS="FILENAME"
+>/var/cache/yum/updates/packages</TT
+>. It is 
+    necessary to add this packages to the distribution copying them in the 
+    contrib directory: 
+    </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>    # cp /var/cache/yum/updates/packages/*  /export/rocks/install/contrib/5.5/&#60;arch&#62;/RPMS/ </PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>    Where <EM
+>arch</EM
+> is your current architecture (x86_64, i386).
+    </P
+></LI
+><LI
+><P
+>    Finally rebuild your distribution:
+    </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>    # cd /export/rocks/install
+    # rocks create distro </PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>    New installed nodes will automatically get the updated packages.
+    To force a node to reinstall, run the command:     </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>    # ssh hostname-0-0 /boot/kickstart/cluster-kickstart </PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+></OL
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="bootflags.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="c2117.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Adding Kernel Boot Parameters</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="advanced-tasks.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Command Reference</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

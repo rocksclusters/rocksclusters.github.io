@@ -1,0 +1,744 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+> Managing the Firewall on the Cluster Nodes </TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE=" Advanced Tasks "
+HREF="advanced-tasks.html"><LINK
+REL="PREVIOUS"
+TITLE=" Advanced Tasks "
+HREF="advanced-tasks.html"><LINK
+REL="NEXT"
+TITLE=" Enabling Two-Factor Authentication with Google Authenticator "
+HREF="otp.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Base</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="advanced-tasks.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 8. Advanced Tasks</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="otp.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="FIREWALL"
+>8.1. Managing the Firewall on the Cluster Nodes</A
+></H1
+><P
+>The firewall for all cluster nodes (including the frontend) is managed with
+the Rocks command line.
+
+As of Rocks 5.4.3, all firewall rules  must have a name associated. The name
+is used as the handle for deleting and redefined rules. For example, a rule named 'MYRULE' can be defined globally, but a particular host can redefine 'MYRULE'
+to do something else.
+
+As of Rocks 5.4.3 rules are associated by category and single 'add firewall' 
+command handles global, os, appliance, and host categories. </P
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN1891"
+>8.1.1. Categories. Subtle Syntax</A
+></H2
+><P
+> 
+In Rocks 5.4.3 and newer releases, the concept of "categories" is used by
+the database. 
+Prior to Rocks 5.4.3, there were several different add firewall commands.
+Namely, </P
+><P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>rocks add firewall </P
+></LI
+><LI
+><P
+> rocks add os firewall </P
+></LI
+><LI
+><P
+> rocks add appliance firewall </P
+></LI
+><LI
+><P
+> rocks add host firewall </P
+></LI
+></OL
+><P
+>Logically, these were defined to add a firewall command to  one of 
+[global, os , appliance, host ]. When firewall rules were resolved from the 
+database, rules would be inherited from global, then os, then appliance, and
+finally host-specific rules.    </P
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/note.png"
+HSPACE="5"
+ALT="Note"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>As of 5.4.3, these have been replaced by a single command that looks like</P
+></TD
+></TR
+></TABLE
+></DIV
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks add firewall category=index ... </PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Here categories are [global, os, appliance, host ]. This means that adding firewall rule to a particular host (say, compute-0-0) becomes</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks add firewall host=compute-0-0 ... </PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><P
+>This rule applies only to the compute-0-0 host. To 
+add a rule to the Compute appliance becomes:</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks add firewall appliance=Compute ... </PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><P
+>The appliance rule applies to all Compute appliances. </P
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="AEN1914"
+>8.1.1.1. Listing Firewall Rules. Resolved Rules.</A
+></H3
+><P
+> There are two commands for listing firewall rules for a host and 
+they differ in subtle, but important, ways. Again we'll use compute-0-0 as 
+an example.</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks list firewall host=compute-0-0
+# rocks list host firewall compute-0-0</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><P
+>The first command lists all firewall rules that are specific to host compute-0-0 only. By default, this is the empty set.    The second command list all <EM
+>inherited</EM
+> commmands and is, by default not empty. For example,</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks list firewall host=compute-0-0
+# </PRE
+></FONT
+></TD
+></TR
+></TABLE
+>
+and 
+<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks list host firewall compute-0-0 maxwidth=15
+# rocks list host firewall compute-0-0-0 maxwidth=15
+RULENAME            SERVICE PROTOCOL CHAIN  ACTION NETWORK OUTPUT-NETWORK FLAGS           COMMENT CATEGORY
+A20-ALL-PRIVATE     all     all      ACCEPT INPUT  private -------------- --------------- ------- global  
+A20-SSH-PUBLIC      ssh     tcp      ACCEPT INPUT  public  -------------- -m state --stat ------- global  
+A30-RELATED-PUBLIC  all     all      ACCEPT INPUT  public  -------------- -m state --stat ------- global  
+R900-PRIVILEGED-TCP all     tcp      REJECT INPUT  public  -------------- --dport 0:1023  ------- global  
+R900-PRIVILEGED-UDP all     udp      REJECT INPUT  public  -------------- --dport 0:1023  ------- global  &#13;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><P
+>Notice that in the second form, the source of the firewall (global, in this
+example) is listed so that an administrator can see where a rule is defined.
+One should also notice that list host firewall will output all possible 
+firewall rules that <EM
+>might</EM
+> apply.  For example, the above has rules defined for both the "public" and "private" networks in the global scope. If compute-0-0 does not have an interface on the public network, then those 
+rules will not appear in the final firewall configuration. </P
+><P
+>The list commands (like all list commands in Rocks) are intended for human
+readability. While the report commmands are machine readable. The actual firewall rules written for compute-0-0 would are generated with <SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks report host firewall</SAMP
+>. The report command resolves that actual interface for the named network. For example:</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>#rocks report host firewall compute-0-0            
+&#60;file name="/etc/sysconfig/iptables" perms="500"&#62;
+*filter
+:INPUT ACCEPT [0:0]
+:FORWARD DROP [0:0]
+:OUTPUT ACCEPT [0:0]
+-A INPUT -i lo -j ACCEPT
+#  A20-ALL-PRIVATE (global) : 
+-A INPUT -i eth0 -j ACCEPT
+COMMIT
+&#60;/file&#62;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><P
+>A comment is put into this file for each applicable firewall rule.
+Notice that compute-0-0 has only a private network, so that all firewall rules
+bound to a public network are ignored. <SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks report host firewall</SAMP
+> is used internally during node build and by 
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks sync host firewall</SAMP
+></P
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN1933"
+>8.1.2. Adding Rules. Ordering Rules.  Examples</A
+></H2
+><P
+>Firewall concepts are taken from linux iptables.  The defined chains are 
+INPUT, OUTPUT, FORWARD, ACCEPT, REJECT, DROP. The most common is to define
+how to match a packet on the INPUT chain and then either ACCEPT, REJECT, or
+DROP.   </P
+><P
+>Overall order of rule definition matters and this is where the rulename is
+important. Suppose that on the frontend, we want to accept ftp connections 
+from all hosts, instead of the rocks default. First lets list the rules  for
+a frontend (COMMENT field has been edited out) </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>RULENAME             SERVICE PROTOCOL CHAIN      ACTION      NETWORK OUTPUT-NETWORK FLAGS                     CATEGORY
+A10-REJECT-411-TCP   all     tcp      REJECT     INPUT       private -------------- --dport 372 --sport 1024 host    
+A10-REJECT-411-UDP   all     udp      REJECT     INPUT       private -------------- --dport 372 --sport 1024 host    
+A20-ALL-PRIVATE      all     all      ACCEPT     INPUT       private -------------- ------------------------ global  
+A20-SSH-PUBLIC       ssh     tcp      ACCEPT     INPUT       public  -------------- -m state --state NEW     global  
+A30-RELATED-PUBLIC   all     all      ACCEPT     INPUT       public  -------------- -m state --state RELATED global  
+A40-HTTPS-PUBLIC-LAN https   tcp      ACCEPT     INPUT       public  -------------- -m state --state NEW --s host    
+A40-WWW-PUBLIC_LAN   www     tcp      ACCEPT     INPUT       public  -------------- -m state --state NEW --s host    
+A50-FORWARD-RELATED  all     all      ACCEPT     FORWARD     public  private        -m state --state RELATED host    
+A60-FORWARD          all     all      ACCEPT     FORWARD     private -------------- ------------------------ host    
+MASQUERADE           nat     all      MASQUERADE POSTROUTING ------- public         ------------------------ host    
+R10-GANGLIA-UDP      8649    udp      REJECT     INPUT       ------- -------------- ------------------------ host    
+R20-MYSQL-TCP        3306    tcp      REJECT     INPUT       ------- -------------- ------------------------ host    
+R30-FOUNDATION-MYSQL 40000   tcp      REJECT     INPUT       ------- -------------- ------------------------ host    
+R900-PRIVILEGED-TCP  all     tcp      REJECT     INPUT       public  -------------- --dport 0:1023           global  
+R900-PRIVILEGED-UDP  all     udp      REJECT     INPUT       public  -------------- --dport 0:1023           global  </PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>The R900-PRIVILEGED* rules are the last ones interpreted by iptables. They
+ instruct iptables to reject all packets destined for privileged ports on
+the public network <SAMP
+CLASS="COMPUTEROUTPUT"
+>(--dport 0:1023)</SAMP
+>. To accept
+ftp traffic (port 21) we need to add rules for both UDP and TCP traffic that
+are named <EM
+>alphabetically</EM
+> before the R900 rules. It is the
+rulename that determines order. Typically ACCEPT rules are labeled A&#60;nn&#62;-
+and REJECT rules are labeled R&#60;nn&#62;-. But that is only convention for Rocks
+system rules. Any name is valid. </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks add firewall host=frontend network=public protocol=tcp service=ftp  chain=INPUT action=ACCEPT rulename=A90-PUBLIC-FTP-TCP
+# rocks add firewall host=frontend network=public protocol=udp service=ftp  chain=INPUT action=ACCEPT rulename=A100-PUBLIC-FTP-UDP</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/note.png"
+HSPACE="5"
+ALT="Note"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>It is sometimes simpler on the screen to look at the actual machine report
+via <SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks report host firewall</SAMP
+></P
+></TD
+></TR
+></TABLE
+></DIV
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks report host firewall frontend
+&#60;file name="/etc/sysconfig/iptables" perms="500"&#62;
+*nat
+#  MASQUERADE (host) : 
+-A POSTROUTING -o eth1 -j MASQUERADE
+COMMIT
+
+*filter
+:INPUT ACCEPT [0:0]
+:FORWARD DROP [0:0]
+:OUTPUT ACCEPT [0:0]
+-A INPUT -i lo -j ACCEPT
+#  A10-REJECT-411-TCP (host) : 
+-A INPUT -i eth0 -p tcp --dport 372 --sport 1024:65535 -j REJECT
+#  A10-REJECT-411-UDP (host) : 
+-A INPUT -i eth0 -p udp --dport 372 --sport 1024:65535 -j REJECT
+#  A100-PUBLIC-FTP-UDP (host) : 
+-A INPUT -i eth1 -p udp --dport ftp -j ACCEPT
+#  A20-ALL-PRIVATE (global) : 
+-A INPUT -i eth0 -j ACCEPT
+#  A20-SSH-PUBLIC (global) : 
+-A INPUT -i eth1 -p tcp --dport ssh -m state --state NEW -j ACCEPT
+#  A30-RELATED-PUBLIC (global) : 
+-A INPUT -i eth1 -m state --state RELATED,ESTABLISHED -j ACCEPT
+#  A40-HTTPS-PUBLIC-LAN (host) : 
+-A INPUT -i eth1 -p tcp --dport https -m state --state NEW --source &#38;Kickstart_PublicNetwork;/&#38;Kickstart_PublicNetmask; -j ACCEPT
+#  A40-WWW-PUBLIC_LAN (host) : 
+-A INPUT -i eth1 -p tcp --dport www -m state --state NEW --source &#38;Kickstart_PublicNetwork;/&#38;Kickstart_PublicNetmask; -j ACCEPT
+#  A50-FORWARD-RELATED (host) : 
+-A FORWARD -i eth1 -o eth0 -m state --state RELATED,ESTABLISHED -j ACCEPT
+#  A60-FORWARD (host) : 
+-A FORWARD -i eth0 -j ACCEPT
+#  A90-PUBLIC-FTP-TCP (host) : 
+-A INPUT -i eth1 -p tcp --dport ftp -j ACCEPT
+#  R10-GANGLIA-UDP (host) : block ganglia traffic from non-private interfaces
+-A INPUT -p udp --dport 8649 -j REJECT
+#  R20-MYSQL-TCP (host) : block mysql traffic from non-private interfaces
+-A INPUT -p tcp --dport 3306 -j REJECT
+#  R30-FOUNDATION-MYSQL (host) : block foundation mysql traffic from non-private interfaces
+-A INPUT -p tcp --dport 40000 -j REJECT
+#  R900-PRIVILEGED-TCP (global) : 
+-A INPUT -i eth1 -p tcp --dport 0:1023 -j REJECT
+#  R900-PRIVILEGED-UDP (global) : 
+-A INPUT -i eth1 -p udp --dport 0:1023 -j REJECT</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/note.png"
+HSPACE="5"
+ALT="Note"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>There are four things to notice. First, the ordering is alphabetical not numerical. A100 is after A10-R but before A20. A90 is after A60.  Second, both of the accept rules for ftp come before the reject rules. Third, the public network has been 
+resolved for this host to be eth1. See <SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks list host interface frontend </SAMP
+>. And, fourth, each lists
+where it comes from. </P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>Now apply the configuration to the host:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks sync host firewall frontend</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>The host will now accept ftp traffic on its public interface.</P
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="AEN1952"
+>8.1.2.1. How to affect a particular appliance</A
+></H3
+><P
+>Suppose we wanted to close ftp on <EM
+>all</EM
+> networks for compute appliances (even private). First, let's look at the default rules for a compute node.</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>rocks list host firewall compute-0-0
+RULENAME            SERVICE PROTOCOL CHAIN  ACTION NETWORK OUTPUT-NETWORK FLAGS                    COMMENT CATEGORY
+A20-ALL-PRIVATE     all     all      ACCEPT INPUT  private -------------- ------------------------ ------- global  
+A20-SSH-PUBLIC      ssh     tcp      ACCEPT INPUT  public  -------------- -m state --state NEW     ------- global  
+A30-RELATED-PUBLIC  all     all      ACCEPT INPUT  public  -------------- -m state --state RELATED ------- global  
+R900-PRIVILEGED-TCP all     tcp      REJECT INPUT  public  -------------- --dport 0:1023           ------- global  
+R900-PRIVILEGED-UDP all     udp      REJECT INPUT  public  -------------- --dport 0:1023           ------- global  </PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Here you can use the "appliance=&#60;appliance-name&#62;" argument for adding a
+firewall.  Use <SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks list appliance</SAMP
+> to get 
+the valid names. Notice that by default all traffic is accepted on the compute
+node on the private network.  If we want our REJECT rule to properly apply 
+to all network interfaces, it must come before the A20-ALL-PRIVATE rule.  </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks add firewall appliance=compute protocol=tcp service=ftp network=all chain=INPUT action=REJECT rulename=A19-REJECT-FTP-TCP
+# rocks add firewall appliance=compute protocol=udp service=ftp network=all chain=INPUT action=REJECT rulename=A19-REJECT-FTP-UDP</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>This now rejects. FTP traffic. You can check the actual firewall rule for a particular compute host. </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>rocks report host firewall compute-0-0
+&#60;file name="/etc/sysconfig/iptables" perms="500"&#62;
+*filter
+:INPUT ACCEPT [0:0]
+:FORWARD DROP [0:0]
+:OUTPUT ACCEPT [0:0]
+-A INPUT -i lo -j ACCEPT
+#  A19-REJECT-FTP-TCP (appliance) : 
+-A INPUT -p tcp --dport ftp -j REJECT
+#  A19-REJECT-FTP-UDP (appliance) : 
+-A INPUT -p udp --dport ftp -j REJECT
+#  A20-ALL-PRIVATE (global) : 
+-A INPUT -i eth0 -j ACCEPT
+COMMIT
+&#60;/file&#62;
+ </PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Now apply the firewall on all compute nodes.</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks sync host firewall compute</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Firewall is now set to reject FTP on all networks for all compute nodes.</P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="advanced-tasks.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="otp.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Advanced Tasks</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="advanced-tasks.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Enabling Two-Factor Authentication with Google Authenticator</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

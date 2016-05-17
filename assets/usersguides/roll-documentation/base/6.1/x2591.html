@@ -1,0 +1,407 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Release 5.5/6.0 - changes from 5.4.3</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Release Notes"
+HREF="release-notes.html"><LINK
+REL="PREVIOUS"
+TITLE="Release 5.5/6.1 - changes from 5.5/6.0"
+HREF="x2556.html"><LINK
+REL="NEXT"
+TITLE="Release 5.4.3 - changes from 5.4"
+HREF="x2671.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Base</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x2556.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Appendix B. Release Notes</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x2671.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="AEN2591"
+>B.3. Release 5.5/6.0 - changes from 5.4.3</A
+></H1
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN2593"
+>B.3.1. New Features</A
+></H2
+><P
+></P
+><UL
+><LI
+><P
+>Same Code base for CentOS 5 and CentOS 6 Systems</P
+><P
+>While there are significant differences beteween CentOS 5 and 
+        CentOS 6, Rocks now supports both from the same source code.  5 and 6
+	Rolls are <EM
+> not interchangeable </EM
+>.
+	</P
+></LI
+><LI
+><P
+>KVM Roll (virtualization)for CentOS 6 64-bit Systems</P
+><P
+>	Xen is no longer supported by RedHat/CentOS 6 system and KVM (Kernel
+	Virtual Machine) is only supported for 64-bit machines.  KVM is 
+        hardware-only virtualization and requires both capability and
+	BIOS to be enabled.
+	</P
+></LI
+><LI
+><P
+>Environment Modules</P
+><P
+>  
+	CentOS 6 natively supports environment modules instead of *-selector.
+	For Rocks 5.5, the indentical version of modules is compiled and 
+        included in the base roll.
+	</P
+></LI
+><LI
+><P
+> New support for Yum repositories</P
+><P
+>		Standard OS-defined Repositories are no longer removed, but
+                are instead disabled. the command
+		<SAMP
+CLASS="COMPUTEROUTPUT"
+> yum repolist all</SAMP
+>, describes
+		configured repos. 
+	</P
+></LI
+><LI
+><P
+>Selectable Public and Private Networks at Install</P
+><P
+>		Users are no longer required to select eth0 as the private
+                and eth1 as the public networks for frontend installation.
+                Install screens have drop-down menus to select the detected
+                interface.
+	</P
+></LI
+><LI
+><P
+>Support of BIOS-named Ethernet devices</P
+><P
+>		Version 6 kernels name Ethernet devices differently from
+        Version 5. Devices may have names like p2p1, p35p2, and/or eth0. 
+	If you prefer standard device names for 6, you must install a node
+        using the standard kernel flag of <SAMP
+CLASS="COMPUTEROUTPUT"
+>biosdevname=0</SAMP
+>
+	</P
+></LI
+><LI
+><P
+>Support of Frontends with One Physical Interface</P
+><P
+>	The installer will configure a logical Ethernet device (e.g. eth0:0) if
+	only one physical network device is detected during frontend
+	installation.
+	</P
+></LI
+><LI
+><P
+>Creation of Upstart Scripts for CentOS 6</P
+><P
+>	CentOS 6 use upstart to define to boot characteristics
+	</P
+></LI
+><LI
+><P
+>New Command: rocks report post</P
+><P
+>	<SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks report post</SAMP
+> will convert
+	the post section of an xml file to an executable shell script.
+	This is an advanced user feature.
+	</P
+></LI
+><LI
+><P
+>New Package: foundation-sqlite</P
+><P
+>	This implements the SQLite3 single file database. See Upgraded 
+	Tracker.
+	</P
+></LI
+></UL
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN2630"
+>B.3.2. Enhancements and Bug Fixes</A
+></H2
+><P
+>	Base: Updated anaconda 
+	</P
+><P
+>	Base: Built against CentOS 5.8/6.2 with Updates as of May 8, 2012
+	</P
+><P
+>	Base: Java Updated to Version 7 Update 3 
+	</P
+><P
+>	Base:  Eclipse Moved to Java Roll and Updated to version 3.7.1
+	</P
+><P
+>	Base: Profile scripts only add once to PATH variables 
+	</P
+><P
+>	Base: <SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks run host localhost </SAMP
+>
+        performs a fork instead of an ssh. 
+	</P
+><P
+>	Base: Utilize subprocess and hashlib for newer version of Python 
+	</P
+><P
+>	Base: Improve performance of report host dhcpd by nearly a factor of
+        10 on large clusters.
+	</P
+><P
+>	Base:  Added Git RPM.
+	</P
+><P
+>	Base:  Really fixed Zombie Processes in 411 service
+	</P
+><P
+>	Base:  Patched foundation-python to remove a requirement on /usr/local/bin/python.
+	</P
+><P
+>	Base:  Updated Version of M2Crypto to 0.21.1
+	</P
+><P
+>	Base:  Better Bootstrapping support for building Rocks. Supports 
+        "bootstrap0" which starts on a bare OS install. Use yum whenever
+	possible in package installation.
+	</P
+><P
+>	Base: Removed rebuild of Kudzu. CentOS fixed their internal 
+        build problems. 
+	</P
+><P
+>	Base: Only have 32-bit or 64-bit version of Java. Not both. Works
+        around broken Oracle-supplied RPMs where only one can be installed. 
+	</P
+><P
+>	Base: Fixed various graph ordering issues.
+	</P
+><P
+>	HPC: Use environment modules. Set rocks-openmpi as default MPI
+        Module 
+	</P
+><P
+>	HPC: Added PVM RPMs for Version 6. PVM dropped from Native OS. 
+	</P
+><P
+>	HPC: OpenMPI compiled with SGE integration 
+	</P
+><P
+>	Ganglia: Updated profile.d scripts to only add once to PATH  
+	</P
+><P
+>	Ganglia: rrdtool renamed to foundation-rrdtool to avoid conflicts with
+        external reposistories. 
+	</P
+><P
+>	Ganglia: Removed a Package Conflict with ganglia-pylib
+	</P
+><P
+>	Ganglia: Insured that ganglia linkes with Rocks-compiled rrdtool 
+	</P
+><P
+>	Java: Eclipse updated to 3.7.1 
+	</P
+><P
+>	Java:  JBOSS updated to 6.1.0.  Version 5 was deprecated and 
+        would not build on CentOS 6 
+	</P
+><P
+>	Kernel: Rewrote the rocks tracker to use SQLite for storing hashes.
+        Eliminated segmentation faults of older code. 
+	</P
+><P
+>	Kernel: handle difference between syslog and rsyslog 
+	</P
+><P
+>	Kernel:  build keyutils only on 5, not on 6. 
+	</P
+><P
+>	SGE: Added Security Patched to Open Grid Scheduler v6.2 update 5p3
+	</P
+><P
+>	SGE: Fix compilation to work on both 5.8 and 6.2 
+	</P
+><P
+>	Bio: Many build fixes for Perl modules. 
+	</P
+><P
+>	Bio: Extracted profile scripts to an RPM for easier management 
+	</P
+><P
+>	Bio: mpi-blast compiled with the rocks-opemmpi module loaded 
+	</P
+><P
+>	Bio: BioPerl now depends on Perl Roll
+	</P
+><P
+>	Bio: BioPerl CPAN support utils updated
+	</P
+><P
+>	Condor: Update Condor to v7.6.6
+	</P
+><P
+>	Condor: No support for CentOS 6/32-bit.  
+	</P
+><P
+>	Condor: Install simple condor test. 
+	</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x2556.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x2671.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Release 5.5/6.1 - changes from 5.5/6.0</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="release-notes.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Release 5.4.3 - changes from 5.4</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,235 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Release 2.1 - changes from 2.0.1</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Release Notes"
+HREF="release-notes.html"><LINK
+REL="PREVIOUS"
+TITLE="Release 2.1.1 - changes from 2.1"
+HREF="x8745.html"><LINK
+REL="NEXT"
+TITLE="Release 2.0.1 - changes from 2.0"
+HREF="x8796.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Base</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x8745.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Appendix B. Release Notes</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x8796.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="AEN8775"
+>B.17. Release 2.1 - changes from 2.0.1</A
+></H1
+><P
+>	The main change in this release is that thanks to RedHat 7.1, we
+	now use the Linux 2.4 kernel.
+	</P
+><P
+>	Based on RedHat 7.1, instead of 7.0.
+	</P
+><P
+>	Linux 2.4.x kernel, instead of 2.2.x.
+	</P
+><P
+>	Cluster-dist has been replaced with Rocks-dist.
+	Command line arguments are very similar, with the
+	<SAMP
+CLASS="COMPUTEROUTPUT"
+>explode</SAMP
+> command being
+	removed and replaced with the
+	<SAMP
+CLASS="COMPUTEROUTPUT"
+>--copy</SAMP
+> flag.
+	The new Rocks-dist creates smaller distributions, fixes the problem
+	of expensive mirror updating, and simplifies CD building.
+	Also, it no longer deletes the distribution before rebuilding, this
+	means the build directory (where kickstart files reside) is
+	persistent across distribution builds.
+	</P
+><P
+>	Frontend is now a stratum 10 NTP server, so compute nodes will
+	clock sync to the frontend even when the frontend cannot reach an
+	external time source.
+	</P
+><P
+>	Usher daemon now correctly daemonizes, since we patch the GM
+	code to allow processes to fork.
+	</P
+><P
+>	Symbolic links for Ekv and piece-pipe RPMs removed from the
+	build directory, and <SAMP
+CLASS="COMPUTEROUTPUT"
+>"@Control@"</SAMP
+>
+	section added to kickstart files.
+	</P
+><P
+>	Pbs_mom_config.h generated in the kickstart build directory.
+	</P
+><P
+>	Added pre-defined types to the models table in the SQL database.
+	Also, removed dead tables from database, and made column order more
+	human friendly.
+	</P
+><P
+>	Add SQL parsing to cluster-[ps|kill|fork] scripts.
+	</P
+><P
+>Removed cluster-config-compute, and cluster-config-frontend from
+	the "%post" section in the kickstart file.
+	The cluster-config rpm is now build and installed on the fly on each
+	compute-node.
+	</P
+><P
+>	Bumped lilo timeout to 5 seconds.
+	</P
+><P
+>	Added FORCE_UNIPROCESSOR macro test to force sick SMP machines
+	to kickstart as uniprocessor nodes.
+	</P
+><P
+>	Major revision of insert-ethers.
+	Can now be used to replace nodes, and start at arbitrary ranks and
+	basenames.
+	</P
+><P
+>	Minor maui and pbs bug fixes.
+	</P
+><P
+>	Added gm-mpich SHMEM support to mpi-launch.
+	</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x8745.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x8796.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Release 2.1.1 - changes from 2.1</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="release-notes.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Release 2.0.1 - changes from 2.0</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

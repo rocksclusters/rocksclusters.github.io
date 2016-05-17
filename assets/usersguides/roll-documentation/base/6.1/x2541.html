@@ -1,0 +1,204 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Release 5.6/6.1_sp1 - changes from 5.6/6.1</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Release Notes"
+HREF="release-notes.html"><LINK
+REL="PREVIOUS"
+TITLE="Release Notes"
+HREF="release-notes.html"><LINK
+REL="NEXT"
+TITLE="Release 5.5/6.1 - changes from 5.5/6.0"
+HREF="x2556.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Base</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="release-notes.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Appendix B. Release Notes</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x2556.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="AEN2541"
+>B.1. Release 5.6/6.1_sp1 - changes from 5.6/6.1</A
+></H1
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN2543"
+>B.1.1. Enhancements and Bug Fixes</A
+></H2
+><P
+>	Base: rocks yum repository is clean from errors (automatic dependecies/provides detection 
+	has been disable on several packages, in particular: all the opt-perl-* rpms, foudation-git, 
+	etc.)
+	</P
+><P
+>	Base: /opt/rocks/lib/mysql is not included in the loader path so system mysql 
+	uses system libmysqlclient.so and not rocks mysql libs (several other useless 
+	entries were removed from the ld.so.conf).
+	</P
+><P
+>	Base: JDK updated
+	</P
+><P
+>	Base: grub boot timeout is now 10 seconds
+	</P
+><P
+>	Base: improved script to fetch 441 private key after re-installation of a node
+	</P
+><P
+>	Base: it is now possible to use a /etc/ssh/ssh_known_hosts.local to insert static 
+	entries
+	</P
+><P
+>	Base: rocks set host interface ip does not allow anymore invalid IP number
+	</P
+><P
+>	Base, Ganglia, KVM: several fixes and improvement to the documentations
+	</P
+><P
+> 	Base: Bugfix. record in rocks data base partitioning information
+	</P
+><P
+> 	Base: rocks report host interface was failing with bonded interface
+	</P
+><P
+>	Ganglia: rrd uses previous data retention policy (as in ganglia 3.2) to reduce 
+	disk usage (ganglia 3.3 policy was to 39MB per node 
+	http://marc.info/?l=npaci-rocks-discussion&#38;m=135850438309730). 
+	</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="release-notes.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x2556.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Release Notes</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="release-notes.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Release 5.5/6.1 - changes from 5.5/6.0</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,622 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>condor_status</TITLE>
+<META NAME="description" CONTENT="condor_status">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="condor_store_cred.html">
+<LINK REL="previous" HREF="condor_stats.html">
+<LINK REL="up" HREF="9_Command_Reference.html">
+<LINK REL="next" HREF="condor_store_cred.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html3688"
+  HREF="condor_store_cred.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3682"
+  HREF="9_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3676"
+  HREF="condor_stats.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3684"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3686"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3689"
+  HREF="condor_store_cred.html">condor_store_cred</A>
+<B> Up:</B> <A NAME="tex2html3683"
+  HREF="9_Command_Reference.html">9. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3677"
+  HREF="condor_stats.html">condor_stats</A>
+ &nbsp; <B>  <A NAME="tex2html3685"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3687"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html3690"
+  HREF="condor_status.html#SECTION0010431000000000000000">Synopsis</A>
+<LI><A NAME="tex2html3691"
+  HREF="condor_status.html#SECTION0010432000000000000000">Description</A>
+<LI><A NAME="tex2html3692"
+  HREF="condor_status.html#SECTION0010433000000000000000">Options</A>
+<LI><A NAME="tex2html3693"
+  HREF="condor_status.html#SECTION0010434000000000000000">General Remarks</A>
+<LI><A NAME="tex2html3694"
+  HREF="condor_status.html#SECTION0010435000000000000000">Examples</A>
+<LI><A NAME="tex2html3695"
+  HREF="condor_status.html#SECTION0010436000000000000000">Exit Status</A>
+<LI><A NAME="tex2html3696"
+  HREF="condor_status.html#SECTION0010437000000000000000">Author</A>
+<LI><A NAME="tex2html3697"
+  HREF="condor_status.html#SECTION0010438000000000000000">Copyright</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION0010430000000000000000"></A><A NAME="man-condor-status"></A>
+<BR>
+<I>condor_status</I>
+</H1> Display status of the Condor pool
+  
+<P>
+
+<H2><A NAME="SECTION0010431000000000000000">
+Synopsis</A>
+</H2><B><I>condor_status</I></B>
+
+[<B>-debug</B>]
+
+[<I>help options</I>]
+[<I>query options</I>]
+[<I>display options</I>]
+[<I>custom options</I>]
+[<I>name ... </I>]
+
+<P>
+<A NAME="72143"></A>
+<A NAME="72144"></A>
+
+<P>
+
+<H2><A NAME="SECTION0010432000000000000000">
+Description</A>
+</H2>
+<I>condor_status</I> is a versatile tool that may be used to monitor and query the 
+Condor pool.  The <I>condor_status</I> tool can be used to query resource 
+information, submitter information, checkpoint server information, and daemon
+master information.  The specific query sent and the resulting information 
+display is controlled by the query options supplied.  Queries and display 
+formats can also be customized.
+
+<P>
+The options that may be supplied to <I>condor_status</I> belong to five groups:
+
+<UL>
+<LI><B>Help options</B> provide information about the <I>condor_status</I>
+		tool.
+</LI>
+<LI><B>Query options</B> control the content and presentation of status
+		information.
+</LI>
+<LI><B>Display options</B> control the display of the queried 
+		information.
+</LI>
+<LI><B>Custom options</B> allow the user to customize query and
+		display information.
+</LI>
+<LI><B>Host options</B> specify specific machines to be queried
+</LI>
+</UL>
+
+<P>
+At any time, only one <I>help option</I>, one <I>query option</I> and one
+<I>custom option</I> may be specified.  Any number of <I>custom</I> and <I>host
+options</I> may be specified.
+
+<P>
+
+<H2><A NAME="SECTION0010433000000000000000">
+Options</A>
+</H2>
+  
+<P>
+  <DL>
+<DT><STRONG><B>-debug</B></STRONG></DT>
+<DD>Causes debugging information to be sent to
+<TT>stderr</TT>, based on the value of the configuration variable
+<TT>TOOL_DEBUG</TT>
+<BR>
+    
+</DD>
+<DT><STRONG><B>-help</B></STRONG></DT>
+<DD>(Help option) Display usage information
+<BR>    
+</DD>
+<DT><STRONG><B>-diagnose</B></STRONG></DT>
+<DD>(Help option) Print out query ClassAd without 
+      performing query
+<BR>    
+</DD>
+<DT><STRONG><B>-any</B></STRONG></DT>
+<DD>(Query option) Query all ClassAds and display their type,
+      target type, and name
+<BR>    
+</DD>
+<DT><STRONG><B>-avail</B></STRONG></DT>
+<DD>(Query option) Query <I>condor_startd</I> ClassAds and identify
+      resources which are available
+<BR>    
+</DD>
+<DT><STRONG><B>-ckptsrvr</B></STRONG></DT>
+<DD>(Query option) Query <I>condor_ckpt_server</I> ClassAds
+      and display checkpoint server attributes
+<BR>    
+</DD>
+<DT><STRONG><B>-claimed</B></STRONG></DT>
+<DD>(Query option) Query <I>condor_startd</I> ClassAds and print 
+      information about claimed resources
+<BR>    
+</DD>
+<DT><STRONG><B>-cod</B></STRONG></DT>
+<DD>(Query option) Display only machine ClassAds
+      that have COD claims. Information displayed includes
+      the claim ID, the owner of the claim, and the state
+      of the COD claim.
+<BR>    
+</DD>
+<DT><STRONG><B>-collector</B></STRONG></DT>
+<DD>(Query option) Query <I>condor_collector</I> ClassAds
+      and display attributes
+<BR>    
+</DD>
+<DT><STRONG><B>-direct </B><I>hostname</I></STRONG></DT>
+<DD>(Query option) Go directly to
+      the given host name to get the ClassAds to display
+<BR>    
+</DD>
+<DT><STRONG><B>-java</B></STRONG></DT>
+<DD>(Query option) Display only Java-capable resources.
+<BR>    
+</DD>
+<DT><STRONG><B>-license</B></STRONG></DT>
+<DD>(Query option) Display license attributes.
+<BR>    
+</DD>
+<DT><STRONG><B>-master</B></STRONG></DT>
+<DD>(Query option) Query <I>condor_master</I> ClassAds 
+      and display daemon master attributes
+<BR>    
+</DD>
+<DT><STRONG><B>-negotiator</B></STRONG></DT>
+<DD>(Query option) Query <I>condor_negotiator</I> 
+      ClassAds and display attributes
+<BR>    
+</DD>
+<DT><STRONG><B>-pool </B><I>centralmanagerhostname[:portnumber]</I></STRONG></DT>
+<DD>(Query option) Query the specified central manager using an
+      optional port number. 
+      <I>condor_status</I> queries the machine specified by the configuration
+      variable <TT>COLLECTOR_HOST</TT> by default.
+<BR>    
+</DD>
+<DT><STRONG><B>-quill</B></STRONG></DT>
+<DD>(Query option) Display attributes of machines
+      running Quill.
+<BR>    
+</DD>
+<DT><STRONG><B>-run</B></STRONG></DT>
+<DD>(Query option) Display information about machines
+      currently running jobs.
+<BR>    
+</DD>
+<DT><STRONG><B>-schedd</B></STRONG></DT>
+<DD>(Query option) Query <I>condor_schedd</I> ClassAds and display
+      attributes
+<BR>    
+</DD>
+<DT><STRONG><B>-server</B></STRONG></DT>
+<DD>(Query option) Query <I>condor_startd</I> ClassAds and 
+      display resource attributes
+<BR>    
+</DD>
+<DT><STRONG><B>-startd</B></STRONG></DT>
+<DD>(Query option) Query <I>condor_startd</I> ClassAds
+<BR>    
+</DD>
+<DT><STRONG><B>-state</B></STRONG></DT>
+<DD>(Query option) Query <I>condor_startd</I> ClassAds and display 
+      resource state information
+<BR>    
+</DD>
+<DT><STRONG><B>-storage</B></STRONG></DT>
+<DD>(Query option) Display attributes of machines
+      with network storage resources.
+<BR>    
+</DD>
+<DT><STRONG><B>-submitters</B></STRONG></DT>
+<DD>(Query option) Query ClassAds sent by submitters and
+      display important submitter attributes
+<BR>    
+</DD>
+<DT><STRONG><B>-subsystem </B><I>type</I></STRONG></DT>
+<DD>(Query option) If <I>type</I> is
+      one of <I>collector</I>, <I>negotiator</I>, <I>master</I>,
+      <I>schedd</I>, <I>startd</I>, or <I>quill</I>,
+      then behavior is the same as the query option without the
+      <B>-subsystem</B> option.  For example,
+      <B>-subsystem </B><I>collector</I> is the same as <B>-collector</B>.
+      A value of <I>type</I> of <I>CkptServer</I>,
+      <I>Machine</I>, <I>DaemonMaster</I>, or <I>Scheduler</I>
+      targets that type of ClassAd.  
+<BR>    
+</DD>
+<DT><STRONG><B>-vm</B></STRONG></DT>
+<DD>(Query option) Query <I>condor_startd</I> ClassAds,
+      and display only VM-enabled machines.  Information displayed includes
+      the the machine name, the virtual machine software version,
+      the state of machine, the virtual machine memory,
+      and the type of networking.
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>-attributes </B><I>Attr1 [,Attr2 ... ]</I></STRONG></DT>
+<DD>(Display option)
+      Explicitly list the attributes in a comma separated list
+      which should be displayed when using the <B>-xml</B> or <B>-long</B>
+      options.  Limiting the number of attributes increases the efficiency 
+      of the query.
+<BR>    
+</DD>
+<DT><STRONG><B>-expert</B></STRONG></DT>
+<DD>(Display option) Display shortened error messages
+<BR>    
+</DD>
+<DT><STRONG><B>-long</B></STRONG></DT>
+<DD>(Display option) Display entire ClassAds 
+      (same as <B>-verbose</B>)
+<BR>    
+</DD>
+<DT><STRONG><B>-sort </B><I>attr</I></STRONG></DT>
+<DD>(Display option) Display entries in
+      ascending order based on the value of the named attribute
+<BR>    
+</DD>
+<DT><STRONG><B>-total</B></STRONG></DT>
+<DD>(Display option) Display totals only
+<BR>    
+</DD>
+<DT><STRONG><B>-verbose</B></STRONG></DT>
+<DD>(Display option) Display entire ClassAds.  Implies
+      that totals will not be displayed.
+<BR>    
+</DD>
+<DT><STRONG><B>-xml</B></STRONG></DT>
+<DD>(Display option) Display entire ClassAds,
+      in XML format.  The XML format is fully defined at
+      <A NAME="tex2html156"
+  HREF="http://www.cs.wisc.edu/condor/classad/refman/">http://www.cs.wisc.edu/condor/classad/refman/</A>.
+<BR>
+<P>
+</DD>
+<DT><STRONG><B>-constraint </B><I>const</I></STRONG></DT>
+<DD>(Custom option) Add constraint 
+      expression.  See section&nbsp;<A HREF="#sec:classadref"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for
+      details on writing expressions.
+<BR>    
+</DD>
+<DT><STRONG><B>-format </B><I>fmt attr</I></STRONG></DT>
+<DD>(Custom option) Display attribute
+      or expression <I>attr</I> in format <I>fmt</I>.
+      To display the attribute or expression the format must contain a single
+      <TT>printf(3)</TT> style conversion specifier.
+      Attributes must be from the resource ClassAd.
+      Expressions are ClassAd expressions and may
+      refer to attributes in the resource ClassAd.
+      If the attribute is not present in a given ClassAd and cannot 
+      be parsed as an expression, then the
+      format option will be silently skipped.
+      The conversion specifier must match the type of the
+      attribute or expression.
+      %s is suitable for strings such as <TT>Name</TT>,
+      %d for integers such as <TT>LastHeardFrom</TT>,
+      and %f for floating point numbers such as <TT>LoadAvg</TT>.
+      An incorrect format will result in undefined behavior.
+      Do not use more than one conversion specifier in a given
+      format.  More than one conversion specifier will result
+      in undefined behavior.  To output multiple attributes
+      repeat the <B>-format</B> option once for each desired
+      attribute.
+      Like <TT>printf(3)</TT> style formats, one may include other
+      text that will be reproduced directly.
+      A format without any conversion specifiers may be specified,
+      but an attribute is still required.
+      Include <!-- MATH
+ $\mathtt{\backslash}$
+ -->
+<IMG
+ WIDTH="11" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img11.png"
+ ALT="$\mathtt{\backslash}$">n to specify a line break. 
+<BR>  
+</DD>
+</DL>
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION0010434000000000000000">
+General Remarks</A>
+</H2>
+
+<UL>
+<LI>The default output from <I>condor_status</I> is formatted to
+	be human readable, not script readable.
+	In an effort to make the output fit within 80 characters,
+	values in some fields might be truncated.
+	Furthermore, the Condor Project can (and does) change the
+	formatting of this default output as we see fit.
+	Therefore, any script that is attempting to parse data from
+	<I>condor_status</I> is strongly encouraged to use the
+	<B>-format</B> option (described above).
+
+<P>
+</LI>
+<LI>The information obtained from <I>condor_startd</I> and <I>condor_schedd</I>
+	daemons
+	may sometimes appear to be inconsistent.  This is normal since
+	<I>condor_startd</I>  and <I>condor_schedd</I> daemons update the Condor
+	manager at different rates, and since there is a
+	delay as information propagates through the network and the system.
+
+<P>
+</LI>
+<LI>Note that the <TT>ActivityTime</TT> in the <TT>Idle</TT> state is
+	<I>not</I> the amount of time that the machine has been idle.  See the
+	section on <I>condor_startd</I> states in the <I>Administrator's Manual</I>
+	for more information.
+
+<P>
+</LI>
+<LI>When using <I>condor_status</I> on a pool with SMP machines,
+	you can either provide the host name, in which case you will
+	get back information about all slots that are represented on
+	that host, or you can list specific slots by name.
+	See the examples below for details.
+
+<P>
+</LI>
+<LI>If you specify host names, without domains, Condor will
+	automatically try to resolve those host names into fully
+	qualified host names for you.
+	This also works when specifying specific nodes of an SMP
+	machine.
+	In this case, everything after the ``@'' sign is treated as a
+	host name and that is what is resolved.
+
+<P>
+</LI>
+<LI>You can use the <B>-direct</B> option in conjunction with
+	almost any other set of options.
+	However, at this time, the only daemon that will allow direct
+	queries for its ad(s) is the <I>condor_startd</I>.
+	So, the only options currently not supported with
+	<B>-direct</B> are <B>-schedd</B> and <B>-master</B>.
+	Most other options use startd ads for their information, so
+	they work seamlessly with <B>-direct</B>.
+	The only other restriction on <B>-direct</B> is that you may
+	only use 1 <B>-direct</B> option at a time.
+	If you want to query information directly from multiple hosts,
+	you must run <I>condor_status</I> multiple times.
+
+<P>
+</LI>
+<LI>Unless you use the local host name with <B>-direct</B>,
+	<I>condor_status</I> will still have to contact a collector to find
+	the address where the specified daemon is listening.
+	So, using a <B>-pool</B> option in conjunction with
+	<B>-direct</B> just tells <I>condor_status</I> which collector to
+	query to find the address of the daemon you want.
+	The information actually displayed will still be retrieved
+	directly from the daemon you specified as the argument to
+	<B>-direct</B>.
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<H2><A NAME="SECTION0010435000000000000000">
+Examples</A>
+</H2>
+
+<P>
+<U>Example 1</U> To view information from all nodes of an SMP
+machine, use only the host name.
+For example, if you had a 4-CPU machine, named
+<TT>vulture.cs.wisc.edu</TT>, you might see
+<PRE>
+% condor_status vulture
+
+Name               OpSys      Arch   State     Activity LoadAv Mem   ActvtyTime
+
+slot1@vulture.cs.w LINUX      INTEL  Claimed   Busy     1.050   512  0+01:47:42
+slot2@vulture.cs.w LINUX      INTEL  Claimed   Busy     1.000   512  0+01:48:19
+slot3@vulture.cs.w LINUX      INTEL  Unclaimed Idle     0.070   512  1+11:05:32
+slot4@vulture.cs.w LINUX      INTEL  Unclaimed Idle     0.000   512  1+11:05:34
+
+                     Total Owner Claimed Unclaimed Matched Preempting Backfill
+
+         INTEL/LINUX     4     0       2         2       0          0        0
+
+               Total     4     0       2         2       0          0        0
+</PRE>
+<P>
+<U>Example 2</U> To view information from a specific nodes of an
+SMP machine, specify the node directly.
+You do this by providing the name of the slot.
+This has the form <TT>slot#@hostname</TT>.
+For example:
+<PRE>
+% condor_status slot3@vulture
+
+Name               OpSys      Arch   State     Activity LoadAv Mem   ActvtyTime
+
+slot3@vulture.cs.w LINUX      INTEL  Unclaimed Idle     0.070   512  1+11:10:32
+
+                     Total Owner Claimed Unclaimed Matched Preempting Backfill
+
+         INTEL/LINUX     1     0       0         1       0          0        0
+
+               Total     1     0       0         1       0          0        0
+</PRE>
+<P>
+<U>Constraint option examples</U>
+
+<P>
+Further explanation and examples are in section&nbsp;<A HREF="4_1Condor_s_ClassAd.html#classad-query-examples">4.1.4</A>.
+
+<P>
+The Unix command
+to use the constraint option to see all machines with the <TT>OpSys</TT>
+of <TT>"LINUX"</TT>:
+<PRE>
+% condor_status -constraint OpSys==\"LINUX\"
+</PRE>
+Note that quotation marks must be escaped with the backslash characters
+for most shells.
+
+<P>
+The Windows command to do the same thing:
+<PRE>
+&gt;condor_status -constraint " OpSys==""LINUX"" "
+</PRE>
+Note that quotation marks are used to delimit the single argument which
+is the expression, and the quotation marks that identify the string
+must be escaped by using a set of two double quote marks without
+any intervening spaces.
+
+<P>
+To see all machines that are currently in the Idle state,
+the Unix command is
+<PRE>
+% condor_status -constraint State==\"Idle\"
+</PRE>
+
+<P>
+To see all machines that are bench marked to have a MIPS rating
+of more than 750, the Unix command is
+<PRE>
+% condor_status -constraint 'Mips&gt;750' 
+</PRE>
+
+<P>
+<U>-cod option example</U>
+
+<P>
+The <B>-cod</B> option displays the status of COD
+claims within a given Condor pool. 
+
+<P>
+<PRE>
+Name        ID   ClaimState TimeInState RemoteUser JobId Keyword
+astro.cs.wi COD1 Idle        0+00:00:04 wright
+chopin.cs.w COD1 Running     0+00:02:05 wright     3.0   fractgen
+chopin.cs.w COD2 Suspended   0+00:10:21 wright     4.0   fractgen
+
+               Total  Idle  Running  Suspended  Vacating  Killing
+ INTEL/LINUX       3     1        1          1         0        0
+       Total       3     1        1          1         0        0
+</PRE>
+<P>
+
+<H2><A NAME="SECTION0010436000000000000000">
+Exit Status</A>
+</H2>
+
+<P>
+<I>condor_status</I> will exit with a status value of 0 (zero) upon success,
+and it will exit with the value 1 (one) upon failure.
+
+<P>
+
+<H2><A NAME="SECTION0010437000000000000000">
+Author</A>
+</H2> Condor Team, University of Wisconsin-Madison
+  
+<H2><A NAME="SECTION0010438000000000000000">
+Copyright</A>
+</H2> 
+  Copyright &#169; 1990-2011 Condor Team, Computer Sciences Department, 
+  University of Wisconsin-Madison, Madison, WI.  All Rights Reserved.  
+	Licensed under the Apache License, Version 2.0.
+
+<P>
+See the <I>Condor Version 7.6.2 Manual</I> or
+	<A NAME="tex2html157"
+  HREF="http://www.condorproject.org/license">http://www.condorproject.org/license</A>
+for
+  additional notices. 
+
+
+  <HR>
+<!--Navigation Panel-->
+<A NAME="tex2html3688"
+  HREF="condor_store_cred.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3682"
+  HREF="9_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3676"
+  HREF="condor_stats.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3684"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3686"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3689"
+  HREF="condor_store_cred.html">condor_store_cred</A>
+<B> Up:</B> <A NAME="tex2html3683"
+  HREF="9_Command_Reference.html">9. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3677"
+  HREF="condor_stats.html">condor_stats</A>
+ &nbsp; <B>  <A NAME="tex2html3685"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3687"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

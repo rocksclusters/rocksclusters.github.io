@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>7.6 Managing Large Workflows</TITLE>
+<META NAME="description" CONTENT="7.6 Managing Large Workflows">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="7_7Troubleshooting.html">
+<LINK REL="previous" HREF="7_5Grid_Computing.html">
+<LINK REL="up" HREF="7_Frequently_Asked.html">
+<LINK REL="next" HREF="7_7Troubleshooting.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html2128"
+  HREF="7_7Troubleshooting.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2122"
+  HREF="7_Frequently_Asked.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2116"
+  HREF="7_5Grid_Computing.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2124"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2126"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2129"
+  HREF="7_7Troubleshooting.html">7.7 Troubleshooting</A>
+<B> Up:</B> <A NAME="tex2html2123"
+  HREF="7_Frequently_Asked.html">7. Frequently Asked Questions</A>
+<B> Previous:</B> <A NAME="tex2html2117"
+  HREF="7_5Grid_Computing.html">7.5 Grid Computing</A>
+ &nbsp; <B>  <A NAME="tex2html2125"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2127"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html2130"
+  HREF="7_6Managing_Large.html#SECTION00861000000000000000">How do I get meaningful output from <I>condor_q</I> with so many jobs in the queue?</A>
+<LI><A NAME="tex2html2131"
+  HREF="7_6Managing_Large.html#SECTION00862000000000000000">What does Condor offer that can help with running
+a large number of jobs?</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00860000000000000000">
+7.6 Managing Large Workflows</A>
+</H1>
+
+<P>
+
+<H2><A NAME="SECTION00861000000000000000">
+How do I get meaningful output from <I>condor_q</I> with so many jobs in the queue?</A>
+</H2>
+
+<P>
+There are several ways to constrain the output of <I>condor_q</I> when there are
+lots and lots of jobs in the queue.
+To see only the jobs that are currently running:
+<PRE>
+  condor_q -run
+</PRE>
+To see only the jobs that are currently on hold:
+<PRE>
+  condor_q -hold
+</PRE>
+To see other output,  combine options.
+For example, to see only running jobs submitted by A. Einstein
+that belong to cluster 77:
+<PRE>
+  condor_q -run einstein 77
+</PRE>
+Another example uses the <B>-constraint</B> option to <I>condor_q</I>.
+To see only the jobs in the queue that started running,
+but were interrupted and then started again from the beginning,
+perhaps more than once: 
+<PRE>
+  condor_q -constraint 'NumJobStarts &gt; 1'
+</PRE>Complete details of <I>condor_q</I> are contained in the manual page
+at page&nbsp;<A HREF="condor_q.html#man-condor-q"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+
+<H2><A NAME="SECTION00862000000000000000">
+What does Condor offer that can help with running
+a large number of jobs?</A>
+</H2>
+
+<P>
+Many of the features of DAGMan are targeted at helping with the 
+administration and running of large numbers of jobs.
+See section&nbsp;<A HREF="2_10DAGMan_Applications.html#sec:DAGLotsaJobs">2.10.12</A> at page&nbsp;<A HREF="2_10DAGMan_Applications.html#sec:DAGLotsaJobs"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html2128"
+  HREF="7_7Troubleshooting.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2122"
+  HREF="7_Frequently_Asked.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2116"
+  HREF="7_5Grid_Computing.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2124"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2126"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2129"
+  HREF="7_7Troubleshooting.html">7.7 Troubleshooting</A>
+<B> Up:</B> <A NAME="tex2html2123"
+  HREF="7_Frequently_Asked.html">7. Frequently Asked Questions</A>
+<B> Previous:</B> <A NAME="tex2html2117"
+  HREF="7_5Grid_Computing.html">7.5 Grid Computing</A>
+ &nbsp; <B>  <A NAME="tex2html2125"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2127"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

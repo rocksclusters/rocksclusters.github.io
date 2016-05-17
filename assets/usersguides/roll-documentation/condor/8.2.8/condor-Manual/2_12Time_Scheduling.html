@@ -1,0 +1,758 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>2.12 Time Scheduling for Job Execution</TITLE>
+<META NAME="description" CONTENT="2.12 Time Scheduling for Job Execution">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="2_13Special_Environment.html">
+<LINK REL="previous" HREF="2_11Virtual_Machine.html">
+<LINK REL="up" HREF="2_Users_Manual.html">
+<LINK REL="next" HREF="2_13Special_Environment.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html1183"
+  HREF="2_13Special_Environment.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1177"
+  HREF="2_Users_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1171"
+  HREF="2_11Virtual_Machine.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1179"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1181"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1184"
+  HREF="2_13Special_Environment.html">2.13 Special Environment Considerations</A>
+<B> Up:</B> <A NAME="tex2html1178"
+  HREF="2_Users_Manual.html">2. Users' Manual</A>
+<B> Previous:</B> <A NAME="tex2html1172"
+  HREF="2_11Virtual_Machine.html">2.11 Virtual Machine Applications</A>
+ &nbsp; <B>  <A NAME="tex2html1180"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1182"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html1185"
+  HREF="2_12Time_Scheduling.html#SECTION003121000000000000000">2.12.1 Job Deferral</A>
+<UL>
+<LI><A NAME="tex2html1186"
+  HREF="2_12Time_Scheduling.html#SECTION003121100000000000000">2.12.1.1 Deferred Execution Time</A>
+<LI><A NAME="tex2html1187"
+  HREF="2_12Time_Scheduling.html#SECTION003121200000000000000">2.12.1.2 Deferral Window</A>
+<LI><A NAME="tex2html1188"
+  HREF="2_12Time_Scheduling.html#SECTION003121300000000000000">2.12.1.3 Preparation Time</A>
+<LI><A NAME="tex2html1189"
+  HREF="2_12Time_Scheduling.html#SECTION003121400000000000000">2.12.1.4 Usage Examples</A>
+<LI><A NAME="tex2html1190"
+  HREF="2_12Time_Scheduling.html#SECTION003121500000000000000">2.12.1.5 Limitations</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1191"
+  HREF="2_12Time_Scheduling.html#SECTION003122000000000000000">2.12.2 CronTab Scheduling</A>
+<UL>
+<LI><A NAME="tex2html1192"
+  HREF="2_12Time_Scheduling.html#SECTION003122100000000000000">2.12.2.1 Semantics for CronTab Specification</A>
+<LI><A NAME="tex2html1193"
+  HREF="2_12Time_Scheduling.html#SECTION003122200000000000000">2.12.2.2 Preparation Time and Execution Window</A>
+<LI><A NAME="tex2html1194"
+  HREF="2_12Time_Scheduling.html#SECTION003122300000000000000">2.12.2.3 Scheduling</A>
+<LI><A NAME="tex2html1195"
+  HREF="2_12Time_Scheduling.html#SECTION003122400000000000000">2.12.2.4 Usage Examples</A>
+<LI><A NAME="tex2html1196"
+  HREF="2_12Time_Scheduling.html#SECTION003122500000000000000">2.12.2.5 Limitations</A>
+</UL></UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION003120000000000000000"></A>
+<A NAME="sec:Job-Executetime-Scheduling"></A><A NAME="8966"></A>
+<A NAME="8967"></A>
+<BR>
+2.12 Time Scheduling for Job Execution
+</H1>
+
+<P>
+Jobs may be scheduled to begin execution at a specified time in the future
+with HTCondor's job deferral functionality.
+All specifications are in a job's submit description file.
+Job deferral functionality is expanded to provide for the
+periodic execution of a job, known as the CronTab scheduling.
+
+<P>
+
+<H2><A NAME="SECTION003121000000000000000"></A>
+<A NAME="sec:JobDeferral"></A><A NAME="8970"></A>
+<A NAME="8971"></A>
+<BR>
+2.12.1 Job Deferral
+</H2>
+
+<P>
+Job deferral allows the specification of
+the exact date and time at which a job is to begin executing.
+HTCondor attempts to match the job to an execution machine
+just like any other job,
+however, the job will wait until the exact time to begin execution.
+A user can define the job to allow some flexibility in the execution of jobs
+that miss their execution time.
+
+<P>
+
+<H3><A NAME="SECTION003121100000000000000"></A>
+<A NAME="sec:JobDeferral-DeferralTime"></A><A NAME="8974"></A>
+<A NAME="8975"></A>
+<BR>
+2.12.1.1 Deferred Execution Time
+</H3>
+
+<P>
+A job's deferral time is the exact time that HTCondor should attempt
+to execute the job.
+The deferral time attribute is defined as an expression
+that evaluates to a Unix Epoch timestamp
+(the number of seconds elapsed since 00:00:00 on January 1, 1970,
+Coordinated Universal Time).
+This is the time that HTCondor will begin to execute the job.
+
+<P>
+After a job is matched and all of its files have been transferred
+to an execution machine,
+HTCondor checks to see if the job's ClassAd contains a deferral time.
+If it does,
+HTCondor calculates the number of seconds between the execution
+machine's current system time and the job's deferral time.
+If the deferral time is in the future,
+the job waits to begin execution.
+While a job waits,
+its job ClassAd attribute <TT>JobStatus</TT> indicates the job
+is in the Running state.
+As the deferral time arrives, the job begins to execute.
+If a job misses its execution time,
+that is, if the deferral time is in the past,
+the job is evicted from the execution machine and put on hold in the queue.
+
+<P>
+The specification of a deferral time does not interfere
+with HTCondor's behavior.
+For example, if a job is waiting to begin execution
+when a <I>condor_hold</I> command is issued,
+the job is removed from the execution machine and is put on hold.
+If a job is waiting to begin execution when 
+a <I>condor_suspend</I> command is issued,
+the job continues to wait.
+When the deferral time arrives,
+HTCondor begins execution for the job,
+but immediately suspends it.
+
+<P>
+The deferral time is specified in the job's submit description file
+with the command <B>deferral_time</B><A NAME="9184"></A>.
+
+<P>
+
+<H3><A NAME="SECTION003121200000000000000"></A>
+<A NAME="sec:JobDeferral-DeferralWindow"></A><A NAME="8982"></A>
+<A NAME="8983"></A>
+<BR>
+2.12.1.2 Deferral Window
+</H3>
+
+<P>
+If a job arrives at its execution machine
+after the deferral time has passed,
+the job is evicted from the machine and put on hold in the job queue.
+This may occur, for example,
+because the transfer of needed files took too long
+due to a slow network connection.
+A deferral window permits the execution of a job
+that misses its deferral time by specifying a window of
+time within which the job may begin.
+
+<P>
+The deferral window 
+is the number of seconds after the deferral time,
+within which the job may begin.
+When a job arrives too late,
+HTCondor calculates the difference in seconds
+between the execution machine's current time
+and the job's deferral time.
+If this difference is less than or equal to the deferral window,
+the job immediately begins execution.
+If this difference is greater than the deferral window,
+the job is evicted from the execution machine
+and is put on hold in the job queue.
+
+<P>
+The deferral window is specified in the job's submit description file
+with the command <B>deferral_window</B><A NAME="9186"></A>.
+
+<P>
+
+<H3><A NAME="SECTION003121300000000000000"></A>
+<A NAME="sec:JobDeferral-PrepTime"></A><A NAME="8987"></A>
+<BR>
+2.12.1.3 Preparation Time
+</H3>
+
+<P>
+When a job defines a deferral time far in the future and then 
+is matched to an execution machine,
+potential computation cycles are lost because the deferred job
+has claimed the machine, but is not actually executing. 
+Other jobs could execute during the interval when the job 
+waits for its deferral time.
+To make use of the wasted time,
+<A NAME="8988"></A>
+a job defines a <B>deferral_prep_time</B><A NAME="9188"></A>
+with an integer expression that evaluates to a
+number of seconds.
+At this number of seconds before the deferral time,
+the job may be matched with a machine.
+
+<P>
+
+<H3><A NAME="SECTION003121400000000000000"></A>
+<A NAME="sec:JobDeferral-Examples"></A>
+<BR>
+2.12.1.4 Usage Examples
+</H3>
+
+<P>
+<A NAME="8992"></A>
+Here are examples of how the job deferral time,
+deferral window, and the preparation time may be used.
+
+<P>
+The job's submit description file specifies that
+the job is to begin execution 
+on January 1st, 2006 at 12:00 pm:
+
+<P>
+<PRE> 
+   deferral_time = 1136138400
+</PRE> 
+
+<P>
+The Unix <I>date</I> program may be used to calculate
+a Unix epoch time.
+The syntax of the command to do this depends on the options provided
+within that flavor of Unix.  In some, it appears as
+<PRE> 
+%  date --date "MM/DD/YYYY HH:MM:SS" +%s
+</PRE> 
+and in others, it appears as 
+<PRE> 
+%  date -d "YYYY-MM-DD HH:MM:SS" +%s
+</PRE> 
+
+<P>
+<code>MM</code> is a 2-digit month number,
+<code>DD</code> is a 2-digit day of the month number, and
+<code>YYYY</code> is a 4-digit year.
+<code>HH</code> is the 2-digit hour of the day,
+<code>MM</code> is the 2-digit minute of the hour, and
+<code>SS</code> are the 2-digit seconds within the minute.
+The characters <code>+%s</code> tell the <I>date</I> program
+to give the output as a Unix epoch time.
+
+<P>
+The job always waits 60 seconds before
+beginning execution:
+
+<P>
+<PRE> 
+   deferral_time = (time() + 60)
+</PRE>
+
+<P>
+In this example, assume that the deferral time is 45 seconds
+in the past as the job is available.
+The job begins execution, because 75 seconds remain in the
+deferral window:
+
+<P>
+<PRE> 
+   deferral_window = 120
+</PRE>
+
+<P>
+In this example, a job is scheduled to execute
+far in the future,
+on January 1st, 2010 at 12:00 pm. 
+The <B>deferral_prep_time</B><A NAME="9192"></A> attribute delays the job 
+from being matched until 60 seconds before the job is to begin execution. 
+
+<P>
+<PRE>
+   deferral_time      = 1262368800
+   deferral_prep_time = 60
+</PRE>
+
+<P>
+
+<H3><A NAME="SECTION003121500000000000000"></A>
+<A NAME="sec:JobDeferral-Limitations"></A>
+<BR>
+2.12.1.5 Limitations
+</H3>
+There are some limitations to HTCondor's job deferral feature.
+
+<P>
+
+<UL>
+<LI>Job deferral is not available for scheduler universe jobs.
+A scheduler universe job defining the <TT>deferral_time</TT>
+produces a fatal error when submitted.
+
+<P>
+</LI>
+<LI>The time that the job begins to execute 
+is based on the execution machine's system clock, 
+and not the submission machine's system clock. 
+Be mindful of the ramifications when
+the two clocks show dramatically different times.
+
+<P>
+</LI>
+<LI>A job's <TT>JobStatus</TT> attribute is always in the Running state 
+when job deferral is used.
+There is currently no way to distinguish between a job that is 
+executing and a job that is waiting for its deferral time. 
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<H2><A NAME="SECTION003122000000000000000"></A>
+<A NAME="sec:CronTab"></A><A NAME="9016"></A>
+<A NAME="9017"></A>
+<A NAME="9018"></A>
+<BR>
+2.12.2 CronTab Scheduling
+</H2>
+
+<P>
+HTCondor's CronTab scheduling functionality allows jobs to be 
+scheduled to execute periodically. 
+A job's execution schedule is defined by commands within
+the submit description file.
+The notation is much like that used by the Unix <I>cron</I> daemon. 
+As such, HTCondor developers are fond of referring to CronTab
+<A NAME="9020"></A>
+scheduling as <I>Crondor</I>.
+The scheduling of jobs using HTCondor's CronTab feature 
+calculates and utilizes
+the <TT>DeferralTime</TT> ClassAd attribute. 
+
+<P>
+Also, unlike the Unix <I>cron</I> daemon, 
+HTCondor never runs more than one instance of a job at the same time. 
+
+<P>
+The capability for repetitive or periodic execution of the job is 
+enabled by specifying an <B>on_exit_remove</B><A NAME="9200"></A>
+command for the job,
+such that the job does not leave the queue until desired.
+
+<P>
+
+<H3><A NAME="SECTION003122100000000000000"></A>
+<A NAME="sec:CronTab-Semantics"></A>
+<BR>
+2.12.2.1 Semantics for CronTab Specification
+</H3>
+
+<P>
+A job's execution schedule is defined by a set of specifications
+within the submit description file.
+HTCondor uses these to calculate a <TT>DeferralTime</TT> for the job.
+
+<P>
+Table <A HREF="#tab:CronTab-Attributes">2.3</A> 
+lists the submit commands and acceptable values for these commands.
+At least one of these must be defined 
+in order for HTCondor to calculate a <TT>DeferralTime</TT> for the job.
+Once one CronTab value is defined, 
+the default for all the others uses 
+all the values in the allowed values ranges.
+
+<P>
+<A NAME="9030"></A>
+<A NAME="9031"></A>
+<A NAME="9032"></A>
+<A NAME="9033"></A>
+<A NAME="9034"></A>
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER"><A NAME="9046"></A>
+<TABLE>
+<CAPTION><STRONG>Table 2.3:</STRONG>
+The list of submit commands and their value ranges.</CAPTION>
+<TR><TD>   <DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1" ALIGN="CENTER">
+<TR><TD ALIGN="LEFT">Submit Command</TD>
+<TD ALIGN="LEFT">Allowed Values</TD>
+</TR>
+<TR><TH ALIGN="LEFT"><B>cron_minute</B></TH>
+<TD ALIGN="LEFT">0 - 59</TD>
+</TR>
+<TR><TH ALIGN="LEFT"><B>cron_hour</B></TH>
+<TD ALIGN="LEFT">0 - 23</TD>
+</TR>
+<TR><TH ALIGN="LEFT"><B>cron_day_of_month</B></TH>
+<TD ALIGN="LEFT">1 - 31</TD>
+</TR>
+<TR><TH ALIGN="LEFT"><B>cron_month</B></TH>
+<TD ALIGN="LEFT">1 - 12</TD>
+</TR>
+<TR><TH ALIGN="LEFT"><B>cron_day_of_week</B></TH>
+<TD ALIGN="LEFT">0 - 7 (Sunday is 0 or 7)</TD>
+</TR>
+</TABLE>
+</DIV>
+   
+   <A NAME="tab:CronTab-Attributes"></A></TD></TR>
+</TABLE>
+</DIV><P></P>
+<BR>
+
+<P>
+The day of a job's execution can be specified 
+by both the <B>cron_day_of_month</B> 
+and the <B>cron_day_of_week</B> attributes. 
+The day will be the logical or of both.
+
+<P>
+The semantics allow more than one value to be specified 
+by using the <code>*</code> operator,
+ranges, lists, and steps (strides) within ranges.
+
+<P>
+<DL>
+<DT><STRONG>The asterisk operator</STRONG></DT>
+<DD>The <code>*</code> (asterisk) operator specifies that all of the 
+   allowed values are used for scheduling.
+   For example,
+   <PRE>
+      cron_month = *
+</PRE>
+   becomes any and all of the list of possible months:
+   (1,2,3,4,5,6,7,8,9,10,11,12).
+   Thus, a job runs any month in the year.
+
+<P>
+</DD>
+<DT><STRONG>Ranges</STRONG></DT>
+<DD>A range creates a set of integers from all the allowed values between two
+   integers separated by a hyphen. The specified range is inclusive, and the
+   integer to the left of the hyphen must be less than the right hand integer.
+   For example,
+   <PRE>
+      cron_hour = 0-4
+</PRE>
+   represents the set of
+   hours from 12:00 am (midnight) to 4:00 am, or (0,1,2,3,4).
+
+<P>
+</DD>
+<DT><STRONG>Lists</STRONG></DT>
+<DD>A list is the union of the values or ranges separated by commas. Multiple
+   entries of the same value are ignored. 
+   For example,
+   <PRE>
+      cron_minute = 15,20,25,30
+      cron_hour   = 0-3,9-12,15
+</PRE>
+   where this <B>cron_minute</B> example represents (15,20,25,30)
+   and <B>cron_hour</B> represents (0,1,2,3,9,10,11,12,15).
+
+<P>
+</DD>
+<DT><STRONG>Steps</STRONG></DT>
+<DD>Steps select specific numbers from a range, based on an interval.
+   A step is specified by appending a range or the asterisk
+   operator with a slash character (<code>/</code>),
+   followed by an integer value.
+   For example,
+   <PRE>
+      cron_minute = 10-30/5
+      cron_hour = */3
+</PRE>
+   where this <B>cron_minute</B> example specifies
+   every five minutes within the specified range 
+   to represent (10,15,20,25,30),
+   and <B>cron_hour</B> specifies every three hours of the day
+   to represent (0,3,6,9,12,15,18,21).
+
+<P>
+</DD>
+</DL>
+
+<P>
+
+<H3><A NAME="SECTION003122200000000000000"></A>
+<A NAME="sec:CronTab-PrepTime"></A>
+<BR>
+2.12.2.2 Preparation Time and Execution Window
+</H3>
+
+<P>
+The <B>cron_prep_time</B><A NAME="9215"></A> command
+is analogous to the deferral time's <B>deferral_prep_time</B><A NAME="9217"></A> command. 
+It specifies the number of seconds before the deferral time
+that the job is to be matched and sent to the execution machine. 
+This permits HTCondor to
+make necessary preparations before the deferral time occurs. 
+
+<P>
+Consider the submit description file example that includes 
+<PRE>
+   cron_minute = 0
+   cron_hour = *
+   cron_prep_time = 300
+</PRE>
+The job is scheduled to begin execution at the top of every hour.
+Note that the setting of <B>cron_hour</B> in this example
+is not required, as the default value will be <code>*</code>, 
+specifying any and every hour of the day.
+The job will be matched and sent to an execution machine 
+no more than five minutes before the next deferral time. 
+For example, if a job is submitted at 9:30am, then the 
+next deferral time will be calculated to be 10:00am.
+HTCondor may attempt to match the job to a machine and send the job
+once it is 9:55am.
+
+<P>
+As the CronTab scheduling calculates and uses deferral time,
+jobs may also make use of the deferral window.
+The submit command <B>cron_window</B><A NAME="9220"></A> is analogous to
+the submit command <B>deferral_window</B><A NAME="9222"></A>.
+Consider the submit description file example that includes 
+<PRE>
+   cron_minute = 0
+   cron_hour = *
+   cron_window = 360
+</PRE>
+As the previous example, the job is scheduled to begin execution
+at the top of every hour.
+Yet with no preparation time, the job is likely to miss
+its deferral time.
+The 6-minute window allows the job to begin execution,
+as long as it arrives and can begin within 6 minutes of
+the deferral time,
+as seen by the time kept on the execution machine.
+
+<P>
+
+<H3><A NAME="SECTION003122300000000000000"></A>
+<A NAME="sec:crontab-scheduling"></A>
+<BR>
+2.12.2.3 Scheduling
+</H3>
+
+<P>
+When a job using the CronTab functionality is submitted to HTCondor, 
+use of at least one of the submit description file commands
+beginning with <B>cron_</B> causes HTCondor
+to calculate and set a deferral time for when the job should run. 
+A deferral time is determined based on the current time 
+rounded later in time to the next minute. 
+The deferral time is the job's <TT>DeferralTime</TT> attribute. 
+A new deferral time is calculated when the job 
+first enters the job queue, when 
+the job is re-queued, or when the job is released from the hold state. 
+New deferral times for <I>all</I> jobs in the job queue 
+using the CronTab functionality are recalculated 
+when a <I>condor_reconfig</I> or a <I>condor_restart</I> command that
+affects the job queue is issued.
+
+<P>
+A job's deferral time is not always the same time that a job 
+will receive a match and be sent to the execution machine. 
+This is because HTCondor operates on the job queue
+at times that are independent of job events,
+such as when job execution completes.
+Therefore,
+HTCondor may operate on the job queue just after 
+a job's deferral time states that it is to begin execution. 
+HTCondor attempts to start a job when the 
+following pseudo-code boolean expression evaluates to <TT>True</TT>:
+
+<P>
+<PRE>
+   ( time() + SCHEDD_INTERVAL ) &gt;= ( DeferralTime - CronPrepTime )
+</PRE>
+<P>
+If the <TT>time()</TT> plus the number of seconds 
+until the next time HTCondor checks 
+the job queue is greater than or equal to the time that the job 
+should be submitted to the execution machine, 
+then the job is to be matched and sent now.
+
+<P>
+Jobs using the CronTab functionality are not automatically 
+re-queued by HTCondor after their execution is complete. 
+The submit description file for a job
+must specify an appropriate <B>on_exit_remove</B><A NAME="9232"></A> 
+command to ensure that a job remains in the queue. 
+This job maintains its original <TT>ClusterId</TT> and <TT>ProcId</TT>.
+
+<P>
+
+<H3><A NAME="SECTION003122400000000000000"></A>
+<A NAME="sec:crontab-examples"></A>
+<BR>
+2.12.2.4 Usage Examples
+</H3>
+
+<P>
+Here are some examples of the submit commands
+necessary to schedule jobs to run at multifarious times. 
+Please note that it is not necessary to 
+explicitly define each attribute; the default value is <code>*</code>.
+
+<P>
+Run 23 minutes after every two hours, every day of the week:
+
+<P>
+<PRE>
+   on_exit_remove = false
+   cron_minute = 23
+   cron_hour = 0-23/2
+   cron_day_of_month = *
+   cron_month = *
+   cron_day_of_week = *
+</PRE>
+
+<P>
+Run at 10:30pm on each of May 10th to May 20th, as well as every 
+remaining Monday within the month of May:
+
+<P>
+<PRE>
+   on_exit_remove = false
+   cron_minute = 30
+   cron_hour = 20
+   cron_day_of_month = 10-20
+   cron_month = 5
+   cron_day_of_week = 2
+</PRE>
+
+<P>
+Run every 10 minutes and every 6 minutes before noon 
+on January 18th with a 2-minute preparation time:
+
+<P>
+<PRE>
+   on_exit_remove = false
+   cron_minute = */10,*/6
+   cron_hour = 0-11
+   cron_day_of_month = 18
+   cron_month = 1
+   cron_day_of_week = *
+   cron_prep_time = 120
+</PRE>
+
+<P>
+
+<H3><A NAME="SECTION003122500000000000000"></A>
+<A NAME="sec:Crontab-Limitations"></A>
+<BR>
+2.12.2.5 Limitations
+</H3>
+The use of the CronTab functionality has all of the same 
+limitations of deferral times,
+because the mechanism is based upon deferral times.
+
+<P>
+
+<UL>
+<LI>It is impossible to schedule vanilla 
+and standard universe jobs 
+at intervals that are smaller than the
+interval at which HTCondor evaluates jobs.
+This interval is determined by 
+the configuration variable <TT>SCHEDD_INTERVAL</TT><A NAME="9236"></A><A NAME="9237"></A>. 
+As a vanilla or standard universe job completes execution 
+and is placed back into the job queue, 
+it may not be placed in the idle state in time.
+This problem does not afflict local universe jobs.
+
+<P>
+</LI>
+<LI>HTCondor cannot guarantee that a job will be
+matched in order to make its scheduled deferral time.
+A job must be matched with an execution machine just as
+any other HTCondor job; 
+if HTCondor is unable to find a match, 
+then the job will miss its chance for executing
+and must wait for the next execution time 
+specified by the CronTab schedule.
+
+<P>
+</LI>
+</UL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1183"
+  HREF="2_13Special_Environment.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1177"
+  HREF="2_Users_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1171"
+  HREF="2_11Virtual_Machine.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1179"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1181"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1184"
+  HREF="2_13Special_Environment.html">2.13 Special Environment Considerations</A>
+<B> Up:</B> <A NAME="tex2html1178"
+  HREF="2_Users_Manual.html">2. Users' Manual</A>
+<B> Previous:</B> <A NAME="tex2html1172"
+  HREF="2_11Virtual_Machine.html">2.11 Virtual Machine Applications</A>
+ &nbsp; <B>  <A NAME="tex2html1180"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1182"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

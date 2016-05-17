@@ -1,0 +1,234 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<link rel="canonical" href="http://research.cs.wisc.edu/condor/manual/current/condor_config_bind.html">
+
+<TITLE>condor_config_bind</TITLE>
+<META NAME="description" CONTENT="condor_config_bind">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="condor_config_val.html">
+<LINK REL="previous" HREF="condor_compile.html">
+<LINK REL="up" HREF="10_Command_Reference.html">
+<LINK REL="next" HREF="condor_config_val.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html3392"
+  HREF="condor_config_val.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3386"
+  HREF="10_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3380"
+  HREF="condor_compile.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3388"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3390"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3393"
+  HREF="condor_config_val.html">condor_config_val</A>
+<B> Up:</B> <A NAME="tex2html3387"
+  HREF="10_Command_Reference.html">10. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3381"
+  HREF="condor_compile.html">condor_compile</A>
+ &nbsp; <B>  <A NAME="tex2html3389"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3391"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html3394"
+  HREF="condor_config_bind.html#SECTION0011101000000000000000">Synopsis</A>
+<LI><A NAME="tex2html3395"
+  HREF="condor_config_bind.html#SECTION0011102000000000000000">Description</A>
+<LI><A NAME="tex2html3396"
+  HREF="condor_config_bind.html#SECTION0011103000000000000000">Options</A>
+<LI><A NAME="tex2html3397"
+  HREF="condor_config_bind.html#SECTION0011104000000000000000">Exit Status</A>
+<LI><A NAME="tex2html3398"
+  HREF="condor_config_bind.html#SECTION0011105000000000000000">Author</A>
+<LI><A NAME="tex2html3399"
+  HREF="condor_config_bind.html#SECTION0011106000000000000000">Copyright</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION0011100000000000000000"></A><A NAME="man-condor-config-bind"></A>
+<BR>
+<I>condor_config_bind</I>
+</H1> bind together a set of configuration files
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION0011101000000000000000">
+Synopsis</A>
+</H2><B><I>condor_config_bind</I></B>
+<B>-help</B>
+
+<P>
+<B><I>condor_config_bind</I></B>
+<B>-o </B><I>outputfile</I>
+<I>configfile1</I>
+<I>configfile2</I>
+[<I>configfile3...</I>]
+
+<P>
+<A NAME="63301"></A>
+<A NAME="63302"></A>
+
+<P>
+
+<H2><A NAME="SECTION0011102000000000000000">
+Description</A>
+</H2>
+
+<P>
+<I>condor_config_bind</I> dynamically binds two or more Condor
+configuration files through the use of a new configuration file.  The
+purpose of this tool is to allow the user to dynamically bind a local
+configuration file into an already created, and possible immutable,
+configuration file.  This is particularly useful when the user wants to
+modify a configuration but cannot actually make any changes to the
+global configuration file (even to change the list of local configuration
+files).  This program does not modify the given configuration files.
+Rather, it creates a new configuration file that specifies the given
+configuration files as local configuration files.  
+
+<P>
+Condor evaluates each of the configuration files in the given
+command-line order (left to right).
+A value defined 
+in two or more of the configuration files results in
+the last one evaluated defining the value. It overrides any others.
+To bind a new local configuration into a global configuration, 
+specify the local configuration second within the command-line
+ordering.
+
+<P>
+
+<H2><A NAME="SECTION0011103000000000000000">
+Options</A>
+</H2>
+  
+<P>
+  <DL>
+<DT><STRONG><I>configfile1</I></STRONG></DT>
+<DD>First configuration file to
+    bind.
+<BR>  
+</DD>
+<DT><STRONG><I>configfile2</I></STRONG></DT>
+<DD>Second configuration file to
+    bind.
+<BR>  
+</DD>
+<DT><STRONG><I>configfile3...</I></STRONG></DT>
+<DD>An optional list of other
+    configuration files to bind.
+<BR>  
+</DD>
+<DT><STRONG><B>-help</B></STRONG></DT>
+<DD>Display brief usage information and exit
+<BR>  
+</DD>
+<DT><STRONG><B>-o </B><I>output_file</I></STRONG></DT>
+<DD>Specifies the file name where this program should output the
+    binding configuration. 
+  
+<BR>  
+</DD>
+</DL>
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION0011104000000000000000">
+Exit Status</A>
+</H2>
+
+<P>
+<I>condor_config_bind</I> will exit with a status value of 0 (zero) upon
+success, and non-zero on error.
+
+<P>
+
+<H2><A NAME="SECTION0011105000000000000000">
+Author</A>
+</H2> Condor Team, University of Wisconsin-Madison
+  
+<H2><A NAME="SECTION0011106000000000000000">
+Copyright</A>
+</H2> 
+  Copyright &#169; 1990-2012 Condor Team, Computer Sciences Department, 
+  University of Wisconsin-Madison, Madison, WI.  All Rights Reserved.  
+	Licensed under the Apache License, Version 2.0.
+
+<P>
+See the <I>Condor Version 7.8.5 Manual</I> or
+	<A NAME="tex2html413"
+  HREF="http://www.condorproject.org/license">http://www.condorproject.org/license</A>
+for
+  additional notices. 
+
+
+  <HR>
+<!--Navigation Panel-->
+<A NAME="tex2html3392"
+  HREF="condor_config_val.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3386"
+  HREF="10_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3380"
+  HREF="condor_compile.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3388"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3390"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3393"
+  HREF="condor_config_val.html">condor_config_val</A>
+<B> Up:</B> <A NAME="tex2html3387"
+  HREF="10_Command_Reference.html">10. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3381"
+  HREF="condor_compile.html">condor_compile</A>
+ &nbsp; <B>  <A NAME="tex2html3389"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3391"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

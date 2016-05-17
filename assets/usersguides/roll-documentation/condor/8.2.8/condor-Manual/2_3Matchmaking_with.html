@@ -1,0 +1,276 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>2.3 Matchmaking with ClassAds</TITLE>
+<META NAME="description" CONTENT="2.3 Matchmaking with ClassAds">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="2_4Running_Job.html">
+<LINK REL="previous" HREF="2_2Introduction.html">
+<LINK REL="up" HREF="2_Users_Manual.html">
+<LINK REL="next" HREF="2_4Running_Job.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html977"
+  HREF="2_4Running_Job.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html971"
+  HREF="2_Users_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html965"
+  HREF="2_2Introduction.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html973"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html975"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html978"
+  HREF="2_4Running_Job.html">2.4 Running a Job:</A>
+<B> Up:</B> <A NAME="tex2html972"
+  HREF="2_Users_Manual.html">2. Users' Manual</A>
+<B> Previous:</B> <A NAME="tex2html966"
+  HREF="2_2Introduction.html">2.2 Introduction</A>
+ &nbsp; <B>  <A NAME="tex2html974"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html976"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html979"
+  HREF="2_3Matchmaking_with.html#SECTION00331000000000000000">2.3.1 Inspecting Machine ClassAds with condor_status</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00330000000000000000"></A>
+<A NAME="sec:matchmaking-with-classads"></A>
+<BR>
+2.3 Matchmaking with ClassAds
+</H1>
+
+<P>
+Before you learn about how to submit a job, it is important to
+understand how HTCondor allocates resources. 
+<A NAME="1622"></A>
+Understanding the
+unique framework by which HTCondor matches submitted jobs with machines is
+the key to getting the most from HTCondor's scheduling algorithm. 
+
+<P>
+HTCondor simplifies job submission by acting as a matchmaker of ClassAds.
+HTCondor's ClassAds
+<A NAME="1623"></A>
+are analogous to the classified advertising section of the
+newspaper. Sellers advertise specifics about what they have to sell,
+hoping to attract a buyer. Buyers may advertise specifics about what
+they wish to purchase. Both buyers and sellers list constraints that
+need to be satisfied.
+For instance, a buyer has a maximum spending limit, 
+and a seller requires a minimum purchase price.
+Furthermore, both want to rank requests to their own advantage.
+Certainly a seller would rank
+one offer of $50 dollars higher than a different
+offer of $25.
+In HTCondor, users submitting
+jobs can be thought of as buyers of compute resources and machine owners
+are sellers. 
+
+<P>
+All machines in a HTCondor pool advertise their attributes,
+<A NAME="1624"></A>
+such as
+available memory, CPU type and speed, virtual memory size, current
+load average, along with other static and dynamic properties.
+This machine ClassAd
+<A NAME="1625"></A>
+also advertises under what conditions it is
+willing to run a HTCondor job and what type of job it would prefer. These
+policy attributes can reflect the individual terms and preferences by
+which all the different owners have graciously allowed their machine to
+be part of the HTCondor pool. 
+You may
+advertise that your machine is only willing to run jobs at night
+and when there is no keyboard activity on your machine.
+In addition, you may
+advertise a preference (rank) for running jobs submitted by you
+or one of your co-workers. 
+
+<P>
+Likewise, when submitting a job, you specify a ClassAd with
+your requirements and preferences.
+The ClassAd
+<A NAME="1626"></A>
+includes the
+type of machine you  wish to use. For instance, perhaps you are
+looking for the fastest floating point performance available.
+You want HTCondor to rank available machines
+based upon floating point performance. Or, perhaps you
+care only that the machine has a minimum of 128 MiB of RAM.
+Or, perhaps you will
+take any machine you can get! These job attributes and requirements
+are bundled up into a job ClassAd.
+
+<P>
+HTCondor plays the role of a matchmaker by continuously reading
+all the job ClassAds and all the machine ClassAds, 
+matching and ranking job ads with machine ads.
+HTCondor makes certain that all
+requirements in both ClassAds are satisfied. 
+
+<P>
+
+<H2><A NAME="SECTION00331000000000000000">
+2.3.1 Inspecting Machine ClassAds with condor_status</A>
+</H2>
+
+<P>
+<A NAME="1628"></A>
+Once HTCondor is installed,
+you will get a feel for what
+a machine ClassAd does by trying
+the <I>condor_status</I> command.
+Try the <I>condor_status</I> command to get
+a summary of information from
+ClassAds about the resources available in your pool.
+Type <I>condor_status</I> and hit enter to see a summary 
+similar to the following:
+<PRE>
+Name               OpSys      Arch   State     Activity LoadAv Mem   ActvtyTime
+
+amul.cs.wisc.edu   LINUX      INTEL  Claimed   Busy     0.990  1896  0+00:07:04
+slot1@amundsen.cs. LINUX      INTEL  Owner     Idle     0.000  1456  0+00:21:58
+slot2@amundsen.cs. LINUX      INTEL  Owner     Idle     0.110  1456  0+00:21:59
+angus.cs.wisc.edu  LINUX      INTEL  Claimed   Busy     0.940   873  0+00:02:54
+anhai.cs.wisc.edu  LINUX      INTEL  Claimed   Busy     1.400  1896  0+00:03:03
+apollo.cs.wisc.edu LINUX      INTEL  Unclaimed Idle     1.000  3032  0+00:00:04
+arragon.cs.wisc.ed LINUX      INTEL  Claimed   Busy     0.980   873  0+00:04:29
+bamba.cs.wisc.edu  LINUX      INTEL  Owner     Idle     0.040  3032 15+20:10:19
+</PRE>... 
+
+<P>
+The <I>condor_status</I> command has options that summarize machine ads 
+in a variety of ways.
+For example,
+<DL>
+<DT><STRONG><I>condor_status -available</I></STRONG></DT>
+<DD>shows only machines which are
+willing to run jobs now. 
+</DD>
+<DT><STRONG><I>condor_status -run</I></STRONG></DT>
+<DD>shows only machines
+which are currently running jobs.  
+</DD>
+<DT><STRONG><I>condor_status -long</I></STRONG></DT>
+<DD>lists the machine ClassAds for all machines
+in the pool.
+</DD>
+</DL>
+
+<P>
+Refer to the <I>condor_status</I> command 
+reference page located on page&nbsp;<A HREF="condor_status.html#man-condor-status"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>
+for a complete description of the <I>condor_status</I> command.
+
+<P>
+The following shows a portion of a machine ClassAd
+<A NAME="1643"></A>
+<A NAME="1644"></A>
+for a single machine: turunmaa.cs.wisc.edu. Some of the listed
+attributes are used by
+HTCondor for scheduling. Other attributes are for information purposes.
+An important point is that <I>any</I> of the attributes in a
+machine ClassAd can be utilized at job submission time as part of a request
+or preference on what machine to use. Additional attributes
+can be easily added. For example, your site administrator can
+add a physical location attribute to your machine ClassAds.
+
+<P>
+<PRE>
+Machine = "turunmaa.cs.wisc.edu"
+FileSystemDomain = "cs.wisc.edu"
+Name = "turunmaa.cs.wisc.edu"
+CondorPlatform = "$CondorPlatform: x86_rhap_5 $"
+Cpus = 1
+IsValidCheckpointPlatform = ( ( ( TARGET.JobUniverse == 1 ) == false ) || 
+ ( ( MY.CheckpointPlatform =!= undefined ) &amp;&amp; 
+ ( ( TARGET.LastCheckpointPlatform =?= MY.CheckpointPlatform ) || 
+ ( TARGET.NumCkpts == 0 ) ) ) )
+CondorVersion = "$CondorVersion: 7.6.3 Aug 18 2011 BuildID: 361356 $"
+Requirements = ( START ) &amp;&amp; ( IsValidCheckpointPlatform )
+EnteredCurrentActivity = 1316094896
+MyAddress = "&lt;128.105.175.125:58026&gt;"
+EnteredCurrentState = 1316094896
+Memory = 1897
+CkptServer = "pitcher.cs.wisc.edu"
+OpSys = "LINUX"
+State = "Owner"
+START = true
+Arch = "INTEL"
+Mips = 2634
+Activity = "Idle"
+StartdIpAddr = "&lt;128.105.175.125:58026&gt;"
+TargetType = "Job"
+LoadAvg = 0.210000
+CheckpointPlatform = "LINUX INTEL 2.6.x normal 0x40000000"
+Disk = 92309744
+VirtualMemory = 2069476
+TotalSlots = 1
+UidDomain = "cs.wisc.edu"
+MyType = "Machine"
+</PRE>
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html977"
+  HREF="2_4Running_Job.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html971"
+  HREF="2_Users_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html965"
+  HREF="2_2Introduction.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html973"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html975"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html978"
+  HREF="2_4Running_Job.html">2.4 Running a Job:</A>
+<B> Up:</B> <A NAME="tex2html972"
+  HREF="2_Users_Manual.html">2. Users' Manual</A>
+<B> Previous:</B> <A NAME="tex2html966"
+  HREF="2_2Introduction.html">2.2 Introduction</A>
+ &nbsp; <B>  <A NAME="tex2html974"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html976"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

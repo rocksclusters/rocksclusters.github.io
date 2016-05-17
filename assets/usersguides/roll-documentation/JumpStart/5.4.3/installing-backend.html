@@ -1,0 +1,238 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Installing Solaris Backend Nodes</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE=" JumpStart Users Guide "
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Using the JumpStart Roll"
+HREF="using.html"><LINK
+REL="PREVIOUS"
+TITLE="Installing Solaris Support"
+HREF="using-jumpstart.html"><LINK
+REL="NEXT"
+TITLE="Solaris Partitioning"
+HREF="partitioning.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>JumpStart Users Guide: 	<DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/sun_rocks_graphic.png"
+WIDTH="500"></P
+></DIV
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="using-jumpstart.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 2. Using the JumpStart Roll</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="partitioning.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="INSTALLING-BACKEND"
+>2.2. Installing Solaris Backend Nodes</A
+></H1
+><P
+>Once the frontend node has Solaris support installed, you can install Solaris based backend nodes using the same procedure
+that you'd use for installing Linux nodes.</P
+><P
+></P
+><UL
+><LI
+><P
+>Run</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># insert-ethers --os=sunos
+		</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+><IMG
+SRC="images/ie-screen-4.png"></P
+></LI
+><LI
+><P
+>Choose the appropriate appliance that you'd like to install</P
+></LI
+><LI
+><P
+>Boot up your node, and set it to boot from PXE</P
+></LI
+><LI
+><P
+>Wait till the node is detected.</P
+></LI
+><LI
+><P
+>Wait till the node requests the jumpstart configuration.
+(insert-ethers shows a (*) beside the discovered node to indicate
+that it was given the jumpstart configuration )</P
+></LI
+><LI
+><P
+>Quit insert-ethers (F8)</P
+><DIV
+CLASS="WARNING"
+><P
+></P
+><TABLE
+CLASS="WARNING"
+WIDTH="90%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/warning.png"
+HSPACE="5"
+ALT="Warning"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>Jumpstarting through Rocks supports only NFS based transport
+for installation. Since an NFS server is decidedly less scalable than an HTTP
+server with bittorrent support, there is a good chance
+that the server can become overwhelmed by reasonably few NFS clients hitting
+the server. It is not advisable to install more than 4 clients at a time, unless
+you have a really powerful NFS server.</P
+></TD
+></TR
+></TABLE
+></DIV
+></LI
+></UL
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="using-jumpstart.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="partitioning.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Installing Solaris Support</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="using.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Solaris Partitioning</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

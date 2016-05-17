@@ -1,0 +1,457 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Packages</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Roll Developer's Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE=" Roll Internals "
+HREF="internals.html"><LINK
+REL="PREVIOUS"
+TITLE=" Roll Development Environment "
+HREF="internals-roll-env.html"><LINK
+REL="NEXT"
+TITLE="Configuring Software with XML Files"
+HREF="internals-xml-files.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Roll Developer's Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/developer.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="internals-roll-env.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 2. Roll Internals</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="internals-xml-files.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="INTERNALS-PACKAGES"
+>2.2. Packages</A
+></H1
+><P
+>A Rocks roll requires that all packages contained in the roll must be in the
+native format of the OS.
+For Redhat-based Rocks clusters, this means all packages must be RPMS.</P
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="INTERNALS-PACKAGES-RPM"
+>2.2.1. The Software is Already in an RPM</A
+></H2
+><P
+>If the software you wish to install is already in RPM format, you can directly
+put it into the roll source tree.
+For example, to put the RPM <CODE
+CLASS="CONSTANT"
+>unzip-5.52-3.el5.x86_64.rpm</CODE
+>
+into the Valgrind Roll, execute:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># mkdir -p /export/src/roll/valgrind/RPMS/x86_64
+# cp /tmp/unzip-5.52-3.el5.x86_64.rpm /export/src/roll/valgrind/RPMS/x86_64</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="INTERNALS-PACKAGES-BUNDLE"
+>2.2.2. Bundle an Existing Subdirectory into an RPM</A
+></H2
+><P
+>If your application is already installed on your frontend and you would like
+to bundle its subdirectory into and RPM, you can
+create an RPM that contains all the files in a subdirectory.
+For example, let's say you want to create an RPM from all the files under
+/opt/stream.
+You can execute:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks create package /opt/stream stream</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>This will create a package named <CODE
+CLASS="CONSTANT"
+>stream-1.0-1.x86_64.rpm</CODE
+>
+in the current working directory.
+To see the contents of the package, execute:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rpm -qlp stream-1.0-1.x86_64.rpm 
+/
+/opt
+/opt/stream
+/opt/stream/bin
+/opt/stream/bin/stream
+/opt/stream/bin/stream_f
+/opt/stream/docs
+/opt/stream/docs/HISTORY.txt
+/opt/stream/docs/LICENSE.txt
+/opt/stream/docs/Makefile
+/opt/stream/docs/READ.ME
+/opt/stream/docs/ROCKS.txt
+/opt/stream/docs/linux.mk
+/opt/stream/docs/mysecond.c
+/opt/stream/docs/stream.c
+/opt/stream/docs/stream.f
+/opt/stream/docs/sunos.mk
+/opt/stream/docs/version.mk</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>There are several more options you can supply to
+<CODE
+CLASS="CONSTANT"
+>"rocks create package"</CODE
+> (execute
+<CODE
+CLASS="CONSTANT"
+>"rocks create package help"</CODE
+> to see all the options).</P
+><P
+>Now place the RPM into the correct directory within the roll:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># mkdir -p /export/src/roll/valgrind/RPMS/x86_64
+# cp stream-1.0-1.x86_64.rpm /export/src/roll/valgrind/RPMS/x86_64</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="INTERNALS-PACKAGES-SRC"
+>2.2.3. Create an RPM from a Source Code Tarball</A
+></H2
+><P
+>The most common way we create RPMS is from source tarballs (the classic:
+untar, configure, make, make install).</P
+><P
+>First, we'll download the source tarball into the correct directory:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># cd /export/src/roll/valgrind/src/valgrind
+# wget http://valgrind.org/downloads/valgrind-3.6.0.tar.bz2</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Edit <CODE
+CLASS="CONSTANT"
+>version.mk</CODE
+> and change
+<CODE
+CLASS="CONSTANT"
+>TARBALL_POSTFIX = tgz</CODE
+> to
+<CODE
+CLASS="CONSTANT"
+>TARBALL_POSTFIX = tar.bz2</CODE
+>, change
+<CODE
+CLASS="CONSTANT"
+>PKGROOT = /opt/valgrind</CODE
+> to
+<CODE
+CLASS="CONSTANT"
+>PKGROOT = /opt</CODE
+>,and change
+<CODE
+CLASS="CONSTANT"
+>VERSION = 1.0</CODE
+> to
+<CODE
+CLASS="CONSTANT"
+>VERSION = 3.6.0</CODE
+>.
+Your version.mk should look like:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>PKGROOT		= /opt
+NAME    	= valgrind
+VERSION 	= 3.6.0
+RELEASE 	= 1
+TARBALL_POSTFIX	= tar.bz2</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Edit <CODE
+CLASS="CONSTANT"
+>Makefile</CODE
+> and change the line:
+<CODE
+CLASS="CONSTANT"
+>gunzip -c</CODE
+> to
+<CODE
+CLASS="CONSTANT"
+>bzcat</CODE
+> (since the tarball is a bz2).</P
+><P
+>Now build the RPM:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># make rpm</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>It will take several minutes to build the package.
+When it completes, you'll see the line:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>Wrote: /export/src/roll/valgrind/RPMS/x86_64/valgrind-3.6.0-1.x86_64.rpm</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>You can inspect the contents of the <CODE
+CLASS="CONSTANT"
+>valgrind</CODE
+> RPM:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rpm -qlp /export/src/roll/valgrind/RPMS/x86_64/valgrind-3.6.0-1.x86_64.rpm
+/
+/opt
+/opt/valgrind
+/opt/valgrind/bin
+/opt/valgrind/bin/callgrind_annotate
+/opt/valgrind/bin/callgrind_control
+/opt/valgrind/bin/cg_annotate
+/opt/valgrind/bin/cg_diff
+/opt/valgrind/bin/cg_merge
+/opt/valgrind/bin/ms_print
+/opt/valgrind/bin/no_op_client_for_valgrind
+/opt/valgrind/bin/valgrind
+/opt/valgrind/bin/valgrind-listener
+/opt/valgrind/include
+/opt/valgrind/include/valgrind
+/opt/valgrind/include/valgrind/callgrind.h
+   .
+   .
+   .</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Note that the valgrind-3.6.0-1.x86_64.rpm RPM was automatically placed into
+the correct directory (/export/src/roll/valgrind/RPMS/x86_64).</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="internals-roll-env.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="internals-xml-files.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Roll Development Environment</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="internals.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Configuring Software with XML Files</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

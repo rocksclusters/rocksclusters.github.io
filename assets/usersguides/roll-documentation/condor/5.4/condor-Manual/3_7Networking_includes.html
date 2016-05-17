@@ -1,0 +1,2283 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>3.7 Networking (includes sections on Port Usage and GCB)</TITLE>
+<META NAME="description" CONTENT="3.7 Networking (includes sections on Port Usage and GCB)">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="3_8Checkpoint_Server.html">
+<LINK REL="previous" HREF="3_6Security.html">
+<LINK REL="up" HREF="3_Administrators_Manual.html">
+<LINK REL="next" HREF="3_8Checkpoint_Server.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html1223"
+  HREF="3_8Checkpoint_Server.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1217"
+  HREF="3_Administrators_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1211"
+  HREF="3_6Security.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1219"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1221"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1224"
+  HREF="3_8Checkpoint_Server.html">3.8 The Checkpoint Server</A>
+<B> Up:</B> <A NAME="tex2html1218"
+  HREF="3_Administrators_Manual.html">3. Administrators' Manual</A>
+<B> Previous:</B> <A NAME="tex2html1212"
+  HREF="3_6Security.html">3.6 Security</A>
+ &nbsp; <B>  <A NAME="tex2html1220"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1222"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html1225"
+  HREF="3_7Networking_includes.html#SECTION00471000000000000000">3.7.1 Port Usage in Condor</A>
+<UL>
+<LI><A NAME="tex2html1226"
+  HREF="3_7Networking_includes.html#SECTION00471100000000000000">3.7.1.1 Default Port Usage</A>
+<LI><A NAME="tex2html1227"
+  HREF="3_7Networking_includes.html#SECTION00471200000000000000">3.7.1.2 Using 
+a Non Standard, Fixed Port for the <I>condor_collector</I></A>
+<LI><A NAME="tex2html1228"
+  HREF="3_7Networking_includes.html#SECTION00471300000000000000">3.7.1.3 Using 
+a Dynamically Assigned Port for the <I>condor_collector</I></A>
+<LI><A NAME="tex2html1229"
+  HREF="3_7Networking_includes.html#SECTION00471400000000000000">3.7.1.4 Restricting Port Usage to
+ Operate with Firewalls</A>
+<LI><A NAME="tex2html1230"
+  HREF="3_7Networking_includes.html#SECTION00471500000000000000">3.7.1.5 Multiple Collectors</A>
+<LI><A NAME="tex2html1231"
+  HREF="3_7Networking_includes.html#SECTION00471600000000000000">3.7.1.6 Port Conflicts</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1232"
+  HREF="3_7Networking_includes.html#SECTION00472000000000000000">3.7.2 Configuring Condor for
+Machines With Multiple Network Interfaces </A>
+<UL>
+<LI><A NAME="tex2html1233"
+  HREF="3_7Networking_includes.html#SECTION00472100000000000000">3.7.2.1 Using 
+BIND_ALL_INTERFACES</A>
+<LI><A NAME="tex2html1234"
+  HREF="3_7Networking_includes.html#SECTION00472200000000000000">3.7.2.2 Central Manager with Two or More NICs</A>
+<LI><A NAME="tex2html1235"
+  HREF="3_7Networking_includes.html#SECTION00472300000000000000">3.7.2.3 A Client Machine with Multiple Interfaces</A>
+<LI><A NAME="tex2html1236"
+  HREF="3_7Networking_includes.html#SECTION00472400000000000000">3.7.2.4 A Checkpoint Server on a Machine with Multiple NICs</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1237"
+  HREF="3_7Networking_includes.html#SECTION00473000000000000000">3.7.3 Condor Connection Brokering (CCB)</A>
+<UL>
+<LI><A NAME="tex2html1238"
+  HREF="3_7Networking_includes.html#SECTION00473100000000000000">3.7.3.1 Example Configuration</A>
+<LI><A NAME="tex2html1239"
+  HREF="3_7Networking_includes.html#SECTION00473200000000000000">3.7.3.2 Security and CCB</A>
+<LI><A NAME="tex2html1240"
+  HREF="3_7Networking_includes.html#SECTION00473300000000000000">3.7.3.3 Troubleshooting CCB</A>
+<LI><A NAME="tex2html1241"
+  HREF="3_7Networking_includes.html#SECTION00473400000000000000">3.7.3.4 Scalability and CCB</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1242"
+  HREF="3_7Networking_includes.html#SECTION00474000000000000000">3.7.4 Generic Connection Brokering (GCB)</A>
+<UL>
+<LI><A NAME="tex2html1243"
+  HREF="3_7Networking_includes.html#SECTION00474100000000000000">3.7.4.1 Introduction to the GCB Broker</A>
+<LI><A NAME="tex2html1244"
+  HREF="3_7Networking_includes.html#SECTION00474200000000000000">3.7.4.2 Configuring the GCB broker</A>
+<LI><A NAME="tex2html1245"
+  HREF="3_7Networking_includes.html#SECTION00474300000000000000">3.7.4.3 Spawning the GCB Broker</A>
+<LI><A NAME="tex2html1246"
+  HREF="3_7Networking_includes.html#SECTION00474400000000000000">3.7.4.4 Configuring Condor nodes to be GCB clients</A>
+<LI><A NAME="tex2html1247"
+  HREF="3_7Networking_includes.html#SECTION00474500000000000000">3.7.4.5 Configuring the GCB
+  routing table</A>
+<LI><A NAME="tex2html1248"
+  HREF="3_7Networking_includes.html#SECTION00474600000000000000">3.7.4.6 Implications
+of GCB on Condor's Host/IP-based Security Configuration</A>
+<LI><A NAME="tex2html1249"
+  HREF="3_7Networking_includes.html#SECTION00474700000000000000">3.7.4.7 Implications of
+GCB for Other Condor Configuration</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1250"
+  HREF="3_7Networking_includes.html#SECTION00475000000000000000">3.7.5 Using TCP to Send Updates to
+the <I>condor_collector</I></A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00470000000000000000"></A><A NAME="sec:Networking"></A>
+<A NAME="29527"></A>
+<BR>
+3.7 Networking (includes sections on Port Usage and GCB)
+</H1>
+
+<P>
+This section on
+network communication in Condor
+discusses which network ports are used,
+how Condor behaves on machines with multiple network interfaces
+and IP addresses,
+and how to facilitate functionality in a pool that spans
+firewalls and private networks.
+
+<P>
+The security section of the manual contains some
+information that is relevant to the discussion of network
+communication which will not be duplicated here, so please
+see section&nbsp;<A HREF="3_6Security.html#sec:Security">3.6</A> as well.
+
+<P>
+Firewalls, private networks, and network address translation (NAT)
+pose special problems for Condor.
+There are currently two main mechanisms for dealing with firewalls
+within Condor:
+
+<P>
+
+<OL>
+<LI>Restrict Condor to use a specific range of port numbers, and
+  allow connections through the firewall that use any port within the
+  range.
+
+<P>
+</LI>
+<LI>Use <I>Condor Connection Brokering</I> (CCB) or <I>Generic Connection Brokering</I> (GCB).
+
+<P>
+</LI>
+</OL>
+
+<P>
+Each method has its own advantages and disadvantages,
+as described below.
+
+<P>
+
+<H2><A NAME="SECTION00471000000000000000"></A><A NAME="sec:Port-Details"></A>
+<BR>
+3.7.1 Port Usage in Condor
+</H2>
+
+<P>
+<A NAME="29555"></A>
+
+<P>
+
+<H3><A NAME="SECTION00471100000000000000"></A><A NAME="sec:Ports-Standard"></A>
+<BR>
+3.7.1.1 Default Port Usage
+</H3>
+
+<P>
+Every Condor daemon listens on a network port for incoming commands.
+Most daemons listen on a dynamically assigned port.
+In order to send a message,
+Condor daemons and tools locate the correct port to use
+by querying the <I>condor_collector</I>,
+extracting the port number from the ClassAd.
+One of the attributes included in every daemon's ClassAd is the full
+IP address and port number upon which the daemon is listening.
+
+<P>
+To access the <I>condor_collector</I> itself,
+all Condor daemons and tools
+must know the port number  where the <I>condor_collector</I> is listening.
+The <I>condor_collector</I> is the only daemon with a well-known,
+fixed port.
+By default, Condor uses port 9618 for the <I>condor_collector</I> daemon.
+However, this port number can be changed (see below).
+
+<P>
+As an optimization for daemons and tools communicating with another
+daemon that is running on the same host,
+each Condor daemon can be configured to
+write its IP address and port number into a well-known file.
+The file names are controlled using the <TT>&lt;SUBSYS&gt;_ADDRESS_FILE</TT> <A NAME="29676"></A>
+configuration variables,
+as described in section&nbsp;<A HREF="3_3Configuration.html#param:SubsysAddressFile">3.3.5</A> on
+page&nbsp;<A HREF="3_3Configuration.html#param:SubsysAddressFile"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>. 
+
+<P>
+<U>NOTE</U>: In the 6.6 stable series, and Condor versions earlier than
+6.7.5, the <I>condor_negotiator</I> also listened on a fixed, well-known
+port (the default was 9614).
+However, beginning with version 6.7.5, the <I>condor_negotiator</I> behaves
+like all other Condor daemons, and publishes its own ClassAd to the
+<I>condor_collector</I> which includes the dynamically assigned port 
+the <I>condor_negotiator</I> is listening on.
+All Condor tools and daemons that need to communicate with the
+<I>condor_negotiator</I> will either use the
+<TT>NEGOTIATOR_ADDRESS_FILE</TT> <A NAME="29690"></A> <A NAME="29691"></A> or will query the
+<I>condor_collector</I> for the <I>condor_negotiator</I>'s ClassAd.
+
+<P>
+Sites that configure any checkpoint servers will introduce
+other fixed ports into their network.
+Each <I>condor_ckpt_server</I> will listen to 4 fixed ports: 5651, 5652,
+5653, and 5654.
+There is currently no way to configure alternative values for any of
+these ports.
+
+<P>
+
+<H3><A NAME="SECTION00471200000000000000"></A><A NAME="sec:Ports-NonStandard"></A>
+<A NAME="29576"></A>
+<BR>
+3.7.1.2 Using 
+a Non Standard, Fixed Port for the <I>condor_collector</I>
+</H3>
+By default,
+Condor uses port 9618 for the <I>condor_collector</I> daemon.
+To use a different port number for this daemon,
+the configuration variables that tell Condor these communication
+details are modified.
+Instead of
+<PRE>
+CONDOR_HOST = machX.cs.wisc.edu
+COLLECTOR_HOST = $(CONDOR_HOST)
+</PRE>
+the configuration might be
+<PRE>
+CONDOR_HOST = machX.cs.wisc.edu
+COLLECTOR_HOST = $(CONDOR_HOST):9650
+</PRE>
+
+<P>
+If a non standard port is defined, the same value of
+<TT>COLLECTOR_HOST</TT> (including the port) must be used for all
+machines in the Condor pool.
+Therefore, this setting should be modified in the global
+configuration file (<TT>condor_config</TT> file),
+or the value must be duplicated across
+all configuration files in the pool if a single configuration file
+is not being shared.
+
+<P>
+When querying the <I>condor_collector</I> for a remote pool that is running
+on a non standard port, any Condor tool that accepts the <B>-pool</B>
+argument can optionally be given a port number.  For example:
+<PRE>
+        % condor_status -pool foo.bar.org:1234
+</PRE>
+<P>
+
+<H3><A NAME="SECTION00471300000000000000"></A><A NAME="sec:Ports-Dynamic-Collector"></A>
+<BR>
+3.7.1.3 Using 
+a Dynamically Assigned Port for the <I>condor_collector</I>
+</H3>
+
+<P>
+On single machine pools, 
+it is permitted to configure the
+<I>condor_collector</I> daemon
+to use a dynamically assigned port,
+as given out by the operating system.
+This prevents port conflicts with other services on the same machine.
+However, a dynamically assigned port is only to be used on
+single machine Condor pools,
+and only if the
+<TT>COLLECTOR_ADDRESS_FILE</TT> <A NAME="29715"></A> <A NAME="29716"></A> 
+configuration variable has also been defined.
+This mechanism allows all of the Condor daemons and tools running on
+the same machine to find the port upon which the <I>condor_collector</I>
+daemon is listening,
+even when this port is not defined in the
+configuration file and is not known in advance.
+
+<P>
+To enable the <I>condor_collector</I> daemon to use a dynamically assigned port,
+the port number is set to 0 in the <TT>COLLECTOR_HOST</TT> <A NAME="29724"></A> <A NAME="29725"></A>
+variable.
+The <TT>COLLECTOR_ADDRESS_FILE</TT>
+configuration variable must also be defined,
+as it provides a known file where the IP address
+and port information will be stored.
+All Condor clients know to look at the
+information stored in this file.
+For example:
+<PRE>
+COLLECTOR_HOST = $(CONDOR_HOST):0
+COLLECTOR_ADDRESS_FILE = $(LOG)/.collector_address
+</PRE>
+<P>
+<U>NOTE</U>: Using a port of 0 for the <I>condor_collector</I>
+and specifying a
+<TT>COLLECTOR_ADDRESS_FILE</TT>
+only works in Condor version 6.6.8 or later in the 6.6 stable series,
+and in version 6.7.4 or later in the 6.7 development series.
+Do not attempt to do this with older versions of Condor.
+
+<P>
+Configuration definition of <TT>COLLECTOR_ADDRESS_FILE</TT>
+is in section&nbsp;<A HREF="3_3Configuration.html#param:SubsysAddressFile">3.3.5</A> on
+page&nbsp;<A HREF="3_3Configuration.html#param:SubsysAddressFile"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>,
+and
+<TT>COLLECTOR_HOST</TT>
+is in
+section&nbsp;<A HREF="3_3Configuration.html#param:CollectorHost">3.3.3</A> on
+page&nbsp;<A HREF="3_3Configuration.html#param:CollectorHost"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+
+<H3><A NAME="SECTION00471400000000000000"></A><A NAME="sec:Ports-Firewalls"></A>
+<BR>
+3.7.1.4 Restricting Port Usage to
+ Operate with Firewalls
+</H3>
+
+<P>
+<A NAME="29607"></A>
+If a Condor pool is completely behind a firewall,
+then no special consideration or port usage is needed.
+However, if there is a firewall between the machines within
+a Condor pool, then
+configuration variables may be set to force the usage of
+specific ports, and to utilize a specific range of ports.
+
+<P>
+By default,
+Condor uses port 9618 for the <I>condor_collector</I> daemon,
+and dynamic (apparently random) ports for everything else.
+See section&nbsp;<A HREF="#sec:Ports-Dynamic-Collector">3.7.1</A>,
+if a dynamically assigned port is desired for the
+<I>condor_collector</I> daemon.
+
+<P>
+The configuration variables
+<TT>HIGHPORT</TT> <A NAME="29740"></A> <A NAME="29741"></A> and <TT>LOWPORT</TT> <A NAME="29745"></A> <A NAME="29746"></A> facilitate setting a restricted
+range of ports that Condor will use.
+This may be useful when some machines are behind a firewall.
+The configuration macros
+<TT>HIGHPORT</TT> and <TT>LOWPORT</TT> 
+will restrict dynamic ports to the range specified.
+The configuration variables are fully defined
+in section&nbsp;<A HREF="3_3Configuration.html#sec:Network-Related-Config-File-Entries">3.3.6</A>.
+All of these ports must be greater than 0 and less than 65,536.
+Note that both <TT>HIGHPORT</TT> and <TT>LOWPORT</TT> must be at 
+least 1024 for Condor version 6.6.8.
+In general, use ports greater than 1024,
+in order
+to avoid port conflicts with standard services on the machine.
+Another reason for using ports greater than 1024 is that
+daemons and tools are often not run as <TT>root</TT>,
+and only <TT>root</TT> may listen to a port lower than 1024.
+Also, the range must include enough ports that are not in use, 
+or Condor cannot work.
+
+<P>
+The range of ports assigned may be restricted based on 
+incoming (listening) and outgoing (connect) ports
+with the configuration variables
+<TT>IN_HIGHPORT</TT> <A NAME="29756"></A> <A NAME="29757"></A>,
+<TT>IN_LOWPORT</TT> <A NAME="29761"></A> <A NAME="29762"></A>,
+<TT>OUT_HIGHPORT</TT> <A NAME="29766"></A> <A NAME="29767"></A>, and
+<TT>OUT_LOWPORT</TT> <A NAME="29771"></A> <A NAME="29772"></A>.
+See section&nbsp;<A HREF="3_3Configuration.html#sec:Network-Related-Config-File-Entries">3.3.6</A>
+for complete definitions of these configuration variables.
+A range of ports lower than 1024 for daemons
+running as <TT>root</TT> is appropriate for incoming ports,
+but not for outgoing ports.
+The use of ports below 1024 (versus above 1024)
+has security implications; 
+therefore, it is inappropriate to assign a range that crosses
+the 1024 boundary.
+
+<P>
+<U>NOTE</U>: Setting <TT>HIGHPORT</TT> and <TT>LOWPORT</TT> will not
+automatically force the <I>condor_collector</I> to bind to a port within
+the range.
+The only way to control what port the <I>condor_collector</I> uses is by
+setting the <TT>COLLECTOR_HOST</TT> (as described above).
+
+<P>
+The total number of ports needed depends on the size of the pool,
+the usage of the machines within the pool (which machines
+run which daemons),
+and the number of jobs that may execute at one time.
+Here we discuss how many ports are used by each
+participant in the system.
+
+<P>
+The central manager of the pool needs
+<TT>5 + <TT>NEGOTIATOR_SOCKET_CACHE_SIZE</TT></TT>
+ports for daemon communication,
+where 
+<TT>NEGOTIATOR_SOCKET_CACHE_SIZE</TT> <A NAME="29788"></A> <A NAME="29789"></A>
+is specified in the
+configuration or defaults to the value 16.
+
+<P>
+Each execute machine (those machines running a <I>condor_startd</I> daemon)
+requires
+<TT> 5 + (5 * number of slots advertised by that machine)</TT>
+ports.
+By default, the number of slots advertised
+will equal the number of physical CPUs in that machine.
+
+<P>
+Submit machines (those machines running a <I>condor_schedd</I> daemon)
+require
+<TT> 5 + (5 *  <TT>MAX_JOBS_RUNNING</TT>)</TT> ports.
+The configuration variable <TT>MAX_JOBS_RUNNING</TT> <A NAME="29801"></A> <A NAME="29802"></A>
+limits (on a per-machine basis, if desired)
+the maximum number of jobs.
+Without this configuration macro,
+the maximum number of jobs that could be simultaneously
+executing at one time
+is a function of the number of reachable execute machines. 
+
+<P>
+Also be aware that <TT>HIGHPORT</TT> and <TT>LOWPORT</TT>
+only impact dynamic port selection used by the Condor system,
+and they do not impact port selection used by jobs submitted to Condor.
+Thus, jobs submitted to Condor that may create
+network connections may not work in a port restricted environment.
+For this reason, specifying <TT>HIGHPORT</TT> and <TT>LOWPORT</TT>
+is not going to produce the
+expected results if a user submits MPI applications to be executed under
+the parallel universe.
+
+<P>
+Where desired, a local
+configuration for machines <I>not</I> behind a firewall
+can override the usage of <TT>HIGHPORT</TT> and <TT>LOWPORT</TT>,
+such that the ports used for these machines are not restricted.
+This can be accomplished by adding the following to the
+local configuration file of those machines <I>not</I>
+behind a firewall:
+<PRE>
+HIGHPORT = UNDEFINED
+LOWPORT  = UNDEFINED
+</PRE>
+
+<P>
+If the maximum number of ports allocated using 
+<TT>HIGHPORT</TT> and <TT>LOWPORT</TT>
+is too few,
+socket binding errors of the form
+<PRE>
+failed to bind any port within &lt;$LOWPORT&gt; - &lt;$HIGHPORT&gt;
+</PRE>are likely to appear repeatedly in log files.
+
+<P>
+
+<H3><A NAME="SECTION00471500000000000000"></A><A NAME="sec:Ports-MultipleCollectors"></A>
+<A NAME="29653"></A>
+<BR>
+3.7.1.5 Multiple Collectors
+</H3>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\fbox{This section has not yet been written}$
+ -->
+<IMG
+ WIDTH="275" HEIGHT="40" ALIGN="MIDDLE" BORDER="0"
+ SRC="img18.png"
+ ALT="\fbox{This section has not yet been written}">
+</DIV>
+
+<P>
+
+<H3><A NAME="SECTION00471600000000000000"></A><A NAME="sec:Ports-Conflicts"></A>
+<A NAME="29655"></A>
+<BR>
+3.7.1.6 Port Conflicts
+</H3>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\fbox{This section has not yet been written}$
+ -->
+<IMG
+ WIDTH="275" HEIGHT="40" ALIGN="MIDDLE" BORDER="0"
+ SRC="img18.png"
+ ALT="\fbox{This section has not yet been written}">
+</DIV>
+
+<P>
+
+<H2><A NAME="SECTION00472000000000000000"></A><A NAME="sec:Multiple-Interfaces"></A>
+<BR>
+3.7.2 Configuring Condor for
+Machines With Multiple Network Interfaces 
+</H2> 
+
+<P>
+<A NAME="29904"></A>
+<A NAME="29905"></A>
+<A NAME="29906"></A>
+
+<P>
+Condor can run on machines with
+multiple network interfaces.
+Starting with Condor version 6.7.13
+(and therefore all Condor 6.8 and more recent versions),
+new functionality is
+available that allows even better support for multi-homed
+machines, using the configuration variable <TT>BIND_ALL_INTERFACES</TT>.
+A multi-homed machine is one that has more than one
+NIC (Network Interface Card).
+Further improvements to this new functionality will remove the need
+for any special configuration in the common case.
+For now, care
+must still be given to machines with multiple NICs, even
+when using this new configuration variable.
+
+<P>
+
+<H3><A NAME="SECTION00472100000000000000"></A><A NAME="sec:Using-BindAllInterfaces"></A>
+<BR>
+3.7.2.1 Using 
+BIND_ALL_INTERFACES
+</H3>
+
+<P>
+Machines can be configured such that
+whenever Condor daemons or tools
+call <TT>bind()</TT>, the daemons or tools use all network interfaces on
+the machine.
+This means that outbound connections will always use the appropriate
+network interface to connect to a remote host,
+instead of being forced to use
+an interface that might not have a route to the given destination.
+Furthermore, sockets upon which a daemon listens for incoming connections 
+will be bound to all network interfaces on the machine.
+This means that so long as remote clients know the right port, they can
+use any IP address on the machine and still contact a given Condor daemon.
+
+<P>
+This functionality is on by default.  To disable this functionality, 
+the boolean configuration
+variable
+<TT>BIND_ALL_INTERFACES</TT>
+is defined and set to <TT>False</TT>:
+
+<P>
+<PRE>
+BIND_ALL_INTERFACES = FALSE
+</PRE>
+
+<P>
+This functionality has limitations.
+Here are descriptions of the limitations.
+
+<P>
+<DL>
+<DT><STRONG>Using all network interfaces does not work with Kerberos.</STRONG></DT>
+<DD>Every Kerberos ticket contains a specific IP address within it.
+  Authentication over a socket (using Kerberos) requires
+  the socket to also specify that same specific IP address.
+  Use of <TT>BIND_ALL_INTERFACES</TT> causes outbound
+  connections from a multi-homed machine to 
+  originate over any of the interfaces.
+  Therefore, the IP address of the outbound connection and the IP
+  address in the Kerberos ticket will not necessarily match,
+  causing the authentication to fail.
+  Sites using Kerberos authentication on multi-homed machines are
+  strongly encouraged not to enable <TT>BIND_ALL_INTERFACES</TT>,
+  at least until Condor's Kerberos functionality
+  supports using multiple Kerberos tickets together with finding the right one
+  to match the IP address a given socket is bound to. 
+
+<P>
+</DD>
+<DT><STRONG>There is a potential security risk.</STRONG></DT>
+<DD>Consider the following example of a security risk.
+  A multi-homed machine is at a network boundary.
+  One interface is on the public Internet, while the other connects to
+  a private network.
+  Both the multi-homed machine and the private network machines
+  comprise a Condor pool.
+  If the multi-homed machine enables <TT>BIND_ALL_INTERFACES</TT>,
+  then it is at risk from hackers trying to compromise the security of the pool.
+  Should this multi-homed machine be compromised,
+  the entire pool is vulnerable.
+  Most sites in this situation would run an <I>sshd</I> on the
+  multi-homed machine so that remote users who wanted to access the
+  pool could log in securely and use the Condor tools directly.
+  In this case, remote clients do not need to use Condor tools running
+  on machines in the public network to access the Condor daemons on
+  the multi-homed machine.
+  Therefore, there is no reason to have Condor daemons listening on
+  ports on the public Internet, causing a potential security threat.
+
+<P>
+</DD>
+<DT><STRONG>Only one IP address will be advertised.</STRONG></DT>
+<DD>At present, even though a given Condor daemon will be listening to
+  ports on multiple interfaces, each with their own IP address,
+  there is currently no mechanism for that daemon to advertise all of
+  the possible IP addresses where it can be contacted.
+  Therefore, Condor clients (other Condor daemons or tools) will not
+  necessarily able to locate and communicate with a given daemon
+  running on a multi-homed machine where
+  <TT>BIND_ALL_INTERFACES</TT> has been enabled.
+
+<P>
+Currently, Condor daemons can only advertise a single IP address in
+  the ClassAd they send to their <I>condor_collector</I>.
+  Condor tools and other daemons only know how to look up a single IP
+  address, and they attempt to use that single IP address
+  when connecting to the daemon.
+  So, even if the daemon is listening on 2 or more different interfaces,
+  each with a separate IP, the daemon must choose what IP address to
+  publicly advertise so that other daemons and tools can locate it.
+
+<P>
+By default, Condor advertises the IP address of the network interface
+  used to contact the collector, since this is the most likely to be
+  accessible to other processes that query the same collector.
+  The <TT>NETWORK_INTERFACE</TT> <A NAME="29973"></A> <A NAME="29974"></A> setting can still be used to
+  specify the IP address Condor should advertise, even if
+  <TT>BIND_ALL_INTERFACES</TT> is set to <TT>True</TT>.
+  Therefore, some of the considerations described below regarding what
+  interface should be used in various situations still apply when
+  deciding what interface is to be advertised.
+
+<P>
+</DD>
+</DL>
+
+<P>
+Sites that make heavy use of private networks and multi-homed machines
+should consider if using Generic Connection Brokering, GCB, is
+right for them.
+More information about GCB and Condor can be found in
+section&nbsp;<A HREF="#sec:GCB">3.7.4</A> on page&nbsp;<A HREF="3_7Networking_includes.html#sec:GCB"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+
+<H3><A NAME="SECTION00472200000000000000">
+3.7.2.2 Central Manager with Two or More NICs</A>
+</H3>
+
+<P>
+Often users of Condor wish to set up ``compute farms'' where there is one
+machine with two network interface cards (one for the public Internet,
+and one for the private net). It is convenient to set up the ``head''
+node as a central manager in most cases and so here are the instructions
+required to do so.
+
+<P>
+Setting up the central manager on a machine with more than one NIC can
+be a little confusing because there are a few external variables
+that could make the process difficult. One of the biggest mistakes
+in getting this to work is that either one of the separate interfaces is
+not active, or the host/domain names associated with the interfaces are
+incorrectly configured. 
+
+<P>
+Given that the interfaces are up and functioning, and they have good
+host/domain names associated with them here is how to configure Condor:
+
+<P>
+In this example, <B>farm-server.farm.org</B> maps to the private interface.
+
+<P>
+On the central manager's global (to the cluster) configuration file: 
+<BR><TT>CONDOR_HOST</TT> <A NAME="29981"></A> <A NAME="29982"></A> = <B>farm-server.farm.org</B>
+
+<P>
+On your central manager's local configuration file: 
+<BR><TT>NETWORK_INTERFACE</TT> = ip address of <B>farm-server.farm.org</B> 
+<BR><TT>NEGOTIATOR</TT> = <TT>$(SBIN)</TT>/condor_negotiator 
+<BR><TT>COLLECTOR</TT> = <TT>$(SBIN)</TT>/condor_collector 
+<BR><TT>DAEMON_LIST</TT> = <TT>MASTER</TT>, <TT>COLLECTOR</TT>, <TT>NEGOTIATOR</TT>, <TT>SCHEDD</TT>, <TT>STARTD</TT>
+
+<P>
+If your central manager and farm machines are all NT, then you only have
+vanilla universe and it will work now.  However, if you have this setup
+for UNIX, then at this point, standard universe jobs should be able to
+function in the pool, but if you did not configure the <TT>UID_DOMAIN</TT> <A NAME="29999"></A> <A NAME="30000"></A>
+macro to be homogeneous across the farm machines, the standard universe
+jobs will run as <B>nobody</B> on the farm machines.
+
+<P>
+In order to get vanilla jobs and file server load balancing for standard
+universe jobs working (under Unix), do some more work both in
+the cluster you have put together and in Condor to make everything work.
+First, you need a file server (which could also be the central manager) to
+serve files to all of the farm machines. This could be NFS or AFS, it does
+not really matter to Condor. The mount point of the directories you wish
+your users to use must be the same across all of the farm machines. Now,
+configure <TT>UID_DOMAIN</TT> <A NAME="30005"></A> <A NAME="30006"></A> and <TT>FILESYSTEM_DOMAIN</TT> <A NAME="30010"></A> <A NAME="30011"></A> to be
+homogeneous across the farm machines and the central manager. Now, you
+will have to inform Condor that an NFS or AFS file system exists and that
+is done in this manner. In the global (to the farm) configuration file:
+
+<P>
+<PRE>
+# If you have NFS
+USE_NFS = True
+# If you have AFS
+HAS_AFS = True
+USE_AFS = True
+# if you want both NFS and AFS, then enable both sets above
+</PRE>
+
+<P>
+Now, if you've set up your cluster so that it is possible for a machine
+name to never have a domain name (for example: there is machine
+name but no fully qualified domain name in <TT>/etc/hosts</TT>), you must
+configure <TT>DEFAULT_DOMAIN_NAME</TT> <A NAME="30016"></A> <A NAME="30017"></A> to be the domain that you wish
+to be added on to the end of your host name.
+
+<P>
+
+<H3><A NAME="SECTION00472300000000000000">
+3.7.2.3 A Client Machine with Multiple Interfaces</A>
+</H3>
+
+<P>
+If client machine has two or more NICs, then there might be
+a specific network interface on which the client machine desires to
+communicate with the rest of the Condor pool. 
+In this case, the local configuration file for the client should have
+<PRE>
+  NETWORK_INTERFACE = &lt;IP address of desired interface&gt;
+</PRE>
+
+<P>
+
+<H3><A NAME="SECTION00472400000000000000">
+3.7.2.4 A Checkpoint Server on a Machine with Multiple NICs</A>
+</H3>
+
+<P>
+If a checkpoint server is on a machine with multiple interfaces,
+then 2 items must be correct to get things to work:
+
+<OL>
+<LI>The different interfaces have different host names associated with them.
+</LI>
+<LI>In the global configuration file,
+set configuration variable <TT>CKPT_SERVER_HOST</TT> <A NAME="30021"></A> <A NAME="30022"></A> to the host name
+that corresponds with the IP address desired for the pool.
+Configuration variable <TT>NETWORK_INTERFACE</TT> <A NAME="30026"></A> <A NAME="30027"></A> must still be specified
+in the local configuration file for the checkpoint server.
+</LI>
+</OL>
+
+<P>
+
+<H2><A NAME="SECTION00473000000000000000"></A><A NAME="sec:CCB"></A>
+<A NAME="30093"></A>
+<BR>
+3.7.3 Condor Connection Brokering (CCB)
+</H2>
+
+<P>
+Condor Connection Brokering, or CCB, is a way of allowing Condor
+components to communicate with each other when one side is in a
+private network or behind a firewall.  Specifically, CCB allows
+communication across a private network boundary in the following
+scenario: a Condor tool or daemon (process A) needs to connect to a
+Condor daemon (process B), but the network does not allow a TCP
+connection to be created from A to B; it only allows connections from
+B to A.  In this case, B may be configured
+to register itself with a CCB server that both A and B can connect to.
+Then when A needs to connect to B, it can send a request to the CCB
+server, which will instruct B to connect to A so that the two can
+communicate.
+
+<P>
+As an example, consider a Condor execute node that is within
+a private network. 
+This execute node's <I>condor_startd</I> is process B.
+This execute node cannot normally run jobs submitted from a machine
+that is outside of that private network, 
+because bi-directional connectivity between the submit node and the
+execute node is normally required.  
+However, 
+if both execute and submit machine can connect to that the CCB server,
+if both are authorized by the CCB server,
+and if it is possible for the execute node within the private network
+to connect to the submit node in a one-directional connectivity,
+then it is possible for the submit node to run jobs on the
+execute node.
+
+<P>
+To effect this CCB solution,
+the execute node's <I>condor_startd</I> within the private network
+registers itself with the CCB
+server by setting the configuration variable <TT>CCB_ADDRESS</TT> <A NAME="30369"></A> <A NAME="30370"></A>.
+The submit node's <I>condor_schedd</I> communicates with the CCB server,
+requesting that the execute node's <I>condor_startd</I> open the TCP
+connection.
+The CCB server forwards this request to the execute node's <I>condor_startd</I>,
+which opens the TCP connection.
+Once the connection is open, bi-directional communication is enabled.
+
+<P>
+If the location of the execute and submit nodes is reversed 
+with respect to the private network,
+the same idea applies:
+the submit node within the private network registers itself with a CCB server,
+such that when a job is running and the execute node needs to connect back to
+the submit node (for example, to transfer output files), 
+the execute node can connect by going through CCB to request a connection.
+
+<P>
+Unfortunately at this time, CCB does not support standard universe jobs.
+
+<P>
+Any <I>condor_collector</I> may be used as a CCB server.  There is no
+requirement that the <I>condor_collector</I> acting as the CCB server
+be the same <I>condor_collector</I> that a daemon
+advertises itself to (as with <TT>COLLECTOR_HOST</TT>).
+However, this is often a convenient choice.
+
+<P>
+
+<H3><A NAME="SECTION00473100000000000000">
+3.7.3.1 Example Configuration</A>
+</H3>
+
+<P>
+This example assumes that there is a pool of machines in a private
+network that need to be made accessible from the outside,
+and that the <I>condor_collector</I> (and therefore CCB server)
+used by these machines is accessible from the outside.
+Accessibility might be achieved by
+a special firewall rule for the <I>condor_collector</I> port,
+or by being on a dual-homed machine in both networks.
+
+<P>
+The configuration of variable <TT>CCB_ADDRESS</TT> on
+machines in the private network causes registration with
+the CCB server as in the example:
+
+<P>
+<PRE>
+  CCB_ADDRESS = $(COLLECTOR_HOST)
+  PRIVATE_NETWORK_NAME = cs.wisc.edu
+</PRE>
+
+<P>
+The definition of <TT>PRIVATE_NETWORK_NAME</TT> ensures that all
+communication between nodes within the private network continues to happen
+as normal, and without going through the CCB server.
+The name chosen for <TT>PRIVATE_NETWORK_NAME</TT> should be different
+from the private network name chosen for any Condor installations that
+will be communicating with this pool.
+
+<P>
+Under Unix, and with large Condor pools,
+it is also necessary to give the <I>condor_collector</I> acting as the CCB server
+a large enough limit of file descriptors.
+This may be accomplished with the configuration variable
+<TT>MAX_FILE_DESCRIPTORS</TT> <A NAME="30396"></A> <A NAME="30397"></A> or an equivalent.
+Each Condor process configured to use CCB with <TT>CCB_ADDRESS</TT>
+requires one persistent TCP connection to the CCB server.
+A typical execute node
+requires one connection for the <I>condor_master</I>,
+one for the <I>condor_startd</I>,
+and one for each running job, as represented by a <I>condor_starter</I>.
+A typical submit machine
+requires one connection for the <I>condor_master</I>,
+one for the <I>condor_schedd</I>,
+and one for each running job, as represented by a <I>condor_shadow</I>.
+If there will be no administrative commands required
+to be sent to the <I>condor_master</I> from outside of
+the private network, then CCB may be disabled in the <I>condor_master</I>
+by assigning <TT>MASTER.CCB_ADDRESS</TT> to nothing:
+<PRE>
+  MASTER.CCB_ADDRESS =
+</PRE>
+
+<P>
+Completing the count of TCP connections in this example:
+suppose the pool consists of 500 8-slot
+execute nodes and CCB is not disabled in the configuration of the
+<I>condor_master</I> processes.
+In this case, the count of needed file descriptors plus some extra
+for other transient connections to the collector is
+500*(1+1+8)=5000.
+Be generous, and give it twice as many
+descriptors as needed by CCB alone:
+
+<P>
+<PRE>
+  COLLECTOR.MAX_FILE_DESCRIPTORS = 10000
+</PRE>
+
+<P>
+
+<H3><A NAME="SECTION00473200000000000000">
+3.7.3.2 Security and CCB</A>
+</H3>
+
+<P>
+The CCB server authorizes all daemons that register themselves with it
+(using <TT>CCB_ADDRESS</TT> <A NAME="30421"></A> <A NAME="30422"></A>) at the DAEMON authorization level (these
+are playing the role of process A in the above description).  It
+authorizes all connection requests (from process B) at the READ
+authorization level.  As usual, whether process B authorizes process A
+to do whatever it is trying to do is up to the security policy for
+process B; from the Condor security model's point of view, it is as if
+process A connected to process B, even though at the network layer,
+the reverse is true.
+
+<P>
+
+<H3><A NAME="SECTION00473300000000000000">
+3.7.3.3 Troubleshooting CCB</A>
+</H3>
+
+<P>
+Errors registering with CCB or requesting connections via CCB are
+logged at level <TT>D_ALWAYS</TT> in the debugging log.
+These errors may be identified by searching for "CCB" in the log message.
+Command-line tools require the argument
+<B>-debug</B> for this information to be visible.  To see details of
+the CCB protocol add <TT>D_FULLDEBUG</TT> to the debugging options for
+the particular Condor subsystem of interest.
+Or, add <TT>D_FULLDEBUG</TT> to
+<TT>ALL_DEBUG</TT> to get extra debugging from all Condor
+components.
+
+<P>
+A daemon that has successfully registered itself with CCB will
+advertise this fact in its address in its ClassAd.  
+The ClassAd attribute <TT>MyAddress</TT> will contain information
+about its <TT>"CCBID"</TT>.
+
+<P>
+
+<H3><A NAME="SECTION00473400000000000000">
+3.7.3.4 Scalability and CCB</A>
+</H3>
+
+<P>
+Any number of CCB servers may be used to serve a pool of Condor
+daemons.  For example, half of the pool could use one CCB server and
+half could use another.  Or for redundancy, all daemons could use both
+CCB servers and then CCB connection requests will load-balance
+across them.  Typically, the limit of how many daemons may be
+registered with a single CCB server depends on the authentication
+method used by the <I>condor_collector</I> for DAEMON-level and READ-level access,
+and on the amount of memory available to the CCB server.  We are not
+able to provide specific recommendations at this time, 
+but to give a very rough idea,
+a server class machine should be able to handle CCB
+service plus normal <I>condor_collector</I> service for a pool containing
+a few thousand slots without much trouble.
+
+<P>
+
+<H2><A NAME="SECTION00474000000000000000"></A><A NAME="sec:GCB"></A>
+<A NAME="30143"></A>
+<BR>
+3.7.4 Generic Connection Brokering (GCB)
+</H2>
+
+<P>
+At this time, the functionality of GCB is being replaced by CCB.
+Therefore, consider using CCB instead if it provides the needed services.
+The functionality that GCB provides (over CCB)
+is communication between two different private networks.
+CCB only supports communication between nodes 
+with one-directional connectivity.
+The main reasons why CCB is preferable are:
+support for all platforms (including Windows),
+easier configuration and troubleshooting,
+and ability to restart and reconfigure on the fly.
+
+<P>
+Generic Connection Brokering, or GCB, is a system for managing network
+connections across private network and firewall boundaries.
+Condor's Linux releases are linked with GCB,
+and can use GCB functionality to run jobs
+(either directly or via flocking)
+on pools that span public and private networks.
+
+<P>
+While GCB provides numerous advantages over restricting Condor to use
+a range of ports which are then opened on the firewall (see
+section&nbsp;<A HREF="#sec:Ports-Firewalls">3.7.1</A> on
+page&nbsp;<A HREF="3_7Networking_includes.html#sec:Ports-Firewalls"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>),
+GCB is also a very complicated system, with major
+implications for Condor's networking and security functionality.
+Therefore, sites must carefully weigh the 
+advantages and disadvantages
+of attempting
+to configure and use GCB before making a decision.
+
+<P>
+Advantages:
+
+<UL>
+<LI>Better connectivity. GCB works with pools that have multiple
+  private networks (even multiple private networks that use the same
+  IP addresses (for example, 192.168.2.*).
+  GCB also works with sites that use network address translation
+  (NAT). 
+
+<P>
+</LI>
+<LI>More secure. Administrators never need to allow inbound
+  connections through the firewall.
+  With GCB, only outbound connections from behind the firewall must be
+  allowed (which is a standard firewall configuration).
+  It is possible to trade decreased performance for better security, and
+  configure the firewall to only allow outbound connections to a
+  single public IP address.
+
+<P>
+</LI>
+<LI>Does not require <TT>root</TT> access to any machines.
+  All parts of a GCB system can be run as an unprivileged user, and in
+  the common case, no changes to the firewall configuration are
+  required.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Disadvantages:
+
+<UL>
+<LI>The GCB broker 
+  (section&nbsp;<A HREF="#sec:GCB-Broker-Intro">3.7.4</A> describes the broker)
+  node(s) is a potential failure point to the pool.
+  Any private nodes that want to communicate outside their own network
+  must be represented by a GCB broker.
+  This machine must be highly reliable, since if the broker is ever
+  down, all inbound communication with the private nodes is
+  impossible.
+  Furthermore, no other Condor services should be run on a GCB broker
+  (for example, the Condor pool's central manager).
+  While it is possible to do so, it is not recommended.
+  In general, no other services should be run on the machine at all,
+  and the host should be dedicated to the task of serving as a GCB
+  broker.
+
+<P>
+</LI>
+<LI>All Condor nodes behind a given firewall share a single IP
+  address (the public IP address of their GCB broker).
+  All Condor daemons using a GCB broker will advertise themselves with
+  this single IP address, and in some cases, connections to/from those
+  daemons will actually originate at the broker.
+  This has implications for Condor's host/IP based security,
+  and the general level of confusion for users and
+  administrators of the pool.
+  Debugging problems will be more difficult, as any log messages which 
+  only print the IP address (not the name and/or port) will become ambiguous.
+  Even log or error messages that include the port will not necessarily
+  be helpful, as it is difficult to correlate ports on the broker
+  with the corresponding private nodes.
+
+<P>
+</LI>
+<LI>Can not function with Kerberos authentication.
+  Kerberos tickets include the IP address of the machine where they
+  were created.
+  However, when Condor daemons are using GCB, they use a different IP
+  address, and therefore, any attempt to authenticate
+  using Kerberos will fail, as Kerberos will consider this a (poor)
+  attempt to fool it into using an invalid host principle.
+
+<P>
+</LI>
+<LI>Scalability and performance degradation: 
+  
+<UL>
+<LI>Connections are more expensive to establish.
+</LI>
+<LI>In some cases, connections must be forwarded through a proxy
+    server on the GCB broker.
+</LI>
+<LI>Each network port on each private node must correspond to a
+    unique port on the broker host, so there is a fixed limit to how
+    many private nodes a given broker can service (which is a function
+    of the number of ports each private node requires and the total
+    number of available ports on the broker).
+</LI>
+<LI>Each private node must maintain an open TCP connection to its
+    GCB broker.  GCB will attempt to recover in the case of the socket
+    being closed, but this means the broker must have at least as many
+    sockets open as there are private nodes.
+  
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI>It is more complex to configure and debug.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Given the increased complexity, use of GCB requires a careful
+read of this entire manual section, followed by a thorough
+installation.
+
+<P>
+Details of GCB and how it works can be found at the GCB
+homepage:
+
+<P>
+<A NAME="tex2html51"
+  HREF="http://www.cs.wisc.edu/condor/gcb">http://www.cs.wisc.edu/condor/gcb</A>
+<P>
+This information is useful for understanding the technical
+details of how GCB works, and the various parts of the system.
+While some of the information is partly out of date (especially the
+discussion of how to configure GCB) most of the sections are perfectly
+accurate and worth reading.
+Ignore the section on ``GCBnize'', which describes
+how to get a given application to use GCB, as 
+the Linux port of all Condor daemons and tools have already 
+been converted to use GCB.
+
+<P>
+The rest of this section gives the details for configuring a
+Condor pool to use GCB.
+It is divided into the following topics:
+
+<P>
+
+<UL>
+<LI>Introduction to the GCB broker
+</LI>
+<LI>Configuring the GCB broker
+</LI>
+<LI>Spawning a GCB broker (with a <I>condor_master</I> or using <I>initd</I>)
+</LI>
+<LI>How to configure Condor machines to use GCB
+</LI>
+<LI>Configuring the GCB routing table
+</LI>
+<LI>Implications for Condor's host/IP security settings
+</LI>
+<LI>Implications for other Condor configuration settings
+</LI>
+</UL>
+
+<P>
+
+<H3><A NAME="SECTION00474100000000000000"></A><A NAME="sec:GCB-Broker-Intro"></A>
+<BR>
+3.7.4.1 Introduction to the GCB Broker
+</H3>
+
+<P>
+<A NAME="30160"></A>
+<A NAME="30161"></A>
+At the heart of GCB is a logical entity known as a <I>broker</I> or
+<I>inagent</I>.
+In reality, the entity is made up of daemon
+processes running on
+the same machine comprised of the <I>gcb_broker</I> and a set of
+<I>gcb_relay_server</I> processes, each one spawned by the
+<I>gcb_broker</I>.
+
+<P>
+Every private network using GCB
+must have at least one broker to arrange connections.
+The broker must be installed on a machine that nodes in both the
+public and the private (firewalled) network can directly talk to.
+The broker need not be able to initiate connections to the
+private nodes.  
+It can take advantage of the case where it can
+initiate connections to the private nodes, and that will improve
+performance. 
+The broker is generally installed on a 
+machine with multiple network interfaces
+(on the network boundary) or just outside
+of a network that allows outbound connections.
+If the private network contains many hosts, sites can configure
+multiple GCB brokers, and partition the private nodes so that different
+subsets of the nodes use different brokers.
+
+<P>
+For a more thorough explanation of what a GCB broker is, check out:
+<A NAME="tex2html52"
+  HREF="http://www.cs.wisc.edu/~sschang/firewall/gcb/mechanism.htm">http://www.cs.wisc.edu/~sschang/firewall/gcb/mechanism.htm</A>
+<P>
+A GCB broker should generally be installed on a dedicated machine.
+These are machines that are not running other Condor daemons or services.
+If running any other Condor service 
+(for example, the central manager of the pool)
+on the same machine as the GCB broker,
+all other machines attempting
+to use this Condor service
+(for example, to connect to the <I>condor_collector</I> or <I>condor_negotiator</I>)
+will incur additional connection costs and latency.
+It is possible that future versions of GCB and Condor will be able to
+overcome these limitations, but for now, we recommend that a broker
+is run on a dedicated machine with no other Condor daemons (except
+perhaps a single <I>condor_master</I> used to spawn the <I>gcb_broker</I>
+daemon, as described below).
+
+<P>
+In principle, a GCB broker is a network element that functions almost
+like a router.
+It allows certain connections through the firewall by redirecting
+connections or forwarding connections.
+In general, it is not a good idea to run a lot of other services on
+the network elements, especially not services like Condor which can
+spawn arbitrary jobs.
+Furthermore, the GCB broker relies on listening to many network
+ports.
+If other applications are running on the same host as the broker,
+problems exist
+where the broker does not have enough network
+ports available to forward all the connections that might be required
+of it.
+Also, all nodes inside a private network rely on the GCB broker for
+all incoming communication.
+For performance reasons, avoid forcing the GCB broker to
+contend with other processes for system resources, such that it is always
+available to handle communication requests.
+There is nothing in GCB or Condor requiring
+the broker to run on a separate machine, 
+but it is the recommended configuration.
+
+<P>
+<A NAME="30172"></A>
+The <I>gcb_broker</I> daemon listens on two hard-coded,
+fixed ports (65432 and 65430).
+A future version of Condor and GCB will remove this limitation.
+However, for now, to run a <I>gcb_broker</I> on a
+given host, ensure that ports 65432 and 65430 are not already
+in use. 
+
+<P>
+If <TT>root</TT> access on a machine where a GCB 
+broker is planned, one good option is to have <I>initd</I> configured to
+spawn (and re-spawn) the <I>gcb_broker</I> binary (which is located in
+the <TT>&lt;release_dir&gt;/libexec</TT> directory).
+This way, the <I>gcb_broker</I> will be automatically restarted on
+reboots, or in the event that the broker itself crashes or is killed.
+Without <TT>root</TT> access, use a <I>condor_master</I> to
+manage the <I>gcb_broker</I> binary. 
+
+<P>
+
+<H3><A NAME="SECTION00474200000000000000"></A><A NAME="sec:GCB-Broker-Config"></A>
+<BR>
+3.7.4.2 Configuring the GCB broker
+</H3>
+
+<P>
+<A NAME="30184"></A>
+Since the <I>gcb_broker</I> and <I>gcb_relay_server</I> are not
+Condor daemons, they do not read the Condor configuration
+files.
+Therefore, they must be configured by other means, namely the
+environment and through the use of command-line arguments.
+
+<P>
+There is one required command-line argument for the <I>gcb_broker</I>.
+This argument defines the public IP address this broker will use to
+represent itself and any private network nodes that are configured to
+use this broker.
+This information is defined with <B>-i xxx.xxx.xxx.xxx</B> on the
+command-line when the <I>gcb_broker</I> is executed.
+If the broker is being setup outside the private network, it is likely
+that the machine will only have one IP address, which is clearly the
+one to use.
+However, if the broker is being run on a machine on the
+network boundary (a multi-homed machine with interfaces into both the
+private and public networks), be sure to use the IP address of the
+interface on the public network.
+
+<P>
+Additionally, specify environment variables to control
+how the <I>gcb_broker</I> (and the <I>gcb_relay_server</I>
+processes it spawns) will behave.
+Some of these settings can also be specified as command-line
+arguments to the <I>gcb_broker</I>.
+All of them have reasonable defaults if not defined.
+
+<P>
+
+<UL>
+<LI>General daemon behavior
+
+<P>
+<DL>
+<DT></DT>
+<DD>The environment variable <TT>GCB_RELAY_SERVER</TT> <A NAME="Env:GCB-relay-server"></A>  defines the full path to the <TT>gcb_relay_server</TT> binary
+  the broker should use.
+  The command-line override for this is <B>-r /full/path/to/relayserver</B>.
+  If not set either on the command-line or in the environment,
+  the <I>gcb_broker</I> process will search for a program named
+  <TT>gcb_relay_server</TT> in the same directory where the
+  <TT>gcb_broker</TT> binary is located, and attempt to use that one.
+
+<P>
+</DD>
+<DT></DT>
+<DD>The environment variable <TT>GCB_ACTIVE_TO_CLIENT</TT>
+  <A NAME="Env:GCB-active-to-client"></A>  is a boolean that defines whether the GCB broker can directly talk to servers
+  running inside the network that it manages
+  The value must be <code>yes</code> or <code>no</code>, case sensitive.
+  <TT>GCB_ACTIVE_TO_CLIENT</TT> should be set to <code>yes</code> only if
+  this GCB broker is running on a network boundary and can connect to
+  both the private and public nodes.
+  If the broker is running in the public network, it should be left
+  undefined or set to <code>no</code>.
+
+<P>
+</DD>
+</DL>
+
+<P>
+</LI>
+<LI>Log file locations
+
+<P>
+<DL>
+<DT></DT>
+<DD>The environment variable <TT>GCB_LOG_DIR</TT> <A NAME="Env:GCB-log-dir"></A>  defines a directory to use for all GCB-related log files.
+  If defined, and the per-daemon log file settings (described
+  below) are not defined, the broker will write to
+  <code>$GCB_LOG_DIR/BrokerLog</code> and the relay server will write to
+  <code>$GCB_LOG_DIR/RelayServerLog.&lt;pid&gt;</code>
+
+<P>
+</DD>
+<DT></DT>
+<DD>The environment variable <TT>GCB_BROKER_LOG</TT> <A NAME="Env:GCB-broker-log"></A>  defines the full path for the GCB broker's log file.
+  The command-line override is <B>-l /full/path/to/log/file</B>.
+  This definition overrides <TT>GCB_LOG_DIR</TT>.
+
+<P>
+</DD>
+<DT></DT>
+<DD>The environment variable <TT>GCB_RELAY_SERVER_LOG</TT>
+  <A NAME="Env:GCB-relay-server-log"></A>  defines the full path to the GCB relay server's log file.
+  Each relay server writes its own log file, so the actual filename
+  will be: <code>$GCB_RELAY_SERVER_LOG.&lt;pid&gt;</code> where <code>&lt;pid&gt;</code> is
+  replaced with the process id of the corresponding
+  <I>gcb_relay_server</I>.
+  When defined, this setting overrides <TT>GCB_LOG_DIR</TT>.
+
+<P>
+</DD>
+</DL>
+
+<P>
+</LI>
+<LI>Verbose logging 
+
+<P>
+<DL>
+<DT></DT>
+<DD>The environment variable <TT>GCB_DEBUG_LEVEL</TT> 
+  <A NAME="Env:GCB-DEBUG-LEVEL"></A>  controls how verbose all the GCB daemon's log files should be.
+  Can be either <code>fulldebug</code> (more verbose) or <code>basic</code>.
+  This defines logging behavior for all GCB daemons, unless
+  the following daemon-specific settings are defined.
+
+<P>
+</DD>
+<DT></DT>
+<DD>The environment variable <TT>GCB_BROKER_DEBUG</TT>
+  <A NAME="Env:GCB-BROKER-DEBUG"></A>  controls verbose logging specifically for the GCB broker.
+  The command-line override for this is <B>-d level</B>.
+  Overrides <TT>GCB_DEBUG_LEVEL</TT>. 
+
+<P>
+</DD>
+<DT></DT>
+<DD>The environment variable <TT>GCB_RELAY_SERVER_DEBUG</TT> 
+  <A NAME="Env:GCB-RELAY-SERVER-DEBUG"></A>  controls verbose logging specifically for the GCB relay server.  
+  Overrides <TT>GCB_DEBUG_LEVEL</TT>. 
+
+<P>
+</DD>
+</DL>
+
+<P>
+</LI>
+<LI>Maximum log file size
+
+<P>
+<DL>
+<DT></DT>
+<DD>The environment variable <TT>GCB_MAX_LOG</TT> <A NAME="Env:GCB-MAX-LOG"></A>  defines the maximum size in bytes of all GCB log files.
+  When the log file reaches this size, the content of the file will be
+  moved to <TT>filename.old</TT>, and a new log is started.
+  This defines logging behavior for all GCB daemons, unless
+  the following daemon-specific settings are used.
+
+<P>
+</DD>
+<DT></DT>
+<DD>The environment variable <TT>GCB_BROKER_MAX_LOG</TT> <A NAME="Env:GCB-BROKER-MAX-LOG"></A>  defines the maximum size in bytes of the GCB broker log file.
+
+<P>
+</DD>
+<DT></DT>
+<DD>The environment variable <TT>GCB_RELAY_SERVER_MAX_LOG</TT> 
+  <A NAME="Env:GCB-RELAY-SERVER-MAX-LOG"></A>  defines the maximum size in bytes of the GCB relay server log file.
+
+<P>
+</DD>
+</DL>
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<H3><A NAME="SECTION00474300000000000000"></A><A NAME="sec:GCB-broker-spawn"></A>
+<BR>
+3.7.4.3 Spawning the GCB Broker
+</H3>
+
+<P>
+<A NAME="30240"></A>
+There are two ways to spawn the GCB broker:
+
+<P>
+
+<UL>
+<LI>Use a <I>condor_master</I>.
+
+<P>
+To spawn the GCB broker with a <I>condor_master</I>, here are 
+the recommended <TT>condor_config</TT> settings that will work:
+
+<P>
+<PRE>
+# Specify that you only want the master and the broker running
+DAEMON_LIST = MASTER, GCB_BROKER
+
+# Define the path to the broker binary for the master to spawn
+GCB_BROKER = $(RELEASE_DIR)/libexec/gcb_broker
+
+# Define the path to the release_server binary for the broker to use 
+GCB_RELAY = $(RELEASE_DIR)/libexec/gcb_relay_server
+
+# Setup the gcb_broker's environment.  We use a macro to build up the
+# environment we want in pieces, and then finally define
+# GCB_BROKER_ENVIRONMENT, the setting that condor_master uses.
+
+# Initialize an empty macro
+GCB_BROKER_ENV =
+
+# (recommended) Provide the full path to the gcb_relay_server
+GCB_BROKER_ENV = $(GCB_BROKER_ENV);GCB_RELAY_SERVER=$(GCB_RELAY)
+
+# (recommended) Tell GCB to write all log files into the Condor log
+# directory (the directory used by the condor_master itself)
+GCB_BROKER_ENV = $(GCB_BROKER_ENV);GCB_LOG_DIR=$(LOG)
+# Or, you can specify a log file separately for each GCB daemon:
+#GCB_BROKER_ENV = $(GCB_BROKER_ENV);GCB_BROKER_LOG=$(LOG)/GCB_Broker_Log
+#GCB_BROKER_ENV = $(GCB_BROKER_ENV);GCB_RELAY_SERVER_LOG=$(LOG)/GCB_RS_Log
+
+# (optional -- only set if true) Tell the GCB broker that it can
+# directly connect to machines in the private network which it is
+# handling communication for.  This should only be enabled if the GCB
+# broker is running directly on a network boundary and can open direct
+# connections to the private nodes.
+#GCB_BROKER_ENV = $(GCB_BROKER_ENV);GCB_ACTIVE_TO_CLIENT=yes
+
+# (optional) turn on verbose logging for all of GCB
+#GCB_BROKER_ENV = $(GCB_BROKER_ENV);GCB_DEBUG_LEVEL=fulldebug
+# Or, you can turn this on separately for each GCB daemon:
+#GCB_BROKER_ENV = $(GCB_BROKER_ENV);GCB_BROKER_DEBUG=fulldebug
+#GCB_BROKER_ENV = $(GCB_BROKER_ENV);GCB_RELAY_SERVER_DEBUG=fulldebug
+
+# (optional) specify the maximum log file size (in bytes)
+#GCB_BROKER_ENV = $(GCB_BROKER_ENV);GCB_MAX_LOG=640000
+# Or, you can define this separately for each GCB daemon:
+#GCB_BROKER_ENV = $(GCB_BROKER_ENV);GCB_BROKER_MAX_LOG=640000
+#GCB_BROKER_ENV = $(GCB_BROKER_ENV);GCB_RELAY_SERVER_MAX_LOG=640000
+
+# Finally, set the value the condor_master really uses
+GCB_BROKER_ENVIRONMENT = $(GCB_BROKER_ENV)
+
+# If your Condor installation on this host already has a public
+# interface as the default (either because it is the first interface
+# listed in this machine's host entry, or because you've already
+# defined NETWORK_INTERFACE), you can just use Condor's special macro
+# that holds the IP address for this.
+GCB_BROKER_IP = $(ip_address)
+# Otherwise, you could define it yourself with your real public IP:
+# GCB_BROKER_IP = 123.123.123.123
+
+# (required) define the command-line arguments for the broker 
+GCB_BROKER_ARGS = -i $(GCB_BROKER_IP)
+</PRE>
+<P>
+Once those settings are in place, either spawn or restart the
+<I>condor_master</I> and the <I>gcb_broker</I> should be started.
+Ensure the broker is running by reading the log file
+specified with <TT>GCB_BROKER_LOG</TT>, or in
+<TT><TT>$(LOG)</TT>/BrokerLog</TT> if using the default.
+
+<P>
+</LI>
+<LI>Use <I>initd</I>.
+
+<P>
+The system's <I>initd</I> may be used to manage the
+<I>gcb_broker</I> without running the <I>condor_master</I> on the broker
+node, but this requires <TT>root</TT> access.
+Generally, this involves adding a line to the <TT>/etc/inittab</TT>
+file.
+Some sites use other means to manage and generate the
+<TT>/etc/inittab</TT>, such as <I>cfengine</I> or other system configuration
+management tools, so check with the local system administrator
+to be sure.
+An example line might be something like:
+
+<P>
+<PRE>
+GB:23:respawn:/path/to/gcb_broker -i 123.123.123.123 -r /path/to/relay_server
+</PRE>
+<P>
+It may be easier to wrap the <I>gcb_broker</I> binary
+in a shell script, in order to change the command-line arguments (and
+set environment variables) without having to edit <TT>/etc/inittab</TT>
+all the time.
+This will be similar to:
+
+<P>
+<PRE>
+GB:23:respawn:/opt/condor-6.7.13/libexec/gcb_broker.sh
+</PRE>
+<P>
+Then, create the wrapper, as similar to: 
+
+<P>
+<PRE>
+#!/bin/sh
+
+libexec=/opt/condor-6.7.13/libexec
+ip=123.123.123.123
+relay=$libexec/gcb_relay_server
+
+exec $libexec/gcb_broker -i $ip -r $relay
+</PRE>
+<P>
+You will probably also want to set some environment variables to tell
+the GCB daemons where to write their log files (<TT>GCB_LOG_DIR</TT>),
+and possibly some of the other variables described above.
+
+<P>
+Either way, after updating the <TT>/etc/inittab</TT>, send
+the <I>initd</I> process (always PID 1) a <code>SIGHUP</code> signal, and it
+will re-read the <TT>inittab</TT> and spawn the <I>gcb_broker</I>.
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<H3><A NAME="SECTION00474400000000000000"></A><A NAME="sec:GCB-condor-config"></A>
+<BR>
+3.7.4.4 Configuring Condor nodes to be GCB clients
+</H3>
+
+<P>
+<A NAME="30274"></A>
+In general, before configuring a node in a Condor pool to use GCB,
+the GCB broker node(s) for the pool must be set up and running.
+Set up, configure, and spawn the broker first.
+
+<P>
+To enable the use of GCB on a given Condor host, set the following
+Condor configuration variables:
+
+<P>
+<PRE>
+# Tell Condor to use a network remapping service (currently only GCB
+# is supported, but in the future, there might be other options)
+NET_REMAP_ENABLE = true
+NET_REMAP_SERVICE = GCB
+</PRE>
+<P>
+Only GCB clients within a private network need to define the following
+variable, which specifies the IP addresses of the brokers serving this
+network.
+Note that these IP addresses must match the IP address
+that was specified on each
+broker's command-line with the <B>-i</B> option.
+
+<P>
+<PRE>
+# Public IP address (in standard dot notation) of the GCB broker(s)
+# serving this private node.
+NET_REMAP_INAGENT = xxx.xxx.xxx.xxx, yyy.yyy.yyy.yyy
+</PRE>
+<P>
+When more than one IP address is given, the <I>condor_master</I> picks one at
+random for it and all of its descendants to use.
+Because the <TT>NET_REMAP_INAGENT</TT> setting is only
+valid on private nodes, it should not be defined in a global
+Condor configuration file (<TT>condor_config</TT>) if the pool also
+contains nodes on a public network.
+
+<P>
+Finally, if setting up  the recommended (but optional) GCB routing table, 
+tell Condor daemons where to find their table.
+Define the following variable:
+
+<P>
+<PRE>
+# The full path to the routing table used by GCB
+NET_REMAP_ROUTE = /full/path/to/GCB-routing-table
+</PRE>
+<P>
+Setting <TT>NET_REMAP_ENABLE</TT> causes the
+<TT>BIND_ALL_INTERFACES</TT> <A NAME="30549"></A> <A NAME="30550"></A> variable to be automatically set.
+More information about this setting can be found in
+section&nbsp;<A HREF="#sec:Using-BindAllInterfaces">3.7.2</A> on
+page&nbsp;<A HREF="3_7Networking_includes.html#sec:Using-BindAllInterfaces"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+It would not hurt to place the following in the
+configuration file near the other GCB-related settings,
+just to remember it:
+
+<P>
+<PRE>
+# Tell Condor to bind to all network interfaces, instead of a single
+# interface.
+BIND_ALL_INTERFACES = true
+</PRE>
+<P>
+Once a GCB broker is set up and running to manage connections for
+each private network, and the Condor installation for all the nodes in
+either private and public networks are configured to enable GCB,
+restart the Condor daemons, and all of the different machines
+should be able to communicate with each other.
+
+<P>
+
+<H3><A NAME="SECTION00474500000000000000"></A><A NAME="sec:GCB-routing-table"></A>
+<BR>
+3.7.4.5 Configuring the GCB
+  routing table
+</H3> 
+
+<P>
+<A NAME="30292"></A>
+By default, a GCB-enabled application will always attempt to directly
+connect to a given IP/port pair.
+In the case of a private nodes being represented by a GCB broker, the
+IP/port will be a proxy socket on the broker node, not the real
+address at each private node.
+When the GCB broker receives a direct connection to one of its proxy 
+sockets, it notifies the corresponding private node, which
+establishes a new connection to the broker.
+The broker then forwards packets between these two sockets,
+establishing a communication pathway into the private node.
+This allows clients which are not linked with the GCB libraries to communicate
+with private nodes using a GCB broker.
+
+<P>
+This mechanism is expensive
+in terms of latency (time between messages) and total bandwidth
+(how much data can be moved in a given time period),
+as well as expensive in terms of the broker's
+system resources such as network I/O, processor time, and memory.
+This expensive mechanism is 
+unnecessary in the case of
+GCB-aware clients trying to connect to private nodes that can directly
+communicate with the public host.
+The alternative is to contact the GCB broker's command interface (the
+fixed port where the broker is listening for GCB management commands),
+and use
+a GCB-specific protocol to request a connection to the given IP/port.
+In this case, the GCB broker will notify the private node to directly
+connect to the public client (technically, to a new socket created by
+the GCB client library linked in with the client's application), and a
+direct socket between the two is established, removing the need for
+packet forwarding between the proxy sockets at the GCB broker.
+
+<P>
+On the other hand, in cases where a direct connection from the client
+to a given server is possible
+(for example, two GCB-aware clients in the same
+public network attempting to communicate with each other),
+it is
+expensive and unnecessary to attempt to contact a GCB broker, and the
+client should connect directly.
+
+<P>
+To allow a GCB-enabled client to know if it should make a direct
+connection (which might involve packet forwarding through proxy
+sockets), or if it should use the GCB protocol to communicate with the
+broker's command port and arrange a direct socket,
+GCB provides a <I>routing table</I>.
+Using this table, an administrator can define what IP addresses should
+be considered private nodes where the GCB connection protocol will be
+used, and what nodes are public, where a direct connection (without
+incurring the latency of contacting the GCB broker, only to find out
+there is no information about the given IP/port) should be made
+immediately. 
+
+<P>
+If the attempt to contact the GCB broker for a given IP/port fails, or
+if the desired port is not being managed by the broker, the GCB client
+library making the connection will fall back and attempt a direct
+connection.
+Therefore, configuring a GCB routing table is not required for
+communication to work within a GCB-enabled environment.
+However, the GCB routing table can significantly improve performance
+for communication with private nodes being represented by a GCB
+broker. 
+
+<P>
+One confusing aspect of GCB is that all of the nodes on a private
+network believe that their own IP address is the address of their GCB
+broker.
+Due to this, all the Condor daemons on a private network advertise
+themselves with the same IP address (though the broker will map the
+different ports to different nodes within the private network).
+Therefore, a given node in the public network needs to be told that if
+it is contacting this IP address, it should know that the IP address is really
+a GCB broker representing a node in the private network, so that 
+the public network node
+can contact the broker to arrange a single socket from the private
+node to the public one, instead of relying on forwarding packets
+between proxy sockets at the broker.
+Any other addresses, such as other public IP addresses, can be
+contacted directly, without going through a GCB broker.
+Similarly, other nodes within the same private network will still be
+advertising their address with their GCB broker's public IP address.
+So, nodes within the same private network also have to know that the
+public IP address of the broker is really a GCB broker, yet all other public
+IP addresses are valid for direct communication.
+
+<P>
+In general, all connections can be made directly, except to a host
+represented by a GCB broker.
+Furthermore, the default behavior of the GCB client library is to make
+a direct connection.
+The routing table is a (somewhat complicated) way to tell a
+given GCB installation what GCB brokers it might have to communicate
+with, and that it should directly communicate with anything else.
+In practice, the routing table should have a single entry for
+each GCB broker in the system.
+Future versions of GCB will be able to make use of more complicated
+routing behavior, which is why the full routing table infrastructure
+described below is implemented, even if the current version of GCB is
+not taking advantage of all of it.
+
+<P>
+<B>Format of the GCB routing table</B>
+<A NAME="30295"></A>
+
+<P>
+The routing table is a plain ASCII text file.
+Each line of the file contains one rule.
+Each rule consists of a <I>target</I> and a <I>method</I>.
+The target specifies destination IP address(es) to match, and the method
+defines what mechanism must be used to connect to the given target.
+The target must be a valid IP address string in the standard
+dotted notation, followed by a slash character (<code>/</code>),
+as well as an integer <I>mask</I>.
+The mask specifies how many bits of the destination IP address
+and target IP address must match.
+The method must be one of the strings 
+<PRE>
+    GCB
+    direct
+</PRE>
+GCB stops searching the table as soon as it finds a matching rule,
+therefore place more specific rules
+(rules with a larger value for the mask and without wild cards)
+before generic rules
+(rules with wild cards or smaller mask values).
+The default when no rule is matched is to use direct communication.
+Some examples and the corresponding routing tables may help clarify
+this syntax.
+
+<P>
+<B>Simple GCB routing table example (1 private, 1 public)</B>
+
+<P>
+Consider an example with
+a private network that has a set of nodes whose IP
+addresses are <code>192.168.2.*</code>.
+Other nodes are in a public network 
+whose IP addresses are <code>123.123.123.*</code>.
+A GCB broker for the 192
+network is running on IP address <code>123.123.123.123</code>.
+In this case, the routing table for both the public and private nodes
+should be:
+
+<P>
+<PRE>
+123.123.123.123/32 GCB
+</PRE>
+
+<P>
+This rule states that for IP addresses where all 32 bits exactly match
+the address <code>123.123.123.123</code>, first communicate with the GCB broker.
+
+<P>
+Since the default is to directly connect when no rule in the routing
+table matches a given target IP, this single rule is all that is
+required.
+However, to illustrate how the routing table syntax works, the
+following routing table is equivalent:
+
+<P>
+<PRE>
+123.123.123.123/32 GCB
+*/0 direct
+</PRE>
+
+<P>
+Any attempt to connect to <code>123.123.123.123</code> uses GCB,
+as it is the first rule in the file.
+All other IP addresses
+will connect directly.
+This table explicitly defines GCB's default behavior.
+
+<P>
+<B>More complex GCB routing table example (2 private, 1 public)</B>
+
+<P>
+As a more complicated case, consider a single Condor pool that
+spans one public network and two private networks.
+The two separate private networks each have machines
+with private addresses like <code>192.168.2.*</code>.
+Identify one of these private networks as <code>A</code>, and the other one
+as <code>B</code>. 
+The public network has nodes with IP addresses like
+<code>123.123.123.*</code>.
+Assume that the GCB broker for nodes in the <code>A</code> network 
+has IP address
+<code>123.123.123.65</code>,
+and the GCB broker for the nodes in the <code>B</code> network
+has IP address
+<code>123.123.123.66</code>.
+All of the nodes need to be able to talk to each other.
+In this case, nodes in private network <code>A</code> advertise
+themselves as <code>123.123.123.65</code>, so any node, regardless of being
+in A, B, or the public network, must treat that IP address as a GCB broker.
+Similarly, nodes in private network <code>B</code> advertise 
+themselves as <code>123.123.123.66</code>, so any node, regardless of being
+in A, B, or the public network, must treat that IP address as a GCB broker.
+All other connections from any node can be made directly.
+Therefore, here is the appropriate routing table for all nodes:
+
+<P>
+<PRE>
+123.123.123.65/32 GCB
+123.123.123.66/32 GCB
+</PRE>
+
+<P>
+
+<H3><A NAME="SECTION00474600000000000000"></A><A NAME="sec:GCB-host-security-implications"></A>
+<BR>
+3.7.4.6 Implications
+of GCB on Condor's Host/IP-based Security Configuration
+</H3> 
+
+<P>
+<A NAME="30310"></A>
+When a message is received at a Condor daemon's command socket,
+Condor authenticates based on the IP
+address of the incoming socket.
+For more information about this host-based security in Condor, see
+section&nbsp;<A HREF="3_6Security.html#sec:Host-Security">3.6.9</A> on page&nbsp;<A HREF="3_6Security.html#sec:Host-Security"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+Because of the way GCB changes the IP addresses that are used and
+advertised by GCB-enabled clients, and since all nodes being
+represented by a GCB broker are represented by different ports on the
+broker node (a process known as <I>address leasing</I>), using GCB has
+implications for this process.
+
+<P>
+Depending on the communication pathway used by a GCB-enabled Condor
+client (either a tool or another Condor daemon) to connect to a given
+Condor server daemon, and where in the network each side of the
+connection resides, the IP address of the resulting socket actually
+used will be very different.
+In the case of a private client (that is, a client behind a firewall,
+which may or may not be using NAT and a fully private, non-routable IP
+address) attempting to connect to a server, there are three
+possibilities: 
+
+<P>
+
+<UL>
+<LI>For a direct connection to another node within the private network,
+  the server will see the private IP address of the client.
+
+<P>
+</LI>
+<LI>For a direct outbound connection to a public node: if NAT is being
+  used, the server will see the IP address of the NAT server for the private
+  network.
+  If there is no NAT, and the firewall is blocking connections in
+  only one direction, but not re-writing IP addresses, the server will see
+  the client's real IP address.
+
+<P>
+</LI>
+<LI>For a connection to a host in a different private network that must
+  be relayed through the GCB broker, the server will see the IP
+  address of the GCB broker representing the server.
+  This is an instance of the private server case, as
+  described below.
+
+<P>
+</LI>
+</UL>
+
+<P>
+Therefore, any public server that wants to allow a command from a
+specific client must have any or all of the various IP addresses
+mentioned above within the appropriate <TT>HOSTALLOW</TT> settings.  In
+practice, that means opening up the <TT>HOSTALLOW</TT> settings to
+include not just the actual IP addresses of each node, but also the IP
+address of the various GCB brokers in use, and potentially, the public
+IP address of the NAT host for each private network.
+
+<P>
+However, given that all private nodes which are represented by a
+given GCB broker could potentially make connections to any other
+host using the GCB broker's IP address (whenever proxy socket
+forwarding is being used), if a single private node is being granted
+a certain level of permission within the Condor pool,
+all of the private nodes
+using the same GCB broker will have the same level of permission.
+This is particularly important in the consideration of granting
+<TT>HOSTALLOW_ADMINISTRATOR</TT> <A NAME="30564"></A> <A NAME="30565"></A> or <TT>HOSTALLOW_CONFIG</TT> <A NAME="30569"></A> <A NAME="30570"></A>
+privileges to a private node represented by a GCB broker.
+
+<P>
+In the case of a public client attempting to connect to a private
+server, there are only two possible cases:
+
+<P>
+
+<UL>
+<LI>the GCB broker can arrange a direct socket from the private server.
+  The private server will see the real public IP address of the client.
+
+<P>
+</LI>
+<LI>the GCB broker must forward packets from a proxy socket.
+  This may happen because
+  of a non-GCB aware public client,
+  a misconfigured or missing GCB routing table,
+  or a client in a different private network.
+  The private server will see the IP address of its own GCB broker.
+  In the case where the GCB broker runs on a node on the network
+  boundary, the private server will see the GCB broker's private IP
+  address (even if the GCB broker is also listening on the public
+  interface and the leased addresses it provides use the public IP
+  addresses). 
+  If the GCB broker is running entirely in the public network and cannot
+  directly connect to the private nodes, the private server will see
+  the remote connection as coming from the broker's public IP
+  address.
+
+<P>
+</LI>
+</UL>
+
+<P>
+This second case is particularly troubling.
+Since there are legitimate circumstances where a private server would
+need to use a forwarded proxy socket from its GCB broker, in general,
+the server should allow requests originating from its GCB broker.
+But, precisely because of the proxy forwarding, that implies that
+<I>any</I> client
+that can connect to the GCB broker would be allowed into the
+private server
+(if IP-based authorization was the only defense).
+
+<P>
+The final host-based security setting that requires special mention is
+<TT>HOSTALLOW_NEGOTIATOR</TT> <A NAME="30574"></A> <A NAME="30575"></A>.
+If the <I>condor_negotiator</I> for the pool is running on a private node
+being represented by a GCB broker, there must be
+modifications to the default value.
+For the purposes of Condor's host-based security, the
+<I>condor_negotiator</I> acts as a client when communicating with each 
+<I>condor_schedd</I> in the pool which has idle jobs that need to be
+matched with available resources.
+Therefore, all the possible cases of a private client attempting to
+connect to a given server apply to a private <I>condor_negotiator</I>.
+In practice, that means adding the public IP address of the broker, the real
+private IP address of the negotiator host, and possibly the 
+public IP address of
+the NAT host for this private network to the
+<TT>HOSTALLOW_NEGOTIATOR</TT> setting.
+Unfortunately, this implies that <I>any</I> host behind the
+same NAT host or using
+the same GCB broker will be authorized as if it was the
+<I>condor_negotiator</I>. 
+
+<P>
+Future versions of GCB and Condor will hopefully add some form of
+authentication and authorization to the GCB broker itself, to help
+alleviate these problems.
+Until then, sites using GCB are encouraged to use GSI strong
+authentication (since Kerberos also depends on IP addresses and is
+therefore incompatible with GCB) to rely on an authorization system
+that is not affected by address leasing.
+This is especially true for sites that (foolishly) choose to run their
+central manager on a private node.
+
+<P>
+
+<H3><A NAME="SECTION00474700000000000000"></A><A NAME="sec:GCB-config-implications"></A>
+<BR>
+3.7.4.7 Implications of
+GCB for Other Condor Configuration
+</H3> 
+
+<P>
+Using GCB and address leasing has implications for Condor
+configuration settings outside of the Host/IP-based security
+settings.
+Each is described. 
+
+<P>
+<DL>
+<DT><STRONG><TT>COLLECTOR_HOST</TT> <A NAME="30590"></A> <A NAME="30591"></A></STRONG></DT>
+<DD>If the <I>condor_collector</I> for the pool is running on a private node
+  being represented by a GCB broker, <TT>COLLECTOR_HOST</TT>
+  must be set to the host name or IP address of the GCB broker machine,
+  <I>not</I> the real host name/IP address of the private node
+  where the daemons are actually running.
+  When the <I>condor_collector</I> on the private node attempts to
+  <TT>bind()</TT> to its command port (9618 by default), it will
+  request port 9618 on the GCB broker node, instead.
+  The port is not a worry, but the host name or IP address 
+  is a worry.
+  When public nodes want to communicate with the <I>condor_collector</I>,
+  they must go through the GCB broker.
+  In theory, other nodes inside the same private network could be told
+  to directly use the private IP address of the <I>condor_collector</I> host,
+  but that is
+  unnecessary, and would probably lead to other confusion and
+  configuration problems.
+
+<P>
+However, because the <I>condor_collector</I> is listening on a fixed
+  port, and that single port is reserved on the GCB broker node, no
+  two private nodes using the same broker can attempt to use the same
+  port for their <I>condor_collector</I>.
+  Therefore, any site that is attempting to set up multiple pools
+  within the same private network is strongly encouraged to set up
+  separate GCB brokers for each pool.
+  Otherwise, one or both of the pools must use a
+  non-standard port for the <I>condor_collector</I>, which adds yet more
+  complication to an already complicated situation. 
+
+<P>
+</DD>
+<DT><STRONG><TT>CKPT_SERVER_HOST</TT> <A NAME="30611"></A> <A NAME="30612"></A></STRONG></DT>
+<DD>Much like the case for <TT>COLLECTOR_HOST</TT> described above,
+  a checkpoint server on a private node will have to lease a port on
+  the GCB broker node.
+  However, the checkpoint server also uses a fixed port, and unlike
+  the <I>condor_collector</I>, there is no way to configure an alternate
+  value.
+  Therefore, only a single checkpoint server can be run behind a given
+  GCB broker.
+  The same solution works: if multiple checkpoint servers are required,
+  multiple
+  GCB brokers are deployed and configured.
+  Furthermore, the host name of the GCB broker should be used as the
+  value for <TT>CKPT_SERVER_HOST</TT>, not the real IP address or host name
+  of the private node where the <I>condor_ckpt_server</I> is running.
+
+<P>
+</DD>
+<DT><STRONG><TT>SEC_DEFAULT_AUTHENTICATION_METHODS</TT> <A NAME="30622"></A> <A NAME="30623"></A></STRONG></DT>
+<DD><code>KERBEROS</code> may not be used for authentication
+  on a GCB-enabled pool.
+  The IP addresses used in various
+  circumstances will not be the real IP addresses of the machines.
+  Since Kerberos stores the IP address of each host as part of the
+  Kerberos ticket, authentication will fail on a GCB-enabled
+  pool.
+
+<P>
+</DD>
+</DL>
+
+<P>
+Due to the complications and security limitations that arise from
+running a central manager on a private node represented by GCB (both
+regarding the <TT>COLLECTOR_HOST</TT> and
+<TT>HOSTALLOW_NEGOTIATOR</TT>), we
+recommend that sites avoid locating a central manager on a private
+host whenever possible.
+
+<P>
+
+<H2><A NAME="SECTION00475000000000000000"></A><A NAME="sec:tcp-collector-update"></A>
+<BR>
+3.7.5 Using TCP to Send Updates to
+the <I>condor_collector</I>
+</H2>
+
+<P>
+<A NAME="30986"></A>
+<A NAME="30987"></A>
+<A NAME="30988"></A>
+<A NAME="30989"></A>
+<A NAME="30990"></A>
+
+<P>
+TCP sockets are reliable, connection-based sockets that guarantee
+the delivery of any data sent.
+However, TCP sockets are fairly expensive to establish, and there is more
+network overhead involved in sending and receiving messages.
+
+<P>
+UDP sockets are datagrams, and are not reliable.
+There is very little overhead in establishing or using a UDP socket,
+but there is also no guarantee that the data will be delivered.
+All previous Condor versions used UDP sockets to send updates to
+the <I>condor_collector</I>, and this did not cause problems.
+
+<P>
+Condor can be configured to use TCP
+sockets to send updates to the <I>condor_collector</I> instead of
+UDP datagrams.
+It is <I>not</I> intended for most sites.
+This feature is targeted at sites where UDP updates are
+lost because of the underlying network.
+Most Condor administrators that believe this is a good idea for
+their site are wrong.
+Do not enable this feature just because it sounds like a good idea.
+The only cases where an administrator would want this feature are if
+the ClassAd updates are consistently not getting to the
+<I>condor_collector</I>.
+An example where this may happen is if the pool is comprised of
+machines across a wide area network (WAN) where UDP packets are
+frequently dropped.
+
+<P>
+Configuration variables are set to enable the use of TCP sockets.
+There are two variables that an
+administrator must define to enable this feature:
+
+<P>
+<DL>
+<DT><STRONG><TT>UPDATE_COLLECTOR_WITH_TCP</TT> <A NAME="31025"></A> <A NAME="31026"></A></STRONG></DT>
+<DD>When set to <TT>True</TT>, the Condor daemons to use TCP to
+  update the <I>condor_collector</I>, instead of the default UDP.
+  Defaults to <TT>False</TT>.
+
+<P>
+</DD>
+<DT><STRONG><TT>COLLECTOR_SOCKET_CACHE_SIZE</TT> <A NAME="31034"></A> <A NAME="31035"></A></STRONG></DT>
+<DD>Specifies the number of TCP sockets cached at the <I>condor_collector</I>.
+  The default value for this setting is 0, with no cache enabled.
+
+<P>
+</DD>
+</DL>
+
+<P>
+The use of a cache allows Condor to leave established TCP sockets open,
+facilitating much better performance.
+Subsequent updates can reuse an already open socket.
+The work to establish a TCP connection may be lengthy,
+including authentication and setting up encryption.
+Therefore, Condor requires that
+a socket cache be defined if TCP updates are to be used.
+TCP updates will be refused by the <I>condor_collector</I> daemon
+if a cache is not enabled.
+
+<P>
+Each Condor daemon will have 1 socket open to the <I>condor_collector</I>.
+So, in a pool with N machines, each of them running a <I>condor_master</I>,
+<I>condor_schedd</I>, and <I>condor_startd</I>, the <I>condor_collector</I> would
+need a socket cache that has at least 3*N entries.
+Machines running Personal Condor in the pool need
+an additional two entries (for the <I>condor_master</I> and
+<I>condor_schedd</I>) for each Personal Condor installation.
+
+<P>
+Every cache entry utilizes a file descriptor within the
+<I>condor_collector</I> daemon.
+Therefore, be careful not to define a cache that
+is larger than the number of file descriptors the underlying operating
+system allocates for a single process.
+
+<P>
+<U>NOTE</U>: At this time, <TT>UPDATE_COLLECTOR_WITH_TCP</TT>, only
+affects the main <I>condor_collector</I> for the site, not any sites that
+a <I>condor_schedd</I> might flock to.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1223"
+  HREF="3_8Checkpoint_Server.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1217"
+  HREF="3_Administrators_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1211"
+  HREF="3_6Security.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1219"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1221"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1224"
+  HREF="3_8Checkpoint_Server.html">3.8 The Checkpoint Server</A>
+<B> Up:</B> <A NAME="tex2html1218"
+  HREF="3_Administrators_Manual.html">3. Administrators' Manual</A>
+<B> Previous:</B> <A NAME="tex2html1212"
+  HREF="3_6Security.html">3.6 Security</A>
+ &nbsp; <B>  <A NAME="tex2html1220"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1222"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

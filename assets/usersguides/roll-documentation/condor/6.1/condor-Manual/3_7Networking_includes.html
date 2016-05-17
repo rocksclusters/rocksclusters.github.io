@@ -1,0 +1,1406 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>3.7 Networking (includes sections on Port Usage and CCB)</TITLE>
+<META NAME="description" CONTENT="3.7 Networking (includes sections on Port Usage and CCB)">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="3_8Checkpoint_Server.html">
+<LINK REL="previous" HREF="3_6Security.html">
+<LINK REL="up" HREF="3_Administrators_Manual.html">
+<LINK REL="next" HREF="3_8Checkpoint_Server.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html1523"
+  HREF="3_8Checkpoint_Server.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1517"
+  HREF="3_Administrators_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1511"
+  HREF="3_6Security.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1519"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1521"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1524"
+  HREF="3_8Checkpoint_Server.html">3.8 The Checkpoint Server</A>
+<B> Up:</B> <A NAME="tex2html1518"
+  HREF="3_Administrators_Manual.html">3. Administrators' Manual</A>
+<B> Previous:</B> <A NAME="tex2html1512"
+  HREF="3_6Security.html">3.6 Security</A>
+ &nbsp; <B>  <A NAME="tex2html1520"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1522"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html1525"
+  HREF="3_7Networking_includes.html#SECTION00471000000000000000">3.7.1 Port Usage in Condor</A>
+<UL>
+<LI><A NAME="tex2html1526"
+  HREF="3_7Networking_includes.html#SECTION00471100000000000000">3.7.1.1 IPv4 Port Specification</A>
+<LI><A NAME="tex2html1527"
+  HREF="3_7Networking_includes.html#SECTION00471200000000000000">3.7.1.2 Default Port Usage</A>
+<LI><A NAME="tex2html1528"
+  HREF="3_7Networking_includes.html#SECTION00471300000000000000">3.7.1.3 Using 
+a Non Standard, Fixed Port for the <I>condor_collector</I></A>
+<LI><A NAME="tex2html1529"
+  HREF="3_7Networking_includes.html#SECTION00471400000000000000">3.7.1.4 Using 
+a Dynamically Assigned Port for the <I>condor_collector</I></A>
+<LI><A NAME="tex2html1530"
+  HREF="3_7Networking_includes.html#SECTION00471500000000000000">3.7.1.5 Restricting Port Usage to
+ Operate with Firewalls</A>
+<LI><A NAME="tex2html1531"
+  HREF="3_7Networking_includes.html#SECTION00471600000000000000">3.7.1.6 Multiple Collectors</A>
+<LI><A NAME="tex2html1532"
+  HREF="3_7Networking_includes.html#SECTION00471700000000000000">3.7.1.7 Port Conflicts</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1533"
+  HREF="3_7Networking_includes.html#SECTION00472000000000000000">3.7.2 Reducing Port Usage with the <I>condor_shared_port</I> Daemon</A>
+<LI><A NAME="tex2html1534"
+  HREF="3_7Networking_includes.html#SECTION00473000000000000000">3.7.3 Configuring Condor for
+Machines With Multiple Network Interfaces </A>
+<UL>
+<LI><A NAME="tex2html1535"
+  HREF="3_7Networking_includes.html#SECTION00473100000000000000">3.7.3.1 Using 
+BIND_ALL_INTERFACES</A>
+<LI><A NAME="tex2html1536"
+  HREF="3_7Networking_includes.html#SECTION00473200000000000000">3.7.3.2 Central Manager with Two or More NICs</A>
+<LI><A NAME="tex2html1537"
+  HREF="3_7Networking_includes.html#SECTION00473300000000000000">3.7.3.3 A Client Machine with Multiple Interfaces</A>
+<LI><A NAME="tex2html1538"
+  HREF="3_7Networking_includes.html#SECTION00473400000000000000">3.7.3.4 A Checkpoint Server on a Machine with Multiple NICs</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1539"
+  HREF="3_7Networking_includes.html#SECTION00474000000000000000">3.7.4 Condor Connection Brokering (CCB)</A>
+<UL>
+<LI><A NAME="tex2html1540"
+  HREF="3_7Networking_includes.html#SECTION00474100000000000000">3.7.4.1 Example Configuration</A>
+<LI><A NAME="tex2html1541"
+  HREF="3_7Networking_includes.html#SECTION00474200000000000000">3.7.4.2 Security and CCB</A>
+<LI><A NAME="tex2html1542"
+  HREF="3_7Networking_includes.html#SECTION00474300000000000000">3.7.4.3 Troubleshooting CCB</A>
+<LI><A NAME="tex2html1543"
+  HREF="3_7Networking_includes.html#SECTION00474400000000000000">3.7.4.4 Scalability and CCB</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html1544"
+  HREF="3_7Networking_includes.html#SECTION00475000000000000000">3.7.5 Using TCP to Send Updates to
+the <I>condor_collector</I></A>
+<LI><A NAME="tex2html1545"
+  HREF="3_7Networking_includes.html#SECTION00476000000000000000">3.7.6 Running Condor on an IPv6 Network Stack</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00470000000000000000"></A><A NAME="sec:Networking"></A>
+<A NAME="32561"></A>
+<BR>
+3.7 Networking (includes sections on Port Usage and CCB)
+</H1>
+
+<P>
+This section on
+network communication in Condor
+discusses which network ports are used,
+how Condor behaves on machines with multiple network interfaces
+and IP addresses,
+and how to facilitate functionality in a pool that spans
+firewalls and private networks.
+
+<P>
+The security section of the manual contains some
+information that is relevant to the discussion of network
+communication which will not be duplicated here, so please
+see section&nbsp;<A HREF="3_6Security.html#sec:Security">3.6</A> as well.
+
+<P>
+Firewalls, private networks, and network address translation (NAT)
+pose special problems for Condor.
+There are currently two main mechanisms for dealing with firewalls
+within Condor:
+
+<P>
+
+<OL>
+<LI>Restrict Condor to use a specific range of port numbers, and
+  allow connections through the firewall that use any port within the
+  range.
+
+<P>
+</LI>
+<LI>Use <I>Condor Connection Brokering</I> (CCB).
+
+<P>
+</LI>
+</OL>
+
+<P>
+Each method has its own advantages and disadvantages,
+as described below.
+
+<P>
+
+<H2><A NAME="SECTION00471000000000000000"></A><A NAME="sec:Port-Details"></A>
+<A NAME="32587"></A>
+<BR>
+3.7.1 Port Usage in Condor
+</H2>
+
+<P>
+
+<H3><A NAME="SECTION00471100000000000000"></A><A NAME="sec:IPv4-Port-Specification"></A>
+<A NAME="32589"></A>
+<A NAME="32590"></A>
+<BR>
+3.7.1.1 IPv4 Port Specification
+</H3>
+The general form for IPv4 port specification is 
+<PRE>
+&lt;IP:port?param1name=value1&amp;param2name=value2&amp;param3name=value3&amp;...&gt;
+</PRE>
+
+<P>
+These parameters and values are URL-encoded.
+This means any special character is encoded with %,
+followed by two hexadecimal digits specifying the ASCII value.
+Special characters are any non-alphanumeric character. 
+
+<P>
+Condor currently recognizes the following parameters with an
+IPv4 port specification:
+<DL>
+<DT><STRONG><TT>CCBID</TT></STRONG></DT>
+<DD>Provides contact information for forming a CCB connection to a daemon, 
+  or a space separated list, if the daemon is registered with more than 
+  one CCB server.
+  Each contact information is specified in the form of <code>IP:port#ID</code>.
+  Note that spaces between list items will be URL encoded by <code>%20</code>.
+</DD>
+<DT><STRONG><TT>PrivNet</TT></STRONG></DT>
+<DD>Provides the name of the daemon's private network.
+  This value is specified in the configuration with 
+  <TT>PRIVATE_NETWORK_NAME</TT>.
+</DD>
+<DT><STRONG><TT>sock</TT></STRONG></DT>
+<DD>Provides the name of <I>condor_shared_port</I> daemon named socket.
+</DD>
+<DT><STRONG><TT>PrivAddr</TT></STRONG></DT>
+<DD>Provides the daemon's private address in form of
+  <TT>IP:port</TT>.
+</DD>
+</DL>
+
+<P>
+
+<H3><A NAME="SECTION00471200000000000000"></A><A NAME="sec:Ports-Standard"></A>
+<BR>
+3.7.1.2 Default Port Usage
+</H3>
+
+<P>
+Every Condor daemon listens on a network port for incoming commands.
+(Using <I>condor_shared_port</I>, this port may be shared between multiple
+daemons.)
+Most daemons listen on a dynamically assigned port.
+In order to send a message,
+Condor daemons and tools locate the correct port to use
+by querying the <I>condor_collector</I>,
+extracting the port number from the ClassAd.
+One of the attributes included in every daemon's ClassAd is the full
+IP address and port number upon which the daemon is listening.
+
+<P>
+To access the <I>condor_collector</I> itself,
+all Condor daemons and tools
+must know the port number  where the <I>condor_collector</I> is listening.
+The <I>condor_collector</I> is the only daemon with a well-known,
+fixed port.
+By default, Condor uses port 9618 for the <I>condor_collector</I> daemon.
+However, this port number can be changed (see below).
+
+<P>
+As an optimization for daemons and tools communicating with another
+daemon that is running on the same host,
+each Condor daemon can be configured to
+write its IP address and port number into a well-known file.
+The file names are controlled using the <TT>&lt;SUBSYS&gt;_ADDRESS_FILE</TT> <A NAME="32737"></A>
+configuration variables,
+as described in section&nbsp;<A HREF="3_3Configuration.html#param:SubsysAddressFile">3.3.5</A> on
+page&nbsp;<A HREF="3_3Configuration.html#param:SubsysAddressFile"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>. 
+
+<P>
+<U>NOTE</U>: In the 6.6 stable series, and Condor versions earlier than
+6.7.5, the <I>condor_negotiator</I> also listened on a fixed, well-known
+port (the default was 9614).
+However, beginning with version 6.7.5, the <I>condor_negotiator</I> behaves
+like all other Condor daemons, and publishes its own ClassAd to the
+<I>condor_collector</I> which includes the dynamically assigned port 
+the <I>condor_negotiator</I> is listening on.
+All Condor tools and daemons that need to communicate with the
+<I>condor_negotiator</I> will either use the
+<TT>NEGOTIATOR_ADDRESS_FILE</TT> <A NAME="32751"></A> <A NAME="32752"></A> or will query the
+<I>condor_collector</I> for the <I>condor_negotiator</I>'s ClassAd.
+
+<P>
+Sites that configure any checkpoint servers will introduce
+other fixed ports into their network.
+Each <I>condor_ckpt_server</I> will listen to 4 fixed ports: 5651, 5652,
+5653, and 5654.
+There is currently no way to configure alternative values for any of
+these ports.
+
+<P>
+
+<H3><A NAME="SECTION00471300000000000000"></A><A NAME="sec:Ports-NonStandard"></A>
+<A NAME="32623"></A>
+<BR>
+3.7.1.3 Using 
+a Non Standard, Fixed Port for the <I>condor_collector</I>
+</H3>
+By default,
+Condor uses port 9618 for the <I>condor_collector</I> daemon.
+To use a different port number for this daemon,
+the configuration variables that tell Condor these communication
+details are modified.
+Instead of
+<PRE>
+CONDOR_HOST = machX.cs.wisc.edu
+COLLECTOR_HOST = $(CONDOR_HOST)
+</PRE>
+the configuration might be
+<PRE>
+CONDOR_HOST = machX.cs.wisc.edu
+COLLECTOR_HOST = $(CONDOR_HOST):9650
+</PRE>
+
+<P>
+If a non standard port is defined, the same value of
+<TT>COLLECTOR_HOST</TT> (including the port) must be used for all
+machines in the Condor pool.
+Therefore, this setting should be modified in the global
+configuration file (<TT>condor_config</TT> file),
+or the value must be duplicated across
+all configuration files in the pool if a single configuration file
+is not being shared.
+
+<P>
+When querying the <I>condor_collector</I> for a remote pool that is running
+on a non standard port, any Condor tool that accepts the <B>-pool</B>
+argument can optionally be given a port number.  For example:
+<PRE>
+        % condor_status -pool foo.bar.org:1234
+</PRE>
+<P>
+
+<H3><A NAME="SECTION00471400000000000000"></A><A NAME="sec:Ports-Dynamic-Collector"></A>
+<BR>
+3.7.1.4 Using 
+a Dynamically Assigned Port for the <I>condor_collector</I>
+</H3>
+
+<P>
+On single machine pools, 
+it is permitted to configure the
+<I>condor_collector</I> daemon
+to use a dynamically assigned port,
+as given out by the operating system.
+This prevents port conflicts with other services on the same machine.
+However, a dynamically assigned port is only to be used on
+single machine Condor pools,
+and only if the
+<TT>COLLECTOR_ADDRESS_FILE</TT> <A NAME="32776"></A> <A NAME="32777"></A> 
+configuration variable has also been defined.
+This mechanism allows all of the Condor daemons and tools running on
+the same machine to find the port upon which the <I>condor_collector</I>
+daemon is listening,
+even when this port is not defined in the
+configuration file and is not known in advance.
+
+<P>
+To enable the <I>condor_collector</I> daemon to use a dynamically assigned port,
+the port number is set to 0 in the <TT>COLLECTOR_HOST</TT> <A NAME="32785"></A> <A NAME="32786"></A>
+variable.
+The <TT>COLLECTOR_ADDRESS_FILE</TT>
+configuration variable must also be defined,
+as it provides a known file where the IP address
+and port information will be stored.
+All Condor clients know to look at the
+information stored in this file.
+For example:
+<PRE>
+COLLECTOR_HOST = $(CONDOR_HOST):0
+COLLECTOR_ADDRESS_FILE = $(LOG)/.collector_address
+</PRE>
+<P>
+<U>NOTE</U>: Using a port of 0 for the <I>condor_collector</I>
+and specifying a
+<TT>COLLECTOR_ADDRESS_FILE</TT>
+only works in Condor version 6.6.8 or later in the 6.6 stable series,
+and in version 6.7.4 or later in the 6.7 development series.
+Do not attempt to do this with older versions of Condor.
+
+<P>
+Configuration definition of <TT>COLLECTOR_ADDRESS_FILE</TT>
+is in section&nbsp;<A HREF="3_3Configuration.html#param:SubsysAddressFile">3.3.5</A> on
+page&nbsp;<A HREF="3_3Configuration.html#param:SubsysAddressFile"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>,
+and
+<TT>COLLECTOR_HOST</TT>
+is in
+section&nbsp;<A HREF="3_3Configuration.html#param:CollectorHost">3.3.3</A> on
+page&nbsp;<A HREF="3_3Configuration.html#param:CollectorHost"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+
+<H3><A NAME="SECTION00471500000000000000"></A><A NAME="sec:Ports-Firewalls"></A>
+<BR>
+3.7.1.5 Restricting Port Usage to
+ Operate with Firewalls
+</H3>
+
+<P>
+<A NAME="32654"></A>
+If a Condor pool is completely behind a firewall,
+then no special consideration or port usage is needed.
+However, if there is a firewall between the machines within
+a Condor pool, then
+configuration variables may be set to force the usage of
+specific ports, and to utilize a specific range of ports.
+
+<P>
+By default,
+Condor uses port 9618 for the <I>condor_collector</I> daemon,
+and dynamic (apparently random) ports for everything else.
+See section&nbsp;<A HREF="#sec:Ports-Dynamic-Collector">3.7.1</A>,
+if a dynamically assigned port is desired for the
+<I>condor_collector</I> daemon.
+
+<P>
+All of the Condor daemons on a machine
+may be configured to share a single
+port.  See section&nbsp;<A HREF="3_3Configuration.html#sec:Config-shared-port">3.3.34</A> for more information.
+
+<P>
+The configuration variables
+<TT>HIGHPORT</TT> <A NAME="32801"></A> <A NAME="32802"></A> and <TT>LOWPORT</TT> <A NAME="32806"></A> <A NAME="32807"></A> facilitate setting a restricted
+range of ports that Condor will use.
+This may be useful when some machines are behind a firewall.
+The configuration macros
+<TT>HIGHPORT</TT> and <TT>LOWPORT</TT> 
+will restrict dynamic ports to the range specified.
+The configuration variables are fully defined
+in section&nbsp;<A HREF="3_3Configuration.html#sec:Network-Related-Config-File-Entries">3.3.6</A>.
+All of these ports must be greater than 0 and less than 65,536.
+Note that both <TT>HIGHPORT</TT> and <TT>LOWPORT</TT> must be at 
+least 1024 for Condor version 6.6.8.
+In general, use ports greater than 1024,
+in order
+to avoid port conflicts with standard services on the machine.
+Another reason for using ports greater than 1024 is that
+daemons and tools are often not run as <TT>root</TT>,
+and only <TT>root</TT> may listen to a port lower than 1024.
+Also, the range must include enough ports that are not in use, 
+or Condor cannot work.
+
+<P>
+The range of ports assigned may be restricted based on 
+incoming (listening) and outgoing (connect) ports
+with the configuration variables
+<TT>IN_HIGHPORT</TT> <A NAME="32817"></A> <A NAME="32818"></A>,
+<TT>IN_LOWPORT</TT> <A NAME="32822"></A> <A NAME="32823"></A>,
+<TT>OUT_HIGHPORT</TT> <A NAME="32827"></A> <A NAME="32828"></A>, and
+<TT>OUT_LOWPORT</TT> <A NAME="32832"></A> <A NAME="32833"></A>.
+See section&nbsp;<A HREF="3_3Configuration.html#sec:Network-Related-Config-File-Entries">3.3.6</A>
+for complete definitions of these configuration variables.
+A range of ports lower than 1024 for daemons
+running as <TT>root</TT> is appropriate for incoming ports,
+but not for outgoing ports.
+The use of ports below 1024 (versus above 1024)
+has security implications; 
+therefore, it is inappropriate to assign a range that crosses
+the 1024 boundary.
+
+<P>
+<U>NOTE</U>: Setting <TT>HIGHPORT</TT> and <TT>LOWPORT</TT> will not
+automatically force the <I>condor_collector</I> to bind to a port within
+the range.
+The only way to control what port the <I>condor_collector</I> uses is by
+setting the <TT>COLLECTOR_HOST</TT> (as described above).
+
+<P>
+The total number of ports needed depends on the size of the pool,
+the usage of the machines within the pool (which machines
+run which daemons),
+and the number of jobs that may execute at one time.
+Here we discuss how many ports are used by each
+participant in the system.  This assumes that <I>condor_shared_port</I>
+is not being used.  If it <I>is</I> being used, then all daemons
+can share a single incoming port.
+
+<P>
+The central manager of the pool needs
+<TT>5 + <TT>NEGOTIATOR_SOCKET_CACHE_SIZE</TT></TT>
+ports for daemon communication,
+where 
+<TT>NEGOTIATOR_SOCKET_CACHE_SIZE</TT> <A NAME="32851"></A> <A NAME="32852"></A>
+is specified in the
+configuration or defaults to the value 16.
+
+<P>
+Each execute machine (those machines running a <I>condor_startd</I> daemon)
+requires
+<TT> 5 + (5 * number of slots advertised by that machine)</TT>
+ports.
+By default, the number of slots advertised
+will equal the number of physical CPUs in that machine.
+
+<P>
+Submit machines (those machines running a <I>condor_schedd</I> daemon)
+require
+<TT> 5 + (5 *  <TT>MAX_JOBS_RUNNING</TT>)</TT> ports.
+The configuration variable <TT>MAX_JOBS_RUNNING</TT> <A NAME="32864"></A> <A NAME="32865"></A>
+limits (on a per-machine basis, if desired)
+the maximum number of jobs.
+Without this configuration macro,
+the maximum number of jobs that could be simultaneously
+executing at one time
+is a function of the number of reachable execute machines. 
+
+<P>
+Also be aware that <TT>HIGHPORT</TT> and <TT>LOWPORT</TT>
+only impact dynamic port selection used by the Condor system,
+and they do not impact port selection used by jobs submitted to Condor.
+Thus, jobs submitted to Condor that may create
+network connections may not work in a port restricted environment.
+For this reason, specifying <TT>HIGHPORT</TT> and <TT>LOWPORT</TT>
+is not going to produce the
+expected results if a user submits MPI applications to be executed under
+the parallel universe.
+
+<P>
+Where desired, a local
+configuration for machines <I>not</I> behind a firewall
+can override the usage of <TT>HIGHPORT</TT> and <TT>LOWPORT</TT>,
+such that the ports used for these machines are not restricted.
+This can be accomplished by adding the following to the
+local configuration file of those machines <I>not</I>
+behind a firewall:
+<PRE>
+HIGHPORT = UNDEFINED
+LOWPORT  = UNDEFINED
+</PRE>
+
+<P>
+If the maximum number of ports allocated using 
+<TT>HIGHPORT</TT> and <TT>LOWPORT</TT>
+is too few,
+socket binding errors of the form
+<PRE>
+failed to bind any port within &lt;$LOWPORT&gt; - &lt;$HIGHPORT&gt;
+</PRE>are likely to appear repeatedly in log files.
+
+<P>
+
+<H3><A NAME="SECTION00471600000000000000"></A><A NAME="sec:Ports-MultipleCollectors"></A>
+<A NAME="32703"></A>
+<BR>
+3.7.1.6 Multiple Collectors
+</H3>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\fbox{This section has not yet been written}$
+ -->
+<IMG
+ WIDTH="312" HEIGHT="46" ALIGN="MIDDLE" BORDER="0"
+ SRC="img44.png"
+ ALT="\fbox{This section has not yet been written}">
+</DIV>
+
+<P>
+
+<H3><A NAME="SECTION00471700000000000000"></A><A NAME="sec:Ports-Conflicts"></A>
+<A NAME="32705"></A>
+<BR>
+3.7.1.7 Port Conflicts
+</H3>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\fbox{This section has not yet been written}$
+ -->
+<IMG
+ WIDTH="312" HEIGHT="46" ALIGN="MIDDLE" BORDER="0"
+ SRC="img44.png"
+ ALT="\fbox{This section has not yet been written}">
+</DIV>
+
+<P>
+
+<H2><A NAME="SECTION00472000000000000000"></A><A NAME="sec:shared-port-daemon"></A>
+<BR>
+3.7.2 Reducing Port Usage with the <I>condor_shared_port</I> Daemon
+</H2>
+
+<P>
+<A NAME="33023"></A>
+<A NAME="33024"></A>
+<A NAME="32976"></A>
+The <I>condor_shared_port</I> is an optional daemon
+responsible for creating a TCP listener port shared by all of the
+Condor daemons for which the configuration variable
+<TT>USE_SHARED_PORT</TT> <A NAME="33034"></A> <A NAME="33035"></A> is <TT>True</TT>.
+The <I>condor_master</I> will invoke the <I>condor_shared_port</I> daemon
+if it is listed in <TT>DAEMON_LIST</TT>.
+
+<P>
+The main purpose of the <I>condor_shared_port</I> daemon is to reduce the
+number of ports that must be opened when Condor needs to be
+accessible through a firewall.
+This has a greater security benefit
+than simply reducing the number of open ports.
+Without the <I>condor_shared_port</I> daemon,
+one can configure Condor to use a range of ports,
+but since some Condor daemons are created dynamically, 
+this full range of ports will not be in use by Condor at all times.
+This implies that other non-Condor processes not intended to be exposed to
+the outside network could unintentionally bind to ports in the range
+intended for Condor,
+unless additional steps are taken to control access to those ports.  
+While the <I>condor_shared_port</I> daemon is running,
+it is exclusively bound to its port, which means that other non-Condor
+processes cannot accidentally bind to that port.
+
+<P>
+A secondary benefit of the <I>condor_shared_port</I> daemon
+is that it helps address the scalability issues of a submit machine.
+Without the <I>condor_shared_port</I> daemon,
+approximately 2.1 ephemeral ports per running job are required,
+and possibly more, depending on the rate of job completion.
+There are only 64K ports in total,
+and most standard Unix installations only allocate a subset of
+these as ephemeral ports.
+In practice, with long running jobs,
+and with between 11K and 14K simultaneously running jobs,
+port exhaustion has been observed in typical Linux installations.
+After increasing the ephemeral port range as to as many as possible,
+port exhaustion occurred between 20K and 25K running jobs.
+Using the <I>condor_shared_port</I> daemon,
+each running job requires fewer, approximately 1.1 ephemeral ports
+on the submit node, if Condor on the submit node connects directly
+to Condor on the execute node.
+If the submit node connects via CCB to the execute
+node, <I>no</I> ports are required per running job; only the one port
+allocated to the <I>condor_shared_port</I> daemon is used.
+
+<P>
+When CCB is utilized via setting the configuration variable
+<TT>CCB_ADDRESS</TT> <A NAME="33059"></A> <A NAME="33060"></A>,
+the <I>condor_shared_port</I> daemon registers with
+the CCB server on behalf of all daemons sharing the port.
+This means that it is not possible to individually enable or disable
+CCB connectivity to daemons that are using the shared port;
+they all effectively share the same setting,
+and the <I>condor_shared_port</I> daemon handles all CCB connection
+requests on their behalf.
+
+<P>
+Condor's authentication and authorization steps are unchanged by the
+use of a shared port.  Each Condor daemon continues to operate
+according to its configured policy.  Requests for connections to the
+shared port are not authenticated or restricted by
+the <I>condor_shared_port</I> daemon.
+They are simply passed to the requested daemon,
+which is then responsible for enforcing the security policy.
+
+<P>
+When the <I>condor_master</I> is configured to use the shared port
+by setting the configuration variable
+<PRE>
+  USE_SHARED_PORT = True
+</PRE>
+the <I>condor_shared_port</I> daemon is treated specially. 
+A command such as <I>condor_off</I>,
+which shuts down all daemons except for the <I>condor_master</I>,
+will also leave the <I>condor_shared_port</I> running.
+This prevents the <I>condor_master</I> from getting into a state
+where it can no longer receive commands.
+
+<P>
+The <I>condor_collector</I> daemon typically has its own port;
+it uses 9618 by default.
+However, it can be configured to use a shared port.
+Since the address of the <I>condor_collector</I> must be set in 
+the configuration file,
+it is necessary to specify the shared port socket name of 
+the <I>condor_collector</I>,
+so that connections to the shared port that are intended for 
+the <I>condor_collector</I> can be forwarded to it.
+If the shared port number is 11000, a <I>condor_collector</I> address using this
+shared port could be configured:
+
+<P>
+<PRE>
+COLLECTOR_HOST = collector.host.name:11000?sock=collector
+</PRE>
+<P>
+This configuration assumes that the socket name used by 
+the <I>condor_collector</I> is <TT>collector</TT>.
+The <I>condor_collector</I> that runs on <TT>collector.host.name</TT>
+will automatically choose this socket name if <TT>COLLECTOR_HOST</TT>
+is configured as in the example above.
+If multiple <I>condor_collector</I> daemons are started on the same
+machine, the socket name can be explicitly set in the daemon arguments,
+as in the example:
+
+<P>
+<PRE>
+COLLECTOR_ARGS = -sock collector
+</PRE>
+
+<P>
+When the <I>condor_collector</I> address is a shared port,
+TCP updates will be automatically used instead of UDP.
+Under Unix, this means that the
+<I>condor_collector</I> daemon should be configured to have enough file descriptors.
+See section&nbsp;<A HREF="#sec:tcp-collector-update">3.7.5</A> for more information on using
+TCP within Condor.
+
+<P>
+SOAP commands cannot be sent over a shared port.
+However, a daemon may be configured to open a fixed, non-shared port,
+in addition to using a shared port.
+This is done both by setting
+<TT>USE_SHARED_PORT = True</TT> and by specifying a fixed port for the daemon
+using <code>&lt;SUBSYS&gt;_ARGS = -p &lt;portnum&gt;</code>.
+
+<P>
+The TCP connections required to manage standard universe jobs do not
+make use of shared ports.
+
+<P>
+
+<H2><A NAME="SECTION00473000000000000000"></A><A NAME="sec:Multiple-Interfaces"></A>
+<BR>
+3.7.3 Configuring Condor for
+Machines With Multiple Network Interfaces 
+</H2> 
+
+<P>
+<A NAME="33138"></A>
+<A NAME="33139"></A>
+<A NAME="33140"></A>
+
+<P>
+Condor can run on machines with
+multiple network interfaces.
+Starting with Condor version 6.7.13
+(and therefore all Condor 6.8 and more recent versions),
+new functionality is
+available that allows even better support for multi-homed
+machines, using the configuration variable <TT>BIND_ALL_INTERFACES</TT> <A NAME="33188"></A> <A NAME="33189"></A>.
+A multi-homed machine is one that has more than one
+NIC (Network Interface Card).
+Further improvements to this new functionality will remove the need
+for any special configuration in the common case.
+For now, care
+must still be given to machines with multiple NICs, even
+when using this new configuration variable.
+
+<P>
+
+<H3><A NAME="SECTION00473100000000000000"></A><A NAME="sec:Using-BindAllInterfaces"></A>
+<BR>
+3.7.3.1 Using 
+BIND_ALL_INTERFACES
+</H3>
+
+<P>
+Machines can be configured such that
+whenever Condor daemons or tools
+call <TT>bind()</TT>, the daemons or tools use all network interfaces on
+the machine.
+This means that outbound connections will always use the appropriate
+network interface to connect to a remote host,
+instead of being forced to use
+an interface that might not have a route to the given destination.
+Furthermore, sockets upon which a daemon listens for incoming connections 
+will be bound to all network interfaces on the machine.
+This means that so long as remote clients know the right port, they can
+use any IP address on the machine and still contact a given Condor daemon.
+
+<P>
+This functionality is on by default.  To disable this functionality, 
+the boolean configuration
+variable
+<TT>BIND_ALL_INTERFACES</TT>
+is defined and set to <TT>False</TT>:
+
+<P>
+<PRE>
+BIND_ALL_INTERFACES = FALSE
+</PRE>
+
+<P>
+This functionality has limitations.
+Here are descriptions of the limitations.
+
+<P>
+<DL>
+<DT><STRONG>Using all network interfaces does not work with Kerberos.</STRONG></DT>
+<DD>Every Kerberos ticket contains a specific IP address within it.
+  Authentication over a socket (using Kerberos) requires
+  the socket to also specify that same specific IP address.
+  Use of <TT>BIND_ALL_INTERFACES</TT> causes outbound
+  connections from a multi-homed machine to 
+  originate over any of the interfaces.
+  Therefore, the IP address of the outbound connection and the IP
+  address in the Kerberos ticket will not necessarily match,
+  causing the authentication to fail.
+  Sites using Kerberos authentication on multi-homed machines are
+  strongly encouraged not to enable <TT>BIND_ALL_INTERFACES</TT>,
+  at least until Condor's Kerberos functionality
+  supports using multiple Kerberos tickets together with finding the right one
+  to match the IP address a given socket is bound to. 
+
+<P>
+</DD>
+<DT><STRONG>There is a potential security risk.</STRONG></DT>
+<DD>Consider the following example of a security risk.
+  A multi-homed machine is at a network boundary.
+  One interface is on the public Internet, while the other connects to
+  a private network.
+  Both the multi-homed machine and the private network machines
+  comprise a Condor pool.
+  If the multi-homed machine enables <TT>BIND_ALL_INTERFACES</TT>,
+  then it is at risk from hackers trying to compromise the security of the pool.
+  Should this multi-homed machine be compromised,
+  the entire pool is vulnerable.
+  Most sites in this situation would run an <I>sshd</I> on the
+  multi-homed machine so that remote users who wanted to access the
+  pool could log in securely and use the Condor tools directly.
+  In this case, remote clients do not need to use Condor tools running
+  on machines in the public network to access the Condor daemons on
+  the multi-homed machine.
+  Therefore, there is no reason to have Condor daemons listening on
+  ports on the public Internet, causing a potential security threat.
+
+<P>
+</DD>
+<DT><STRONG>Up to two IP addresses will be advertised.</STRONG></DT>
+<DD>At present, even though a given Condor daemon will be listening to
+  ports on multiple interfaces, each with their own IP address,
+  there is currently no mechanism for that daemon to advertise all of
+  the possible IP addresses where it can be contacted.
+  Therefore, Condor clients (other Condor daemons or tools) will not
+  necessarily able to locate and communicate with a given daemon
+  running on a multi-homed machine where
+  <TT>BIND_ALL_INTERFACES</TT> has been enabled.
+
+<P>
+Currently, Condor daemons can only advertise two IP addresses in
+  the ClassAd they send to their <I>condor_collector</I>.  One is the
+  public IP address and the other is the private IP address.
+  Condor tools and other daemons that wish to connect to the daemon will
+  use the private IP address if they are configured with the same private
+  network name, and they will use the public IP address otherwise.
+  So, even if the daemon is listening on 3 or more different interfaces,
+  each with a separate IP, the daemon must choose which two IP addresses to
+  advertise so that other daemons and tools can connect to it.
+
+<P>
+By default, Condor advertises the IP address of the network interface
+  used to contact the <I>condor_collector</I> as its public address,
+  since this is the most likely to be
+  accessible to other processes that query the same <I>condor_collector</I>.
+  The <TT>NETWORK_INTERFACE</TT> <A NAME="33207"></A> <A NAME="33208"></A> configuration variable can be used 
+  to specify the public IP address Condor should advertise, and
+  <TT>PRIVATE_NETWORK_INTERFACE</TT> <A NAME="33212"></A> <A NAME="33213"></A>, along with
+  <TT>PRIVATE_NETWORK_NAME</TT> <A NAME="33217"></A> <A NAME="33218"></A> can be used to specify the
+  private IP address to advertise.
+
+<P>
+</DD>
+</DL>
+
+<P>
+Sites that make heavy use of private networks and multi-homed machines
+should consider if using the Condor Connection Broker, CCB,
+is right for them.
+More information about CCB and Condor can be found in
+section&nbsp;<A HREF="#sec:CCB">3.7.4</A> on page&nbsp;<A HREF="3_7Networking_includes.html#sec:CCB"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+
+<H3><A NAME="SECTION00473200000000000000">
+3.7.3.2 Central Manager with Two or More NICs</A>
+</H3>
+
+<P>
+Often users of Condor wish to set up compute farms where there is one
+machine with two network interface cards (one for the public Internet,
+and one for the private net). It is convenient to set up the head
+node as a central manager in most cases and so here are the instructions
+required to do so.
+
+<P>
+Setting up the central manager on a machine with more than one NIC can
+be a little confusing because there are a few external variables
+that could make the process difficult. One of the biggest mistakes
+in getting this to work is that either one of the separate interfaces is
+not active, or the host/domain names associated with the interfaces are
+incorrectly configured. 
+
+<P>
+Given that the interfaces are up and functioning, and they have good
+host/domain names associated with them here is how to configure Condor:
+
+<P>
+In this example, <TT>farm-server.farm.org</TT> maps to the private interface.
+In the central manager's global (to the cluster) configuration file:
+<PRE>
+CONDOR_HOST = farm-server.farm.org
+</PRE>
+
+<P>
+In the central manager's local configuration file:
+<PRE>
+NETWORK_INTERFACE = &lt;IP address of farm-server.farm.org&gt;
+NEGOTIATOR = $(SBIN)/condor_negotiator
+COLLECTOR = $(SBIN)/condor_collector
+DAEMON_LIST = MASTER, COLLECTOR, NEGOTIATOR, SCHEDD, STARTD
+</PRE>
+
+<P>
+If the central manager and farm machines are all NT, then only
+vanilla universe will work now.  However, if this is set up
+for Unix, then at this point, standard universe jobs should be able to
+function in the pool.
+But, if <TT>UID_DOMAIN</TT> <A NAME="33223"></A> <A NAME="33224"></A> is not configured
+to be homogeneous across the farm machines, the standard universe
+jobs will run as <TT>nobody</TT> on the farm machines.
+
+<P>
+In order to get vanilla jobs and file server load balancing for standard
+universe jobs working (under Unix), do some more work both in
+the cluster you have put together and in Condor to make everything work.
+First, you need a file server (which could also be the central manager) to
+serve files to all of the farm machines. This could be NFS or AFS, 
+and it does not really matter to Condor. 
+The mount point of the directories you wish
+your users to use must be the same across all of the farm machines. Now,
+configure <TT>UID_DOMAIN</TT> <A NAME="33229"></A> <A NAME="33230"></A> and <TT>FILESYSTEM_DOMAIN</TT> <A NAME="33234"></A> <A NAME="33235"></A> to be
+homogeneous across the farm machines and the central manager. 
+Inform Condor that an NFS or AFS file system exists and that
+is done in this manner. In the global (to the farm) configuration file:
+
+<P>
+<PRE>
+# If you have NFS
+USE_NFS = True
+# If you have AFS
+HAS_AFS = True
+USE_AFS = True
+# if you want both NFS and AFS, then enable both sets above
+</PRE>
+
+<P>
+Now, if the cluster is set up so that it is possible for a machine
+name to never have a domain name
+(for example, there is machine
+name but no fully qualified domain name in <TT>/etc/hosts</TT>),
+configure <TT>DEFAULT_DOMAIN_NAME</TT> <A NAME="33240"></A> <A NAME="33241"></A> to be the domain that is
+to be added on to the end of the host name.
+
+<P>
+
+<H3><A NAME="SECTION00473300000000000000">
+3.7.3.3 A Client Machine with Multiple Interfaces</A>
+</H3>
+
+<P>
+If client machine has two or more NICs, then there might be
+a specific network interface on which the client machine desires to
+communicate with the rest of the Condor pool. 
+In this case, the local configuration file for the client should have
+<PRE>
+  NETWORK_INTERFACE = &lt;IP address of desired interface&gt;
+</PRE>
+
+<P>
+
+<H3><A NAME="SECTION00473400000000000000">
+3.7.3.4 A Checkpoint Server on a Machine with Multiple NICs</A>
+</H3>
+
+<P>
+If a checkpoint server is on a machine with multiple interfaces,
+then 2 items must be correct to get things to work:
+
+<OL>
+<LI>The different interfaces have different host names associated with them.
+</LI>
+<LI>In the global configuration file,
+set configuration variable <TT>CKPT_SERVER_HOST</TT> <A NAME="33245"></A> <A NAME="33246"></A> to the host name
+that corresponds with the IP address desired for the pool.
+Configuration variable <TT>NETWORK_INTERFACE</TT> <A NAME="33250"></A> <A NAME="33251"></A> must still be specified
+in the local configuration file for the checkpoint server.
+</LI>
+</OL>
+
+<P>
+
+<H2><A NAME="SECTION00474000000000000000"></A><A NAME="sec:CCB"></A>
+<A NAME="33317"></A>
+<BR>
+3.7.4 Condor Connection Brokering (CCB)
+</H2>
+
+<P>
+Condor Connection Brokering, or CCB, is a way of allowing Condor
+components to communicate with each other when one side is in a
+private network or behind a firewall.  Specifically, CCB allows
+communication across a private network boundary in the following
+scenario: a Condor tool or daemon (process A) needs to connect to a
+Condor daemon (process B), but the network does not allow a TCP
+connection to be created from A to B; it only allows connections from
+B to A.  In this case, B may be configured
+to register itself with a CCB server that both A and B can connect to.
+Then when A needs to connect to B, it can send a request to the CCB
+server, which will instruct B to connect to A so that the two can
+communicate.
+
+<P>
+As an example, consider a Condor execute node that is within
+a private network. 
+This execute node's <I>condor_startd</I> is process B.
+This execute node cannot normally run jobs submitted from a machine
+that is outside of that private network, 
+because bi-directional connectivity between the submit node and the
+execute node is normally required.  
+However, 
+if both execute and submit machine can connect to the CCB server,
+if both are authorized by the CCB server,
+and if it is possible for the execute node within the private network
+to connect to the submit node,
+then it is possible for the submit node to run jobs on the
+execute node.
+
+<P>
+To effect this CCB solution,
+the execute node's <I>condor_startd</I> within the private network
+registers itself with the CCB
+server by setting the configuration variable <TT>CCB_ADDRESS</TT> <A NAME="33374"></A> <A NAME="33375"></A>.
+The submit node's <I>condor_schedd</I> communicates with the CCB server,
+requesting that the execute node's <I>condor_startd</I> open the TCP
+connection.
+The CCB server forwards this request to the execute node's <I>condor_startd</I>,
+which opens the TCP connection.
+Once the connection is open, bi-directional communication is enabled.
+
+<P>
+If the location of the execute and submit nodes is reversed 
+with respect to the private network,
+the same idea applies:
+the submit node within the private network registers itself with a CCB server,
+such that when a job is running and the execute node needs to connect back to
+the submit node (for example, to transfer output files), 
+the execute node can connect by going through CCB to request a connection.
+
+<P>
+If both A and B are in separate private networks, then CCB alone
+cannot provide connectivity.  However, if an incoming port or port
+range can be opened in one of the private networks, then the situation
+becomes equivalent to one of the scenarios described above and CCB can
+provide bi-directional communication given only one-directional
+connectivity.  See section&nbsp;<A NAME="sec:Port-Details"></A> for information on
+opening port ranges.  Also note that CCB works nicely with
+<I>condor_shared_port</I>.
+
+<P>
+Unfortunately at this time, CCB does not support standard universe jobs.
+
+<P>
+Any <I>condor_collector</I> may be used as a CCB server.  There is no
+requirement that the <I>condor_collector</I> acting as the CCB server
+be the same <I>condor_collector</I> that a daemon
+advertises itself to (as with <TT>COLLECTOR_HOST</TT>).
+However, this is often a convenient choice.
+
+<P>
+
+<H3><A NAME="SECTION00474100000000000000">
+3.7.4.1 Example Configuration</A>
+</H3>
+
+<P>
+This example assumes that there is a pool of machines in a private
+network that need to be made accessible from the outside,
+and that the <I>condor_collector</I> (and therefore CCB server)
+used by these machines is accessible from the outside.
+Accessibility might be achieved by
+a special firewall rule for the <I>condor_collector</I> port,
+or by being on a dual-homed machine in both networks.
+
+<P>
+The configuration of variable <TT>CCB_ADDRESS</TT> on
+machines in the private network causes registration with
+the CCB server as in the example:
+
+<P>
+<PRE>
+  CCB_ADDRESS = $(COLLECTOR_HOST)
+  PRIVATE_NETWORK_NAME = cs.wisc.edu
+</PRE>
+
+<P>
+The definition of <TT>PRIVATE_NETWORK_NAME</TT> ensures that all
+communication between nodes within the private network continues to happen
+as normal, and without going through the CCB server.
+The name chosen for <TT>PRIVATE_NETWORK_NAME</TT> should be different
+from the private network name chosen for any Condor installations that
+will be communicating with this pool.
+
+<P>
+Under Unix, and with large Condor pools,
+it is also necessary to give the <I>condor_collector</I> acting as the CCB server
+a large enough limit of file descriptors.
+This may be accomplished with the configuration variable
+<TT>MAX_FILE_DESCRIPTORS</TT> <A NAME="33403"></A> <A NAME="33404"></A> or an equivalent.
+Each Condor process configured to use CCB with <TT>CCB_ADDRESS</TT>
+requires one persistent TCP connection to the CCB server.
+A typical execute node
+requires one connection for the <I>condor_master</I>,
+one for the <I>condor_startd</I>,
+and one for each running job, as represented by a <I>condor_starter</I>.
+A typical submit machine
+requires one connection for the <I>condor_master</I>,
+one for the <I>condor_schedd</I>,
+and one for each running job, as represented by a <I>condor_shadow</I>.
+If there will be no administrative commands required
+to be sent to the <I>condor_master</I> from outside of
+the private network, then CCB may be disabled in the <I>condor_master</I>
+by assigning <TT>MASTER.CCB_ADDRESS</TT> to nothing:
+<PRE>
+  MASTER.CCB_ADDRESS =
+</PRE>
+
+<P>
+Completing the count of TCP connections in this example:
+suppose the pool consists of 500 8-slot
+execute nodes and CCB is not disabled in the configuration of the
+<I>condor_master</I> processes.
+In this case, the count of needed file descriptors plus some extra
+for other transient connections to the collector is
+500*(1+1+8)=5000.
+Be generous, and give it twice as many
+descriptors as needed by CCB alone:
+
+<P>
+<PRE>
+  COLLECTOR.MAX_FILE_DESCRIPTORS = 10000
+</PRE>
+
+<P>
+
+<H3><A NAME="SECTION00474200000000000000">
+3.7.4.2 Security and CCB</A>
+</H3>
+
+<P>
+The CCB server authorizes all daemons that register themselves with it
+(using <TT>CCB_ADDRESS</TT> <A NAME="33428"></A> <A NAME="33429"></A>) at the DAEMON authorization level (these
+are playing the role of process A in the above description).  It
+authorizes all connection requests (from process B) at the READ
+authorization level.  As usual, whether process B authorizes process A
+to do whatever it is trying to do is up to the security policy for
+process B; from the Condor security model's point of view, it is as if
+process A connected to process B, even though at the network layer,
+the reverse is true.
+
+<P>
+
+<H3><A NAME="SECTION00474300000000000000">
+3.7.4.3 Troubleshooting CCB</A>
+</H3>
+
+<P>
+Errors registering with CCB or requesting connections via CCB are
+logged at level <TT>D_ALWAYS</TT> in the debugging log.
+These errors may be identified by searching for "CCB" in the log message.
+Command-line tools require the argument
+<B>-debug</B> for this information to be visible.  To see details of
+the CCB protocol add <TT>D_FULLDEBUG</TT> to the debugging options for
+the particular Condor subsystem of interest.
+Or, add <TT>D_FULLDEBUG</TT> to
+<TT>ALL_DEBUG</TT> to get extra debugging from all Condor
+components.
+
+<P>
+A daemon that has successfully registered itself with CCB will
+advertise this fact in its address in its ClassAd.  
+The ClassAd attribute <TT>MyAddress</TT> will contain information
+about its <TT>"CCBID"</TT>.
+
+<P>
+
+<H3><A NAME="SECTION00474400000000000000">
+3.7.4.4 Scalability and CCB</A>
+</H3>
+
+<P>
+Any number of CCB servers may be used to serve a pool of Condor
+daemons.  For example, half of the pool could use one CCB server and
+half could use another.  Or for redundancy, all daemons could use both
+CCB servers and then CCB connection requests will load-balance
+across them.  Typically, the limit of how many daemons may be
+registered with a single CCB server depends on the authentication
+method used by the <I>condor_collector</I> for DAEMON-level and READ-level access,
+and on the amount of memory available to the CCB server.  We are not
+able to provide specific recommendations at this time, 
+but to give a very rough idea,
+a server class machine should be able to handle CCB
+service plus normal <I>condor_collector</I> service for a pool containing
+a few thousand slots without much trouble.
+
+<P>
+
+<H2><A NAME="SECTION00475000000000000000"></A><A NAME="sec:tcp-collector-update"></A>
+<BR>
+3.7.5 Using TCP to Send Updates to
+the <I>condor_collector</I>
+</H2>
+
+<P>
+<A NAME="33495"></A>
+<A NAME="33496"></A>
+<A NAME="33497"></A>
+<A NAME="33498"></A>
+<A NAME="33499"></A>
+
+<P>
+TCP sockets are reliable, connection-based sockets that guarantee
+the delivery of any data sent.
+However, TCP sockets are fairly expensive to establish, and there is more
+network overhead involved in sending and receiving messages.
+
+<P>
+UDP sockets are datagrams, and are not reliable.
+There is very little overhead in establishing or using a UDP socket,
+but there is also no guarantee that the data will be delivered.
+Typically, the lack of guaranteed delivery for UDP does not cause
+problems for Condor.
+
+<P>
+Condor can be configured to use TCP
+sockets to send updates to the <I>condor_collector</I> instead of
+UDP datagrams.
+This feature is intended for sites where UDP updates are
+lost because of the underlying network.
+An example where this may happen is if the pool is comprised of
+machines across a wide area network (WAN) where UDP packets are
+observed to be frequently dropped.
+
+<P>
+To enable the use of TCP sockets, the following configuration
+setting is used:
+
+<P>
+<DL>
+<DT><STRONG><TT>UPDATE_COLLECTOR_WITH_TCP</TT> <A NAME="33529"></A> <A NAME="33530"></A></STRONG></DT>
+<DD>When set to <TT>True</TT>, the Condor daemons to use TCP to
+  update the <I>condor_collector</I>, instead of the default UDP.
+  Defaults to <TT>False</TT>.
+
+<P>
+</DD>
+</DL>
+
+<P>
+When there are sufficient file descriptors, the <I>condor_collector</I> leaves
+established TCP sockets open, facilitating better performance.
+Subsequent updates can reuse an already open socket.
+
+<P>
+Each Condor daemon will have 1 socket open to the <I>condor_collector</I>.
+So, in a pool with N machines, each of them running a <I>condor_master</I>,
+<I>condor_schedd</I>, and <I>condor_startd</I>, the <I>condor_collector</I> would
+need at least 3*N file descriptors.  If the <I>condor_collector</I> is also
+acting as a CCB server, it will require an additional file descriptor for
+each registered daemon.  In typical Unix installations,
+the default number of file descriptors available to the <I>condor_collector</I>
+ is only 1024.
+  This can be modified with a configuration setting such as the following:
+
+<P>
+<PRE>
+COLLECTOR_MAX_FILE_DESCRIPTORS = 1600
+</PRE>
+
+<P>
+If there are not sufficient file descriptors for all of the daemons
+sending updates to the <I>condor_collector</I>, a warning will be printed in the
+<I>condor_collector</I> log file.  Look for the string
+<TT>file descriptor safety level exceeded</TT>.
+
+<P>
+<U>NOTE</U>: At this time, <TT>UPDATE_COLLECTOR_WITH_TCP</TT> only
+affects the main <I>condor_collector</I> for the site, not any sites that
+a <I>condor_schedd</I> might flock to.
+
+<P>
+
+<H2><A NAME="SECTION00476000000000000000"></A><A NAME="sec:ipv6"></A>
+<A NAME="33593"></A>
+<BR>
+3.7.6 Running Condor on an IPv6 Network Stack
+</H2>
+
+<P>
+Condor has limited support for running on IPv6 networks.
+
+<P>
+Current Limitations
+
+<P>
+
+<UL>
+<LI>Microsoft Windows platforms are <I>not</I> supported.
+</LI>
+<LI>Mixed IPv4/IPv6 pools are <I>not</I> supported.
+</LI>
+<LI>Security policies cannot use IP addresses, only host names.
+If using <TT>NO_DNS=TRUE</TT>, the host names are reformatted IP addresses,
+and can be matched against those. 
+</LI>
+<LI><TT>NETWORK_INTERFACE</TT> <I>must be set</I> to a 
+specific IPv6 address. 
+It is not possible to use multiple IPv6 interfaces on a single computer.
+</LI>
+<LI>There must be valid IPv6 (AAAA) DNS and reverse DNS records for 
+the computers. 
+Setting the configuration <TT>NO_DNS=TRUE</TT> removes this limitation.
+</LI>
+</UL>
+
+<P>
+Enabling IPv6
+
+<P>
+
+<UL>
+<LI>In the configuration, set <TT>ENABLE_IPV6 = TRUE</TT>.
+</LI>
+<LI>Specify the IPv6 interface to use. 
+Do <I>not</I> put square brackets ([]) around this address.
+As an example,
+<PRE>
+NETWORK_INTERFACE = 2607:f388:1086:0:21b:24ff:fedf:b520
+</PRE>
+</LI>
+</UL>
+
+<P>
+Additional Notes
+
+<P>
+Specification of  <TT>CONDOR_HOST</TT> or <TT>COLLECTOR_HOST</TT>
+as an IP address <I>must</I> place the address, 
+but <I>not</I> the port, in square brackets. 
+Host names may be specified. 
+For example:
+
+<P>
+<PRE>
+CONDOR_HOST =[2607:f388:1086:0:21e:68ff:fe0f]:6462
+# This configures the collector to listen on the non-standard port 5332.
+COLLECTOR_HOST =[2607:f388:1086:0:21e:68ff:fe0f:6462]:5332
+</PRE>
+
+<P>
+Because IPv6 addresses are not currently supported in Condor's 
+security settings, 
+<TT>$(CONDOR_HOST)</TT> or <TT>$(COLLECTOR_HOST)</TT> will not
+be permitted in the security configuration, 
+to specify an IP address.
+
+<P>
+When using the configuration variable <TT>NO_DNS</TT>,
+IPv6 addresses are turned into host names by taking the IPv6 address, 
+changing colons to dashes, and appending <TT>$(DEFAULT_DOMAIN_NAME)</TT>. 
+So, 
+<PRE>
+2607:f388:1086:0:21b:24ff:fedf:b520
+</PRE>
+becomes 
+<PRE>
+2607-f388-1086-0-21b-24ff-fedf-b520.example.com
+</PRE>
+assuming
+<PRE>
+DEFAULT_DOMAIN_NAME=example.com
+</PRE>
+
+<P>
+<A NAME="33624"></A>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1523"
+  HREF="3_8Checkpoint_Server.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1517"
+  HREF="3_Administrators_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1511"
+  HREF="3_6Security.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1519"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1521"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1524"
+  HREF="3_8Checkpoint_Server.html">3.8 The Checkpoint Server</A>
+<B> Up:</B> <A NAME="tex2html1518"
+  HREF="3_Administrators_Manual.html">3. Administrators' Manual</A>
+<B> Previous:</B> <A NAME="tex2html1512"
+  HREF="3_6Security.html">3.6 Security</A>
+ &nbsp; <B>  <A NAME="tex2html1520"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1522"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

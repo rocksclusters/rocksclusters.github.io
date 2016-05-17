@@ -1,0 +1,1924 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>list</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Base Roll: Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Command Reference"
+HREF="c229.html"><LINK
+REL="PREVIOUS"
+TITLE="enable"
+HREF="x933.html"><LINK
+REL="NEXT"
+TITLE="remove"
+HREF="x1585.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Base Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x933.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 3. Command Reference</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x1585.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="AEN980"
+>3.6. list</A
+></H1
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-LIST-APPLIANCE"
+>3.6.1. list appliance</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks list appliance</B
+>  [appliance...]</P
+><P
+>&#13;	Lists the appliances defined in the cluster database.
+	
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>appliance</SPAN
+>]</DT
+><DD
+><P
+>&#13;	Optional list of appliance names.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks list appliance</DT
+><DD
+><P
+>&#13;	List all known appliances.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-LIST-APPLIANCE-XML"
+>3.6.2. list appliance xml</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks list appliance xml</B
+>  [appliance...]</P
+><P
+>&#13;	Lists the XML profile for a given appliance type. This is useful
+	for high level debugging but will be missing any host specific
+	variables. It cannot be used to pass into 'rocks list host profile'
+	to create a complete Kickstart/Jumpstart profile.
+	
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>appliance</SPAN
+>]</DT
+><DD
+><P
+>&#13;	Optional list of appliance names.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks list appliance xml compute</DT
+><DD
+><P
+>&#13;	Lists the XML profile for a compute appliance.
+	
+	</P
+></DD
+><DT
+>$ rocks list appliance xml</DT
+><DD
+><P
+>&#13;	Lists the XML profile for all appliance types.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-LIST-DISTRIBUTION"
+>3.6.3. list distribution</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks list distribution</B
+>  [distribution...]</P
+><P
+>&#13;	Lists the distributions defined in the cluster database.
+	
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>distribution</SPAN
+>]</DT
+><DD
+><P
+>&#13;	Optional list of distribution names.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks list distribution</DT
+><DD
+><P
+>&#13;	List all known distribution definitions.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-LIST-HELP"
+>3.6.4. list help</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks list help</B
+>  [subdir=<VAR
+CLASS="REPLACEABLE"
+>string</VAR
+>]</P
+><P
+>The Help Command print the usage of all the registered
+	Commands.
+	
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>subdir=<VAR
+CLASS="REPLACEABLE"
+>string</VAR
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Relative of Python commands for listing help.  This is used internally
+	only.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks list help</DT
+><DD
+><P
+>&#13;	List help for all commands
+	
+	</P
+></DD
+><DT
+>$ rocks list help subdir=list/host</DT
+><DD
+><P
+>&#13;	List help for all commands under list/host
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-LIST-HOST"
+>3.6.5. list host</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks list host</B
+>  [host...]</P
+><P
+>&#13;	List the membership, CPU count and physical position info for
+	a list of hosts.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>host</SPAN
+>]</DT
+><DD
+><P
+>&#13;	Zero, one or more host names. If no host names are supplied, info about
+	all the known hosts is listed.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks list host compute-0-0</DT
+><DD
+><P
+>&#13;	List info for compute-0-0.
+	
+	</P
+></DD
+><DT
+>$ rocks list host</DT
+><DD
+><P
+>&#13;	List info for all known hosts.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-LIST-HOST-APPLIANCE"
+>3.6.6. list host appliance</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks list host appliance</B
+>  [host...]</P
+><P
+>&#13;	Lists the appliance assignments for hosts. For each host supplied
+	on the command line, this command prints the hostname and appliance
+	assignment for that host.
+	
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>host</SPAN
+>]</DT
+><DD
+><P
+>&#13;	Zero, one or more host names. If no host names are supplied,
+	information for all hosts will be listed.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks list host appliance compute-0-0</DT
+><DD
+><P
+>&#13;	List the appliance assignment for compute-0-0.
+	
+	</P
+></DD
+><DT
+>$ rocks list host appliance compute-0-0 compute-0-1</DT
+><DD
+><P
+>&#13;	List the appliance assignments for compute-0-0 and compute-0-1.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-LIST-HOST-GRAPH"
+>3.6.7. list host graph</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks list host graph</B
+>  [host...] [arch=<VAR
+CLASS="REPLACEABLE"
+>string</VAR
+>] [basedir=<VAR
+CLASS="REPLACEABLE"
+>string</VAR
+>]</P
+><P
+>&#13;	For each host, output a graphviz script to produce a diagram of the
+	XML configuration graph. If no hosts are specified, a graph for every
+	known host is listed.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>host</SPAN
+>]</DT
+><DD
+><P
+>&#13;	Zero, one or more host names. If no host names are supplied, info about
+	all the known hosts is listed.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>arch=<VAR
+CLASS="REPLACEABLE"
+>string</VAR
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Optional. If specified, generate a graph for the specified CPU type.
+	If not specified, then 'arch' defaults to this host's architecture.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>basedir=<VAR
+CLASS="REPLACEABLE"
+>string</VAR
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Optional. If specified, the location of the XML node files.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks list host graph compute-0-0</DT
+><DD
+><P
+>&#13;	Generates a graph for compute-0-0
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-LIST-HOST-INTERFACE"
+>3.6.8. list host interface</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks list host interface</B
+>  [host...]</P
+><P
+>&#13;	Lists the interface definitions for hosts. For each host supplied on
+	the command line, this command prints the hostname and interface
+	definitions for that host.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>host</SPAN
+>]</DT
+><DD
+><P
+>&#13;	Zero, one or more host names. If no host names are supplied, info about
+	all the known hosts is listed.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks list host interface compute-0-0</DT
+><DD
+><P
+>&#13;	List network interface info for compute-0-0.
+	
+	</P
+></DD
+><DT
+>$ rocks list host interface</DT
+><DD
+><P
+>&#13;	List network interface info for all known hosts.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-LIST-HOST-MEMBERSHIP"
+>3.6.9. list host membership</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks list host membership</B
+>  [host...]</P
+><P
+>&#13;	Lists the membership assignments for hosts. For each host supplied on
+	the command line, this command prints the hostname and membership
+	assignment for that host.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>host</SPAN
+>]</DT
+><DD
+><P
+>&#13;	Zero, one or more host names. If no host names are supplied, info about
+	all the known hosts is listed.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks list host membership compute-0-0</DT
+><DD
+><P
+>&#13;	List the membership assignment for compute-0-0.
+	
+	</P
+></DD
+><DT
+>$ rocks list host membership</DT
+><DD
+><P
+>&#13;	List the membership assignment for all known hosts.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-LIST-HOST-PARTITION"
+>3.6.10. list host partition</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks list host partition</B
+>  [host...]</P
+><P
+>&#13;	Lists the partitions for hosts. For each host supplied on the command
+	line, this command prints the hostname and partitions for that host.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>host</SPAN
+>]</DT
+><DD
+><P
+>&#13;	Zero, one or more host names. If no host names are supplied, info about
+	all the known hosts is listed.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks list host partition compute-0-0</DT
+><DD
+><P
+>&#13;	List partition info for compute-0-0.
+	
+	</P
+></DD
+><DT
+>$ rocks list host partition</DT
+><DD
+><P
+>&#13;	List partition info for known hosts.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-LIST-HOST-PROFILE"
+>3.6.11. list host profile</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks list host profile</B
+>  [host...]</P
+><P
+>&#13;	Outputs a XML wrapped Kickstart/Jumpstart profile for the given hosts.
+	If not, profiles are listed for all hosts in the cluster. If input is
+	fed from STDIN via a pipe, the argument list is ignored and XML is
+	read from STDIN.  This command is used for debugging the Rocks
+	configuration graph.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>host</SPAN
+>]</DT
+><DD
+><P
+>&#13;	Zero, one or more host names. If no host names are supplied, info about
+	all the known hosts is listed.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks list host profile compute-0-0</DT
+><DD
+><P
+>&#13;	Generates a Kickstart/Jumpstart profile for compute-0-0.
+	
+	</P
+></DD
+><DT
+># rocks list host xml compute-0-0 | rocks list host profile</DT
+><DD
+><P
+>&#13;	Does the same thing as above but reads XML from STDIN.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-LIST-HOST-PXEACTION"
+>3.6.12. list host pxeaction</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks list host pxeaction</B
+>  [host...]</P
+><P
+>&#13;	Lists the set of PXE actions for hosts. Each PXE action is a label
+	that points to a command string. The command string is placed into
+	a host-specific pxelinux configuration file. Example labels are
+	'install' and 'os' which point to command strings used to install
+	and boot hosts respectively.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>host</SPAN
+>]</DT
+><DD
+><P
+>&#13;	Zero, one or more host names. If no host names are supplied, info about
+	all the known hosts is listed.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks list host pxeaction compute-0-0</DT
+><DD
+><P
+>&#13;	List the PXE actions available for compute-0-0.
+	
+	</P
+></DD
+><DT
+>$ rocks list host pxeaction</DT
+><DD
+><P
+>&#13;	List the PXE actions available for all known hosts.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-LIST-HOST-PXEBOOT"
+>3.6.13. list host pxeboot</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks list host pxeboot</B
+>  [host...]</P
+><P
+>&#13;	Lists the current PXE action for hosts. For each host supplied on the
+	command line, this command prints the hostname and PXE action for
+	that host. The PXE action describes what the host will do the next
+	time it is PXE booted.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>host</SPAN
+>]</DT
+><DD
+><P
+>&#13;	Zero, one or more host names. If no host names are supplied, info about
+	all the known hosts is listed.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks list host pxeboot compute-0-0</DT
+><DD
+><P
+>&#13;	List the current PXE action for compute-0-0.
+	
+	</P
+></DD
+><DT
+>$ rocks list host pxeboot</DT
+><DD
+><P
+>&#13;	List the current PXE action for all known hosts.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-LIST-HOST-SITEXML"
+>3.6.14. list host sitexml</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks list host sitexml</B
+>  [host...]</P
+><P
+>&#13;	Lists the site XML file for hosts. For each host supplied on the
+	command line, this command prints the site.xml file for that host
+	which is used for host configuration.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>host</SPAN
+>]</DT
+><DD
+><P
+>&#13;	Zero, one or more host names. If no host names are supplied, info about
+	all the known hosts is listed.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks list host sitexml compute-0-0</DT
+><DD
+><P
+>&#13;	List the site XML file for compute-0-0.
+	
+	</P
+></DD
+><DT
+># rocks list host sitexml</DT
+><DD
+><P
+>&#13;	List the site XML file for all known hosts.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-LIST-HOST-XML"
+>3.6.15. list host xml</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks list host xml</B
+>  [host...] [arch=<VAR
+CLASS="REPLACEABLE"
+>string</VAR
+>]</P
+><P
+>&#13;	Lists the monolithic XML configuration file for hosts. For each host
+	supplied on the command line, this command prints the hostname and
+	XML file configuration for that host. This is the same XML
+	configuration file that is sent back to a host when a host begins
+	it's installation procedure.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>host</SPAN
+>]</DT
+><DD
+><P
+>&#13;	Zero, one or more host names. If no host names are supplied, info about
+	all the known hosts is listed.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>arch=<VAR
+CLASS="REPLACEABLE"
+>string</VAR
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Optional. If specified, generate a graph for the specified CPU type.
+	If not specified, then 'arch' defaults to this host's architecture.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks list host xml compute-0-0</DT
+><DD
+><P
+>&#13;	List the XML configuration file for compute-0-0.
+	
+	</P
+></DD
+><DT
+>$ rocks list host xml</DT
+><DD
+><P
+>&#13;	List the XML configuration files for all known hosts.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-LIST-LICENSE"
+>3.6.16. list license</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks list license</B
+> </P
+><P
+>&#13;	List the Rocks copyright.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks list license</DT
+><DD
+><P
+>&#13;	List the Rocks copyright.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-LIST-MEMBERSHIP"
+>3.6.17. list membership</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks list membership</B
+>  [membership...]</P
+><P
+>&#13;	Lists the memberships defined in the cluster database.
+	
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>membership</SPAN
+>]</DT
+><DD
+><P
+>&#13;	Optional. A list of membership names. If no membership names are
+	supplied, all the known memberships are listed.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks list membership</DT
+><DD
+><P
+>&#13;	List all known membership definitions.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-LIST-NETWORK"
+>3.6.18. list network</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks list network</B
+>  [network...]</P
+><P
+>&#13;	List the defined networks for this system.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>network</SPAN
+>]</DT
+><DD
+><P
+>&#13;	Zero, one or more network names. If no network names are supplied,
+	info about all the known networks is listed.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks list network private</DT
+><DD
+><P
+>&#13;	List network info for the network named 'private'.
+	
+	</P
+></DD
+><DT
+>$ rocks list network</DT
+><DD
+><P
+>&#13;	List info for all defined networks.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-LIST-NODE-XML"
+>3.6.19. list node xml</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks list node xml</B
+>  {node} [addr=<VAR
+CLASS="REPLACEABLE"
+>string</VAR
+>] [arch=<VAR
+CLASS="REPLACEABLE"
+>string</VAR
+>] [basedir=<VAR
+CLASS="REPLACEABLE"
+>string</VAR
+>] [dist=<VAR
+CLASS="REPLACEABLE"
+>string</VAR
+>] [eval=<VAR
+CLASS="REPLACEABLE"
+>bool</VAR
+>] [gen=<VAR
+CLASS="REPLACEABLE"
+>string</VAR
+>] [graph=<VAR
+CLASS="REPLACEABLE"
+>string</VAR
+>] [host=<VAR
+CLASS="REPLACEABLE"
+>string</VAR
+>] [missing-check=<VAR
+CLASS="REPLACEABLE"
+>bool</VAR
+>] [roll=<VAR
+CLASS="REPLACEABLE"
+>string</VAR
+>]</P
+><P
+>&#13;	Lists the XML configuration information for a host. The graph
+	traversal for the XML output is rooted at the XML node file
+	specified by the 'node' argument. This command executes the first
+	pre-processor pass on the configuration graph, performs all
+	variable substitutions, and runs all eval sections.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>node</DT
+><DD
+><P
+>&#13;	The XML node file that the graph traversal will begin. This should be
+	the basename of the XML file (e.g., 'compute' and not 'compute.xml').
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>addr=<VAR
+CLASS="REPLACEABLE"
+>string</VAR
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Primary address of host. If not supplied, then the loopback
+	IP address is used.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>arch=<VAR
+CLASS="REPLACEABLE"
+>string</VAR
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Traverse the graph with the 'arch' parameter set to 
+	the supplied value. If not specified, then 'arch' defaults to this
+	host's architecture.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>basedir=<VAR
+CLASS="REPLACEABLE"
+>string</VAR
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	If specified, the location of the XML node files.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>dist=<VAR
+CLASS="REPLACEABLE"
+>string</VAR
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Name of the distribution. If not supplied, then the
+	distribution named 'rocks-dist' is used.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>eval=<VAR
+CLASS="REPLACEABLE"
+>bool</VAR
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	If set to 'no', then don't execute eval sections. If not
+	supplied, then execute all eval sections.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>gen=<VAR
+CLASS="REPLACEABLE"
+>string</VAR
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	If set, the use the supplied argument as the program for the
+	2nd pass generator. If not supplied, then use 'kgen'.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>graph=<VAR
+CLASS="REPLACEABLE"
+>string</VAR
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Name of the graph to traverse. If not supplied, then the
+	graph named 'default' is traversed.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>host=<VAR
+CLASS="REPLACEABLE"
+>string</VAR
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Primary name of host. If not supplied, then the name of
+	this host is used.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>missing-check=<VAR
+CLASS="REPLACEABLE"
+>bool</VAR
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	If set to 'no', then disable errors regarding missing nodes.
+	If not supplied, then print messages about missing nodes.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>roll=<VAR
+CLASS="REPLACEABLE"
+>string</VAR
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	If set, only expand nodes from the named roll. If not
+	supplied, then the all rolls are used.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks list node xml compute</DT
+><DD
+><P
+>&#13;	Generate the XML graph starting at the XML node named 'compute.xml'.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-LIST-ROLL"
+>3.6.20. list roll</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks list roll</B
+>  [roll...]</P
+><P
+>&#13;	List the status of available rolls.
+	
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>roll</SPAN
+>]</DT
+><DD
+><P
+>&#13;	List of rolls. This should be the roll base name (e.g., base, hpc,
+	kernel). If no rolls are listed, then status for all the rolls are
+	listed.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks list roll kernel</DT
+><DD
+><P
+>		
+	List the status of the kernel roll
+	
+	</P
+></DD
+><DT
+>$ rocks list roll</DT
+><DD
+><P
+>&#13;	List the status of all the available rolls
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-LIST-ROLL-COMMAND"
+>3.6.21. list roll command</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks list roll command</B
+>  [roll...]</P
+><P
+>&#13;	List the commands provided by a roll.
+	
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>roll</SPAN
+>]</DT
+><DD
+><P
+>&#13;	List of rolls. This should be the roll base names (e.g., base, hpc,
+	kernel). If no rolls are listed, then commands for all the rolls are
+	listed.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks list roll command base</DT
+><DD
+><P
+>&#13;	Returns the the list of commands installed by the Rocks base Roll.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-LIST-VAR"
+>3.6.22. list var</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks list var</B
+>  [appliance=<VAR
+CLASS="REPLACEABLE"
+>string</VAR
+>] [component=<VAR
+CLASS="REPLACEABLE"
+>string</VAR
+>] [service=<VAR
+CLASS="REPLACEABLE"
+>string</VAR
+>]</P
+><P
+>&#13;	Lists variables in the Rocks key/value database. Variables are
+	defined as a quad of (Appliance, Service, Component, Value).
+	Within a node XML file, values can be retrieved as
+	&#60;var name="Service_Component"/&#62;. 
+	
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>appliance=<VAR
+CLASS="REPLACEABLE"
+>string</VAR
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	If supplied, restricts listing to this appliance. Using
+	appliance=global will list only global values.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>component=<VAR
+CLASS="REPLACEABLE"
+>string</VAR
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	If supplied, restricts listing to this component.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>service=<VAR
+CLASS="REPLACEABLE"
+>string</VAR
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	If supplied, restricts listing to this service.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+>$ rocks list var</DT
+><DD
+><P
+>&#13;	List all Rocks variables.
+	
+	</P
+></DD
+><DT
+>$ rocks list var service=Kickstart</DT
+><DD
+><P
+>&#13;	List all Rocks variables associated with the 'Kickstart' service.
+	
+	</P
+></DD
+><DT
+>$ rocks list var service=Info component=RocksVersion</DT
+><DD
+><P
+>&#13;	List the Rocks variable for Info_RocksVersion.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x933.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x1585.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>enable</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="c229.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>remove</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

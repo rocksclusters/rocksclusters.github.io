@@ -1,0 +1,268 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>2.3 Matchmaking with ClassAds</TITLE>
+<META NAME="description" CONTENT="2.3 Matchmaking with ClassAds">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="2_4Road_map_Running.html">
+<LINK REL="previous" HREF="2_2Introduction.html">
+<LINK REL="up" HREF="2_Users_Manual.html">
+<LINK REL="next" HREF="2_4Road_map_Running.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html593"
+  HREF="2_4Road_map_Running.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html587"
+  HREF="2_Users_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html581"
+  HREF="2_2Introduction.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html589"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html591"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html594"
+  HREF="2_4Road_map_Running.html">2.4 Road-map for Running</A>
+<B> Up:</B> <A NAME="tex2html588"
+  HREF="2_Users_Manual.html">2. Users' Manual</A>
+<B> Previous:</B> <A NAME="tex2html582"
+  HREF="2_2Introduction.html">2.2 Introduction</A>
+ &nbsp; <B>  <A NAME="tex2html590"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html592"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html595"
+  HREF="2_3Matchmaking_with.html#SECTION00331000000000000000">2.3.1 Inspecting Machine ClassAds with condor_status</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00330000000000000000"></A>
+<A NAME="sec:matchmaking-with-classads"></A>
+<BR>
+2.3 Matchmaking with ClassAds
+</H1>
+
+<P>
+Before you learn about how to submit a job, it is important to
+understand how Condor allocates resources. 
+<A NAME="1576"></A>
+Understanding the
+unique framework by which Condor matches submitted jobs with machines is
+the key to getting the most from Condor's scheduling algorithm. 
+
+<P>
+Condor simplifies job submission by acting as a matchmaker of ClassAds.
+Condor's ClassAds
+<A NAME="1577"></A>
+are analogous to the classified advertising section of the
+newspaper. Sellers advertise specifics about what they have to sell,
+hoping to attract a buyer. Buyers may advertise specifics about what
+they wish to purchase. Both buyers and sellers list constraints that
+need to be satisfied.
+For instance, a buyer has a maximum spending limit, 
+and a seller requires a minimum purchase price.
+Furthermore, both want to rank requests to their own advantage.
+Certainly a seller would rank
+one offer of $50 dollars higher than a different
+offer of $25.
+In Condor, users submitting
+jobs can be thought of as buyers of compute resources and machine owners
+are sellers. 
+
+<P>
+All machines in a Condor pool advertise their attributes,
+<A NAME="1578"></A>
+such as
+available memory, CPU type and speed, virtual memory size, current
+load average, along with other static and dynamic properties.
+This machine ClassAd
+<A NAME="1579"></A>
+also advertises under what conditions it is
+willing to run a Condor job and what type of job it would prefer. These
+policy attributes can reflect the individual terms and preferences by
+which all the different owners have graciously allowed their machine to
+be part of the Condor pool. 
+You may
+advertise that your machine is only willing to run jobs at night
+and when there is no keyboard activity on your machine.
+In addition, you may
+advertise a preference (rank) for running jobs submitted by you
+or one of your co-workers. 
+
+<P>
+Likewise, when submitting a job, you specify a ClassAd with
+your requirements and preferences.
+The ClassAd
+<A NAME="1580"></A>
+includes the
+type of machine you  wish to use. For instance, perhaps you are
+looking for the fastest floating point performance available.
+You want Condor to rank available machines
+based upon floating point performance. Or, perhaps you
+care only that the machine has a minimum of 128 Mbytes of RAM.
+Or, perhaps you will
+take any machine you can get! These job attributes and requirements
+are bundled up into a job ClassAd.
+
+<P>
+Condor plays the role of a matchmaker by continuously reading
+all the job ClassAds and all the machine ClassAds, 
+matching and ranking job ads with machine ads.
+Condor makes certain that all
+requirements in both ClassAds are satisfied. 
+
+<P>
+
+<H2><A NAME="SECTION00331000000000000000">
+2.3.1 Inspecting Machine ClassAds with condor_status</A>
+</H2>
+
+<P>
+<A NAME="1582"></A>
+Once Condor is installed,
+you will get a feel for what
+a machine ClassAd does by trying
+the <I>condor_status</I> command.
+Try the <I>condor_status</I> command to get
+a summary of information from
+ClassAds about the resources available in your pool.
+Type <I>condor_status</I> and hit enter to see a summary 
+similar to the following:
+<DIV ALIGN="CENTER">
+</DIV><PRE>
+Name       Arch     OpSys        State      Activity   LoadAv Mem  ActvtyTime
+
+adriana.cs INTEL    SOLARIS251   Claimed    Busy       1.000  64    0+01:10:00
+alfred.cs. INTEL    SOLARIS251   Claimed    Busy       1.000  64    0+00:40:00
+amul.cs.wi SUN4u    SOLARIS251   Owner      Idle       1.000  128   0+06:20:04
+anfrom.cs. SUN4x    SOLARIS251   Claimed    Busy       1.000  32    0+05:16:22
+anthrax.cs INTEL    SOLARIS251   Claimed    Busy       0.285  64    0+00:00:00
+astro.cs.w INTEL    SOLARIS251   Claimed    Busy       0.949  64    0+05:30:00
+aura.cs.wi SUN4u    SOLARIS251   Owner      Idle       1.043  128   0+14:40:15
+</PRE>
+<DIV ALIGN="CENTER">... 
+
+</DIV>
+
+<P>
+The <I>condor_status</I> command has options that summarize machine ads 
+in a variety of ways.
+For example,
+<DL>
+<DT><STRONG><I>condor_status -available</I></STRONG></DT>
+<DD>shows only machines which are
+willing to run jobs now. 
+</DD>
+<DT><STRONG><I>condor_status -run</I></STRONG></DT>
+<DD>shows only machines
+which are currently running jobs.  
+</DD>
+<DT><STRONG><I>condor_status -l</I></STRONG></DT>
+<DD>lists the machine ClassAds for all machines
+in the pool.
+</DD>
+</DL>
+
+<P>
+Refer to the <I>condor_status</I> command 
+reference page located on page&nbsp;<A HREF="condor_status.html#man-condor-status"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>
+for a complete description of the <I>condor_status</I> command.
+
+<P>
+Figure&nbsp;<A HREF="#fig:CondorStatusL">2.1</A> shows the complete machine ClassAd
+<A NAME="1600"></A>
+<A NAME="1601"></A>
+for a single workstation: alfred.cs.wisc.edu. Some of the listed
+attributes are used by
+Condor for scheduling. Other attributes are for information purposes.
+An important point is that <I>any</I> of the attributes in a
+machine ad can be utilized at job submission time as part of a request
+or preference on what machine to use. Additional attributes
+can be easily added. For example, your site administrator can
+add a physical location attribute to your machine ClassAds.
+
+<P>
+<DIV ALIGN="CENTER">
+</DIV>
+<DIV ALIGN="CENTER"><A NAME="fig:CondorStatusL"></A><A NAME="1671"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 2.1:</STRONG>
+Sample output from <I>condor_status -l alfred</I></CAPTION>
+<TR><TD><IMG
+ WIDTH="519" HEIGHT="501" BORDER="0"
+ SRC="img2.png"
+ ALT="\begin{figure}\small
+\begin{verbatim}MyType = ''Machine''
+TargetType = ''Job''...
+...k = - 1.000000
+LastHeardFrom = 892191963\end{verbatim}
+\normalsize\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+<DIV ALIGN="CENTER">
+</DIV>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html593"
+  HREF="2_4Road_map_Running.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html587"
+  HREF="2_Users_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html581"
+  HREF="2_2Introduction.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html589"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html591"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html594"
+  HREF="2_4Road_map_Running.html">2.4 Road-map for Running</A>
+<B> Up:</B> <A NAME="tex2html588"
+  HREF="2_Users_Manual.html">2. Users' Manual</A>
+<B> Previous:</B> <A NAME="tex2html582"
+  HREF="2_2Introduction.html">2.2 Introduction</A>
+ &nbsp; <B>  <A NAME="tex2html590"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html592"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

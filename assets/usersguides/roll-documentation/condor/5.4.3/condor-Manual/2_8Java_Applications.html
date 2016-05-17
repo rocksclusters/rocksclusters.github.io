@@ -1,0 +1,586 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>2.8 Java Applications</TITLE>
+<META NAME="description" CONTENT="2.8 Java Applications">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="2_9Parallel_Applications.html">
+<LINK REL="previous" HREF="2_7Priorities_Preemption.html">
+<LINK REL="up" HREF="2_Users_Manual.html">
+<LINK REL="next" HREF="2_9Parallel_Applications.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html715"
+  HREF="2_9Parallel_Applications.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html709"
+  HREF="2_Users_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html703"
+  HREF="2_7Priorities_Preemption.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html711"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html713"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html716"
+  HREF="2_9Parallel_Applications.html">2.9 Parallel Applications (Including</A>
+<B> Up:</B> <A NAME="tex2html710"
+  HREF="2_Users_Manual.html">2. Users' Manual</A>
+<B> Previous:</B> <A NAME="tex2html704"
+  HREF="2_7Priorities_Preemption.html">2.7 Priorities and Preemption</A>
+ &nbsp; <B>  <A NAME="tex2html712"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html714"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html717"
+  HREF="2_8Java_Applications.html#SECTION00381000000000000000">2.8.1 A Simple Example Java Application</A>
+<LI><A NAME="tex2html718"
+  HREF="2_8Java_Applications.html#SECTION00382000000000000000">2.8.2 Less Simple Java Specifications</A>
+<LI><A NAME="tex2html719"
+  HREF="2_8Java_Applications.html#SECTION00383000000000000000">2.8.3 Chirp I/O</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00380000000000000000"></A><A NAME="sec:Java"></A>
+<A NAME="3870"></A>
+<BR>
+2.8 Java Applications
+</H1>
+
+<P>
+Condor allows users to access a wide variety of
+machines distributed around the world.
+The Java Virtual Machine (JVM)
+<A NAME="3871"></A>
+<A NAME="3872"></A>
+provides a uniform platform on any machine, regardless of the
+machine's architecture or operating system.
+The Condor Java universe brings together these
+two features to create a distributed, homogeneous computing environment.
+
+<P>
+Compiled Java programs can be submitted to Condor, and Condor
+can execute the programs on any machine in the pool that will run
+the Java Virtual Machine.
+
+<P>
+The <I>condor_status</I> command can be used to see a list of
+machines in the pool for which Condor can use the Java Virtual
+Machine.
+
+<P>
+<PRE>
+% condor_status -java
+
+Name               JavaVendor Ver    State     Activity LoadAv  Mem  ActvtyTime
+
+adelie01.cs.wisc.e Sun Micros 1.6.0_ Claimed   Busy     0.090   873  0+00:02:46
+adelie02.cs.wisc.e Sun Micros 1.6.0_ Owner     Idle     0.210   873  0+03:19:32
+slot10@bio.cs.wisc Sun Micros 1.6.0_ Unclaimed Idle     0.000   118  7+03:13:28
+slot2@bio.cs.wisc. Sun Micros 1.6.0_ Unclaimed Idle     0.000   118  7+03:13:28
+...
+</PRE>
+<P>
+If there is no output from the
+<I>condor_status</I> command,
+then Condor does not know the location details of the Java Virtual
+Machine on machines in the pool,
+or no machines have Java correctly installed.
+In this case,
+contact your system administrator or see section <A HREF="3_14Java_Support.html#sec:java-install">3.14</A>
+for more information on getting Condor to work together
+with Java.
+
+<P>
+
+<H2><A NAME="SECTION00381000000000000000"></A>
+<A NAME="3879"></A>
+<BR>
+2.8.1 A Simple Example Java Application
+</H2>
+
+<P>
+Here is a complete, if simple, example.
+Start with a simple Java program, <TT>Hello.java</TT>:
+
+<P>
+<PRE>
+public class Hello {
+        public static void main( String [] args ) {
+                System.out.println("Hello, world!\n");
+        }
+}
+</PRE>
+
+<P>
+Build this program using your Java compiler.
+On most platforms, this is
+accomplished with the command
+<PRE>
+javac Hello.java
+</PRE>
+
+<P>
+Submission to Condor requires a submit description file.
+If submitting where files are accessible using a
+shared file system,
+this simple submit description file works:
+
+<P>
+<PRE>
+  ####################
+  #
+  # Example 1
+  # Execute a single Java class
+  #
+  ####################
+
+  universe       = java
+  executable     = Hello.class
+  arguments      = Hello
+  output         = Hello.output
+  error          = Hello.error
+  queue
+</PRE>
+
+<P>
+The Java universe must be explicitly selected.
+
+<P>
+The main class of the program is given in the <B>executable</B> statement.
+This is a file name which contains the entry point of the program.
+The name of the main class (not a file name) must
+be specified as the first argument to the program.
+
+<P>
+If submitting the job where a shared file system is <I>not</I>
+accessible,
+the submit description file becomes:
+
+<P>
+<PRE>
+  ####################
+  #
+  # Example 1
+  # Execute a single Java class,
+  # not on a shared file system
+  #
+  ####################
+
+  universe       = java
+  executable     = Hello.class
+  arguments      = Hello
+  output         = Hello.output
+  error          = Hello.error
+  should_transfer_files = YES
+  when_to_transfer_output = ON_EXIT
+  queue
+</PRE>
+For more information about using Condor's file transfer mechanisms,
+see section&nbsp;<A HREF="2_5Submitting_Job.html#sec:file-transfer">2.5.4</A>.
+
+<P>
+To submit the job, where the submit description file
+is named <TT>Hello.cmd</TT>, 
+execute 
+<PRE>
+condor_submit Hello.cmd
+</PRE>
+
+<P>
+To monitor the job, the commands <I>condor_q</I> and <I>condor_rm</I>
+are used as with all jobs.
+
+<P>
+
+<H2><A NAME="SECTION00382000000000000000">
+2.8.2 Less Simple Java Specifications</A>
+</H2>
+
+<P>
+<DL>
+<DT><STRONG>Specifying more than 1 class file.</STRONG></DT>
+<DD><A NAME="3899"></A>
+For programs that 
+consist of more than one <TT>.class</TT> file,
+identify the files in the submit description file:
+
+<P>
+<PRE>
+executable = Stooges.class
+transfer_input_files = Larry.class,Curly.class,Moe.class
+</PRE>
+
+<P>
+The <B>executable</B> command does not change.
+It still identifies the class file that contains the program's
+entry point.
+
+<P>
+</DD>
+<DT><STRONG>JAR files.</STRONG></DT>
+<DD><A NAME="3904"></A>
+If the program consists of a large number of class files,
+it may be easier to collect them all together into
+a single Java Archive (JAR) file.
+A JAR can be created with:
+
+<P>
+<PRE>
+% jar cvf Library.jar Larry.class Curly.class Moe.class Stooges.class
+</PRE>
+<P>
+Condor must then be told where to find the JAR as well
+as to use the JAR. 
+The JAR file that contains the entry point
+is specified with the <B>executable</B> command.
+All JAR files are specified with the <B>jar_files</B>
+command.
+For this example that collected all the class files
+into a single JAR file, the submit description file contains:
+
+<P>
+<PRE>
+executable = Library.jar
+jar_files = Library.jar
+</PRE>
+
+<P>
+Note that the JVM must know whether it is receiving JAR files
+or class files.
+Therefore, Condor must also be informed, in order to pass the
+information on to the JVM.
+That is why there is a difference in submit description file commands
+for the two ways of specifying files (<B>transfer_input_files</B>
+and <B>jar_files</B>).
+
+<P>
+If there are multiple JAR files,
+the <B>executable</B> command specifies the JAR file
+that contains the program's entry point.
+This file is also listed with the <B>jar_files</B> command:
+<PRE>
+executable = sortmerge.jar
+jar_files = sortmerge.jar,statemap.jar
+</PRE>
+
+<P>
+</DD>
+<DT><STRONG>Using a third-party JAR file.</STRONG></DT>
+<DD>As Condor requires that all JAR files (third-party or not)
+be available,
+specification of a third-party JAR file is no different than
+other JAR files.
+If the sortmerge example above also relies on
+version 2.1 from http://jakarta.apache.org/commons/lang/,
+and this JAR file has been placed in the same directory with
+the other JAR files, then the submit description file contains
+<PRE>
+executable = sortmerge.jar
+jar_files = sortmerge.jar,statemap.jar,commons-lang-2.1.jar
+</PRE>
+<P>
+</DD>
+<DT><STRONG>An executable JAR file.</STRONG></DT>
+<DD>When the JAR file is an executable, 
+specify the program's entry point in the <B>arguments</B>
+command:
+<PRE>
+executable = anexecutable.jar
+jar_files  = anexecutable.jar
+arguments  = some.main.ClassFile
+</PRE>
+
+<P>
+</DD>
+<DT><STRONG>Packages.</STRONG></DT>
+<DD><A NAME="3922"></A>
+An example of a Java class that is declared in a non-default
+package is
+<PRE>
+package hpc;
+
+ public class CondorDriver
+ {
+     // class definition here
+ }
+</PRE>
+The JVM needs to know the location of this package.
+It is passed as a command-line argument, implying the use
+of the naming convention and directory structure.
+
+<P>
+Therefore, the submit description file for this example will contain
+<PRE>
+arguments = hpc.CondorDriver
+</PRE>
+
+<P>
+</DD>
+<DT><STRONG>JVM-version specific features.</STRONG></DT>
+<DD>If the program uses Java features found only in certain
+JVMs, then the Java application submitted to Condor
+must only run on those machines within the
+pool that run the needed JVM.
+Inform Condor by adding a <TT>requirements</TT>
+statement to the submit description file.
+For example, to require version 3.2, add to the submit description
+file:
+
+<P>
+<PRE>
+requirements = (JavaVersion=="3.2")
+</PRE>
+
+<P>
+</DD>
+<DT><STRONG>Benchmark speeds.</STRONG></DT>
+<DD>Each machine with Java capability in a Condor pool
+will execute a benchmark to determine its speed.
+The benchmark is taken when Condor is started on
+the machine, and it uses the SciMark2
+(<A NAME="tex2html17"
+  HREF="http://math.nist.gov/scimark2">http://math.nist.gov/scimark2</A>) benchmark.
+The result of the benchmark is held as an attribute
+within the 
+machine ClassAd.
+The attribute is called <TT>JavaMFlops</TT>.
+Jobs that are run under the Java universe (as all other Condor jobs)
+may prefer or require a machine of a specific speed
+by setting <TT>rank</TT> or <TT>requirements</TT> in
+the submit description file.
+As an example, to execute only on machines of a minimum speed:
+
+<P>
+<PRE>
+requirements = (JavaMFlops&gt;4.5)
+</PRE>
+
+<P>
+</DD>
+<DT><STRONG>JVM options.</STRONG></DT>
+<DD>Options to the JVM itself are specified in the 
+submit description file:
+
+<P>
+<PRE>
+java_vm_args = -DMyProperty=Value -verbose:gc -Xmx1024m
+</PRE>
+
+<P>
+These options are those which go after the java command, but before
+the user's main class.  Do not use this to set the classpath, as
+Condor handles that itself.  Setting these options is useful for
+setting system properties, system assertions and debugging certain
+kinds of problems.
+
+<P>
+</DD>
+</DL>
+
+<P>
+
+<H2><A NAME="SECTION00383000000000000000">
+2.8.3 Chirp I/O</A>
+</H2>
+
+<P>
+<A NAME="3940"></A>
+If a job has more sophisticated I/O requirements that cannot
+be met by Condor's file transfer mechanism,
+then the Chirp facility may provide a solution.
+Chirp has two advantages over simple, whole-file transfers.
+First, it permits the input files to be decided upon at run-time
+rather than submit time, and second,
+it permits partial-file I/O with results than can be seen as the
+program executes.
+However, small changes to the program are required
+in order to take advantage of Chirp.
+Depending on the style of the program, use either Chirp I/O streams
+or UNIX-like I/O functions.
+
+<P>
+<A NAME="3941"></A>
+<A NAME="3942"></A>
+Chirp I/O streams are the easiest way to get started.
+Modify the program to use the objects <TT>ChirpInputStream</TT>
+and <TT>ChirpOutputStream</TT> instead of <TT>FileInputStream</TT> and
+<TT>FileOutputStream</TT>.
+These classes are completely documented
+<A NAME="3947"></A>
+<A NAME="3948"></A>
+in the Condor Software Developer's Kit (SDK).
+Here is a simple code example:
+
+<P>
+<PRE>
+import java.io.*;
+import edu.wisc.cs.condor.chirp.*;
+
+public class TestChirp {
+
+   public static void main( String args[] ) {
+
+      try {
+         BufferedReader in = new BufferedReader(
+            new InputStreamReader(
+               new ChirpInputStream("input")));
+
+         PrintWriter out = new PrintWriter(
+            new OutputStreamWriter(
+               new ChirpOutputStream("output")));
+
+         while(true) {
+            String line = in.readLine();
+            if(line==null) break;
+            out.println(line);
+         }
+         out.close();
+      } catch( IOException e ) {
+         System.out.println(e);
+      }
+   }
+}
+</PRE>
+
+<P>
+<A NAME="3951"></A>
+To perform UNIX-like I/O with Chirp,
+create a <TT>ChirpClient</TT> object.
+This object supports familiar operations such as <TT>open</TT>, <TT>read</TT>,
+<TT>write</TT>, and <TT>close</TT>.
+Exhaustive detail of the methods may be found in the Condor 
+SDK, but here is a brief example:
+
+<P>
+<PRE>
+import java.io.*;
+import edu.wisc.cs.condor.chirp.*;
+
+public class TestChirp {
+
+   public static void main( String args[] ) {
+
+      try {
+         ChirpClient client = new ChirpClient();
+         String message = "Hello, world!\n";
+         byte [] buffer = message.getBytes();
+
+         // Note that we should check that actual==length.
+         // However, skip it for clarity.
+
+         int fd = client.open("output","wct",0777);
+         int actual = client.write(fd,buffer,0,buffer.length);
+         client.close(fd);
+
+         client.rename("output","output.new");
+         client.unlink("output.new");
+
+      } catch( IOException e ) {
+         System.out.println(e);
+      }
+   }
+}
+</PRE>
+
+<P>
+<A NAME="3959"></A>
+Regardless of which I/O style, 
+the Chirp library must be specified and included with the job.
+The Chirp JAR (<TT>Chirp.jar</TT>)
+is found in the <TT>lib</TT> directory of the Condor installation.
+Copy it into your working directory in order to
+compile the program after modification to use Chirp I/O.
+
+<P>
+<PRE>
+% condor_config_val LIB
+/usr/local/condor/lib
+% cp /usr/local/condor/lib/Chirp.jar .
+</PRE>
+
+<P>
+Rebuild the program with the Chirp JAR file in the class path.
+
+<P>
+<PRE>
+% javac -classpath Chirp.jar:. TestChirp.java
+</PRE>
+
+<P>
+The Chirp JAR file must be specified in the submit description file.
+Here is an example submit description file that works for both
+of the given test programs:
+
+<P>
+<PRE>
+universe = java
+executable = TestChirp.class
+arguments = TestChirp
+jar_files = Chirp.jar
+queue
+</PRE>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html715"
+  HREF="2_9Parallel_Applications.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html709"
+  HREF="2_Users_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html703"
+  HREF="2_7Priorities_Preemption.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html711"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html713"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html716"
+  HREF="2_9Parallel_Applications.html">2.9 Parallel Applications (Including</A>
+<B> Up:</B> <A NAME="tex2html710"
+  HREF="2_Users_Manual.html">2. Users' Manual</A>
+<B> Previous:</B> <A NAME="tex2html704"
+  HREF="2_7Priorities_Preemption.html">2.7 Priorities and Preemption</A>
+ &nbsp; <B>  <A NAME="tex2html712"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html714"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

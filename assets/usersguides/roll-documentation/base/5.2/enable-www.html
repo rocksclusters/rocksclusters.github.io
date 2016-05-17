@@ -1,0 +1,291 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Enabling Public Web Access to Your Frontend</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Roll: Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE=" Installing a Rocks Cluster "
+HREF="installing.html"><LINK
+REL="PREVIOUS"
+TITLE=" Installing a Frontend over the Network "
+HREF="frontend-wan.html"><LINK
+REL="NEXT"
+TITLE=" Defining and Modifying Networks and Network Interfaces "
+HREF="networking.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Base Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="frontend-wan.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 2. Installing a Rocks Cluster</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="networking.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="ENABLE-WWW"
+>2.6. Enabling Public Web Access to Your Frontend</A
+></H1
+><P
+>To permenantly enable selected web access to the cluster from other
+machines on the public network, follow the steps below. Apache's access 
+control directives will provide protection for the most sensitive parts of the
+cluster web site, however some effort will be necessary to make effective use of them.</P
+><DIV
+CLASS="WARNING"
+><P
+></P
+><TABLE
+CLASS="WARNING"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/warning.png"
+HSPACE="5"
+ALT="Warning"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>HTTP (web access protocol) is a clear-text channel into your cluster. 
+Although the Apache webserver is mature and well tested, security holes 
+in the PHP engine have been found and exploited. Opening web access to the
+outside world by following the instructions below will make your
+cluster more prone to malicious attacks and breakins.</P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>Edit the <TT
+CLASS="FILENAME"
+>/etc/sysconfig/iptables</TT
+> file and open up
+https and www traffic by changing the section:</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>...
+# http and https is allowed for all nodes on the public subnet
+-A INPUT -m state --state NEW -p tcp --dport https --source XXX.XXX.XXX.0/255.255.255.0 -j ACCEPT
+-A INPUT -m state --state NEW -p tcp --dport www --source XXX.XXX.XXX.0/255.255.255.0 -j ACCEPT
+... other firewall directives ...</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><P
+>to:</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>...
+# http and https is allowed for all nodes on the public subnet
+-A INPUT -m state --state NEW -p tcp --dport https -j ACCEPT
+-A INPUT -m state --state NEW -p tcp --dport www -j ACCEPT
+... other firewall directives ...</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+></LI
+><LI
+><P
+>Restart the iptables service. You must execute this command as the root user.</P
+><P
+><KBD
+CLASS="USERINPUT"
+># service iptables restart</KBD
+></P
+></LI
+><LI
+><P
+>Test your changes by pointing a web browser to 
+<TT
+CLASS="LITERAL"
+>http://my.cluster.org/</TT
+>,
+where "my.cluster.org" is the DNS name of your frontend machine. </P
+><DIV
+CLASS="TIP"
+><P
+></P
+><TABLE
+CLASS="TIP"
+WIDTH="90%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/tip.png"
+HSPACE="5"
+ALT="Tip"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>If you cannot connect to this address, the problem is most
+likely in your network connectivity between your web browser and
+the cluster. Check that you can ping the frontend machine from
+the machine running the web browser, that you can ssh into it, etc.</P
+></TD
+></TR
+></TABLE
+></DIV
+></LI
+></OL
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="frontend-wan.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="networking.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Installing a Frontend over the Network</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="installing.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Defining and Modifying Networks and Network Interfaces</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

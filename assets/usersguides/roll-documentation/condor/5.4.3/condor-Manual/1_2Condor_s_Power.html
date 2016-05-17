@@ -1,0 +1,195 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>1.2 Condor's Power</TITLE>
+<META NAME="description" CONTENT="1.2 Condor's Power">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="1_3Exceptional_Features.html">
+<LINK REL="previous" HREF="1_1High_Throughput_Computin.html">
+<LINK REL="up" HREF="1_Overview.html">
+<LINK REL="next" HREF="1_3Exceptional_Features.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html400"
+  HREF="1_3Exceptional_Features.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html394"
+  HREF="1_Overview.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html388"
+  HREF="1_1High_Throughput_Computin.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html396"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html398"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html401"
+  HREF="1_3Exceptional_Features.html">1.3 Exceptional Features</A>
+<B> Up:</B> <A NAME="tex2html395"
+  HREF="1_Overview.html">1. Overview</A>
+<B> Previous:</B> <A NAME="tex2html389"
+  HREF="1_1High_Throughput_Computin.html">1.1 High-Throughput Computing (HTC)</A>
+ &nbsp; <B>  <A NAME="tex2html397"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html399"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00220000000000000000"></A><A NAME="sec:what-is-condor"></A>
+<BR>
+1.2 Condor's Power
+</H1>
+
+<P>
+Condor is a software system that creates a High-Throughput Computing
+(HTC) environment.
+It effectively utilizes the computing power of workstations that
+communicate over a network.
+Condor can manage a dedicated cluster of workstations.
+Its power comes from the
+ability to effectively harness non-dedicated,
+preexisting resources under distributed ownership. 
+<A NAME="1203"></A>
+
+<P>
+A user submits the job to Condor.
+Condor finds an available machine on the network and begins
+running the job on that machine.
+Condor has the capability to detect that a machine running a Condor job
+is no longer available (perhaps because the owner of the machine
+came back from lunch and started typing on the keyboard).
+It can checkpoint 
+<A NAME="1204"></A>
+the job and move (migrate)
+<A NAME="1205"></A>
+the jobs to a different machine which would otherwise be idle.
+Condor continues the job on the new machine from
+precisely where it left off.
+
+<P>
+In those cases where Condor can checkpoint and migrate a job,
+Condor makes it easy to maximize the number of machines which can run
+a job.
+In this case, there is no requirement for machines to
+share file systems (for example, with NFS or AFS),
+so that machines across an entire enterprise can run a job,
+including machines in different administrative domains.
+
+<P>
+Condor can be a real time saver when a job
+must be run many (hundreds of) different times,
+<A NAME="1206"></A>
+perhaps with hundreds of different data sets.
+With one command, all of the hundreds of jobs are submitted to Condor.
+Depending upon the number of machines in the Condor pool,
+dozens or even hundreds of otherwise idle machines
+can be running the job at any given moment.
+
+<P>
+Condor does not require an account (login) on machines where it runs a job.
+Condor can do this because of its <I>remote system call</I>
+<A NAME="1208"></A>
+technology,
+which traps
+library calls for such operations as reading or writing from disk
+files.
+The calls are transmitted over the network to be performed on the machine
+where the job was submitted.
+
+<P>
+<A NAME="1209"></A>
+<A NAME="1210"></A>
+Condor provides powerful resource management by
+match-making resource
+<A NAME="1211"></A>
+owners with resource consumers.
+This is the cornerstone of a successful HTC environment.
+Other compute cluster resource management
+systems attach properties to the job queues themselves,
+resulting in user confusion over which queue to use as well as administrative
+hassle in constantly adding and editing queue properties to satisfy user
+demands.
+Condor implements 
+<I>ClassAds</I>,
+<A NAME="1213"></A>
+a clean design that simplifies the user's submission of jobs.
+
+<P>
+ClassAds work in a fashion similar to the newspaper classified
+advertising want-ads. All machines in the Condor pool advertise their
+resource properties, both static and dynamic,
+such as available RAM memory, CPU type, CPU speed,
+virtual memory size, physical location, and current load average,
+in a <I>resource offer</I> ad.
+<A NAME="1215"></A>
+A user specifies a <I>resource request</I> ad
+<A NAME="1217"></A>
+when submitting a job.
+The request defines both the required and a desired set of properties
+of the resource to run the job.
+Condor acts as a broker by matching and ranking resource
+offer ads with resource request ads, making certain that all
+requirements in both ads are satisfied.
+During this match-making process,
+Condor also considers several layers of priority values:
+the priority the user assigned to the resource request ad,
+the priority of the user which submitted the ad,
+and desire of
+machines in the pool to accept certain types of ads over others. 
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html400"
+  HREF="1_3Exceptional_Features.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html394"
+  HREF="1_Overview.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html388"
+  HREF="1_1High_Throughput_Computin.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html396"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html398"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html401"
+  HREF="1_3Exceptional_Features.html">1.3 Exceptional Features</A>
+<B> Up:</B> <A NAME="tex2html395"
+  HREF="1_Overview.html">1. Overview</A>
+<B> Previous:</B> <A NAME="tex2html389"
+  HREF="1_1High_Throughput_Computin.html">1.1 High-Throughput Computing (HTC)</A>
+ &nbsp; <B>  <A NAME="tex2html397"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html399"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,3525 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>add</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Command Reference"
+HREF="c2117.html"><LINK
+REL="PREVIOUS"
+TITLE="Command Reference"
+HREF="c2117.html"><LINK
+REL="NEXT"
+TITLE="config"
+HREF="x3320.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Base</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="c2117.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 9. Command Reference</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x3320.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="AEN2119"
+>9.1. add</A
+></H1
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-ADD-APPLIANCE"
+>9.1.1. add appliance</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks add appliance</B
+>  {appliance} [graph=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [membership=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [node=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [os=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [public=<TT
+CLASS="REPLACEABLE"
+><I
+>bool</I
+></TT
+>]</P
+><P
+>&#13;	Add an appliance specification to the database.
+	
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>appliance</DT
+><DD
+><P
+>&#13;	The appliance name (e.g., 'compute', 'frontend', 'nas').
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>graph=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The directory name of the graph XML files. The default is 'default'.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>membership=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The full membership name of the appliance. This name will be displayed
+	in the appliances menu by insert-ethers (e.g., 'NAS Appliance'). If
+	not supplied, the membership name is set to the appliance name.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>node=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The name of the root XML node (e.g., 'compute', 'nas', 'viz-tile'). If
+	not supplied, the node name is set to the appliance name.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>os=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The OS that the appliance type can support. Some appliances can support
+	both linux and sunos, where as others can support only one of the two.
+	Acceptable values are 'linux' or 'sunos'. Defaults to 'linux'
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>public=<TT
+CLASS="REPLACEABLE"
+><I
+>bool</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	True means this appliance will be displayed by 'insert-ethers' in 
+	the Appliance menu. The default is 'yes'.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks add appliance nas membership="NAS Appliance" node=nas graph=default public=yes</DT
+><DD
+><P
+>&#13;	
+	</P
+></DD
+><DT
+># rocks add appliance tile membership=Tile node=viz-tile graph=default public=yes</DT
+><DD
+><P
+>&#13;	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-ADD-APPLIANCE-ATTR"
+>9.1.2. add appliance attr</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks add appliance attr</B
+>  {appliance} {attr} {value} [attr=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [value=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Adds an attribute to an appliance and sets the associated values 
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>appliance</DT
+><DD
+><P
+>&#13;	Name of appliance
+	
+	</P
+></DD
+><DT
+>attr</DT
+><DD
+><P
+>&#13;	Name of the attribute
+	
+	</P
+></DD
+><DT
+>value</DT
+><DD
+><P
+>&#13;	Value of the attribute
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>attr=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	same as attr argument
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>value=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	same as value argument
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks add appliance attr compute sge False</DT
+><DD
+><P
+>&#13;	Sets the sge attribution to False for compute appliances
+	
+	</P
+></DD
+><DT
+># rocks add appliance attr compute sge attr=cpus value=2</DT
+><DD
+><P
+>&#13;	same as above
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>related commands</B
+></P
+><DL
+><DT
+><A
+HREF="x4060.html#ROCKS-LIST-APPLIANCE-ATTR"
+>list appliance attr</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+><DT
+><A
+HREF="x4060.html#ROCKS-LIST-HOST-ATTR"
+>list host attr</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+><DT
+><A
+HREF="x4906.html#ROCKS-REMOVE-APPLIANCE-ATTR"
+>remove appliance attr</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+><DT
+><A
+HREF="x4906.html#ROCKS-REMOVE-HOST-ATTR"
+>remove host attr</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+><DT
+><A
+HREF="x6255.html#ROCKS-SET-HOST-ATTR"
+>set host attr</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-ADD-APPLIANCE-ROUTE"
+>9.1.3. add appliance route</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks add appliance route</B
+>  {os} {address} {gateway} [netmask=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Add a route for an appliance type in the cluster
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>os</DT
+><DD
+><P
+>&#13;	The OS type (e.g., 'linux', 'sunos', etc.). This argument is required.
+	
+	</P
+></DD
+><DT
+>address</DT
+><DD
+><P
+>&#13;	Host or network address
+	
+	</P
+></DD
+><DT
+>gateway</DT
+><DD
+><P
+>&#13;	Network or device gateway
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>netmask=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Specifies the netmask for a network route.  For a host route
+	this is not required and assumed to be 255.255.255.255
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-ADD-ATTR"
+>9.1.4. add attr</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks add attr</B
+>  {attr} {value} [attr=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [value=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Adds a global attribute for all nodes
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>attr</DT
+><DD
+><P
+>&#13;	Name of the attribute
+	
+	</P
+></DD
+><DT
+>value</DT
+><DD
+><P
+>&#13;	Value of the attribute
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>attr=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	same as attr argument
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>value=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	same as value argument
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks add attr sge False</DT
+><DD
+><P
+>&#13;	Adds the sge attribution and sets it to False.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>related commands</B
+></P
+><DL
+><DT
+><A
+HREF="x4060.html#ROCKS-LIST-ATTR"
+>list attr</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+><DT
+><A
+HREF="x4906.html#ROCKS-REMOVE-ATTR"
+>remove attr</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-ADD-BOOTACTION"
+>9.1.5. add bootaction</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks add bootaction</B
+>  [action=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [args=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [kernel=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [ramdisk=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Add a bootaction specification to the system.
+	
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>action=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Label name for the bootaction. You can see the bootaction label names by
+	executing: 'rocks list bootaction [host(s)]'.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>args=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The second line for a pxelinux definition (e.g., ks ramdisk_size=150000
+	lang= devfs=nomount pxe kssendmac selinux=0)
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>kernel=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The name of the kernel that is associated with this boot action.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>ramdisk=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The name of the ramdisk that is associated with this boot action.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks add bootaction action=os kernel="localboot 0"</DT
+><DD
+><P
+>&#13;	Add the 'os' bootaction.
+	
+	</P
+></DD
+><DT
+># rocks add bootaction action=memtest command="memtest"</DT
+><DD
+><P
+>&#13;	Add the 'memtest' bootaction.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-ADD-DISTRIBUTION"
+>9.1.6. add distribution</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks add distribution</B
+>  {distribution}</P
+><P
+>&#13;	Add a distribution specification to the database.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>distribution</DT
+><DD
+><P
+>&#13;	Name of the new distribution.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks add distribution rocks-dist</DT
+><DD
+><P
+>&#13;	Adds the distribution named "rocks-dist" into the database.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-ADD-FIREWALL"
+>9.1.7. add firewall</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks add firewall</B
+>  {category=index} [action=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [chain=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [network=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [output-network=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [protocol=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [rulename=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [rulesrc=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [service=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Add a firewall rule to the a category in cluster.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>category=index</DT
+><DD
+><P
+>&#13;	[global,os,appliance,host]=index.
+
+	Must precede all other a=b parameters
+
+        Apply rule to index (member) of category. e.g.
+	os=linux, appliance=login, or host=compute-0-0.
+
+        global, global=, and global=global all refer
+        to the global category
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>action=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The iptables 'action' this rule should be applied to (e.g.,
+	ACCEPT, REJECT, DROP).
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>chain=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The iptables 'chain' this rule should be applied to (e.g.,
+	INPUT, OUTPUT, FORWARD).
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>network=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;        The network this rule should be applied to. This is a named network
+        (e.g., 'private') and must be one listed by the command
+        'rocks list network'.
+	To have this firewall rule apply to all networks, specify the
+	keyword 'all'.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>output-network=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;        The output network this rule should be applied to. This is a named
+	network (e.g., 'private') and must be one listed by the command
+        'rocks list network'.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>protocol=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The protocol associated with the rule. For example, "tcp" or "udp".
+	To have this firewall rule apply to all protocols, specify the
+	keyword 'all'.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>rulename=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	User-defined name of rule. Required.
+        Firewall rules are ordered lexicographically. 
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>rulesrc=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	system or custom. Default is 'custom'. Rules defined as
+	'system' are not dumped with rocks dump firewall. 
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>service=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The service identifier, port number or port range. For example
+	"www", 8080 or 0:1024.
+	To have this firewall rule apply to all services, specify the
+	keyword 'all'.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks add firewall appliance=login rulename=ACCEPT-SSH network=public service="ssh" protocol="tcp" action="ACCEPT" chain="INPUT" flags="-m state --state NEW"</DT
+><DD
+><P
+>&#13;	Accept TCP packets for the ssh service on the public network on
+	the INPUT chain and apply the "-m state --state NEW" flags to the
+	rule.
+        
+        Apply the rule to login appliances (appliance=login)
+
+	Name the rule ACCEPT-SSH
+
+	If 'eth1' is associated with the public network, this will be
+	translated as the following iptables rule:
+	"-A INPUT -i eth1 -p tcp --dport ssh -m state --state NEW -j ACCEPT"
+	
+	</P
+></DD
+><DT
+># rocks add firewall global rulename=ACCEPT-PRIVATE network=private service="all" protocol="all" action="ACCEPT" chain="INPUT"</DT
+><DD
+><P
+>&#13;	Accept all protocols and all services on the private network on the
+	INPUT chain.
+
+	Apply this rule to all nodes in the cluster (global)
+
+	If 'eth0' is the private network, then this will be translated as
+	the following iptables rule:
+	"-A INPUT -i eth0 -j ACCEPT"
+	
+	</P
+></DD
+><DT
+># rocks add firewall host=compute-0-0 rulename=ZZDRACONIAN network="all" service="all" protocol="all" action="DROP" chain="INPUT"</DT
+><DD
+><P
+>&#13;        DROP all non-matched packets
+
+	Apply this rule to host compute-0-0 (host=compute-0-0)
+
+        rule will be named ZZDRACONIAN 
+
+	This will drop all non-matched packets  that have not been previously accepted
+        Known as a draconian firewall rule. 
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-ADD-HOST"
+>9.1.8. add host</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks add host</B
+>  {host} [cpus=<TT
+CLASS="REPLACEABLE"
+><I
+>int</I
+></TT
+>] [membership=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [os=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [rack=<TT
+CLASS="REPLACEABLE"
+><I
+>int</I
+></TT
+>] [rank=<TT
+CLASS="REPLACEABLE"
+><I
+>int</I
+></TT
+>]</P
+><P
+>&#13;	Add an new host to the cluster.
+
+        </P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;        A single host name.  If the hostname is of the standard form of
+	basename-rack-rank the default values for the membership, rack,
+	and rank parameters are taken from the hostname.
+        
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>cpus=<TT
+CLASS="REPLACEABLE"
+><I
+>int</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;        Number of CPUs (cores) in the given host.  If not provided the
+	default of 1 CPU is inserted into the database.
+        
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>membership=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Appliance membership name.  If not provided and the host name is of
+	the standard form the membership is taken from the basename of 
+	the host.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>os=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The operating system name. The default is: linux.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>rack=<TT
+CLASS="REPLACEABLE"
+><I
+>int</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;        The number of the rack where the machine is located. The convention
+	in Rocks is to start numbering at 0. If not provided and the host
+	name is of the standard form the rack number is taken from the host
+	name.
+        
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>rank=<TT
+CLASS="REPLACEABLE"
+><I
+>int</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The position of the machine in the rack. The convention in Rocks
+	is to number from the bottom of the rack to the top starting at 0.
+	If not provided and the host name is of the standard form the rank
+	number is taken from the host name.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks add host compute-0-1</DT
+><DD
+><P
+>&#13;	Adds the host "compute-0-0" to the database with 1 CPU, a membership
+	name of "compute", a rack number of 0, and rank of 1.
+	
+	</P
+></DD
+><DT
+># rocks add host frontend rack=0 rank=0 membership=Frontend</DT
+><DD
+><P
+>&#13;	Adds the host "frontend" to the database with 1 CPU, a membership name
+	of "Frontend", a rack number of 0, and rank of 1.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>related commands</B
+></P
+><DL
+><DT
+><A
+HREF="x2119.html#ROCKS-ADD-HOST-INTERFACE"
+>add host interface</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-ADD-HOST-ALIAS"
+>9.1.9. add host alias</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks add host alias</B
+>  {host} {name} [name=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Adds an alias to a host
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	Host name of machine
+	
+	</P
+></DD
+><DT
+>name</DT
+><DD
+><P
+>&#13;	The alias name for the host.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>name=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of the name argument.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks add host alias compute-0-0 c-0-0</DT
+><DD
+><P
+>&#13;	Adds the alias 'c-0-0' to the host 'compute-0-0'.
+	
+	</P
+></DD
+><DT
+># rocks add host alias compute-0-0 name=c-0-0</DT
+><DD
+><P
+>&#13;	Same as above.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-ADD-HOST-ATTR"
+>9.1.10. add host attr</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks add host attr</B
+>  {host} {attr} {value} [attr=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [value=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Adds an attribute to a host and sets the associated values 
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	Host name of machine
+	
+	</P
+></DD
+><DT
+>attr</DT
+><DD
+><P
+>&#13;	Name of the attribute
+	
+	</P
+></DD
+><DT
+>value</DT
+><DD
+><P
+>&#13;	Value of the attribute
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>attr=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	same as attr argument
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>value=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	same as value argument
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks add host attr compute-0-0 cpus 2</DT
+><DD
+><P
+>&#13;	Sets the number of cpus of compute-0-0 to 2
+	
+	</P
+></DD
+><DT
+># rocks add host attr compute-0-0 attr=cpus value=2</DT
+><DD
+><P
+>&#13;	same as above
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>related commands</B
+></P
+><DL
+><DT
+><A
+HREF="x4060.html#ROCKS-LIST-HOST-ATTR"
+>list host attr</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+><DT
+><A
+HREF="x4906.html#ROCKS-REMOVE-HOST-ATTR"
+>remove host attr</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-ADD-HOST-BONDED"
+>9.1.11. add host bonded</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks add host bonded</B
+>  {host} [channel=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [interfaces=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [ip=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [name=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [network=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Add a channel bonded interface for a host
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	Host name of machine
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>channel=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The channel name (e.g., "bond0").
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>interfaces=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The physical interfaces that will be bonded. The interfaces
+	can be a comma-separated list (e.g., "eth0,eth1") or a space-separated
+	list (e.g., "eth0 eth1").
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>ip=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The IP address to assign to the bonded interface.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>name=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The host name associated with the bonded interface. If name is not
+	specified, then the interface get the internal host name
+	(e.g., compute-0-0).
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>network=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The network to be assigned to this interface. This is a named network
+	(e.g., 'private') and must be listable by the command
+	'rocks list network'.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks add host bonded compute-0-0 channel=bond0   interfaces=eth0,eth1 ip=10.1.255.254 network=private</DT
+><DD
+><P
+>&#13;	Adds a bonded interface named "bond0" to compute-0-0 by bonding
+	the physical interfaces eth0 and eth1, it assigns the IP address
+	10.1.255.254 to bond0 and it associates this interface to the private
+	network.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-ADD-HOST-INTERFACE"
+>9.1.12. add host interface</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks add host interface</B
+>  {host} {iface} [iface=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [ip=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [mac=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [module=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [name=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [subnet=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [vlan=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Adds an interface to a host and sets the associated values 
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	Host name of machine
+	
+	</P
+></DD
+><DT
+>iface</DT
+><DD
+><P
+>&#13;	The interface name on the host (e.g., 'eth0', 'eth1')
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>iface=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of the iface argument.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>ip=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The IP address to assign to the interface (e.g., '192.168.1.254')
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>mac=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The MAC address of the interface (e.g., '00:11:22:33:44:55')
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>module=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The device driver name (or module) of the interface (e.g., 'e1000')
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>name=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The name to assign to the interface
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>subnet=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The name of the subnet to assign to the interface (e.g., 'private')
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>vlan=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The VLAN ID to assign the interface
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks add host interface compute-0-0 eth1 ip=192.168.1.2 subnet=private name=fast-0-0</DT
+><DD
+><P
+>&#13;	
+	</P
+></DD
+><DT
+># rocks add host interface compute-0-0 iface=eth1 ip=192.168.1.2 subnet=private name=fast-0-0</DT
+><DD
+><P
+>&#13;	same as above
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>related commands</B
+></P
+><DL
+><DT
+><A
+HREF="x6255.html#ROCKS-SET-HOST-INTERFACE-IFACE"
+>set host interface iface</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+><DT
+><A
+HREF="x6255.html#ROCKS-SET-HOST-INTERFACE-IP"
+>set host interface ip</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+><DT
+><A
+HREF="x6255.html#ROCKS-SET-HOST-INTERFACE-MAC"
+>set host interface mac</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+><DT
+><A
+HREF="x6255.html#ROCKS-SET-HOST-INTERFACE-MODULE"
+>set host interface module</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+><DT
+><A
+HREF="x6255.html#ROCKS-SET-HOST-INTERFACE-NAME"
+>set host interface name</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+><DT
+><A
+HREF="x6255.html#ROCKS-SET-HOST-INTERFACE-SUBNET"
+>set host interface subnet</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-ADD-HOST-KEY"
+>9.1.13. add host key</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks add host key</B
+>  {host} [key=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Add a public key for a host. One use of this public key is to 
+	authenticate messages sent from remote services.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	Host name of machine
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>key=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	A public key. This can be the actual key or it can be a path name to
+	a file that contains a public key (e.g., /tmp/public.key).
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-ADD-HOST-ROUTE"
+>9.1.14. add host route</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks add host route</B
+>  {host} {address} {gateway} [netmask=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Add a route for a host
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	Host name of machine
+	
+	</P
+></DD
+><DT
+>address</DT
+><DD
+><P
+>&#13;	Host or network address
+	
+	</P
+></DD
+><DT
+>gateway</DT
+><DD
+><P
+>&#13;	Network or device gateway
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>netmask=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Specifies the netmask for a network route.  For a host route
+	this is not required and assumed to be 255.255.255.255
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-ADD-HOST-SEC_ATTR"
+>9.1.15. add host sec_attr</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks add host sec_attr</B
+>  {host} [attr=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [crypted=<TT
+CLASS="REPLACEABLE"
+><I
+>boolean</I
+></TT
+>] [enc=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [value=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Add a secure attribute to the database.
+	The user also has the option of not supplying the
+	value on the command line. The command will prompt
+	the user to enter the secure attribute value, and
+	will not echo this value on screen.
+
+	If the user chooses to enter the value for the secure
+	attribute by prompt, then the value entered must be in
+	an unencrypted form.
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	Host name of machine
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>attr=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Name of the attribute
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>crypted=<TT
+CLASS="REPLACEABLE"
+><I
+>boolean</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Is "value" already crypted or not
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>enc=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Encryption scheme to use to crypt the value. Currently
+	supported values are "sha", "crypt", "portable".
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>value=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Value of the attribute
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks add host sec_attr compute-0-0 attr=db_pw  value=DatabasePassword crypted=false enc=sha</DT
+><DD
+><P
+>&#13;	Sets a secure attribute called db_pw to the crypted value 
+	of "DatabasePassword" using the sha1 encoding schema.
+	
+	</P
+></DD
+><DT
+># rocks add host sec_attr compute-0-0 attr=db_pw  value=77e6674e6d71f898d5fc79424117c86731ca7498 crypted=true</DT
+><DD
+><P
+>&#13;	Same as above
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-ADD-NETWORK"
+>9.1.16. add network</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks add network</B
+>  {name} {subnet} {netmask} [dnszone=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [mtu=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [netmask=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [servedns=<TT
+CLASS="REPLACEABLE"
+><I
+>boolean</I
+></TT
+>] [subnet=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Add a network to the database. By default both the "public" and
+	"private" networks are already defined by Rocks.
+		
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>name</DT
+><DD
+><P
+>&#13;	Name of the new network.
+	
+	</P
+></DD
+><DT
+>subnet</DT
+><DD
+><P
+>&#13;	The IP network address for the new network.
+	
+	</P
+></DD
+><DT
+>netmask</DT
+><DD
+><P
+>&#13;	The IP network mask for the new network.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>dnszone=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The Domain name or the DNS Zone name to use
+	for all hosts of this particular subnet. Default
+	is set to the name of the subnet
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>mtu=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The MTU for the new network. Default is 1500.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>netmask=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of the netmask argument.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>servedns=<TT
+CLASS="REPLACEABLE"
+><I
+>boolean</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Parameter to decide whether this zone will be
+	served by the nameserver on the frontend.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>subnet=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of the subnet argument.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks add network optiputer 192.168.1.0 255.255.255.0</DT
+><DD
+><P
+>&#13;	Adds the optiputer network address of 192.168.1.0/255.255.255.0.
+	
+	</P
+></DD
+><DT
+># rocks add network optiputer subnet=192.168.1.0 netmask=255.255.255.0 mtu=9000   dnszone="optiputer.net" servedns=true</DT
+><DD
+><P
+>&#13;	Same as above, but set the MTU to 9000.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-ADD-OS-ATTR"
+>9.1.17. add os attr</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks add os attr</B
+>  {os} {attr} {value} [attr=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [value=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Adds an attribute to an os and sets the associated values 
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>os</DT
+><DD
+><P
+>&#13;	Name of os
+	
+	</P
+></DD
+><DT
+>attr</DT
+><DD
+><P
+>&#13;	Name of the attribute
+	
+	</P
+></DD
+><DT
+>value</DT
+><DD
+><P
+>&#13;	Value of the attribute
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>attr=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	same as attr argument
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>value=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	same as value argument
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks add os attr linux sge False</DT
+><DD
+><P
+>&#13;	Sets the sge attribution to False for linux nodes
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-ADD-OS-ROUTE"
+>9.1.18. add os route</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks add os route</B
+>  {os} {address} {gateway} [netmask=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Add a route for an OS type
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>os</DT
+><DD
+><P
+>&#13;	The OS type (e.g., 'linux', 'sunos', etc.). This argument is required.
+	
+	</P
+></DD
+><DT
+>address</DT
+><DD
+><P
+>&#13;	Host or network address
+	
+	</P
+></DD
+><DT
+>gateway</DT
+><DD
+><P
+>&#13;	Network or device gateway
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>netmask=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Specifies the netmask for a network route.  For a host route
+	this is not required and assumed to be 255.255.255.255
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-ADD-ROLL"
+>9.1.19. add roll</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks add roll</B
+>  [roll...] [clean=<TT
+CLASS="REPLACEABLE"
+><I
+>bool</I
+></TT
+>]</P
+><P
+>&#13;	Add Roll ISO images to this machine's roll directory. This command
+	copies all files in the ISOs to a directory under /export/rocks/install/rolls.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>roll</SPAN
+>]</DT
+><DD
+><P
+>&#13;	A list of Roll ISO images to add to /export/rocks/install/rolls. If no list is
+	supplied, then if a roll is mounted on /mnt/cdrom, it will be copied
+	into /export/rocks/install/rolls.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>clean=<TT
+CLASS="REPLACEABLE"
+><I
+>bool</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	If set, then remove all files from any existing rolls of the same
+	name, version, and architecture before copying the contents of the
+	Rolls onto the local disk.  This parameter should not be set
+	when adding multi-CD Rolls such as the OS Roll, but should be set
+	when adding single Roll CDs such as the Grid Roll.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks add roll clean=1 kernel*iso</DT
+><DD
+><P
+>&#13;	Adds the Kernel Roll to local Roll directory.  Before the Roll is
+	added the old Kernel Roll packages are removed from the Roll directory.
+	
+	</P
+></DD
+><DT
+># rocks add roll kernel*iso pvfs2*iso ganglia*iso</DT
+><DD
+><P
+>&#13;	Added the Kernel, PVFS, and Ganglia Rolls to the local Roll
+	directory.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>related commands</B
+></P
+><DL
+><DT
+><A
+HREF="x3368.html#ROCKS-CREATE-ROLL"
+>create roll</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+><DT
+><A
+HREF="x3649.html#ROCKS-DISABLE-ROLL"
+>disable roll</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+><DT
+><A
+HREF="x3922.html#ROCKS-ENABLE-ROLL"
+>enable roll</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+><DT
+><A
+HREF="x4060.html#ROCKS-LIST-ROLL"
+>list roll</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+><DT
+><A
+HREF="x4906.html#ROCKS-REMOVE-ROLL"
+>remove roll</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-ADD-ROUTE"
+>9.1.20. add route</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks add route</B
+>  {address} {gateway} [netmask=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Add a route for all hosts in the cluster
+	
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>address</DT
+><DD
+><P
+>&#13;	Host or network address
+	
+	</P
+></DD
+><DT
+>gateway</DT
+><DD
+><P
+>&#13;	Network (e.g., IP address), subnet name (e.g., 'private', 'public'), or
+	a device gateway (e.g., 'eth0).
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>netmask=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Specifies the netmask for a network route.  For a host route
+	this is not required and assumed to be 255.255.255.255
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-ADD-SEC_ATTR"
+>9.1.21. add sec_attr</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks add sec_attr</B
+>  {attr} [crypted=<TT
+CLASS="REPLACEABLE"
+><I
+>boolean</I
+></TT
+>] [enc=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [value=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Add a secure attribute to the database.
+	The user also has the option of not supplying the
+	value on the command line. The command will prompt
+	the user to enter the secure attribute value, and
+	will not echo this value on screen.
+
+	If the user chooses to enter the value for the secure
+	attribute by prompt, then the value entered must be in
+	an unencrypted form.
+	
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>attr</DT
+><DD
+><P
+>&#13;	Name of the attribute
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>crypted=<TT
+CLASS="REPLACEABLE"
+><I
+>boolean</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Is "value" already crypted or not
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>enc=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Encryption scheme to use to crypt the value. Currently
+	supported values are "sha", "crypt", "portable".
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>value=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Value of the attribute
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks add sec_attr db_pw  value=DatabasePassword crypted=false enc=sha</DT
+><DD
+><P
+>&#13;	Sets a secure attribute called db_pw to the crypted
+	value of "DatabasePassword" using the sha1 encoding schema.
+	
+	</P
+></DD
+><DT
+># rocks add sec_attr db_pw   value=77e6674e6d71f898d5fc79424117c86731ca7498 crypted=true</DT
+><DD
+><P
+>&#13;	Same as above
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-ADD-VAR"
+>9.1.22. add var</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks add var</B
+>  {service} {component} {value} [appliance=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [component=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [service=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [value=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Add variables to the Rocks key/value database. Variables are
+	defined as quad of (Appliance, Service, Component, Value). 
+	Within a node XML file, values can be retrieved as
+	&#60;var name="Service_Component"/&#62;.
+
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>service</DT
+><DD
+><P
+>&#13;	Defines the service name. e.g., service=Kickstart.
+	
+	</P
+></DD
+><DT
+>component</DT
+><DD
+><P
+>&#13;	Defines the component name. e.g. component=PublicDNS.
+	
+	</P
+></DD
+><DT
+>value</DT
+><DD
+><P
+>&#13;	Defines the value for the variable.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>appliance=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	If supplied, restricts to the named appliance.
+	See 'rocks list appliance' for a listing of appliances.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>component=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of component argument.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>service=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of service argument.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>value=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Can be used in place of value argument.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks add var service=Condor component=Master value=localhost</DT
+><DD
+><P
+>&#13;	Add the variable name &#60;var name="Condor_Master"/&#62; to 'localhost'.
+	
+	</P
+></DD
+><DT
+># rocks add var Condor Master localhost</DT
+><DD
+><P
+>&#13;	Same as above.
+	
+	</P
+></DD
+><DT
+># rocks add var service=Condor component=Master value=localhost appliance=compute</DT
+><DD
+><P
+>&#13;	Add the variable name &#60;var name="Condor_Master"/&#62; to 'localhost'
+	and associate it with only compute appliances.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="c2117.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x3320.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Command Reference</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="c2117.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>config</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

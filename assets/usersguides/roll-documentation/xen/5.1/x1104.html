@@ -1,0 +1,691 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>set</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE=" Xen Roll: Users Guide "
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Command Reference"
+HREF="c288.html"><LINK
+REL="PREVIOUS"
+TITLE="save"
+HREF="x1079.html"><LINK
+REL="NEXT"
+TITLE="start"
+HREF="x1294.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Xen Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/xen.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x1079.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 4. Command Reference</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x1294.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="AEN1104"
+>4.12. set</A
+></H1
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-SET-HOST-VM"
+>4.12.1. set host vm</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks set host vm</B
+>  {host} [disk=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [disksize=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [mem=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [physnode=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [slice=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [virt-type=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Change the VM configuration for a specific VM.
+	
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	One or more VM host names.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>disk=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	A VM disk specification. More than one disk can be supplied. Each
+	disk specification must separated by a space.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>disksize=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The size of the VM disk. 
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>mem=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The amount of memory in megabytes to assign to this VM.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>physnode=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The physical machine this VM should run on.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>slice=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The slice ID for this VM.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>virt-type=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Set the virtualization type for this VM. This can be 'para' or
+	'hardware'.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks set host vm compute-0-0-0 mem=4096</DT
+><DD
+><P
+>&#13;	Change the memory allocation for VM compute-0-0-0 to 4 GB.
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-SET-HOST-VM-BOOT"
+>4.12.2. set host vm boot</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks set host vm boot</B
+>  {host...} [installprofile=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [runprofile=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Set the install/run bootprofile for a vm host. 
+	This bootprofile defines what configuration
+	is used to boot a vm in its running and/or installing configuration 
+	
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>host</DT
+><DD
+><P
+>&#13;	One or more host names.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>installprofile=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The label name for the bootprofile to use when installing a node. 
+	For a list of available bootprofiles,
+	execute: 'rocks list host vm bootprofile &#60;hostname&#62;'.
+	It is an error to set the install profile to None.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>runprofile=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The label name for the bootprofile to use when a node is running'
+	normally. Usually this is empty, and the kernel defined inside of 
+	the VM will be used for booting.  
+	For a list of bootprofiles,
+	execute: 'rocks list host vm bootprofile &#60;hostname&#62;'.
+	Set this string to 'None' to clear the run profile
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks set host vm boot compute-0-0-0 installprofile=install</DT
+><DD
+><P
+>&#13;	Set the 'install' bootprofile for compute-0-0-0, when installing it.
+	
+	</P
+></DD
+><DT
+># rocks set host vm boot compute-0-0-0 runprofile=None</DT
+><DD
+><P
+>&#13;	clear the 'run' runprofile for compute-0-0-0, and use the kernel
+	defined in the VM image,
+	
+	</P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS-SET-HOST-VM-BOOTPROFILE"
+>4.12.3. set host vm bootprofile</A
+></H2
+><P
+><B
+CLASS="COMMAND"
+>rocks set host vm bootprofile</B
+>  [host...] [args=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [kernel=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [profile=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>] [ramdisk=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+>]</P
+><P
+>&#13;	Add a boot profile for virtual a host.
+	
+	</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>arguments</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>host</SPAN
+>]</DT
+><DD
+><P
+>&#13;	List of hosts to add profile definitions. If no hosts are listed,
+	then the global definition for 'profile=name' is added.
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>parameters</B
+></P
+><DL
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>args=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	The second line for a pxelinux definition (e.g., append ks
+	initrd=initrd.img ramdisk_size=150000 lang= devfs=nomount pxe
+	kssendmac selinux=0)
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>kernel=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	URL for the kernel associated with this profile
+	(e.g., 'file:///boot/kickstart/xen/vmlinuz')
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>profile=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	Label name for the boot profile. You can see the profile
+	label names by executing: 'rocks list host vm bootprofile [host(s)]'.
+	
+	</P
+></DD
+><DT
+>[<SPAN
+CLASS="OPTIONAL"
+>ramdisk=<TT
+CLASS="REPLACEABLE"
+><I
+>string</I
+></TT
+></SPAN
+>]</DT
+><DD
+><P
+>&#13;	URL for the kernel associated with this profile
+	(e.g., 'file:///boot/kickstart/xen/initrd-xen.iso.gz')
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>examples</B
+></P
+><DL
+><DT
+># rocks set host vm bootprofile profile=install kernel="file:///boot/kickstart/xen/vmlinuz-experimental"</DT
+><DD
+><P
+>&#13;	Change the kernel to vmlinuz-experimental for the global install profile 
+	
+	</P
+></DD
+></DL
+></DIV
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><P
+><B
+>related commands</B
+></P
+><DL
+><DT
+><A
+HREF="x290.html#ROCKS-ADD-HOST-VM-BOOTPROFILE"
+>add host vm bootprofile</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+><DT
+><A
+HREF="x647.html#ROCKS-LIST-HOST-VM-BOOT"
+>list host vm boot</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+><DT
+><A
+HREF="x647.html#ROCKS-LIST-HOST-VM-BOOTPROFILE"
+>list host vm bootprofile</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+><DT
+><A
+HREF="x895.html#ROCKS-REMOVE-HOST-VM-BOOTPROFILE"
+>remove host vm bootprofile</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+><DT
+><A
+HREF="x1104.html#ROCKS-SET-HOST-VM-BOOT"
+>set host vm boot</A
+></DT
+><DD
+><P
+>&#13;	</P
+></DD
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x1079.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x1294.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>save</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="c288.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>start</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

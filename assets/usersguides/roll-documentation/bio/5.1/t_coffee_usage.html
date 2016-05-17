@@ -1,0 +1,476 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>T_Coffee</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE=" Bio Roll: Users Guide "
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Using"
+HREF="using.html"><LINK
+REL="PREVIOUS"
+TITLE="Phylip"
+HREF="phylip_usage.html"><LINK
+REL="NEXT"
+TITLE="MPI-Blast"
+HREF="mpiblast_usage.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Bio Roll: Users Guide: 	<DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/dna.png"></P
+></DIV
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="phylip_usage.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 3. Using</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="mpiblast_usage.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="T_COFFEE_USAGE"
+>3.10. T_Coffee</A
+></H1
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN398"
+>3.10.1. About</A
+></H2
+><P
+>T_Coffee is a multiple sequence alignment package. The version included with this distribution of Rocks is v5.65</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN401"
+>3.10.2. Usage</A
+></H2
+><P
+>T-coffee is used for standard alignments and alignment combinations. It
+is installed at /opt/Bio/t_coffee/ on the Rocks distribution. To
+use T-Coffee, just type t_coffee at the command line for a list of all
+possible
+parameters that can be used. T-coffee recognizes formats such as fasta,
+clustalw, blast, etc. Example input files are available at
+/opt/Bio/t_coffee/example/</P
+><P
+>A simple sequence alignment example is shown below about. It is run
+against a sample fasta file present in the example directory. Parts of the
+output are deleted for the sake of brevity. Where missing, output is
+substituted by ellipses (.....)</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>[nostromo@xxx ~]$ t_coffee /opt/Bio/t_coffee/example/sample_aln2.fasta 
+
+PROGRAM: T-COFFEE (Version_5.65)
+-full_log       S       [0] 
+-run_name       S       [0] 
+-mem_mode       S       [0]     mem
+-extend         D       [1]     1 
+-extend_mode    S       [0]     very_fast_triplet
+-max_n_pair     D       [0]     10 
+-seq_name_for_quadruplet        S       [0]     all
+-compact        S       [0]     default
+-clean          S       [0]     no
+-do_self        FL      [0]     0
+-do_normalise   D       [0]     1000 
+-template_file  S       [0] 
+-in             S       [0] 
+-seq            S       [1]     /opt/Bio/t_coffee/example/sample_aln2.fasta
+-aln            S       [0] 
+-method_limits  S       [0] 
+-method         S       [0] 
+-lib            S       [0] 
+-profile        S       [0] 
+-profile1       S       [0] 
+-profile2       S       [0] 
+-pdb            S       [0] 
+-out_lib        W_F     [0]     no
+-lib_only       D       [0]     0 
+-outseqweight   W_F     [0]     no
+-dpa            FL      [0]     0
+-seq_source     S       [0]     ANY
+-cosmetic_penalty       D       [0]     -50 
+-gapopen        D       [0]     0 
+-gapext         D       [0]     0 
+-fgapopen       D       [0]     0 
+-fgapext        D       [0]     0 
+-nomatch        D       [0]     0 
+-newtree        W_F     [0]     default
+-tree           W_F     [0]     NO
+-usetree        R_F     [0] 
+-tree_mode      S       [0]     nj
+-distance_matrix_mode   S       [0]     ktup
+-distance_matrix_sim_mode       S       [0]     idmat_sim1
+-quicktree      FL      [0]     0
+-outfile        W_F     [0]     default
+-maximise       FL      [1]     1
+-output         S       [0]     clustalw        html
+-infile         R_F     [0] 
+-matrix         S       [0]     default
+-tg_mode        D       [0]     1 
+-profile_mode   S       [0]     cw_profile_profile
+-profile_comparison     S       [0]     profile
+-dp_mode        S       [0]     cfasta_pair_wise
+-ktuple         D       [0]     1 
+-ndiag          D       [0]     0 
+-diag_threshold D       [0]     0 
+-diag_mode      D       [0]     0 
+-sim_matrix     S       [0]     vasiliky
+-transform      S       [0] 
+-check_type     FL      [0]     0
+-type           S       [0] 
+-outorder       S       [0]     aligned
+-inorder        S       [0]     aligned
+-seqnos         S       [0]     off
+-case           S       [0]     keep
+-cpu            D       [0]     0 
+-maxnseq        D       [0]     1000 
+-maxlen         D       [0]     -1 
+-weight         S       [0]     default
+-seq_weight     S       [0]     t_coffee
+-align          FL      [1]     1
+-mocca          FL      [0]     0
+-domain         FL      [0]     0
+-start          D       [0]     0 
+-len            D       [0]     0 
+-scale          D       [0]     0 
+-mocca_interactive      FL      [0]     0
+-evaluate_mode  S       [0]     t_coffee_fast
+-get_type       FL      [0]     0
+-clean_aln      D       [0]     0 
+-clean_threshold        D       [1]     1 
+-clean_iteration        D       [1]     1 
+-clean_evaluate_mode    S       [0]     t_coffee_fast
+-extend_matrix  FL      [0]     0
+-prot_min_sim   D       [40]    40 
+-prot_max_sim   D       [60]    60 
+-prot_min_cov   D       [0]     0 
+-pdb_min_sim    D       [30]    30 
+-pdb_max_sim    D       [100]   100 
+-pdb_min_cov    D       [50]    50 
+-pdb_blast_server       W_F     [0]     SIB
+-prot_blast_server      W_F     [0]     SIB
+-pdb_db         W_F     [0]     nrl3d
+-protein_db     W_F     [0]     nr
+-method_log     W_F     [0]     no
+-struc_to_use   S       [0] 
+-cache          W_F     [0]     use
+-align_pdb_param_file   W_F     [0]     no
+-align_pdb_hasch_mode   W_F     [0]     hasch_ca_trace_bubble
+-external_aligner       S       [0]     NO
+-msa_mode       S       [0]     tree
+-one2all        S       [0] 
+-lalign_n_top   D       [0]     10 
+-iterate        D       [0]     0 
+-trim           D       [0]     0 
+-split          D       [0]     0 
+-trimfile       S       [0]     default
+-split          D       [0]     0 
+-split_nseq_thres       D       [0]     0 
+-split_score_thres      D       [0]     0 
+-check_pdb_status       D       [0]     0 
+-clean_seq_name D       [0]     0 
+-seq_to_keep    S       [0] 
+-dpa_master_aln S       [0] 
+-dpa_maxnseq    D       [0]     0 
+-dpa_min_score1 D       [0] 
+-dpa_min_score2 D       [0] 
+-dpa_keep_tmpfile       FL      [0]     0
+-dpa_debug      D       [0]     0 
+-multi_thread   S       [0] 
+-lib_list       S       [0] 
+-tip            S       [0]     one
+-rna_lib        S       [0] 
+-no_warning     D       [0]     0 
+
+INPUT FILES
+        Input File (S) /opt/Bio/t_coffee/example/sample_aln2.fasta  Format clustal_aln
+        Input File (M) lalign_id_pair 
+        Input File (M) slow_pair 
+
+INPUT SEQUENCES: 6 SEQUENCES  [PROTEIN]
+  Input File /opt/Bio/t_coffee/example/sample_aln2.fasta Seq 1cms   Length  175 type PROTEIN Struct Unchecked
+  Input File /opt/Bio/t_coffee/example/sample_aln2.fasta Seq 4pep   Length  174 type PROTEIN Struct Unchecked
+  Input File /opt/Bio/t_coffee/example/sample_aln2.fasta Seq 4ape   Length  178 type PROTEIN Struct Unchecked
+  Input File /opt/Bio/t_coffee/example/sample_aln2.fasta Seq 3app   Length  174 type PROTEIN Struct Unchecked
+  Input File /opt/Bio/t_coffee/example/sample_aln2.fasta Seq 2apr   Length  178 type PROTEIN Struct Unchecked
+  Input File /opt/Bio/t_coffee/example/sample_aln2.fasta Seq 1cms_1 Length  148 type PROTEIN Struct Unchecked
+
+COMPUTE PAIRWISE SIMILARITY [dp_mode: ] [distance_matrix_mode: ktup][Similarity Measure: idmat_sim1] 
+
+        Seq: 1cms
+        Seq: 1cms_1
+        Seq: 2apr
+        Seq: 3app
+        Seq: 4ape
+        Seq: 4pep
+
+READ/MAKE LIBRARIES:[3]
+
+        lalign_id_pair [method]
+
+                [Submit   Job][TOT=   15][100 %][ELAPSED TIME:    0 sec.]
+
+                [Retrieve Job][TOT=   15][100 %][ELAPSED TIME:    0 sec.]
+        slow_pair [method]
+
+                [Submit   Job][TOT=   15][100 %][ELAPSED TIME:    0 sec.]
+
+                [Retrieve Job][TOT=   15][100 %][ELAPSED TIME:    0 sec.]
+
+        Library Total Size: [5133]
+
+        #### File Type=     WEIGHT Format=  tc_weight Name= no | NOT PRODUCED [WARNING:T-COFFEE:Version_5.65]
+
+
+WEIGHTED MODE:t_coffee
+
+          1cms 1.00
+        1cms_1 1.10
+          2apr 1.00
+          3app 0.96
+          4ape 0.95
+          4pep 0.99
+
+
+MAKE NEIGHBOR JOINING DENDROGRAM
+        [MODE=nj][DONE]
+
+PROGRESSIVE_ALIGNMENT [Tree Based]
+
+        Group    7: [Group    5 (   1 seq)] with [Group    4 (   1 seq)]--&#62;[Score=  50][Len=  179]
+        Group    8: [Group    7 (   2 seq)] with [Group    6 (   1 seq)]--&#62;[Score=  36][Len=  184]
+        Group    9: [Group    2 (   1 seq)] with [Group    1 (   1 seq)]--&#62;[Score=  10][Len=  212]
+        Group   10: [Group    3 (   1 seq)] with [Group    9 (   2 seq)]--&#62;[Score=  26][Len=  217]
+        Group   11: [Group   10 (   3 seq)] with [Group    8 (   3 seq)]--&#62;[Score=  30][Len=  221]
+
+CLUSTAL FORMAT for T-COFFEE Version_5.65 [http://www.tcoffee.org], CPU=0.93 sec, SCORE=37, Nseq=6, Len=221 
+
+3app            AASGVATNTPTAN---DEEYITPVTIG--GTTLNL------------------NFDTGSA
+4ape            -STGSATTTPIDS-L-DDAYITPVQIGTPAQTLNL------------------DFDTGSS
+4pep            -----IGDEPLENYL-DTEYFGTIGIGTPAQDFTV------------------IFDTGSS
+1cms            ---GEVASVPLTNYL-DSQYFGKIYLGTPPQEFTV------------------LFDTGSS
+1cms_1          -YTGSLHWVPVT----VQQYW----------QFTVDSVTISGVVVACEGGCQAILDTGTS
+2apr            ---AGVGTVPMTDYGNDIEYYGQVTIGTPGKKFNL------------------DFDTGSS
+                         *         *            :.:                   :***::
+
+3app            DLWVFSTELPASQQSGHSVYNPSATGK--ELSGYTWSISYGDGSSASGNVFTDSVTVGGV
+4ape            DLWVFSSETTASEVDGQTIYTPSKSTTAKLLSGATWSISYGDGSSSSGDVYTDTVSVGGL
+4pep            NLWVPSVYCSSLACSDHNQFNPDDSSTFEA-TSQELSITYGTGS-MTGILGYDTVQVGGI
+1cms            DFWVPSIYCKSNACKNHQRFDPRKSSTFQN-LGKPLSIHYGTGS-MQGILGYDTVTVSNI
+1cms_1          KLVGPSSD---------------------------------------------------I
+2apr            DLWIASTLCTNCG-SGQTKYDPNQSSTYQA-DGRTWSISYGDGSSASGILAKDNVNLGGL
+                .:   *                                                     :
+
+3app            TAHGQAVQAAQQISAQFQQDTNNDG--------LLGLAFSSINTVQPQSQTT--------
+4ape            TVTGQAVESAKKVSSSFTEDSTIDG--------LLGLAFSTLNTVSPTQQKT--------
+4pep            SDTNQIFGLSETEPGSFLYYAPFDG--------ILGLAYPSISA---SGATP--------
+1cms            VDIQQTVGLSTQEPGDVFTYAEFDG--------ILGMAYPSLASEYS---IP--------
+1cms_1          LNIQQAIGATQNQYGEFDIDCDNLSYMPTVVFEINGKMYPLTPSAYT---SQDQGFCTSG
+2apr            LIKGQTIELAKREAASFAS-GPNDG--------LLGLGFDTITTVRGV--KT--------
+                    * .  :    ...       .        : *  :    :                
+
+3app            -FFDTV--KSSLAQPLFAVALK---HQQPGVYDFGFIDSSK
+4ape            -FFDNA--KASLDSPVFTADLG---YHAPGTYNFGFIDTTA
+4pep            -VFDNLWDQGLVSQDLFSVYLS-SNDDSGSVVLLGGIDSSY
+1cms            -VFDNMMNRHLVAQDLFSVYMD--RNGQESMLTLGAIDPSY
+1cms_1          FQSENHSQKWILGDVFIREYYS--VFDRANN--LVGLAKAI
+2apr            -PMDNLISQGLISRPIFGVYLGKAKNGGGGEYIFGGYDSTK
+                   :.   :  :   .:            .   :     : 
+
+
+
+
+
+OUTPUT RESULTS
+        #### File Type= GUIDE_TREE Format=     newick Name= sample_aln2.dnd
+        #### File Type=        MSA Format=   clustalw Name= sample_aln2.aln
+        #### File Type=        MSA Format=       html Name= sample_aln2.html
+
+
+# TIP :See The Full Documentation on www.tcoffee.org
+# TIP 15:  -other_pg seq_reformat -in &#60;aln&#62; -action +trim %50 Will reduce the redundancy of your MSA
+
+# Command Line: t_coffee /opt/Bio/t_coffee/example/sample_aln2.fasta  [PROGRAM:T-COFFEE]
+# T-COFFEE Memory Usage: Current= 6.248 Mb, Max= 8.329 Mb
+# T-COFFEE CPU Usage: 930 millisec
+# Results Produced with T-COFFEE (Version_5.65)
+# T-COFFEE is available from http://www.tcoffee.org</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN406"
+>3.10.3. Further Information</A
+></H2
+><P
+>Further information about t_coffee is available at -</P
+><P
+></P
+><UL
+><LI
+><P
+><A
+HREF="http://igs-server.cnrs-mrs.fr/~cnotred/Projects_home_page/t_coffee_home_page.html"
+TARGET="_top"
+>The
+T-coffee home page</A
+></P
+></LI
+><LI
+><P
+>On your cluster head node at
+/opt/Bio/t_coffee/doc/</P
+></LI
+><LI
+><P
+><A
+HREF="http://igs-server.cnrs-mrs.fr/~cnotred/Documentation/t_coffee/t_coffee_doc.htm"
+TARGET="_top"
+>T-Coffee
+Documentation</A
+></P
+></LI
+></UL
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="phylip_usage.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="mpiblast_usage.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Phylip</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="using.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>MPI-Blast</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

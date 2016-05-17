@@ -1,0 +1,229 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Adding the Roll</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE=" Grid Roll: Users Guide "
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Installing the Grid Roll"
+HREF="installing.html"><LINK
+REL="PREVIOUS"
+TITLE="Installing the Grid Roll"
+HREF="installing.html"><LINK
+REL="NEXT"
+TITLE="Root Login"
+HREF="root-login.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Grid Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/globustoolkit.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="installing.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 2. Installing the Grid Roll</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="root-login.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="ADDING-THE-ROLL"
+>2.1. Adding the Roll</A
+></H1
+><P
+>&#13;The Grid Roll must be installed during the Frontend installation step
+of your cluster (refer to section 1.2 of the Rocks usersguide).
+Future releases will allow the installation of the Grid Roll onto a
+running system.&#13;</P
+><P
+>	
+The Grid Roll is added to a Frontend installation in exactly the same
+manner as the required HPC Roll.  Specifically, after the HPC Roll is
+added the installer will once again ask if you have a Roll (see
+below).  Select 'Yes' and insert the Grid Roll.
+
+<DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/i-01.png"></P
+></DIV
+>&#13;</P
+><P
+>&#13;Once the Grid Roll is loaded the installer will continue to prompt for
+the standard Rocks configuration screens.  The Grid Roll adds the
+following configuration screen to provide information to the Globus
+Certificate Authority.  This information is used to build the
+Distinguished Name (DN) of you host, and user certificates.
+
+<DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/globus-info-screen.png"></P
+></DIV
+>&#13;</P
+><DIV
+CLASS="WARNING"
+><P
+></P
+><TABLE
+CLASS="WARNING"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/warning.png"
+HSPACE="5"
+ALT="Warning"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>&#13;You must use a Fully Qualified Domain Name (FQDN) for your Frontend.&#13;</P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>&#13;Globus and its openssl-based PKI tools require the hostname of you
+cluster Frontend to be the primary DNS fully-qualified domain name.
+You may not name use DNS aliases, or an abbreviated hostname.  This is
+because all certificate checks do a reverse DNS lookup and must
+resolve to the correct distinguished name (DN) used to build the
+certificate.  To insure you configure your Frontend correctly when you
+are presented with the hostname configuration screen (see below), be
+sure to enter the FQDN of your host.
+
+<DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/i-10.png"></P
+></DIV
+>
+&#13;</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="installing.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="root-login.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Installing the Grid Roll</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="installing.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Root Login</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

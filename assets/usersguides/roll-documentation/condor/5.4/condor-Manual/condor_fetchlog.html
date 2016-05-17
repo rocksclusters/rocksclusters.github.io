@@ -1,0 +1,301 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>condor_fetchlog</TITLE>
+<META NAME="description" CONTENT="condor_fetchlog">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="condor_findhost.html">
+<LINK REL="previous" HREF="condor_dagman.html">
+<LINK REL="up" HREF="9_Command_Reference.html">
+<LINK REL="next" HREF="condor_findhost.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html3100"
+  HREF="condor_findhost.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3094"
+  HREF="9_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3088"
+  HREF="condor_dagman.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3096"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3098"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3101"
+  HREF="condor_findhost.html">condor_findhost</A>
+<B> Up:</B> <A NAME="tex2html3095"
+  HREF="9_Command_Reference.html">9. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3089"
+  HREF="condor_dagman.html">condor_dagman</A>
+ &nbsp; <B>  <A NAME="tex2html3097"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3099"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html3102"
+  HREF="condor_fetchlog.html#SECTION0010151000000000000000">Synopsis</A>
+<LI><A NAME="tex2html3103"
+  HREF="condor_fetchlog.html#SECTION0010152000000000000000">Description</A>
+<LI><A NAME="tex2html3104"
+  HREF="condor_fetchlog.html#SECTION0010153000000000000000">Options</A>
+<LI><A NAME="tex2html3105"
+  HREF="condor_fetchlog.html#SECTION0010154000000000000000">Examples</A>
+<LI><A NAME="tex2html3106"
+  HREF="condor_fetchlog.html#SECTION0010155000000000000000">Exit Status</A>
+<LI><A NAME="tex2html3107"
+  HREF="condor_fetchlog.html#SECTION0010156000000000000000">Author</A>
+<LI><A NAME="tex2html3108"
+  HREF="condor_fetchlog.html#SECTION0010157000000000000000">Copyright</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION0010150000000000000000"></A><A NAME="man-condor-fetchlog"></A>
+<BR>
+<I>condor_fetchlog</I>
+</H1> Retrieve a daemon's log file that is located on another computer
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION0010151000000000000000">
+Synopsis</A>
+</H2>
+<B><I>condor_fetchlog</I></B>
+
+[<B>-help | -version</B>]
+
+<P>
+<B><I>condor_fetchlog</I></B>
+[<B>-pool  </B><I>centralmanagerhostname[:portnumber]</I>]
+[<B>-master | -startd | -schedd | -collector | -negotiator
+        | -kbdd</B>]
+<I>machine-name</I>
+<I>subsystem[.extension]</I>
+
+<P>
+<A NAME="62373"></A>
+<A NAME="62374"></A>
+
+<P>
+
+<H2><A NAME="SECTION0010152000000000000000">
+Description</A>
+</H2>
+
+<P>
+<I>condor_fetchlog</I> contacts Condor running on the machine specified by
+<I>machine-name</I>, and asks it to return a log file from that
+machine.  Which log file is determined from
+the <I>subsystem[.extension]</I> argument.
+The log file is printed to standard output.
+This command eliminates the need to remotely log in to a
+machine in order to retrieve a daemon's log file.
+
+<P>
+For security purposes of authentication and authorization, 
+this command requires an administrator's level of access.
+See section&nbsp;<A HREF="3_6Security.html#sec:Config-Security">3.6.1</A> 
+on page&nbsp;<A HREF="3_6Security.html#sec:Config-Security"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for more details about Condor's
+security mechanisms.
+
+<P>
+The <I>subsystem[.extension]</I> argument is utilized to construct
+the log file's name.
+Without an optional <I>.extension</I>,
+the value of the configuration variable named <I>subsystem</I>_LOG 
+defines the log file's name.
+When specified, the <I>.extension</I> is appended to this value.
+
+<P>
+Typical strings for the argument <I>subsystem</I> are as given as
+possible values of the predefined configuration
+variable <TT>$(SUBSYSTEM)</TT>.
+See the definition in
+section&nbsp;<A HREF="3_3Configuration.html#sec:Condor-Subsystem-Names">3.3.1</A>.  Note that access to any
+additional logs can be enabled by simply specifying the path to
+each log in the configuration file with a configuration parameter named
+<TT>&lt;NAME&gt;_LOG</TT>, choosing an arbitrary unique name for each case.
+
+<P>
+A value for the optional <I>.extension</I> argument is typically one of
+the three strings:
+
+<OL>
+<LI><TT>.old</TT>
+</LI>
+<LI><TT>.slot&lt;X&gt;</TT>
+</LI>
+<LI><TT>.slot&lt;X&gt;.old</TT>
+</LI>
+</OL>
+Within these strings, <code>&lt;X&gt;</code> is substituted with the slot number.
+
+<P>
+
+<H2><A NAME="SECTION0010153000000000000000">
+Options</A>
+</H2>
+  
+<P>
+  <DL>
+<DT><STRONG><B>-help</B></STRONG></DT>
+<DD>Display usage information
+<BR></DD>
+<DT><STRONG><B>-version</B></STRONG></DT>
+<DD>Display version information
+<BR>
+    
+</DD>
+<DT><STRONG><B>-pool </B><I>centralmanagerhostname[:portnumber]</I></STRONG></DT>
+<DD>Specify a pool by giving the central manager's host name
+    and an optional port number
+<BR>    
+</DD>
+<DT><STRONG><B>-master</B></STRONG></DT>
+<DD>Send the command to the <I>condor_master</I> daemon (default)
+<BR>    
+</DD>
+<DT><STRONG><B>-startd</B></STRONG></DT>
+<DD>Send the command to the <I>condor_startd</I> daemon
+<BR>    
+</DD>
+<DT><STRONG><B>-schedd</B></STRONG></DT>
+<DD>Send the command to the <I>condor_schedd</I> daemon
+<BR>    
+</DD>
+<DT><STRONG><B>-collector</B></STRONG></DT>
+<DD>Send the command to the <I>condor_collector</I> daemon
+<BR>    
+</DD>
+<DT><STRONG><B>-kbdd</B></STRONG></DT>
+<DD>Send the command to the <I>condor_kbdd</I> daemon
+<BR>  
+</DD>
+</DL>
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION0010154000000000000000">
+Examples</A>
+</H2>
+To get the <I>condor_negotiator</I> daemon's log from a host named 
+<TT>head.example.com</TT> from within the current pool:
+<PRE>
+condor_fetchlog head.example.com NEGOTIATOR
+</PRE>
+
+<P>
+To get the <I>condor_startd</I> daemon's log from a host named
+<TT>execute.example.com</TT> from within the current pool:
+<PRE>
+condor_fetchlog execute.example.com STARTD
+</PRE>
+
+<P>
+This command requested the <I>condor_startd</I> daemon's log from the
+<I>condor_master</I>.
+If the <I>condor_master</I> has crashed or is unresponsive,
+ask another daemon
+running on that computer to return the log.
+For example, ask the <I>condor_startd</I> daemon to return the
+<I>condor_master</I>'s log:
+
+<P>
+<PRE>
+condor_fetchlog -startd execute.example.com MASTER
+</PRE>
+
+<P>
+
+<H2><A NAME="SECTION0010155000000000000000">
+Exit Status</A>
+</H2>
+<I>condor_fetchlog</I> will exit with a status value of 0 (zero) upon success,
+and it will exit with the value 1 (one) upon failure.
+
+<P>
+
+<H2><A NAME="SECTION0010156000000000000000">
+Author</A>
+</H2> Condor Team, University of Wisconsin-Madison
+  
+<H2><A NAME="SECTION0010157000000000000000">
+Copyright</A>
+</H2> 
+  Copyright &#169; 1990-2010 Condor Team, Computer Sciences Department, 
+  University of Wisconsin-Madison, Madison, WI.  All Rights Reserved.  
+	Licensed under the Apache License, Version 2.0.
+
+<P>
+See the <I>Condor Version 7.4.4 Manual</I> or
+	<A NAME="tex2html117"
+  HREF="http://www.condorproject.org/license">http://www.condorproject.org/license</A>
+for
+  additional notices. 
+
+
+  <HR>
+<!--Navigation Panel-->
+<A NAME="tex2html3100"
+  HREF="condor_findhost.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3094"
+  HREF="9_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3088"
+  HREF="condor_dagman.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3096"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3098"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3101"
+  HREF="condor_findhost.html">condor_findhost</A>
+<B> Up:</B> <A NAME="tex2html3095"
+  HREF="9_Command_Reference.html">9. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3089"
+  HREF="condor_dagman.html">condor_dagman</A>
+ &nbsp; <B>  <A NAME="tex2html3097"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3099"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

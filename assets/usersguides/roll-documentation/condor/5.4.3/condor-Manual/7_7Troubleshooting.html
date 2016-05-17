@@ -1,0 +1,352 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>7.7 Troubleshooting</TITLE>
+<META NAME="description" CONTENT="7.7 Troubleshooting">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="7_8Other_questions.html">
+<LINK REL="previous" HREF="7_6Managing_Large.html">
+<LINK REL="up" HREF="7_Frequently_Asked.html">
+<LINK REL="next" HREF="7_8Other_questions.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html2144"
+  HREF="7_8Other_questions.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2138"
+  HREF="7_Frequently_Asked.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2132"
+  HREF="7_6Managing_Large.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2140"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2142"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2145"
+  HREF="7_8Other_questions.html">7.8 Other questions</A>
+<B> Up:</B> <A NAME="tex2html2139"
+  HREF="7_Frequently_Asked.html">7. Frequently Asked Questions</A>
+<B> Previous:</B> <A NAME="tex2html2133"
+  HREF="7_6Managing_Large.html">7.6 Managing Large Workflows</A>
+ &nbsp; <B>  <A NAME="tex2html2141"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2143"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html2146"
+  HREF="7_7Troubleshooting.html#SECTION00871000000000000000">If I see <TT>PERMISSION DENIED</TT> in my log files,
+what does that mean?</A>
+<LI><A NAME="tex2html2147"
+  HREF="7_7Troubleshooting.html#SECTION00872000000000000000">What happens if the central manager crashes?</A>
+<LI><A NAME="tex2html2148"
+  HREF="7_7Troubleshooting.html#SECTION00873000000000000000">Why did the <I>condor_schedd</I> daemon die and restart?</A>
+<LI><A NAME="tex2html2149"
+  HREF="7_7Troubleshooting.html#SECTION00874000000000000000">When I ssh/telnet to a machine to check particulars of how
+Condor is doing something, it is always vacating or unclaimed when I
+know a job had been running there!</A>
+<LI><A NAME="tex2html2150"
+  HREF="7_7Troubleshooting.html#SECTION00875000000000000000">What is wrong? I get no output from <I>condor_status</I>, but the Condor daemons are running.</A>
+<LI><A NAME="tex2html2151"
+  HREF="7_7Troubleshooting.html#SECTION00876000000000000000">Why does Condor leave mail processes around?</A>
+<LI><A NAME="tex2html2152"
+  HREF="7_7Troubleshooting.html#SECTION00877000000000000000">Why are there spurious Condor errors on some machines running Xen kernels?</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00870000000000000000">
+7.7 Troubleshooting</A>
+</H1>
+
+<P>
+
+<H2><A NAME="SECTION00871000000000000000"></A>
+<A NAME="50001"></A>
+<BR>
+If I see <TT>PERMISSION DENIED</TT> in my log files,
+what does that mean?
+</H2>
+
+<P>
+Most likely, the Condor installation has been misconfigured
+and Condor's access control security functionality is preventing
+daemons and tools from communicating with each other.
+Other symptoms of this problem include Condor tools (such as
+<I>condor_status</I> and <I>condor_q</I>) not producing any output, or commands
+that appear to have no effect (for example, <I>condor_off</I> or
+<I>condor_on</I>). 
+
+<P>
+The solution is to properly configure the <TT>HOSTALLOW_*</TT> <A NAME="50354"></A> <A NAME="50355"></A> and
+<TT>HOSTDENY_*</TT> <A NAME="50359"></A> <A NAME="50360"></A> settings (for host/IP based authentication) or to
+configure strong authentication and set <TT>ALLOW_*</TT> <A NAME="50364"></A> <A NAME="50365"></A> and
+<TT>DENY_*</TT> <A NAME="50369"></A> <A NAME="50370"></A> as appropriate.
+Host-based authentication is described in
+section&nbsp;<A HREF="3_6Security.html#sec:Host-Security">3.6.9</A> on page&nbsp;<A HREF="3_6Security.html#sec:Host-Security"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+Information about other forms of authentication is provided in 
+section&nbsp;<A HREF="3_6Security.html#sec:Config-Security">3.6.1</A> on page&nbsp;<A HREF="3_6Security.html#sec:Config-Security"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+
+<H2><A NAME="SECTION00872000000000000000"></A>
+<A NAME="50015"></A>
+<A NAME="50016"></A>
+<BR>
+What happens if the central manager crashes?
+</H2>
+
+<P>
+If the central manager crashes, jobs that are already running will
+continue to run unaffected.
+Queued jobs will remain in the queue unharmed, but can not begin
+running until the central manager is restarted and begins matchmaking
+again.
+Nothing special needs to be done after the central manager is brought
+back on line.
+
+<P>
+
+<H2><A NAME="SECTION00873000000000000000"></A>
+<A NAME="50018"></A>
+<BR>
+Why did the <I>condor_schedd</I> daemon die and restart?
+</H2>
+
+<P>
+The <I>condor_schedd</I> daemon receives signal 25,
+dies, and is restarted when the
+history file reaches a 2 Gbyte size limit.
+Until a larger history file size or the rotation of the history
+file is supported in Condor,
+try one of these work arounds:
+
+<P>
+
+<OL>
+<LI>When the history file becomes large, remove it.
+Note that this causes a loss of the information in the history file,
+but the <I>condor_schedd</I> daemon will not die.
+</LI>
+<LI>When the history file becomes large, move it.
+</LI>
+<LI>Stop keeping the history.
+Only <I>condor_history</I> accesses the history file, 
+so this particular functionality will be gone.
+To stop keeping the history, place
+<PRE>
+HISTORY=
+</PRE>
+in the configuration,
+followed by a <I>condor_reconfig</I> command to recognize the change in
+currently executing daemons.
+</LI>
+</OL>
+
+<P>
+
+<H2><A NAME="SECTION00874000000000000000">
+When I ssh/telnet to a machine to check particulars of how
+Condor is doing something, it is always vacating or unclaimed when I
+know a job had been running there!</A>
+</H2>
+
+<P>
+Depending on how your policy is set up, Condor will track <I>any</I> tty
+on the machine for the purpose of determining if a job is to be vacated
+or suspended on the machine. It could be the case that after you ssh
+there, Condor notices activity on the tty allocated to your connection
+and then vacates the job.
+
+<P>
+
+<H2><A NAME="SECTION00875000000000000000">
+What is wrong? I get no output from <I>condor_status</I>, but the Condor daemons are running.</A>
+</H2>
+
+<P>
+<U>One likely error message</U> within the collector log of the form
+<PRE>
+DaemonCore: PERMISSION DENIED to host &lt;xxx.xxx.xxx.xxx&gt; for command 0 (UPDATE_STARTD_AD)
+</PRE>indicates a permissions problem.
+The <I>condor_startd</I> daemons do not have write permission to the
+<I>condor_collector</I> daemon.
+This could be because
+you used domain names in your <TT>HOSTALLOW_WRITE</TT> and/or
+<TT>HOSTDENY_WRITE</TT> configuration macros,
+but the domain name server (DNS) is not properly configured at your site.
+Without the proper configuration, Condor cannot resolve
+the IP addresses of your machines
+into fully-qualified domain names (an inverse look up).
+If this is the problem, then the solution takes one of two forms:
+
+<OL>
+<LI>Fix the DNS so that inverse look ups (trying to get the domain name
+   from an IP address) works for your machines.  You can
+   either fix the DNS itself,
+   or use the <TT>DEFAULT_DOMAIN_NAME</TT> setting in your Condor
+         configuration file.
+</LI>
+<LI>Use numeric IP addresses in the <TT>HOSTALLOW_WRITE</TT> and/or
+   <TT>HOSTDENY_WRITE</TT> configuration macros
+   instead of domain names.
+   As an example of this, assume your site has a machine such as
+   foo.your.domain.com, and it has two subnets, with IP addresses
+   129.131.133.10, and 129.131.132.10.
+   If the configuration macro is set as 
+
+<P>
+<PRE>
+ HOSTALLOW_WRITE = *.your.domain.com
+</PRE>
+
+<P>
+and this does not work, use
+
+<P>
+<PRE>
+ HOSTALLOW_WRITE = 192.131.133.*, 192.131.132.*
+</PRE>
+</LI>
+</OL>
+
+<P>
+<U>Alternatively</U>, this permissions problem
+may be caused by being too restrictive in the setting of
+your <TT>HOSTALLOW_WRITE</TT> and/or
+<TT>HOSTDENY_WRITE</TT> configuration macros.
+If it is, then the solution is to change the macros,
+for example from
+<PRE>
+ HOSTALLOW_WRITE = condor.your.domain.com
+</PRE>
+to
+<PRE>
+ HOSTALLOW_WRITE = *.your.domain.com
+</PRE>
+or possibly
+<PRE>
+ HOSTALLOW_WRITE = condor.your.domain.com, foo.your.domain.com, \
+ bar.your.domain.com
+</PRE>
+<P>
+<U>Another likely error message</U> within the collector log of the form
+<PRE>
+DaemonCore: PERMISSION DENIED to host &lt;xxx.xxx.xxx.xxx&gt; for command 5 (QUERY_STARTD_ADS)
+</PRE>indicates a similar problem as above, but read permission
+is the problem (as opposed to write permission).
+Use the solutions given above.
+
+<P>
+
+<H2><A NAME="SECTION00876000000000000000">
+Why does Condor leave mail processes around?</A>
+</H2>
+
+<P>
+Under FreeBSD and Mac OSX operating systems,
+misconfiguration of of a system's outgoing mail causes
+Condor to inadvertently leave paused and zombie mail
+processes around when Condor attempts to send notification e-mail.
+The solution to this problem is
+to correct the mailer configuration.
+
+<P>
+Execute the following command as the user under which Condor
+daemons run to determine whether outgoing e-mail works.
+
+<P>
+<PRE>
+$ uname -a | mail -v your@emailaddress.com
+</PRE>
+
+<P>
+If no e-mail arrives, then outgoing e-mail does not work
+correctly.
+
+<P>
+Note that this problem does not manifest itself
+on non-BSD Unix platforms, such as Linux.
+
+<P>
+
+<H2><A NAME="SECTION00877000000000000000"></A><A NAME="sec:xen-jiffies-bug"></A>
+<BR>
+Why are there spurious Condor errors on some machines running Xen kernels?
+</H2>
+
+<P>
+Some older Xen kernels had a problem where the kernel's jiffy counter
+could jump backwards in time. This breaks an assumption made by the
+<I>condor_procd</I>. This problem can only be worked around by upgrading
+the Xen kernel to a version that fixes the issue with the jiffy counter.
+Running Condor on an affected Xen kernel often results in failures
+of the following forms in Condor daemon log files:
+
+<UL>
+<LI><code>error: parent process's birthday is later than our own</code>
+</LI>
+<LI><code>ERROR: No family with the given PID is registered</code>
+</LI>
+</UL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html2144"
+  HREF="7_8Other_questions.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2138"
+  HREF="7_Frequently_Asked.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2132"
+  HREF="7_6Managing_Large.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2140"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2142"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2145"
+  HREF="7_8Other_questions.html">7.8 Other questions</A>
+<B> Up:</B> <A NAME="tex2html2139"
+  HREF="7_Frequently_Asked.html">7. Frequently Asked Questions</A>
+<B> Previous:</B> <A NAME="tex2html2133"
+  HREF="7_6Managing_Large.html">7.6 Managing Large Workflows</A>
+ &nbsp; <B>  <A NAME="tex2html2141"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2143"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,220 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Using Certificates</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE=" Grid Roll: Users Guide "
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Using the Grid Roll"
+HREF="using.html"><LINK
+REL="PREVIOUS"
+TITLE="Managing Certificates"
+HREF="managing-certificates.html"><LINK
+REL="NEXT"
+TITLE="Testing the Grid Roll"
+HREF="testing-grid.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Grid Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/globustoolkit.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="managing-certificates.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 3. Using the Grid Roll</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="testing-grid.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="USING-CERTIFICATES"
+>3.2. Using Certificates</A
+></H1
+><P
+>&#13;You can verify Globus is correctly installed by running a few simple
+Globus commands from your Frontend.  Although this is only a simple
+loopback-grid this will verify the installation.  The following will
+run grid-hostname over loopback on your Frontend node.
+
+<P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>&#13;Create a proxy certificate.
+
+<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>$ grid-proxy-init 
+Your identity: /O=Grid/OU=San Diego Supercomputer Center/OU=rocks12.sdsc.edu/OU=sdsc.edu/CN=Spaceman Spiff
+Enter GRID pass phrase for this identity:
+Creating proxy ................................................ Done
+Your proxy is valid until: Tue Sep  9 10:53:51 2003</PRE
+></FONT
+></TD
+></TR
+></TABLE
+>&#13;</P
+></LI
+><LI
+><P
+>&#13;Run hostname over Globus
+
+<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>$ globus-job-run localhost /bin/hostname
+rocks12.sdsc.edu</PRE
+></FONT
+></TD
+></TR
+></TABLE
+>&#13;</P
+></LI
+></OL
+>&#13;</P
+><P
+>&#13;To start building a grid you will need to exchange certificate and
+grid-mapfile information with other hosts and users.  Please visit
+the <A
+HREF="http://www-unix.globus.org/toolkit/documentation.html"
+TARGET="_top"
+>Globus
+site documentation</A
+> to learn how to do this.&#13;</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="managing-certificates.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="testing-grid.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Managing Certificates</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="using.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Testing the Grid Roll</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

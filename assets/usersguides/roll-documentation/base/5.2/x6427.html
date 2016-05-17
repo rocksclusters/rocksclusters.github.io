@@ -1,0 +1,244 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Release 2.3.1 - changes from 2.3</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Roll: Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Release Notes"
+HREF="release-notes.html"><LINK
+REL="PREVIOUS"
+TITLE="Release 2.3.2 - changes from 2.3.1"
+HREF="x6406.html"><LINK
+REL="NEXT"
+TITLE="Release 2.2.1 - changes from 2.2"
+HREF="x6451.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Base Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x6406.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Appendix B. Release Notes</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x6451.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="AEN6427"
+>B.8. Release 2.3.1 - changes from 2.3</A
+></H1
+><P
+>	Bug fix - Now all the installation device drivers from Red Hat's
+	device disks are included (e.g., Broadcom's Ethernet adapters).
+	In Rocks 2.3, only the device drivers found on Red Hat's installation
+	boot floppy were included.
+	</P
+><P
+>	Bug fix - User-specified NIS domains are now supported (in
+	Rocks 2.3, only 'rocks' NIS domain was supported).
+	</P
+><P
+>	Bug fix - User-specified compute node disk partitioning is now
+	supported.
+	</P
+><P
+>	Bug fix - Sun Grid Engine commd port errors during post installation
+	and Sun Grid Engine warnings during
+	<SAMP
+CLASS="COMPUTEROUTPUT"
+>insert-ethers</SAMP
+> were fixed.
+	</P
+><P
+>	Bug fix - Building for Pentium II/III and Athlon added to ATLAS RPM.
+	(on a side note, ATLAS is now built against gcc version 3.2).
+	</P
+><P
+>	Enhancement - PVFS upgraded to version 1.5.6.
+	</P
+><P
+>	Enhancement - More detail has been added to the PBS queue monitoring
+	web page (e.g., can view jobs for only one user and can view
+	nodes for one job).
+	Additionally, the monitoring code now more efficent and it has been
+	hardened due to direct experiences on a 300-node Rocks cluster.
+	</P
+><P
+>	Enhancement - The <SAMP
+CLASS="COMPUTEROUTPUT"
+>bssh</SAMP
+> service has
+	been moved from a standalone service to a task managed by the
+	Ganglia <SAMP
+CLASS="COMPUTEROUTPUT"
+>gschedule</SAMP
+> service.
+	</P
+><P
+>	Enhancement - The ethernet-based MPICH package has been updated
+	to version 1.2.5.
+	</P
+><P
+>	Enhancement - The Myrinet-based MPICH package has been updated
+	to version 1.2.5..9.
+	</P
+><P
+>	Enhancement - <SAMP
+CLASS="COMPUTEROUTPUT"
+>OpenPBS</SAMP
+> version
+	2.3.16 has replaced PBS.
+	Additionally, the <EM
+>big memory</EM
+> patch has been
+	applied.
+	Also, the license for OpenPBS requires registration for those that
+	use OpenPBS, so if you use OpenPBS to manage your computational
+	resources, please register at http://www.OpenPBS.org.
+	</P
+><P
+>	Enhancement - The <SAMP
+CLASS="COMPUTEROUTPUT"
+>maui</SAMP
+> package has
+	been updated to version 3.2.5.
+	</P
+><P
+>	Enhancement - Updated Myricom's GM to version 1.6.3.
+	</P
+><P
+>	New Feature - Added a link of the main web page of the frontend
+	that allows one to make sheets of labels with the names of all
+	the compute nodes.
+	</P
+><P
+>	New Feature - An alternative version of
+	<SAMP
+CLASS="COMPUTEROUTPUT"
+>gcc</SAMP
+> is now installed (version 3.2
+	is installed in /opt/gcc32/...).
+	</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x6406.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x6451.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Release 2.3.2 - changes from 2.3.1</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="release-notes.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Release 2.2.1 - changes from 2.2</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

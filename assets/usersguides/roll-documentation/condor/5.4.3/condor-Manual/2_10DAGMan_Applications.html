@@ -1,0 +1,3423 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>2.10 DAGMan Applications</TITLE>
+<META NAME="description" CONTENT="2.10 DAGMan Applications">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="2_11Virtual_Machine.html">
+<LINK REL="previous" HREF="2_9Parallel_Applications.html">
+<LINK REL="up" HREF="2_Users_Manual.html">
+<LINK REL="next" HREF="2_11Virtual_Machine.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html750"
+  HREF="2_11Virtual_Machine.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html744"
+  HREF="2_Users_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html738"
+  HREF="2_9Parallel_Applications.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html746"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html748"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html751"
+  HREF="2_11Virtual_Machine.html">2.11 Virtual Machine Applications</A>
+<B> Up:</B> <A NAME="tex2html745"
+  HREF="2_Users_Manual.html">2. Users' Manual</A>
+<B> Previous:</B> <A NAME="tex2html739"
+  HREF="2_9Parallel_Applications.html">2.9 Parallel Applications (Including</A>
+ &nbsp; <B>  <A NAME="tex2html747"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html749"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html752"
+  HREF="2_10DAGMan_Applications.html#SECTION003101000000000000000">2.10.1 DAGMan Terminology</A>
+<LI><A NAME="tex2html753"
+  HREF="2_10DAGMan_Applications.html#SECTION003102000000000000000">2.10.2 Input File Describing the DAG: the JOB, DATA, SCRIPT and PARENT...CHILD Key Words</A>
+<LI><A NAME="tex2html754"
+  HREF="2_10DAGMan_Applications.html#SECTION003103000000000000000">2.10.3 Submit Description File Contents and Usage of Log Files</A>
+<LI><A NAME="tex2html755"
+  HREF="2_10DAGMan_Applications.html#SECTION003104000000000000000">2.10.4 DAG Submission</A>
+<LI><A NAME="tex2html756"
+  HREF="2_10DAGMan_Applications.html#SECTION003105000000000000000">2.10.5 Job Monitoring, Job Failure, and Job Removal</A>
+<LI><A NAME="tex2html757"
+  HREF="2_10DAGMan_Applications.html#SECTION003106000000000000000">2.10.6 Advanced Features of DAGMan</A>
+<UL>
+<LI><A NAME="tex2html758"
+  HREF="2_10DAGMan_Applications.html#SECTION003106100000000000000">2.10.6.1 Retrying Failed Nodes or Stopping the Entire DAG</A>
+<LI><A NAME="tex2html759"
+  HREF="2_10DAGMan_Applications.html#SECTION003106200000000000000">2.10.6.2 Variable Values Associated with Nodes</A>
+<LI><A NAME="tex2html760"
+  HREF="2_10DAGMan_Applications.html#SECTION003106300000000000000">2.10.6.3 Setting Priorities for Nodes</A>
+<LI><A NAME="tex2html761"
+  HREF="2_10DAGMan_Applications.html#SECTION003106400000000000000">2.10.6.4 Limiting the Number of Submitted Job Clusters within a DAG</A>
+<LI><A NAME="tex2html762"
+  HREF="2_10DAGMan_Applications.html#SECTION003106500000000000000">2.10.6.5 Configuration Specific to a DAG</A>
+<LI><A NAME="tex2html763"
+  HREF="2_10DAGMan_Applications.html#SECTION003106600000000000000">2.10.6.6 Single Submission of Multiple, Independent DAGs</A>
+<LI><A NAME="tex2html764"
+  HREF="2_10DAGMan_Applications.html#SECTION003106700000000000000">2.10.6.7 A DAG Within a DAG Is a SUBDAG</A>
+<LI><A NAME="tex2html765"
+  HREF="2_10DAGMan_Applications.html#SECTION003106800000000000000">2.10.6.8 DAG Splicing</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html766"
+  HREF="2_10DAGMan_Applications.html#SECTION003107000000000000000">2.10.7 Job Recovery:  The Rescue DAG</A>
+<LI><A NAME="tex2html767"
+  HREF="2_10DAGMan_Applications.html#SECTION003108000000000000000">2.10.8 File Paths in DAGs</A>
+<LI><A NAME="tex2html768"
+  HREF="2_10DAGMan_Applications.html#SECTION003109000000000000000">2.10.9 Visualizing DAGs with <I>dot</I></A>
+<LI><A NAME="tex2html769"
+  HREF="2_10DAGMan_Applications.html#SECTION0031010000000000000000">2.10.10 Capturing the Status of Nodes in a File</A>
+<LI><A NAME="tex2html770"
+  HREF="2_10DAGMan_Applications.html#SECTION0031011000000000000000">2.10.11 A Machine-Readable Event History, the jobstate.log File</A>
+<LI><A NAME="tex2html771"
+  HREF="2_10DAGMan_Applications.html#SECTION0031012000000000000000">2.10.12 Utilizing the Power of DAGMan for Large Numbers of Jobs</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION003100000000000000000"></A><A NAME="sec:DAGMan"></A>
+<A NAME="4324"></A>
+<A NAME="4325"></A>
+<A NAME="4326"></A>
+<A NAME="4327"></A>
+<BR>
+2.10 DAGMan Applications
+</H1>
+
+<P>
+A directed acyclic graph (DAG) can be used to represent a set of computations
+where the input, output, or execution of one or more computations
+is dependent on one or more other computations.
+The computations are nodes (vertices) in the graph,
+and the edges (arcs) identify the dependencies.
+Condor finds machines for the execution of programs, but it
+does not schedule programs based on dependencies.
+The Directed Acyclic Graph Manager (DAGMan) is a meta-scheduler for 
+the execution of programs (computations). 
+DAGMan submits the programs to Condor in an order represented by
+a DAG and processes the results.
+A DAG input file describes the DAG, and
+further submit description file(s) are used by DAGMan
+when submitting programs to run under Condor.
+
+<P>
+DAGMan is itself executed as a scheduler universe job
+within Condor.
+As DAGMan submits programs, it monitors log file(s) 
+to enforce the ordering required within the DAG.
+DAGMan is also responsible for scheduling, recovery, and reporting
+on the set of programs submitted to Condor.
+
+<P>
+
+<H2><A NAME="SECTION003101000000000000000"></A><A NAME="sec:DAGTerminology"></A>
+<BR>
+2.10.1 DAGMan Terminology
+</H2>
+
+<P>
+To DAGMan, a node in a DAG may encompass more than a single
+program submitted to run under Condor.
+Figure&nbsp;<A HREF="#fig:dagman-node">2.2</A> illustrates the elements of a node.
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:dagman-node"></A><A NAME="5250"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 2.2:</STRONG>
+One Node within a DAG</CAPTION>
+<TR><TD>
+<DIV ALIGN="CENTER"><IMG
+ WIDTH="346" HEIGHT="346" ALIGN="BOTTOM" BORDER="0"
+ SRC="img3.png"
+ ALT="\includegraphics{user-man/dagman-node.eps}">
+</DIV></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+At one time,
+the number of Condor jobs per node was restricted to one.
+This restriction is now relaxed such that all Condor jobs
+within a node must share a single cluster number.
+See the
+<I>condor_submit</I> manual page
+for a further definition of a cluster.
+A limitation exists such that
+all jobs within the single cluster must use the same log file.
+Separate nodes within a DAG may use different log files.
+
+<P>
+As DAGMan schedules and submits jobs within nodes to Condor,
+these jobs are defined to succeed or fail based on their
+return values.
+This success or failure is propagated in well-defined ways to the level of
+a node within a DAG.
+Further progression of computation
+(towards completing the DAG)
+may be defined based upon the success or failure of one or more nodes.
+
+<P>
+The failure of a single job within a cluster
+of multiple jobs
+(within a single node)
+causes the entire cluster of jobs to fail.
+Any other jobs within the failed cluster of jobs are
+immediately removed.
+Each node within a DAG is further defined to succeed or fail,
+based upon the return values of a PRE script, the job(s)
+within the cluster, and/or a POST script.
+
+<P>
+
+<H2><A NAME="SECTION003102000000000000000">
+2.10.2 Input File Describing the DAG: the JOB, DATA, SCRIPT and PARENT...CHILD Key Words</A>
+</H2>
+
+<P>
+<A NAME="4336"></A>
+The input file used by DAGMan is called a DAG input file.
+All items are optional, but there must be at least one <I>JOB</I>
+or <I>DATA</I> item.
+
+<P>
+Comments may be placed in the DAG input file.
+The pound character (<code>#</code>) as the first character on a
+line identifies the line as a comment.
+Comments do not span lines.
+
+<P>
+A simple diamond-shaped DAG, as shown in
+Figure&nbsp;<A HREF="#fig:dagman-diamond">2.3</A>
+is presented as a starting point for examples.
+This DAG contains 4 nodes.
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:dagman-diamond"></A><A NAME="5251"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 2.3:</STRONG>
+Diamond DAG</CAPTION>
+<TR><TD>
+<DIV ALIGN="CENTER"><IMG
+ WIDTH="96" HEIGHT="96" ALIGN="BOTTOM" BORDER="0"
+ SRC="img4.png"
+ ALT="\includegraphics{user-man/dagman-diamond.eps}">
+</DIV></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+A very simple DAG input file for this diamond-shaped DAG is
+
+<P>
+<PRE>
+    # File name: diamond.dag
+    #
+    JOB  A  A.condor 
+    JOB  B  B.condor 
+    JOB  C  C.condor	
+    JOB  D  D.condor
+    PARENT A CHILD B C
+    PARENT B C CHILD D
+</PRE>
+<P>
+A set of basic key words appearing in a DAG input file is described below.
+
+<P>
+
+<A NAME="dagman:JOB"></A><A NAME="4348"></A>
+<UL>
+<LI><B>JOB</B>
+
+<P>
+The <I>JOB</I> key word specifies a job to be managed by Condor.
+The syntax used for each <I>JOB</I> entry is
+
+<P>
+<B>JOB</B> <I>JobName</I> <I>SubmitDescriptionFileName</I>
+[<B>DIR  </B><I>directory</I>] [<B>NOOP</B>] [<B>DONE</B>]
+
+<P>
+A <I>JOB</I> entry maps a <I>JobName</I> to a Condor submit description file.
+The <I>JobName</I> uniquely identifies nodes within the
+DAGMan input file and in output messages.
+Note that the name for each node within the DAG
+must be unique.
+
+<P>
+The key words <I>JOB</I>, <I>DIR</I>, <I>NOOP</I>, and <I>DONE</I>
+are not case sensitive.
+Therefore, <I>DONE</I>, <I>Done</I>, and <I>done</I> are all equivalent.
+The values defined for <I>JobName</I> and <I>SubmitDescriptionFileName</I>
+are case sensitive, as file names in
+the Unix file system are case sensitive.
+The <I>JobName</I> can be any string that contains no white space, except
+for the strings <I>PARENT</I> and <I>CHILD</I> (in upper, lower, or mixed
+case).
+
+<P>
+Note that <I>DIR</I>, <I>NOOP</I>, and <I>DONE</I>, if used, must appear
+in the order shown above.
+
+<P>
+The <I>DIR</I> option specifies a working directory
+for this node,
+from which the Condor job will be submitted,
+and from which a <I>PRE</I> and/or
+<I>POST</I> script will be run.
+Note that a DAG containing <I>DIR</I> specifications cannot
+be run in conjunction with the <I>-usedagdir</I> command-line
+argument to <I>condor_submit_dag</I>.  A rescue DAG generated by
+a DAG run with the <I>-usedagdir</I> argument will contain
+<I>DIR</I> specifications, so the <I>-usedagdir</I> argument is
+automatically disregarded when running a rescue DAG.
+
+<P>
+<A NAME="dagman:NOOP"></A>The optional <I>NOOP</I> keyword identifies that the Condor job within
+the node is not to be submitted to Condor.
+This optimization is useful in cases such as debugging a complex DAG structure,
+where some of the individual jobs are long-running.
+For this debugging of structure,
+some jobs are marked as <I>NOOP</I>s, and
+the DAG is initially run to verify that the control flow through
+the DAG is correct.
+The <I>NOOP</I> keywords are then removed before submitting the DAG.
+Any PRE and POST scripts
+for jobs specified with <I>NOOP</I> <I>are</I> executed;
+to avoid running the PRE and POST scripts, comment them out.
+The job that is not submitted to Condor is given a return value that indicates
+success, such that the node may also succeed.
+Return values of any 
+PRE and POST scripts may still cause the node to fail.
+Even though the job specified with <I>NOOP</I> is not submitted,
+its submit description file must exist;
+the log file for the job is used, 
+because DAGMan generates dummy submission and termination events for the job.
+
+<P>
+The optional <I>DONE</I> keyword identifies a node as being already
+completed.
+This is mainly used by rescue DAGs generated by DAGMan itself,
+in the event of a failure to complete the workflow.
+Nodes with the <I>DONE</I> keyword are not executed when the rescue DAG is run,
+allowing the workflow to pick up from the previous endpoint.  Users
+should generally not use the <I>DONE</I> keyword.
+The <I>NOOP</I> keyword is more flexible in avoiding
+the execution of a job within a node.
+Note that, for any node marked <I>DONE</I> in a DAG, all of
+its parents must also be marked <I>DONE</I>; 
+otherwise, a fatal error will result.
+The <I>DONE</I> keyword applies to the entire node.
+A node marked with <I>DONE</I> will not have a PRE or POST script run,
+and the Condor job will not be submitted.
+
+<P>
+<A NAME="dagman:DATA"></A><A NAME="4402"></A>
+</LI>
+<LI><B>DATA</B>
+
+<P>
+The <I>DATA</I> key word specifies a job to be managed by the Stork data
+placement server.  
+Stork software is provided by the Stork project.
+Please refer to their website: 
+<A NAME="tex2html21"
+  HREF="http://www.cct.lsu.edu/~kosar/stork/index.php">http://www.cct.lsu.edu/~kosar/stork/index.php</A>.
+
+<P>
+The syntax used for each <I>DATA</I> entry is
+
+<P>
+<B>DATA</B> <I>JobName</I> <I>SubmitDescriptionFileName</I>
+[<B>DIR  </B><I>directory</I>] [<B>NOOP</B>] [<B>DONE</B>]
+
+<P>
+A <I>DATA</I> entry maps a <I>JobName</I> to a Stork submit description file.
+In all other respects, the <I>DATA</I> key word is identical to the
+<I>JOB</I> key word.
+
+<P>
+The keywords <I>DIR</I>, <I>NOOP</I> and <I>DONE</I> 
+follow the same rules and restrictions, and they have the same effect
+for <B>DATA</B> nodes as they do for <B>JOB</B> nodes.
+
+<P>
+Here is an example of a simple DAG that stages in data using Stork,
+processes the data using Condor, 
+and stages the processed data out using Stork.
+Depending upon the implementation, multiple data jobs to stage in data
+or to stage out data
+may be run in parallel.
+
+<P>
+<PRE>
+    DATA    STAGE_IN1  stage_in1.stork
+    DATA    STAGE_IN2  stage_in2.stork
+    JOB     PROCESS    process.condor 
+    DATA    STAGE_OUT1 stage_out1.stork
+    DATA    STAGE_OUT2 stage_out2.stork
+    PARENT  STAGE_IN1 STAGE_IN2 CHILD PROCESS
+    PARENT  PROCESS CHILD STAGE_OUT1 STAGE_OUT2
+</PRE>
+<P>
+<A NAME="dagman:SCRIPT"></A><A NAME="4426"></A>
+</LI>
+<LI><B>SCRIPT</B>
+<A NAME="4428"></A>
+
+<P>
+The <I>SCRIPT</I> key word specifies
+processing that is done either before a job within
+the DAG is submitted to Condor or Stork for execution
+or after
+a job within
+the DAG completes its execution.
+<A NAME="4430"></A>
+Processing done before a job is submitted to Condor or Stork is
+called a <I>PRE</I> script.
+Processing done after a job completes
+its execution under Condor or Stork is
+<A NAME="4432"></A>
+called a <I>POST</I> script.
+A node in the DAG is comprised of the job together with
+<I>PRE</I> and/or <I>POST</I> scripts.
+
+<P>
+<I>PRE</I> and <I>POST</I> script lines within the DAG input file
+use the syntax:
+
+<P>
+<B>SCRIPT</B> <B>PRE</B> <I>JobName</I> <I>ExecutableName</I> [<I>arguments</I>]
+
+<P>
+<B>SCRIPT</B> <B>POST</B>  <I>JobName</I> <I>ExecutableName</I> [<I>arguments</I>]
+
+<P>
+The <I>SCRIPT</I> key word identifies the type of line within
+the DAG input file.
+The <I>PRE</I> or <I>POST</I> key word
+specifies the relative timing of when the script is to be run.
+The <I>JobName</I> specifies the node to which the script is attached.
+The <I>ExecutableName</I>
+specifies the script to be executed, and it
+may be followed by any command line arguments to that script.
+The <I>ExecutableName</I> and optional <I>arguments</I> are
+case sensitive; they have their case preserved.  <B>Note that neither
+the <I>ExecutableName</I> nor the individual arguments within the
+<I>arguments</I> string can contain spaces.</B>
+
+<P>
+Scripts are optional for each job, and
+any scripts are executed on the machine
+from which the DAG is submitted; this is not necessarily
+the same machine upon which the node's Condor or Stork job is run.
+Further, a single cluster of Condor jobs may be
+spread across several machines.
+
+<P>
+A PRE script is commonly used
+to place files in a staging area for the cluster of jobs to use.
+A POST script is commonly used
+to clean up or remove files once the cluster of jobs is finished running.
+An example uses PRE and POST scripts to stage files
+that are stored on tape.
+The PRE script reads compressed input files from the tape drive,
+and it uncompresses them, placing the input files in the current directory.
+The cluster of Condor jobs reads these input files
+and produces output files.
+The POST script compresses the output files, writes them out to
+the tape, and then removes both the staged input files and the output files.
+
+<P>
+DAGMan takes note of the exit value of the
+scripts as well as the job or jobs within the cluster.
+A script with an exit value not equal to 0 fails.
+If the PRE script fails, then neither the job nor
+the POST script runs, and the node fails.
+
+<P>
+If the PRE script succeeds, the Condor or Stork job is submitted. 
+If the job or any one of the jobs within the single cluster
+fails and there is no POST script,
+the DAG node is marked as failed.
+An exit value not equal to 0 indicates program failure.
+It is therefore important that a successful program return the exit
+value 0.
+
+<P>
+If the job fails and there is a POST script,
+node failure is determined by the exit value of the POST script.
+A failing value from the POST script marks the node as failed.
+A succeeding value from the POST script (even with a failed
+job) marks the node as successful.
+Therefore, the POST script may need to consider the return
+value from the job.
+
+<P>
+By default, the POST script is run regardless of the job's
+return value.
+
+<P>
+A node not marked as failed at any point is successful.
+Table&nbsp;<A HREF="#Node-success-failure">2.1</A>
+summarizes the success or failure of an entire node
+for all possibilities.
+An <I>S</I> stands for success,
+an <I>F</I> stands for failure,
+and the dash character (<I>-</I>) identifies that there is no script.
+
+<P>
+<DIV ALIGN="CENTER">
+</DIV>
+<BR><P></P>
+<DIV ALIGN="CENTER"><A NAME="5253"></A>
+<TABLE>
+<CAPTION><STRONG>Table 2.1:</STRONG>
+Node success or failure definition </CAPTION>
+<TR><TD><TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER">PRE</TD>
+<TD ALIGN="CENTER">-</TD>
+<TD ALIGN="CENTER">-</TD>
+<TD ALIGN="CENTER">F</TD>
+<TD ALIGN="CENTER">S</TD>
+<TD ALIGN="CENTER">S</TD>
+<TD ALIGN="CENTER">-</TD>
+<TD ALIGN="CENTER">-</TD>
+<TD ALIGN="CENTER">-</TD>
+<TD ALIGN="CENTER">-</TD>
+<TD ALIGN="CENTER">S</TD>
+<TD ALIGN="CENTER">S</TD>
+<TD ALIGN="CENTER">S</TD>
+<TD ALIGN="CENTER">S</TD>
+</TR>
+<TR><TD ALIGN="CENTER">JOB</TD>
+<TD ALIGN="CENTER">S</TD>
+<TD ALIGN="CENTER">F</TD>
+<TD ALIGN="CENTER">not run</TD>
+<TD ALIGN="CENTER">S</TD>
+<TD ALIGN="CENTER">F</TD>
+<TD ALIGN="CENTER">S</TD>
+<TD ALIGN="CENTER">S</TD>
+<TD ALIGN="CENTER">F</TD>
+<TD ALIGN="CENTER">F</TD>
+<TD ALIGN="CENTER">S</TD>
+<TD ALIGN="CENTER">F</TD>
+<TD ALIGN="CENTER">F</TD>
+<TD ALIGN="CENTER">S</TD>
+</TR>
+<TR><TD ALIGN="CENTER">POST</TD>
+<TD ALIGN="CENTER">-</TD>
+<TD ALIGN="CENTER">-</TD>
+<TD ALIGN="CENTER">not run</TD>
+<TD ALIGN="CENTER">-</TD>
+<TD ALIGN="CENTER">-</TD>
+<TD ALIGN="CENTER">S</TD>
+<TD ALIGN="CENTER">F</TD>
+<TD ALIGN="CENTER">S</TD>
+<TD ALIGN="CENTER">F</TD>
+<TD ALIGN="CENTER">S</TD>
+<TD ALIGN="CENTER">S</TD>
+<TD ALIGN="CENTER">F</TD>
+<TD ALIGN="CENTER">F</TD>
+</TR>
+<TR><TD ALIGN="CENTER">node</TD>
+<TD ALIGN="CENTER">S</TD>
+<TD ALIGN="CENTER">F</TD>
+<TD ALIGN="CENTER">F</TD>
+<TD ALIGN="CENTER">S</TD>
+<TD ALIGN="CENTER">F</TD>
+<TD ALIGN="CENTER">S</TD>
+<TD ALIGN="CENTER">F</TD>
+<TD ALIGN="CENTER">S</TD>
+<TD ALIGN="CENTER">F</TD>
+<TD ALIGN="CENTER">S</TD>
+<TD ALIGN="CENTER">S</TD>
+<TD ALIGN="CENTER">F</TD>
+<TD ALIGN="CENTER">F</TD>
+</TR>
+</TABLE>
+</TD></TR>
+</TABLE>
+</DIV><P></P>
+<BR>
+<DIV ALIGN="CENTER">
+</DIV>
+
+<P>
+Five variables (<TT>$JOB</TT>, <TT>$JOBID</TT>, <TT>$RETRY</TT>,
+<TT>$MAX_RETRIES</TT>, and
+<TT>$RETURN</TT>) can be used within the DAG input file
+as arguments passed to a PRE or POST script.
+
+<P>
+<A NAME="4474"></A>
+The variable <TT>$JOB</TT> evaluates to the (case sensitive) string
+defined for <I>JobName</I>.
+
+<P>
+<A NAME="4477"></A>
+The variable <TT>$RETRY</TT> evaluates to an 
+integer value set to 0 the first time a node is run,
+and is  incremented each time the node is retried. 
+See section&nbsp;<A HREF="#dagman:retry">2.10.6</A> for the description of how to cause
+nodes to be retried. 
+
+<P>
+<A NAME="4480"></A>
+The variable <TT>$MAX_RETRIES</TT> evaluates to an integer value set 
+to the maximum number of retries for the node.
+See section&nbsp;<A HREF="#dagman:retry">2.10.6</A> for the description of how to cause
+nodes to be retried.  
+If no retries are set for the node,
+<TT>$MAX_RETRIES</TT> will be set to 0.
+
+<P>
+<A NAME="4484"></A>
+<A NAME="4485"></A>
+<A NAME="4486"></A>
+For use as an argument to POST scripts only, the variable <TT>$JOBID</TT>
+evaluates to a representation of the Condor job ID of the node job.
+It is the value of the job ClassAd attribute <TT>ClusterId</TT>,
+followed by a period,
+and then followed by the value of the job ClassAd attribute <TT>ProcId</TT>.
+An example of a job ID might be 1234.0.
+For nodes with multiple jobs in the same cluster,
+the <TT>ProcId</TT> value is the one of the last job within the cluster.
+
+<P>
+<A NAME="4491"></A>
+For use as an argument to POST scripts only,
+the <TT>$RETURN</TT> variable evaluates to the return value of the 
+Condor or Stork job, if there is a single job within a cluster.
+With multiple jobs within the same cluster,
+there are two cases to consider.
+In the first case, all jobs within the cluster are successful;
+the value of <TT>$RETURN</TT> will be 0, indicating success.
+In the second case,
+one or more jobs from the cluster fail.
+When <I>condor_dagman</I> sees the first terminated event for a job that failed,
+it assigns that job's return value as the value
+of <TT>$RETURN</TT>, and attempts to remove all remaining jobs within the cluster.
+Therefore, if multiple jobs in the cluster fail with different exit codes,
+a race condition determines which exit code gets assigned to <TT>$RETURN</TT>.
+
+<P>
+A job that dies due to a signal is reported with a <TT>$RETURN</TT> value
+representing the additive inverse of the signal number.
+For example, SIGKILL (signal 9) is reported as -9.
+A job whose batch system submission fails is reported as -1001.
+A job that is externally removed from the batch system queue
+(by something other than <I>condor_dagman</I>) is reported as -1002.
+
+<P>
+As an example, consider the diamond-shaped DAG example.
+Suppose the PRE script expands a compressed file 
+needed as input to nodes B and C.
+The file is named of the form
+<TT><I>JobName</I>.gz</TT>.
+The DAG input file becomes 
+
+<P>
+<PRE>
+    # File name: diamond.dag
+    #
+    JOB  A  A.condor 
+    JOB  B  B.condor 
+    JOB  C  C.condor	
+    JOB  D  D.condor
+    SCRIPT PRE  B  pre.csh $JOB .gz
+    SCRIPT PRE  C  pre.csh $JOB .gz
+    PARENT A CHILD B C
+    PARENT B C CHILD D
+</PRE>
+<P>
+The script <TT>pre.csh</TT> uses the arguments to form the file name
+of the compressed file:
+
+<P>
+<PRE>
+    #!/bin/csh
+    gunzip $argv[1]$argv[2]
+</PRE>
+
+<P>
+<A NAME="dagman:ParentChild"></A><A NAME="4506"></A>
+</LI>
+<LI><B>PARENT ... CHILD</B>
+
+<P>
+The <I>PARENT</I> and <I>CHILD</I> key words specify the
+dependencies within the DAG.
+<A NAME="4510"></A>
+Nodes are parents and/or children within the DAG.
+A parent node must be completed successfully before
+any of its children may be started.
+A child node may only be started once
+all its parents have successfully completed.
+
+<P>
+The syntax of a dependency line within the DAG input file:
+
+<P>
+<B>PARENT</B> <I>ParentJobName... </I> <B>CHILD</B> <I>ChildJobName... </I>
+
+<P>
+The <I>PARENT</I> key word is followed by one or more
+<I>ParentJobName</I>s.
+The <I>CHILD</I> key word is followed by one or more
+<I>ChildJobName</I>s.
+Each child job depends on every parent job within the line.
+A single line in the input file can specify the dependencies from one or more
+parents to one or more children.
+As an example, the line
+<PRE>
+PARENT p1 p2 CHILD c1 c2
+</PRE>
+produces four dependencies:
+
+<OL>
+<LI><code>p1</code> to <code>c1</code>
+</LI>
+<LI><code>p1</code> to <code>c2</code>
+</LI>
+<LI><code>p2</code> to <code>c1</code>
+</LI>
+<LI><code>p2</code> to <code>c2</code>
+</LI>
+</OL>
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<H2><A NAME="SECTION003103000000000000000">
+2.10.3 Submit Description File Contents and Usage of Log Files</A>
+</H2>
+
+<P>
+<A NAME="4529"></A>
+Each node in a DAG may use a unique submit description file.
+One key limitation is that
+each Condor submit description file must submit jobs
+described by a single cluster number.
+At the present time DAGMan cannot deal with a submit file producing
+multiple job clusters.
+
+<P>
+<I>DAGMan enforces the dependencies within a DAG
+using the events recorded in the
+log file(s) produced by job submission to Condor.</I>
+At one time, DAGMan required that all jobs within all nodes
+specify the same, single log file.
+This is no longer the case.
+However, if the DAG utilizes a large number of
+separate log files, performance may suffer.
+Therefore, it is better to have
+fewer, or even only a single log file.
+Unfortunately,
+each Stork job currently requires a separate log file.
+
+<P>
+<A NAME="4531"></A>
+As of Condor version 7.3.2, DAGMan's handling of log files has
+significantly changed to improve resource usage and efficiency.  
+Prior to version 7.3.2, 
+DAGMan assembled a list of all relevant log files at start up, 
+by looking at all of the submit description files for all of the nodes.
+It kept the log files open for the duration of the DAG.
+Beginning with Condor version 7.3.2, DAGMan delays opening and using 
+the submit description file until just before it is going to submit the job.
+At that point, DAGMan reads the submit description file to discover 
+the job's log file.
+And, DAGMan monitors only the log files that are relevant
+to the jobs currently queued, 
+or associated with nodes for which a POST script is running.
+
+<P>
+The advantages of the new "lazy log file evaluation" scheme are:
+
+<P>
+
+<UL>
+<LI>The <I>condor_dagman</I> executable uses fewer file descriptors.
+
+<P>
+</LI>
+<LI>It is much easier to have one node of a DAG produce the
+submit description file for a descendant node in the DAG.
+
+<P>
+</LI>
+</UL>
+
+<P>
+There is one known disadvantage of the lazy log file evaluation scheme:
+
+<P>
+
+<UL>
+<LI>Because the log files are internally identified by inode
+numbers, it is possible that errors may arise where log files for
+a given DAG are spread across more than one device.
+This permits two unique files to have the same inode number.
+We hope to have this problem fixed soon.
+
+<P>
+</LI>
+</UL>
+
+<P>
+<A NAME="4537"></A>
+Another new feature in version 7.3.2 is the use of default node job user logs.
+Previously, it was a fatal error if the submit description
+file for a node job did not specify a log file.
+Starting with Condor version 7.3.2,
+DAGMan specifies a default user log file for any job that does not specify
+a log file.
+The file used as the default node log is controlled by the
+<TT>DAGMAN_DEFAULT_NODE_LOG</TT> configuration variable.
+A complete description is at section&nbsp;<A HREF="3_3Configuration.html#param:DAGManDefaultNodeLog">3.3.26</A>.
+Nodes specifying a log file and other nodes using the default log
+file can be mixed in a single DAG.
+
+<P>
+An additional restriction applies to the submit description file
+command <B>Log</B> specific to a Condor job within
+a DAG node.
+This command may not be defined in such a way that it uses macros.
+Using a macro would violate the restriction that there be exactly
+one log file specified for the potentially multiple jobs 
+within a single cluster.
+
+<P>
+Here is a modified version of the DAG input file
+for the diamond-shaped DAG. 
+The modification has each node use the same 
+submit description file.
+
+<P>
+<PRE>
+    # File name: diamond.dag
+    #
+    JOB  A  diamond_job.condor 
+    JOB  B  diamond_job.condor 
+    JOB  C  diamond_job.condor	
+    JOB  D  diamond_job.condor
+    PARENT A CHILD B C
+    PARENT B C CHILD D
+</PRE>
+
+<P>
+Here is the single Condor submit description file
+for this DAG:
+
+<P>
+<A NAME="4543"></A>
+<PRE>
+    # File name: diamond_job.condor
+    #
+    executable   = /path/diamond.exe
+    output       = diamond.out.$(cluster)
+    error        = diamond.err.$(cluster)
+    log          = diamond_condor.log
+    universe     = vanilla
+    notification = NEVER
+    queue
+</PRE>
+
+<P>
+This example uses the same Condor submit description file
+for all the jobs in the DAG.
+This implies that each node within the DAG runs the
+same job.
+The <TT>$(cluster)</TT> macro
+produces unique file names for each job's output.
+As the Condor job within each node
+causes a separate job submission, each has a unique cluster number.
+
+<P>
+Notification is set to <code>NEVER</code> in this example.
+This tells Condor not to send e-mail about the completion of a job
+submitted to Condor.
+For DAGs with many nodes, this
+reduces or eliminates excessive numbers of e-mails.
+
+<P>
+<A NAME="4547"></A>
+<A NAME="4548"></A>
+The job ClassAd attribute <TT>DAGParentNodeNames</TT> is also available
+for use within the submit description file. 
+It defines a comma separated list of each <I>JobName</I>
+which is a parent node of this job's node.
+This attribute may be used in the <B>arguments</B> command
+for all but scheduler universe jobs.
+For example, if the job has two parents, with <I>JobName</I>s B and C,
+the submit description file command
+<PRE>
+arguments = $$([DAGParentNodeNames])
+</PRE>
+will pass the string ``B,C'' as the command line argument when invoking
+the job.
+
+<P>
+
+<H2><A NAME="SECTION003104000000000000000"></A><A NAME="dagman:submitdag"></A>
+<BR>
+2.10.4 DAG Submission
+</H2>
+
+<P>
+A DAG is submitted using the program <I>condor_submit_dag</I>.
+See the manual
+page&nbsp;<A HREF="condor_submit_dag.html#man-condor-submit-dag"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>
+for complete details.
+A simple submission has the syntax
+
+<P>
+<I>condor_submit_dag</I> <I>DAGInputFileName</I>
+
+<P>
+<A NAME="4560"></A>
+The diamond-shaped DAG example may be submitted with
+
+<P>
+<PRE>
+condor_submit_dag diamond.dag
+</PRE>
+In order to guarantee recoverability, the DAGMan program itself
+is run as a Condor job.
+As such, it needs a submit description file.
+<I>condor_submit_dag</I> produces this needed submit description file,
+naming it by appending <TT>.condor.sub</TT> to the <I>DAGInputFileName</I>.
+This submit description file may be edited if the DAG is
+submitted with
+
+<P>
+<PRE>
+condor_submit_dag -no_submit diamond.dag
+</PRE>
+causing <I>condor_submit_dag</I> to generate the submit description file,
+but not submit DAGMan to Condor.
+To submit the DAG, once the submit description file is edited,
+use
+
+<P>
+<PRE>
+condor_submit diamond.dag.condor.sub
+</PRE>
+
+<P>
+An optional argument to <I>condor_submit_dag</I>, <I>-maxjobs</I>, 
+is used to specify the maximum number of batch jobs that DAGMan may
+submit at one time.
+It is commonly used when 
+there is a limited amount of input file staging capacity.
+As a specific example, consider a case where each job will
+require 4 Mbytes of input files,
+and the jobs will run in a directory with a volume of 100 Mbytes
+of free space.
+Using the argument <I>-maxjobs 25</I> guarantees that a maximum
+of 25 jobs, using a maximum of 100 Mbytes of space,
+will be submitted to Condor and/or Stork at one time.
+
+<P>
+While the <I>-maxjobs</I> argument is used to limit the number
+of batch system jobs submitted at one time,
+it may be desirable to limit the number of scripts running
+at one time.
+The optional <I>-maxpre</I> argument limits the number of PRE
+scripts that may be running at one time,
+while the optional <I>-maxpost</I> argument limits the number of POST
+scripts that may be running at one time.
+
+<P>
+An optional argument to <I>condor_submit_dag</I>, <I>-maxidle</I>, 
+is used to limit the number of idle jobs within a given DAG.
+When the number of idle node jobs in the DAG reaches the specified
+value, <I>condor_dagman</I> will stop submitting jobs, even if there
+are ready nodes in the DAG.  Once some of the idle jobs start to
+run, <I>condor_dagman</I> will resume submitting jobs.  Note that this
+parameter only limits the number of idle jobs submitted by a
+given instance of <I>condor_dagman</I>. Idle jobs submitted by other sources
+(including other <I>condor_dagman</I> runs) are ignored.
+
+<P>
+
+<H2><A NAME="SECTION003105000000000000000">
+2.10.5 Job Monitoring, Job Failure, and Job Removal</A>
+</H2>
+
+<P>
+After submission, the progress of the DAG can be monitored
+by looking at the log file(s),
+observing the e-mail that job submission to Condor causes,
+or by using <I>condor_q</I> <I>-dag</I>.
+There is a large amount of information in an extra file.
+The name of this extra file is produced by appending
+<TT>.dagman.out</TT> to <I>DAGInputFileName</I>; for example, if the
+DAG file is <TT>diamond.dag</TT>, this extra file is
+<TT>diamond.dag.dagman.out</TT>.
+If this extra file grows too large, limit its size
+with the <TT>MAX_DAGMAN_LOG</TT> <A NAME="5602"></A> <A NAME="5603"></A> configuration macro (see
+section&nbsp;<A HREF="3_3Configuration.html#param:MaxSubsysLog">3.3.4</A>).
+
+<P>
+If you have some kind of problem in your DAGMan run, please save
+the corresponding <TT>dagman.out</TT> file; it is the most important
+debugging tool for DAGMan.  As of version 6.8.2, the <TT>dagman.out</TT>
+is appended to, rather than overwritten, with each new DAGMan run.
+
+<P>
+<I>condor_submit_dag</I> attempts to check the DAG input file.
+If a problem is detected,
+<I>condor_submit_dag</I> prints out an error message and aborts.
+
+<P>
+To remove an entire DAG, consisting of DAGMan plus
+any jobs submitted to Condor or Stork,
+remove the DAGMan job running under Condor.
+<I>condor_q</I> will list the job number.
+Use the job number to remove the job, for example
+
+<P>
+<PRE>
+% condor_q
+-- Submitter: turunmaa.cs.wisc.edu : &lt;128.105.175.125:36165&gt; : turunmaa.cs.wisc.edu
+ ID      OWNER          SUBMITTED     RUN_TIME ST PRI SIZE CMD
+  9.0   smoler         10/12 11:47   0+00:01:32 R  0   8.7  condor_dagman -f -
+ 11.0   smoler         10/12 11:48   0+00:00:00 I  0   3.6  B.out
+ 12.0   smoler         10/12 11:48   0+00:00:00 I  0   3.6  C.out
+
+    3 jobs; 2 idle, 1 running, 0 held
+
+% condor_rm 9.0
+</PRE>
+<P>
+Before the DAGMan job stops running, it uses <I>condor_rm</I>
+to remove any jobs within the DAG that are running.
+
+<P>
+In the case where a
+machine is scheduled to go down,
+DAGMan will clean up memory and exit.
+However, it will leave any submitted jobs
+in Condor's queue.
+
+<P>
+
+<H2><A NAME="SECTION003106000000000000000"></A><A NAME="sec:AdvDAGMan"></A>
+<BR>
+2.10.6 Advanced Features of DAGMan
+</H2>
+
+<P>
+
+<H3><A NAME="SECTION003106100000000000000"></A><A NAME="dagman:retry"></A>
+<BR>
+2.10.6.1 Retrying Failed Nodes or Stopping the Entire DAG
+</H3>
+
+<P>
+<A NAME="4602"></A>
+<A NAME="4603"></A>
+<A NAME="4604"></A>
+<A NAME="4605"></A>
+
+<P>
+The <I>RETRY</I> key word provides a
+way to retry failed nodes.
+The use of retry is optional.
+The syntax for retry is
+
+<P>
+<B>RETRY</B> <I>JobName</I> <I>NumberOfRetries</I> [<B>UNLESS-EXIT  </B><I>value</I>]
+
+<P>
+where <I>JobName</I> identifies the node.
+<I>NumberOfRetries</I> is an integer
+number of times to retry the node after failure.
+The implied number of retries for any node is 0,
+the same as not having a retry line in the file. 
+Retry is implemented on nodes, not parts of a node.
+
+<P>
+The diamond-shaped DAG example may be modified to
+retry node C:
+
+<P>
+<PRE>
+    # File name: diamond.dag
+    #
+    JOB  A  A.condor 
+    JOB  B  B.condor 
+    JOB  C  C.condor	
+    JOB  D  D.condor
+    PARENT A CHILD B C
+    PARENT B C CHILD D
+    Retry  C 3
+</PRE>
+<P>
+If node C is marked as failed (for any reason),
+then it is started over as a first retry.
+The node will be tried a second and third time,
+if it continues to fail.
+If the node is marked as successful, then further retries do not occur.
+
+<P>
+Retry of a node may be short circuited using the
+optional key word <I>UNLESS-EXIT</I> (followed by an
+integer exit value).
+If the node exits with the specified integer exit value,
+then no further processing will be done
+on the node. 
+
+<P>
+The variable <TT>$RETRY</TT> evaluates to an 
+integer value set to 0 first time a node is run,
+and is  incremented each time for each time the node is retried. 
+The variable <TT>$MAX_RETRIES</TT> is the value set for
+<I>NumberOfRetries</I>.
+
+<P>
+The <I>ABORT-DAG-ON</I> key word provides a way
+to abort the entire DAG if a given node returns a specific exit
+code.  The syntax for <I>ABORT-DAG-ON</I> is
+
+<P>
+<B>ABORT-DAG-ON</B> <I>JobName</I> <I>AbortExitValue</I>
+[<B>RETURN  </B><I>DAGReturnValue</I>]
+
+<P>
+If the node specified by <I>JobName</I> returns the specified
+<I>AbortExitValue</I>, the
+DAG is immediately aborted.
+A DAG abort differs from a node failure,
+in that a DAG abort causes all nodes within the DAG to be stopped immediately.
+This includes removing the jobs in nodes that are currently running.
+A node failure allows the DAG to continue running,
+until no more progress can be made due to dependencies.
+
+<P>
+An abort overrides node retries. 
+If a node returns the abort exit value,
+the DAG is aborted,
+even if the node has retry specified.
+
+<P>
+When a DAG aborts, by default it exits with the node return value that
+caused the abort.  This can be changed by 
+using  the optional <I>RETURN</I> key word along
+with specifying the desired <I>DAGReturnValue</I>.
+The DAG abort return value
+can be used for DAGs within DAGs,
+allowing an inner DAG to cause an abort of an outer DAG.
+
+<P>
+Adding <I>ABORT-DAG-ON</I> for node C in the diamond-shaped
+DAG
+<PRE>
+    # File name: diamond.dag
+    #
+    JOB  A  A.condor 
+    JOB  B  B.condor 
+    JOB  C  C.condor	
+    JOB  D  D.condor
+    PARENT A CHILD B C
+    PARENT B C CHILD D
+    Retry  C 3
+    ABORT-DAG-ON C 10 RETURN 1
+</PRE>
+<P>
+causes the DAG to be aborted, if node C exits with a return value of 10.
+Any other currently running nodes (only node B is a possibility for 
+this particular example) are stopped and removed.
+If this abort occurs, the return value for the DAG is 1.
+
+<P>
+
+<H3><A NAME="SECTION003106200000000000000"></A>
+<A NAME="4635"></A>
+<BR>
+2.10.6.2 Variable Values Associated with Nodes
+</H3>
+
+<P>
+<A NAME="4636"></A>
+<A NAME="4637"></A>
+The <I>VARS</I> key word provides a
+method for defining a macro that can be referenced in the
+node's submit description file.
+These macros are defined on a per-node basis, using the
+following syntax:
+
+<P>
+<B>VARS</B> <I>JobName</I> <I>macroname=</I><I>"string"</I> [<I>macroname=</I><I>"string"... ]</I>
+
+<P>
+The macro may be used within the
+submit description file of the relevant node.  A <I>macroname</I>
+consists of alphanumeric characters (a..Z and 0..9),
+as well as the underscore character.
+The space character delimits macros,
+when there is more than one macro defined for a node.
+
+<P>
+Correct syntax requires that the <I>string</I> must be
+enclosed in double quotes.
+To use a double quote inside <I>string</I>,
+escape it with the backslash character (<code>\</code>).
+To add the backslash character itself, use two backslashes (<code>\\</code>).
+The string $(JOB) maybe used in <I>string</I> and will expand to
+<I>JobName</I>. 
+If the <I>VARS</I> line appears in a DAG file used as a splice file, 
+then $(JOB) will be the fully scoped name of the node.
+
+<P>
+<B>Note that the <I>macroname</I> itself cannot begin with the string
+<TT>queue</TT>,
+in any combination of upper or lower case.</B>
+
+<P>
+If the DAG input file contains
+<PRE>
+    # File name: diamond.dag
+    #
+    JOB  A  A.condor 
+    JOB  B  B.condor 
+    JOB  C  C.condor	
+    JOB  D  D.condor
+    VARS A state="Wisconsin"
+    PARENT A CHILD B C
+    PARENT B C CHILD D
+</PRE>
+<P>
+then file <TT>A.condor</TT> may use the macro <code>state</code>.
+This example submit description file for the Condor
+job in node A passes the value
+of the macro as a command-line argument to the job.
+
+<P>
+<PRE>
+    # file name: A.condor
+    executable = A.exe
+    log        = A.log
+    error      = A.err
+    arguments  = "$(state)"
+    queue
+</PRE>
+<P>
+This Condor job's command line will be
+<PRE>
+A.exe Wisconsin
+</PRE>The use of macros may allow a reduction in the necessary number 
+of unique submit description files.
+
+<P>
+A separate example shows an intended use of a <I>VARS</I> entry
+in the DAG input file.
+This use may dramatically reduce the number of Condor submit description
+files needed for a DAG.
+In the case where the submit description file for each node
+varies only in file naming, the use of a substitution macro
+within the submit description file reduces the need to
+a single submit description file.
+Note that the user log file for a job currently cannot be specified
+using a macro passed from the DAG.
+
+<P>
+The example uses a single submit description file in the DAG input
+file, and uses the <I>VARS</I> entry to name output files.
+
+<P>
+The relevant portion of the DAG input file appears as 
+<PRE>
+    JOB A theonefile.sub
+    JOB B theonefile.sub
+    JOB C theonefile.sub
+
+    VARS A outfilename="A"
+    VARS B outfilename="B"
+    VARS C outfilename="C"
+</PRE>
+
+<P>
+The submit description file appears as 
+<PRE>
+    # submit description file called:  theonefile.sub
+    executable   = progX
+    universe     = standard
+    output       = $(outfilename)
+    error        = error.$(outfilename)
+    log          = progX.log
+    queue
+</PRE>
+<P>
+For a DAG such as this one, but with thousands of nodes,
+being able to write and maintain a single submit description file 
+and a single, yet more complex, DAG input file is preferable.
+
+<P>
+<DL>
+<DT><STRONG>Special characters within VARS string definitions</STRONG></DT>
+<DD>
+</DD>
+</DL>
+
+<P>
+The value of a <I>VARS</I> <I>macroname</I> may contain spaces and tabs.
+It is also possible to have double quote marks and
+backslashes within these values.
+<B>Unfortunately, it is not
+possible to have single quote marks within these values.</B>
+In order to have spaces or tabs within a value,
+use the new syntax format for the <B>arguments</B> command
+in the node's Condor job submit description file,
+as described in section&nbsp;<A HREF="condor_submit.html#man-condor-submit-arguments">9</A>.
+Double quote marks are escaped differently,
+depending on the new syntax or old syntax argument format.
+Note that in both syntaxes,
+double quote marks require two levels of escaping:
+one level is for the parsing of the DAG input file, and the other level is for
+passing the resulting value through <I>condor_submit</I>.
+
+<P>
+As an example, here are only the relevant parts of a DAG input file.
+Note that the NodeA value for <TT>second</TT> contains a tab.
+<PRE>
+    Vars NodeA first="Alberto Contador"
+    Vars NodeA second="\"\"Andy	Schleck\"\""
+    Vars NodeA third="Lance\\ Armstrong"
+    Vars NodeA misc="!@#$%^&amp;*()_-=+=[]{}?/"
+    
+    Vars NodeB first="Lance_Armstrong"
+    Vars NodeB second="\\\"Andreas_Kloden\\\""
+    Vars NodeB third="Ivan\\_Basso"
+    Vars NodeB misc="!@#$%^&amp;*()_-=+=[]{}?/"
+</PRE>
+<P>
+The new syntax <B>arguments</B> line of the Condor submit description file
+for NodeA is
+<PRE>
+  arguments = "'$(first)' '$(second)' '$(third)' '$(misc)'"
+</PRE>The single quotes around each variable reference are only necessary
+if the variable value may contain spaces or tabs.
+The resulting values passed to the NodeA executable are
+<PRE>
+  Alberto Contador
+  "Andy	Schleck"
+  Lance\ Armstrong
+  !@#$%^&amp;*()_-=+=[]{}?/
+</PRE>
+<P>
+The old syntax <B>arguments</B> line of the Condor submit description file
+for NodeB is
+<PRE>
+  arguments = $(first) $(second) $(third) $(misc)
+</PRE>
+<P>
+The resulting values passed to the NodeB executable are
+<PRE>
+  Lance_Armstrong
+  "Andreas_Kloden"
+  Ivan\_Basso
+  !@#$%^&amp;*()_-=+=[]{}?/
+</PRE>
+<P>
+
+<H3><A NAME="SECTION003106300000000000000"></A>
+<A NAME="4688"></A>
+<BR>
+2.10.6.3 Setting Priorities for Nodes
+</H3>
+
+<P>
+The <I>PRIORITY</I> key word assigns a priority to a DAG node.
+The syntax for <I>PRIORITY</I> is
+
+<P>
+<B>PRIORITY</B> <I>JobName</I> <I>PriorityValue</I>
+
+<P>
+The node priority affects the order in which nodes that are ready
+at the same time will be submitted.  Note that node priority does
+<I>not</I> override the DAG dependencies.
+
+<P>
+Node priority is mainly relevant if
+node submission is throttled via the <I>-maxjobs</I> or <I>-maxidle</I>
+command-line arguments or the <TT>DAGMAN_MAX_JOBS_SUBMITTED</TT> or
+<TT>DAGMAN_MAX_JOBS_IDLE</TT> configuration variables.  Note that PRE
+scripts can affect the order in which jobs run, so DAGs containing
+PRE scripts may not run the nodes in exact priority order, even if
+doing so would satisfy the DAG dependencies.
+
+<P>
+The priority value is an integer (which can be negative).  A larger
+numerical priority is better (will be run before a smaller numerical
+value).  The default priority is 0.
+
+<P>
+Adding <I>PRIORITY</I> for node C in the diamond-shaped
+DAG
+<PRE>
+    # File name: diamond.dag
+    #
+    JOB  A  A.condor 
+    JOB  B  B.condor 
+    JOB  C  C.condor	
+    JOB  D  D.condor
+    PARENT A CHILD B C
+    PARENT B C CHILD D
+    Retry  C 3
+    PRIORITY C 1
+</PRE>
+<P>
+This will cause node C to be submitted before node B (normally, node B
+would be submitted first).
+
+<P>
+<A NAME="4702"></A>
+Note that this node priority as specified in the DAG input file is <I>not</I>
+propagated to SUBDAG execution.
+As an example, consider the portion of a DAG input file specifying
+<I>PRIORITY</I> for two SUBDAGs: 
+<PRE>
+    SUBDAG EXTERNAL  A  A.dag 
+    SUBDAG EXTERNAL  B  B.dag 
+    PRIORITY  A  100
+    PRIORITY  B  0
+</PRE>Once any node jobs of A and B are submitted, 
+this priority setting is completely irrelevant. 
+It is true that the first jobs of A are going to be submitted first,
+but other than that, 
+setting the <I>PRIORITY</I> of SUBDAG A and/or SUBDAG B has no effect
+on their priority for job submission.
+
+<P>
+
+<H3><A NAME="SECTION003106400000000000000"></A><A NAME="sec:DAG-node-category"></A>
+<BR>
+2.10.6.4 Limiting the Number of Submitted Job Clusters within a DAG
+</H3>
+
+<P>
+<A NAME="4709"></A>
+<A NAME="4710"></A>
+
+<P>
+In order to limit the number of submitted job clusters within a DAG,
+the nodes may be placed into categories by assignment of a name.
+Then, a maximum number of submitted clusters may be specified
+for each category.
+
+<P>
+The <I>CATEGORY</I> key word assigns a category name to a DAG node.
+The syntax for <I>CATEGORY</I> is
+
+<P>
+<B>CATEGORY</B> <I>JobName</I> <I>CategoryName</I>
+
+<P>
+Category names cannot contain white space.
+
+<P>
+The <I>MAXJOBS</I> key word limits the number of submitted job clusters
+on a per category basis.
+The syntax for <I>MAXJOBS</I> is
+
+<P>
+<B>MAXJOBS</B> <I>CategoryName</I> <I>MaxJobsValue</I>
+
+<P>
+If the number of submitted job clusters for a given category reaches the limit,
+no further job clusters in that category will be submitted until other
+job clusters within the category terminate.
+If MAXJOBS is not set for a defined category,
+then there is no limit placed on the number of submissions
+within that category.
+
+<P>
+Note that a single invocation
+of <I>condor_submit</I> results in one job cluster.
+The number of Condor jobs within a cluster may be greater than 1. 
+
+<P>
+The  configuration variable <TT>DAGMAN_MAX_JOBS_SUBMITTED</TT> 
+and the <I>condor_submit_dag</I> <I>-maxjobs</I> command-line option
+are still enforced if these <I>CATEGORY</I> and <I>MAXJOBS</I> throttles are used.
+
+<P>
+Please see the end of section&nbsp;<A HREF="#sec:DAGSplicing">2.10.6</A>
+on DAG Splicing for a description of the interaction between
+categories and splices.
+
+<P>
+
+<H3><A NAME="SECTION003106500000000000000"></A><A NAME="sec:DAG-configuration"></A>
+<A NAME="4729"></A>
+<A NAME="4730"></A>
+<BR>
+2.10.6.5 Configuration Specific to a DAG
+</H3>
+
+<P>
+The <I>CONFIG</I> keyword specifies a configuration file to be used
+to set configuration variables related to <I>condor_dagman</I>
+when running this DAG.
+The syntax for <I>CONFIG</I> is
+
+<P>
+<B>CONFIG</B> <I>ConfigFileName</I>
+
+<P>
+If the DAG file contains a line like this,
+<PRE>
+    CONFIG dagman.config
+</PRE>
+then the configuration values in the file <TT>dagman.config</TT> will be used
+for this DAG.
+
+<P>
+Configuration macros for <I>condor_dagman</I> can be specified in several
+ways, as given within the ordered list:
+
+<OL>
+<LI>In a Condor configuration file.
+</LI>
+<LI>With an environment variable.
+Prepend the string <code>_CONDOR_</code> to the configuration variable's name.
+</LI>
+<LI>As specified above, with a line in the DAG input file
+using the keyword <I>CONFIG</I>, such that there is a <I>condor_dagman</I>-specific
+configuration file specified,
+or on the <I>condor_submit_dag</I> command line.
+</LI>
+<LI>For some configuration variables,
+there is a corresponding <I>condor_submit_dag</I> command line argument.
+For example, the configuration variable <TT>DAGMAN_MAX_JOBS_SUBMITTED</TT>
+has the corresponding command line argument <I>-maxjobs</I>.
+</LI>
+</OL>
+
+<P>
+In the above list, configuration values specified later in the list
+override ones specified earlier
+For example, a value specified on the
+<I>condor_submit_dag</I> command line overrides corresponding values in any
+configuration file.
+And, a value specified in a DAGMan-specific configuration
+file overrides values specified in a general Condor configuration file.
+
+<P>
+Configuration variables that are not for <I>condor_dagman</I>
+and not utilized by DaemonCore, yet are specified in a
+<I>condor_dagman</I>-specific configuration file are ignored.
+
+<P>
+Only a single configuration file can be specified for a given
+<I>condor_dagman</I> run.  For example, if one file is specified within a DAG
+input file,
+and a different file is specified on the <I>condor_submit_dag</I> command
+line, this is a fatal error at submit time.
+The same is true if
+different configuration files are specified in multiple DAG input files,
+and referenced in a single <I>condor_submit_dag</I> command.
+
+<P>
+If multiple DAGs are run in a single <I>condor_dagman</I> run, the
+configuration options specified in the <I>condor_dagman</I> configuration
+file, if any, apply to all DAGs, even if some of the DAGs specify no
+configuration file.
+
+<P>
+Configuration variables relating to DAGMan may be found
+in section&nbsp;<A HREF="3_3Configuration.html#sec:DAGMan-Config-File-Entries">3.3.26</A>.
+
+<P>
+
+<H3><A NAME="SECTION003106600000000000000"></A><A NAME="sec:MultipleDAGs"></A>
+<A NAME="4758"></A>
+<BR>
+2.10.6.6 Single Submission of Multiple, Independent DAGs
+</H3>
+
+<P>
+A single use of <I>condor_submit_dag</I> may execute multiple, independent DAGs.
+Each independent DAG has its own DAG input file.
+These DAG input files are command-line arguments to
+<I>condor_submit_dag</I>
+(see the <I>condor_submit_dag</I> manual page at&nbsp;<A HREF="condor_submit_dag.html#man-condor-submit-dag">9</A>).
+
+<P>
+Internally, all of the independent DAGs are combined
+into a single, larger DAG, with no dependencies between
+the original independent DAGs.
+As a result,
+any generated rescue DAG file represents all of the input DAGs
+as a single DAG.
+The file name of this rescue DAG is based on the DAG input file
+listed first within the command-line arguments to
+<I>condor_submit_dag</I> (unlike a single-DAG rescue DAG file, however,
+the file name will be
+<TT>&lt;whatever&gt;.dag_multi.rescue</TT> or
+<TT>&lt;whatever&gt;.dag_multi.rescueNNN</TT>,
+as opposed to
+just <TT>&lt;whatever&gt;.dag.rescue</TT>
+or <TT>&lt;whatever&gt;.dag.rescueNNN</TT>).
+Other files such
+as <TT>dagman.out</TT> and the lock file also have names based on this
+first DAG input file.
+
+<P>
+The success or failure of the independent DAGs is well defined.
+When multiple, independent DAGs are submitted with a single
+command, the
+success of the composite DAG is defined as the logical AND
+of the success of each independent DAG.
+This implies that failure is defined as the logical OR
+of the failure of any of the independent DAGs.
+
+<P>
+By default, DAGMan internally renames the nodes to avoid node name collisions.  
+If all node names are unique, 
+the renaming of nodes may be disabled by
+setting the configuration variable <TT>DAGMAN_MUNGE_NODE_NAMES</TT> <A NAME="5825"></A> <A NAME="5826"></A>
+to <TT>False</TT> (see&nbsp;<A HREF="3_3Configuration.html#param:DAGManMungeNodeNames">3.3.26</A>).
+
+<P>
+
+<H3><A NAME="SECTION003106700000000000000"></A><A NAME="sec:DAGsinDAGs"></A>
+<A NAME="4773"></A>
+<A NAME="4774"></A>
+<BR>
+2.10.6.7 A DAG Within a DAG Is a SUBDAG
+</H3>
+
+<P>
+The organization and dependencies of the jobs within a DAG
+are the keys to its utility.
+Some DAGs are naturally constructed hierarchically,
+such that a node within a DAG is also a DAG.
+Condor DAGMan handles this situation easily.
+DAGs can be nested to any depth.
+
+<P>
+One of the highlights of using the SUBDAG feature is that portions of a DAG
+may be constructed and modified during the execution of the DAG.
+A drawback may be that each SUBDAG causes its own distinct job submission
+of <I>condor_dagman</I>, leading to a larger number of jobs,
+together with their potential need of carefully constructed policy configuration
+to throttle node submission or execution.
+
+<P>
+Since more than one DAG is being discussed, 
+here is terminology introduced to clarify which DAG is which. 
+Reuse the example diamond-shaped DAG as given in 
+Figure&nbsp;<A HREF="#fig:dagman-diamond">2.3</A>.
+Assume that node B of this diamond-shaped DAG
+will itself be a DAG.
+The DAG of node B is called a SUBDAG, inner DAG, or lower-level DAG.
+The diamond-shaped DAG is called the outer or top-level DAG.
+
+<P>
+Work on the inner DAG first.
+Here is a very simple linear DAG input file used as
+an example of the inner DAG.
+<PRE>
+    # File name: inner.dag
+    #
+    JOB  X  X.submit
+    JOB  Y  Y.submit
+    JOB  Z  Z.submit
+    PARENT X CHILD Y
+    PARENT Y CHILD Z
+</PRE>
+
+<P>
+The Condor submit description file, used by <I>condor_dagman</I>,
+corresponding to <TT>inner.dag</TT> will be named
+<TT>inner.dag.condor.sub</TT>.  The DAGMan submit description file is always
+named <TT>&lt;DAG file name&gt;.condor.sub</TT>.
+Each DAG or SUBDAG results in the submission of <I>condor_dagman</I>
+as a Condor job, and <I>condor_submit_dag</I> creates this
+submit description file.
+
+<P>
+The preferred presentation of the DAG input file for the outer DAG is
+<PRE>
+# File name: diamond.dag
+#
+    JOB  A  A.submit 
+    SUBDAG EXTERNAL  B  inner.dag
+    JOB  C  C.submit	
+    JOB  D  D.submit
+    PARENT A CHILD B C
+    PARENT B C CHILD D
+</PRE>
+
+<P>
+The preferred presentation is equivalent to
+<PRE>
+# File name: diamond.dag
+#
+    JOB  A  A.submit 
+    JOB  B  inner.dag.condor.sub
+    JOB  C  C.submit	
+    JOB  D  D.submit
+    PARENT A CHILD B C
+    PARENT B C CHILD D
+</PRE>
+
+<P>
+Within the outer DAG's input file,
+the <B>SUBDAG</B> keyword specifies a special case of a <B>JOB</B>
+node, where the job is itself a DAG.
+
+<P>
+The syntax for each SUBDAG entry is
+
+<P>
+<B>SUBDAG</B> <B>EXTERNAL</B> <I>JobName</I> <I>DagFileName</I>
+[<B>DIR  </B><I>directory</I>] [<B>NOOP</B>] [<B>DONE</B>]
+
+<P>
+The optional specifications of <B>DIR</B>, <B>NOOP</B>, and <B>DONE</B>,
+if used, must appear in this order within the entry.
+
+<P>
+A <B>SUBDAG</B> node is essentially the same as any other node,
+except that the DAG input file for the inner DAG is specified,
+instead of the Condor submit file.
+The keyword <B>EXTERNAL</B> means that the
+SUBDAG is run within its own instance of <I>condor_dagman</I>.
+
+<P>
+<B>NOOP</B> and <B>DONE</B> for <B>SUBDAG</B> nodes have the same effect
+that they do for <B>JOB</B> nodes.
+
+<P>
+Here are details that affect SUBDAGs:
+
+<UL>
+<LI>Nested Submit Description File Generation
+
+<P>
+There are three ways to generate the <TT>&lt;DAG file name&gt;.condor.sub</TT> file
+of a SUBDAG:
+
+<P>
+
+<UL>
+<LI><B>Lazily</B> (the default in Condor version 7.5.2 and later versions)
+</LI>
+<LI><B>Eagerly</B> (the default in Condor versions 7.4.1 through 7.5.1)
+</LI>
+<LI><B>Manually</B> (the only way prior to version Condor version 7.4.1)
+</LI>
+</UL>
+
+<P>
+When the <TT>&lt;DAG file name&gt;.condor.sub</TT> file is generated <B>lazily</B>,
+this file is generated immediately
+before the SUBDAG job is submitted.
+Generation is accomplished by running
+<PRE>
+condor_submit_dag -no_submit
+</PRE>
+on the DAG input file specified in the <B>SUBDAG</B> entry.
+This is the default behavior.
+There are advantages to this lazy mode of submit description
+file creation for the SUBDAG:
+
+<UL>
+<LI>The DAG input file for a SUBDAG does not have to exist until the SUBDAG
+is ready to run, so this file can be dynamically created by earlier
+parts of the outer DAG or by the PRE script of the node containing the SUBDAG.
+</LI>
+<LI>It is now possible to have SUBDAGs within splices. 
+That is not
+possible with eager submit description file creation,
+because <I>condor_submit_dag</I> does not understand splices.
+</LI>
+</UL>
+
+<P>
+The main disadvantage of lazy submit file generation is that 
+a syntax error in the DAG input file of a SUBDAG will not be discovered
+until the outer DAG tries to run the inner DAG.
+
+<P>
+When <TT>&lt;DAG file name&gt;.condor.sub</TT> files are generated <B>eagerly</B>,
+<I>condor_submit_dag</I> runs itself recursively (with the <I>-no_submit</I>
+option) on each SUBDAG, so all of the <TT>&lt;DAG file name&gt;.condor.sub</TT> files
+are generated before the top-level DAG is actually submitted.
+To generate the <TT>&lt;DAG file name&gt;.condor.sub</TT> files eagerly, 
+pass the <I>-do_recurse</I> flag to <I>condor_submit_dag</I>; 
+also set the <TT>DAGMAN_GENERATE_SUBDAG_SUBMITS</TT> configuration variable
+to <TT>False</TT>, so that <I>condor_dagman</I> does not re-run
+<I>condor_submit_dag</I> at run time thereby regenerating 
+the submit description files.
+
+<P>
+To generate the <TT>.condor.sub</TT> files <B>manually</B>, 
+run
+<PRE>
+condor_submit_dag -no_submit
+</PRE>
+on each lower-level DAG file,
+before running <I>condor_submit_dag</I> on the top-level DAG file;
+also set the <TT>DAGMAN_GENERATE_SUBDAG_SUBMITS</TT>
+configuration variable to <TT>False</TT>,
+so that <I>condor_dagman</I> does not re-run <I>condor_submit_dag</I> at run time.
+The main reason for
+generating the <TT>&lt;DAG file name&gt;.condor.sub</TT> files manually is 
+to set options
+for the lower-level DAG that one would not otherwise be able to set
+An  example of this is the  <I>-insert_sub_file</I> option.
+For instance,
+using the given example do the following to manually generate
+Condor submit description files:
+
+<P>
+<PRE>
+  condor_submit_dag -no_submit -insert_sub_file fragment.sub inner.dag
+  condor_submit_dag diamond.dag
+</PRE>
+<P>
+Note that most <I>condor_submit_dag</I> command-line flags have
+corresponding configuration variables, so we encourage the use of
+per-DAG configuration files, especially in the case of nested DAGs.
+This is the easiest way to set different options for different DAGs
+in an overall workflow.
+
+<P>
+It is possible to combine more than one method of generating the
+<TT>&lt;DAG file name&gt;.condor.sub</TT> files.
+For example, one might pass the <I>-do_recurse</I> flag to 
+<I>condor_submit_dag</I>,
+but leave the
+<TT>DAGMAN_GENERATE_SUBDAG_SUBMITS</TT> configuration variable set
+to the default of <TT>True</TT>.
+Doing this would provide the benefit
+of an immediate error message at submit time,
+if there is a syntax error
+in one of the inner DAG input files,
+but the lower-level <TT>&lt;DAG file name&gt;.condor.sub</TT>
+files would still be regenerated before each nested DAG is submitted.
+
+<P>
+The values of the following command-line flags are passed from the
+top-level <I>condor_submit_dag</I> instance to any lower-level
+<I>condor_submit_dag</I> instances.
+This occurs
+whether the lower-level submit description files are generated 
+lazily or eagerly:
+
+<UL>
+<LI><B>-verbose</B>
+</LI>
+<LI><B>-force</B>
+</LI>
+<LI><B>-notification</B>
+</LI>
+<LI><B>-allowlogerror</B>
+</LI>
+<LI><B>-dagman</B>
+</LI>
+<LI><B>-usedagdir</B>
+</LI>
+<LI><B>-outfile_dir</B>
+</LI>
+<LI><B>-oldrescue</B>
+</LI>
+<LI><B>-autorescue</B>
+</LI>
+<LI><B>-dorescuefrom</B>
+</LI>
+<LI><B>-allowversionmismatch</B>
+</LI>
+<LI><B>-no_recurse/do_recurse</B>
+</LI>
+<LI><B>-update_submit</B>
+</LI>
+<LI><B>-import_env</B>
+</LI>
+</UL>
+
+<P>
+The values of the following command-line flags are preserved in any
+already-existing lower-level DAG submit description files:
+
+<UL>
+<LI><B>-maxjobs</B>
+</LI>
+<LI><B>-maxidle</B>
+</LI>
+<LI><B>-maxpre</B>
+</LI>
+<LI><B>-maxpost</B>
+</LI>
+<LI><B>-debug</B>
+</LI>
+</UL>
+
+<P>
+Other command-line arguments are set to their defaults in any lower-level
+invocations of <I>condor_submit_dag</I>.
+
+<P>
+The <B>-force</B> option will cause existing DAG submit description files to
+be overwritten without preserving any existing values.
+
+<P>
+</LI>
+<LI>Submission of the outer DAG
+
+<P>
+The outer DAG is submitted as before, with the command
+<PRE>
+   condor_submit_dag diamond.dag
+</PRE>
+
+<P>
+</LI>
+<LI>Interaction with Rescue DAGs
+
+<P>
+When using nested DAGs, we strongly recommend that you use
+"new-style" rescue DAGs. This is the default.  Using "new-style"
+rescue DAGs will automatically run the proper rescue DAG(s) if
+there is a failure in the work flow.  For example, if one of the
+nodes in <TT>inner.dag</TT> fails, this will produce a rescue
+DAG for inner.dag (named <TT>inner.dag.rescue.001</TT>, etc.).  Then,
+since <TT>inner.dag</TT> failed, node B of <TT>diamond.dag</TT> will fail,
+producing a rescue DAG for <TT>diamond.dag</TT>
+(named <TT>diamond.dag.rescue.001</TT>, etc.).  
+If the command
+<PRE>
+condor_submit_dag diamond.dag
+</PRE>
+is re-run, the most recent outer rescue
+DAG will be run, and this will re-run the inner DAG, which will
+in turn run the most recent inner rescue DAG.  
+The use of
+"old-style" rescue DAGs will require the renaming of the 
+inner rescue DAG or manually running it.
+
+<P>
+</LI>
+<LI>File Paths
+
+<P>
+Remember that, unless the DIR keyword is used in the outer DAG,
+the inner DAG utilizes the current working directory when the outer DAG
+is submitted.
+Therefore, all paths utilized by the inner DAG file
+must be specified accordingly.
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<H3><A NAME="SECTION003106800000000000000"></A><A NAME="sec:DAGSplicing"></A>
+<A NAME="4899"></A>
+<A NAME="4900"></A>
+<BR>
+2.10.6.8 DAG Splicing
+</H3>
+
+<P>
+A weakness in scalability exists when submitting a DAG within a DAG.
+Each executing independent DAG requires its own invocation of
+<I>condor_dagman</I> to be running.
+The scaling issue presents itself when
+the same semantic DAG is reused hundreds or thousands of times
+in a larger DAG.
+Further, there may be many rescue DAGs created if a problem occurs.
+To alleviate these concerns, the DAGMan language introduces
+the concept of graph splicing.
+
+<P>
+A splice is a named instance of a subgraph which is specified in a
+separate DAG file.
+The splice is treated as a whole entity during dependency
+specification in the including DAG.
+The same DAG file may be reused as differently named splices,
+each one
+incorporating a copy of the dependency graph (and nodes therein) into the
+including DAG. 
+Any splice in an including DAG may have dependencies
+between the sets of initial and final nodes.
+A splice may be incorporated into an including DAG without any
+dependencies; it is considered
+a disjoint DAG within the including DAG.
+The nodes within a splice are scoped according to
+a hierarchy of names associated with the splices,
+as the splices are parsed from the top level DAG file.
+The scoping character to describe the
+inclusion hierarchy of nodes into the top level dag is 
+<code>'+'</code>.
+This character is chosen due
+to a restriction in the allowable characters which may be in a file name
+across the variety of ports that Condor supports.
+In any DAG file, all splices must have unique names,
+but the same splice name may be reused in different DAG files.
+
+<P>
+Condor does not detect nor support splices that form a cycle
+within the DAG.
+A DAGMan job that causes a cyclic inclusion of splices will
+eventually exhaust available memory and crash.
+
+<P>
+The <I>SPLICE</I> keyword in a DAG input file
+creates a named instance of a DAG as specified
+in another file as an entity which may have <I>PARENT</I> and <I>CHILD</I>
+dependencies associated with other splice names or node names in the
+including DAG file.
+The syntax for <I>SPLICE</I> is
+
+<P>
+<B>SPLICE</B> <I>SpliceName</I> <I>DagFileName</I> [<B>DIR  </B><I>directory</I>]
+
+<P>
+After parsing incorporates a splice,
+all nodes within the spice become nodes within the including DAG.
+
+<P>
+The following series of examples illustrate potential uses of
+splicing. To simplify the examples,
+presume that each and every job uses the same,
+simple Condor submit description file:
+
+<P>
+<PRE>
+  # BEGIN SUBMIT FILE submit.condor
+  executable   = /bin/echo
+  arguments    = OK
+  universe     = vanilla
+  output       = $(jobname).out
+  error        = $(jobname).err
+  log          = submit.log
+  notification = NEVER
+  queue
+  # END SUBMIT FILE submit.condor
+</PRE>
+
+<P>
+This first simple example splices a diamond-shaped DAG in
+between the two nodes of a top level DAG.
+Here is the DAG input file for the diamond-shaped DAG:
+
+<P>
+<PRE>
+  # BEGIN DAG FILE diamond.dag
+  JOB A submit.condor
+  VARS A jobname="$(JOB)"
+
+  JOB B submit.condor
+  VARS B jobname="$(JOB)"
+
+  JOB C submit.condor
+  VARS C jobname="$(JOB)"
+
+  JOB D submit.condor
+  VARS D jobname="$(JOB)"
+
+  PARENT A CHILD B C
+  PARENT B C CHILD D
+  # END DAG FILE diamond.dag
+</PRE>
+
+<P>
+The top level DAG incorporates the diamond-shaped splice:
+
+<P>
+<PRE>
+  # BEGIN DAG FILE toplevel.dag
+  JOB X submit.condor
+  VARS X jobname="$(JOB)"
+
+  JOB Y submit.condor
+  VARS Y jobname="$(JOB)"
+
+  # This is an instance of diamond.dag, given the symbolic name DIAMOND
+  SPLICE DIAMOND diamond.dag
+
+  # Set up a relationship between the nodes in this dag and the splice
+
+  PARENT X CHILD DIAMOND
+  PARENT DIAMOND CHILD Y
+
+  # END DAG FILE toplevel.dag
+</PRE>
+
+<P>
+Figure&nbsp;<A HREF="#fig:dagman-splice-simple">2.4</A> illustrates the resulting
+top level DAG and the dependencies produced. 
+Notice the naming of nodes
+scoped with the splice name.
+This hierarchy of splice names assures unique names associated with all nodes.
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:dagman-splice-simple"></A><A NAME="5268"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 2.4:</STRONG>
+The diamond-shaped DAG spliced between two nodes.</CAPTION>
+<TR><TD>
+<DIV ALIGN="CENTER"><IMG
+ WIDTH="229" HEIGHT="314" ALIGN="BOTTOM" BORDER="0"
+ SRC="img5.png"
+ ALT="\includegraphics{user-man/splice-simple.eps}">
+</DIV></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+Figure&nbsp;<A HREF="#fig:dagman-splice-X">2.5</A> illustrates the starting point
+for a more complex example.
+The DAG input file <TT>X.dag</TT> describes this X-shaped DAG.
+The completed example displays more of
+the spatial constructs provided by splices.
+Pay particular attention to the notion that each named splice creates a
+new graph, even when the same DAG input file is specified.
+
+<P>
+<PRE>
+  # BEGIN DAG FILE X.dag
+
+  JOB A submit.condor
+  VARS A jobname="$(JOB)"
+
+  JOB B submit.condor
+  VARS B jobname="$(JOB)"
+
+  JOB C submit.condor
+  VARS C jobname="$(JOB)"
+
+  JOB D submit.condor
+  VARS D jobname="$(JOB)"
+
+  JOB E submit.condor
+  VARS E jobname="$(JOB)"
+
+  JOB F submit.condor
+  VARS F jobname="$(JOB)"
+
+  JOB G submit.condor
+  VARS G jobname="$(JOB)"
+
+  # Make an X-shaped dependency graph
+  PARENT A B C CHILD D
+  PARENT D CHILD E F G
+
+  # END DAG FILE X.dag
+</PRE>
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:dagman-splice-X"></A><A NAME="5269"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 2.5:</STRONG>
+The X-shaped DAG.</CAPTION>
+<TR><TD>
+<DIV ALIGN="CENTER"><IMG
+ WIDTH="255" HEIGHT="232" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="\includegraphics{user-man/splice-X.eps}">
+</DIV></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+File <TT>s1.dag</TT> continues the example, presenting
+the DAG input file that
+incorporates two separate splices of the X-shaped DAG.
+Figure&nbsp;<A HREF="#fig:dagman-splice-s1">2.6</A> illustrates the resulting DAG.
+
+<P>
+<PRE>
+  # BEGIN DAG FILE s1.dag
+
+  JOB A submit.condor
+  VARS A jobname="$(JOB)"
+
+  JOB B submit.condor
+  VARS B jobname="$(JOB)"
+
+  # name two individual splices of the X-shaped DAG
+  SPLICE X1 X.dag
+  SPLICE X2 X.dag
+
+  # Define dependencies
+  # A must complete before the initial nodes in X1 can start
+  PARENT A CHILD X1
+  # All final nodes in X1 must finish before 
+  # the initial nodes in X2 can begin
+  PARENT X1 CHILD X2
+  # All final nodes in X2 must finish before B may begin.
+  PARENT X2 CHILD B
+
+  # END DAG FILE s1.dag
+</PRE>
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:dagman-splice-s1"></A><A NAME="5270"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 2.6:</STRONG>
+The DAG described by <TT>s1.dag</TT>.</CAPTION>
+<TR><TD>
+<DIV ALIGN="CENTER"><IMG
+ WIDTH="278" HEIGHT="692" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="\includegraphics{user-man/splice-s1.eps}">
+</DIV></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+The top level DAG in the hierarchy of this complex example
+is described by the DAG input file <TT>toplevel.dag</TT>.
+Figure&nbsp;<A HREF="#fig:dagman-splice-complex">2.7</A> illustrates the final DAG.
+Notice that the DAG has two disjoint graphs in it as a result of splice
+S3 not having any dependencies associated with it in this top level DAG.
+
+<P>
+<PRE>
+  # BEGIN DAG FILE toplevel.dag
+
+  JOB A submit.condor
+  VARS A jobname="$(JOB)"
+
+  JOB B submit.condor
+  VARS B jobname="$(JOB)"
+
+  JOB C submit.condor
+  VARS C jobname="$(JOB)"
+
+  JOB D submit.condor
+  VARS D jobname="$(JOB)"
+
+  # a diamond-shaped DAG
+  PARENT A CHILD B C
+  PARENT B C CHILD D
+
+  # This splice of the X-shaped DAG can only run after
+  # the diamond dag finishes
+  SPLICE S2 X.dag
+  PARENT D CHILD S2
+
+  # Since there are no dependencies for S3,
+  # the following splice is disjoint 
+  SPLICE S3 s1.dag
+
+  # END DAG FILE toplevel.dag
+</PRE>
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:dagman-splice-complex"></A><A NAME="5271"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 2.7:</STRONG>
+The complex splice example DAG.</CAPTION>
+<TR><TD>
+<DIV ALIGN="CENTER"><IMG
+ WIDTH="574" HEIGHT="610" ALIGN="BOTTOM" BORDER="0"
+ SRC="img8.png"
+ ALT="\includegraphics{user-man/splice-complex.eps}">
+</DIV></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+The <I>DIR</I> option specifies a working directory for a splice,
+from which the splice will be parsed and the containing jobs submitted.
+The directory associated with the splices' <I>DIR</I> specification
+will be propagated as a prefix to all nodes in the splice and any 
+included splices.
+If a node already has a <I>DIR</I> specification, then the splice's
+<I>DIR</I> specification will be a prefix to the nodes and separated by
+a directory separator character.
+Jobs in included splices with an absolute path for their <I>DIR</I>
+specification will have their <I>DIR</I> specification untouched.
+Note that a DAG containing <I>DIR</I> specifications cannot be run
+in conjunction with the <I>-usedagdir</I> command-line argument to
+<I>condor_submit_dag</I>.
+A rescue DAG generated by a DAG run with the <I>-usedagdir</I> argument
+will contain DIR specifications, so the rescue DAG must be run
+<I>without</I> the <I>-usedagdir</I> argument.
+
+<P>
+<DL>
+<DT><STRONG>The Interaction of Categories and MAXJOBS with Splices</STRONG></DT>
+<DD>
+</DD>
+</DL>
+
+<P>
+Categories normally refer only to nodes within a
+given splice.
+All of the assignments of nodes to a category, and the
+setting of the category throttle, should be done within a single DAG file.
+However, it is now possible to have categories include nodes
+from within more than one splice.
+To do this, the category name is prefixed with the '+' (plus) character.
+This tells DAGMan that the category is
+a cross-splice category.
+Towards deeper understanding,
+what this really does is prevent renaming
+of the category when the splice is incorporated into the upper-level DAG.
+The MAXJOBS specification for the category can appear in either the
+upper-level DAG file or one of the splice DAG files.
+It probably
+makes the most sense to put it in the upper-level DAG file.
+
+<P>
+Here is an example which applies a single limitation on submitted jobs,
+identifying the category with <TT>+init</TT>. 
+
+<P>
+<PRE>
+# relevant portion of file name: upper.dag
+
+    SPLICE A splice1.dag
+    SPLICE B splice2.dag
+
+    MAXJOBS +init 2
+</PRE>
+
+<P>
+<PRE>
+# relevant portion of file name: splice1.dag
+
+    JOB C C.sub
+    CATEGORY C +init
+    JOB D D.sub
+    CATEGORY D +init
+</PRE>
+
+<P>
+<PRE>
+# relevant portion of file name: splice2.dag
+
+    JOB X X.sub
+    CATEGORY X +init
+    JOB Y Y.sub
+    CATEGORY Y +init
+</PRE>
+
+<P>
+For both global and non-global category throttles, settings at a higher
+level in the DAG override settings at a lower level.
+In this example:
+
+<P>
+<PRE>
+# relevant portion of file name: upper.dag
+
+    SPLICE A lower.dag
+
+    MAXJOBS A+catX 10
+    MAXJOBS +catY 2
+
+
+# relevant portion of file name: lower.dag
+
+    MAXJOBS catX 5
+    MAXJOBS +catY 1
+</PRE>
+
+<P>
+the resulting throttle settings are 2 for the <TT>+catY</TT> category
+and 10 for the <TT>A+catX</TT> category in splice.
+Note that non-global category names are
+prefixed with their splice name(s), so to refer to a non-global category 
+at a higher level, the splice name must be included.
+
+<P>
+
+<H2><A NAME="SECTION003107000000000000000"></A><A NAME="sec:DAGMan-rescue"></A>
+<BR>
+2.10.7 Job Recovery:  The Rescue DAG
+</H2>
+
+<P>
+<A NAME="4973"></A>
+DAGMan can help with the resubmission of uncompleted
+portions of a DAG, when one or more nodes result in failure.
+If any node in the DAG fails,
+the remainder of the DAG is continued until no more forward
+progress can be made based on the DAG's dependencies.
+At this point, DAGMan produces a file
+called a Rescue DAG.
+
+<P>
+The Rescue DAG is a DAG input file,
+functionally the same as the original DAG input file.
+The Rescue DAG additionally contains an indication of
+successfully completed nodes by appending the <I>DONE</I>
+key word to the node's <I>JOB</I> or <I>DATA</I> lines.
+If the DAG is resubmitted utilizing the Rescue DAG,
+the successfully completed nodes will not be re-executed.
+
+<P>
+Note that if multiple DAG input files are specified on the
+<I>condor_submit_dag</I> command line,
+a single Rescue DAG encompassing all of the input DAGs is generated.
+
+<P>
+If the Rescue DAG file is generated before all retries
+of a node are completed, 
+then the Rescue DAG file will also contain <I>Retry</I> entries.
+The number of retries will be set to the appropriate remaining
+number of retries. 
+
+<P>
+The granularity defining success or failure
+in the Rescue DAG is the node.
+For a node that fails,
+all parts of the node will be re-run,
+even if some parts were successful the first time.
+For example, if a node's PRE script
+succeeds, but then the node's Condor job cluster fails,
+the entire node, which includes the PRE script will be re-run.
+A job cluster may result in the submission of multiple Condor jobs.
+If one of the multiple jobs fails, the node fails.
+Therefore, the Rescue DAG will
+re-run the entire node,
+implying the submission of the entire cluster of jobs,
+not just the one(s) that failed.
+
+<P>
+Statistics about the failed DAG execution are presented as
+comments at the beginning of the Rescue DAG input file.
+
+<P>
+The Rescue DAG is automatically generated by <I>condor_dagman</I> when a node
+within the DAG fails or when <I>condor_dagman</I> itself is removed
+with <I>condor_rm</I>.
+The file name of the Rescue DAG, and usage of the Rescue
+DAG changed from explicit specification to implicit usage
+beginning with Condor version 7.1.0.
+Current naming of the Rescue DAG appends the string
+<code>.rescue&lt;XXX&gt;</code> to the original DAG input file name.
+Values for <code>&lt;XXX&gt;</code> start at <code>001</code> and continue
+to <code>002</code>, <code>003</code>, and beyond.
+If a Rescue DAG exists,
+the Rescue DAG with the largest magnitude value for <code>&lt;XXX&gt;</code>
+will be used, and its usage is implied.
+
+<P>
+Here is an example showing file naming and DAG submission
+for the case of a failed DAG.
+The initial DAG is submitted with
+<PRE>
+  condor_submit_dag  my.dag
+</PRE>
+A failure of this DAG results in the Rescue DAG
+named <TT>my.dag.rescue001</TT>.
+The DAG is resubmitted using the same command: 
+<PRE>
+  condor_submit_dag  my.dag
+</PRE>
+This resubmission of the DAG uses the Rescue DAG file <TT>my.dag.rescue001</TT>,
+because it exists.
+Failure of this Rescue DAG results in another Rescue DAG
+called <TT>my.dag.rescue002</TT>.
+If the DAG is again submitted, using the same command
+as with the first two submissions, but not repeated here,
+then this third submission uses the Rescue DAG file <TT>my.dag.rescue002</TT>,
+because it exists, and because the value <code>002</code> is larger
+in magnitude than <code>001</code>.
+
+<P>
+To explicitly specify a particular Rescue DAG,
+use the optional command-line argument <I>-dorescuefrom</I>
+with <I>condor_submit_dag</I>.
+Note that this will have the side effect of renaming 
+existing Rescue DAG files with larger magnitude values 
+of <code>&lt;XXX&gt;</code>.
+Each renamed file has its existing name appended with
+the string <TT>.old</TT>.
+For example, assume that <TT>my.dag</TT> has failed 4 times,
+resulting in the Rescue DAGs named
+<TT>my.dag.rescue001</TT>,
+<TT>my.dag.rescue002</TT>,
+<TT>my.dag.rescue003</TT>,
+and
+<TT>my.dag.rescue004</TT>.
+A decision is made to re-run using <TT>my.dag.rescue002</TT>.
+The submit command is
+<PRE>
+  condor_submit_dag  -dorescuefrom 2  my.dag
+</PRE>
+The DAG specified by the DAG input file <TT>my.dag.rescue002</TT>
+is submitted.
+And, the existing Rescue DAG <TT>my.dag.rescue003</TT> is
+renamed to be <TT>my.dag.rescue003.old</TT>,
+while the existing Rescue DAG <TT>my.dag.rescue004</TT> is
+renamed to be <TT>my.dag.rescue004.old</TT>.
+
+<P>
+The configuration variable <TT>DAGMAN_MAX_RESCUE_NUM</TT> <A NAME="6076"></A> <A NAME="6077"></A>
+sets a maximum value for <code>XXX</code>.
+See section&nbsp;<A HREF="3_3Configuration.html#param:DAGManMaxRescueNum">3.3.26</A> for the complete definition
+of this configuration variable.
+
+<P>
+<A NAME="dagman:rescue_parse_error"></A><DL>
+<DT><STRONG>Rescue DAG Generated when there are Parse Errors</STRONG></DT>
+<DD>
+</DD>
+</DL>
+
+<P>
+Starting in Condor version 7.5.5,
+the <B>-DumpRescue</B> option to either <I>condor_dagman</I> or <I>condor_submit_dag</I>
+outputs a file, even if the parsing of a DAG input file fails.
+In this parse failure case, <I>condor_dagman</I> produces a specially 
+named Rescue DAG containing whatever it had successfully parsed up
+until the point of the parse error.
+This Rescue DAG may be useful in debugging parse errors in complex DAGs,
+especially ones using splices.
+This incomplete Rescue DAG is not meant to be used when resubmitting
+a failed DAG.
+
+<P>
+To avoid confusion between this incomplete Rescue DAG
+generated in the case of a parse failure and a usable Rescue DAG,
+a different name is given to the incomplete Rescue DAG.
+The name appends the string <TT>.parse_failed</TT> to the original
+DAG input file name.
+Therefore, if the submission of a DAG with
+<PRE>
+  condor_submit_dag  my.dag
+</PRE>
+has a parse failure, the resulting incomplete Rescue DAG will be
+named <TT>my.dag.parse_failed</TT>.
+
+<P>
+To further prevent one of these incomplete Rescue DAG files from being used,
+a line within the file contains the single keyword <I>REJECT</I>.
+This causes <I>condor_dagman</I> to reject the DAG, if used as a DAG input file.
+This is done because the
+incomplete Rescue DAG may be a syntactically correct DAG input file.
+It will be incomplete relative to the original DAG,
+such that if the incomplete Rescue DAG could be run,
+it could erroneously be perceived as
+having successfully executed the desired workflow, when, in fact,
+it did not.
+
+<P>
+<DL>
+<DT><STRONG>Outdated Naming of Rescue DAG</STRONG></DT>
+<DD>
+</DD>
+</DL>
+Prior to Condor version 7.1.0, the naming of a Rescue DAG
+appended the string <TT>.rescue</TT> to the existing DAG input
+file name. 
+And, the Rescue DAG file would be explicitly placed in 
+the command line that submitted it.
+For example,  a first submission
+<PRE>
+  condor_submit_dag  my.dag
+</PRE>
+Assuming that this DAG failed, the file <TT>my.dag.rescue</TT>
+would be created.
+To run this Rescue DAG, the submission command is
+<PRE>
+  condor_submit_dag  my.dag.rescue
+</PRE>
+If this Rescue DAG also failed, a new Rescue DAG named
+<TT>my.dag.rescue.rescue</TT> would be created.
+
+<P>
+The behavior of DAGMan with respect to Rescue DAGs 
+can be forced to this outdated behavior by setting the configuration variables
+<TT>DAGMAN_OLD_RESCUE</TT> <A NAME="6098"></A> <A NAME="6099"></A> 
+to <TT>True</TT> and <TT>DAGMAN_AUTO_RESCUE</TT> <A NAME="6104"></A> <A NAME="6105"></A>
+to <TT>False</TT>.
+See&nbsp;<A HREF="3_3Configuration.html#param:DAGManOldRescue">3.3.26</A> and&nbsp;<A HREF="3_3Configuration.html#param:DAGManAutoRescue">3.3.26</A> 
+for complete definitions of these configuration variables.
+
+<P>
+
+<H2><A NAME="SECTION003108000000000000000"></A><A NAME="sec:DAGPaths"></A>
+<A NAME="5037"></A>
+<BR>
+2.10.8 File Paths in DAGs
+</H2>
+
+<P>
+By default, <I>condor_dagman</I> assumes that all relative paths in a
+DAG input file and the associated Condor submit description files
+are relative to the current
+working directory when <I>condor_submit_dag</I> is run.  
+Note that 
+relative paths in submit description files can be modified by the submit command
+<B>initialdir</B>; see the <I>condor_submit</I> manual page within Chapter
+&nbsp;<A HREF="condor_submit.html#man-condor-submit">9</A> for more details.  The rest of this discussion
+ignores <B>initialdir</B>.
+
+<P>
+In most cases, path names relative to the current working directory 
+is the desired behavior.
+However, if running
+multiple DAGs with a single <I>condor_dagman</I>, and each DAG is in its
+own directory, this will cause problems.  In this case,
+use the <I>-usedagdir</I> command-line argument to
+<I>condor_submit_dag</I> (see the <I>condor_submit_dag</I> manual page within Chapter
+&nbsp;<A HREF="condor_submit_dag.html#man-condor-submit-dag">9</A> for more details).
+This tells <I>condor_dagman</I> to run each DAG
+as if <I>condor_submit_dag</I> had been run in the directory in which
+the relevant DAG file exists.
+
+<P>
+For example, assume that a directory called <TT>parent</TT>
+contains two subdirectories called <TT>dag1</TT> and
+<TT>dag2</TT>, and that <TT>dag1</TT> contains the DAG input file <TT>one.dag</TT>
+and <TT>dag2</TT> contains the DAG input file <TT>two.dag</TT>.
+Further, assume that each DAG is set up to be run
+from its own directory with the following command:
+<PRE>
+cd dag1; condor_submit_dag one.dag
+</PRE>
+This will correctly run <TT>one.dag</TT>.
+
+<P>
+The goal is to run the two, independent DAGs located within
+<TT>dag1</TT> and <TT>dag2</TT> while the current working directory
+is <TT>parent</TT>.  To do so, run the following command:
+<PRE>
+condor_submit_dag -usedagdir dag1/one.dag dag2/two.dag
+</PRE>
+
+<P>
+Of course, if all paths in the DAG input file(s) and the relevant submit
+description files are absolute,
+the <I>-usedagdir</I> argument is not needed;
+however, using absolute paths is NOT generally a good idea.
+
+<P>
+If you <I>do not</I> use <I>-usedagdir</I>, relative paths can still work
+for multiple DAGs, if
+all file paths are given relative to
+the current working directory as <I>condor_submit_dag</I> is executed.
+However, this means that, if the DAGs are in separate directories, they
+cannot be submitted from their own directories, only from the parent
+directory the paths are set up for.
+
+<P>
+Note that if you use the <I>-usedagdir</I> argument, and your run
+results in a rescue DAG, the rescue DAG file will be written to
+the current working directory, and should be run from that directory.
+The rescue DAG includes all the path information necessary to
+run each node job in the proper directory.
+
+<P>
+
+<H2><A NAME="SECTION003109000000000000000"></A>
+<A NAME="5072"></A>
+<A NAME="5073"></A>
+<A NAME="5074"></A>
+<BR>
+2.10.9 Visualizing DAGs with <I>dot</I>
+</H2>
+
+<P>
+It can be helpful to see a picture of a DAG.
+DAGMan can assist you in visualizing a DAG by creating
+the input files used by the AT&amp;T Research Labs 
+<I>graphviz</I> package. 
+<I>dot</I> is a program within this package,
+available from <A NAME="tex2html26"
+  HREF="http://www.graphviz.org/">http://www.graphviz.org/</A>,
+and it is used to draw pictures of DAGs. 
+
+<P>
+DAGMan produces one or more dot files as the result of
+an extra line
+in a DAGMan input file. 
+The line appears as
+<PRE>
+    DOT dag.dot
+</PRE>
+
+<P>
+This creates a file called <TT>dag.dot</TT>.
+which contains
+a specification of the DAG before any jobs within the DAG
+are submitted to Condor.
+The <TT>dag.dot</TT> file is used to create a visualization
+of the DAG by using this file as input to <I>dot</I>.
+This example creates a Postscript file, with a visualization of the DAG:
+
+<P>
+<PRE>
+    dot -Tps dag.dot -o dag.ps
+</PRE>
+
+<P>
+Within the DAGMan input file,
+the DOT command can take several optional parameters:
+
+<P>
+
+<UL>
+<LI><B>UPDATE</B>  This will update the dot file every time a
+significant update happens. 
+
+<P>
+</LI>
+<LI><B>DONT-UPDATE</B> Creates a single dot file, when
+the DAGMan begins executing. This is the default if the parameter
+<B>UPDATE</B> is not used.
+
+<P>
+</LI>
+<LI><B>OVERWRITE</B> Overwrites the dot file each time it
+is created. This is the default, unless <B>DONT-OVERWRITE</B>
+is specified.
+
+<P>
+</LI>
+<LI><B>DONT-OVERWRITE</B> Used to create multiple dot files, instead
+of overwriting the single one specified.
+To create file names,
+DAGMan uses the name of the file concatenated with a period and an
+integer. For example, the DAGMan input file line
+<PRE>
+    DOT dag.dot DONT-OVERWRITE
+</PRE>
+causes files
+<TT>dag.dot.0</TT>,
+<TT>dag.dot.1</TT>,
+<TT>dag.dot.2</TT>,
+etc. to be created.
+This option is
+most useful when combined with the <B>UPDATE</B> option to
+visualize the history of the DAG after it has finished executing. 
+
+<P>
+</LI>
+<LI><B>INCLUDE </B><I>path-to-filename</I> Includes the contents
+of a file given by <TT>path-to-filename</TT> in the file produced by the
+<B>DOT</B> command.
+The include file contents are always placed after the line of
+the form
+<code>label=</code>.
+This may be useful if further editing of the created files would
+be necessary,
+perhaps because you are automatically visualizing the DAG as it
+progresses. 
+
+<P>
+</LI>
+</UL>
+
+<P>
+If conflicting parameters are used in a DOT command, the last one
+listed is used.
+
+<P>
+
+<H2><A NAME="SECTION0031010000000000000000"></A><A NAME="sec:DAG-node-status"></A>
+<A NAME="5104"></A>
+<A NAME="5105"></A>
+<BR>
+2.10.10 Capturing the Status of Nodes in a File
+</H2>
+
+<P>
+DAGMan can capture the status of all DAG nodes,
+such that the user or a script may easily monitor the status of all DAG nodes.
+A node status file is periodically rewritten by DAGMan.
+To enable this feature, the DAG input file contains a line with the
+<I>NODE_STATUS_FILE</I> key word.
+
+<P>
+The syntax for a <I>NODE_STATUS_FILE</I> specification is
+
+<P>
+<B>NODE_STATUS_FILE</B> <I>statusFileName</I> [<I>minimumUpdateTime</I>]
+
+<P>
+The status file is written on the machine where the DAG is submitted;
+its location is given by <I>statusFileName</I>.  
+This will be the same machine where the <I>condor_dagman</I> job is running.
+
+<P>
+The optional <I>minimumUpdateTime</I> specifies the minimum number of seconds
+that must elapse between updates to the node status file.
+This setting exists to avoid having DAGMan spend too much time writing
+the node status file for very large DAGs.
+If no value is specified, no limit is set.
+The node status file can be updated at most once
+per <TT>DAGMAN_USER_LOG_SCAN_INTERVAL</TT> <A NAME="6199"></A> <A NAME="6200"></A>,
+as defined at section&nbsp;<A HREF="3_3Configuration.html#param:DAGManUserLogScanInterval">3.3.26</A>,
+no matter how small the <I>minimumUpdateTime</I> value.
+
+<P>
+As an example, if the DAG input file contains the line
+<PRE>
+  NODE_STATUS_FILE my.dag.status 30
+</PRE>
+the file <TT>my.dag.status</TT> will be rewritten at intervals of 30 seconds
+or more.
+
+<P>
+This node status file is overwritten each time it is updated.
+Therefore, it only holds information about the <I>current</I> status 
+of each node; it does not provide a history of the node status.
+The file contains one line describing the status of every node in the DAG.
+The file contents do not distinguish between Condor jobs and Stork jobs.
+Here is an example of a node status file:
+
+<P>
+<PRE>
+  BEGIN 1281041745 (Thu Aug  5 15:55:45 2010)
+  Status of nodes of DAG(s): my.dag
+
+  JOB A STATUS_DONE      ()
+  JOB B STATUS_SUBMITTED (not_idle)
+  JOB C STATUS_SUBMITTED (idle)
+  JOB D STATUS_UNREADY   ()
+
+  DAG status: STATUS_SUBMITTED ()
+  Next scheduled update: 1281041775 (Thu Aug  5 15:56:15 2010)
+  END 1281041745 (Thu Aug  5 15:55:45 2010)
+</PRE>
+
+<P>
+Possible node status values are:
+
+<P>
+
+<UL>
+<LI><code>STATUS_UNREADY</code> At least one parent has not yet finished.
+</LI>
+<LI><code>STATUS_READY</code> All parents have finished, but not yet running.
+</LI>
+<LI><code>STATUS_PRERUN</code> The PRE script is running.
+</LI>
+<LI><code>STATUS_SUBMITTED</code> The node's Condor or Stork job(s) are in 
+  the queue.
+</LI>
+<LI><code>STATUS_POSTRUN</code> The POST script is running.
+</LI>
+<LI><code>STATUS_DONE</code> The node has completed successfully.
+</LI>
+<LI><code>STATUS_ERROR</code> The node has failed.
+</LI>
+</UL>
+
+<P>
+A <I>NODE_STATUS_FILE</I> key word inside any splice is ignored.
+If multiple DAG files are specified on the <I>condor_submit_dag</I> command line,
+and more than one specifies a node status file,
+the first specification takes precedence.
+
+<P>
+
+<H2><A NAME="SECTION0031011000000000000000"></A><A NAME="sec:DAGJobstateLog"></A>
+<A NAME="5128"></A>
+<A NAME="5129"></A>
+<BR>
+2.10.11 A Machine-Readable Event History, the jobstate.log File
+</H2>
+
+<P>
+DAGMan can produce a machine-readable history of events.
+The <TT>jobstate.log</TT> file is designed for use by the Pegasus Workflow
+Management System, which operates as a layer on top of DAGMan.  Pegasus
+uses the <TT>jobstate.log</TT> file to monitor the state of a workflow.
+The <TT>jobstate.log</TT> file can used by any
+automated tool for the monitoring of workflows.
+
+<P>
+DAGMan produces this file when the keyword <I>JOBSTATE_LOG</I> is
+in the DAG input file.
+The syntax for <I>JOBSTATE_LOG</I> is
+
+<P>
+<B>JOBSTATE_LOG</B> <I>JobstateLogFileName</I>
+
+<P>
+No more than one <TT>jobstate.log</TT> file can be created by a single
+instance of <I>condor_dagman</I>.
+If more than one <TT>jobstate.log</TT> file is specified,
+the first file name specified will take effect,
+and a warning will be printed in the <TT>dagman.out</TT> file
+when subsequent <I>JOBSTATE_LOG</I> specifications are parsed.
+Multiple specifications may exist in the same DAG file, within splices,
+or within multiple, independent DAGs run with a single <I>condor_dagman</I> instance.
+
+<P>
+The <TT>jobstate.log</TT> file can be considered a filtered
+version of the <TT>dagman.out</TT> file, in a machine-readable format.
+It contains the actual node job events that from <I>condor_dagman</I>,
+plus some additional meta-events.
+
+<P>
+The <TT>jobstate.log</TT> file is different from the node status file,
+in that the <TT>jobstate.log</TT> file is appended to,
+rather than being overwritten as the DAG runs.
+Therefore, it contains a history of the DAG,
+rather than a snapshot of the current state of the DAG.
+
+<P>
+There are 5 line types in the <TT>jobstate.log</TT> file.
+Each line begins with a Unix timestamp in the form of seconds since the Epoch.
+Fields within each line are separated by a single space character.
+<DL>
+<DT><STRONG>DAGMan start</STRONG></DT>
+<DD>This line identifies the <I>condor_dagman</I> job.
+The formatting of the line is
+
+<P>
+<I>timestamp</I> INTERNAL *** DAGMAN_STARTED <I>dagmanCondorID</I> ***
+
+<P>
+The <I>dagmanCondorID</I> field is the <I>condor_dagman</I> job's 
+<TT>ClusterId</TT> attribute, a period, and the <TT>ProcId</TT> attribute. 
+
+<P>
+</DD>
+<DT><STRONG>DAGMan exit</STRONG></DT>
+<DD>This line identifies the completion of the <I>condor_dagman</I> job.
+The formatting of the line is
+
+<P>
+<I>timestamp</I> INTERNAL *** DAGMAN_FINISHED <I>exitCode</I> ***
+
+<P>
+The <I>exitCode</I> field is value the <I>condor_dagman</I> job returns upon exit. 
+
+<P>
+</DD>
+<DT><STRONG>Recovery started</STRONG></DT>
+<DD>If the <I>condor_dagman</I> job goes into recovery mode,
+this meta-event is printed.
+During recovery mode, events will only be printed in the file
+if they were not already printed before recovery mode started.
+The formatting of the line is
+
+<P>
+<I>timestamp</I> INTERNAL *** RECOVERY_STARTED ***
+
+<P>
+</DD>
+<DT><STRONG>Recovery finished or Recovery failure</STRONG></DT>
+<DD>At the end of recovery
+mode, either a RECOVERY_FINISHED or RECOVERY_FAILURE meta-event will be
+printed, as appropriate.
+
+<P>
+The formatting of the line is
+
+<P>
+<I>timestamp</I> INTERNAL *** RECOVERY_FINISHED ***
+
+<P>
+or
+
+<P>
+<I>timestamp</I> INTERNAL *** RECOVERY_FAILURE ***
+
+<P>
+</DD>
+<DT><STRONG>Normal</STRONG></DT>
+<DD>This line is used for all other event and meta-event types.
+The formatting of the line is
+
+<P>
+<I>timestamp</I> <I>JobName</I> <I>eventName</I> <I>condorID</I> <I>jobTag</I> - <I>sequenceNumber</I>
+
+<P>
+The <I>JobName</I> is the name given to the node job as defined in
+the DAG input file with the keyword <I>JOB</I>.
+It identifies the node within the DAG.
+
+<P>
+The <I>eventName</I> is one of the many defined event or meta-events given
+in the lists below.
+
+<P>
+The <I>condorID</I> field is the job's 
+<TT>ClusterId</TT> attribute, a period, and the <TT>ProcId</TT> attribute. 
+There is no <I>condorID</I> assigned yet for some meta-events,
+such as PRE_SCRIPT_STARTED.
+For these, the dash character ('-') is printed. 
+
+<P>
+The <I>jobTag</I> field is defined for the Pegasus workflow manager.
+Its usage is generalized to be useful to other workflow managers.
+Pegasus-managed jobs add a line of the following form to their
+Condor submit description file:
+<PRE>
++pegasus_site = "local"
+</PRE>
+This defines the string <TT>local</TT> as the <I>jobTag</I> field.
+
+<P>
+Generalized usage adds a set of 2 commands to the Condor
+submit description file to define a string as the <I>jobTag</I> field:
+<PRE>
++job_tag_name = "+job_tag_value"
++job_tag_value = "viz"
+</PRE>
+This defines the string <TT>viz</TT> as the <I>jobTag</I> field.
+Without any of these added lines within the Condor submit description file,
+the dash character ('-') is printed for the <I>jobTag</I> field. 
+
+<P>
+The <I>sequenceNumber</I> is a monotonically-increasing number 
+that starts at one.
+It is associated with each attempt at running a node.
+If a node is retried, it gets a new sequence number;
+a submit failure does not result in a new sequence number.
+When a rescue DAG is run,
+the sequence numbers pick up from where they left off within the previous
+attempt at running the DAG.
+Note that this only applies if the rescue
+DAG is run automatically or with the <I>-dorescuefrom</I> command-line option.
+
+<P>
+</DD>
+</DL>
+
+<P>
+Here is an example of a very simple Pegasus <TT>jobstate.log</TT> file,
+assuming the example <I>jobTag</I> field of <TT>local</TT>:
+
+<P>
+<PRE>
+1292620511 INTERNAL *** DAGMAN_STARTED 4972.0 ***
+1292620523 NodeA PRE_SCRIPT_STARTED - local - 1
+1292620523 NodeA PRE_SCRIPT_SUCCESS - local - 1
+1292620525 NodeA SUBMIT 4973.0 local - 1
+1292620525 NodeA EXECUTE 4973.0 local - 1
+1292620526 NodeA JOB_TERMINATED 4973.0 local - 1
+1292620526 NodeA JOB_SUCCESS 0 local - 1
+1292620526 NodeA POST_SCRIPT_STARTED 4973.0 local - 1
+1292620531 NodeA POST_SCRIPT_TERMINATED 4973.0 local - 1
+1292620531 NodeA POST_SCRIPT_SUCCESS 4973.0 local - 1
+1292620535 INTERNAL *** DAGMAN_FINISHED 0 ***
+</PRE>
+
+<P>
+<DL>
+<DT><STRONG>Events defining the eventName field</STRONG></DT>
+<DD><P>
+
+<UL>
+<LI>SUBMIT
+</LI>
+<LI>EXECUTE
+</LI>
+<LI>EXECUTABLE_ERROR
+</LI>
+<LI>CHECKPOINTED
+</LI>
+<LI>JOB_EVICTED
+</LI>
+<LI>JOB_TERMINATED
+</LI>
+<LI>IMAGE_SIZE
+</LI>
+<LI>SHADOW_EXCEPTION
+</LI>
+<LI>GENERIC
+</LI>
+<LI>JOB_ABORTED
+</LI>
+<LI>JOB_SUSPENDED
+</LI>
+<LI>JOB_UNSUSPENDED
+</LI>
+<LI>JOB_HELD
+</LI>
+<LI>JOB_RELEASED
+</LI>
+<LI>NODE_EXECUTE
+</LI>
+<LI>NODE_TERMINATED
+</LI>
+<LI>POST_SCRIPT_TERMINATED
+</LI>
+<LI>GLOBUS_SUBMIT
+</LI>
+<LI>GLOBUS_SUBMIT_FAILED
+</LI>
+<LI>GLOBUS_RESOURCE_UP
+</LI>
+<LI>GLOBUS_RESOURCE_DOWN
+</LI>
+<LI>REMOTE_ERROR
+</LI>
+<LI>JOB_DISCONNECTED
+</LI>
+<LI>JOB_RECONNECTED
+</LI>
+<LI>JOB_RECONNECT_FAILED
+</LI>
+<LI>GRID_RESOURCE_UP
+</LI>
+<LI>GRID_RESOURCE_DOWN
+</LI>
+<LI>GRID_SUBMIT
+</LI>
+<LI>JOB_AD_INFORMATION
+</LI>
+<LI>JOB_STATUS_UNKNOWN
+</LI>
+<LI>JOB_STATUS_KNOWN
+</LI>
+<LI>JOB_STAGE_IN
+</LI>
+<LI>JOB_STAGE_OUT
+</LI>
+</UL>
+
+<P>
+</DD>
+<DT><STRONG>Meta-Events defining the eventName field</STRONG></DT>
+<DD><UL>
+<LI>SUBMIT_FAILURE
+</LI>
+<LI>JOB_SUCCESS
+</LI>
+<LI>JOB_FAILURE
+</LI>
+<LI>PRE_SCRIPT_STARTED
+</LI>
+<LI>PRE_SCRIPT_SUCCESS
+</LI>
+<LI>PRE_SCRIPT_FAILURE
+</LI>
+<LI>POST_SCRIPT_STARTED
+</LI>
+<LI>POST_SCRIPT_SUCCESS
+</LI>
+<LI>POST_SCRIPT_FAILURE
+</LI>
+<LI>DAGMAN_STARTED
+</LI>
+<LI>DAGMAN_FINISHED
+</LI>
+<LI>RECOVERY_STARTED
+</LI>
+<LI>RECOVERY_FINISHED
+</LI>
+<LI>RECOVERY_FAILURE
+</LI>
+</UL>
+</DD>
+</DL>
+
+<P>
+
+<H2><A NAME="SECTION0031012000000000000000"></A><A NAME="sec:DAGLotsaJobs"></A>
+<A NAME="5205"></A>
+<BR>
+2.10.12 Utilizing the Power of DAGMan for Large Numbers of Jobs
+</H2>
+
+<P>
+Using DAGMan is recommended when submitting large numbers of jobs.
+The recommendation holds whether the jobs are represented by
+a DAG due to dependencies, or all the jobs are
+independent of each other, such as they might be in a parameter sweep.
+DAGMan offers:
+
+<UL>
+<LI>Throttling
+  to limit the number of submitted jobs at any point in time.
+</LI>
+<LI>Retry of jobs that fail.
+  A useful tool when an intermittent error may cause a job to fail
+  or fail to run to completion when attempted at one point in time,
+  but not at another point in time.
+  And, note that what constitutes failure is user-defined.
+</LI>
+<LI>Automatic generation of the administrative support that facilitates the
+  rerunning of only jobs that fail.
+</LI>
+<LI>The ability to run scripts before and/or after the execution of
+individual jobs.
+</LI>
+</UL>
+
+<P>
+Each of these capabilities is described in detail (above)
+within this manual section about DAGMan.
+To make effective use of DAGMan, there is no way around reading the 
+appropriate subsections.
+
+<P>
+To run DAGMan with large numbers of independent jobs,
+there are generally two ways of organizing and specifying the
+files that control the jobs.
+Both ways presume that programs or scripts will generate the files,
+because the files are either large and repetitive
+or because there are a large number of similar files to be
+generated representing the large numbers of jobs.
+The two file types needed are the DAG input file and the
+submit description file(s) for the Condor jobs represented.
+Each of the two ways is presented separately:
+
+<P>
+<DL>
+<DT><STRONG>A unique submit description file for each of the many jobs.</STRONG></DT>
+<DD>A single DAG input file lists each of the jobs and specifies
+a distinct Condor submit description file for each job.
+The DAG input file is simple to generate, as it chooses an
+identifier for each job and names the submit description file.
+For example, the simplest DAG input file for a set of 1000 independent jobs,
+as might be part of a parameter sweep, appears as
+<PRE>
+  # file sweep.dag
+  JOB job0 job0.submit
+  JOB job1 job1.submit
+  JOB job2 job2.submit
+  .
+  .
+  .
+  JOB job999 job999.submit
+</PRE>
+There are 1000 submit description files, with a unique one for
+each of the job&lt;N&gt; jobs.
+Assuming that all files associated with this set of jobs are in the
+same directory, and that files continue the same naming and numbering
+scheme, the submit description file for <TT>job6.submit</TT>
+might appear as
+<PRE>
+  # file job6.submit
+  universe = vanilla
+  executable = /path/to/executable
+  log = job6.log
+  input = job6.in
+  output = job6.out
+  notification = Never
+  arguments = "-file job6.out"
+  queue
+</PRE>
+
+<P>
+Submission of the entire set of jobs is
+<PRE>
+  condor_submit_dag sweep.dag
+</PRE>
+
+<P>
+A benefit to having unique submit description files for each of the
+jobs is that they are available, if one of the jobs needs to be
+submitted individually.
+A drawback to having unique submit description files for each of the jobs
+is that there are lots of files, one for each job.
+
+<P>
+</DD>
+<DT><STRONG>Single submit description file.</STRONG></DT>
+<DD>A single Condor submit description file might be used for all the many
+jobs of the parameter sweep.
+To distinguish the jobs and their associated distinct input and output files,
+the DAG input file assigns a unique identifier with the <I>VARS</I> keyword.
+<PRE>
+  # file sweep.dag
+  JOB job0 common.submit
+  VARS job0 runnumber="0"
+  JOB job1 common.submit
+  VARS job1 runnumber="1"
+  JOB job2 common.submit
+  VARS job2 runnumber="2"
+  .
+  .
+  .
+  JOB job999 common.submit
+  VARS job999 runnumber="999"
+</PRE>
+
+<P>
+The single submit description file for all these jobs utilizes the
+<TT>runnumber</TT> variable value in its identification of the job's
+files. 
+This submit description file might appear as
+<PRE>
+  # file common.submit
+  universe = vanilla
+  executable = /path/to/executable
+  log = job$(runnumber).log
+  input = job$(runnumber).in
+  output = job$(runnumber).out
+  notification = Never
+  arguments = "-$(runnumber)"
+  queue
+</PRE>
+The job with <TT>runnumber="8"</TT> expects to find its input file <TT>job8.in</TT> 
+in the single, common directory, and it logs job events in <TT>job8.log</TT>
+and sends its output to <TT>job8.out</TT>.
+The executable is invoked with
+<PRE>
+  /path/to/executable -8
+</PRE>
+
+<P>
+</DD>
+</DL>
+
+<P>
+These examples work well with respect to file naming and placement
+when there are less than several thousand jobs submitted as part
+of a DAG.
+The large numbers of files per directory becomes an issue when there
+are greater than several thousand jobs submitted as part of a DAG.
+In this case,
+consider a more hierarchical structure for the files instead of a single
+directory.
+Introduce a separate directory for each run.
+For example, if there were 10,000 jobs, there would be
+10,000 directories, one for each of these jobs.
+The directories are presumed to be generated and populated by 
+programs or scripts that,
+like the previous examples, utilize a run number.
+Each of these directories named utilizing the run number will be used
+for the input, output, and log files for one of the many jobs.
+
+<P>
+As an example, for this set of 10,000 jobs and directories, assume
+that there is a run number of 600.
+The directory will be named <TT>dir.600</TT>, and it will
+hold the 3 files called <TT>in</TT>, <TT>out</TT>, and <TT>log</TT>,
+representing the input, output, and Condor job log files associated
+with run number 600.
+
+<P>
+The DAG input file sets a variable representing the run number,
+as in the previous example:
+<PRE>
+  # file biggersweep.dag
+  JOB job0 common.submit
+  VARS job0 runnumber="0"
+  JOB job1 common.submit
+  VARS job1 runnumber="1"
+  JOB job2 common.submit
+  VARS job2 runnumber="2"
+  .
+  .
+  .
+  JOB job9999 common.submit
+  VARS job9999 runnumber="9999"
+</PRE>
+
+<P>
+A single Condor submit description file may be written.
+It resides in the same directory as the DAG input file.
+<PRE>
+  # file bigger.submit
+  universe = vanilla
+  executable = /path/to/executable
+  log = log
+  input = in
+  output = out
+  notification = Never
+  arguments = "-$(runnumber)"
+  initialdir = dir.$(runnumber)
+  queue
+</PRE>
+
+<P>
+One item to care about with this set up is the underlying file system 
+for the pool.
+The transfer of files (or not) when using <B>initialdir</B>
+differs based upon the job <B>universe</B> and whether or not there
+is a shared file system.
+See section&nbsp;<A HREF="condor_submit.html#man-condor-submit-initialdir">9</A> for the details on the
+submit command <B>initialdir</B>.
+
+<P>
+Submission of this set of jobs is no different than the previous
+examples.  
+With the current working directory the same as the one containing
+the submit description file, the DAG input file, and the subdirectories,
+<PRE>
+  condor_submit_dag biggersweep.dag
+</PRE>
+
+<P>
+<A NAME="5247"></A>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html750"
+  HREF="2_11Virtual_Machine.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html744"
+  HREF="2_Users_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html738"
+  HREF="2_9Parallel_Applications.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html746"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html748"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html751"
+  HREF="2_11Virtual_Machine.html">2.11 Virtual Machine Applications</A>
+<B> Up:</B> <A NAME="tex2html745"
+  HREF="2_Users_Manual.html">2. Users' Manual</A>
+<B> Previous:</B> <A NAME="tex2html739"
+  HREF="2_9Parallel_Applications.html">2.9 Parallel Applications (Including</A>
+ &nbsp; <B>  <A NAME="tex2html747"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html749"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

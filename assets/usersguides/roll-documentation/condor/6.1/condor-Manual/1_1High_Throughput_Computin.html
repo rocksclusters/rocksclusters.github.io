@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>1.1 High-Throughput Computing (HTC) and its Requirements</TITLE>
+<META NAME="description" CONTENT="1.1 High-Throughput Computing (HTC) and its Requirements">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="1_2Condor_s_Power.html">
+<LINK REL="previous" HREF="1_Overview.html">
+<LINK REL="up" HREF="1_Overview.html">
+<LINK REL="next" HREF="1_2Condor_s_Power.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html690"
+  HREF="1_2Condor_s_Power.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html684"
+  HREF="1_Overview.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html678"
+  HREF="1_Overview.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html686"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html688"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html691"
+  HREF="1_2Condor_s_Power.html">1.2 Condor's Power</A>
+<B> Up:</B> <A NAME="tex2html685"
+  HREF="1_Overview.html">1. Overview</A>
+<B> Previous:</B> <A NAME="tex2html679"
+  HREF="1_Overview.html">1. Overview</A>
+ &nbsp; <B>  <A NAME="tex2html687"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html689"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00210000000000000000"></A><A NAME="sec:overview"></A>
+<BR>
+1.1 High-Throughput Computing (HTC) and its Requirements
+</H1>
+
+<P>
+<A NAME="1209"></A>
+<A NAME="1210"></A>
+For many research and engineering projects, the quality of the research
+or the product is heavily dependent upon the quantity of computing
+cycles available.
+It is not uncommon to find problems that require weeks
+or months of computation to solve.
+Scientists and engineers engaged in
+this sort of work need a computing environment that delivers large
+amounts of computational power over a long period of time.
+Such an environment is called a High-Throughput Computing (HTC) environment.
+<A NAME="1211"></A>
+<A NAME="1212"></A>
+In contrast, High Performance Computing (HPC)
+<A NAME="1213"></A>
+<A NAME="1214"></A>
+environments deliver a
+tremendous amount of compute power over a short period of time.
+HPC environments are often measured in terms of FLoating point Operations
+Per Second (FLOPS). 
+A growing community is not concerned about operations per second,
+but operations per month or per year.
+Their problems are of a much larger scale.
+They are
+more interested in how many jobs they can complete over a long period of
+time instead of how fast an individual job can complete.
+
+<P>
+The key to HTC is to efficiently harness the use of all available
+resources. Years ago, the engineering and scientific community relied on
+a large, centralized mainframe or a supercomputer to do
+computational work. 
+A large number of individuals and groups needed
+to pool their financial resources to afford such a machine.
+Users had to wait for their turn on the mainframe, 
+and they had a limited amount of time allocated.
+While this environment was inconvenient for users,
+the utilization of the mainframe was high;
+it was busy nearly all the time.
+
+<P>
+As computers became smaller, faster, and cheaper, 
+users moved away from centralized mainframes and purchased personal desktop
+workstations and PCs.
+An individual or small group could afford a
+computing resource that was available whenever they wanted it.
+The personal computer is slower than the large centralized machine,
+but it provides exclusive access.
+Now, instead of one giant computer for a large institution,
+there may be hundreds or thousands of personal computers.
+This is an environment of distributed ownership,
+<A NAME="1215"></A>
+where individuals throughout an organization own their own resources.
+The total computational power of the institution as a whole may rise
+dramatically as the result of such a change,
+but because of distributed ownership,
+individuals have not been able to capitalize on the institutional growth of
+computing power.
+And, while distributed ownership is more convenient for the users,
+the utilization of the computing power is lower.
+Many personal desktop
+machines sit idle for very long periods of time while their owners are
+busy doing other things (such as being away at lunch, in meetings,
+or at home sleeping). 
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html690"
+  HREF="1_2Condor_s_Power.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html684"
+  HREF="1_Overview.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html678"
+  HREF="1_Overview.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html686"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html688"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html691"
+  HREF="1_2Condor_s_Power.html">1.2 Condor's Power</A>
+<B> Up:</B> <A NAME="tex2html685"
+  HREF="1_Overview.html">1. Overview</A>
+<B> Previous:</B> <A NAME="tex2html679"
+  HREF="1_Overview.html">1. Overview</A>
+ &nbsp; <B>  <A NAME="tex2html687"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html689"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

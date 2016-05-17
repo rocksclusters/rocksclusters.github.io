@@ -1,0 +1,241 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<link rel="canonical" href="http://research.cs.wisc.edu/condor/manual/current/condor_power.html">
+
+<TITLE>condor_power</TITLE>
+<META NAME="description" CONTENT="condor_power">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="condor_preen.html">
+<LINK REL="previous" HREF="condor_on.html">
+<LINK REL="up" HREF="10_Command_Reference.html">
+<LINK REL="next" HREF="condor_preen.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html3708"
+  HREF="condor_preen.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3702"
+  HREF="10_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3696"
+  HREF="condor_on.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3704"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3706"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3709"
+  HREF="condor_preen.html">condor_preen</A>
+<B> Up:</B> <A NAME="tex2html3703"
+  HREF="10_Command_Reference.html">10. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3697"
+  HREF="condor_on.html">condor_on</A>
+ &nbsp; <B>  <A NAME="tex2html3705"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3707"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html3710"
+  HREF="condor_power.html#SECTION0011251000000000000000">Synopsis</A>
+<LI><A NAME="tex2html3711"
+  HREF="condor_power.html#SECTION0011252000000000000000">Description</A>
+<LI><A NAME="tex2html3712"
+  HREF="condor_power.html#SECTION0011253000000000000000">Options</A>
+<LI><A NAME="tex2html3713"
+  HREF="condor_power.html#SECTION0011254000000000000000">Exit Status</A>
+<LI><A NAME="tex2html3714"
+  HREF="condor_power.html#SECTION0011255000000000000000">Author</A>
+<LI><A NAME="tex2html3715"
+  HREF="condor_power.html#SECTION0011256000000000000000">Copyright</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION0011250000000000000000"></A><A NAME="man-condor-power"></A>
+<BR>
+<I>condor_power</I>
+</H1> send packet intended to wake a machine from a low power state
+  
+<P>
+
+<H2><A NAME="SECTION0011251000000000000000">
+Synopsis</A>
+</H2>
+<B><I>condor_power</I></B>
+[<B>-h</B>]
+
+<P>
+<B><I>condor_power</I></B>
+[<B>-d</B>]
+[<B>-i</B>]
+[<B>-m  </B><I>MACaddress</I>]
+[<B>-s  </B><I>subnet</I>]
+[<I>ClassAdFile</I>]
+
+<P>
+<A NAME="69650"></A>
+<A NAME="69651"></A>
+
+<P>
+
+<H2><A NAME="SECTION0011252000000000000000">
+Description</A>
+</H2>
+
+<P>
+<I>condor_power</I> sends one UDP Wake on LAN (WOL) packet to a machine
+specified either by command line arguments or by the contents
+of a machine ClassAd.
+The machine ClassAd may be in a file, where the 
+file name specified by the optional argument <I>ClassAdFile</I> 
+is given on the command line.
+With no command line arguments to specify the machine,
+and no file specified, <I>condor_power</I> quietly presumes that standard input
+is the file source which will
+specify the machine ClassAd that includes the public IP address
+and subnet of the machine.
+
+<P>
+<I>condor_power</I> needs a complete specification of the machine to
+be successful.
+If a MAC address is provided on the command line, but no subnet is given,
+then the default value for the subnet is used.
+If a subnet is provided on the command line, but no MAC address is given,
+then <I>condor_power</I> falls back to taking its information in the form
+of the machine ClassAd as provided in a file or on standard input.
+Note that this case implies that the command line specification of the 
+subnet is ignored.
+
+<P>
+<I>condor_power</I> relies on the router receiving the WOL packet to correctly
+broadcast the request. 
+Since routers are often configured to ignore
+requests to broadcast messages on a different subnet than the sender,
+the send of a WOL packet to a machine on a different subnet may fail.
+
+<P>
+
+<H2><A NAME="SECTION0011253000000000000000">
+Options</A>
+</H2>
+  
+<P>
+  <DL>
+<DT><STRONG><B>-h</B></STRONG></DT>
+<DD>Print usage information and exit.
+<BR>  
+</DD>
+<DT><STRONG><B>-d</B></STRONG></DT>
+<DD>Enable debugging messages.
+<BR>  
+</DD>
+<DT><STRONG><B>-i</B></STRONG></DT>
+<DD>Read a ClassAd that is piped in through standard input. 
+<BR>  
+</DD>
+<DT><STRONG><B>-m </B><I>MACaddress</I></STRONG></DT>
+<DD>Specify the MAC address in the standard
+    format of six groups of two hexadecimal digits separated by colons. 
+<BR></DD>
+<DT><STRONG><B>-s </B><I>subnet</I></STRONG></DT>
+<DD>Specify the subnet in the standard form
+    of a mask for an IPv4 address.
+    Without this option, a global broadcast will be sent. 
+<BR>
+<P>
+</DD>
+</DL>
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION0011254000000000000000">
+Exit Status</A>
+</H2>
+
+<P>
+<I>condor_power</I> will exit with a status value of 0 (zero) upon success,
+and it will exit with the value 1 (one) upon failure.
+
+<P>
+
+<H2><A NAME="SECTION0011255000000000000000">
+Author</A>
+</H2> Condor Team, University of Wisconsin-Madison
+  
+<H2><A NAME="SECTION0011256000000000000000">
+Copyright</A>
+</H2> 
+  Copyright &#169; 1990-2012 Condor Team, Computer Sciences Department, 
+  University of Wisconsin-Madison, Madison, WI.  All Rights Reserved.  
+	Licensed under the Apache License, Version 2.0.
+
+<P>
+See the <I>Condor Version 7.8.5 Manual</I> or
+	<A NAME="tex2html432"
+  HREF="http://www.condorproject.org/license">http://www.condorproject.org/license</A>
+for
+  additional notices. 
+
+
+  <HR>
+<!--Navigation Panel-->
+<A NAME="tex2html3708"
+  HREF="condor_preen.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3702"
+  HREF="10_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3696"
+  HREF="condor_on.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3704"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3706"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3709"
+  HREF="condor_preen.html">condor_preen</A>
+<B> Up:</B> <A NAME="tex2html3703"
+  HREF="10_Command_Reference.html">10. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3697"
+  HREF="condor_on.html">condor_on</A>
+ &nbsp; <B>  <A NAME="tex2html3705"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3707"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

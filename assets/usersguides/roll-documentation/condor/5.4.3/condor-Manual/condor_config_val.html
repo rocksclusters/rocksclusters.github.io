@@ -1,0 +1,387 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>condor_config_val</TITLE>
+<META NAME="description" CONTENT="condor_config_val">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="condor_configure.html">
+<LINK REL="previous" HREF="condor_config_bind.html">
+<LINK REL="up" HREF="9_Command_Reference.html">
+<LINK REL="next" HREF="condor_configure.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html3016"
+  HREF="condor_configure.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3010"
+  HREF="9_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3004"
+  HREF="condor_config_bind.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3012"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3014"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3017"
+  HREF="condor_configure.html">condor_configure</A>
+<B> Up:</B> <A NAME="tex2html3011"
+  HREF="9_Command_Reference.html">9. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3005"
+  HREF="condor_config_bind.html">condor_config_bind</A>
+ &nbsp; <B>  <A NAME="tex2html3013"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3015"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html3018"
+  HREF="condor_config_val.html#SECTION0010111000000000000000">Synopsis</A>
+<LI><A NAME="tex2html3019"
+  HREF="condor_config_val.html#SECTION0010112000000000000000">Description</A>
+<LI><A NAME="tex2html3020"
+  HREF="condor_config_val.html#SECTION0010113000000000000000">Options</A>
+<LI><A NAME="tex2html3021"
+  HREF="condor_config_val.html#SECTION0010114000000000000000">Exit Status</A>
+<LI><A NAME="tex2html3022"
+  HREF="condor_config_val.html#SECTION0010115000000000000000">Examples</A>
+<LI><A NAME="tex2html3023"
+  HREF="condor_config_val.html#SECTION0010116000000000000000">Author</A>
+<LI><A NAME="tex2html3024"
+  HREF="condor_config_val.html#SECTION0010117000000000000000">Copyright</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION0010110000000000000000"></A><A NAME="man-condor-config-val"></A>
+<BR>
+<I>condor_config_val</I>
+</H1> Query or set a given Condor configuration variable
+  
+<P>
+
+<H2><A NAME="SECTION0010111000000000000000">
+Synopsis</A>
+</H2><B><I>condor_config_val</I></B>
+[<B>options</B>]
+[<B>-config</B>]
+[<B>-verbose</B>]
+<I>variable</I>
+[<I>variable ... </I>]
+
+<P>
+<B><I>condor_config_val</I></B>
+[<B>options</B>]
+<B>-set </B><I>string</I>
+[<I>string ... </I>]
+
+<P>
+<B><I>condor_config_val</I></B>
+[<B>options</B>]
+<B>-rset </B><I>string</I>
+[<I>string ... </I>]
+
+<P>
+<B><I>condor_config_val</I></B>
+[<B>options</B>]
+<B>-unset </B><I>variable</I>
+[<I>variable ... </I>]
+
+<P>
+<B><I>condor_config_val</I></B>
+[<B>options</B>]
+<B>-runset </B><I>variable</I>
+[<I>variable ... </I>]
+
+<P>
+<B><I>condor_config_val</I></B> [<B>options</B>] <B>-tilde</B>
+
+<P>
+<B><I>condor_config_val</I></B> [<B>options</B>] <B>-owner</B>
+
+<P>
+<B><I>condor_config_val</I></B> [<B>options</B>] <B>-config</B>
+
+<P>
+<B><I>condor_config_val</I></B> [<B>options</B>] <B>-dump</B>
+
+<P>
+<A NAME="60856"></A>
+<A NAME="60857"></A>
+
+<P>
+
+<H2><A NAME="SECTION0010112000000000000000">
+Description</A>
+</H2>
+
+<P>
+<I>condor_config_val</I> can be used to quickly see what the current
+Condor configuration is on any given machine.  Given a list of
+variables, <I>condor_config_val</I> will report what each of these
+variables is currently set to.  If a given variable is not defined,
+<I>condor_config_val</I> will halt on that variable, and report that it is
+not defined.  By default, <I>condor_config_val</I> looks in the local
+machine's configuration files in order to evaluate the variables.
+
+<P>
+<I>condor_config_val</I> can also be used to quickly set configuration
+variables for a specific daemon on a given machine.  Each daemon
+remembers settings made by <I>condor_config_val</I>.  The configuration
+file is not modified by this command.  Persistent settings remain when
+the daemon is restarted.  Runtime settings are lost when the daemon is
+restarted.  In general, modifying a host's configuration with
+<I>condor_config_val</I>  
+requires the <TT>CONFIG</TT> access level, which is disabled on all
+hosts by default.
+Administrators have more
+fine-grained control over which access levels can modify which
+settings.
+See section&nbsp;<A HREF="3_6Security.html#sec:Config-Security">3.6.1</A> on
+page&nbsp;<A HREF="3_6Security.html#sec:Config-Security"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for more details on security settings.
+
+<P>
+The <B>-verbose</B> option displays the configuration
+file name and line number where a configuration variable is defined.
+
+<P>
+Any changes made by <I>condor_config_val</I> will not take effect
+until <I>condor_reconfig</I> is invoked.
+
+<P>
+It is generally wise to test a new configuration on a single
+machine to ensure that no syntax or other errors in the
+configuration have been made before the reconfiguration of many machines.  
+Having bad syntax or invalid configuration settings is a fatal error
+for Condor daemons, and they will exit.
+It is far better to discover such a problem on a single machine than to
+cause all the Condor daemons in the pool to exit.
+
+<P>
+The <B>-set</B> option sets one or more persistent configuration file entries.
+The <I>string</I> must be a single argument, so enclose it in double quote marks.
+A string must be of the form <TT>"variable = value"</TT>.
+Use of the <B>-set</B> option implies the use of configuration variables
+<TT>SETTABLE_ATTRS... </TT> <A NAME="61161"></A> <A NAME="61162"></A> (see <A HREF="3_3Configuration.html#param:SettableAttrs">3.3.5</A>),
+<TT>ENABLE_PERSISTENT_CONFIG</TT> <A NAME="61166"></A> <A NAME="61167"></A> (see <A HREF="3_3Configuration.html#param:EnablePersistentConfig">3.3.5</A>),
+and <TT>HOSTALLOW... </TT> <A NAME="61171"></A> <A NAME="61172"></A> (see <A HREF="3_3Configuration.html#param:HostAllow">3.3.5</A>).
+
+<P>
+The <B>-rset</B> option sets one or more runtime configuration file entries.
+The <I>string</I> must be a single argument, so enclose it in double quote marks.
+A string must be of the form <TT>"variable = value"</TT>.
+Use of the <B>-rset</B> option implies the use of configuration variables
+<TT>SETTABLE_ATTRS... </TT> <A NAME="61183"></A> <A NAME="61184"></A> (see <A HREF="3_3Configuration.html#param:SettableAttrs">3.3.5</A>),
+<TT>ENABLE_RUNTIME_CONFIG</TT> <A NAME="61188"></A> <A NAME="61189"></A> (see <A HREF="3_3Configuration.html#param:EnableRuntimeConfig">3.3.5</A>),
+and <TT>HOSTALLOW... </TT> <A NAME="61193"></A> <A NAME="61194"></A> (see <A HREF="3_3Configuration.html#param:HostAllow">3.3.5</A>).
+
+<P>
+The <B>-unset</B> option changes one or more persistent configuration file
+entries to their previous value.
+
+<P>
+The <B>-runset</B> option changes one or more runtime configuration file
+entries to their previous value.
+
+<P>
+The <B>-tilde</B> option displays the path to the Condor home directory.
+
+<P>
+The <B>-owner</B> option displays the owner of the <I>condor_config_val</I> process.
+
+<P>
+The <B>-config</B> option displays the current configuration files in use.
+
+<P>
+The <B>-dump</B> option displays a list of all of the defined macros
+in the configuration files found by <I>condor_config_val</I>, along with
+their values. If the <B>-verbose</B> option is supplied as well,
+then the specific configuration file which defined each macro,
+along with the line number of its definition is also printed. 
+<U>NOTE</U>: The output of this argument is likely to change 
+in a future revision of Condor.
+
+<P>
+
+<H2><A NAME="SECTION0010113000000000000000">
+Options</A>
+</H2>
+  
+<P>
+  <DL>
+<DT><STRONG><B>-name </B><I>machine_name</I></STRONG></DT>
+<DD>Query the specified
+    machine's <I>condor_master</I> daemon for its configuration. 
+    Does not function together with any of the options:
+    <B>-dump</B>, <B>-config</B>, or <B>-verbose</B>. 
+<BR>  
+</DD>
+<DT><STRONG><B>-pool </B><I>centralmanagerhostname[:portnumber]</I></STRONG></DT>
+<DD>Use the given central manager and an optional port number
+    to find daemons. 
+<BR>  
+</DD>
+<DT><STRONG><B>-address </B><I>&lt;ip:port&gt;</I></STRONG></DT>
+<DD>Connect to the given IP address and port number. 
+<BR>  
+</DD>
+<DT><STRONG><B>-master | -schedd | -startd | -collector | -negotiator</B></STRONG></DT>
+<DD>The specific daemon to query. 
+<BR>  
+</DD>
+<DT><STRONG><B>-local-name</B></STRONG></DT>
+<DD>Inspect the values of attributes that use local names.
+<BR>  
+</DD>
+</DL>
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION0010114000000000000000">
+Exit Status</A>
+</H2>
+
+<P>
+<I>condor_config_val</I> will exit with a status value of 0 (zero) upon success,
+and it will exit with the value 1 (one) upon failure.
+
+<P>
+
+<H2><A NAME="SECTION0010115000000000000000">
+Examples</A>
+</H2>
+
+<P>
+Here is a set of examples to show a sequence of operations using 
+<I>condor_config_val</I>.
+To request the <I>condor_schedd</I> daemon on host perdita
+to display the value of the <TT>MAX_JOBS_RUNNING</TT> configuration variable:
+<PRE>
+   % condor_config_val -name perdita -schedd MAX_JOBS_RUNNING
+   500
+</PRE>
+<P>
+To request the <I>condor_schedd</I> daemon on host perdita
+to set the value of the <TT>MAX_JOBS_RUNNING</TT> configuration variable
+to the value 10.
+<PRE>
+   % condor_config_val -name perdita -schedd -set "MAX_JOBS_RUNNING = 10"
+   Successfully set configuration "MAX_JOBS_RUNNING = 10" on 
+   schedd perdita.cs.wisc.edu &lt;128.105.73.32:52067&gt;.
+</PRE>
+<P>
+A command that will implement the change just set in the previous
+example.
+<PRE>
+   % condor_reconfig -schedd perdita
+   Sent "Reconfig" command to schedd perdita.cs.wisc.edu
+</PRE>
+<P>
+A re-check of the configuration variable reflects the change implemented:
+<PRE>
+   % condor_config_val -name perdita -schedd MAX_JOBS_RUNNING
+   10
+</PRE>
+<P>
+To set the configuration variable <TT>MAX_JOBS_RUNNING</TT>
+back to what it was before the command to set it to 10:
+<PRE>
+   % condor_config_val -name perdita -schedd -unset MAX_JOBS_RUNNING
+   Successfully unset configuration "MAX_JOBS_RUNNING" on 
+   schedd perdita.cs.wisc.edu &lt;128.105.73.32:52067&gt;.
+</PRE>
+<P>
+A command that will implement the change just set in the previous
+example.
+<PRE>
+   % condor_reconfig -schedd perdita
+   Sent "Reconfig" command to schedd perdita.cs.wisc.edu
+</PRE>
+<P>
+A re-check of the configuration variable reflects that variable
+has gone back to is value before initial set of the variable:
+<PRE>
+   % condor_config_val -name perdita -schedd MAX_JOBS_RUNNING
+   500
+</PRE>
+<P>
+
+<H2><A NAME="SECTION0010116000000000000000">
+Author</A>
+</H2> Condor Team, University of Wisconsin-Madison
+  
+<H2><A NAME="SECTION0010117000000000000000">
+Copyright</A>
+</H2> 
+  Copyright &#169; 1990-2011 Condor Team, Computer Sciences Department, 
+  University of Wisconsin-Madison, Madison, WI.  All Rights Reserved.  
+	Licensed under the Apache License, Version 2.0.
+
+<P>
+See the <I>Condor Version 7.6.2 Manual</I> or
+	<A NAME="tex2html119"
+  HREF="http://www.condorproject.org/license">http://www.condorproject.org/license</A>
+for
+  additional notices. 
+
+
+  <HR>
+<!--Navigation Panel-->
+<A NAME="tex2html3016"
+  HREF="condor_configure.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3010"
+  HREF="9_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3004"
+  HREF="condor_config_bind.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3012"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3014"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3017"
+  HREF="condor_configure.html">condor_configure</A>
+<B> Up:</B> <A NAME="tex2html3011"
+  HREF="9_Command_Reference.html">9. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3005"
+  HREF="condor_config_bind.html">condor_config_bind</A>
+ &nbsp; <B>  <A NAME="tex2html3013"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3015"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

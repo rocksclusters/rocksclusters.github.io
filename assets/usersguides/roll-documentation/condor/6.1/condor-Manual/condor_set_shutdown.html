@@ -1,0 +1,332 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<link rel="canonical" href="http://research.cs.wisc.edu/condor/manual/current/condor_set_shutdown.html">
+
+<TITLE>condor_set_shutdown</TITLE>
+<META NAME="description" CONTENT="condor_set_shutdown">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="condor_ssh_to_job.html">
+<LINK REL="previous" HREF="condor_run.html">
+<LINK REL="up" HREF="10_Command_Reference.html">
+<LINK REL="next" HREF="condor_ssh_to_job.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html4043"
+  HREF="condor_ssh_to_job.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html4037"
+  HREF="10_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html4031"
+  HREF="condor_run.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html4039"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html4041"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4044"
+  HREF="condor_ssh_to_job.html">condor_ssh_to_job</A>
+<B> Up:</B> <A NAME="tex2html4038"
+  HREF="10_Command_Reference.html">10. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html4032"
+  HREF="condor_run.html">condor_run</A>
+ &nbsp; <B>  <A NAME="tex2html4040"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html4042"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html4045"
+  HREF="condor_set_shutdown.html#SECTION0011411000000000000000">Synopsis</A>
+<LI><A NAME="tex2html4046"
+  HREF="condor_set_shutdown.html#SECTION0011412000000000000000">Description</A>
+<LI><A NAME="tex2html4047"
+  HREF="condor_set_shutdown.html#SECTION0011413000000000000000">Options</A>
+<LI><A NAME="tex2html4048"
+  HREF="condor_set_shutdown.html#SECTION0011414000000000000000">Exit Status</A>
+<LI><A NAME="tex2html4049"
+  HREF="condor_set_shutdown.html#SECTION0011415000000000000000">Examples</A>
+<LI><A NAME="tex2html4050"
+  HREF="condor_set_shutdown.html#SECTION0011416000000000000000">Author</A>
+<LI><A NAME="tex2html4051"
+  HREF="condor_set_shutdown.html#SECTION0011417000000000000000">Copyright</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION0011410000000000000000"></A><A NAME="man-condor-set-shutdown"></A>
+<BR>
+<I>condor_set_shutdown</I>
+</H1> Set a program to execute upon <I>condor_master</I> shut down
+  
+<P>
+
+<H2><A NAME="SECTION0011411000000000000000">
+Synopsis</A>
+</H2><B><I>condor_set_shutdown</I></B>
+
+[<B>-help <IMG
+ WIDTH="10" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img68.png"
+ ALT="$\vert$"> -version</B>]
+
+<P>
+<B><I>condor_set_shutdown</I></B>
+<B>-exec </B><I>programname</I> 
+
+[<B>-debug</B>]
+
+[<B>-pool  </B><I>centralmanagerhostname[:portnumber]</I>] 
+[<B>-name </B><I>hostname</I> <IMG
+ WIDTH="10" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img68.png"
+ ALT="$\vert$"> <I>hostname</I> <IMG
+ WIDTH="10" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img68.png"
+ ALT="$\vert$">
+<B>-addr </B><I>"<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img11.png"
+ ALT="$&lt;$">a.b.c.d:port<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img12.png"
+ ALT="$&gt;$">"</I> <IMG
+ WIDTH="10" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img68.png"
+ ALT="$\vert$"> <I>"<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img11.png"
+ ALT="$&lt;$">a.b.c.d:port<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img12.png"
+ ALT="$&gt;$">"</I> <IMG
+ WIDTH="10" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img68.png"
+ ALT="$\vert$"> 
+<B>-constraint </B><I>expression</I> <IMG
+ WIDTH="10" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img68.png"
+ ALT="$\vert$"> <B>-all</B> ]
+
+<P>
+<A NAME="74450"></A>
+<A NAME="74451"></A>
+
+<P>
+
+<H2><A NAME="SECTION0011412000000000000000">
+Description</A>
+</H2>
+
+<P>
+<I>condor_set_shutdown</I> sets a program (typically a script) to execute
+when the <I>condor_master</I> daemon shuts down.
+The <B>-exec </B><I>programname</I> argument is required,
+and specifies the program to run.  
+The string <I>programname</I> must match the
+string that defines <TT>Name</TT> in the configuration variable
+<TT>MASTER_SHUTDOWN_<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img11.png"
+ ALT="$&lt;$">Name<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img12.png"
+ ALT="$&gt;$"></TT> in the <I>condor_master</I> daemon's
+configuration. 
+If it does not match, the <I>condor_master</I> will log an error and ignore the
+request.
+
+<P>
+For purposes of authentication and authorization,
+this command requires the <TT>ADMINISTRATOR</TT> access level.
+See
+section&nbsp;<A HREF="3_6Security.html#sec:Config-Security">3.6.1</A> on page&nbsp;<A HREF="3_6Security.html#sec:Config-Security"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>
+for further explanation.
+
+<P>
+
+<H2><A NAME="SECTION0011413000000000000000">
+Options</A>
+</H2>
+  
+<P>
+  <DL>
+<DT><STRONG><B>-help</B></STRONG></DT>
+<DD>Display usage information
+<BR></DD>
+<DT><STRONG><B>-version</B></STRONG></DT>
+<DD>Display version information
+<BR>
+  
+</DD>
+<DT><STRONG><B>-debug</B></STRONG></DT>
+<DD>Causes debugging information to be sent to
+<TT>stderr</TT>, based on the value of the configuration variable
+<TT>TOOL_DEBUG</TT>
+<BR>
+  
+</DD>
+<DT><STRONG><B>-pool </B><I>centralmanagerhostname[:portnumber]</I></STRONG></DT>
+<DD>Specify a pool by giving the
+	central manager's host name and an optional port number
+<BR></DD>
+<DT><STRONG><B>-name </B><I>hostname</I></STRONG></DT>
+<DD>Send the command to a machine identified by <I>hostname</I>
+<BR></DD>
+<DT><STRONG><I>hostname</I></STRONG></DT>
+<DD>Send the command to a machine identified by <I>hostname</I>
+<BR></DD>
+<DT><STRONG><B>-addr </B><I>"<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img11.png"
+ ALT="$&lt;$">a.b.c.d:port<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img12.png"
+ ALT="$&gt;$">"</I></STRONG></DT>
+<DD>Send the command
+	to a machine's master located at <I>"<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img11.png"
+ ALT="$&lt;$">a.b.c.d:port<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img12.png"
+ ALT="$&gt;$">"</I>
+<BR></DD>
+<DT><STRONG><I>"<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img11.png"
+ ALT="$&lt;$">a.b.c.d:port<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img12.png"
+ ALT="$&gt;$">"</I></STRONG></DT>
+<DD>Send the command
+	to a machine located at <I>"<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img11.png"
+ ALT="$&lt;$">a.b.c.d:port<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img12.png"
+ ALT="$&gt;$">"</I>
+<BR></DD>
+<DT><STRONG><B>-constraint </B><I>expression</I></STRONG></DT>
+<DD>Apply this command only
+        to machines matching the given ClassAd <I>expression</I>
+<BR></DD>
+<DT><STRONG><B>-all</B></STRONG></DT>
+<DD>Send the command
+	to all machines in the pool
+<BR>
+  
+</DD>
+</DL>
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION0011414000000000000000">
+Exit Status</A>
+</H2>
+<I>condor_set_shutdown</I> will exit with a status value of 0 (zero) upon
+success, and it will exit with the value 1 (one) upon failure.
+
+<P>
+
+<H2><A NAME="SECTION0011415000000000000000">
+Examples</A>
+</H2>
+To have all <I>condor_master</I> daemons run the program
+<I>/bin/reboot</I> upon shut down, configure the <I>condor_master</I> 
+to contain a definition similar to:
+<PRE>
+MASTER_SHUTDOWN_REBOOT = /sbin/reboot
+</PRE>
+where <TT>REBOOT</TT> is an invented name for this program that
+the <I>condor_master</I> will execute.
+On the command line, run
+<PRE>
+% condor_set_shutdown -exec reboot -all
+% condor_off -graceful -all
+</PRE>
+where the string <code>reboot</code> matches the invented name.
+
+<P>
+
+<H2><A NAME="SECTION0011416000000000000000">
+Author</A>
+</H2> Condor Team, University of Wisconsin-Madison
+  
+<H2><A NAME="SECTION0011417000000000000000">
+Copyright</A>
+</H2> 
+  Copyright &#169; 1990-2012 Condor Team, Computer Sciences Department, 
+  University of Wisconsin-Madison, Madison, WI.  All Rights Reserved.  
+	Licensed under the Apache License, Version 2.0.
+
+<P>
+See the <I>Condor Version 7.8.5 Manual</I> or
+	<A NAME="tex2html449"
+  HREF="http://www.condorproject.org/license">http://www.condorproject.org/license</A>
+for
+  additional notices. 
+
+
+  <HR>
+<!--Navigation Panel-->
+<A NAME="tex2html4043"
+  HREF="condor_ssh_to_job.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html4037"
+  HREF="10_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html4031"
+  HREF="condor_run.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html4039"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html4041"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html4044"
+  HREF="condor_ssh_to_job.html">condor_ssh_to_job</A>
+<B> Up:</B> <A NAME="tex2html4038"
+  HREF="10_Command_Reference.html">10. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html4032"
+  HREF="condor_run.html">condor_run</A>
+ &nbsp; <B>  <A NAME="tex2html4040"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html4042"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

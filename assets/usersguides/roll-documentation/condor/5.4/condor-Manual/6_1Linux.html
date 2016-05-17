@@ -1,0 +1,226 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>6.1 Linux</TITLE>
+<META NAME="description" CONTENT="6.1 Linux">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="6_2Microsoft_Windows.html">
+<LINK REL="previous" HREF="6_Platform_Specific_Informa.html">
+<LINK REL="up" HREF="6_Platform_Specific_Informa.html">
+<LINK REL="next" HREF="6_2Microsoft_Windows.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html1836"
+  HREF="6_2Microsoft_Windows.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1830"
+  HREF="6_Platform_Specific_Informa.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1824"
+  HREF="6_Platform_Specific_Informa.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1832"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1834"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1837"
+  HREF="6_2Microsoft_Windows.html">6.2 Microsoft Windows</A>
+<B> Up:</B> <A NAME="tex2html1831"
+  HREF="6_Platform_Specific_Informa.html">6. Platform-Specific Information</A>
+<B> Previous:</B> <A NAME="tex2html1825"
+  HREF="6_Platform_Specific_Informa.html">6. Platform-Specific Information</A>
+ &nbsp; <B>  <A NAME="tex2html1833"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1835"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html1838"
+  HREF="6_1Linux.html#SECTION00711000000000000000">6.1.1 Linux Kernel-specific Information</A>
+<LI><A NAME="tex2html1839"
+  HREF="6_1Linux.html#SECTION00712000000000000000">6.1.2 Red Hat</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00710000000000000000"></A><A NAME="sec:platform-linux"></A>
+<A NAME="46314"></A>
+<BR>
+6.1 Linux
+</H1>
+
+<P>
+This section provides information specific to the Linux port of
+Condor.
+Linux is a difficult platform to support.
+It changes very frequently, and Condor has some extremely
+system-dependent code (for example, the checkpointing library).
+
+<P>
+Condor is sensitive to changes in the following elements of the
+system: 
+
+<UL>
+<LI>The kernel version
+</LI>
+<LI>The version of the GNU C library (glibc)
+</LI>
+<LI>the version of GNU C Compiler (GCC) used to build and link
+  Condor jobs (this only matters for Condor's Standard universe which
+  provides checkpointing and remote system calls)
+</LI>
+</UL>
+
+<P>
+The Condor Team tries to provide support for various releases of the
+distribution of Linux.
+Red Hat is probably the most popular Linux distribution, and it
+provides a common set of versions for the above system components
+at which Condor can aim support.
+Condor will often work with Linux distributions other than Red Hat (for
+example, Debian or SuSE) that have the same versions of the above
+components.
+However, we do not usually test Condor on other Linux distributions
+and we do not provide any guarantees about this.
+
+<P>
+New releases of Red Hat usually change the versions of some or all of
+the above system-level components.
+A version of Condor that works with one release of Red Hat might not
+work with newer releases.
+The following sections describe the details of Condor's support for
+the currently available versions of Red Hat Linux on x86 architecture
+machines.
+
+<P>
+
+<H2><A NAME="SECTION00711000000000000000"></A><A NAME="sec:platform-linux-activity"></A>
+<A NAME="46318"></A>
+<A NAME="46319"></A>
+<BR>
+6.1.1 Linux Kernel-specific Information
+</H2>
+
+<P>
+Distributions that rely on the Linux 2.4.x and all Linux 2.6.x kernels
+through version 2.6.10
+do not modify the <TT>atime</TT> of the input device file.
+This leads to difficulty when Condor is run using one of these
+kernels. 
+The problem manifests itself in that Condor cannot properly
+detect keyboard or mouse activity.
+Therefore, using the activity in policy setting cannot
+signal that Condor should stop running a job on a machine.
+
+<P>
+Condor version 6.6.8 implements a workaround for PS/2 devices.
+A better fix is the Linux 2.6.10 kernel
+patch linked to from the directions posted at
+<A NAME="tex2html91"
+  HREF="http://www.cs.wisc.edu/condor/kernel.patch.html">http://www.cs.wisc.edu/condor/kernel.patch.html</A>.
+This patch works better for PS/2 devices, and
+may also work for USB devices.
+A future version of Condor will implement better recognition
+of USB devices,
+such that the kernel patch will also definitively work for USB devices.
+
+<P>
+Condor additionally has problems running on some older Xen kernels,
+which interact badly with assumptions made by the <I>condor_procd</I>
+daemon. See the FAQ entry in section&nbsp;<A HREF="7_7Troubleshooting.html#sec:xen-jiffies-bug">7.7</A> for
+details.
+
+<P>
+
+<H2><A NAME="SECTION00712000000000000000"></A><A NAME="sec:platform-linux-redhat"></A>
+<A NAME="46325"></A>
+<BR>
+6.1.2 Red Hat
+</H2>
+
+<P>
+Modern versions of Red Hat and Fedora include a feature called
+<I>Exec Shield</I> that, among other things, randomizes the memory
+layout of a process
+to reduce the possibility of security exploits. This makes it impossible
+for standard universe jobs to resume execution using a checkpoint.
+When starting
+or resuming a standard universe job, Condor disables the memory
+randomization portion of Exec Shield.
+
+<P>
+To run a binary compiled with  <I>condor_compile</I> in standalone mode,
+either initially or in resumption mode, manually disable
+Exec Shield's memory randomization by prepending the execution
+of the binary with <code>setarch i386</code>.
+As an example, suppose there is a
+Condor-linked binary called <I>myapp</I>.
+Running this application as a
+standalone executable will result from the command:
+<PRE>
+  setarch i386 myapp
+</PRE>
+The subsequent resumption command will be: 
+<PRE>
+  setarch i386 myapp -_condor_restart myapp.ckpt
+</PRE>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1836"
+  HREF="6_2Microsoft_Windows.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1830"
+  HREF="6_Platform_Specific_Informa.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1824"
+  HREF="6_Platform_Specific_Informa.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1832"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1834"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1837"
+  HREF="6_2Microsoft_Windows.html">6.2 Microsoft Windows</A>
+<B> Up:</B> <A NAME="tex2html1831"
+  HREF="6_Platform_Specific_Informa.html">6. Platform-Specific Information</A>
+<B> Previous:</B> <A NAME="tex2html1825"
+  HREF="6_Platform_Specific_Informa.html">6. Platform-Specific Information</A>
+ &nbsp; <B>  <A NAME="tex2html1833"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1835"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

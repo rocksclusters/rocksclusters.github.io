@@ -1,0 +1,235 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Host Interfaces</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE=" Defining and Modifying Networks and Network Interfaces "
+HREF="networking.html"><LINK
+REL="PREVIOUS"
+TITLE="Named Networks/Subnets"
+HREF="x1042.html"><LINK
+REL="NEXT"
+TITLE="Virtual LANs (VLANs) and Logical VLAN Bridges"
+HREF="x1066.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Base</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x1042.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 4. Defining and Modifying Networks and Network Interfaces</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x1066.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="AEN1052"
+>4.3. Host Interfaces</A
+></H1
+><P
+>There are three types of interfaces that a cluster owner may need to be concerned about: physical, logical, and
+VLAN (virtual LAN) bridges. Linux (and other OSes like Solaris) support logical interfaces that share a 
+particular physical network port.
+The following shows physical network devices and associations of those 
+devices to a named network (or subnet, used interchangably in this discussion).
+In the figures below, the /&#60;nn&#62; notation is a standard method of how to
+specify the number of bits in the netmask.
+Examples include: /24=255.255.255.0 (Class C subnet), /16=255.255.0.0 (Class B subnet), /8=255.0.0.0 (Class A subnet) and /25=255.255.255.128
+        <DIV
+CLASS="MEDIAOBJECT"
+><P
+><IMG
+SRC="images/PhysicalNetworks.png"><DIV
+CLASS="CAPTION"
+><P
+> FIGURE: Hosts can have any number of physical
+			networking devices. Every Rocks node must have a
+			private network defined (e.g., eth0).
+			Frontends also must have a separate public network
+			(e.g., eth1).
+			Other devices could be myri0 (for Myrinet) or ib0 
+			(for Infiniband).
+			</P
+></DIV
+></P
+></DIV
+></P
+><P
+>Adding a new network interface to a host can be done from the command line. For example, to add an interface
+named "myri0" with IP address 192.168.1.10 on the logical subnet "fast":</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>[root@rocks ~]# rocks add host interface compute-0-0-1 iface=myri0 subnet=fast ip=192.168.1.10
+[root@rocks ~]# rocks list host interface compute-0-0-1
+SUBNET  IFACE MAC               IP             NETMASK       MODULE NAME          VLAN
+private eth0  00:16:3e:00:00:11 172.16.254.192 255.255.255.0 xennet compute-0-0-1 ------
+fast    myri0 ----------------- 192.168.1.10   255.255.255.0 ------ ------------- ------</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>You can also set other fields for a host interface (if the field is one of
+[mac, ip, module, name, vlan]) with 
+the command <SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks set host interface &#60;field&#62; &#60;host&#62; iface=&#60;iface&#62; value</SAMP
+>.
+To set the name associated with the myri0 interface to compute-myri-0-0-1 on
+the node compute-0-0-1, execute:</P
+><P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>[root@rocks ~]# rocks set host interface name compute-0-0-1 iface=myri0 compute-myri-0-0-1
+[root@rocks ~]# rocks list host interface compute-0-0-1
+SUBNET  IFACE MAC               IP             NETMASK       MODULE NAME               VLAN
+private eth0  00:16:3e:00:00:11 172.16.254.192 255.255.255.0 xennet compute-0-0-1      ------
+fast    myri0 ----------------- 192.168.1.10   255.255.255.0 ------ compute-myri-0-0-1 ------</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x1042.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x1066.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Named Networks/Subnets</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="networking.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Virtual LANs (VLANs) and Logical VLAN Bridges</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

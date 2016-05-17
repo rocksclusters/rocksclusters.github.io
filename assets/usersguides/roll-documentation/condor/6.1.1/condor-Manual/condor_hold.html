@@ -1,0 +1,370 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<link rel="canonical" href="http://research.cs.wisc.edu/htcondor/manual/current/condor_hold.html">
+
+<TITLE>condor_hold</TITLE>
+<META NAME="description" CONTENT="condor_hold">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="condor_install.html">
+<LINK REL="previous" HREF="condor_history.html">
+<LINK REL="up" HREF="11_Command_Reference.html">
+<LINK REL="next" HREF="condor_install.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html3518"
+  HREF="condor_install.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3512"
+  HREF="11_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3506"
+  HREF="condor_history.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3514"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3516"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3519"
+  HREF="condor_install.html">condor_install</A>
+<B> Up:</B> <A NAME="tex2html3513"
+  HREF="11_Command_Reference.html">11. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3507"
+  HREF="condor_history.html">condor_history</A>
+ &nbsp; <B>  <A NAME="tex2html3515"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3517"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html3520"
+  HREF="condor_hold.html#SECTION0012231000000000000000">Synopsis</A>
+<LI><A NAME="tex2html3521"
+  HREF="condor_hold.html#SECTION0012232000000000000000">Description</A>
+<LI><A NAME="tex2html3522"
+  HREF="condor_hold.html#SECTION0012233000000000000000">Options</A>
+<LI><A NAME="tex2html3523"
+  HREF="condor_hold.html#SECTION0012234000000000000000">See Also</A>
+<LI><A NAME="tex2html3524"
+  HREF="condor_hold.html#SECTION0012235000000000000000">Examples</A>
+<LI><A NAME="tex2html3525"
+  HREF="condor_hold.html#SECTION0012236000000000000000">Exit Status</A>
+<LI><A NAME="tex2html3526"
+  HREF="condor_hold.html#SECTION0012237000000000000000">Author</A>
+<LI><A NAME="tex2html3527"
+  HREF="condor_hold.html#SECTION0012238000000000000000">Copyright</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION0012230000000000000000"></A><A NAME="man-condor-hold"></A>
+<BR>
+<I>condor_hold</I>
+</H1> put jobs in the queue into the hold state
+  
+<P>
+
+<H2><A NAME="SECTION0012231000000000000000">
+Synopsis</A>
+</H2><B><I>condor_hold</I></B>
+
+[<B>-help <IMG
+ WIDTH="10" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img62.png"
+ ALT="$\vert$"> -version</B>]
+
+<P>
+<B><I>condor_hold</I></B>
+
+[<B>-debug</B>]
+
+[<B>-reason  </B><I>reasonstring</I>]
+[<B>-subcode  </B><I>number</I>]
+
+[<B>-pool </B><I>centralmanagerhostname[:portnumber]</I>
+<IMG
+ WIDTH="10" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img62.png"
+ ALT="$\vert$"> <B>-name </B><I>scheddname</I> ]<IMG
+ WIDTH="10" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img62.png"
+ ALT="$\vert$"> [<B>-addr  </B><I>"<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">a.b.c.d:port<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$">"</I>]
+
+<I> cluster... <IMG
+ WIDTH="10" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img62.png"
+ ALT="$\vert$"> cluster.process... <IMG
+ WIDTH="10" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img62.png"
+ ALT="$\vert$"> user... </I> 
+
+<IMG
+ WIDTH="10" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img62.png"
+ ALT="$\vert$"> <B>-constraint </B><I>expression</I> ... 
+
+<P>
+<B><I>condor_hold</I></B>
+
+[<B>-debug</B>]
+
+[<B>-reason  </B><I>reasonstring</I>]
+[<B>-subcode  </B><I>number</I>]
+
+[<B>-pool </B><I>centralmanagerhostname[:portnumber]</I>
+<IMG
+ WIDTH="10" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img62.png"
+ ALT="$\vert$"> <B>-name </B><I>scheddname</I> ]<IMG
+ WIDTH="10" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img62.png"
+ ALT="$\vert$"> [<B>-addr  </B><I>"<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">a.b.c.d:port<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$">"</I>]
+
+<B>-all</B>
+
+<P>
+<A NAME="68345"></A>
+<A NAME="68346"></A>
+
+<P>
+
+<H2><A NAME="SECTION0012232000000000000000">
+Description</A>
+</H2>
+
+<P>
+<I>condor_hold</I> places jobs from the HTCondor job queue in
+the hold state.
+If the <B>-name</B> option is specified, the named <I>condor_schedd</I> is targeted
+for processing.  
+Otherwise, the local <I>condor_schedd</I> is targeted.
+The jobs to be held are identified by one or more job identifiers, as
+described below.
+For any given job, only the owner of the job or one of the queue super users
+(defined by the <TT>QUEUE_SUPER_USERS</TT> macro) can place the job on hold.
+
+<P>
+A job in the hold state remains in the job queue,
+but the job will not run until released with <I>condor_release</I>.
+
+<P>
+A currently running job that is placed in the hold state by <I>condor_hold</I>
+is sent a hard kill signal.
+For a standard universe job,
+this means that the job is removed from the machine without
+allowing a checkpoint to be produced first.
+
+<P>
+
+<H2><A NAME="SECTION0012233000000000000000">
+Options</A>
+</H2>
+  
+<P>
+  <DL>
+<DT><STRONG><B>-help</B></STRONG></DT>
+<DD>Display usage information
+<BR></DD>
+<DT><STRONG><B>-version</B></STRONG></DT>
+<DD>Display version information
+<BR>
+  
+</DD>
+<DT><STRONG><B>-pool </B><I>centralmanagerhostname[:portnumber]</I></STRONG></DT>
+<DD>Specify a pool by giving the
+	central manager's host name and an optional port number
+<BR></DD>
+<DT><STRONG><B>-name </B><I>scheddname</I></STRONG></DT>
+<DD>Send the command to a machine identified by <I>scheddname</I>
+<BR></DD>
+<DT><STRONG><B>-addr </B><I>"<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">a.b.c.d:port<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$">"</I></STRONG></DT>
+<DD>Send the command
+	to a machine located at <I>"<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$&lt;$">a.b.c.d:port<IMG
+ WIDTH="19" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$&gt;$">"</I>
+<BR>
+  
+</DD>
+<DT><STRONG><B>-debug</B></STRONG></DT>
+<DD>Causes debugging information to be sent to
+<TT>stderr</TT>, based on the value of the configuration variable
+<TT>TOOL_DEBUG</TT>
+<BR>
+  
+</DD>
+<DT><STRONG><B>-reason </B><I>reasonstring</I></STRONG></DT>
+<DD>Sets the job ClassAd attribute
+    <TT>HoldReason</TT> to the value given by <I>reasonstring</I>.
+    <I>reasonstring</I> will be delimited by double quote marks on the
+    command line, if it contains space characters.
+<BR>  
+</DD>
+<DT><STRONG><B>-subcode </B><I>number</I></STRONG></DT>
+<DD>Sets the job ClassAd attribute
+    <TT>HoldReasonSubCode</TT> to the integer value given by <I>number</I>.
+<BR>  
+</DD>
+<DT><STRONG><I>cluster</I></STRONG></DT>
+<DD>Hold all jobs in the specified cluster
+<BR>  
+</DD>
+<DT><STRONG><I>cluster.process</I></STRONG></DT>
+<DD>Hold the specific job in the cluster
+<BR>  
+</DD>
+<DT><STRONG><I>user</I></STRONG></DT>
+<DD>Hold all jobs belonging to specified user
+<BR>  
+</DD>
+<DT><STRONG><B>-constraint </B><I>expression</I></STRONG></DT>
+<DD>Hold all jobs which match
+    the job ClassAd expression constraint (within quotation
+    marks).
+    Note that quotation marks must be escaped with the
+    backslash characters for most shells.  
+<BR>  
+</DD>
+<DT><STRONG><I>-all</I></STRONG></DT>
+<DD>Hold all the jobs in the queue
+<BR>
+<P>
+</DD>
+</DL>
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION0012234000000000000000">
+See Also</A>
+</H2>
+<I>condor_release</I>
+
+<P>
+
+<H2><A NAME="SECTION0012235000000000000000">
+Examples</A>
+</H2>
+To place on hold all jobs
+(of the user that issued the <I>condor_hold</I> command)
+that are not currently running:
+<PRE>
+% condor_hold -constraint "JobStatus!=2"
+</PRE>
+<P>
+Multiple options within the same command cause the union of 
+all jobs that meet either (or both) of the options to be placed in the
+hold state.
+Therefore, the command
+<PRE>
+% condor_hold Mary -constraint "JobStatus!=2"
+</PRE>places all of Mary's queued jobs into the hold state, 
+and the constraint holds all queued jobs not currently running.
+It also sends a hard kill signal to any of Mary's jobs that are
+currently running.
+Note that the jobs specified by the constraint will also be
+Mary's jobs, if it is Mary that issues this
+example <I>condor_hold</I> command.
+
+<P>
+
+<H2><A NAME="SECTION0012236000000000000000">
+Exit Status</A>
+</H2>
+
+<P>
+<I>condor_hold</I> will exit with a status value of 0 (zero) upon success,
+and it will exit with the value 1 (one) upon failure.
+
+<P>
+
+<H2><A NAME="SECTION0012237000000000000000">
+Author</A>
+</H2> Center for High Throughput Computing, University of Wisconsin-Madison
+  
+<H2><A NAME="SECTION0012238000000000000000">
+Copyright</A>
+</H2> 
+  Copyright &#169; 1990-2013 Center for High Throughput Computing, 
+  Computer Sciences Department, 
+  University of Wisconsin-Madison, Madison, WI.  All Rights Reserved.  
+	Licensed under the Apache License, Version 2.0.  
+
+  <HR>
+<!--Navigation Panel-->
+<A NAME="tex2html3518"
+  HREF="condor_install.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3512"
+  HREF="11_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3506"
+  HREF="condor_history.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3514"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3516"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3519"
+  HREF="condor_install.html">condor_install</A>
+<B> Up:</B> <A NAME="tex2html3513"
+  HREF="11_Command_Reference.html">11. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3507"
+  HREF="condor_history.html">condor_history</A>
+ &nbsp; <B>  <A NAME="tex2html3515"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3517"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

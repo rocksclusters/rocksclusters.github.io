@@ -1,0 +1,392 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>3.9 DaemonCore</TITLE>
+<META NAME="description" CONTENT="3.9 DaemonCore">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="3_10Pool_Management.html">
+<LINK REL="previous" HREF="3_8Checkpoint_Server.html">
+<LINK REL="up" HREF="3_Administrators_Manual.html">
+<LINK REL="next" HREF="3_10Pool_Management.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html1306"
+  HREF="3_10Pool_Management.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1300"
+  HREF="3_Administrators_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1294"
+  HREF="3_8Checkpoint_Server.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1302"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1304"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1307"
+  HREF="3_10Pool_Management.html">3.10 Pool Management</A>
+<B> Up:</B> <A NAME="tex2html1301"
+  HREF="3_Administrators_Manual.html">3. Administrators' Manual</A>
+<B> Previous:</B> <A NAME="tex2html1295"
+  HREF="3_8Checkpoint_Server.html">3.8 The Checkpoint Server</A>
+ &nbsp; <B>  <A NAME="tex2html1303"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1305"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html1308"
+  HREF="3_9DaemonCore.html#SECTION00491000000000000000">3.9.1 DaemonCore and Unix signals</A>
+<LI><A NAME="tex2html1309"
+  HREF="3_9DaemonCore.html#SECTION00492000000000000000">3.9.2 DaemonCore and
+Command-line Arguments</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00490000000000000000"></A><A NAME="sec:DaemonCore"></A>
+<BR>
+3.9 DaemonCore
+</H1>
+
+<P>
+<A NAME="33591"></A>
+<A NAME="33592"></A>
+This section is a brief description of <I>DaemonCore</I>.  DaemonCore
+is a library that is shared among most of the Condor daemons which
+provides common functionality.  Currently, the following daemons use
+DaemonCore:
+
+<P>
+
+<UL>
+<LI><I>condor_master</I>
+</LI>
+<LI><I>condor_startd</I>
+</LI>
+<LI><I>condor_schedd</I>
+</LI>
+<LI><I>condor_collector</I>
+</LI>
+<LI><I>condor_negotiator</I>
+</LI>
+<LI><I>condor_kbdd</I>
+</LI>
+<LI><I>condor_quill</I>
+</LI>
+<LI><I>condor_dbmsd</I>
+</LI>
+<LI><I>condor_gridmanager</I>
+</LI>
+<LI><I>condor_credd</I>
+</LI>
+<LI><I>condor_had</I>
+</LI>
+<LI><I>condor_replication</I>
+</LI>
+<LI><I>condor_transferer</I>
+</LI>
+<LI><I>condor_job_router</I>
+</LI>
+<LI><I>condor_lease_manager</I>
+</LI>
+<LI><I>condor_rooster</I>
+</LI>
+<LI><I>condor_shared_port</I>
+</LI>
+</UL>
+
+<P>
+Most of DaemonCore's details are not interesting for administrators.
+However, DaemonCore does provide a uniform interface for the daemons
+to various Unix signals, and provides a common set of command-line
+options that can be used to start up each daemon.
+
+<P>
+
+<H2><A NAME="SECTION00491000000000000000"></A><A NAME="sec:DaemonCore-Signals"></A>
+<BR>
+3.9.1 DaemonCore and Unix signals
+</H2>
+
+<P>
+<A NAME="33614"></A>
+One of the most visible features that DaemonCore provides for
+administrators is that all daemons which use it behave the same way on
+certain Unix signals.  The signals and the behavior DaemonCore
+provides are listed below:
+
+<P>
+<DL>
+<DT><STRONG>SIGHUP</STRONG></DT>
+<DD>Causes the daemon to reconfigure itself.
+</DD>
+<DT><STRONG>SIGTERM</STRONG></DT>
+<DD>Causes the daemon to gracefully shutdown.
+</DD>
+<DT><STRONG>SIGQUIT</STRONG></DT>
+<DD>Causes the daemon to quickly shutdown.
+</DD>
+</DL>
+
+<P>
+Exactly what gracefully and quickly means varies from daemon
+to daemon.  For daemons with little or no state 
+(the <I>condor_kbdd</I>, <I>condor_collector</I> and <I>condor_negotiator</I>)
+there is no difference, and both <TT>SIGTERM</TT> and <TT>SIGQUIT</TT> signals
+result in the daemon shutting itself down quickly.
+For the <I>condor_master</I>,
+a graceful shutdown causes the <I>condor_master</I> to ask all of 
+its children to perform their own graceful shutdown methods.
+The quick shutdown causes the <I>condor_master</I> to ask all of 
+its children to perform their own quick shutdown methods.
+In both cases, the <I>condor_master</I> exits after all its children have exited.
+In the <I>condor_startd</I>, if the machine is not claimed and running a job, 
+both the <TT>SIGTERM</TT> and <TT>SIGQUIT</TT> signals result in an immediate exit.
+However, if the <I>condor_startd</I> is running a job,
+a graceful shutdown results in that job writing a checkpoint,
+while a fast shutdown does not.
+In the <I>condor_schedd</I>, if there are no jobs currently running,
+there will be no <I>condor_shadow</I> processes,
+and both signals result in an immediate exit.
+However, with jobs running, a graceful shutdown causes
+the <I>condor_schedd</I> to ask each <I>condor_shadow</I> to gracefully vacate
+the job it is serving, 
+while a quick shutdown results in a hard kill of every <I>condor_shadow</I>,
+with no chance to write a checkpoint.  
+
+<P>
+For all daemons, a reconfigure results in the daemon re-reading
+its configuration file(s), causing any settings that have changed
+to take effect.
+See section&nbsp;<A HREF="3_3Configuration.html#sec:Configuring-Condor">3.3</A> on
+page&nbsp;<A HREF="3_3Configuration.html#sec:Configuring-Condor"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>, Configuring Condor for full
+details on what settings are in the configuration files and what they do.
+
+<P>
+
+<H2><A NAME="SECTION00492000000000000000"></A><A NAME="sec:DaemonCore-Arguments"></A>
+<BR>
+3.9.2 DaemonCore and
+Command-line Arguments
+</H2> 
+
+<P>
+<A NAME="33638"></A>
+<A NAME="33639"></A>
+The second visible feature that DaemonCore provides to administrators
+is a common set of command-line arguments that all daemons understand.
+These arguments and what they do are described below:
+
+<P>
+<DL>
+<DT><STRONG>-a string</STRONG></DT>
+<DD>Append a period character (<code>'.'</code>) concatenated with
+  <B>string</B> to the file name of the log for this daemon,
+  as specified in the configuration file.
+
+<P>
+</DD>
+<DT><STRONG>-b</STRONG></DT>
+<DD>Causes the daemon to start up in the background.  When a
+  DaemonCore process starts up with this option, it disassociates itself
+  from the terminal and forks itself, so that it runs in the
+  background.  This is the default behavior for Condor daemons.
+
+<P>
+</DD>
+<DT><STRONG>-c filename</STRONG></DT>
+<DD>Causes the daemon to use the specified <B>filename</B>
+  as a full path and file name as its global configuration file.  This
+  overrides the <TT>CONDOR_CONFIG</TT> environment variable and the
+  regular locations that Condor checks for its configuration file
+  which are the <TT>condor</TT> user's
+  home directory and the file <TT>/etc/condor/condor_config</TT>.  
+
+<P>
+</DD>
+<DT><STRONG>-d</STRONG></DT>
+<DD>Use dynamic directories.
+ The <TT>$(LOG)</TT>, <TT>$(SPOOL)</TT>, and <TT>$(EXECUTE)</TT> directories
+ are all created by the daemon at run time,
+ and they are named by appending the
+ parent's IP address and PID to the value in the 
+ configuration file.
+ These values are then inherited by all children of the daemon
+ invoked with this <B>-d</B> argument.
+ For the <I>condor_master</I>,
+ all Condor processes will use the new directories.
+ If a <I>condor_schedd</I> is invoked with the <I>-d</I> argument,
+ then only the <I>condor_schedd</I> daemon and any
+ <I>condor_shadow</I> daemons it spawns will use the dynamic
+ directories (named with the <I>condor_schedd</I> daemon's PID).
+
+<P>
+Note that by using a dynamically-created spool directory
+ named by the IP address and PID,
+ upon restarting daemons,
+ jobs submitted to the original <I>condor_schedd</I> daemon
+ that were stored in the old spool directory will not be noticed
+ by the new <I>condor_schedd</I> daemon,
+ unless you manually specify the old, dynamically-generated 
+ <TT>SPOOL</TT> directory path in the configuration of the
+ new <I>condor_schedd</I> daemon.
+
+<P>
+</DD>
+<DT><STRONG>-f</STRONG></DT>
+<DD>Causes the daemon to start up in the foreground.  Instead of
+  forking, the daemon runs in the foreground.  
+
+<P>
+<U>NOTE</U>: When the <I>condor_master</I> starts up daemons, it does
+  so with the <B>-f</B> option, as it has already forked a process for the
+  new daemon.  There will be a <B>-f</B> in the argument list for all
+  Condor daemons that the <I>condor_master</I> spawns.
+
+<P>
+</DD>
+<DT><STRONG>-k filename</STRONG></DT>
+<DD>For non-Windows operating systems,
+  causes the daemon to read out a PID from the
+  specified <B>filename</B>, and send a SIGTERM to that process.
+  The daemon started with this optional argument waits until the
+  daemon it is attempting to kill has exited.  
+
+<P>
+</DD>
+<DT><STRONG>-l directory</STRONG></DT>
+<DD>Overrides the value of <TT>LOG</TT> <A NAME="33795"></A> <A NAME="33796"></A> as specified in
+  the configuration files.  Primarily, this option is used with the
+  <I>condor_kbdd</I> when it needs to run as the individual user logged
+  into the machine, instead of running as root.  Regular users would
+  not normally have permission to write files into Condor's log
+  directory.  Using this option, they can override the value of
+  <TT>LOG</TT> and have the <I>condor_kbdd</I> write its log file into a
+  directory that the user has permission to write to.
+
+<P>
+</DD>
+<DT><STRONG>-local-name name</STRONG></DT>
+<DD>Specify a local name for this instance of
+  the daemon.  This local name will be used to look up
+  configuration parameters. 
+  Section&nbsp;<A HREF="3_3Configuration.html#sec:Config-File-Macros">3.3.1</A> contains
+  details on how this local name will be used in the configuration.
+
+<P>
+</DD>
+<DT><STRONG>-p port</STRONG></DT>
+<DD>Causes the daemon to bind to the specified port as its
+  command socket.  The <I>condor_master</I> daemon
+  uses this option to ensure that the
+  <I>condor_collector</I> and <I>condor_negotiator</I> start up using
+  well-known ports that the rest of Condor depends upon them using.
+
+<P>
+</DD>
+<DT><STRONG>-pidfile filename</STRONG></DT>
+<DD>Causes the daemon to write out its PID
+  (process id number) to the specified <B>filename</B>.
+  This file can be used to
+  help shutdown the daemon without first searching through 
+  the output of the Unix <I>ps</I> command.
+
+<P>
+Since daemons run with their current working directory set to the
+  value of <TT>LOG</TT>, if you don't specify a full path
+  (one that begins with a ``/''),
+  the file will be placed in the <TT>LOG</TT> directory.
+
+<P>
+</DD>
+<DT><STRONG>-q</STRONG></DT>
+<DD>Quiet output; write less verbose error
+ messages to <TT>stderr</TT> when something goes wrong,
+ and before regular logging can be initialized.
+
+<P>
+</DD>
+<DT><STRONG>-r minutes</STRONG></DT>
+<DD>Causes the daemon to set a timer, upon expiration
+  of which, it sends itself a SIGTERM for graceful shutdown.
+
+<P>
+</DD>
+<DT><STRONG>-t</STRONG></DT>
+<DD>Causes the daemon to print out its error message to
+  <TT>stderr</TT> instead of its specified log file.  This option forces
+  the <B>-f</B> option.
+
+<P>
+</DD>
+<DT><STRONG>-v</STRONG></DT>
+<DD>Causes the daemon to print out version information and
+  exit.
+
+<P>
+</DD>
+</DL>
+
+<P>
+<A NAME="33681"></A>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1306"
+  HREF="3_10Pool_Management.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1300"
+  HREF="3_Administrators_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1294"
+  HREF="3_8Checkpoint_Server.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1302"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1304"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1307"
+  HREF="3_10Pool_Management.html">3.10 Pool Management</A>
+<B> Up:</B> <A NAME="tex2html1301"
+  HREF="3_Administrators_Manual.html">3. Administrators' Manual</A>
+<B> Previous:</B> <A NAME="tex2html1295"
+  HREF="3_8Checkpoint_Server.html">3.8 The Checkpoint Server</A>
+ &nbsp; <B>  <A NAME="tex2html1303"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1305"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

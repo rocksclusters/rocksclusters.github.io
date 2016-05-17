@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>6.5 The Command Line Interface</TITLE>
+<META NAME="description" CONTENT="6.5 The Command Line Interface">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="6_6HTCondor_Perl.html">
+<LINK REL="previous" HREF="6_4Chirp.html">
+<LINK REL="up" HREF="6_Application_Programming.html">
+<LINK REL="next" HREF="6_6HTCondor_Perl.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html2223"
+  HREF="6_6HTCondor_Perl.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2217"
+  HREF="6_Application_Programming.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2211"
+  HREF="6_4Chirp.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2219"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2221"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2224"
+  HREF="6_6HTCondor_Perl.html">6.6 The HTCondor Perl</A>
+<B> Up:</B> <A NAME="tex2html2218"
+  HREF="6_Application_Programming.html">6. Application Programming Interfaces</A>
+<B> Previous:</B> <A NAME="tex2html2212"
+  HREF="6_4Chirp.html">6.4 Chirp</A>
+ &nbsp; <B>  <A NAME="tex2html2220"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2222"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00750000000000000000"></A><A NAME="API-commandline"></A>
+<A NAME="53155"></A>
+<BR>
+6.5  The Command Line Interface
+</H1>
+
+<P>
+While the usual HTCondor command line tools are often not thought of
+as an API, they are frequently the best choice for a programmatic
+interface to the system.  
+They are the most complete, tested and debugged way to work with the system.
+The major down side to running the tools
+is that spawning an executable may be relatively slow;
+many applications do not need an extreme level of performance,
+making use of the command line tools acceptable.
+Even some of the HTCondor tools themselves work this way.
+For example,  when <I>condor_dagman</I> needs to submit a job, 
+it invokes the <I>condor_submit</I> program, 
+just as an interactive user would.
+<BR><HR>
+
+</BODY>
+</HTML>

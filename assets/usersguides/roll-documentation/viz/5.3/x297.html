@@ -1,0 +1,300 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Attributes</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Viz Roll: Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Using"
+HREF="c295.html"><LINK
+REL="PREVIOUS"
+TITLE="Using"
+HREF="c295.html"><LINK
+REL="NEXT"
+TITLE="Chromium"
+HREF="x351.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Viz Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/resized-eye.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="c295.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 4. Using</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="x351.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="AEN297"
+>4.1. Attributes</A
+></H1
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN299"
+>4.1.1. Resolution</A
+></H2
+><P
+>After the layout is configured and the <SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks sync tile</SAMP
+> command is run the resolution of each tile display defaults to the preferred probed value from the nVidia driver.  
+Probing the display requires a DVI connection and may fail on a VGA connect display.  
+If the probed value is not correct you can modify the resolution using the <SAMP
+CLASS="COMPUTEROUTPUT"
+>viz_tile_resolution</SAMP
+> attribute.
+For example to set the resolution of all the tile to 1920x1200 use the command <SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks set appliance attr tile viz_tile_resolution 1920x1200</SAMP
+>, followup by a <SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks sync tile</SAMP
+> command.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN306"
+>4.1.2. Bezels Height and Width</A
+></H2
+><P
+>The Viz Roll supports the hiding of pixels behind LCD mullions (bezels).
+Without bezel hiding all images rendered on the wall will display all pixels, 
+This effect can be distracting for movies and other moving images, but is
+beneficial for static images and text.
+Bezel hiding is performed at the visualization middle-ware layer.
+Because this is controlled at the middle-ware layer Chromium and SAGE behave slightly differently, with Chromium allowing the enabling and disabling of bezel hiding, and SAGE only supporting bezel hiding.
+Despite these differences the following common set of attributes are used to set the bezel height and width.</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>viz_tile_left_bezel</DT
+><DD
+><P
+>The size (in pixels) of the left-hand side LCD bezel.</P
+></DD
+><DT
+>viz_tile_right_bezel</DT
+><DD
+><P
+>The size (in pixels) of the right-hand side LCD bezel.</P
+></DD
+><DT
+>viz_tile_top_bezel</DT
+><DD
+><P
+>The size (in pixels) of the top LCD bezel.</P
+></DD
+><DT
+>viz_tile_bottom_bezel</DT
+><DD
+><P
+>The size (in pixels) of the bottom LCD bezel.</P
+></DD
+></DL
+></DIV
+><P
+>The Viz Roll default for the the left and right side bezels is 100 pixels, and the default for the top and bottom bezels is 80 pixel.  These defaults are a reasonable starting point, but fine tuning will be required for your specific monitors.  Since the units of the bezels measurements are in pixels, of you change the resolution of the displays you will need to update the bezels settings as well.</P
+><P
+>You can use the <SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks set appliance attr</SAMP
+> command to set the bezel attributes.  For example, to change the left side bezel to 200 pixels use the command <SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks set appliance attr tile viz_tile_left_bezel 200</SAMP
+>.  If you have non-uniform displays you can also set the bezel sizes on a host basis, although not all middle-ware understands non-uniform tiled display walls.  For example, to change the right side bezel of tile-0-0:0.0 to 0 pixels use the command <SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks set host attr tile-0-0:0.0 viz_tile_right_bezel 0</SAMP
+>.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN331"
+>4.1.3. Video Driver</A
+></H2
+><P
+>The Viz Roll includes the latest (at time of release) production nVidia driver and the latest (at time of release) beta-version of the CUDA-enabled driver.  The CUDA driver is a superset of the standard driver and simply adds CUDA support to the existing OpenGL rendering support.
+Standard nVidia drivers are released as <SAMP
+CLASS="COMPUTEROUTPUT"
+>.run</SAMP
+> files and the Viz Roll installs these onto the tile nodes runs the driver file on first boot to build and install the driver.
+The following attributes control the selection of the driver:</P
+><P
+></P
+><DIV
+CLASS="VARIABLELIST"
+><DL
+><DT
+>viz_nvidia_driver</DT
+><DD
+><P
+>Full pathname to the <SAMP
+CLASS="COMPUTEROUTPUT"
+>.run</SAMP
+> driver file.
+The Viz Roll installs the production driver at <SAMP
+CLASS="COMPUTEROUTPUT"
+>/opt/viz/drivers/nvidia.run</SAMP
+>, and the beta-CUDA driver at <SAMP
+CLASS="COMPUTEROUTPUT"
+>/opt/viz/drivers/nvidia.run</SAMP
+>.
+			</P
+></DD
+><DT
+>viz_nvidia_driver_options</DT
+><DD
+><P
+>Command line flags used when executing the <SAMP
+CLASS="COMPUTEROUTPUT"
+>.run</SAMP
+> driver file.
+The defaults are <SAMP
+CLASS="COMPUTEROUTPUT"
+>--no-network -s</SAMP
+>.
+These setting work for both drivers included with the Viz Roll and should not
+but modified.
+			</P
+></DD
+></DL
+></DIV
+><P
+>To change to the CUDA driver for all tile use the command <SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks set appliance attr viz_nvidia_driver /opt/viz/drivers/cuda.run</SAMP
+> and re-install the all the tile machines.  You can also issue this command before integrating any machine to avoid a second installation.</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="c295.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="x351.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Using</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="c295.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Chromium</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

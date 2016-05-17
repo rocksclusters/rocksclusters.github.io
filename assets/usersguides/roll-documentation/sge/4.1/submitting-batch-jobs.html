@@ -1,0 +1,370 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Submitting Batch Jobs to SGE</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE=" SGE Roll: Users Guide "
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Using the SGE Roll"
+HREF="using.html"><LINK
+REL="PREVIOUS"
+TITLE="Setting the SGE environment"
+HREF="setting-sge-environment.html"><LINK
+REL="NEXT"
+TITLE="Monitoring SGE Jobs"
+HREF="monitoring-sge.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>SGE Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/ge_logo.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="setting-sge-environment.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 3. Using the SGE Roll</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="monitoring-sge.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="SUBMITTING-BATCH-JOBS"
+>3.3. Submitting Batch Jobs to SGE</A
+></H1
+><P
+>Batch jobs are submitted to SGE via scripts. Here is an example of a serial job script, <A
+HREF="examples/sleep.sh"
+TARGET="_top"
+>sleep.sh</A
+>. It basically executes the sleep command.</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>[sysadm1@frontend-0 sysadm1]$ cat sleep.sh
+#!/bin/bash
+#
+#$ -cwd
+#$ -j y
+#$ -S /bin/bash
+#
+date
+sleep 10
+date</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/note.png"
+HSPACE="5"
+ALT="Note"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>Entries which start with <VAR
+CLASS="LITERAL"
+>#$</VAR
+> will be treated as SGE options.</P
+><P
+></P
+><UL
+><LI
+><P
+><VAR
+CLASS="LITERAL"
+>-cwd</VAR
+> means to execute the job for the current working directory.</P
+></LI
+><LI
+><P
+><VAR
+CLASS="LITERAL"
+>-j y</VAR
+> means to merge the standard error stream into the standard output stream instead of having two separate error and output streams.</P
+></LI
+><LI
+><P
+><VAR
+CLASS="LITERAL"
+>-S /bin/bash</VAR
+> specifies the interpreting shell for this job to be the Bash shell.</P
+></LI
+></UL
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>To submit this serial job script, you should use the
+<B
+CLASS="COMMAND"
+>qsub</B
+> command.</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>[sysadm1@frontend-0 sysadm1]$ qsub sleep.sh
+your job 16 ("sleep.sh") has been submitted</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>For a parallel MPI job script, take a look at this script, <A
+HREF="examples/linpack.sh"
+TARGET="_top"
+>linpack.sh</A
+>. Note that you
+need to put in two SGE variables, <VAR
+CLASS="LITERAL"
+>$NSLOTS</VAR
+> and
+<VAR
+CLASS="LITERAL"
+>$TMP/machines</VAR
+> within the job script.</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>[sysadm1@frontend-0 sysadm1]$ cat linpack.sh
+#!/bin/bash
+#
+#$ -cwd
+#$ -j y
+#$ -S /bin/bash
+#
+MPI_DIR=/opt/mpich/gnu
+                                                                                
+$MPI_DIR/bin/mpirun -np $NSLOTS -machinefile $TMP/machines \
+        /opt/hpl/gnu/bin/xhpl</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>The command to submit a MPI parallel job script is similar to submitting a serial
+job script but you will need to use the <VAR
+CLASS="LITERAL"
+>-pe mpich N</VAR
+>.
+<VAR
+CLASS="LITERAL"
+>N</VAR
+> refers to the number of processes that you want to
+allocate to the MPI program. Here's an example of submitting a 2 processes
+linpack program using this <A
+HREF="examples/HPL.dat"
+TARGET="_top"
+>HPL.dat</A
+> file:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>[sysadm1@frontend-0 sysadm1]$ qsub -pe mpich 2 linpack.sh
+your job 17 ("sleep.sh") has been submitted</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>If you need to delete an already submitted job, you can use <B
+CLASS="COMMAND"
+>qdel</B
+> given it's job id. Here's an example of deleting a fluent job under SGE:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>[sysadm1@frontend-0 sysadm1]$ qsub fluent.sh
+your job 31 ("fluent.sh") has been submitted
+[sysadm1@frontend-0 sysadm1]$ qstat
+job-ID  prior name       user         state submit/start at     queue      master  ja-task-ID
+---------------------------------------------------------------------------------------------
+     31     0 fluent.sh  sysadm1      t     12/24/2003 01:10:28 comp-pvfs- MASTER
+[sysadm1@frontend-0 sysadm1]$ qdel 31
+sysadm1 has registered the job 31 for deletion
+[sysadm1@frontend-0 sysadm1]$ qstat
+[sysadm1@frontend-0 sysadm1]$</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Although the example job scripts are bash scripts, SGE can also accept other types of shell scripts. It is trivial to wrap serial programs into a SGE job script. Similarly, for MPI parallel jobs, you just need to use the correct <B
+CLASS="COMMAND"
+>mpirun</B
+> launcher and to also add in the two SGE variables, <VAR
+CLASS="LITERAL"
+>$NSLOTS</VAR
+> and
+<VAR
+CLASS="LITERAL"
+>$TMP/machines</VAR
+> within the job script. For other parallel jobs other than MPI, a Parallel Environment or PE needs to be defined. This is covered withn the SGE documentation.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="setting-sge-environment.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="monitoring-sge.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Setting the SGE environment</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="using.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Monitoring SGE Jobs</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

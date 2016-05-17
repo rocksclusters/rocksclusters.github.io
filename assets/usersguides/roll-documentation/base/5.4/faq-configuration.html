@@ -1,0 +1,785 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+> Configuration </TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Roll: Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Frequently Asked Questions"
+HREF="rocks-faq.html"><LINK
+REL="PREVIOUS"
+TITLE=" Installation "
+HREF="faq-installation.html"><LINK
+REL="NEXT"
+TITLE=" System Administration "
+HREF="faq-sysadmin.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Base Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="faq-installation.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Appendix A. Frequently Asked Questions</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="faq-sysadmin.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="FAQ-CONFIGURATION"
+>A.2. Configuration</A
+></H1
+><DIV
+CLASS="QANDASET"
+><DL
+><DT
+>A.2.1. <A
+HREF="faq-configuration.html#REMOVE-NODE"
+>How do I remove a compute node from the cluster?</A
+></DT
+><DT
+>A.2.2. <A
+HREF="faq-configuration.html#STARTX"
+>	Why doesn't startx work on the frontend machine?
+	</A
+></DT
+><DT
+>A.2.3. <A
+HREF="faq-configuration.html#DELL-POWERCONNECT"
+>	I can't install compute nodes and I have a Dell Powerconnect
+	5224 network switch, what can I do?
+	</A
+></DT
+><DT
+>A.2.4. <A
+HREF="faq-configuration.html#EXPORT"
+>	How do I export a new directory from the frontend to all the compute
+	nodes that is accessible under 
+	<SAMP
+CLASS="COMPUTEROUTPUT"
+>/home</SAMP
+>?
+	</A
+></DT
+><DT
+>A.2.5. <A
+HREF="faq-configuration.html#DISABLE-REINSTALL"
+>	How do I disable the feature that reinstalls compute nodes after a
+	hard reboot?
+	</A
+></DT
+></DL
+><DIV
+CLASS="QANDAENTRY"
+><DIV
+CLASS="QUESTION"
+><P
+><A
+NAME="REMOVE-NODE"
+></A
+><B
+>A.2.1. </B
+>How do I remove a compute node from the cluster?</P
+></DIV
+><DIV
+CLASS="ANSWER"
+><P
+><B
+> </B
+>On your frontend end, execute:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks remove host "[your compute node name]"</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>For example, if the compute node's name is
+<EM
+>compute-0-1</EM
+>, you'd execute:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks remove host compute-0-1
+# rocks sync config</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>The compute node has been removed from the cluster.</P
+></DIV
+></DIV
+><DIV
+CLASS="QANDAENTRY"
+><DIV
+CLASS="QUESTION"
+><P
+><A
+NAME="STARTX"
+></A
+><B
+>A.2.2. </B
+>	Why doesn't startx work on the frontend machine?
+	</P
+></DIV
+><DIV
+CLASS="ANSWER"
+><P
+><B
+> </B
+>	Before you can run startx you need to configure XFree86 for
+	your video card.  This is done just like on standard Red Hat machines
+	using the <SAMP
+CLASS="COMPUTEROUTPUT"
+>system-config-display</SAMP
+>
+        program.  If you do not know anything about
+	your video card just select "4MB" of video RAM and 16 bit
+	color 800x600.  This video mode should work on any modern VGA
+	card.
+	</P
+></DIV
+></DIV
+><DIV
+CLASS="QANDAENTRY"
+><DIV
+CLASS="QUESTION"
+><P
+><A
+NAME="DELL-POWERCONNECT"
+></A
+><B
+>A.2.3. </B
+>	I can't install compute nodes and I have a Dell Powerconnect
+	5224 network switch, what can I do?
+	</P
+></DIV
+><DIV
+CLASS="ANSWER"
+><P
+><B
+> </B
+>	Here's how to configure your Dell Powerconnect 5224:
+	</P
+><P
+>You need to set the <EM
+>edge port</EM
+> flag for all ports
+(in some Dell switches is labeled as <EM
+>fast link</EM
+>).</P
+><P
+>First, you'll need to set up an IP address on the switch:</P
+><P
+></P
+><UL
+><LI
+><P
+>	Plug in the serial cable that came with the switch.
+	</P
+></LI
+><LI
+><P
+>	Connect to the switch over the serial cable.
+	</P
+><P
+>	The username/password is: admin/admin.
+	</P
+></LI
+><LI
+><P
+>	Assign the switch an IP address:
+	</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># config
+# interface vlan 1
+# ip address 10.1.2.3 255.0.0.0</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>	Now you should be able to access the switch via the ethernet.
+	</P
+></LI
+><LI
+><P
+>	Plug an ethernet cable into the switch and to your laptop.
+	</P
+></LI
+><LI
+><P
+>	Configure the ip address on your laptop to be:
+	</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>IP: 10.20.30.40
+netmask: 255.0.0.0</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>	Point your web browser on your laptop to 10.1.2.3
+	</P
+></LI
+><LI
+><P
+>	Username/password is: admin/admin.
+	</P
+></LI
+><LI
+><P
+>	Set the <EM
+>edge port</EM
+> flag for all ports.
+	This is found under the menu item:
+	<EM
+>System-&#62;Spanning Tree-&#62;Port Settings</EM
+>.
+	</P
+></LI
+><LI
+><P
+>	Save the configuration.
+	</P
+><P
+>	This is accomplished by going to
+	<EM
+>System-&#62;Switch-&#62;Configuration</EM
+>
+	and typing 'rocks.cfg' in the last field
+	'Copy Running Config to File'.
+	In the field above it, you should see 'rocks.cfg' as the
+	'File Name' in the 'Start-Up Configuration File'.
+	</P
+></LI
+></UL
+></DIV
+></DIV
+><DIV
+CLASS="QANDAENTRY"
+><DIV
+CLASS="QUESTION"
+><P
+><A
+NAME="EXPORT"
+></A
+><B
+>A.2.4. </B
+>	How do I export a new directory from the frontend to all the compute
+	nodes that is accessible under 
+	<SAMP
+CLASS="COMPUTEROUTPUT"
+>/home</SAMP
+>?
+	</P
+></DIV
+><DIV
+CLASS="ANSWER"
+><P
+><B
+> </B
+> Execute this procedure: </P
+><P
+></P
+><UL
+><LI
+><P
+>	Add the directory you want to export to the file
+	<SAMP
+CLASS="COMPUTEROUTPUT"
+>/etc/exports</SAMP
+>.
+	</P
+><P
+>	For example, if you want to export the directory
+	<SAMP
+CLASS="COMPUTEROUTPUT"
+>/export/disk1</SAMP
+>, add the following
+	to <SAMP
+CLASS="COMPUTEROUTPUT"
+>/etc/exports</SAMP
+>:
+	</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>/export/disk1 10.0.0.0/255.0.0.0(rw)</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="90%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/note.png"
+HSPACE="5"
+ALT="Note"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> 
+	This exports the directory only to nodes that are on the internal
+	network (in the above example, the internal network is 
+	configured to be <SAMP
+CLASS="COMPUTEROUTPUT"
+>10.0.0.0</SAMP
+>)
+	</P
+></TD
+></TR
+></TABLE
+></DIV
+></LI
+><LI
+><P
+> 
+	Restart NFS:
+	</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># /etc/rc.d/init.d/nfs restart</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+> 
+	Add an entry to <SAMP
+CLASS="COMPUTEROUTPUT"
+>/etc/auto.home</SAMP
+>.
+	</P
+><P
+> 
+	For example, say you want
+	<SAMP
+CLASS="COMPUTEROUTPUT"
+>/export/disk1</SAMP
+> on the frontend
+	machine (named <EM
+>frontend-0</EM
+>) to be mounted as
+	<SAMP
+CLASS="COMPUTEROUTPUT"
+>/home/scratch</SAMP
+> on each compute
+	node.
+	</P
+><P
+> 
+	Add the following entry to 
+	<SAMP
+CLASS="COMPUTEROUTPUT"
+>/etc/auto.home</SAMP
+>:
+	</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>scratch		frontend-0:/export/disk1</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+> 
+	Inform 411 of the change:
+	</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># make -C /var/411</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+></UL
+><P
+>	Now when you login to any compute node and change your directory
+	to <SAMP
+CLASS="COMPUTEROUTPUT"
+>/home/scratch</SAMP
+>, it will
+	be automounted.
+	</P
+></DIV
+></DIV
+><DIV
+CLASS="QANDAENTRY"
+><DIV
+CLASS="QUESTION"
+><P
+><A
+NAME="DISABLE-REINSTALL"
+></A
+><B
+>A.2.5. </B
+>	How do I disable the feature that reinstalls compute nodes after a
+	hard reboot?
+	</P
+></DIV
+><DIV
+CLASS="ANSWER"
+><P
+><B
+> </B
+>	When compute nodes experience a <EM
+>hard</EM
+> reboot (e.g., 
+	when the compute node is reset by pushing the power button or after a
+	power failure), they will reformat the root file system and
+	reinstall their base operating environment.
+	</P
+><P
+>	To disable this feature:
+	</P
+><P
+></P
+><UL
+><LI
+><P
+> Login to the frontend </P
+></LI
+><LI
+><P
+>		Create a file that will override the default:
+		</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># cd /export/rocks/install
+# cp rocks-dist/<EM
+>arch</EM
+>/build/nodes/auto-kickstart.xml \
+site-profiles/5.4/nodes/replace-auto-kickstart.xml</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>	Where <EM
+>arch</EM
+> is "i386" or "x86_64".
+	</P
+></LI
+><LI
+><P
+>		Edit the file
+		<SAMP
+CLASS="COMPUTEROUTPUT"
+>		site-profiles/5.4/nodes/replace-auto-kickstart.xml
+		</SAMP
+>
+		</P
+></LI
+><LI
+><P
+> Remove the line: </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+>&#60;package&#62;rocks-boot-auto&#60;package&#62;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+>		Rebuild the distribution:
+		</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># cd /export/rocks/install
+# rocks create distro</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></LI
+><LI
+><P
+> Reinstall all your compute nodes </P
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="90%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/note.png"
+HSPACE="5"
+ALT="Note"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>		An alternative to reinstalling all your compute nodes is to
+		login to each compute node and execute:
+
+<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="90%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># /etc/rc.d/init.d/rocks-grub stop
+# /sbin/chkconfig --del rocks-grub</PRE
+></FONT
+></TD
+></TR
+></TABLE
+>
+
+		</P
+></TD
+></TR
+></TABLE
+></DIV
+></LI
+></UL
+></DIV
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="faq-installation.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="faq-sysadmin.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Installation</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="rocks-faq.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>System Administration</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

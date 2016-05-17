@@ -1,0 +1,313 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.70)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>condor_restart</TITLE>
+<META NAME="description" CONTENT="condor_restart">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="condor_rm.html">
+<LINK REL="previous" HREF="condor_reschedule.html">
+<LINK REL="up" HREF="9_Command_Reference.html">
+<LINK REL="next" HREF="condor_rm.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html3499"
+  HREF="condor_rm.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3493"
+  HREF="9_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3487"
+  HREF="condor_reschedule.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3495"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3497"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3500"
+  HREF="condor_rm.html">condor_rm</A>
+<B> Up:</B> <A NAME="tex2html3494"
+  HREF="9_Command_Reference.html">9. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3488"
+  HREF="condor_reschedule.html">condor_reschedule</A>
+ &nbsp; <B>  <A NAME="tex2html3496"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3498"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html3501"
+  HREF="condor_restart.html#SECTION0010341000000000000000">Synopsis</A>
+<LI><A NAME="tex2html3502"
+  HREF="condor_restart.html#SECTION0010342000000000000000">Description</A>
+<LI><A NAME="tex2html3503"
+  HREF="condor_restart.html#SECTION0010343000000000000000">Options</A>
+<LI><A NAME="tex2html3504"
+  HREF="condor_restart.html#SECTION0010344000000000000000">Exit Status</A>
+<LI><A NAME="tex2html3505"
+  HREF="condor_restart.html#SECTION0010345000000000000000">Examples</A>
+<LI><A NAME="tex2html3506"
+  HREF="condor_restart.html#SECTION0010346000000000000000">Author</A>
+<LI><A NAME="tex2html3507"
+  HREF="condor_restart.html#SECTION0010347000000000000000">Copyright</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION0010340000000000000000"></A><A NAME="man-condor-restart"></A>
+<BR>
+<I>condor_restart</I>
+</H1> Restart the a set of Condor daemons
+  
+<P>
+
+<H2><A NAME="SECTION0010341000000000000000">
+Synopsis</A>
+</H2><B><I>condor_restart</I></B>
+
+[<B>-help | -version</B>]
+
+<P>
+<B><I>condor_restart</I></B>
+
+[<B>-debug</B>]
+
+[<B>-name </B><I>name</I> | <I>name</I> | <B>-addr </B><I>"&lt;a.b.c.d:port&gt;"</I> | <I>"&lt;a.b.c.d:port&gt;"</I> <B>... </B> ]| [<B>-all</B>] 
+<BR>
+
+[<B>-subsystem  </B><I>master | startd | schedd | collector | negotiator
+	| kbdd | quill</I>]
+
+<P>
+<B><I>condor_restart</I></B>
+
+[<B>-debug</B>]
+
+[<B>-pool </B><I>centralmanagerhostname[:portnumber]</I>
+| <B>-name </B><I>name</I> ]| [<B>-addr  </B><I>"&lt;a.b.c.d:port&gt;"</I>]
+<B>... </B> [<B> | -all</B>] 
+<BR>
+
+[<B>-subsystem  </B><I>master | startd | schedd | collector | negotiator
+	| kbdd | quill</I>]
+
+<P>
+<A NAME="68658"></A>
+<A NAME="68659"></A>
+
+<P>
+
+<H2><A NAME="SECTION0010342000000000000000">
+Description</A>
+</H2>
+
+<P>
+<I>condor_restart</I> restarts a set of Condor daemon(s) on a set
+of machines.
+The daemon(s) will be put into a consistent state,
+killed, and then started anew.
+
+<P>
+If, for example, the <I>condor_master</I> needs to be restarted again with
+a fresh state, this is the command that should be used to do so.
+If the <TT>DAEMON_LIST</TT> variable in the configuration file has
+been changed, this command is used to restart the <I>condor_master</I>
+in order to see this change.
+The <I>condor_reconfigure</I> command cannot be used in the case where the
+<TT>DAEMON_LIST</TT> expression changes.
+
+<P>
+The command
+<I>condor_restart</I> with no arguments or with the 
+<B>-subsystem </B><I>master</I> option
+will safely shut down all running jobs and all submitted
+jobs from the machine(s) being restarted, then shut down
+all the child daemons of the <I>condor_master</I>,
+and then restart the <I>condor_master</I>.
+This, in turn, will allow the <I>condor_master</I> to start up
+other daemons as specified in the <TT>DAEMON_LIST</TT> configuration
+file entry.
+
+<P>
+For security purposes (authentication and authorization),
+this command requires an administrator's level of access.
+See
+section&nbsp;<A HREF="3_6Security.html#sec:Config-Security">3.6.1</A> on page&nbsp;<A HREF="3_6Security.html#sec:Config-Security"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>
+for further explanation.
+
+<P>
+
+<H2><A NAME="SECTION0010343000000000000000">
+Options</A>
+</H2>
+  
+<P>
+  <DL>
+<DT><STRONG><B>-help</B></STRONG></DT>
+<DD>Display usage information
+<BR></DD>
+<DT><STRONG><B>-version</B></STRONG></DT>
+<DD>Display version information
+<BR>
+
+</DD>
+<DT><STRONG><B>-pool </B><I>centralmanagerhostname[:portnumber]</I></STRONG></DT>
+<DD>Specify a pool by giving the
+	central manager's host name and an optional port number
+<BR></DD>
+<DT><STRONG><B>-name </B><I>name</I></STRONG></DT>
+<DD>Send the command to a machine identified by <I>name</I>
+<BR></DD>
+<DT><STRONG><I>name</I></STRONG></DT>
+<DD>Send the command to a machine identified by <I>name</I>
+<BR></DD>
+<DT><STRONG><B>-addr </B><I>"&lt;a.b.c.d:port&gt;"</I></STRONG></DT>
+<DD>Send the command
+	to a machine's master located at <I>"&lt;a.b.c.d:port&gt;"</I>
+<BR></DD>
+<DT><STRONG><I>"&lt;a.b.c.d:port&gt;"</I></STRONG></DT>
+<DD>Send the command
+	to a machine located at <I>"&lt;a.b.c.d:port&gt;"</I>
+<BR></DD>
+<DT><STRONG><B>-all</B></STRONG></DT>
+<DD>Send the command
+	to all machines in the pool
+<BR>
+
+</DD>
+<DT><STRONG><B>-subsystem </B><I>master | startd | schedd | collector | negotiator | kbdd | quill</I></STRONG></DT>
+<DD>Send the command to the named daemon. Without this option,
+the command is sent to the <I>condor_master</I> daemon.
+<BR>
+
+</DD>
+<DT><STRONG><B>-debug</B></STRONG></DT>
+<DD>Causes debugging information to be sent to
+<TT>stderr</TT>, based on the value of the configuration variable
+<TT>TOOL_DEBUG</TT>
+<BR>
+  
+</DD>
+</DL>
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION0010344000000000000000">
+Exit Status</A>
+</H2>
+
+<P>
+<I>condor_restart</I> will exit with a status value of 0 (zero) upon success,
+and it will exit with the value 1 (one) upon failure.
+
+<P>
+
+<H2><A NAME="SECTION0010345000000000000000">
+Examples</A>
+</H2>
+To restart the <I>condor_master</I> and all its children
+on the local host:
+<PRE>
+% condor_restart
+</PRE>
+
+<P>
+To restart only the <I>condor_startd</I> on a named machine:
+<PRE>
+% condor_restart -name bluejay -subsystem startd
+</PRE>
+
+<P>
+To restart a machine within a pool
+other than the local pool, use the <B>-pool</B> option.
+The argument is the name of the central manager for the pool.
+Note that one or more machines within the pool must be
+specified as the targets for the command.
+This command restarts
+the single machine named <B>cae17</B> within the
+pool of machines that has <B>condor.cae.wisc.edu</B> as
+its central manager:
+<PRE>
+% condor_restart -pool condor.cae.wisc.edu -name cae17
+</PRE>
+
+<P>
+
+<H2><A NAME="SECTION0010346000000000000000">
+Author</A>
+</H2> Condor Team, University of Wisconsin-Madison
+  
+<H2><A NAME="SECTION0010347000000000000000">
+Copyright</A>
+</H2> 
+  Copyright &#169; 1990-2010 Condor Team, Computer Sciences Department, 
+  University of Wisconsin-Madison, Madison, WI.  All Rights Reserved.  
+	Licensed under the Apache License, Version 2.0.
+
+<P>
+See the <I>Condor Version 7.4.4 Manual</I> or
+	<A NAME="tex2html141"
+  HREF="http://www.condorproject.org/license">http://www.condorproject.org/license</A>
+for
+  additional notices. 
+
+
+  <HR>
+<!--Navigation Panel-->
+<A NAME="tex2html3499"
+  HREF="condor_rm.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3493"
+  HREF="9_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3487"
+  HREF="condor_reschedule.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3495"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3497"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3500"
+  HREF="condor_rm.html">condor_rm</A>
+<B> Up:</B> <A NAME="tex2html3494"
+  HREF="9_Command_Reference.html">9. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3488"
+  HREF="condor_reschedule.html">condor_reschedule</A>
+ &nbsp; <B>  <A NAME="tex2html3496"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3498"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

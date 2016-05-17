@@ -1,0 +1,249 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>1.4 Current Limitations</TITLE>
+<META NAME="description" CONTENT="1.4 Current Limitations">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="1_5Availability.html">
+<LINK REL="previous" HREF="1_3Exceptional_Features.html">
+<LINK REL="up" HREF="1_Overview.html">
+<LINK REL="next" HREF="1_5Availability.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html732"
+  HREF="1_5Availability.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html726"
+  HREF="1_Overview.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html720"
+  HREF="1_3Exceptional_Features.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html728"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html730"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html733"
+  HREF="1_5Availability.html">1.5 Availability</A>
+<B> Up:</B> <A NAME="tex2html727"
+  HREF="1_Overview.html">1. Overview</A>
+<B> Previous:</B> <A NAME="tex2html721"
+  HREF="1_3Exceptional_Features.html">1.3 Exceptional Features</A>
+ &nbsp; <B>  <A NAME="tex2html729"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html731"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00240000000000000000"></A><A NAME="sec:current-limitations"></A>
+<BR>
+1.4 Current Limitations
+</H1>
+
+<P>
+<DL>
+<DD><A NAME="1244"></A>
+</DD>
+<DT><STRONG>Limitations on Jobs which can Checkpointed</STRONG></DT>
+<DD>Although Condor can schedule and
+run any type of process, Condor does have some limitations on jobs that it can
+transparently checkpoint and migrate:
+
+<P>
+
+<P>
+
+<A NAME="1287"></A>
+<A NAME="1288"></A>
+<A NAME="1289"></A>
+<OL>
+<LI>Multi-process jobs are not allowed.  This includes system calls such as
+<TT>fork()</TT>, <TT>exec()</TT>, and <TT>system()</TT>.
+
+<P>
+<A NAME="1293"></A>
+<A NAME="1294"></A>
+<A NAME="1295"></A>
+</LI>
+<LI>Interprocess communication is not allowed.  This includes pipes, semaphores, and shared memory.
+
+<P>
+<A NAME="1296"></A>
+<A NAME="1297"></A>
+</LI>
+<LI>Network communication must be brief.  A job <I>may</I> make network
+connections using system calls such as <TT>socket()</TT>, but a network
+connection left open for long periods will delay checkpointing and migration.
+
+<P>
+<A NAME="1300"></A>
+<A NAME="1301"></A>
+<A NAME="1302"></A>
+</LI>
+<LI>Sending or receiving the SIGUSR2 or SIGTSTP signals is not allowed.
+Condor reserves these signals for its own use.  Sending or receiving all
+other signals <I>is</I> allowed.
+
+<P>
+<A NAME="1304"></A>
+<A NAME="1305"></A>
+<A NAME="1306"></A>
+</LI>
+<LI>Alarms, timers, and sleeping are not allowed.  This includes system
+calls such as <TT>alarm()</TT>, <TT>getitimer()</TT>, and <TT>sleep()</TT>.
+
+<P>
+<A NAME="1310"></A>
+<A NAME="1311"></A>
+</LI>
+<LI>Multiple kernel-level threads are not allowed.  However,
+multiple user-level threads <I>are</I> allowed.
+
+<P>
+<A NAME="1313"></A>
+<A NAME="1314"></A>
+</LI>
+<LI>Memory mapped files are not allowed.  This includes system calls such
+as <TT>mmap()</TT> and <TT>munmap()</TT>.
+
+<P>
+<A NAME="1317"></A>
+<A NAME="1318"></A>
+<A NAME="1319"></A>
+</LI>
+<LI>File locks are allowed, but not retained between checkpoints.
+
+<P>
+<A NAME="1320"></A>
+<A NAME="1321"></A>
+</LI>
+<LI>All files must be opened read-only or write-only.  A file opened
+for both reading and writing will cause trouble if a job must be rolled back
+to an old checkpoint image.  For compatibility reasons, a file opened
+for both reading and writing will result in a warning but not an error.
+
+<P>
+</LI>
+<LI>A fair amount of disk space must be available on the submitting machine
+for storing a job's checkpoint images.  A checkpoint image is approximately
+equal to the virtual memory consumed by a job while it runs.  If disk space
+is short, a special <I>checkpoint server</I> can be designated for storing
+all the checkpoint images for a pool.
+
+<P>
+<A NAME="1323"></A>
+<A NAME="1324"></A>
+</LI>
+<LI>On Linux, the job must be statically linked. 
+<I>condor_compile</I> does this by default.
+
+<P>
+<A NAME="1326"></A> 
+</LI>
+<LI>Reading to or writing from files larger than 2 GBytes is only supported
+when the submit side <I>condor_shadow</I> and the standard universe user job
+application itself are both 64-bit executables.
+
+<P>
+</LI>
+</OL>
+
+<P>
+
+<P>
+Note: these limitations <I>only</I> apply to jobs which Condor
+has been asked to transparently checkpoint.  If job checkpointing is not
+desired, the limitations above do not apply.
+
+<P>
+</DD>
+<DT><STRONG>Security Implications.</STRONG></DT>
+<DD>Condor does a significant amount of
+	work to prevent security hazards, but loopholes are known to exist.
+	Condor can be instructed to run user programs only as the UNIX
+	user nobody, a user login which traditionally has very 
+	restricted access.
+	But even with access solely as user nobody,
+	a sufficiently malicious individual could do such things as fill up
+	<TT>/tmp</TT> (which is world writable) and/or gain read access to
+	world readable files.
+	Furthermore, where the security of machines in the pool is a
+	high concern, 
+	only machines where the UNIX user root on that machine can be
+	trusted should be admitted into the pool.
+	Condor provides the administrator with extensive security mechanisms 
+	to enforce desired policies.
+
+<P>
+</DD>
+<DT><STRONG>Jobs Need to be Re-linked to get Checkpointing and Remote System Calls</STRONG></DT>
+<DD>Although 
+typically no source code changes are required,
+Condor requires
+that the jobs be re-linked with the Condor libraries to take
+advantage of checkpointing and remote system calls. This often
+precludes commercial software binaries from taking advantage of these services
+because commercial packages rarely make their object code
+available. 
+Condor's other services are still available for these commercial packages.
+
+<P>
+</DD>
+</DL>
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html732"
+  HREF="1_5Availability.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html726"
+  HREF="1_Overview.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html720"
+  HREF="1_3Exceptional_Features.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html728"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html730"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html733"
+  HREF="1_5Availability.html">1.5 Availability</A>
+<B> Up:</B> <A NAME="tex2html727"
+  HREF="1_Overview.html">1. Overview</A>
+<B> Previous:</B> <A NAME="tex2html721"
+  HREF="1_3Exceptional_Features.html">1.3 Exceptional Features</A>
+ &nbsp; <B>  <A NAME="tex2html729"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html731"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

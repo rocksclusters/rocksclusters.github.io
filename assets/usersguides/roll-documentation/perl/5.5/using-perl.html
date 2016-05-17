@@ -1,0 +1,319 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Using the perl Roll</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE=" perl Roll: Users Guide "
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Using the perl Roll"
+HREF="using.html"><LINK
+REL="PREVIOUS"
+TITLE="Using the perl Roll"
+HREF="using.html"><LINK
+REL="NEXT"
+TITLE="Copyrights"
+HREF="copyrights.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>perl Roll: Users Guide: 		
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="using.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 2. Using the perl Roll</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="copyrights.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="USING-PERL"
+>2.1. Using the perl Roll</A
+></H1
+><P
+>The version of perl installed with this release of the Perl Roll
+is Perl 5.14.1.</P
+><P
+>The various CPAN modules that are included with this roll, are
+compiled and installed against the aforementioned version of Perl.</P
+><P
+>Tutorials for using Perl and its components are available
+from the <A
+HREF="http://www.perl.org"
+TARGET="_top"
+> Perl site</A
+>
+and from <A
+HREF="http://www.cpan.org"
+TARGET="_top"
+>CPAN</A
+></P
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="PERL-LOC"
+>2.1.1. Perl Location</A
+></H2
+><P
+>The Perl roll installs Perl 5.14.1 in <TT
+CLASS="FILENAME"
+>/opt/perl</TT
+>.</P
+><P
+>All the CPAN modules that are provided in the Perl roll are also installed
+in <TT
+CLASS="FILENAME"
+>/opt/perl</TT
+>. </P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN51"
+>2.1.2. Creating RPM from CPAN modules</A
+></H2
+><P
+>The Perl roll introduces an experimental feature of creating Rocks RPMS from
+CPAN modules. We believe this is a better method of distributing CPAN modules across
+a cluster than using CPAN by hand on every single node that requires it.</P
+><P
+>With the release of the Perl roll, both Makefile.PL and Build.PL methods of building
+and installing CPAN modules are supported.</P
+><P
+>To build an RPM from CPAN, we will use the <B
+CLASS="COMMAND"
+>cpan2dist</B
+> utility that
+comes with the core of Perl.</P
+><P
+>To build an RPM from CPAN, we need to make sure that when running
+<B
+CLASS="COMMAND"
+>cpan2dist</B
+>, we don't create RPMS for modules that are
+already installed on the system. So we create a file called <TT
+CLASS="FILENAME"
+>modules.ignore</TT
+>
+that contains a list of all modules that we want to ignore during a build.</P
+><P
+>The easiest way to create <TT
+CLASS="FILENAME"
+>modules.ignore</TT
+> is to obtain information
+about installed modules from the RPMS that are already present and installed on
+the system.
+<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># for i in `rpm -qa | grep -G "^opt-perl"`; do	\
+	rpm -q --provides $i | grep -E "^perl\(" | \
+	sed -r -e 's/^perl\(/^/' -e 's/\)[ \t]*(=[ \t]*[.0-9]+)*$/$/';
+  done | sort  | uniq &#62; modules.ignore</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></P
+><P
+>Now that we have our ignore list, we can try to build an RPM from CPAN. For this
+example, we will use the Params::Validate module from CPAN.</P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN64"
+></A
+><P
+><B
+>Example 2-1. Running cpan2dist to create Rocks RPM</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="PROGRAMLISTING"
+># /opt/perl/bin/cpan2dist --format CPANPLUS::Dist::Rocks  \
+	--ignorelist modules.ignore --buildprereq --force \
+	--verbose Params::Validate
+[MSG] Checking if source files are up to date
+[MSG] Updating source file '01mailrc.txt.gz'
+[MSG] Trying to get 'ftp://ftp.cpan.org/pub/CPAN/authors/01mailrc.txt.gz'
+[MSG] Updating source file '03modlist.data.gz'
+[MSG] Trying to get 'ftp://ftp.cpan.org/pub/CPAN/modules/03modlist.data.gz'
+[MSG] Updating source file '02packages.details.txt.gz'
+[MSG] Trying to get 'ftp://ftp.cpan.org/pub/CPAN/modules/02packages.details.txt.gz'
+[MSG] No '/export/cpan/cpanplus/custom-sources' dir, skipping custom sources
+[MSG] Rebuilding author tree, this might take a while
+[MSG] Rebuilding module tree, this might take a while
+[MSG] No '/export/cpan/cpanplus/custom-sources' dir, skipping custom sources
+[MSG] No '/export/cpan/cpanplus/custom-sources' dir, skipping custom sources
+[MSG] Writing compiled source information to disk. This might take a little while.
+[MSG] Trying to get 'ftp://ftp.cpan.org/pub/CPAN/authors/id/D/DR/DROLSKY/Params-Validate-1.00.tar.gz'
+[MSG] Trying to get 'ftp://ftp.cpan.org/pub/CPAN/authors/id/D/DR/DROLSKY/CHECKSUMS'
+[MSG] Checksum matches for 'Params-Validate-1.00.tar.gz'
+.........
+[MSG] RPM created successfully: /state/partition1/devel/misc/cpan/Params-Validate/x86_64/opt-perl-Params-Validate-1.00-0.x86_64.rpm
+Created 'CPANPLUS::Dist::Rocks' distribution for Params::Validate to:
+	/state/partition1/devel/misc/cpan/Params-Validate/x86_64/opt-perl-Params-Validate-1.00-0.x86_64.rpm</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>When you see the last line that states that the Params::Validate RPM was
+created successfully, and its location, you may use the RPM to install the CPAN
+module across your entire cluster.</P
+><P
+>The <B
+CLASS="COMMAND"
+>cpan2dist</B
+> command in the above example has an option
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>--buildprereq</SAMP
+>. This option builds any prerequisites
+that the module has, and creates RPMS for those prerequisites as well. These RPMS
+are in various subdirectories in your build directory.</P
+><P
+>For more information about using the <B
+CLASS="COMMAND"
+>cpan2dist</B
+> command, please
+run the <B
+CLASS="COMMAND"
+>/opt/perl/bin/cpan2dist</B
+> command without any arguments.</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="using.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="copyrights.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Using the perl Roll</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="using.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Copyrights</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

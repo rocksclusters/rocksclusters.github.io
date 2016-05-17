@@ -1,0 +1,230 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<link rel="canonical" href="http://research.cs.wisc.edu/htcondor/manual/current/condor_prio.html">
+
+<TITLE>condor_prio</TITLE>
+<META NAME="description" CONTENT="condor_prio">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="condor_procd.html">
+<LINK REL="previous" HREF="condor_preen.html">
+<LINK REL="up" HREF="11_Command_Reference.html">
+<LINK REL="next" HREF="condor_procd.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html3683"
+  HREF="condor_procd.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3677"
+  HREF="11_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3671"
+  HREF="condor_preen.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3679"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3681"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3684"
+  HREF="condor_procd.html">condor_procd</A>
+<B> Up:</B> <A NAME="tex2html3678"
+  HREF="11_Command_Reference.html">11. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3672"
+  HREF="condor_preen.html">condor_preen</A>
+ &nbsp; <B>  <A NAME="tex2html3680"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3682"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html3685"
+  HREF="condor_prio.html#SECTION0012311000000000000000">Synopsis</A>
+<LI><A NAME="tex2html3686"
+  HREF="condor_prio.html#SECTION0012312000000000000000">Description</A>
+<LI><A NAME="tex2html3687"
+  HREF="condor_prio.html#SECTION0012313000000000000000">Options</A>
+<LI><A NAME="tex2html3688"
+  HREF="condor_prio.html#SECTION0012314000000000000000">Exit Status</A>
+<LI><A NAME="tex2html3689"
+  HREF="condor_prio.html#SECTION0012315000000000000000">Author</A>
+<LI><A NAME="tex2html3690"
+  HREF="condor_prio.html#SECTION0012316000000000000000">Copyright</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION0012310000000000000000"></A><A NAME="man-condor-prio"></A>
+<BR>
+<I>condor_prio</I>
+</H1> change priority of jobs in the HTCondor queue
+  
+<P>
+
+<H2><A NAME="SECTION0012311000000000000000">
+Synopsis</A>
+</H2><B><I>condor_prio</I></B>
+<B>-p </B><I>priority</I> <IMG
+ WIDTH="10" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img62.png"
+ ALT="$\vert$"> <B>+ </B><I>value</I> <IMG
+ WIDTH="10" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img62.png"
+ ALT="$\vert$"> <B>- </B><I>value</I>
+[<B>-n  </B><I>schedd_name</I>]
+<I>cluster | cluster.process | username | -a</I>
+
+<P>
+<B><I>condor_prio</I></B>
+<B>-p </B><I>priority</I> <IMG
+ WIDTH="10" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img62.png"
+ ALT="$\vert$"> <B>+ </B><I>value</I> <IMG
+ WIDTH="10" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img62.png"
+ ALT="$\vert$"> <B>- </B><I>value</I>
+[<B>-pool </B><I>pool_name</I>  <B>-n </B><I>schedd_name</I> ]
+<I>cluster | cluster.process | username | -a</I>
+
+<P>
+<A NAME="71051"></A>
+<A NAME="71052"></A>
+
+<P>
+
+<H2><A NAME="SECTION0012312000000000000000">
+Description</A>
+</H2>
+
+<P>
+<I>condor_prio</I> changes the priority of one or more jobs in the HTCondor queue.
+If the job identification is given by <I>cluster.process</I>,
+<I>condor_prio</I> attempts to change the priority of the single job
+with job ClassAd attributes <TT>ClusterId</TT> and <TT>ProcId</TT>.
+If described by <I>cluster</I>,
+<I>condor_prio</I> attempts to change the priority of all processes with the
+given <TT>ClusterId</TT> job ClassAd attribute.
+If <I>username</I> is specified, <I>condor_prio</I> attempts to change priority
+of all jobs belonging to that user.
+For <I>-a</I>, <I>condor_prio</I> attempts to change priority of
+all jobs in the queue.
+
+<P>
+The user must set a new priority with the <B>-p</B> option,
+or specify a priority adjustment. 
+The priority of a job can be any integer, with higher numbers
+corresponding to greater priority.
+For adjustment of the current priority,
+<B>+ </B><I>value</I> increases the priority by the amount given with <I>value</I>.
+<B>- </B><I>value</I> decreases the priority by the amount given with <I>value</I>.
+
+<P>
+Only the owner of a job or the super user can change the priority.
+
+<P>
+The priority changed by <I>condor_prio</I> is only used when
+comparing to the priority
+jobs owned by the same user and submitted from the same machine.
+
+<P>
+
+<H2><A NAME="SECTION0012313000000000000000">
+Options</A>
+</H2>
+  
+<P>
+  <DL>
+<DT><STRONG><B>-n </B><I>schedd_name</I></STRONG></DT>
+<DD>Change priority of jobs queued
+    at the specified <I>condor_schedd</I> in the local pool.
+<BR>  
+</DD>
+<DT><STRONG><B>-pool </B><I>pool_name</I> <B>-n </B><I>schedd_name</I></STRONG></DT>
+<DD>Change 
+    priority of jobs queued at the specified <I>condor_schedd</I> 
+    in the specified pool.
+<BR>  
+</DD>
+</DL>
+  
+<P>
+
+<P>
+
+<H2><A NAME="SECTION0012314000000000000000">
+Exit Status</A>
+</H2>
+
+<P>
+<I>condor_prio</I> will exit with a status value of 0 (zero) upon success,
+and it will exit with the value 1 (one) upon failure.
+
+<P>
+
+<H2><A NAME="SECTION0012315000000000000000">
+Author</A>
+</H2> Center for High Throughput Computing, University of Wisconsin-Madison
+  
+<H2><A NAME="SECTION0012316000000000000000">
+Copyright</A>
+</H2> 
+  Copyright &#169; 1990-2013 Center for High Throughput Computing, 
+  Computer Sciences Department, 
+  University of Wisconsin-Madison, Madison, WI.  All Rights Reserved.  
+	Licensed under the Apache License, Version 2.0.  
+
+  <HR>
+<!--Navigation Panel-->
+<A NAME="tex2html3683"
+  HREF="condor_procd.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html3677"
+  HREF="11_Command_Reference.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html3671"
+  HREF="condor_preen.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html3679"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html3681"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html3684"
+  HREF="condor_procd.html">condor_procd</A>
+<B> Up:</B> <A NAME="tex2html3678"
+  HREF="11_Command_Reference.html">11. Command Reference Manual</A>
+<B> Previous:</B> <A NAME="tex2html3672"
+  HREF="condor_preen.html">condor_preen</A>
+ &nbsp; <B>  <A NAME="tex2html3680"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html3682"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

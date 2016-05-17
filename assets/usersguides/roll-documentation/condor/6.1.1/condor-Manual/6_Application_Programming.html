@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>6. Application Programming Interfaces (APIs)</TITLE>
+<META NAME="description" CONTENT="6. Application Programming Interfaces (APIs)">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="7_Platform_Specific_Informa.html">
+<LINK REL="previous" HREF="5_Grid_Computing.html">
+<LINK REL="up" HREF="ref.html">
+<LINK REL="next" HREF="6_1Web_Service.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html2037"
+  HREF="6_1Web_Service.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html2031"
+  HREF="ref.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html2025"
+  HREF="5_4HTCondor_Job.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html2033"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html2035"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html2038"
+  HREF="6_1Web_Service.html">6.1 Web Service</A>
+<B> Up:</B> <A NAME="tex2html2032"
+  HREF="ref.html">HTCondor<SUP><SUP>TM</SUP></SUP> Version 8.0.6 Manual</A>
+<B> Previous:</B> <A NAME="tex2html2026"
+  HREF="5_4HTCondor_Job.html">5.4 The HTCondor Job</A>
+ &nbsp; <B>  <A NAME="tex2html2034"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html2036"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00700000000000000000"></A>
+<A NAME="APIs"></A>
+<BR>
+6. Application Programming Interfaces (APIs)
+</H1>
+There are several ways of interacting with the HTCondor system.  Depending on
+your application and resources, the interfaces to HTCondor listed below may be
+useful for your installation. If you have developed an interface to HTCondor,
+please consider sharing it with the HTCondor community.
+
+<P>
+<BR><HR>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html2039"
+  HREF="6_1Web_Service.html">6.1  Web Service</A>
+<UL>
+<LI><A NAME="tex2html2040"
+  HREF="6_1Web_Service.html#SECTION00711000000000000000">6.1.1  Transactions</A>
+<LI><A NAME="tex2html2041"
+  HREF="6_1Web_Service.html#SECTION00712000000000000000">6.1.2  Job Submission</A>
+<LI><A NAME="tex2html2042"
+  HREF="6_1Web_Service.html#SECTION00713000000000000000">6.1.3  File Transfer</A>
+<LI><A NAME="tex2html2043"
+  HREF="6_1Web_Service.html#SECTION00714000000000000000">6.1.4  Implementation Details</A>
+<LI><A NAME="tex2html2044"
+  HREF="6_1Web_Service.html#SECTION00715000000000000000">6.1.5  Get These Items Correct</A>
+<LI><A NAME="tex2html2045"
+  HREF="6_1Web_Service.html#SECTION00716000000000000000">6.1.6  Methods for Transaction Management</A>
+<LI><A NAME="tex2html2046"
+  HREF="6_1Web_Service.html#SECTION00717000000000000000">6.1.7  Methods for Job Submission</A>
+<LI><A NAME="tex2html2047"
+  HREF="6_1Web_Service.html#SECTION00718000000000000000">6.1.8  Methods for File Transfer</A>
+<LI><A NAME="tex2html2048"
+  HREF="6_1Web_Service.html#SECTION00719000000000000000">6.1.9  Methods for Job Management</A>
+<LI><A NAME="tex2html2049"
+  HREF="6_1Web_Service.html#SECTION007110000000000000000">6.1.10  Methods for ClassAd Management</A>
+<LI><A NAME="tex2html2050"
+  HREF="6_1Web_Service.html#SECTION007111000000000000000">6.1.11  Methods for Version Information</A>
+<LI><A NAME="tex2html2051"
+  HREF="6_1Web_Service.html#SECTION007112000000000000000">6.1.12  Common Data Structures</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html2052"
+  HREF="6_2DRMAA_API.html">6.2  The DRMAA API</A>
+<UL>
+<LI><A NAME="tex2html2053"
+  HREF="6_2DRMAA_API.html#SECTION00721000000000000000">6.2.1  Implementation Details</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html2054"
+  HREF="6_3HTCondor_User.html">6.3 The HTCondor User and Job Log Reader API</A>
+<UL>
+<LI><A NAME="tex2html2055"
+  HREF="6_3HTCondor_User.html#SECTION00731000000000000000">6.3.1 Constants and Enumerated Types</A>
+<LI><A NAME="tex2html2056"
+  HREF="6_3HTCondor_User.html#SECTION00732000000000000000">6.3.2 Constructors and Destructors</A>
+<LI><A NAME="tex2html2057"
+  HREF="6_3HTCondor_User.html#SECTION00733000000000000000">6.3.3 Initializers</A>
+<LI><A NAME="tex2html2058"
+  HREF="6_3HTCondor_User.html#SECTION00734000000000000000">6.3.4 Primary Methods</A>
+<LI><A NAME="tex2html2059"
+  HREF="6_3HTCondor_User.html#SECTION00735000000000000000">6.3.5 Accessors</A>
+<LI><A NAME="tex2html2060"
+  HREF="6_3HTCondor_User.html#SECTION00736000000000000000">6.3.6 Methods for saving and restoring persistent reader state</A>
+<LI><A NAME="tex2html2061"
+  HREF="6_3HTCondor_User.html#SECTION00737000000000000000">6.3.7 Save state to persistent storage</A>
+<LI><A NAME="tex2html2062"
+  HREF="6_3HTCondor_User.html#SECTION00738000000000000000">6.3.8 Restore state from persistent storage</A>
+<LI><A NAME="tex2html2063"
+  HREF="6_3HTCondor_User.html#SECTION00739000000000000000">6.3.9 API Reference</A>
+<LI><A NAME="tex2html2064"
+  HREF="6_3HTCondor_User.html#SECTION007310000000000000000">6.3.10 Access to the persistent state data</A>
+<LI><A NAME="tex2html2065"
+  HREF="6_3HTCondor_User.html#SECTION007311000000000000000">6.3.11 Future persistence API</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html2066"
+  HREF="6_4Chirp.html">6.4  Chirp</A>
+<LI><A NAME="tex2html2067"
+  HREF="6_5Command_Line.html">6.5  The Command Line Interface</A>
+<LI><A NAME="tex2html2068"
+  HREF="6_6HTCondor_Perl.html">6.6  The HTCondor Perl Module</A>
+<UL>
+<LI><A NAME="tex2html2069"
+  HREF="6_6HTCondor_Perl.html#SECTION00761000000000000000">6.6.1 Subroutines</A>
+<LI><A NAME="tex2html2070"
+  HREF="6_6HTCondor_Perl.html#SECTION00762000000000000000">6.6.2 Examples</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html2071"
+  HREF="6_7Python_Bindings.html">6.7  Python Bindings</A>
+<UL>
+<LI><A NAME="tex2html2072"
+  HREF="6_7Python_Bindings.html#SECTION00771000000000000000">6.7.1  <TT>htcondor</TT>  Module</A>
+<LI><A NAME="tex2html2073"
+  HREF="6_7Python_Bindings.html#SECTION00772000000000000000">6.7.2  Sample Code using the <TT>htcondor</TT> Python Module</A>
+<LI><A NAME="tex2html2074"
+  HREF="6_7Python_Bindings.html#SECTION00773000000000000000">6.7.3  ClassAd Module</A>
+<LI><A NAME="tex2html2075"
+  HREF="6_7Python_Bindings.html#SECTION00774000000000000000">6.7.4  Sample Code using the <TT>classad</TT> Module</A>
+</UL></UL>
+<!--End of Table of Child-Links-->
+<BR><HR>
+
+</BODY>
+</HTML>

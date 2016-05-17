@@ -1,0 +1,218 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Introduction to the Rocks Command Line</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Roll: Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Administration Examples"
+HREF="admin-examples.html"><LINK
+REL="PREVIOUS"
+TITLE="Administration Examples"
+HREF="admin-examples.html"><LINK
+REL="NEXT"
+TITLE="Boot Order and PXE First"
+HREF="boot-order.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Base Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="admin-examples.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 5. Administration Examples</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="boot-order.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="COMMANDLINE"
+>5.1. Introduction to the Rocks Command Line</A
+></H1
+><P
+> In Rocks 4.3 the Rocks command line was introduced to provide a more uniform interface to the underlying structures used to control system configuration
+and behaviour. Wherever possible, Rocks uses a SQL database (MySQL currently)
+to hold information about nodes, partitioning information, boot parameters
+and other information. Based on information in the database, various configuration files are rewritten.  The re-generation of configuration files occurs 
+everytime a node is added or deleted from the cluster. The re-generation of
+configuration files can also be forced.  A large fraction of rocks commands
+manipulate data held in the configuration database. In general, the process
+of changing configuration is a two-step process: </P
+><P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>Use rocks commands to change configuration in the database 
+(e.g. <SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks set host</SAMP
+>)</P
+></LI
+><LI
+><P
+>Rewrite configuration files using  
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>rocks sync config</SAMP
+></P
+></LI
+></OL
+><P
+>It should be noted that step 1 above is usually called several times to 
+update in the database and then step 2 is called to write individual 
+confiuration files in the format that the native OS tools understand.  </P
+><DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="100%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/note.png"
+HSPACE="5"
+ALT="Note"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+> Rocks commands have arguments and parameters. Parameters are of the
+form "param=&#60;value&#62;" and may appear anywhere. Arguments must appear
+in the order defined by the command. To get help on any rocks command type  "help" for the argument to the command. For example
+<SAMP
+CLASS="COMPUTEROUTPUT"
+>  rocks set host interface ip help </SAMP
+></P
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="admin-examples.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="boot-order.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Administration Examples</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="admin-examples.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Boot Order and PXE First</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

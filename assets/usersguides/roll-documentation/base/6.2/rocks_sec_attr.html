@@ -1,0 +1,439 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+>Rocks Secure Attribute Infrastructure</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Changes to Rocks Security Infrastructure"
+HREF="passwd_sec.html"><LINK
+REL="PREVIOUS"
+TITLE="Rocks Password Infrastructure"
+HREF="rocks_pw.html"><LINK
+REL="NEXT"
+TITLE="Kickstart Nodes Reference"
+HREF="appendix-b.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+><B
+CLASS="COMMAND"
+>Base</B
+> Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="rocks_pw.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Appendix D. Changes to Rocks Security Infrastructure</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="appendix-b.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="ROCKS_SEC_ATTR"
+>D.2. Rocks Secure Attribute Infrastructure</A
+></H1
+><P
+>	As a replacement for shadow attributes, we introduced the Rocks secure
+	attributes infrastructure. The reason for the change was internal, as
+	shadow attributes were still accessible by the apache user. Secure
+	attributes are not accessible by anyone but the root user. 
+	</P
+><P
+>	The secure attributes are not synced along with any of the other regular
+	attributes. The secure attributes are synced between hosts completely
+	out of band using standard SSH.
+	</P
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS_SEC_ATTR_STRUCT"
+>D.2.1. Structure</A
+></H2
+><P
+>	The secure attributes infrastructure consists of two parts.
+	</P
+><P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>	The secure attribute itself, which is stored in the database.
+	</P
+></LI
+><LI
+><P
+>	Plugins, in the form of python code, which defines how to act on the
+	secure attribute. These plugins reside in
+	<TT
+CLASS="FILENAME"
+>/opt/rocks/var/plugins/sec_attr/</TT
+>. The
+	plugins have a very simple API.
+	</P
+></LI
+></OL
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="ROCKS_SEC_ATTR_PLUGINS"
+>D.2.2. Plugins API</A
+></H2
+><P
+>	The Rocks secure attribute plugin class inherits a single class called
+	<CODE
+CLASS="FUNCTION"
+>rocks.commands.sec_attr_plugin</CODE
+>.
+	</P
+><P
+>	This example is a very simple fictitious use-case.
+	A service called
+	<B
+CLASS="COMMAND"
+>fake_service</B
+> runs on
+	all compute nodes, and stores an SHA password in it's configuration
+	file. The configuration file for this service is called
+	<TT
+CLASS="FILENAME"
+>/etc/fake_service.conf</TT
+>. These are the
+	contents of the config file.
+<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># cat /etc/fake_service.conf
+password=150b95f90c06f127a040a40f98582231369b6fda</PRE
+></FONT
+></TD
+></TR
+></TABLE
+>
+	</P
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="AEN9644"
+>D.2.2.1. Setting the Secure Attribute</A
+></H3
+><P
+>	This password can be stored in the database as a secure attribute.
+	To store the password as a secure attribute, run
+	<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks set host sec_attr compute attr=fake_svc_pw enc=sha
+  Enter fake_svc_pw: 
+Confirm fake_svc_pw: </PRE
+></FONT
+></TD
+></TR
+></TABLE
+>
+	</P
+><P
+>	  Enter the password string and confirm it (the same way you would when
+	  changing the root password).
+	</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="AEN9649"
+>D.2.2.2. Creating the plugin</A
+></H3
+><P
+>	Secure attribute plugins are located in the
+	<SAMP
+CLASS="COMPUTEROUTPUT"
+>/opt/rocks/var/plugins/sec_attr</SAMP
+>
+	directory. These plugins are written in python, and contain very simple
+	API. There are two functions that must be a part of all plugins.
+	</P
+><P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+><CODE
+CLASS="FUNCTION"
+>get_sec_attr</CODE
+>: This
+		function returns a the name of the secure attribute as stored in
+		the database. In the example, this would return
+		<CODE
+CLASS="FUNCTION"
+>fake_svc_pw</CODE
+>. <DIV
+CLASS="NOTE"
+><P
+></P
+><TABLE
+CLASS="NOTE"
+WIDTH="90%"
+BORDER="0"
+><TR
+><TD
+WIDTH="25"
+ALIGN="CENTER"
+VALIGN="TOP"
+><IMG
+SRC="./stylesheet-images/note.png"
+HSPACE="5"
+ALT="Note"></TD
+><TD
+ALIGN="LEFT"
+VALIGN="TOP"
+><P
+>This name
+		should match exactly the attribute name in the database. If
+		multiple plugins return the same value for this function, then
+		the last match wins.</P
+></TD
+></TR
+></TABLE
+></DIV
+>
+		</P
+></LI
+><LI
+><P
+><CODE
+CLASS="FUNCTION"
+>filter</CODE
+>: This function is
+		the workhorse of the plugin. This takes in a single value , and
+		performs the desired manipulation, filtering, and storage on it.
+		</P
+></LI
+></OL
+><P
+>	The plugin for the above example is
+	<TT
+CLASS="FILENAME"
+>/opt/rocks/var/plugins/sec_attr/fake.py</TT
+>.
+	The name of the file is irrelevant. The command iterates over all
+	available plugins and uses the last match on the return value of
+	<CODE
+CLASS="FUNCTION"
+>get_sec_attr</CODE
+> function.
+	</P
+><DIV
+CLASS="EXAMPLE"
+><A
+NAME="AEN9666"
+></A
+><P
+><B
+>Example D-1. Plugin code for fake_svc_pw - fake.py</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="PROGRAMLISTING"
+>import rocks.commands
+import os, sys, string
+
+class plugin(rocks.commands.sec_attr_plugin):
+	def get_sec_attr(self):
+		return 'fake_svc_pw'
+
+	def filter(self, value):
+		f = open('/etc/fake_service.conf','w')
+		f.write('password=%s\n' % value)
+		f.close()
+	</PRE
+></FONT
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="SECTION"
+><H3
+CLASS="SECTION"
+><A
+NAME="AEN9669"
+>D.2.2.3. Syncing the attribute</A
+></H3
+><P
+>	Once the plugin has been created and the attribute has been assigned in
+	the database, you can sync the plugin using the command
+	<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks sync host sec_attr
+# rocks run host compute command="cat /etc/fake_service.conf" collate=yes
+compute-0-1: password=150b95f90c06f127a040a40f98582231369b6fda
+compute-0-0: password=150b95f90c06f127a040a40f98582231369b6fda</PRE
+></FONT
+></TD
+></TR
+></TABLE
+>
+	</P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="rocks_pw.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="appendix-b.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Rocks Password Infrastructure</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="passwd_sec.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Kickstart Nodes Reference</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

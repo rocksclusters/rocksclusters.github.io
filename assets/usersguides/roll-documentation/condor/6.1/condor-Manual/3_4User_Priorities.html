@@ -1,0 +1,996 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>3.4 User Priorities and Negotiation</TITLE>
+<META NAME="description" CONTENT="3.4 User Priorities and Negotiation">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="3_5Policy_Configuration.html">
+<LINK REL="previous" HREF="3_3Configuration.html">
+<LINK REL="up" HREF="3_Administrators_Manual.html">
+<LINK REL="next" HREF="3_5Policy_Configuration.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html1416"
+  HREF="3_5Policy_Configuration.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1410"
+  HREF="3_Administrators_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1404"
+  HREF="3_3Configuration.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1412"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1414"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1417"
+  HREF="3_5Policy_Configuration.html">3.5 Policy Configuration for</A>
+<B> Up:</B> <A NAME="tex2html1411"
+  HREF="3_Administrators_Manual.html">3. Administrators' Manual</A>
+<B> Previous:</B> <A NAME="tex2html1405"
+  HREF="3_3Configuration.html">3.3 Configuration</A>
+ &nbsp; <B>  <A NAME="tex2html1413"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1415"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html1418"
+  HREF="3_4User_Priorities.html#SECTION00441000000000000000">3.4.1 Real User Priority (RUP)</A>
+<LI><A NAME="tex2html1419"
+  HREF="3_4User_Priorities.html#SECTION00442000000000000000">3.4.2 Effective User Priority (EUP)</A>
+<LI><A NAME="tex2html1420"
+  HREF="3_4User_Priorities.html#SECTION00443000000000000000">3.4.3 Priorities in Negotiation and Preemption</A>
+<LI><A NAME="tex2html1421"
+  HREF="3_4User_Priorities.html#SECTION00444000000000000000">3.4.4 Priority Calculation</A>
+<LI><A NAME="tex2html1422"
+  HREF="3_4User_Priorities.html#SECTION00445000000000000000">3.4.5 Negotiation</A>
+<LI><A NAME="tex2html1423"
+  HREF="3_4User_Priorities.html#SECTION00446000000000000000">3.4.6 The Layperson's Description of the Pie Spin and Pie Slice</A>
+<LI><A NAME="tex2html1424"
+  HREF="3_4User_Priorities.html#SECTION00447000000000000000">3.4.7 Group Accounting</A>
+<LI><A NAME="tex2html1425"
+  HREF="3_4User_Priorities.html#SECTION00448000000000000000">3.4.8 Hierarchical Group Quotas</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00440000000000000000"></A><A NAME="sec:UserPrio"></A>
+<BR>
+3.4 User Priorities and Negotiation
+</H1>
+
+<P>
+<A NAME="26567"></A>
+<A NAME="26568"></A>
+Condor uses priorities to determine machine allocation for jobs.
+This section details the priorities and the allocation of
+machines (negotiation).
+
+<P>
+For accounting purposes, each user is identified by username@uid_domain.
+Each user is assigned a priority value even if submitting jobs from
+different machines in the same domain, or even if submitting from multiple
+machines in the different domains.
+
+<P>
+The numerical priority value assigned to a user is inversely related to the 
+<I>goodness</I> of the priority.
+A user with a numerical priority of 5 gets 
+more resources than a user with a numerical priority of 50.
+There are two 
+priority values assigned to Condor users:
+
+<UL>
+<LI>Real User Priority (RUP), which measures resource usage of the 
+		user.
+</LI>
+<LI>Effective User Priority (EUP), which determines the number of
+		resources the user can get.
+</LI>
+</UL>
+This section describes these two priorities and how they affect resource
+allocations in Condor.
+Documentation on configuring and controlling 
+priorities may be found in section&nbsp;<A HREF="3_3Configuration.html#sec:Negotiator-Config-File-Entries">3.3.17</A>.
+
+<P>
+
+<H2><A NAME="SECTION00441000000000000000"></A><A NAME="sec:RUP"></A>
+<A NAME="26574"></A>
+<A NAME="26575"></A>
+<BR>
+3.4.1 Real User Priority (RUP)
+</H2>
+A user's RUP measures the resource usage of the user 
+through time.
+Every user begins with a RUP of one half (0.5), and
+at steady state, the RUP of a user equilibrates to the number of resources 
+used by that user.  Therefore, if a specific user continuously uses exactly 
+ten resources for a long period of time, the RUP of that user stabilizes at 
+ten.
+
+<P>
+However, if the user decreases the number of resources used, the RUP
+gets better.  The rate at which the priority value decays 
+can be set by the macro <TT>PRIORITY_HALFLIFE</TT> <A NAME="26769"></A> <A NAME="26770"></A>, a time period 
+defined in seconds.   Intuitively, if the <TT>PRIORITY_HALFLIFE</TT> <A NAME="26774"></A> <A NAME="26775"></A> in a pool 
+is set to 86400 (one day), and if a user whose RUP was 10 has no
+running jobs, 
+that user's RUP would be 5 one day later, 2.5 two days later,
+and so on.
+
+<P>
+
+<H2><A NAME="SECTION00442000000000000000"></A><A NAME="sec:EUP"></A>
+<A NAME="26579"></A>
+<A NAME="26580"></A>
+<BR>
+3.4.2 Effective User Priority (EUP)
+</H2>
+The effective user priority (EUP) of a user is used to determine
+how many resources that user may receive.
+The EUP is linearly related to the RUP
+by a <I>priority factor</I> which may be defined on a per-user basis.
+Unless otherwise configured, the priority factor for all users is 1.0,
+and so the EUP is the same as the the RUP.
+However, if desired, the priority factors of
+specific users can be increased so that 
+some are served preferentially.
+
+<P>
+The number of resources that a user may receive is inversely related
+to the ratio between the EUPs of submitting users.
+Therefore user <IMG
+ WIDTH="18" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img45.png"
+ ALT="$A$"> with EUP=5 will receive
+twice as many resources as user <IMG
+ WIDTH="19" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img46.png"
+ ALT="$B$"> with EUP=10 and four times as many 
+resources as user <IMG
+ WIDTH="19" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img47.png"
+ ALT="$C$"> with EUP=20.
+However, if <IMG
+ WIDTH="18" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img45.png"
+ ALT="$A$"> does not use the full number
+of resources that <IMG
+ WIDTH="18" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img45.png"
+ ALT="$A$"> may be given,
+the available resources are repartitioned and distributed among
+remaining users according to the inverse ratio rule.
+
+<P>
+Condor supplies mechanisms to directly support two policies in which EUP may
+be useful:
+<DL>
+<DT><STRONG>Nice users</STRONG></DT>
+<DD>A job may be submitted with the submit command 
+	<B>nice_user</B> set to <TT>True</TT>.
+	This nice user job will have its RUP boosted by the 
+	<TT>NICE_USER_PRIO_FACTOR</TT> <A NAME="26781"></A> <A NAME="26782"></A> priority factor specified in the 
+	configuration, leading to a very large EUP.
+	This corresponds to a low priority for resources,
+	therefore using resources not used by other Condor users.
+
+<P>
+</DD>
+<DT><STRONG>Remote Users</STRONG></DT>
+<DD>Condor's flocking feature (see
+	section&nbsp;<A HREF="5_2Connecting_Condor.html#sec:Flocking">5.2</A>) allows jobs to run in a pool
+        other than the local one.
+	In addition, the submit-only feature allows a user 
+	to submit jobs to another pool.
+	In such situations, submitters from other domains
+	can submit to the local pool.
+	It may be desirable to have Condor treat local users
+	preferentially over these remote users.
+	If configured, Condor will boost the RUPs of remote users by
+	<TT>REMOTE_PRIO_FACTOR</TT> <A NAME="26786"></A> <A NAME="26787"></A>
+	specified in the configuration,
+	thereby lowering their priority for resources.
+</DD>
+</DL>
+
+<P>
+The priority boost factors for individual users can be set with the 
+<B>setfactor</B> option of <I>condor_userprio</I>.
+Details may be found in the <I>condor_userprio</I> manual page 
+on page&nbsp;<A HREF="condor_userprio.html#man-condor-userprio"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+
+<H2><A NAME="SECTION00443000000000000000"></A>
+<A NAME="26594"></A>
+<A NAME="26595"></A>
+<A NAME="26596"></A>
+<BR>
+3.4.3 Priorities in Negotiation and Preemption
+</H2>
+Priorities are used to ensure that users get their fair share of resources.  
+The priority values are used at allocation time, meaning during
+negotiation and matchmaking.
+Therefore, there are ClassAd attributes that take on defined values
+only during negotiation, making them ephemeral.
+In addition to allocation, Condor may preempt a machine claim 
+and reallocate it when conditions change.
+
+<P>
+Too many preemptions lead to thrashing,
+a condition in which negotiation for a machine identifies a
+new job with a better priority most every cycle.
+Each job is, in turn, preempted, and no job finishes.
+To avoid this situation, the <TT>PREEMPTION_REQUIREMENTS</TT> <A NAME="26797"></A> <A NAME="26798"></A> 
+configuration variable is defined for and used only by 
+the <I>condor_negotiator</I> daemon
+to specify the conditions that must be met for a preemption to
+occur.  It is usually defined to deny preemption if a current running
+job has been running for a relatively short period of time.  This
+effectively limits the number of preemptions per resource per time
+interval.
+Note that <TT>PREEMPTION_REQUIREMENTS</TT> only applies to preemptions
+due to user priority.  It does not have any effect if the machine's 
+<TT>RANK</TT>
+expression prefers a different job, or if the machine's policy
+causes the job to vacate due to other activity on the machine.
+See section <A HREF="3_5Policy_Configuration.html#sec:Disabling_Preemption">3.5.9</A> for a general discussion of
+limiting preemption.
+
+<P>
+The following ephemeral attributes may be used within policy definitions.
+Care should be taken when using these attributes, 
+due to their ephemeral nature;
+they are not always defined, so the usage of an expression to 
+check if defined such as
+<PRE>
+  (RemoteUserPrio =?= UNDEFINED)
+</PRE>
+is likely necessary.
+
+<P>
+Within these attributes, those with names that contain the
+string <TT>Submitter</TT> refer to characteristics about the candidate job's user;
+those with names that contain the string <TT>Remote</TT>
+refer to characteristics about the user currently using the resource.
+Further,  those with names that end with the
+string <TT>ResourcesInUse</TT> have values that may change within
+the time period associated with a single negotiation cycle.
+Therefore, the configuration variables <TT>PREEMPTION_REQUIREMENTS_STABLE</TT> <A NAME="26809"></A> <A NAME="26810"></A>
+and and <TT>PREEMPTION_RANK_STABLE</TT> <A NAME="26814"></A> <A NAME="26815"></A> exist to inform the 
+<I>condor_negotiator</I> daemon that values may change.
+See section&nbsp;<A HREF="3_3Configuration.html#param:PreemptionRequirementsStable">3.3.17</A> on
+page&nbsp;<A HREF="3_3Configuration.html#param:PreemptionRequirementsStable"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> for
+definitions of these configuration variables.
+
+<P>
+<DL>
+<DT><STRONG><A NAME="26613"></A><TT>SubmitterUserPrio</TT>:</STRONG></DT>
+<DD>A floating point value representing the user priority of the 
+  candidate job.
+</DD>
+<DT><STRONG><A NAME="26615"></A><TT>SubmitterUserResourcesInUse</TT>:</STRONG></DT>
+<DD>The integer number of slots currently utilized by the user
+  submitting the candidate job.
+</DD>
+<DT><STRONG><A NAME="26617"></A><TT>RemoteUserPrio</TT>:</STRONG></DT>
+<DD>A floating point value representing the user priority of the 
+  job currently running on the machine.
+  This version of the attribute, with no slot represented in the attribute name,
+  refers to the current slot being evaluated.
+</DD>
+<DT><STRONG><A NAME="26619"></A><TT>Slot&lt;N&gt;_RemoteUserPrio</TT>:</STRONG></DT>
+<DD>A floating point value representing the user priority of the 
+  job currently running on the particular slot represented
+  by <code>&lt;N&gt;</code> on the machine.
+</DD>
+<DT><STRONG><A NAME="26621"></A><TT>RemoteUserResourcesInUse</TT>:</STRONG></DT>
+<DD>The integer number of slots currently utilized by the user
+  of the job currently running on the machine.
+</DD>
+<DT><STRONG><A NAME="26623"></A><TT>SubmitterGroupResourcesInUse</TT>:</STRONG></DT>
+<DD>If the owner of the candidate job is a member of a valid accounting group,
+  with a defined group quota,
+  then this attribute is the integer number of slots currently 
+  utilized by the group.
+</DD>
+<DT><STRONG><A NAME="26625"></A><TT>SubmitterGroup</TT>:</STRONG></DT>
+<DD>The accounting group name of the requesting submitter.
+</DD>
+<DT><STRONG><A NAME="26627"></A><TT>SubmitterGroupQuota</TT>:</STRONG></DT>
+<DD>If the owner of the candidate job is a member of a valid accounting group,
+  with a defined group quota,
+  then this attribute is the integer number of slots defined as the
+  group's quota.
+</DD>
+<DT><STRONG><A NAME="26629"></A><TT>RemoteGroupResourcesInUse</TT>:</STRONG></DT>
+<DD>If the owner of the currently running job is a member of a valid 
+  accounting group, with a defined group quota,
+  then this attribute is the integer number of slots currently 
+  utilized by the group.
+</DD>
+<DT><STRONG><A NAME="26631"></A><TT>RemoteGroup</TT>:</STRONG></DT>
+<DD>The accounting group name of the owner of the currently running job.
+</DD>
+<DT><STRONG><A NAME="26633"></A><TT>RemoteGroupQuota</TT>:</STRONG></DT>
+<DD>If the owner of the currently running job is a member of a valid 
+  accounting group, with a defined group quota,
+  then this attribute is the integer number of slots defined as the
+  group's quota.
+</DD>
+<DT><STRONG><A NAME="26635"></A><TT>SubmitterNegotiatingGroup</TT>:</STRONG></DT>
+<DD>The accounting group name that the candidate job is negotiating under.
+</DD>
+<DT><STRONG><A NAME="26637"></A><TT>RemoteNegotiatingGroup</TT>:</STRONG></DT>
+<DD>The accounting group name that the currently running job negotiated under.
+</DD>
+<DT><STRONG><A NAME="26639"></A><TT>SubmitterAutoregroup</TT>:</STRONG></DT>
+<DD>Boolean attribute is <TT>True</TT> if candidate job is negotiated via autoregoup.
+</DD>
+<DT><STRONG><A NAME="26642"></A><TT>RemoteAutoregroup</TT>:</STRONG></DT>
+<DD>Boolean attribute is <TT>True</TT> if currently running job negotiated via autoregoup.
+</DD>
+</DL>
+
+<P>
+
+<H2><A NAME="SECTION00444000000000000000">
+3.4.4 Priority Calculation</A>
+</H2>
+This section may be skipped if the reader so feels, but for the curious,
+here is Condor's priority calculation algorithm.
+
+<P>
+The RUP of a user <IMG
+ WIDTH="15" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img48.png"
+ ALT="$u$"> at time <IMG
+ WIDTH="11" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img15.png"
+ ALT="$t$">, <IMG
+ WIDTH="62" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img49.png"
+ ALT="$\pi_r(u,t)$">, is calculated 
+every time interval <IMG
+ WIDTH="20" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img50.png"
+ ALT="$\delta t$"> using the formula 
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\pi_r(u,t) = \beta\times\pi(u,t-\delta t) + (1-\beta)\times\rho(u,t)
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="347" HEIGHT="32" BORDER="0"
+ SRC="img51.png"
+ ALT="\begin{displaymath}\pi_r(u,t) = \beta\times\pi(u,t-\delta t) + (1-\beta)\times\rho(u,t)\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+where <IMG
+ WIDTH="53" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img52.png"
+ ALT="$\rho(u,t)$"> is the number of resources used by user <IMG
+ WIDTH="15" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img48.png"
+ ALT="$u$"> at time <IMG
+ WIDTH="11" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img15.png"
+ ALT="$t$">,
+and <!-- MATH
+ $\beta=0.5^{{\delta t}/h}$
+ -->
+<IMG
+ WIDTH="92" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img53.png"
+ ALT="$\beta=0.5^{{\delta t}/h}$">. <IMG
+ WIDTH="15" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img54.png"
+ ALT="$h$"> is the half life period set by 
+<TT>PRIORITY_HALFLIFE</TT> <A NAME="26838"></A> <A NAME="26839"></A>.
+
+<P>
+The EUP of user <IMG
+ WIDTH="15" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img48.png"
+ ALT="$u$"> at time <IMG
+ WIDTH="11" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img15.png"
+ ALT="$t$">, <IMG
+ WIDTH="62" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img55.png"
+ ALT="$\pi_e(u,t)$">
+is calculated by
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ \begin{displaymath}
+\pi_e(u,t) = \pi_r(u,t)\times f(u,t)
+\end{displaymath}
+ -->
+
+<IMG
+ WIDTH="208" HEIGHT="32" BORDER="0"
+ SRC="img56.png"
+ ALT="\begin{displaymath}\pi_e(u,t) = \pi_r(u,t)\times f(u,t)\end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+where <IMG
+ WIDTH="54" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img57.png"
+ ALT="$f(u,t)$"> is the priority boost factor for user <IMG
+ WIDTH="15" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img48.png"
+ ALT="$u$"> at time <IMG
+ WIDTH="11" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img15.png"
+ ALT="$t$">.
+
+<P>
+As mentioned previously, the RUP calculation is designed so that at steady
+state, each user's RUP stabilizes at the number of resources used by that user. 
+The definition of <IMG
+ WIDTH="16" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img58.png"
+ ALT="$\beta$"> ensures that the calculation of <IMG
+ WIDTH="62" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img49.png"
+ ALT="$\pi_r(u,t)$"> can be 
+calculated over non-uniform time intervals <IMG
+ WIDTH="20" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img50.png"
+ ALT="$\delta t$"> without affecting the 
+calculation.  The time interval <IMG
+ WIDTH="20" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img50.png"
+ ALT="$\delta t$"> varies due to events internal to 
+the system, but Condor guarantees that unless the central manager machine is 
+down, no matches will be unaccounted for due to this variance.
+
+<P>
+
+<H2><A NAME="SECTION00445000000000000000"></A><A NAME="sec:negotiation"></A>
+<A NAME="26650"></A>
+<A NAME="26651"></A>
+<BR>
+3.4.5 Negotiation
+</H2>
+
+<P>
+Negotiation is the method Condor undergoes periodically to
+match queued jobs with resources capable of running jobs.
+The <I>condor_negotiator</I> daemon is responsible for
+negotiation.
+
+<P>
+During a negotiation cycle, the <I>condor_negotiator</I> daemon
+accomplishes the following ordered list of items.
+
+<OL>
+<LI>Build a list of all possible resources,
+  regardless of the state of those resources.
+</LI>
+<LI>Obtain a list of all job submitters (for the entire pool).
+</LI>
+<LI>Sort the list of all job submitters based on EUP
+  (see section&nbsp;<A HREF="#sec:EUP">3.4.2</A> for an explanation of EUP).
+  The submitter with the best priority is first within the sorted list.
+</LI>
+<LI>Iterate until there are either no more resources to match,
+  or no more jobs to match.
+    <DL>
+<DT></DT>
+<DD>For each submitter (in EUP order):
+        <DL>
+<DT></DT>
+<DD>For each submitter, get each job.
+	  Since jobs may be submitted from more than one machine
+	  (hence to more than one <I>condor_schedd</I> daemon),
+	  here is a further definition of the ordering of these jobs.
+	  With jobs from a single <I>condor_schedd</I> daemon, 
+	  jobs are typically returned in job priority order.
+	  When more than one <I>condor_schedd</I> daemon is involved,
+	  they are contacted in an undefined order. 
+	  All jobs from a single <I>condor_schedd</I> daemon are considered
+	  before moving on to the next.
+	  For each job:
+              
+<UL>
+<LI>For each machine in the pool that can execute jobs:
+                  
+<OL>
+<LI>If <TT>machine.requirements</TT> evaluates to
+		  <TT>False</TT> or
+		  <TT>job.requirements</TT> evaluates to <TT>False</TT>,
+		  skip this machine
+</LI>
+<LI>If the machine is in the Claimed state, but
+		  not running a job, skip this machine.
+</LI>
+<LI>If this machine is not running a job, add it to
+		  the potential match list by reason of
+		  No Preemption.
+</LI>
+<LI>If the machine is running a job
+                    
+<UL>
+<LI>If the <TT>machine.RANK</TT> on this job is
+		    better than the running job, add this machine to the
+		    potential match list by reason of Rank.
+</LI>
+<LI>If the EUP of this job is better than the EUP
+		    of the currently running job, and
+		    <TT>PREEMPTION_REQUIREMENTS</TT> is <TT>True</TT>,
+		    and the <TT>machine.RANK</TT> on this job is not worse
+		    than the currently running job, add this machine to the
+		    potential match list by reason of Priority.
+                    
+</LI>
+</UL>
+</LI>
+</OL>
+</LI>
+<LI>Of machines in the potential match list, sort by
+		<TT>NEGOTIATOR_PRE_JOB_RANK</TT>, <TT>job.RANK</TT>,
+		<TT>NEGOTIATOR_POST_JOB_RANK</TT>, Reason for claim
+		(No Preemption, then Rank, then Priority),
+		<TT>PREEMPTION_RANK</TT>
+</LI>
+<LI>The job is assigned to the top machine on the
+		potential match list.  The machine is removed
+		from the list of resources to match
+		(on this negotiation cycle).
+              
+</LI>
+</UL>
+</DD>
+</DL>
+</DD>
+</DL>
+</LI>
+</OL>
+
+<P>
+The <I>condor_negotiator</I> asks the <I>condor_schedd</I> for the 
+"next job" from a given submitter/user.
+Typically, the <I>condor_schedd</I> returns jobs in the order of
+job priority.
+If priorities are the same,
+job submission time is used; older jobs go first.
+If a cluster has multiple procs in it and one of the jobs cannot be matched,
+the <I>condor_schedd</I> will not return any more jobs in that cluster
+on that negotiation pass.
+This is an optimization based on the theory that the cluster jobs are similar.
+The configuration variable <TT>NEGOTIATE_ALL_JOBS_IN_CLUSTER</TT> <A NAME="26875"></A> <A NAME="26876"></A>
+disables the cluster-skipping optimization.
+Use of the configuration variable <TT>SIGNIFICANT_ATTRIBUTES</TT> <A NAME="26880"></A> <A NAME="26881"></A>
+will change the
+definition of what the <I>condor_schedd</I> considers a cluster from the
+default definition of all jobs that share the same <TT>ClusterId</TT>.
+
+<P>
+
+<H2><A NAME="SECTION00446000000000000000"></A><A NAME="sec:PieSlice"></A>
+<A NAME="26692"></A>
+<A NAME="26693"></A>
+<A NAME="26694"></A>
+<A NAME="26695"></A>
+<BR>
+3.4.6 The Layperson's Description of the Pie Spin and Pie Slice
+</H2>
+
+<P>
+Condor schedules in a variety of ways.
+First, it takes all users who have submitted jobs and calculates their priority.
+Then, it totals the number of resources available at the moment,
+and using the ratios of the user priorities,
+it calculates the number of machines each user could get.
+This is their <I>pie slice</I>.
+
+<P>
+The Condor matchmaker goes in user priority order, 
+contacts each user, and asks for job information. 
+The <I>condor_schedd</I> daemon (on behalf of a user)
+tells the matchmaker about a job,
+and the matchmaker looks at available resources
+to create a list of resources that match the requirements expression.
+With the list of resources that match,
+it sorts them according to the rank expressions within ClassAds.
+If a machine prefers a job, the job is assigned to that machine,
+potentially preempting a job that might already be running on that machine.
+Otherwise, give the machine to the job that the job ranks highest.
+If the machine ranked highest is already running a job,
+we may preempt running job
+for the new job. 
+A default policy for preemption states that the user must
+have a 20%  better priority in order for preemption to succeed.
+If the job has no preferences as to what sort of machine it gets,
+matchmaking gives it the first idle resource to meet its requirements.
+
+<P>
+This matchmaking cycle continues until the user has received all of the
+machines in their pie slice.
+The matchmaker then contacts the next highest
+priority user and offers that user their pie slice worth of machines.
+After contacting all users,
+the cycle is repeated with any still available resources
+and recomputed pie slices.
+The matchmaker continues <I>spinning the pie</I> 
+until it runs out of machines or all the <I>condor_schedd</I> daemons
+say they have no more jobs. 
+
+<P>
+
+<H2><A NAME="SECTION00447000000000000000"></A><A NAME="sec:group-accounting"></A>
+<A NAME="26701"></A>
+<A NAME="26702"></A>
+<A NAME="26703"></A>
+<BR>
+3.4.7 Group Accounting
+</H2>
+
+<P>
+By default, Condor does all accounting on a per-user basis, and this
+accounting is primarily used to compute priorities for Condor's
+fair-share scheduling algorithms. 
+However, accounting can also be done on a per-group basis.
+Multiple users can all submit jobs into the same accounting group,
+and all of the jobs will be treated with the same priority.
+
+<P>
+<A NAME="26704"></A>
+To use an accounting group,
+each job inserts an attribute into the job ClassAd which
+defines the accounting group name for the job.
+A common name is decided upon and used for the group.
+The following line is an example that defines the attribute
+within the job's submit description file:
+<PRE>
++AccountingGroup = "group_physics"
+</PRE>
+
+<P>
+The <TT>AccountingGroup</TT> attribute is a string,
+and it therefore must be enclosed in double quote marks.
+The string may have a maximum length of 40 characters.
+The name should <I>not</I> be qualified with a domain.
+Certain parts of the Condor system 
+do append the value <TT>$(UID_DOMAIN)</TT>
+(as specified in the configuration file on the submit machine)
+to this string for internal use.
+For example, if the value of <TT>UID_DOMAIN</TT> is
+<TT>example.com</TT>, and the accounting group name
+is as specified,
+<I>condor_userprio</I> will show statistics
+for this accounting group using the appended domain, for example
+<PRE>
+                                    Effective
+User Name                           Priority
+------------------------------      ---------
+group_physics@example.com                0.50
+user@example.com                        23.11
+heavyuser@example.com                  111.13
+...
+</PRE>
+<P>
+Additionally, the <I>condor_userprio</I> command allows administrators to
+remove an entity from the accounting system in Condor.
+The <B>-delete</B> option to <I>condor_userprio</I>
+accomplishes this
+if all the jobs from a given accounting group are completed,
+and the administrator wishes to remove that group from the system.
+The <B>-delete</B> option
+identifies the accounting group with the fully-qualified name
+of the accounting group.
+For example
+<PRE>
+condor_userprio -delete group_physics@example.com
+</PRE>
+<P>
+Condor removes entities itself as they are no longer
+relevant.
+Intervention by an administrator to delete entities can
+be beneficial when the use of thousands
+of short term accounting groups leads to scalability
+issues.
+
+<P>
+Note that the name of an accounting group may include a period (.).
+Inclusion of a period character in the accounting group name
+only has relevance if the portion of the name before the
+period matches a group name,
+as described in the next section on group quotas.
+
+<P>
+
+<H2><A NAME="SECTION00448000000000000000"></A><A NAME="sec:group-quotas"></A>
+<BR>
+3.4.8 Hierarchical Group Quotas
+</H2>
+
+<P>
+<A NAME="26722"></A>
+<A NAME="26723"></A>
+<A NAME="26724"></A>
+The use of group quotas modifies the negotiation for 
+available resources (machines) within a Condor pool.
+This solves the difficulties inherent when
+priorities assigned based on each single user are insufficient.
+This may be the case when
+different groups (of varying size) own computers,
+and the groups choose to combine their computers to
+form a Condor pool.
+Consider an imaginary Condor pool example with thirty computers;
+twenty computers are owned by the physics group and ten
+computers are owned by the chemistry group.
+One notion of fair allocation could be implemented 
+by configuring the twenty machines owned by the physics group
+to prefer (using the <TT>RANK</TT> configuration macro)
+jobs submitted by the users identified as associated
+with the physics group.
+Likewise, the ten machines owned by the chemistry group are
+configured to prefer jobs from users associated with the
+the chemistry group.
+This routes jobs to execute on specific machines,
+perhaps causing more preemption than necessary.
+The (fair allocation) policy desired is likely somewhat different,
+if these thirty machines have been pooled.
+The desired policy does not tie users to specific sets of machines,
+but to numbers of machines (a quota).
+Given thirty similar machines,
+the desired policy allows users within the physics group to have
+preference on up to twenty of the machines within the pool,
+and the machines can be any of the machines that are available.
+
+<P>
+The implementation of quotas is hierarchical,
+such that quotas may be described for groups, subgroups,
+sub subgroups, etc.  
+The hierarchy is described by adherence to a naming scheme
+set up in advance.
+
+<P>
+A quota for a set of users requires an identification of
+the set; members are called group users.
+Jobs under the group quota
+specify the group user with the 
+<TT>AccountingGroup</TT> job ClassAd attribute.
+This is the same attribute as is used with group accounting.
+
+<P>
+The submit description file syntax for specifying a job is to be
+part of a group includes 
+a series of names separated by the period character ('<TT>.</TT>').
+Example syntax that shows only 2 levels of a (limited) hierarchy is
+<PRE>
+  +AccountingGroup = "&lt;group&gt;.&lt;subgroup&gt;.&lt;user&gt;"
+</PRE>
+Both <code>&lt;group&gt;</code> and <code>&lt;subgroup&gt;</code> are names chosen for the group.
+Group names are case-insensitive for negotiation.
+The topmost level group name is not required to begin with the
+string <TT>"group_"</TT>,
+as in the examples
+<TT>"group_physics.newton"</TT> and <TT>"group_chemistry.curie"</TT>,
+but it is a useful convention,
+because group names must not conflict with subgroup or user names.
+Note that a job specifying a value for the <TT>AccountingGroup</TT>
+ClassAd attribute that lacks at least one period in the specification
+will cause the job to not be considered part of a
+group when negotiating, even if the group name 
+(highest within the hierarchy) has a quota.
+Furthermore, there will be no warnings that the group quota is not
+in effect for the job, as this syntax defines group accounting.
+
+<P>
+Configuration controls the order of negotiation for
+groups, subgroups within the hierarchy defined, and individual users,
+as well as sets quotas
+(preferentially allocated numbers of machines)
+for the groups.
+
+<P>
+Quotas are categorized as either static or dynamic.
+A static quota specifies an integral numbers of machines (slots),
+independent of the size of the pool.
+A dynamic quota specifies a percentage of machines (slots) calculated
+based on the current number of machines in the pool.
+It is intended that only one of a static or a dynamic quota is defined 
+for a specified group.
+If both are defined, then the static quota is implemented, 
+and the dynamic quota is ignored.
+
+<P>
+<DL>
+<DT><STRONG>Static Quotas</STRONG></DT>
+<DD>In the hierarchical implementation,
+there are two cases defined here,
+to specify for the allocation of machines where
+there is both a group and a subgroup.
+In the first case, the sum for the numbers of machines
+within all of a group's subgroups totals to fewer than the specification for
+the group's static quota.
+For example:
+<PRE>
+  GROUP_QUOTA_group_physics = 100
+  GROUP_QUOTA_group_physics.experiment1 = 20
+  GROUP_QUOTA_group_physics.experiment2 = 70
+</PRE>
+In this case, the unused quota of 10 machines is assigned to
+the <TT>group_physics</TT> submitters.  
+
+<P>
+In the second case, the specification for the numbers of machines
+of a set of subgroups totals to more than the specification for
+the group's quota.
+For example:
+<PRE>
+  GROUP_QUOTA_group_chemistry = 100
+  GROUP_QUOTA_group_chemistry.lab1 = 40
+  GROUP_QUOTA_group_chemistry.lab2 = 80
+</PRE>
+In this case, 
+a warning is written to the log for the <I>condor_negotiator</I> daemon,
+and each of the subgroups will have their static quota scaled.
+In this example, the ratio 100/120 scales each subgroup.
+<TT>lab1</TT> will have a revised (floating point) quota of 33.333 machines,
+and <TT>lab2</TT> will have a revised (floating point) quota of 66.667 machines.
+As numbers of machines are always integer values,
+the floating point values are truncated for quota allocation.
+Fractional remainders resulting from the truncation are summed
+and assigned to the next higher level within the group hierarchy.
+
+<P>
+</DD>
+<DT><STRONG>Dynamic Quotas</STRONG></DT>
+<DD>A dynamic quota specifies a percentage of machines (slots) calculated
+based on the quota of the next higher level group within the hierarchy.
+For groups at the top level, a dynamic quota specifies a percentage of
+machines (slots) that currently exist in the pool.
+The quota is specified for a group (subgroup, etc.) by a floating point
+value in range 0.0 to 1.0 (inclusive).
+
+<P>
+Like static quota specification, there are two cases defined:
+when the dynamic quotas of all sub groups of a specific group
+sum to a fraction less than 1.0,
+and when the dynamic quotas of all sub groups of a specific group
+sum to greater than 1.0.
+
+<P>
+Here is an example configuration in which dynamic group quotas are assigned for
+a single group and its subgroups.
+<PRE>
+  GROUP_QUOTA_DYNAMIC_group_econ = .6
+  GROUP_QUOTA_DYNAMIC_group_econ.project1 = .2
+  GROUP_QUOTA_DYNAMIC_group_econ.project2 = .15
+  GROUP_QUOTA_DYNAMIC_group_econ.project3 = .2
+</PRE>
+The sum of dynamic quotas for the subgroups is .55, 
+which is less than 1.0.
+If the pool has 100 slots, 
+then the <TT>project1</TT> subgroup is assigned a quota that
+equals (100)(.6)(.2) = 12 machines. 
+The <TT>project2</TT> subgroup is assigned a quota that
+equals (100)(.6)(.15) = 9 machines. 
+The <TT>project3</TT> subgroup is assigned a quota that
+equals (100)(.6)(.2) = 12 machines. 
+The 60-33=27 machines unused by the subgroups are assigned
+for use by job submitters in the parent <TT>group_econ</TT> group.
+
+<P>
+If the calculated dynamic quota of the subgroups resulted in non integer
+numbers of machines,
+integer numbers of machines are assigned based on the truncation of the
+non integer dynamic group quota.
+The unused, surplus quota of machines resulting from
+fractional remainders resulting from the truncation are summed
+and assigned to the next higher level within the group hierarchy.
+
+<P>
+Here is another example configuration in which dynamic group quotas 
+are assigned for a single group and its subgroups.
+<PRE>
+  GROUP_QUOTA_DYNAMIC_group_stat = .5
+  GROUP_QUOTA_DYNAMIC_group_stat.project1 = .4
+  GROUP_QUOTA_DYNAMIC_group_stat.project2 = .3
+  GROUP_QUOTA_DYNAMIC_group_stat.project3 = .4
+</PRE>
+In this case, the sum of dynamic quotas for the subgroups is 1.1, 
+which is greater than 1.0 .
+A warning is written to the log for the <I>condor_negotiator</I> daemon,
+and each of the subgroups will have their dynamic group quota scaled
+for this example.
+.4 becomes .4/1.1=.3636,
+and .3 becomes .3/1.1=.2727 .
+If the pool has 100 slots, 
+then each of the <TT>project1</TT> and <TT>project3</TT> subgroups 
+is assigned a dynamic quota of
+(100)(.5)(.3636), which is 18.1818 machines. 
+The <TT>project2</TT> subgroup is assigned a dynamic quota of
+(100)(.5)(.2727), which is 13.6364 machines. 
+The quota for each of <TT>project1</TT> and <TT>project3</TT> results 
+in the truncated amount of 18 machines,
+and <TT>project2</TT> results in the truncated amount of 13 machines,
+with the 0.1818 + .6364 + .1818 = 1.0 remaining machine assigned to
+job submitters in the parent group, <TT>group_stat</TT>. 
+
+<P>
+</DD>
+<DT><STRONG>Mixed Quotas - Both Static and Dynamic</STRONG></DT>
+<DD>
+</DD>
+</DL>
+<DIV ALIGN="CENTER">
+<!-- MATH
+ $\fbox{This section has not yet been completed}$
+ -->
+<IMG
+ WIDTH="335" HEIGHT="46" ALIGN="MIDDLE" BORDER="0"
+ SRC="img42.png"
+ ALT="\fbox{This section has not yet been completed}">
+</DIV>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html1416"
+  HREF="3_5Policy_Configuration.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html1410"
+  HREF="3_Administrators_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html1404"
+  HREF="3_3Configuration.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html1412"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html1414"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html1417"
+  HREF="3_5Policy_Configuration.html">3.5 Policy Configuration for</A>
+<B> Up:</B> <A NAME="tex2html1411"
+  HREF="3_Administrators_Manual.html">3. Administrators' Manual</A>
+<B> Previous:</B> <A NAME="tex2html1405"
+  HREF="3_3Configuration.html">3.3 Configuration</A>
+ &nbsp; <B>  <A NAME="tex2html1413"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html1415"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+<ADDRESS>
+condor-admin@cs.wisc.edu
+</ADDRESS>
+</BODY>
+</HTML>

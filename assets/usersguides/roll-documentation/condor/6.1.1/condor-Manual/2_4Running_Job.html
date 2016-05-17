@@ -1,0 +1,633 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>2.4 Running a Job: the Steps To Take</TITLE>
+<META NAME="description" CONTENT="2.4 Running a Job: the Steps To Take">
+<META NAME="keywords" CONTENT="ref">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="ref.css">
+
+<LINK REL="next" HREF="2_5Submitting_Job.html">
+<LINK REL="previous" HREF="2_3Matchmaking_with.html">
+<LINK REL="up" HREF="2_Users_Manual.html">
+<LINK REL="next" HREF="2_5Submitting_Job.html">
+</HEAD>
+
+<BODY  BGCOLOR=#FFFFFF >
+<!--Navigation Panel-->
+<A NAME="tex2html967"
+  HREF="2_5Submitting_Job.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html961"
+  HREF="2_Users_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html955"
+  HREF="2_3Matchmaking_with.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html963"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html965"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html968"
+  HREF="2_5Submitting_Job.html">2.5 Submitting a Job</A>
+<B> Up:</B> <A NAME="tex2html962"
+  HREF="2_Users_Manual.html">2. Users' Manual</A>
+<B> Previous:</B> <A NAME="tex2html956"
+  HREF="2_3Matchmaking_with.html">2.3 Matchmaking with ClassAds</A>
+ &nbsp; <B>  <A NAME="tex2html964"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html966"
+  HREF="Index.html">Index</A></B> 
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html969"
+  HREF="2_4Running_Job.html#SECTION00341000000000000000">2.4.1 Choosing an HTCondor Universe</A>
+<UL>
+<LI><A NAME="tex2html970"
+  HREF="2_4Running_Job.html#SECTION00341100000000000000">2.4.1.1 Standard Universe</A>
+<LI><A NAME="tex2html971"
+  HREF="2_4Running_Job.html#SECTION00341200000000000000">2.4.1.2 Vanilla Universe</A>
+<LI><A NAME="tex2html972"
+  HREF="2_4Running_Job.html#SECTION00341300000000000000">2.4.1.3 Grid Universe</A>
+<LI><A NAME="tex2html973"
+  HREF="2_4Running_Job.html#SECTION00341400000000000000">2.4.1.4 Java Universe</A>
+<LI><A NAME="tex2html974"
+  HREF="2_4Running_Job.html#SECTION00341500000000000000">2.4.1.5 Scheduler Universe</A>
+<LI><A NAME="tex2html975"
+  HREF="2_4Running_Job.html#SECTION00341600000000000000">2.4.1.6 Local Universe</A>
+<LI><A NAME="tex2html976"
+  HREF="2_4Running_Job.html#SECTION00341700000000000000">2.4.1.7 Parallel Universe</A>
+<LI><A NAME="tex2html977"
+  HREF="2_4Running_Job.html#SECTION00341800000000000000">2.4.1.8 VM Universe</A>
+</UL></UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00340000000000000000">
+2.4 Running a Job: the Steps To Take</A>
+</H1>
+
+<P>
+<A NAME="1644"></A>
+The road to using HTCondor effectively is a short one.  The basics
+are quickly and easily learned.
+
+<P>
+Here are all the steps needed to run a job using HTCondor.
+<DL>
+<DT><STRONG>Code Preparation.</STRONG></DT>
+<DD>A job run under HTCondor must be able to 
+run as a background batch job.
+<A NAME="1646"></A>
+HTCondor runs the program unattended and in the background. 
+A program that runs in the background will not be able
+to do interactive input and output.
+HTCondor can redirect console output (<TT>stdout</TT> and <TT>stderr</TT>)
+and keyboard input (<TT>stdin</TT>)
+to and from files for the program.
+Create any needed files that contain
+the proper keystrokes needed for program input.
+Make certain the program will run correctly with the files.
+
+<P>
+</DD>
+<DT><STRONG>The HTCondor Universe.</STRONG></DT>
+<DD>HTCondor has several 
+runtime environments (called a <I>universe</I>) from which to choose.
+Of the universes, two are likely choices when learning
+to submit a job to HTCondor: the standard universe and the vanilla universe.
+The standard universe allows a job running under HTCondor to
+handle system calls by returning them to the machine where the
+job was submitted.
+The standard universe also provides the mechanisms necessary
+to take a checkpoint and migrate a partially completed job,
+should the machine on which the job is executing become
+unavailable.
+To use the standard universe, it is necessary to
+relink the program with the HTCondor library using the
+<I>condor_compile</I> command.
+The manual page for <I>condor_compile</I> on page&nbsp;<A HREF="condor_compile.html#man-condor-compile"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A> has details.
+
+<P>
+The vanilla universe provides a way to run jobs that cannot be
+relinked.
+There is no way to take a checkpoint or migrate a job executed
+under the vanilla universe.
+For access to input and output files, jobs must either use a shared
+file system, or use HTCondor's File Transfer mechanism.
+
+<P>
+Choose a universe under which to run the HTCondor program,
+and re-link the program if necessary.
+
+<P>
+</DD>
+<DT><STRONG>Submit description file.</STRONG></DT>
+<DD>Controlling the details of a job submission is a
+submit description file.
+The file contains information
+about the job such as what executable to run, the
+files to use in place of <TT>stdin</TT> and <TT>stdout</TT>, and
+the platform type required to run the program.
+The number of times to run a program may be included;
+it is simple to run the same program
+multiple times with multiple data sets.
+
+<P>
+Write a submit description file to go with the job, using
+the examples provided in section&nbsp;<A HREF="2_5Submitting_Job.html#sec:submitting">2.5</A>
+for guidance.
+
+<P>
+</DD>
+<DT><STRONG>Submit the Job.</STRONG></DT>
+<DD>Submit the program to HTCondor with
+the <I>condor_submit</I> command.
+<A NAME="1658"></A>
+
+<P>
+</DD>
+</DL>
+
+<P>
+Once submitted, HTCondor does the rest toward running
+the job.
+Monitor the job's progress with the <I>condor_q</I>
+<A NAME="1661"></A>
+and <I>condor_status</I> commands.
+<A NAME="1663"></A>
+You may modify the order in which HTCondor will run your jobs with
+<I>condor_prio</I>. If desired, HTCondor can even inform you in a log file 
+every time your job is checkpointed and/or migrated to a different machine. 
+
+<P>
+When your program completes, HTCondor will tell you
+(by e-mail, if preferred) the exit status of your program and various
+statistics about its performances, including time used and I/O performed.
+If you are using a log file for the job (which is recommended) the exit
+status will be recorded in the log file.
+You can remove a job from the
+queue prematurely with <I>condor_rm</I>. 
+<A NAME="1666"></A>
+
+<P>
+
+<H2><A NAME="SECTION00341000000000000000"></A><A NAME="sec:Choosing-Universe"></A>
+<BR>
+2.4.1 Choosing an HTCondor Universe
+</H2>
+
+<P>
+A <I>universe</I> in HTCondor
+<A NAME="1669"></A>
+<A NAME="1670"></A>
+defines an execution environment. 
+HTCondor Version 8.0.6 supports several different
+universes for user jobs:
+
+<UL>
+<LI>Standard
+</LI>
+<LI>Vanilla
+</LI>
+<LI>Grid
+</LI>
+<LI>Java
+</LI>
+<LI>Scheduler
+</LI>
+<LI>Local
+</LI>
+<LI>Parallel
+</LI>
+<LI>VM
+</LI>
+</UL>
+
+<P>
+The <B>universe</B> under which a job runs
+is specified in the submit description file.
+If a universe is not specified,
+the default is vanilla,
+unless your HTCondor administrator has changed the default.
+However, we strongly encourage you to specify the universe,
+since the default can be changed by your HTCondor administrator,
+and the default that ships with HTCondor has changed.
+
+<P>
+<A NAME="1674"></A>
+The standard universe provides migration and reliability, but has some
+restrictions on the programs that can be run. 
+<A NAME="1675"></A>
+The vanilla universe provides fewer services, but has very few
+restrictions.
+<A NAME="1676"></A>
+The grid universe allows users to submit 
+jobs using HTCondor's interface.
+These jobs are submitted for execution on grid resources.
+<A NAME="1677"></A>
+<A NAME="1678"></A>
+<A NAME="1679"></A>
+<A NAME="1680"></A>
+The java universe allows users to run jobs written for the
+Java Virtual Machine (JVM).
+The scheduler universe allows users to submit lightweight jobs
+to be spawned by the program known as a daemon on the submit host itself.
+<A NAME="1681"></A>
+The parallel universe is for programs that require multiple machines
+for one job.
+See section&nbsp;<A HREF="2_9Parallel_Applications.html#sec:Parallel">2.9</A> for more about the Parallel universe.
+<A NAME="1683"></A>
+The vm universe allows users to run jobs where the job is
+no longer a simple executable, but a disk image, facilitating
+the execution of a virtual machine.
+
+<P>
+
+<H3><A NAME="SECTION00341100000000000000"></A><A NAME="sec:standard-universe"></A>
+<BR>
+2.4.1.1 Standard Universe
+</H3>
+
+<P>
+<A NAME="1685"></A>
+In the standard universe, HTCondor provides <I>checkpointing</I> and
+<I>remote system calls</I>.  These features make a job more reliable
+and allow it uniform access to resources from anywhere in the pool.
+To prepare a program as a standard universe job, it must be relinked
+with <I>condor_compile</I>.  Most programs can be prepared as a standard
+universe job, but there are a few restrictions.
+
+<P>
+<A NAME="1689"></A>
+<A NAME="1690"></A>
+HTCondor checkpoints a job at regular intervals.
+A <I>checkpoint image</I> is essentially a snapshot of the current
+state of a job. 
+If a job must be migrated from one machine to another,
+HTCondor makes a checkpoint image, copies the image to the new machine,
+and restarts the job continuing the job from where it left off.
+If a machine should
+crash or fail while it is running a job, HTCondor can restart the job on
+a new machine using the most recent checkpoint image.
+In this way, jobs
+can run for months or years even in the face of occasional computer failures.
+
+<P>
+<A NAME="1692"></A>
+<A NAME="1693"></A>
+Remote system calls make a job perceive that it is executing on its home
+machine, even though the job may execute on many different machines over its
+lifetime.
+When a job runs on a remote machine, a second process, called
+a <I>condor_shadow</I> runs on the machine where the job was submitted.
+<A NAME="1695"></A>
+<A NAME="1696"></A>
+<A NAME="1697"></A>
+<A NAME="1698"></A>
+When the job attempts a system call, the <I>condor_shadow</I> performs
+the system call instead and sends the results to the remote
+machine.
+For example, if a job attempts to open a file that is
+stored on the submitting machine,
+the <I>condor_shadow</I> will find the file,
+and send the data to the machine where
+the job is running.
+
+<P>
+To convert your program into a standard universe job, you must use
+<I>condor_compile</I> to relink it with the HTCondor libraries.
+Put <I>condor_compile</I> in front of your usual link command.
+You do not need to modify the program's source code,
+but you do need access to the unlinked object files.
+A commercial program that is packaged as a single executable file cannot be
+converted into a standard universe job.
+
+<P>
+For example, if you would have linked the job by executing:
+<PRE>
+% cc main.o tools.o -o program
+</PRE>
+
+<P>
+Then, relink the job for HTCondor with:
+<PRE>
+% condor_compile cc main.o tools.o -o program
+</PRE>
+
+<P>
+There are a few restrictions on standard universe jobs:
+
+<P>
+
+<P>
+
+<A NAME="1861"></A>
+<A NAME="1862"></A>
+<A NAME="1863"></A>
+<OL>
+<LI>Multi-process jobs are not allowed.  This includes system calls such as
+<TT>fork()</TT>, <TT>exec()</TT>, and <TT>system()</TT>.
+
+<P>
+<A NAME="1867"></A>
+<A NAME="1868"></A>
+<A NAME="1869"></A>
+</LI>
+<LI>Interprocess communication is not allowed.  This includes pipes, semaphores, and shared memory.
+
+<P>
+<A NAME="1870"></A>
+<A NAME="1871"></A>
+</LI>
+<LI>Network communication must be brief.  A job <I>may</I> make network
+connections using system calls such as <TT>socket()</TT>, but a network
+connection left open for long periods will delay checkpointing and migration.
+
+<P>
+<A NAME="1874"></A>
+<A NAME="1875"></A>
+<A NAME="1876"></A>
+</LI>
+<LI>Sending or receiving the SIGUSR2 or SIGTSTP signals is not allowed.
+HTCondor reserves these signals for its own use.  Sending or receiving all
+other signals <I>is</I> allowed.
+
+<P>
+<A NAME="1878"></A>
+<A NAME="1879"></A>
+<A NAME="1880"></A>
+</LI>
+<LI>Alarms, timers, and sleeping are not allowed.  This includes system
+calls such as <TT>alarm()</TT>, <TT>getitimer()</TT>, and <TT>sleep()</TT>.
+
+<P>
+<A NAME="1884"></A>
+<A NAME="1885"></A>
+</LI>
+<LI>Multiple kernel-level threads are not allowed.  However,
+multiple user-level threads <I>are</I> allowed.
+
+<P>
+<A NAME="1887"></A>
+<A NAME="1888"></A>
+</LI>
+<LI>Memory mapped files are not allowed.  This includes system calls such
+as <TT>mmap()</TT> and <TT>munmap()</TT>.
+
+<P>
+<A NAME="1891"></A>
+<A NAME="1892"></A>
+<A NAME="1893"></A>
+</LI>
+<LI>File locks are allowed, but not retained between checkpoints.
+
+<P>
+<A NAME="1894"></A>
+<A NAME="1895"></A>
+</LI>
+<LI>All files must be opened read-only or write-only.  A file opened
+for both reading and writing will cause trouble if a job must be rolled back
+to an old checkpoint image.  For compatibility reasons, a file opened
+for both reading and writing will result in a warning but not an error.
+
+<P>
+</LI>
+<LI>A fair amount of disk space must be available on the submitting machine
+for storing a job's checkpoint images.  A checkpoint image is approximately
+equal to the virtual memory consumed by a job while it runs.  If disk space
+is short, a special <I>checkpoint server</I> can be designated for storing
+all the checkpoint images for a pool.
+
+<P>
+<A NAME="1897"></A>
+<A NAME="1898"></A>
+</LI>
+<LI>On Linux, the job must be statically linked. 
+<I>condor_compile</I> does this by default.
+
+<P>
+<A NAME="1900"></A> 
+</LI>
+<LI>Reading to or writing from files larger than 2 GBytes is only supported
+when the submit side <I>condor_shadow</I> and the standard universe user job
+application itself are both 64-bit executables.
+
+<P>
+</LI>
+</OL>
+
+<P>
+
+<P>
+
+<H3><A NAME="SECTION00341200000000000000">
+2.4.1.2 Vanilla Universe</A>
+</H3>
+
+<P>
+<A NAME="1904"></A>
+The vanilla universe in HTCondor is intended
+for programs which cannot
+be successfully re-linked.
+Shell scripts are another case where the vanilla universe
+is useful.
+Unfortunately, jobs run under the vanilla universe cannot checkpoint or use
+remote system calls. 
+This has unfortunate consequences for a job that is partially
+completed 
+when the remote machine running a job must be returned
+to its owner.
+HTCondor has only two choices.  It can suspend the job, hoping to
+complete it at a later time,
+or it can give up and restart the job <I>from the beginning</I> 
+on another machine in the pool.
+
+<P>
+Since HTCondor's remote system call features cannot be used with the
+vanilla universe, access to the job's input and output files becomes a
+concern.
+One option is for HTCondor to rely on a shared file system, such as NFS
+or AFS. 
+Alternatively, HTCondor has a mechanism for transferring files on behalf
+of the user.
+In this case, HTCondor will transfer any files needed by a job to the
+execution site, run the job, and transfer the output back to the
+submitting machine.
+
+<P>
+Under Unix, HTCondor presumes a shared file system for vanilla jobs. 
+However, if a shared file system is unavailable, a user can enable the
+HTCondor File Transfer mechanism.
+On Windows platforms, the default is to use the File Transfer
+mechanism.
+For details on running a job with a shared file system, see
+section&nbsp;<A HREF="2_5Submitting_Job.html#sec:shared-fs">2.5.3</A> on page&nbsp;<A HREF="2_5Submitting_Job.html#sec:shared-fs"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+For details on using the HTCondor File Transfer mechanism, see 
+section&nbsp;<A HREF="2_5Submitting_Job.html#sec:file-transfer">2.5.4</A> on page&nbsp;<A HREF="2_5Submitting_Job.html#sec:file-transfer"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>.
+
+<P>
+
+<H3><A NAME="SECTION00341300000000000000">
+2.4.1.3 Grid Universe</A>
+</H3>
+
+<P>
+<A NAME="1911"></A>
+The Grid universe in HTCondor is intended to provide the standard
+HTCondor interface to users who wish to start jobs
+intended for remote management systems.
+Section&nbsp;<A HREF="5_3Grid_Universe.html#sec:GridUniverse">5.3</A> on page&nbsp;<A HREF="5_3Grid_Universe.html#sec:GridUniverse"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>
+has details on using the Grid universe.
+The manual page for <I>condor_submit</I>
+on page&nbsp;<A HREF="condor_submit.html#man-condor-submit"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="crossref.png"></A>
+has detailed descriptions of
+the grid-related attributes.
+
+<P>
+
+<H3><A NAME="SECTION00341400000000000000">
+2.4.1.4 Java Universe</A>
+</H3>
+
+<P>
+<A NAME="1917"></A>
+
+<P>
+A program submitted to the Java universe may run on any sort of machine
+with a JVM regardless of its location, owner, or JVM version.  HTCondor
+will take care of all the details such as finding the JVM binary and
+setting the classpath.
+
+<P>
+
+<H3><A NAME="SECTION00341500000000000000">
+2.4.1.5 Scheduler Universe</A>
+</H3>
+
+<P>
+<A NAME="1919"></A>
+<A NAME="1920"></A>
+
+<P>
+The scheduler universe allows users to submit lightweight jobs
+to be run immediately, alongside the <I>condor_schedd</I> daemon on the submit host
+itself.
+Scheduler universe jobs are not matched with a remote machine,
+and will never be preempted.
+The job's requirements expression is evaluated against the <I>condor_schedd</I>'s
+ClassAd.
+
+<P>
+Originally intended for meta-schedulers such as <I>condor_dagman</I>,
+the scheduler universe can also be
+used to manage jobs of any sort that must run on the submit host.
+
+<P>
+However, unlike the local universe, the scheduler
+universe does not use a <I>condor_starter</I> daemon to manage the job, and thus
+offers limited features and policy support.  The local universe
+is a better choice for most jobs which must run on the submit host, as
+it offers a richer set of job management features, and is more
+consistent with other universes such as the vanilla universe.
+The scheduler universe may be retired in the future, in
+favor of the newer local universe.
+
+<P>
+
+<H3><A NAME="SECTION00341600000000000000"></A><A NAME="sec:local-universe"></A>
+<BR>
+2.4.1.6 Local Universe
+</H3>
+
+<P>
+<A NAME="1926"></A>
+<A NAME="1927"></A>
+The local universe allows an HTCondor job to be submitted and
+executed with different assumptions for the execution conditions
+of the job.
+The job does not wait to be matched with a machine.
+It instead executes right away, on the machine where the job
+is submitted.
+The job will never be preempted.
+The job's requirements expression is evaluated against the <I>condor_schedd</I>'s
+ClassAd.
+
+<P>
+
+<H3><A NAME="SECTION00341700000000000000"></A>
+<A NAME="1930"></A>
+<A NAME="1931"></A>
+<BR>
+2.4.1.7 Parallel Universe
+</H3>
+The parallel universe allows parallel programs, such as MPI jobs,
+to be run within the opportunistic HTCondor environment.
+Please see section&nbsp;<A HREF="2_9Parallel_Applications.html#sec:Parallel">2.9</A> for more details.
+
+<P>
+
+<H3><A NAME="SECTION00341800000000000000"></A>
+<A NAME="1934"></A>
+<A NAME="1935"></A>
+<BR>
+2.4.1.8 VM Universe
+</H3>
+HTCondor facilitates the execution of VMware and Xen
+virtual machines with the vm universe.
+
+<P>
+Please see section&nbsp;<A HREF="2_11Virtual_Machine.html#sec:vmuniverse">2.11</A> for details.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html967"
+  HREF="2_5Submitting_Job.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html961"
+  HREF="2_Users_Manual.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html955"
+  HREF="2_3Matchmaking_with.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A> 
+<A NAME="tex2html963"
+  HREF="Contents.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents.png"></A> 
+<A NAME="tex2html965"
+  HREF="Index.html">
+<IMG WIDTH="43" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="index" SRC="index.png"></A> 
+<BR>
+<B> Next:</B> <A NAME="tex2html968"
+  HREF="2_5Submitting_Job.html">2.5 Submitting a Job</A>
+<B> Up:</B> <A NAME="tex2html962"
+  HREF="2_Users_Manual.html">2. Users' Manual</A>
+<B> Previous:</B> <A NAME="tex2html956"
+  HREF="2_3Matchmaking_with.html">2.3 Matchmaking with ClassAds</A>
+ &nbsp; <B>  <A NAME="tex2html964"
+  HREF="Contents.html">Contents</A></B> 
+ &nbsp; <B>  <A NAME="tex2html966"
+  HREF="Index.html">Index</A></B> 
+<!--End of Navigation Panel-->
+
+</BODY>
+</HTML>

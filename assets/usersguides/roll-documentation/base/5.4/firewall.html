@@ -1,0 +1,287 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML
+><HEAD
+><TITLE
+> Managing the Firewall on the Cluster Nodes </TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.79"><LINK
+REL="HOME"
+TITLE="Base Roll: Users Guide"
+HREF="index.html"><LINK
+REL="UP"
+TITLE=" Advanced Tasks "
+HREF="advanced-tasks.html"><LINK
+REL="PREVIOUS"
+TITLE=" Advanced Tasks "
+HREF="advanced-tasks.html"><LINK
+REL="NEXT"
+TITLE=" Flashing BIOS on Compute Nodes Using PXE "
+HREF="pxeflash.html"><LINK
+REL="STYLESHEET"
+TYPE="text/css"
+HREF="rocks.css"></HEAD
+><BODY
+CLASS="SECTION"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Base Roll: Users Guide: 		<SPAN
+CLASS="INLINEMEDIAOBJECT"
+><IMG
+SRC="images/rocks.png"></SPAN
+>
+	</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="advanced-tasks.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Chapter 7. Advanced Tasks</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="pxeflash.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="SECTION"
+><H1
+CLASS="SECTION"
+><A
+NAME="FIREWALL"
+>7.1. Managing the Firewall on the Cluster Nodes</A
+></H1
+><P
+>The firewall for all cluster nodes (including the frontend) is managed with
+the Rocks command line.
+In this section, we'll describe how to open and close ports for cluster nodes.</P
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN1428"
+>7.1.1. Opening a Port in a Node's Firewall</A
+></H2
+><P
+>We'll use the example of opening port 80 (the 'www' service) for the public
+network of compute-0-0.
+To open the port, execute:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks open host firewall compute-0-0 network=public protocol=tcp service=www</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Then we can see the what the resulting firewall rules will look like:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks report host firewall compute-0-0
+&#60;file name="/etc/sysconfig/iptables" perms="500"&#62;
+*filter
+:INPUT ACCEPT [0:0]
+:FORWARD DROP [0:0]
+:OUTPUT ACCEPT [0:0]
+-A INPUT -i eth0 -j ACCEPT
+-A INPUT -i eth1 -m state --state RELATED,ESTABLISHED -j ACCEPT
+-A INPUT -i eth1 -p tcp --dport ssh -m state --state NEW -j ACCEPT
+-A INPUT -i eth1 -p tcp --dport www -j ACCEPT
+-A INPUT -p tcp --dport 0:1024 -j REJECT
+-A INPUT -p udp --dport 0:1024 -j REJECT
+COMMIT
+&#60;/file&#62;</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>In the above example, eth0 is associated with the private network and
+eth1 is associated with the public network.</P
+><P
+>Notice the line: "-A INPUT -i eth1 -p tcp --dport www -j ACCEPT".
+This is the line in the firewall configuration that will allow web traffic to
+flow in and out of compute-0-0.</P
+><P
+>Now apply the configuration to the host:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks sync host network compute-0-0</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>The host will now accept web traffic on its public interface.</P
+></DIV
+><DIV
+CLASS="SECTION"
+><H2
+CLASS="SECTION"
+><A
+NAME="AEN1439"
+>7.1.2. Closing a Port in a Node's Firewall</A
+></H2
+><P
+>We'll use the example of closing port 3306 (the 'mysql' service) for the public
+network of compute-0-0.
+To close the port, execute:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks close host firewall compute-0-0 network=public protocol=tcp service=3306</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>Now apply the configuration to the host:</P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><FONT
+COLOR="#000000"
+><PRE
+CLASS="SCREEN"
+># rocks sync host network compute-0-0</PRE
+></FONT
+></TD
+></TR
+></TABLE
+><P
+>The host will now block all traffic to port 3306 on its public interface.</P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="advanced-tasks.html"
+ACCESSKEY="P"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="pxeflash.html"
+ACCESSKEY="N"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Advanced Tasks</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="advanced-tasks.html"
+ACCESSKEY="U"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Flashing BIOS on Compute Nodes Using PXE</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
