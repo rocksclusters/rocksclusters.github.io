@@ -4,6 +4,7 @@ title: Presentations
 date: 2011-05-08 20:38:31.000000000 -07:00
 categories: []
 tags: []
+weight: 10
 ---
 
 ### Selected Projects

@@ -1,0 +1,38 @@
+---
+layout: default
+---
+
+  <div class="border">
+    <h1>{{ page.title }}</h1>
+  </div>
+
+<section id="services">
+  <h3>Support </h3>
+  <div class="container">
+    <div class="row">
+      {% assign service_support = site.[page.short] | sort: "support"  | last %}
+      {{ service_support.content }} 
+    </div>
+  </div>
+
+  <hr>
+
+  <h3>Documentation</h3>
+  <div class="container">
+    <div class="row">
+      {% assign pages = site.[page.short] | sort: "weight" %}
+       {% for service in pages %}
+        {% if service  != service_support %}
+        <div class="col-lg-3 col-md-6 text-center">
+          <div class="service-box">
+            <li><a href="{{ service.url }}" title="{{ service.title }}">{{ service.title }}</a> </li>
+          </div>
+        </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<hr class="primary">
+<p> <a href="{{ page.url }}"> Back to top </a> </p>

@@ -1,9 +1,10 @@
 ---
 layout: page
-title: Rocks Tutorials
+title: Tutorials
 date: 2011-05-08 20:41:48.000000000 -07:00
 categories: []
 tags: []
+weight: 10
 ---
 
 ## Selected Tutorials
