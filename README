@@ -1,2 +1,14 @@
 # rocksclusters.github.io
 Rocksclusters  test website
+
+
+TODO:
+
+1. change all links for ftp and http form www.rocksclusters.org to new host
+2. when all links/transfer are done, create CMAKE file at the root and change
+   DNS entry 
+
+
+GOTCHA's
+
+1. do not use tabs in any post/page files. Prevents search from working.
