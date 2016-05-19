@@ -27,4 +27,4 @@ The registration is anonymous. The only required fields are
 <iframe src="https://docs.google.com/forms/d/1L7CbIrk5hYpVzQ4jWQHezFd6f-aVCtBpo5ybGAe7R2Q/viewform?embedded=true#start=embed"
 width="760" height="500" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
 
-[1]: http://not-published-yet
+[1]: https://awesome-table.com/-KIAGPC-2IYjjVG2ReJn/view
