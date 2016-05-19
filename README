@@ -8,6 +8,14 @@ TODO:
 2. when all links/transfer are done, create CMAKE file at the root and change
    DNS entry 
 
+3. cluster registration.
+   Created a test form:
+   http://goo.gl/forms/Ql3lpC2jfUTKVOO33
+   use as embedded frame in registration page.
+
+   need to create a sumamry of responses.
+   need to update the form to allow users to set passwd and redo the submission (check)
+
 
 GOTCHA's
 

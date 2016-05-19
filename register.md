@@ -6,9 +6,7 @@ categories: []
 tags: []
 ---
 
-[Current List](/rocks-register/)
-
-[Register Your Cluster](/rocks-register/insert.php)
+See [Current Cluster Registration Summary][1]
 
 ### Rationale
 
@@ -18,8 +16,15 @@ the registry gives our funding agency an additional and significant device for
 evaluation.  It also lets us know which platforms are the most important to Rocks 
 users and what sizes of clusters our software must support.
 
-Please take the time to register your cluster if you haven't already and update 
-your current registration if your current configuration has changed.  As in the past,
-we don't add folks who register to any new email lists. You won't get any more mail 
-from us than you do now.
+Please take the time to register your cluster if you have not already.  
+The registration is anonymous. The only required fields are 
 
+- Cluster name (not FQDN) 
+- Number of CPUs
+- CPU clock rate
+- Rocks version 
+
+<iframe src="https://docs.google.com/forms/d/1L7CbIrk5hYpVzQ4jWQHezFd6f-aVCtBpo5ybGAe7R2Q/viewform?embedded=true#start=embed"
+width="760" height="500" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+
+[1]: http://not-published-yet
