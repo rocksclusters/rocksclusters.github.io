@@ -32,10 +32,16 @@ FILES
 
 LINKS
 
-google addresses for form, form embedded url, shared results spreadsheet view
-
 info (to start with forms):
     https://developers.google.com/apps-script/quickstart/forms#set_it_up
+to start with Awesome tables:
+	https://sites.google.com/site/scriptsexamples/available-web-apps/awesome-tables/documentation
+all forms for account:
+    https://docs.google.com/forms/u/0/
+all spreadsheets for account:
+    https://docs.google.com/spreadsheets/u/0/
+
+google addresses for form, form embedded url, shared results spreadsheet view
 
 created records form (shorthand):
     http://goo.gl/forms/Ql3lpC2jfUTKVOO33
