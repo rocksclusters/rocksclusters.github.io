@@ -35,3 +35,4 @@ exclude:
   - Makefile
   - server.sh
   - junk/
+  - conversion/

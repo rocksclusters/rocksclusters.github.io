@@ -1,0 +1,49 @@
+INFO
+
+- all input files for records were botained via 
+  wget -r http://www.rocksclusters.org/rocks-register
+
+  For getting responses use details.php\?id\=* files. 
+  Number at the end of the file name corresponds to an ID listed in the
+  records DB.
+
+  Edited files, set missing date to 2015-01-01: *2052, *2053, *2054, *2055
+
+FILES
+
+- wget-records.tar.gz 
+  created  form downloaded files:  
+      tar czvf wget-records.tar.gz *php*
+
+- convert-html-records.py
+  conversion script to run on all details* files.  Execute in the direcotry
+  where the files are as: ./convert-html-records.py
+
+- functions.gs - google script 
+  Paste to the google spreadsheet form that is associated with form. 
+  Open  spreadsheet xls associated with google form and in the menu 
+  and open menu Tools->Script Editor.
+  In a new window paste the code.  To run it, at the top menu chose function
+  AppendResponses() and click on debug icon. 
+
+  Debugging helps to find where in original xls errors are. Sometimes script
+  times out due to execution time limit.  Adjust the counter in "for" loop 
+  compare to orig sheet) and restar by clicking on debug again. 
+
+LINKS
+
+google addresses for form, form embedded url, shared results spreadsheet view
+
+info (to start with forms):
+    https://developers.google.com/apps-script/quickstart/forms#set_it_up
+
+created records form (shorthand):
+    http://goo.gl/forms/Ql3lpC2jfUTKVOO33
+
+embed url, use in registration page:
+    <iframe src="https://docs.google.com/forms/d/1L7CbIrk5hYpVzQ4jWQHezFd6f-aVCtBpo5ybGAe7R2Q/viewform?embedded=true#start=embed"
+    width="760" height="500" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+
+shared the results spreadsheet view, use in registration page:
+    https://docs.google.com/spreadsheets/d/12A7bh3I_J8Uba8_7VVYVxR32LhWRQgY79aVogsTGB-o/edit?usp=sharing
+
