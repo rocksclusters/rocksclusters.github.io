@@ -5,18 +5,29 @@ Rocksclusters  test website
 TODO:
 
 1. change all links for ftp and http form www.rocksclusters.org to new host
-2. when all links/transfer are done, create CMAKE file at the root and change
-   DNS entry 
+2. when all links/transfer are done, create CMAKE file at the root and change DNS entry 
+3. verify cluster registartion
+4. git large files
 
-3. cluster registration.
-   Created a test form:
-   http://goo.gl/forms/Ql3lpC2jfUTKVOO33
-   use as embedded frame in registration page.
+COMPLETED:
 
-   need to create a sumamry of responses.
-   need to update the form to allow users to set passwd and redo the submission (check)
+1. cluster registration.
+   - Created google registration form: http://goo.gl/forms/Ql3lpC2jfUTKVOO33
+     use as embedded frame in registration page. see links info in converison/notes
+   - imported all previous responses (see conversion/notes for info)
 
 
 GOTCHA's
 
 1. do not use tabs in any post/page files. Prevents search from working.
+
+
+GIT LARGE FILES
+
+1. see https://git-lfs.github.com
+
+   - install with homebrew locally on mac laptop
+   - git lfs install
+   - git lfs track "*.iso"
+
+   this creates .gitattributes  at the repo top dir
