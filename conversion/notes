@@ -19,23 +19,26 @@ FILES
   conversion script to run on all details* files.  Execute in the direcotry
   where the files are as: ./convert-html-records.py
 
+- updated-records.csv - csv file of records created with running convert-html-records.py
+  upload  it to google docs. Use its  google address in functions.gs file when
+  running the script to pull old data into the form.
+
 - functions.gs - google script 
   Paste to the google spreadsheet form that is associated with form. 
   Open  spreadsheet xls associated with google form and in the menu 
   and open menu Tools->Script Editor.
   In a new window paste the code.  To run it, at the top menu chose function
   AppendResponses() and click on debug icon. 
-
-  Debugging helps to find where in original xls errors are. Sometimes script
-  times out due to execution time limit.  Adjust the counter in "for" loop 
-  compare to orig sheet) and restar by clicking on debug again. 
+  Debugging helps to find where in original xls errors are. Script times out 
+  due to execution time limit after about ~150 imports.  Adjust the counter 
+  in "for" loop compare to orig sheet) and restar by clicking on debug again. 
 
 LINKS
 
 info (to start with forms):
     https://developers.google.com/apps-script/quickstart/forms#set_it_up
 to start with Awesome tables:
-	https://sites.google.com/site/scriptsexamples/available-web-apps/awesome-tables/documentation
+    https://sites.google.com/site/scriptsexamples/available-web-apps/awesome-tables/documentation
 all forms for account:
     https://docs.google.com/forms/u/0/
 all spreadsheets for account:
