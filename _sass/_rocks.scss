@@ -53,6 +53,26 @@ $title-h3: $nblue;
     padding: 0 15px 0 15px;
 }
 
+.rolls {
+    width: 100%;
+    border: 0px;
+}
+
+.rolls th {
+    text-align: center;
+    background: $header-light;
+}
+.rolls td {
+    vertical-align: top;
+}
+
+.odd {
+    background-color: #eeefff;
+}
+.even {
+    background-color: #fff;
+}
+
 .strongword {
     font-weight: 700;
     color: $blue;
