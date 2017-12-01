@@ -12,15 +12,15 @@ tags: []
 {% assign dvd2 = '0B2VTJMbHpU8yNzZ5MlE1emV1M00' %}
 {% assign kernel = '0B2VTJMbHpU8yY1lURWsweS15V0k' %}
 {% assign base = '0B2VTJMbHpU8yMHJJSlJCVzk5akE' %}
-{% assign os1 = ' 0B2VTJMbHpU8yMkdVRk1nUk5rajA' %}
-{% assign os2 = ' 0B2VTJMbHpU8yLUJuZTdTcXNoQ00' %}
-{% assign os3 = ' 0B2VTJMbHpU8yZzBRSWJqNG1STnc' %}
-{% assign os4 = ' 0B2VTJMbHpU8ybVU4ZjVvYlhDaEk' %}
-{% assign os5 = ' 0B2VTJMbHpU8yckRPbGNDaklvR3M' %}
-{% assign os6 = ' 0B2VTJMbHpU8yd2FxSEF2V0pJWXM' %}
-{% assign os7 = ' 0B2VTJMbHpU8ycF9rV211cWdUaVk' %}
-{% assign os8 = ' 0B2VTJMbHpU8yZklXQy1YTHY3Nmc' %}
-{% assign os9 = ' 0B2VTJMbHpU8yLUU4UHMxTUE4Mlk' %}
+{% assign os1 = '0B2VTJMbHpU8yMkdVRk1nUk5rajA' %}
+{% assign os2 = '0B2VTJMbHpU8yLUJuZTdTcXNoQ00' %}
+{% assign os3 = '0B2VTJMbHpU8yZzBRSWJqNG1STnc' %}
+{% assign os4 = '0B2VTJMbHpU8ybVU4ZjVvYlhDaEk' %}
+{% assign os5 = '0B2VTJMbHpU8yckRPbGNDaklvR3M' %}
+{% assign os6 = '0B2VTJMbHpU8yd2FxSEF2V0pJWXM' %}
+{% assign os7 = '0B2VTJMbHpU8ycF9rV211cWdUaVk' %}
+{% assign os8 = '0B2VTJMbHpU8yZklXQy1YTHY3Nmc' %}
+{% assign os9 = '0B2VTJMbHpU8yLUU4UHMxTUE4Mlk' %}
 {% assign os10 = '0B2VTJMbHpU8yUjhXYzhBVEhvVDQ' %}
 {% assign area51 = '0B2VTJMbHpU8yazZxQnhicmVzTDQ' %}
 {% assign bio = '0B2VTJMbHpU8yNW1POE9LX1NTdTQ' %}
@@ -57,7 +57,7 @@ Rocks 6.2 (Sidewinder) x86_64 is based upon CentOS 6.6 with all updates availabl
   * **OS roll Disk 2**
   * **OS roll Disk 3** 
 
-### Building a more compute cluster
+### Building a more complex cluster
 
 In addition to above select the following rolls: 
 
