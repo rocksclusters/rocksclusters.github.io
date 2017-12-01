@@ -3,7 +3,6 @@ layout: post
 title: Rocks 6.1.1 (Sand Boa) is now available
 date: 2014-04-15 21:20:51.000000000 -07:00
 categories:
-- "new" 
 - "2014" 
 tags: []
 status: publish
