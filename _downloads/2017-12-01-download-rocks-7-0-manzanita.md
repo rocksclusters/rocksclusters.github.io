@@ -44,24 +44,25 @@ Rocks 7.0 (Manzanita) x86_64 is based upon CentOS 7.4 with all updates available
 In addition to above, select the following rolls: 
 
 <table width="85%">
-<tr><td width="30%">
-<ul>
-    <li> area51 </li>
-    <li> fingerprint </li>
-    <li> ganglia </li>
-    <li> kvm (used for virtualization)</li>
-    <li> hpc </li>
-</ul>
-</td>
-<td>
-<ul>
-    <li> htcondor (used independently or in conjunction with sge)</li>
-    <li> perl </li>
-    <li> python </li>
-    <li> sge </li>
-    <li> zfs-linux (used to build reliable storage systems)</li>
-</ul>
-</td>
+<tr>
+  <td width="30%">
+    <ul>
+      <li> area51 </li>
+      <li> fingerprint </li>
+      <li> ganglia </li>
+      <li> kvm (used for virtualization)</li>
+      <li> hpc </li>
+    </ul>
+  </td>
+  <td>
+    <ul>
+      <li> htcondor (used independently or in conjunction with sge)</li>
+      <li> perl </li>
+      <li> python </li>
+      <li> sge </li>
+      <li> zfs-linux (used to build reliable storage systems)</li>
+    </ul>
+  </td>
 </tr>
 </table>
 
@@ -81,68 +82,58 @@ Individual links are listed below.
 
 <table class="rolls">
 <tr>
-<th width="12%">Name</th>
-<th width="38%">Description</th>
-<th width="10%">Name</th>
-<th width="40%">Description</th>
+  <th width="12%">Name</th>
+  <th width="38%">Description</th>
+  <th width="10%">Name</th>
+  <th width="40%">Description</th>
 </tr>
-
 <tr>
-<td class="odd"><a href="{{repodir}}{{kernel}}">kernel</a></td>
-<td class="odd">Rocks Bootable Kernel Roll <strong>required</strong></td>
-<td class="odd"><a href="{{repodir}}{{zfs-linux}}">zfs-linux</a></td>
-<td class="odd">ZFS On Linux Roll. Build and Manage Multi Terabyte File Systems.</td>
+  <td class="odd"><a href="{{repodir}}{{kernel}}">kernel</a></td>
+  <td class="odd">Rocks Bootable Kernel Roll <strong>required</strong></td>
+  <td class="odd"><a href="{{repodir}}{{zfs-linux}}">zfs-linux</a></td>
+  <td class="odd">ZFS On Linux Roll. Build and Manage Multi Terabyte File Systems.</td>
 </tr>
-
 <tr>
-<td><a href="{{repodir}}{{base}}">base</a></td>
-<td>Rocks Base Roll <strong>required</strong></td>
-<td><a href="{{repodir}}{{fingerprint}}">fingerprint</a></td>
-<td>Fingerprint application dependencies</td>
+  <td><a href="{{repodir}}{{base}}">base</a></td>
+  <td>Rocks Base Roll <strong>required</strong></td>
+  <td><a href="{{repodir}}{{fingerprint}}">fingerprint</a></td>
+  <td>Fingerprint application dependencies</td>
 </tr>
-
 <tr>
-<td class="odd"><a href="{{repodir}}{{core}}">core</a></td>
-<td class="odd">Core Roll <strong>required</strong></td>
-<td class="odd"><a href="{{repodir}}{{hpc}}">hpc</a></td>
-<td class="odd">Rocks HPC Roll</td>
+  <td class="odd"><a href="{{repodir}}{{core}}">core</a></td>
+  <td class="odd">Core Roll <strong>required</strong></td>
+  <td class="odd"><a href="{{repodir}}{{hpc}}">hpc</a></td>
+  <td class="odd">Rocks HPC Roll</td>
 </tr>
-
 <tr>
-<td><a href="{{repodir}}{{CentOS}}">CentOS</a></td>
-<td>CentOS Roll <strong>required</strong></td>
-<td><a href="{{repodir}}{{htcondir}}">htcondor</a></td>
-<td>HTCondor High Throughput Computing (version 8.2.8)</td>
+  <td><a href="{{repodir}}{{CentOS}}">CentOS</a></td>
+  <td>CentOS Roll <strong>required</strong></td>
+  <td><a href="{{repodir}}{{htcondir}}">htcondor</a></td>
+  <td>HTCondor High Throughput Computing (version 8.2.8)</td>
 </tr>
-
 <tr>
-<td class="odd"><a href="{{repodir}}{{Updates-CentOS}}">Updates-CentOS</a></td>
-<td class="odd">CentOS Updates Roll <strong>required</strong></td>
-<td class="odd"><a href="{{repodir}}{{sge}}">sge</a>
-<td class="odd">Sun Grid Engine (Open Grid Scheduler) job queueing system</td>
+  <td class="odd"><a href="{{repodir}}{{Updates-CentOS}}">Updates-CentOS</a></td>
+  <td class="odd">CentOS Updates Roll <strong>required</strong></td>
+  <td class="odd"><a href="{{repodir}}{{sge}}">sge</a>
+  <td class="odd">Sun Grid Engine (Open Grid Scheduler) job queueing system</td>
 </tr>
-
 <tr>
-<td><a href="{{repodir}}{{kvm}}">kvm</a></td>
-<td>Support for building KVM VMs on cluster nodes</td>
-<td><a href="{{repodir}}{{perl}}">perl</a></td>
-<td>Support for Newer Version of Perl</td>
+  <td><a href="{{repodir}}{{kvm}}">kvm</a></td>
+  <td>Support for building KVM VMs on cluster nodes</td>
+  <td><a href="{{repodir}}{{perl}}">perl</a></td>
+  <td>Support for Newer Version of Perl</td>
 </tr>
-
 <tr>
-<td class="odd"><a href="{{repodir}}{{ganglia}}">ganglia</a></td>
-<td class="odd">Cluster monitoring system from UCB</td>
-<td class="odd"><a href="{{repodir}}{{python}}">python</a>
-<td class="odd">Python 2.7 and Python 3.x</td>
+  <td class="odd"><a href="{{repodir}}{{ganglia}}">ganglia</a></td>
+  <td class="odd">Cluster monitoring system from UCB</td>
+  <td class="odd"><a href="{{repodir}}{{python}}">python</a>
+  <td class="odd">Python 2.7 and Python 3.x</td>
 </tr>
-
 <tr>
-<td><a href="{{repodir}}{{area51}}">area51</a></td>
-<td>System security related services and utilities </td>
-<td><a href="{{repodir}}{{openvswitch}}">openvswitch</a></td>
-<td>Rocks integration of OpenVswitch</td>
+  <td><a href="{{repodir}}{{area51}}">area51</a></td>
+  <td>System security related services and utilities </td>
+  <td><a href="{{repodir}}{{openvswitch}}">openvswitch</a></td>
+  <td>Rocks integration of OpenVswitch</td>
 </tr>
-
-</tbody>
 </table>
 

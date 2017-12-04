@@ -91,124 +91,109 @@ Individual links are listed below.
 **Jumbo DVDs (x86_64)**
 
 <table class="rolls">
-<tr>
-<th width="30%">DVD</th>
-<th width="70%">Description</th>
-</tr>
-
-<tr>
-<td class="odd"><a href="{{repodir}}{{dvd1}}">jumbo dvd option 1</a></td>
-<td class="odd">Jumbo DVD: {{jumbo1}} </td>
-</tr>
-
-<tr>
-<td><a href="{{repodir}}{{dvd2}}">jumbo dvd option 2</a></td>
-<td>Jumbo DVD: {{jumbo2}}</td>
-</tr>
+  <tr>
+    <th width="30%">DVD</th>
+    <th width="70%">Description</th>
+  </tr>
+  <tr>
+    <td class="odd"><a href="{{repodir}}{{dvd1}}">jumbo dvd option 1</a></td>
+    <td class="odd">Jumbo DVD: {{jumbo1}} </td>
+  </tr>
+  <tr>
+    <td><a href="{{repodir}}{{dvd2}}">jumbo dvd option 2</a></td>
+    <td>Jumbo DVD: {{jumbo2}}</td>
+  </tr>
 </table>
 <br/>
 
 **Individual rolls (x86_64)**
 
 <table class="rolls">
+<tbody>
 <tr>
-<th width="10%">Name</th>
-<th width="40%">Description</th>
-<th width="10%">Name</th>
-<th width="40%">Description</th>
+  <th width="10%">Name</th>
+  <th width="40%">Description</th>
+  <th width="10%">Name</th>
+  <th width="40%">Description</th>
 </tr>
-
 <tr>
-<td class="odd"><a href="{{repodir}}{{kernel}}">kernel</a></td>
-<td class="odd">Rocks Bootable Kernel Roll <strong>required</strong></td>
-<td class="odd"><a href="{{repodir}}{{bio}}">bio</a></td>
-<td class="odd">Bioinformatics utilities</td>
+  <td class="odd"><a href="{{repodir}}{{kernel}}">kernel</a></td>
+  <td class="odd">Rocks Bootable Kernel Roll <strong>required</strong></td>
+  <td class="odd"><a href="{{repodir}}{{bio}}">bio</a></td>
+  <td class="odd">Bioinformatics utilities</td>
 </tr>
-
 <tr>
-<td><a href="{{repodir}}{{base}}">base</a></td>
-<td>Rocks Base Roll <strong>required</strong></td>
-<td><a href="{{repodir}}{{fingerprint}}">fingerprint</a></td>
-<td>Fingerprint application dependencies</td>
+  <td><a href="{{repodir}}{{base}}">base</a></td>
+  <td>Rocks Base Roll <strong>required</strong></td>
+  <td><a href="{{repodir}}{{fingerprint}}">fingerprint</a></td>
+  <td>Fingerprint application dependencies</td>
 </tr>
-
 <tr>
-<td class="odd"><a href="{{repodir}}{{os1}}">os disk 1</a></td>
-<td class="odd">OS Roll <strong>required</strong></td>
-<td class="odd"><a href="{{repodir}}{{htcondir}}">HTCondor</a></td>
-<td class="odd">HTCondor High Throughput Computing (version 8.2.8)</td>
+  <td class="odd"><a href="{{repodir}}{{os1}}">os disk 1</a></td>
+  <td class="odd">OS Roll <strong>required</strong></td>
+  <td class="odd"><a href="{{repodir}}{{htcondir}}">HTCondor</a></td>
+  <td class="odd">HTCondor High Throughput Computing (version 8.2.8)</td>
 </tr>
-
 <tr>
-<td><a href="{{repodir}}{{os2}}">os disk 2</a></td>
-<td>OS Roll <strong>required</strong></td>
-<td><a href="{{repodir}}{{ganglia}}">ganglia</a></td>
-<td>Cluster monitoring system from UCB</td>
+  <td><a href="{{repodir}}{{os2}}">os disk 2</a></td>
+  <td>OS Roll <strong>required</strong></td>
+  <td><a href="{{repodir}}{{ganglia}}">ganglia</a></td>
+  <td>Cluster monitoring system from UCB</td>
 </tr>
-
 <tr>
-<td class="odd"><a href="{{repodir}}{{os3}}">os disk 3</a></td>
-<td class="odd">OS Roll <strong>required</strong></td>
-<td class="odd"><a href="{{repodir}}{{hpc}}">hpc</a></td>
-<td class="odd">Rocks HPC Roll</td>
+  <td class="odd"><a href="{{repodir}}{{os3}}">os disk 3</a></td>
+  <td class="odd">OS Roll <strong>required</strong></td>
+  <td class="odd"><a href="{{repodir}}{{hpc}}">hpc</a></td>
+  <td class="odd">Rocks HPC Roll</td>
 </tr>
-
 <tr>
-<td><a href="{{repodir}}{{os4}}">os disk 4</a></td>
-<td>OS Roll (optional)</td>
-<td><a href="{{repodir}}{{kvm}}">kvm</a></td>
-<td>Support for building KVM VMs on cluster nodes</td>
+  <td><a href="{{repodir}}{{os4}}">os disk 4</a></td>
+  <td>OS Roll (optional)</td>
+  <td><a href="{{repodir}}{{kvm}}">kvm</a></td>
+  <td>Support for building KVM VMs on cluster nodes</td>
 </tr>
-
 <tr>
-<td class="odd"><a href="{{repodir}}{{os5}}">os disk 5</a></td>
-<td class="odd">OS Roll (optional)</td>
-<td class="odd"><a href="{{repodir}}{{perfsonar}}">perfSONAR</a></td>
-<td class="odd">The perfSONAR Roll (Version 3.4.2)</td>
+  <td class="odd"><a href="{{repodir}}{{os5}}">os disk 5</a></td>
+  <td class="odd">OS Roll (optional)</td>
+  <td class="odd"><a href="{{repodir}}{{perfsonar}}">perfSONAR</a></td>
+  <td class="odd">The perfSONAR Roll (Version 3.4.2)</td>
 </tr>
-
 <tr>
-<td><a href="{{repodir}}{{os6}}">os disk 6</a></td>
-<td>OS Roll (optional)</td>
-<td><a href="{{repodir}}{{perl}}">perl</a></td>
-<td>Support for Newer Version of Perl</td>
+  <td><a href="{{repodir}}{{os6}}">os disk 6</a></td>
+  <td>OS Roll (optional)</td>
+  <td><a href="{{repodir}}{{perl}}">perl</a></td>
+  <td>Support for Newer Version of Perl</td>
 </tr>
-
 <tr>
-<td class="odd"><a href="{{repodir}}{{os7}}">os disk 7</a></td>
-<td class="odd">OS Roll (optional)</td>
-<td class="odd"><a href="{{repodir}}{{python}}">python</a>
-<td class="odd">Python 2.7 and Python 3.x</td>
+  <td class="odd"><a href="{{repodir}}{{os7}}">os disk 7</a></td>
+  <td class="odd">OS Roll (optional)</td>
+  <td class="odd"><a href="{{repodir}}{{python}}">python</a>
+  <td class="odd">Python 2.7 and Python 3.x</td>
 </tr>
-
 <tr>
-<td><a href="{{repodir}}{{os8}}">os disk 8</a></td>
-<td>OS Roll (optional)</td>
-<td><a href="{{repodir}}{{sge}}">sge</a>
-<td>Sun Grid Engine (Open Grid Scheduler)  job queueing system (Version GE2011)</td>
+  <td><a href="{{repodir}}{{os8}}">os disk 8</a></td>
+  <td>OS Roll (optional)</td>
+  <td><a href="{{repodir}}{{sge}}">sge</a>
+  <td>Sun Grid Engine (Open Grid Scheduler)  job queueing system (Version GE2011)</td>
 </tr>
-
 <tr>
-<td class="odd"><a href="{{repodir}}{{os9}}">os disk 9</a></td>
-<td class="odd">OS Roll (optional)</td>
-<td class="odd"><a href="ftp://ftp.uit.no/pub/linux/rocks/torque-roll/6.1.0">torque</a></td>
-<td class="odd">Torque+Maui job queueing system (packaged by HPC Group at University of Tromso, Norway)</td>
+  <td class="odd"><a href="{{repodir}}{{os9}}">os disk 9</a></td>
+  <td class="odd">OS Roll (optional)</td>
+  <td class="odd"><a href="ftp://ftp.uit.no/pub/linux/rocks/torque-roll/6.1.0">torque</a></td>
+  <td class="odd">Torque+Maui job queueing system (packaged by HPC Group at University of Tromso, Norway)</td>
 </tr>
-
 <tr>
-<td><a href="{{repodir}}{{os10}}">os disk 10</a></td>
-<td>OS Roll (optional)</td>
-<td><a href="{{repodir}}{{web-server}}">web-server</a></td>
-<td>Rocks Web Server Roll</td>
+  <td><a href="{{repodir}}{{os10}}">os disk 10</a></td>
+  <td>OS Roll (optional)</td>
+  <td><a href="{{repodir}}{{web-server}}">web-server</a></td>
+  <td>Rocks Web Server Roll</td>
 </tr>
-
 <tr>
-<td class="odd"><a href="{{repodir}}{{area51}}">area51</a></td>
-<td class="odd">System security related services and utilities </td>
-<td class="odd"><a href="{{repodir}}{{zfs-linux}}">zfs-linux</a></td>
-<td class="odd">ZFS On Linux Roll. Build and Manage Multi Terabyte File Systems.</td>
+  <td class="odd"><a href="{{repodir}}{{area51}}">area51</a></td>
+  <td class="odd">System security related services and utilities </td>
+  <td class="odd"><a href="{{repodir}}{{zfs-linux}}">zfs-linux</a></td>
+  <td class="odd">ZFS On Linux Roll. Build and Manage Multi Terabyte File Systems.</td>
 </tr>
-
 </tbody>
 </table>
 
