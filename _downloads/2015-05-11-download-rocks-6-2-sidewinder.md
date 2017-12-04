@@ -109,7 +109,6 @@ Individual links are listed below.
 **Individual rolls (x86_64)**
 
 <table class="rolls">
-<tbody>
 <tr>
   <th width="10%">Name</th>
   <th width="40%">Description</th>
@@ -194,6 +193,5 @@ Individual links are listed below.
   <td class="odd"><a href="{{repodir}}{{zfs-linux}}">zfs-linux</a></td>
   <td class="odd">ZFS On Linux Roll. Build and Manage Multi Terabyte File Systems.</td>
 </tr>
-</tbody>
 </table>
 
