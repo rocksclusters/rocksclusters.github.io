@@ -8,8 +8,6 @@ tags: []
 
 {% assign repodir = 'http://central-7-0-x86-64.rocksclusters.org/isos/' %}
 {% assign md5sum = 'md5sums.txt' %}
-
-
 {% assign kernel = 'kernel-7.0-0.x86_64.disk1.iso' %}
 {% assign base = 'base-7.0-2.x86_64.disk1.iso' %}
 {% assign core = 'core-7.0-2.x86_64.disk1.iso' %}
@@ -26,7 +24,6 @@ tags: []
 {% assign Updates-CentOS = 'Updates-CentOS-7.4.1708-2017-12-01-0.x86_64.disk1.iso' %}
 {% assign zfs-linux = 'zfs-linux-0.7.3-1.x86_64.disk1.iso' %}
 {% assign area51 = 'area51-7.0-0.x86_64.disk1.iso' %}
-
 
 [1]: {{repodir}}{{md5sum}} 
 [2]: {{repodir}}
@@ -114,7 +111,7 @@ Individual links are listed below.
 <tr>
   <td class="odd"><a href="{{repodir}}{{Updates-CentOS}}">Updates-CentOS</a></td>
   <td class="odd">CentOS Updates Roll <strong>required</strong></td>
-  <td class="odd"><a href="{{repodir}}{{sge}}">sge</a>
+  <td class="odd"><a href="{{repodir}}{{sge}}">sge</a></td>
   <td class="odd">Sun Grid Engine (Open Grid Scheduler) job queueing system</td>
 </tr>
 <tr>
@@ -126,7 +123,7 @@ Individual links are listed below.
 <tr>
   <td class="odd"><a href="{{repodir}}{{ganglia}}">ganglia</a></td>
   <td class="odd">Cluster monitoring system from UCB</td>
-  <td class="odd"><a href="{{repodir}}{{python}}">python</a>
+  <td class="odd"><a href="{{repodir}}{{python}}">python</a></td>
   <td class="odd">Python 2.7 and Python 3.x</td>
 </tr>
 <tr>

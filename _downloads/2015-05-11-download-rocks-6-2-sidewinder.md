@@ -166,13 +166,13 @@ Individual links are listed below.
 <tr>
   <td class="odd"><a href="{{repodir}}{{os7}}">os disk 7</a></td>
   <td class="odd">OS Roll (optional)</td>
-  <td class="odd"><a href="{{repodir}}{{python}}">python</a>
+  <td class="odd"><a href="{{repodir}}{{python}}">python</a></td>
   <td class="odd">Python 2.7 and Python 3.x</td>
 </tr>
 <tr>
   <td><a href="{{repodir}}{{os8}}">os disk 8</a></td>
   <td>OS Roll (optional)</td>
-  <td><a href="{{repodir}}{{sge}}">sge</a>
+  <td><a href="{{repodir}}{{sge}}">sge</a></td>
   <td>Sun Grid Engine (Open Grid Scheduler)  job queueing system (Version GE2011)</td>
 </tr>
 <tr>
