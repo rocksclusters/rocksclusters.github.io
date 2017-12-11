@@ -6,6 +6,7 @@ categories:
 - "new"
 - "2017"
 tags: []
+sticky: yes
 status: publish
 type: post
 published: true

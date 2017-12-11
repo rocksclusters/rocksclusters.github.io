@@ -31,34 +31,52 @@ See <a href="/docs/licensing">Rocks Licensing</a>.
 <div class="border">
   <h1 class="page-heading">In the News </h1>
 </div>
-<!--  <div class="container">-->
-        {% assign post_last = site.posts | first  %}
-          <h3>
-            <a class="post-link" href="{{ post_last.url | prepend: site.baseurl }}">{{ post_last.title }}</a>
-          </h3>
-        <div class="post-container">
-          <div class="post-img"><img class="" src="{{ post_last.imagesrc }}" alt="" /></div>
-          <div class="post-content;">{{ post_last.content }}</div>
-        </div>
-<!--  </div>-->
-<br>
 
+<!-- latest  post {% assign post_last = site.posts | first  %} -->
+
+<!-- show sticky post  post -->
+{% assign post_sticky = site.posts | sort:"sticky" | last %}
+<h3>
+  <a class="post-link" href="{{ post_sticky.url | prepend: site.baseurl }}">{{ post_sticky.title }}</a>
+</h3>
+<div class="post-container">
+  <div class="post-img"><img class="" src="{{ post_sticky.imagesrc }}" alt="" /></div>
+  <div class="post-content;">{{ post_sticky.content }}</div>
+</div>
+<br><hr>
+
+{% assign newposts = site.posts | where: "categories","new" %}
+{% for post in site.posts limit:3 %}
+  {% if post.categories[0] == 'new' %}
+    {% if post == post_sticky %} {% continue %} {% endif %}
+    <h3>
+      <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+    </h3>
+    <div class="post-container">
+      <div class="post-img"><img class="" src="{{ post.imagesrc }}" alt="" /></div>
+      <div class="post-content;">{{ post.content }}</div>
+    </div>
+    <br><hr>
+  {% endif %}
+{% endfor %}
+
+<br>
 <div class="border">
   <h1 class="page-heading">Recent Posts</h1>
 </div>
 
-  <table class="post-table">
-    {% for post in site.posts %}
-<!-- Use thi to list allposts : if post != post_last  -->
-      {% if post.categories[0] == 'new' %}
+<table class="post-table">
+  {% for post in site.posts %}
+    <!-- Use this to list all posts : if post != post_last  -->
+    {% if post.categories[0] == 'new' %}
       <tr>
         <td width="25%"><span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span></td>
         <td><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></td>
       </tr>
-      {% endif %}
-    {% endfor %}
-  </table>
+    {% endif %}
+  {% endfor %}
+</table>
 
-  <h1 class="page-heading"><a href="/archive">Older posts</a></h1>
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+<h1 class="page-heading"><a href="/archive">Older posts</a></h1>
+<p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
 
