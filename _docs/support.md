@@ -16,7 +16,7 @@ The primary mode for support for Rocks is through our email discussion list.
 
 * [Rocks Wiki][3] on github
 
-[1]: https://lists.sdsc.edu/mailman/listinfo/npaci-rocks-discussion
+[1]: https://groups.google.com/a/ucsd.edu/g/npaci-rocks-discussion-l
 [2]: http://marc.info/?l=npaci-rocks-discussion
 [3]: https://github.com/rocksclusters/wiki/wiki
 
